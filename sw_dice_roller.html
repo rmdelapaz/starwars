@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG Dice Roller</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00ff00;
+            color: #00ff00;
+        }
+        
+        .dice-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .dice-type {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .dice-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .boost { border-color: #87CEEB; }
+        .ability { border-color: #32CD32; }
+        .proficiency { border-color: #FFD700; }
+        .setback { border-color: #000000; }
+        .difficulty { border-color: #8B008B; }
+        .challenge { border-color: #DC143C; }
+        .force { border-color: #FFFFFF; }
+        
+        .dice-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .dice-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .dice-count {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: white;
+            text-align: center;
+            width: 60px;
+        }
+        
+        .dice-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .dice-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .roll-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .roll-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        .clear-btn {
+            background: #666;
+            border: none;
+            border-radius: 15px;
+            color: white;
+            padding: 10px 25px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .results {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #00ff00;
+        }
+        
+        .result-summary {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .dice-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .dice-result {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            border-left: 4px solid;
+        }
+        
+        .symbols {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        
+        .symbol {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            line-height: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .success { background: #32CD32; }
+        .advantage { background: #87CEEB; }
+        .triumph { background: #FFD700; }
+        .failure { background: #DC143C; }
+        .threat { background: #8B008B; }
+        .despair { background: #000000; }
+        .light { background: #FFFFFF; color: #000000; }
+        .dark { background: #696969; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Star Wars RPG Dice Roller</h1>
+        
+        <div class="dice-section">
+            <h2>Select Your Dice</h2>
+            <div class="dice-grid">
+                <div class="dice-type boost">
+                    <div class="dice-name">Boost (Blue)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('boost', -1)">-</button>
+                        <input type="number" class="dice-count" id="boost-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('boost', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="dice-type ability">
+                    <div class="dice-name">Ability (Green)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('ability', -1)">-</button>
+                        <input type="number" class="dice-count" id="ability-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('ability', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="dice-type proficiency">
+                    <div class="dice-name">Proficiency (Yellow)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('proficiency', -1)">-</button>
+                        <input type="number" class="dice-count" id="proficiency-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('proficiency', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="dice-type setback">
+                    <div class="dice-name">Setback (Black)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('setback', -1)">-</button>
+                        <input type="number" class="dice-count" id="setback-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('setback', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="dice-type difficulty">
+                    <div class="dice-name">Difficulty (Purple)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('difficulty', -1)">-</button>
+                        <input type="number" class="dice-count" id="difficulty-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('difficulty', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="dice-type challenge">
+                    <div class="dice-name">Challenge (Red)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('challenge', -1)">-</button>
+                        <input type="number" class="dice-count" id="challenge-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('challenge', 1)">+</button>
+                    </div>
+                </div>
+                
+                <div class="dice-type force">
+                    <div class="dice-name">Force (White)</div>
+                    <div class="dice-controls">
+                        <button class="dice-btn" onclick="changeDiceCount('force', -1)">-</button>
+                        <input type="number" class="dice-count" id="force-count" value="0" min="0" max="10">
+                        <button class="dice-btn" onclick="changeDiceCount('force', 1)">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="roll-btn" onclick="rollDice()">Roll Dice</button>
+            <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+        
+        <div id="results" class="results" style="display: none;">
+            <div class="result-summary" id="summary"></div>
+            <div class="dice-results" id="dice-results"></div>
+        </div>
+    </div>
+    <div class="dice-section">
+            <h2>📖 Dice Legend</h2>
+            <div class="legend-grid">
+                <div class="legend-item boost">
+                    <div class="legend-name">Boost (Blue) d6</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫⚫ Blank (2)</span>
+                        <span class="legend-face">🔷 Advantage (1)</span>
+                        <span class="legend-face">✅🔷 Success + Advantage (1)</span>
+                        <span class="legend-face">🔷🔷 Double Advantage (1)</span>
+                        <span class="legend-face">✅ Success (1)</span>
+                    </div>
+                </div>
+                
+                <div class="legend-item ability">
+                    <div class="legend-name">Ability (Green) d8</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫ Blank (1)</span>
+                        <span class="legend-face">✅ Success (3)</span>
+                        <span class="legend-face">✅✅ Double Success (1)</span>
+                        <span class="legend-face">🔷 Advantage (2)</span>
+                        <span class="legend-face">✅🔷 Success + Advantage (1)</span>
+                    </div>
+                </div>
+                
+                <div class="legend-item proficiency">
+                    <div class="legend-name">Proficiency (Yellow) d12</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫ Blank (1)</span>
+                        <span class="legend-face">✅ Success (2)</span>
+                        <span class="legend-face">✅✅ Double Success (2)</span>
+                        <span class="legend-face">🔷 Advantage (1)</span>
+                        <span class="legend-face">✅🔷 Success + Advantage (3)</span>
+                        <span class="legend-face">🔷🔷 Double Advantage (2)</span>
+                        <span class="legend-face">🌟 TRIUMPH (1)</span>
+                    </div>
+                </div>
+                
+                <div class="legend-item setback">
+                    <div class="legend-name">Setback (Black) d6</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫⚫ Blank (2)</span>
+                        <span class="legend-face">❌ Failure (2)</span>
+                        <span class="legend-face">🔺 Threat (2)</span>
+                    </div>
+                </div>
+                
+                <div class="legend-item difficulty">
+                    <div class="legend-name">Difficulty (Purple) d8</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫ Blank (1)</span>
+                        <span class="legend-face">❌ Failure (2)</span>
+                        <span class="legend-face">❌❌ Double Failure (1)</span>
+                        <span class="legend-face">🔺 Threat (3)</span>
+                        <span class="legend-face">❌🔺 Failure + Threat (1)</span>
+                    </div>
+                </div>
+                
+                <div class="legend-item challenge">
+                    <div class="legend-name">Challenge (Red) d12</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫ Blank (1)</span>
+                        <span class="legend-face">❌ Failure (2)</span>
+                        <span class="legend-face">❌❌ Double Failure (2)</span>
+                        <span class="legend-face">🔺 Threat (2)</span>
+                        <span class="legend-face">❌🔺 Failure + Threat (2)</span>
+                        <span class="legend-face">🔺🔺 Double Threat (2)</span>
+                        <span class="legend-face">💀 DESPAIR (1)</span>
+                    </div>
+                </div>
+                
+                <div class="legend-item force">
+                    <div class="legend-name">Force (White) d12</div>
+                    <div class="legend-faces">
+                        <span class="legend-face">⚫ Dark Side (7)</span>
+                        <span class="legend-face">⚫⚫ Double Dark (1)</span>
+                        <span class="legend-face">⚪ Light Side (1)</span>
+                        <span class="legend-face">⚪⚪ Double Light (3)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dice-section">
+            <h2>🎯 How to Interpret Results</h2>
+            <div class="interpretation-grid">
+                <div class="interpretation-item">
+                    <h4>Net Success/Failure</h4>
+                    <p>Compare total ✅ Success vs ❌ Failure. If Success ≥ Failure, the action succeeds. 🌟 Triumph counts as Success + narrative benefit. 💀 Despair counts as Failure + narrative consequence.</p>
+                </div>
+                <div class="interpretation-item">
+                    <h4>Advantage/Threat</h4>
+                    <p>Compare total 🔷 Advantage vs 🔺 Threat. Net Advantage = beneficial side effects. Net Threat = complications or setbacks. These are separate from success/failure.</p>
+                </div>
+                <div class="interpretation-item">
+                    <h4>Force Points</h4>
+                    <p>Force users can spend ⚪ Light Side points freely. ⚫ Dark Side points can be used but generate Conflict. Non-Force users cannot use Force dice results.</p>
+                </div>
+                <div class="interpretation-item">
+                    <h4>Special Results</h4>
+                    <p><strong>🌟 Triumph:</strong> Exceptional success with major narrative benefit<br>
+                    <strong>💀 Despair:</strong> Catastrophic complication, even on success<br>
+                    <strong>Multiple ⚪/⚫:</strong> More powerful Force effects possible</p>
+                </div>
+            </div>
+        </div>
+    <script>
+        // Dice face definitions
+        const diceData = {
+            boost: [
+                [], [], ['advantage'], ['success', 'advantage'], ['advantage', 'advantage'], ['success']
+            ],
+            ability: [
+                [], ['success'], ['success'], ['success', 'success'], ['advantage'], ['advantage'], ['success', 'advantage'], ['advantage', 'advantage']
+            ],
+            proficiency: [
+                [], ['success'], ['success'], ['success', 'success'], ['success', 'success'], ['advantage'], ['success', 'advantage'], ['success', 'advantage'], ['success', 'advantage'], ['advantage', 'advantage'], ['advantage', 'advantage'], ['triumph']
+            ],
+            setback: [
+                [], [], ['failure'], ['failure'], ['threat'], ['threat']
+            ],
+            difficulty: [
+                [], ['failure'], ['failure', 'failure'], ['threat'], ['threat'], ['threat'], ['threat', 'threat'], ['failure', 'threat']
+            ],
+            challenge: [
+                [], ['failure'], ['failure'], ['failure', 'failure'], ['failure', 'failure'], ['threat'], ['threat'], ['failure', 'threat'], ['failure', 'threat'], ['threat', 'threat'], ['threat', 'threat'], ['despair']
+            ],
+            force: [
+                ['dark'], ['dark'], ['dark'], ['dark'], ['dark'], ['dark'], ['dark', 'dark'], ['light'], ['light'], ['light', 'light'], ['light', 'light'], ['light', 'light']
+            ]
+        };
+        
+        function changeDiceCount(type, change) {
+            const input = document.getElementById(type + '-count');
+            const newValue = Math.max(0, Math.min(10, parseInt(input.value) + change));
+            input.value = newValue;
+        }
+        
+        function rollDice() {
+            const results = {};
+            const allSymbols = {
+                success: 0,
+                advantage: 0,
+                triumph: 0,
+                failure: 0,
+                threat: 0,
+                despair: 0,
+                light: 0,
+                dark: 0
+            };
+            
+            // Roll each type of dice
+            for (const diceType in diceData) {
+                const count = parseInt(document.getElementById(diceType + '-count').value);
+                if (count > 0) {
+                    results[diceType] = [];
+                    for (let i = 0; i < count; i++) {
+                        const roll = Math.floor(Math.random() * diceData[diceType].length);
+                        const face = diceData[diceType][roll];
+                        results[diceType].push(face);
+                        
+                        // Count symbols
+                        face.forEach(symbol => {
+                            allSymbols[symbol]++;
+                        });
+                    }
+                }
+            }
+            
+            displayResults(results, allSymbols);
+        }
+        
+        function displayResults(results, symbols) {
+            const resultsDiv = document.getElementById('results');
+            const summaryDiv = document.getElementById('summary');
+            const diceResultsDiv = document.getElementById('dice-results');
+            
+            // Calculate net results
+            const netSuccess = symbols.success + symbols.triumph - symbols.failure - symbols.despair;
+            const netAdvantage = symbols.advantage - symbols.threat;
+            
+            // Create summary
+            let summary = '';
+            if (netSuccess > 0) {
+                summary += `<strong>SUCCESS</strong> (${netSuccess}) `;
+            } else if (netSuccess < 0) {
+                summary += `<strong>FAILURE</strong> (${Math.abs(netSuccess)}) `;
+            } else {
+                summary += '<strong>NEUTRAL</strong> ';
+            }
+            
+            if (netAdvantage > 0) {
+                summary += `with ${netAdvantage} Advantage `;
+            } else if (netAdvantage < 0) {
+                summary += `with ${Math.abs(netAdvantage)} Threat `;
+            }
+            
+            if (symbols.triumph > 0) {
+                summary += `<br><strong>TRIUMPH</strong> (${symbols.triumph}) `;
+            }
+            if (symbols.despair > 0) {
+                summary += `<br><strong>DESPAIR</strong> (${symbols.despair}) `;
+            }
+            if (symbols.light > 0 || symbols.dark > 0) {
+                summary += `<br>Force: ${symbols.light} Light, ${symbols.dark} Dark `;
+            }
+            
+            summaryDiv.innerHTML = summary;
+            
+            // Display individual dice results
+            diceResultsDiv.innerHTML = '';
+            for (const diceType in results) {
+                const diceDiv = document.createElement('div');
+                diceDiv.className = `dice-result ${diceType}`;
+                diceDiv.style.borderLeftColor = getDiceColor(diceType);
+                
+                let content = `<strong>${diceType.charAt(0).toUpperCase() + diceType.slice(1)} Dice</strong><br>`;
+                
+                results[diceType].forEach((face, index) => {
+                    content += `<div>Die ${index + 1}: `;
+                    if (face.length === 0) {
+                        content += 'Blank';
+                    } else {
+                        content += '<div class="symbols">';
+                        face.forEach(symbol => {
+                            content += `<span class="symbol ${symbol}">${getSymbolText(symbol)}</span>`;
+                        });
+                        content += '</div>';
+                    }
+                    content += '</div>';
+                });
+                
+                diceDiv.innerHTML = content;
+                diceResultsDiv.appendChild(diceDiv);
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        function getDiceColor(type) {
+            const colors = {
+                boost: '#87CEEB',
+                ability: '#32CD32',
+                proficiency: '#FFD700',
+                setback: '#000000',
+                difficulty: '#8B008B',
+                challenge: '#DC143C',
+                force: '#FFFFFF'
+            };
+            return colors[type];
+        }
+        
+        function getSymbolText(symbol) {
+            const symbols = {
+                success: 'S',
+                advantage: 'A',
+                triumph: 'T',
+                failure: 'F',
+                threat: 'H',
+                despair: 'D',
+                light: 'L',
+                dark: 'K'
+            };
+            return symbols[symbol];
+        }
+        
+        function clearAll() {
+            for (const diceType in diceData) {
+                document.getElementById(diceType + '-count').value = 0;
+            }
+            document.getElementById('results').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

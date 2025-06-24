@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - Starships and Vehicle Rules</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: Starships and Vehicle Rules</h1>
+        <p class="subtitle">From Speeders to Star Destroyers - Mastering the Galaxy's Transportation</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Vehicles as Characters</h2>
+            <p>In Star Wars, vehicles aren't just transportation - they're characters with personalities, histories, and destinies. The Millennium Falcon isn't just Han's ship; it's his partner, his home, and sometimes his salvation. A Jedi's starfighter isn't just a weapon; it's an extension of their connection to the Force. Understanding this relationship transforms vehicle rules from dry mechanics into storytelling opportunities.</p>
+            
+            <div class="analogy-box">
+                <h3>The Pet Analogy</h3>
+                <p>Think of vehicles like beloved pets or loyal horses. Each has quirks, moods, and a relationship with its owner. A well-maintained speeder purrs contentedly and responds to the lightest touch. A neglected freighter groans, protests, and might break down at the worst possible moment. Your vehicle's condition reflects how you treat it, and its performance reflects your bond with it.</p>
+            </div>
+        </section>
+
+        <section class="vehicle-basics">
+            <h2>Vehicle Statistics - The Building Blocks</h2>
+            
+            <h3>Silhouette Scale - Size Matters</h3>
+            <p>Silhouette represents not just physical size, but operational scale. It's the difference between piloting a motorcycle and commanding a battleship. Each silhouette jump represents a fundamental change in how the vehicle operates and what role it plays in the story.</p>
+
+            <div class="silhouette-scale">
+    <canvas id="silhouetteChart" width="700" height="400"></canvas>
+</div>
+
+<script>
+    const silCanvas = document.getElementById('silhouetteChart');
+    const silCtx = silCanvas.getContext('2d');
+
+    // Create silhouette visualization
+    const silhouettes = [
+        {size: 0, name: 'Person/Droid', example: 'C-3PO', width: 20, height: 40, color: '#4CAF50'},
+        {size: 1, name: 'Speeder Bike', example: '74-Z Speeder', width: 40, height: 20, color: '#2196F3'},
+        {size: 2, name: 'Starfighter', example: 'X-wing', width: 60, height: 30, color: '#FF9800'},
+        {size: 3, name: 'Light Transport', example: 'Millennium Falcon', width: 80, height: 40, color: '#9C27B0'},
+        {size: 4, name: 'Heavy Transport', example: 'CR90 Corvette', width: 120, height: 25, color: '#F44336'},
+        {size: 5, name: 'Frigate', example: 'Nebulon-B', width: 160, height: 35, color: '#795548'},
+        {size: 6, name: 'Cruiser', example: 'Mon Cal Cruiser', width: 200, height: 50, color: '#607D8B'},
+        {size: 7, name: 'Battleship', example: 'Star Destroyer', width: 250, height: 60, color: '#424242'},
+        {size: 8, name: 'Dreadnought', example: 'Super Star Destroyer', width: 300, height: 80, color: '#212121'}
+    ];
+
+    // Draw title
+    silCtx.fillStyle = '#333';
+    silCtx.font = 'bold 20px Arial';
+    silCtx.textAlign = 'center';
+    silCtx.fillText('Silhouette Scale Comparison', silCanvas.width / 2, 25);
+
+    // Draw silhouettes
+    let currentY2 = 60;
+    silhouettes.forEach((sil) => {
+        const x = 50;
+
+        // Draw vehicle representation
+        silCtx.fillStyle = sil.color;
+        silCtx.fillRect(x, currentY2, sil.width, sil.height);
+
+        // Draw border
+        silCtx.strokeStyle = '#333';
+        silCtx.lineWidth = 2;
+        silCtx.strokeRect(x, currentY2, sil.width, sil.height);
+
+        // Add labels
+        silCtx.fillStyle = '#333';
+        silCtx.font = '14px Arial';
+        silCtx.textAlign = 'left';
+        silCtx.fillText(`Silhouette ${sil.size}: ${sil.name}`, x + sil.width + 20, currentY2 + 15);
+        
+        silCtx.font = '12px Arial';
+        silCtx.fillStyle = '#666';
+        silCtx.fillText(`Example: ${sil.example}`, x + sil.width + 20, currentY2 + 32);
+
+        currentY2 += Math.max(sil.height + 10, 45);
+    });
+
+    // Add scale note
+    silCtx.fillStyle = '#666';
+    silCtx.font = '12px Arial';
+    silCtx.textAlign = 'center';
+    silCtx.fillText('Each step up represents roughly 10x increase in mass and complexity', silCanvas.width / 2, silCanvas.height - 10);
+</script>
+
+
+            <h3>Core Vehicle Statistics</h3>
+            <div class="vehicle-stats-breakdown">
+                <div class="stat-explanation">
+                    <h4>Hull Trauma - Structural Integrity</h4>
+                    <p><strong>What it represents:</strong> Major structural damage that affects the vehicle's core systems</p>
+                    <p><strong>Real-world parallel:</strong> Like major injuries to a person - affects everything</p>
+                    <p><strong>Example:</strong> Hull breach, engine damage, critical system failure</p>
+                </div>
+                
+                <div class="stat-explanation">
+                    <h4>System Strain - Operational Stress</h4>
+                    <p><strong>What it represents:</strong> Minor malfunctions, overheating, temporary failures</p>
+                    <p><strong>Real-world parallel:</strong> Like fatigue or minor injuries - slows you down</p>
+                    <p><strong>Example:</strong> Overloaded circuits, jammed weapons, sluggish controls</p>
+                </div>
+                
+                <div class="stat-explanation">
+                    <h4>Handling - Maneuverability</h4>
+                    <p><strong>What it represents:</strong> How responsive and agile the vehicle is</p>
+                    <p><strong>Scale:</strong> -3 (sluggish barge) to +3 (nimble interceptor)</p>
+                    <p><strong>Story impact:</strong> Affects pilot's connection to their craft</p>
+                </div>
+                
+                <div class="stat-explanation">
+                    <h4>Speed - Maximum Velocity</h4>
+                    <p><strong>What it represents:</strong> Top sustainable speed in ideal conditions</p>
+                    <p><strong>Range:</strong> 0 (immobile) to 6+ (impossibly fast)</p>
+                    <p><strong>Context matters:</strong> Speed 3 atmospheric vs Speed 3 space are very different</p>
+                </div>
+            </div>
+
+            <div class="vehicle-comparison">
+                <h4>Example Vehicle Comparison</h4>
+                <canvas id="vehicleComparison" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const compCanvas = document.getElementById('vehicleComparison');
+                const compCtx = compCanvas.getContext('2d');
+                
+                // Vehicle comparison data
+                const vehicles = [
+                    {name: 'Speeder Bike', hull: 3, strain: 3, handling: 2, speed: 4, color: '#4CAF50'},
+                    {name: 'X-wing Fighter', hull: 12, strain: 13, handling: 1, speed: 5, color: '#2196F3'},
+                    {name: 'Millennium Falcon', hull: 25, strain: 22, handling: -1, speed: 4, color: '#FF9800'},
+                    {name: 'Star Destroyer', hull: 100, strain: 75, handling: -3, speed: 2, color: '#F44336'}
+                ];
+                
+                // Create radar chart
+                const centerX = 300;
+                const centerY = 150;
+                const radius = 100;
+                
+                // Draw grid
+                for (let i = 1; i <= 5; i++) {
+                    compCtx.beginPath();
+                    compCtx.arc(centerX, centerY, (radius / 5) * i, 0, 2 * Math.PI);
+                    compCtx.strokeStyle = '#e0e0e0';
+                    compCtx.stroke();
+                }
+                
+                // Draw axes
+                const stats = ['Hull/10', 'Strain/10', 'Handling+3', 'Speed'];
+                const angleStep = (2 * Math.PI) / stats.length;
+                
+                stats.forEach((stat, index) => {
+                    const angle = (index * angleStep) - (Math.PI / 2);
+                    const x = centerX + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    
+                    compCtx.beginPath();
+                    compCtx.moveTo(centerX, centerY);
+                    compCtx.lineTo(x, y);
+                    compCtx.strokeStyle = '#ccc';
+                    compCtx.stroke();
+                    
+                    // Add labels
+                    const labelX = centerX + Math.cos(angle) * (radius + 25);
+                    const labelY = centerY + Math.sin(angle) * (radius + 25);
+                    compCtx.fillStyle = '#333';
+                    compCtx.font = '12px Arial';
+                    compCtx.textAlign = 'center';
+                    compCtx.fillText(stat, labelX, labelY);
+                });
+                
+                // Draw vehicle data (just show X-wing as example)
+                const xwing = vehicles[1];
+                const xwingData = [xwing.hull/10, xwing.strain/10, xwing.handling+3, xwing.speed];
+                
+                compCtx.beginPath();
+                xwingData.forEach((value, index) => {
+                    const angle = (index * angleStep) - (Math.PI / 2);
+                    const distance = (Math.min(value, 5) / 5) * radius;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    
+                    if (index === 0) compCtx.moveTo(x, y);
+                    else compCtx.lineTo(x, y);
+                });
+                compCtx.closePath();
+                compCtx.fillStyle = 'rgba(33, 150, 243, 0.3)';
+                compCtx.fill();
+                compCtx.strokeStyle = '#2196F3';
+                compCtx.lineWidth = 2;
+                compCtx.stroke();
+                
+                // Add title and legend
+                compCtx.fillStyle = '#333';
+                compCtx.font = 'bold 16px Arial';
+                compCtx.textAlign = 'center';
+                compCtx.fillText('X-wing Fighter Profile', centerX, 30);
+                
+                compCtx.fillStyle = '#2196F3';
+                compCtx.fillRect(50, 270, 15, 15);
+                compCtx.fillStyle = '#333';
+                compCtx.font = '12px Arial';
+                compCtx.textAlign = 'left';
+                compCtx.fillText('X-wing: Balanced fighter profile', 75, 282);
+            </script>
+        </section>
+
+        <section class="piloting-mechanics">
+            <h2>Piloting - More Than Just Driving</h2>
+            
+            <h3>The Pilot-Vehicle Bond</h3>
+            <p>Piloting in Star Wars isn't about following traffic laws - it's about forming a connection with your vehicle that transcends mere operation. A skilled pilot doesn't just control their craft; they become one with it, feeling its every vibration and responding to its needs instinctively.</p>
+
+            <div class="piloting-skills">
+                <div class="mermaid">
+                    graph TD
+                        A[Piloting Skills] --> B[Piloting - Planetary]
+                        A --> C[Piloting - Space]
+                        A --> D[Gunnery]
+                        
+                        B --> B1[Atmospheric Flight]
+                        B --> B2[Ground Vehicles]
+                        B --> B3[Repulsorlift Craft]
+                        
+                        C --> C1[Hyperspace Navigation]
+                        C --> C2[Zero-G Maneuvering]
+                        C --> C3[Formation Flying]
+                        
+                        D --> D1[Vehicle Weapons]
+                        D --> D2[Turret Operations]
+                        D --> D3[Missile Systems]
+                        
+                        style A fill:#2196f3
+                        style B fill:#4caf50
+                        style C fill:#ff9800
+                        style D fill:#f44336
+                </div>
+            </div>
+
+            <h3>Piloting Checks and Maneuvers</h3>
+            <p>Every piloting check tells a story. It's not just "I roll to avoid the asteroid" - it's "I bank hard left, feeling the G-forces slam me into my seat as the asteroid's jagged surface scrapes past my cockpit, close enough to see the ice crystals in its crevices."</p>
+
+            <div class="maneuver-examples">
+                <div class="example-box">
+                    <h4>Common Piloting Maneuvers and Their Difficulties</h4>
+                    
+                    <h5>Atmospheric Flight</h5>
+                    <ul>
+                        <li><strong>Takeoff/Landing (Easy):</strong> Basic operations in good conditions</li>
+                        <li><strong>Evasive Maneuvers (Average):</strong> Dodging obstacles or enemy fire</li>
+                        <li><strong>Atmospheric Combat (Hard):</strong> Dogfighting while managing air resistance</li>
+                        <li><strong>Storm Flying (Daunting):</strong> Navigating severe weather</li>
+                    </ul>
+                    
+                    <h5>Space Operations</h5>
+                    <ul>
+                        <li><strong>Routine Travel (Simple):</strong> Point A to point B in clear space</li>
+                        <li><strong>Docking Procedures (Easy):</strong> Connecting to stations or larger ships</li>
+                        <li><strong>Asteroid Field (Hard):</strong> Navigating dense debris</li>
+                        <li><strong>Hyperspace Jump (Average to Formidable):</strong> Depends on route complexity</li>
+                    </ul>
+                    
+                    <h5>Combat Maneuvers</h5>
+                    <ul>
+                        <li><strong>Gain the Advantage (Average):</strong> Position for optimal attack</li>
+                        <li><strong>Stay on Target (Hard):</strong> Maintain firing solution under pressure</li>
+                        <li><strong>Ace Pilot Stunts (Daunting+):</strong> Impossible maneuvers that become legend</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Speed and Chase Mechanics</h3>
+            <p>Chases in Star Wars are about more than just going fast - they're about creative problem-solving, environmental interaction, and dramatic pacing. Think of the speeder bike chase on Endor: it's not just about speed, but about using the forest itself as both weapon and obstacle.</p>
+
+            <div class="chase-system">
+                <div class="mermaid">
+                    flowchart LR
+                        A[Chase Begins] --> B[Determine Relative Position]
+                        B --> C[Pilot Actions]
+                        C --> D{Catch Up/Escape?}
+                        D -->|Success| E[Position Changes]
+                        D -->|Failure| F[Maintain Distance]
+                        E --> G[Environmental Challenge]
+                        F --> G
+                        G --> H[Obstacle/Complication]
+                        H --> I{Overcome?}
+                        I -->|Yes| J[Continue Chase]
+                        I -->|No| K[Crash/Capture]
+                        J --> C
+                        K --> L[Chase Ends]
+                        
+                        style A fill:#4caf50
+                        style D fill:#ff9800
+                        style I fill:#f44336
+                        style K fill:#9c27b0
+                </div>
+            </div>
+        </section>
+
+        <section class="vehicle-combat">
+            <h2>Vehicle Combat - Starfighter Duels to Fleet Battles</h2>
+            
+            <h3>Scale and Engagement Types</h3>
+            <p>Vehicle combat operates on different scales, each with its own rhythm and drama. A starfighter duel is intimate and personal, like a lightsaber fight with ships. A fleet battle is strategic and epic, where individual heroes can still make the decisive difference.</p>
+
+            <div class="combat-scales">
+                <canvas id="combatScales" width="600" height="350"></canvas>
+            </div>
+
+            <script>
+                const scaleCanvas = document.getElementById('combatScales');
+                const scaleCtx = scaleCanvas.getContext('2d');
+                
+                // Combat scale visualization
+                const scales = [
+                    {name: 'Personal Vehicle', participants: '1-4 vehicles', example: 'Speeder bike chase', y: 80, color: '#4CAF50'},
+                    {name: 'Squadron Combat', participants: '5-20 vehicles', example: 'X-wing vs TIE fighters', y: 140, color: '#2196F3'},
+                    {name: 'Battle Group', participants: '20-100 vehicles', example: 'Assault on Death Star', y: 200, color: '#FF9800'},
+                    {name: 'Fleet Action', participants: '100+ vehicles', example: 'Battle of Endor', y: 260, color: '#F44336'}
+                ];
+                
+                // Draw scale progression
+                scaleCtx.fillStyle = '#333';
+                scaleCtx.font = 'bold 18px Arial';
+                scaleCtx.textAlign = 'center';
+                scaleCtx.fillText('Vehicle Combat Scales', 300, 30);
+                
+                scales.forEach((scale, index) => {
+                    // Draw scale indicator
+                    const width = 50 + (index * 30);
+                    scaleCtx.fillStyle = scale.color;
+                    scaleCtx.fillRect(50, scale.y - 15, width, 30);
+                    
+                    scaleCtx.strokeStyle = '#333';
+                    scaleCtx.lineWidth = 2;
+                    scaleCtx.strokeRect(50, scale.y - 15, width, 30);
+                    
+                    // Add labels
+                    scaleCtx.fillStyle = '#333';
+                    scaleCtx.font = '14px Arial';
+                    scaleCtx.textAlign = 'left';
+                    scaleCtx.fillText(scale.name, 50 + width + 20, scale.y - 5);
+                    scaleCtx.font = '12px Arial';
+                    scaleCtx.fillStyle = '#666';
+                    scaleCtx.fillText(scale.participants, 50 + width + 20, scale.y + 10);
+                    scaleCtx.fillText(`Example: ${scale.example}`, 50 + width + 20, scale.y + 25);
+                });
+                
+                // Add arrows
+                scaleCtx.strokeStyle = '#666';
+                scaleCtx.lineWidth = 3;
+                for (let i = 0; i < scales.length - 1; i++) {
+                    const y1 = scales[i].y + 20;
+                    const y2 = scales[i + 1].y - 20;
+                    scaleCtx.beginPath();
+                    scaleCtx.moveTo(30, y1);
+                    scaleCtx.lineTo(30, y2);
+                    scaleCtx.stroke();
+                    
+                    // Arrow head
+                    scaleCtx.beginPath();
+                    scaleCtx.moveTo(25, y2 - 5);
+                    scaleCtx.lineTo(30, y2);
+                    scaleCtx.lineTo(35, y2 - 5);
+                    scaleCtx.stroke();
+                }
+                
+                scaleCtx.fillStyle = '#666';
+                scaleCtx.font = '12px Arial';
+                scaleCtx.textAlign = 'center';
+                scaleCtx.fillText('Increasing\nComplexity', 30, 320);
+            </script>
+
+            <h3>Attack Resolution in Vehicle Combat</h3>
+            <p>Vehicle weapon attacks follow the same basic structure as personal combat, but with additional considerations for range, target movement, and the three-dimensional nature of space combat.</p>
+
+            <div class="vehicle-attack-process">
+                <div class="example-box">
+                    <h4>Vehicle Attack Step-by-Step</h4>
+                    <ol>
+                        <li><strong>Declare Target:</strong> Choose what you're shooting at</li>
+                        <li><strong>Determine Range:</strong> Close/Short/Medium/Long/Extreme in 3D space</li>
+                        <li><strong>Check Line of Sight:</strong> Can you actually see/target the enemy?</li>
+                        <li><strong>Calculate Difficulty:</strong> Base difficulty + range + modifiers</li>
+                        <li><strong>Add Modifiers:</strong> Speed, cover, evasive maneuvers, etc.</li>
+                        <li><strong>Roll Attack:</strong> Gunnery + Agility + weapon dice</li>
+                        <li><strong>Apply Results:</strong> Damage to Hull Trauma or System Strain</li>
+                        <li><strong>Describe Outcome:</strong> Make it cinematic!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <h3>Starfighter vs Capital Ship Combat</h3>
+            <p>The classic "small ship vs big ship" dynamic requires special rules to maintain dramatic tension. A single X-wing shouldn't be able to slug it out with a Star Destroyer, but it should be able to exploit weaknesses and create opportunities for heroic moments.</p>
+
+            <div class="asymmetric-combat">
+                <div class="example-box">
+                    <h4>David vs Goliath Mechanics</h4>
+                    
+                    <h5>Starfighter Advantages:</h5>
+                    <ul>
+                        <li><strong>Speed and Agility:</strong> Harder to hit with capital ship weapons</li>
+                        <li><strong>Size:</strong> Can exploit blind spots and defensive gaps</li>
+                        <li><strong>Precision:</strong> Target specific systems rather than hull</li>
+                        <li><strong>Numbers:</strong> Swarm tactics overwhelm point defenses</li>
+                    </ul>
+                    
+                    <h5>Capital Ship Advantages:</h5>
+                    <ul>
+                        <li><strong>Firepower:</strong> One hit can destroy a starfighter</li>
+                        <li><strong>Durability:</strong> Can absorb massive punishment</li>
+                        <li><strong>Support:</strong> Hangars full of defensive fighters</li>
+                        <li><strong>Range:</strong> Engage targets at extreme distances</li>
+                    </ul>
+                    
+                    <h5>Tactical Considerations:</h5>
+                    <ul>
+                        <li><strong>Attack Runs:</strong> Coordinate timing to overwhelm defenses</li>
+                        <li><strong>Target Selection:</strong> Engines, weapons, shields, or bridge</li>
+                        <li><strong>Environmental Use:</strong> Asteroids, debris, friendly ships as cover</li>
+                        <li><strong>Squadron Tactics:</strong> Wingman support and formation flying</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="hyperspace-travel">
+            <h2>Hyperspace - Faster Than Light Travel</h2>
+            
+            <h3>The Nature of Hyperspace</h3>
+            <p>Hyperspace isn't just "going really fast" - it's entering an alternate dimension where the normal rules of physics don't apply. It's like stepping through a looking glass into a realm where distance is negotiable and time flows differently. This mystical aspect makes hyperspace travel both practical necessity and plot device.</p>
+
+            <div class="hyperspace-mechanics">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Plan Hyperspace Jump] --> B[Calculate Route]
+                        B --> C[Check for Hazards]
+                        C --> D[Engage Hyperdrive]
+                        D --> E{Jump Successful?}
+                        E -->|Yes| F[Enter Hyperspace]
+                        E -->|No| G[Hyperdrive Failure]
+                        F --> H[Travel Through Hyperspace]
+                        H --> I[Navigation Check]
+                        I --> J{Stay on Course?}
+                        J -->|Yes| K[Arrive at Destination]
+                        J -->|No| L[Hyperspace Mishap]
+                        G --> M[Emergency Repairs Needed]
+                        L --> N[Off-Course/Lost/Worse]
+                        K --> O[Drop to Realspace]
+                        
+                        style E fill:#ff9800
+                        style J fill:#ff9800
+                        style G fill:#f44336
+                        style L fill:#f44336
+                        style N fill:#d32f2f
+                </div>
+            </div>
+
+            <h3>Hyperdrive Classes and Travel Times</h3>
+            <p>Hyperdrive class represents more than just speed - it's about reliability, range, and the quality of your journey through the cosmic unknown. A Class 1 hyperdrive doesn't just get you there faster; it gets you there safely and exactly where you intended to go.</p>
+
+            <div class="hyperdrive-comparison">
+                <canvas id="hyperdriveChart" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const hyperCanvas = document.getElementById('hyperdriveChart');
+                const hyperCtx = hyperCanvas.getContext('2d');
+                
+                // Hyperdrive class data
+                const hyperdrives = [
+                    {class: 0.5, name: 'Military Grade', speed: 10, reliability: 95, color: '#4CAF50'},
+                    {class: 1, name: 'High Quality', speed: 8, reliability: 90, color: '#2196F3'},
+                    {class: 2, name: 'Standard', speed: 6, reliability: 80, color: '#FF9800'},
+                    {class: 3, name: 'Budget', speed: 4, reliability: 70, color: '#FF5722'},
+                    {class: 4, name: 'Slow Freight', speed: 2, reliability: 60, color: '#795548'},
+                    {class: 5, name: 'Emergency Backup', speed: 1, reliability: 40, color: '#F44336'}
+                ];
+                
+                // Draw chart
+                hyperCtx.fillStyle = '#333';
+                hyperCtx.font = 'bold 16px Arial';
+                hyperCtx.textAlign = 'center';
+                hyperCtx.fillText('Hyperdrive Performance Comparison', 300, 25);
+                
+                // Draw speed bars
+                const barWidth = 40;
+                const barSpacing2 = 90;
+                const startX = 50;
+                
+                hyperdrives.forEach((drive, index) => {
+                    const x = startX + (index * barSpacing2);
+                    
+                    // Speed bar
+                    const speedHeight = drive.speed * 15;
+                    hyperCtx.fillStyle = drive.color;
+                    hyperCtx.fillRect(x, 200 - speedHeight, barWidth, speedHeight);
+                    
+                    // Reliability indicator
+                    const reliabilityHeight = drive.reliability * 0.5;
+                    hyperCtx.fillStyle = `rgba(76, 175, 80, ${drive.reliability / 100})`;
+                    hyperCtx.fillRect(x, 220, barWidth, reliabilityHeight);
+                    
+                    // Labels
+                    hyperCtx.fillStyle = '#333';
+                    hyperCtx.font = '12px Arial';
+                    hyperCtx.textAlign = 'center';
+                    hyperCtx.fillText(`Class ${drive.class}`, x + barWidth/2, 285);
+                    hyperCtx.font = '10px Arial';
+                    hyperCtx.fillText(drive.name, x + barWidth/2, 295);
+                });
+                
+                // Add legends
+                hyperCtx.fillStyle = '#333';
+                hyperCtx.font = '14px Arial';
+                hyperCtx.textAlign = 'left';
+                hyperCtx.fillText('Speed (Relative)', 50, 50);
+                hyperCtx.fillText('Reliability', 350, 50);
+                
+                // Draw legend boxes
+                hyperCtx.fillStyle = '#2196F3';
+                hyperCtx.fillRect(150, 40, 20, 15);
+                hyperCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
+                hyperCtx.fillRect(450, 40, 20, 15);
+            </script>
+
+            <h3>Hyperspace Hazards and Navigation</h3>
+            <div class="hyperspace-dangers">
+                <div class="example-box">
+                    <h4>What Can Go Wrong in Hyperspace</h4>
+                    
+                    <h5>Navigation Failures:</h5>
+                    <ul>
+                        <li><strong>Off Course:</strong> Arrive at wrong destination, requires recalculation</li>
+                        <li><strong>Lost in Hyperspace:</strong> Navigation systems completely fail</li>
+                        <li><strong>Interdiction:</strong> Gravity wells force premature exit</li>
+                        <li><strong>Hyperspace Storm:</strong> Chaotic energy fields disrupt travel</li>
+                    </ul>
+                    
+                    <h5>Mechanical Problems:</h5>
+                    <ul>
+                        <li><strong>Hyperdrive Failure:</strong> Dead in space, repairs needed</li>
+                        <li><strong>Motivator Burnout:</strong> Can jump but can't navigate properly</li>
+                        <li><strong>Coolant Leak:</strong> Hyperdrive overheats during jump</li>
+                        <li><strong>Power Core Fluctuation:</strong> Inconsistent jump performance</li>
+                    </ul>
+                    
+                    <h5>External Threats:</h5>
+                    <ul>
+                        <li><strong>Interdictor Ships:</strong> Imperial vessels that create gravity wells</li>
+                        <li><strong>Gravity Anomalies:</strong> Black holes, neutron stars, mass shadows</li>
+                        <li><strong>Hyperspace Mines:</strong> Devices that detect and attack ships</li>
+                        <li><strong>Purgill Migration:</strong> Space whales that travel hyperspace routes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="vehicle-customization">
+            <h2>Vehicle Modification and Customization</h2>
+            
+            <h3>Making It Yours</h3>
+            <p>A stock vehicle is like a store-bought suit - functional but generic. Modifications transform a vehicle into a reflection of its owner's personality, needs, and history. The Millennium Falcon's modifications tell the story of Han and Chewbacca's adventures as much as any dialogue.</p>
+
+            <div class="modification-categories">
+                <div class="mermaid">
+                    mindmap
+                        root((Vehicle Mods))
+                            Performance
+                                Engine Upgrades
+                                Hyperdrive Improvements
+                                Handling Enhancements
+                                Speed Modifications
+                            Defensive
+                                Shield Generators
+                                Armor Plating
+                                Electronic Countermeasures
+                                Stealth Systems
+                            Offensive
+                                Weapon Upgrades
+                                Fire Control Systems
+                                Missile Launchers
+                                Ion Cannons
+                            Utility
+                                Cargo Modifications
+                                Sensor Arrays
+                                Communication Systems
+                                Life Support Upgrades
+                            Cosmetic
+                                Paint Jobs
+                                Interior Comfort
+                                Status Symbols
+                                Personal Touches
+                </div>
+            </div>
+
+            <h3>The Modification Process</h3>
+            <p>Installing modifications isn't just about spending credits and adding numbers to your character sheet. It's about understanding your vehicle's capabilities, finding the right parts, and either doing the work yourself or finding someone skilled enough to do it right.</p>
+
+            <div class="modification-example">
+                <div class="example-box">
+                    <h4>Case Study: Upgrading the Millennium Falcon</h4>
+                    
+                    <h5>Stock YT-1300 vs Modified Falcon</h5>
+                    <pre><code>&lt;!-- Original YT-1300 Specifications --&gt;
+&lt;strong&gt;Stock Configuration:&lt;/strong&gt;
+├── Hyperdrive: Class 2 (standard freight hauler)
+├── Weapons: 2 Light Laser Cannons (defensive only)
+├── Shields: Basic deflector screens
+├── Cargo: 100 metric tons capacity
+└── Crew: 2 (pilot, co-pilot)
+
+&lt;strong&gt;Han Solo's Modifications:&lt;/strong&gt;
+├── Hyperdrive: Class 0.5 (military grade, heavily modified)
+├── Weapons: 2 Quad Laser Cannons (top/bottom turrets)
+├── Shields: Military-grade deflector shields
+├── Hidden Compartments: Smuggling storage
+├── Sensor Jammers: Avoid Imperial detection
+├── Backup Hyperdrive: Class 10 emergency system
+└── Enhanced Maneuverability: Modified control systems
+
+&lt;strong&gt;Story Impact:&lt;/strong&gt;
+├── Speed: "She's fast enough for you, old man"
+├── Firepower: Can engage Imperial fighters effectively
+├── Stealth: Evade customs and Imperial searches
+├── Reliability: Breaks down at dramatic moments
+└── Character: Reflects Han's roguish personality</code></pre>
+                </div>
+            </div>
+
+            <h3>Hard Points and Modification Limits</h3>
+            <p>Every vehicle has limits to how much it can be modified, represented by Hard Points. Think of these like the structural capacity of the vehicle - you can only bolt so many extra systems onto a speeder bike before it becomes unrecognizable or simply falls apart.</p>
+
+            <div class="hardpoint-system">
+                <canvas id="hardpointChart" width="600" height="250"></canvas>
+            </div>
+
+            <script>
+                const hardCanvas = document.getElementById('hardpointChart');
+                const hardCtx = hardCanvas.getContext('2d');
+                
+                // Hard point visualization
+                const vehicleTypes = [
+                    {name: 'Speeder Bike', hardpoints: 2, used: 1, example: 'Basic sensors'},
+                    {name: 'Starfighter', hardpoints: 6, used: 4, example: 'Weapons, shields'},
+                    {name: 'Light Freighter', hardpoints: 8, used: 6, example: 'Mixed modifications'},
+                    {name: 'Heavy Transport', hardpoints: 12, used: 8, example: 'Cargo & defense'},
+                    {name: 'Capital Ship', hardpoints: 20, used: 15, example: 'Full military refit'}
+                ];
+                
+                hardCtx.fillStyle = '#333';
+                hardCtx.font = 'bold 16px Arial';
+                hardCtx.textAlign = 'center';
+                hardCtx.fillText('Hard Point Usage by Vehicle Type', 300, 25);
+                
+                const barHeight = 30;
+                const barSpacing = 40;
+                let currentY23 = 60;
+                
+                vehicleTypes.forEach(vehicle => {
+                    // Draw total capacity bar
+                    hardCtx.fillStyle = '#E0E0E0';
+                    hardCtx.fillRect(100, currentY23, vehicle.hardpoints * 20, barHeight);
+                    
+                    // Draw used capacity
+                    hardCtx.fillStyle = '#2196F3';
+                    hardCtx.fillRect(100, currentY23, vehicle.used * 20, barHeight);
+                    
+                    // Draw border
+                    hardCtx.strokeStyle = '#333';
+                    hardCtx.lineWidth = 2;
+                    hardCtx.strokeRect(100, currentY23, vehicle.hardpoints * 20, barHeight);
+                    
+                    // Add labels
+                    hardCtx.fillStyle = '#333';
+                    hardCtx.font = '14px Arial';
+                    hardCtx.textAlign = 'left';
+                    hardCtx.fillText(vehicle.name, 20, currentY23 + 20);
+                    
+                    hardCtx.font = '12px Arial';
+                    hardCtx.fillText(`${vehicle.used}/${vehicle.hardpoints} HP`, 100 + vehicle.hardpoints * 20 + 10, currentY2 + 15);
+                    hardCtx.fillText(vehicle.example, 100 + vehicle.hardpoints * 20 + 10, currentY23 + 30);
+                    
+                    currentY23 += barSpacing;
+                });
+                
+                // Add legend
+                hardCtx.fillStyle = '#2196F3';
+                hardCtx.fillRect(100, 220, 20, 15);
+                hardCtx.fillStyle = '#333';
+                hardCtx.font = '12px Arial';
+                hardCtx.textAlign = 'left';
+                hardCtx.fillText('Used Hard Points', 130, 232);
+                
+                hardCtx.fillStyle = '#E0E0E0';
+                hardCtx.fillRect(250, 220, 20, 15);
+                hardCtx.fillStyle = '#333';
+                hardCtx.fillText('Available Hard Points', 280, 232);
+            </script>
+        </section>
+
+        <section class="iconic-vehicles">
+            <h2>Iconic Star Wars Vehicles</h2>
+            
+            <h3>Vehicles as Characters</h3>
+            <p>The greatest Star Wars vehicles transcend their mechanical specifications to become characters in their own right. They have personalities, quirks, and destinies that intertwine with their owners' stories.</p>
+
+            <div class="vehicle-profiles">
+                <div class="vehicle-card">
+                    <h4>Millennium Falcon - "She's Got It Where It Counts"</h4>
+                    <p><strong>Personality:</strong> Temperamental but reliable when it matters most</p>
+                    <p><strong>Quirks:</strong> Hyperdrive fails at dramatic moments, surprising bursts of speed</p>
+                    <p><strong>Story Role:</strong> Home, refuge, and symbol of freedom</p>
+                    <p><strong>Modifications:</strong> Smuggler's paradise with hidden compartments and illegal upgrades</p>
+                    <p><strong>Character Arc:</strong> From tool to home to legend</p>
+                </div>
+                
+                <div class="vehicle-card">
+                    <h4>Luke's X-wing - "Use the Force, Luke"</h4>
+                    <p><strong>Personality:</strong> Responsive, almost Force-sensitive itself</p>
+                    <p><strong>Quirks:</strong> Performs impossible maneuvers when Luke trusts the Force</p>
+                    <p><strong>Story Role:</strong> Extension of Luke's Jedi abilities</p>
+                    <p><strong>Modifications:</strong> Astromech integration, enhanced targeting systems</p>
+                    <p><strong>Character Arc:</strong> From training tool to instrument of destiny</p>
+                </div>
+                
+                <div class="vehicle-card">
+                    <h4>Darth Vader's TIE Advanced - "The Force Is Strong With This One"</h4>
+                    <p><strong>Personality:</strong> Predatory, menacing, unnaturally precise</p>
+                    <p><strong>Quirks:</strong> Seems to anticipate enemy moves</p>
+                    <p><strong>Story Role:</strong> Extension of Vader's dark side power</p>
+                    <p><strong>Modifications:</strong> Prototype systems, Force-enhanced targeting</p>
+                    <p><strong>Character Arc:</strong> Instrument of Imperial terror</p>
+                </div>
+                
+                <div class="vehicle-card">
+                    <h4>Slave I - "He's No Good to Me Dead"</h4>
+                    <p><strong>Personality:</strong> Professional, efficient, intimidating</p>
+                    <p><strong>Quirks:</strong> Unusual vertical landing orientation</p>
+                    <p><strong>Story Role:</strong> Mobile base for bounty hunting operations</p>
+                    <p><strong>Modifications:</strong> Sensor arrays, tracking systems, prisoner storage</p>
+                    <p><strong>Character Arc:</strong> Tool of the trade that becomes a legacy</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="practical-scenarios">
+            <h2>Vehicle Scenarios in Action</h2>
+            
+            <h3>Scenario: Asteroid Field Chase</h3>
+            <div class="scenario-example">
+                <div class="example-box">
+                    <h4>The Setup: "Never Tell Me the Odds"</h4>
+                    <p><strong>Situation:</strong> Your group's ship is being pursued by Imperial fighters through an asteroid field. The asteroids provide cover but also create navigation hazards.</p>
+                    
+                    <h5>Phase 1: Entering the Field</h5>
+                    <ul>
+                        <li><strong>Pilot Decision:</strong> Take the risky route through dense asteroids or safer outer edge</li>
+                        <li><strong>Navigation Check:</strong> Plot course through the field (Astrogation + Intellect)</li>
+                        <li><strong>Advantage Spending:</strong> Find optimal route, spot hiding places</li>
+                        <li><strong>Threat Results:</strong> Larger asteroids than expected, unstable field</li>
+                    </ul>
+                    
+                    <h5>Phase 2: The Chase</h5>
+                    <ul>
+                        <li><strong>Piloting Checks:</strong> Avoid asteroid collisions while maintaining speed</li>
+                        <li><strong>Gunnery Actions:</strong> Shoot asteroids to create debris clouds</li>
+                        <li><strong>Engineering:</strong> Reroute power, repair damage on the fly</li>
+                        <li><strong>Environmental Use:</strong> Lead enemies into asteroid impacts</li>
+                    </ul>
+                    
+                    <h5>Phase 3: Escape or Confrontation</h5>
+                    <ul>
+                        <li><strong>Hiding:</strong> Power down in asteroid shadow, avoid detection</li>
+                        <li><strong>Ambush:</strong> Use asteroids as cover for surprise attack</li>
+                        <li><strong>Exit Strategy:</strong> Jump to hyperspace from field edge</li>
+                        <li><strong>Consequences:</strong> Ship damage, Imperial awareness, new enemies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Scenario: Hyperspace Mishap</h3>
+            <div class="scenario-example">
+                <div class="example-box">
+                    <h4>The Problem: "That's Not a Moon"</h4>
+                    <p><strong>Situation:</strong> A hyperspace calculation error drops your ship in an unknown system. The hyperdrive is damaged, and you're not alone in this strange place.</p>
+                    
+                    <h5>Initial Assessment:</h5>
+                    <ul>
+                        <li><strong>Sensors Check:</strong> Determine your location and any immediate threats</li>
+                        <li><strong>Engineering:</strong> Assess hyperdrive damage and repair requirements</li>
+                        <li><strong>Astrogation:</strong> Try to figure out where you are relative to known space</li>
+                        <li><strong>Communications:</strong> Attempt to contact civilization or allies</li>
+                    </ul>
+                    
+                    <h5>Complications:</h5>
+                    <ul>
+                        <li><strong>Hostile Natives:</strong> Alien species that don't appreciate visitors</li>
+                        <li><strong>Resource Scarcity:</strong> Limited fuel, food, or replacement parts</li>
+                        <li><strong>Environmental Hazards:</strong> Radiation, gravity anomalies, space phenomena</li>
+                        <li><strong>Time Pressure:</strong> Important mission deadline approaching</li>
+                    </ul>
+                    
+                    <h5>Resolution Paths:</h5>
+                    <ul>
+                        <li><strong>Repair and Leave:</strong> Fix the hyperdrive and calculate new route</li>
+                        <li><strong>Seek Help:</strong> Find local civilization willing to assist</li>
+                        <li><strong>Alternative Transport:</strong> Commandeer or negotiate for different ship</li>
+                        <li><strong>Long-term Survival:</strong> Accept being stranded and adapt</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: Vehicle Design Challenge</h3>
+            <p>Create a custom vehicle for your character:</p>
+            <ol>
+                <li>Start with a base vehicle type appropriate to your character's needs</li>
+                <li>Determine what modifications reflect your character's personality and history</li>
+                <li>Allocate hard points among different modification categories</li>
+                <li>Write a short history of how your character acquired and modified the vehicle</li>
+                <li>Describe the vehicle's personality and quirks</li>
+            </ol>
+            
+            <h3>Activity Two: Chase Scene Planning</h3>
+            <p>Design an exciting chase sequence:</p>
+            <ul>
+                <li>Choose an environment (city, asteroid field, forest, etc.)</li>
+                <li>Determine what obstacles and hazards exist in that environment</li>
+                <li>Plan how different pilot actions might interact with the environment</li>
+                <li>Create opportunities for non-pilot characters to contribute</li>
+                <li>Consider multiple possible outcomes based on player choices</li>
+            </ul>
+            
+            <h3>Activity Three: Hyperspace Route Planning</h3>
+            <p>Plan a complex hyperspace journey:</p>
+            <ol>
+                <li>Choose a start and end point in Star Wars space</li>
+                <li>Research what hazards might exist along known routes</li>
+                <li>Determine why your characters might need to avoid standard routes</li>
+                <li>Plan alternative routes with different risk/reward profiles</li>
+                <li>Consider how different hyperdrive classes affect your options</li>
+            </ol>
+            
+            <h3>Activity Four: Fleet Battle Tactics</h3>
+            <p>Design roles for PCs in a large-scale space battle:</p>
+            <ul>
+                <li>Determine the strategic situation and objectives</li>
+                <li>Assign each PC a specific role (pilot, gunner, coordinator, etc.)</li>
+                <li>Create opportunities for individual heroics within the larger battle</li>
+                <li>Plan how PC actions can influence the overall battle outcome</li>
+                <li>Consider consequences for different levels of success or failure</li>
+            </ul>
+        </section>
+
+        <section class="advanced-vehicle-concepts">
+            <h2>Advanced Vehicle Concepts</h2>
+            
+            <h3>Living Ships and Organic Technology</h3>
+            <p>Some species, like the Yuuzhan Vong, use living ships that grow rather than being built. These vessels challenge traditional notions of vehicle operation and maintenance.</p>
+            
+            <h3>Droid Brains and AI Ships</h3>
+            <p>Some vehicles incorporate droid brains or sophisticated AI systems that give them genuine personalities and decision-making capabilities.</p>
+            
+            <h3>Force-Enhanced Vehicles</h3>
+            <p>Vehicles modified or enhanced through Force techniques, either through imbued objects or ongoing Force manipulation by sensitive pilots.</p>
+            
+            <h3>Interdimensional and Exotic Propulsion</h3>
+            <p>Beyond standard hyperdrives, some vehicles use alternative FTL methods or even more exotic propulsion systems.</p>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Related Topics to Explore</h2>
+            <ul>
+                <li><strong>Capital Ship Operations:</strong> Running massive vessels with full crews</li>
+                <li><strong>Space Station Design:</strong> Mobile bases and orbital platforms</li>
+                <li><strong>Exotic Vehicle Types:</strong> Walkers, submersibles, and specialty craft</li>
+                <li><strong>Vehicle-Specific Force Powers:</strong> Battle meditation and Force piloting</li>
+                <li><strong>Mass Production vs Custom Builds:</strong> Imperial standardization vs Rebel ingenuity</li>
+                <li><strong>Economic Aspects:</strong> Vehicle costs, maintenance, and black market modifications</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Remember: A ship is only as good as its pilot, but a great pilot can make any ship legendary. The galaxy's full of vehicles waiting for the right person to unlock their potential.</p>
+   
+    </footer>
+
+   
+</body>
+</html>

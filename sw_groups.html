@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG Character Groups - Introduction to Galactic Dynamics</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG Character Groups</h1>
+        <h2>Mastering Galactic Dynamics and Team Creation</h2>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h3>A Galaxy of Infinite Possibilities</h3>
+            <p>Creating compelling character groups in Star Wars RPG is like assembling a diverse crew for the ultimate space adventure. Think of it as putting together the perfect heist team where everyone brings unique skills, but instead of robbing banks, you're saving the galaxy from tyranny, exploring ancient mysteries, or carving out your own destiny among the stars.</p>
+            
+            <p>Whether you're playing Edge of the Empire, Age of Rebellion, or Force and Destiny, understanding how different character types work together is crucial for creating memorable adventures that capture the essence of Star Wars storytelling.</p>
+        </section>
+
+        <section class="galactic-landscape">
+            <h3>The Galactic Political Spectrum</h3>
+            <p>The Star Wars universe operates like a complex ecosystem where various factions, organizations, and individuals navigate an ever-changing political landscape. Understanding these relationships is like reading a galactic weather map - knowing which way the winds blow can mean the difference between success and becoming space dust.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Galactic Empire] --> B[Imperial Navy]
+                    A --> C[Imperial Army]
+                    A --> D[ISB Intelligence]
+                    A --> E[Inquisitorius]
+                    F[Rebel Alliance] --> G[Rebel Fleet]
+                    F --> H[Rebel Ground Forces]
+                    F --> I[Intelligence Network]
+                    J[Criminal Underworld] --> K[Hutt Cartels]
+                    J --> L[Pirate Organizations]
+                    J --> M[Smuggling Rings]
+                    N[Independent] --> O[Mercenaries]
+                    N --> P[Bounty Hunters]
+                    N --> Q[Corporate Sector]
+                    R[Force Users] --> S[Jedi Survivors]
+                    R --> T[Sith Apprentices]
+                    R --> U[Force Sensitives]
+            </div>
+        </section>
+
+        <section class="group-archetypes">
+            <h3>The Essential Crew Dynamics</h3>
+            <p>Creating a Star Wars group is like casting a space opera where each character plays a vital role in the unfolding drama. Every member should contribute to both the practical needs of survival and the emotional core of the story.</p>
+
+            <h4>Core Galactic Archetypes</h4>
+            <div class="archetype-grid">
+                <div class="archetype-card pilot">
+                    <h5>The Pilot</h5>
+                    <p>Like Han Solo or Poe Dameron, the pilot is your ticket to freedom and adventure. They don't just fly ships - they make the impossible possible through skill and daring.</p>
+                </div>
+                <div class="archetype-card warrior">
+                    <h5>The Warrior</h5>
+                    <p>Whether wielding blasters or lightsabers, the warrior stands between the group and danger. Think Chewbacca's loyalty or a Clone Trooper's dedication.</p>
+                </div>
+                <div class="archetype-card face">
+                    <h5>The Face</h5>
+                    <p>The smooth talker who opens doors through charm, intimidation, or connections. Princess Leia's diplomacy and Lando's charisma exemplify this role.</p>
+                </div>
+                <div class="archetype-card tech">
+                    <h5>The Tech Specialist</h5>
+                    <p>From droid repair to slicing Imperial networks, the tech specialist keeps everything running. R2-D2's resourcefulness shows how vital this role can be.</p>
+                </div>
+                <div class="archetype-card mystic">
+                    <h5>The Force User</h5>
+                    <p>Whether Jedi Knight or emerging Sensitive, Force users bring hope and wonder to the galaxy's darkest corners.</p>
+                </div>
+                <div class="archetype-card support">
+                    <h5>The Specialist</h5>
+                    <p>The unique expert - medic, scholar, entertainer, or spy - who provides crucial skills others cannot replicate.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="campaign-themes">
+            <h3>Campaign Theme Considerations</h3>
+            <p>Star Wars RPG offers three distinct flavors of adventure, each attracting different character types like different cantinas draw specific clientele. Understanding these themes helps create groups that naturally work together.</p>
+
+            <canvas id="themeChart" width="700" height="400"></canvas>
+            
+            <div class="theme-explanations">
+                <h4>Campaign Theme Integration</h4>
+                <div class="theme-detail">
+                    <h5>Edge of the Empire: Scoundrels and Survivors</h5>
+                    <p>Like Firefly meets Star Wars, these campaigns focus on characters living on society's margins. Groups typically include smugglers, bounty hunters, mechanics, and con artists united by necessity and mutual profit.</p>
+                </div>
+                <div class="theme-detail">
+                    <h5>Age of Rebellion: Heroes of the Alliance</h5>
+                    <p>Think of it as a military unit or resistance cell fighting against oppression. Characters are motivated by justice, freedom, and hope, working together to strike against the Empire.</p>
+                </div>
+                <div class="theme-detail">
+                    <h5>Force and Destiny: Seekers of the Force</h5>
+                    <p>A spiritual journey combining personal growth with galactic significance. Groups often include Force users at different stages of training, guided by shared destiny and ancient wisdom.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-groups">
+            <h3>Iconic Group Configurations</h3>
+            
+            <div class="group-example edge">
+                <h4>The Outer Rim Crew (Edge of the Empire)</h4>
+                <p>Picture the crew of a tramp freighter making their living in the galaxy's forgotten corners, where Imperial law is more suggestion than rule.</p>
+                
+                <div class="character-list">
+                    <div class="character">
+                        <strong>Captain Jax Meridian</strong> (Human Smuggler/Pilot)
+                        <p>A former Imperial Academy washout who found freedom in the space lanes. Treats his modified light freighter like family and has contacts from Core Worlds to Wild Space.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Kestra "Wrench" Voss</strong> (Human Technician/Mechanic)
+                        <p>Grew up in a junkyard on Raxus Prime, can make anything work with spare parts and ingenuity. Her droid companion helps with complex repairs.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Dash Rendar</strong> (Corellian Scoundrel/Face)
+                        <p>Smooth-talking former noble who lost everything to gambling debts. Uses charm and connections to open doors and close deals.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Kronn</strong> (Wookiee Hired Gun/Marauder)
+                        <p>Exiled from Kashyyyk for breaking tradition, now serves as ship's muscle and surprisingly good cook. Fierce loyalty once earned.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Dr. Mira Chen</strong> (Human Colonist/Doctor)
+                        <p>Idealistic medic who joined the crew to bring healthcare to frontier worlds. Her medical supplies often make the difference between life and death.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group-example rebellion">
+                <h4>Phoenix Cell Strike Team (Age of Rebellion)</h4>
+                <p>An elite Rebel unit operating behind enemy lines, like a combination of Navy SEALs and the French Resistance fighting against overwhelming odds.</p>
+                
+                <div class="character-list">
+                    <div class="character">
+                        <strong>Commander Sarah Thorne</strong> (Human Officer/Tactician)
+                        <p>Former Imperial Intelligence turned Rebel after witnessing Alderaan's destruction. Brilliant strategist with insider knowledge of Imperial procedures.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Lieutenant Zak Torran</strong> (Human Ace/Pilot)
+                        <p>Hotshot X-wing pilot who escaped Imperial service. His modified starfighter is his pride and joy, painted with kill markings from successful missions.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Sergeant Maya Kol</strong> (Twi'lek Soldier/Commando)
+                        <p>Escaped slavery to join the Rebellion. Expert in explosives and infiltration, with a personal vendetta against the Empire's oppression.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Agent Kael Nexus</strong> (Human Spy/Infiltrator)
+                        <p>Master of disguise and information gathering. Maintains multiple identities across the galaxy to gather intelligence and support Rebel operations.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Tech Specialist Beep-Whirr</strong> (Astromech Droid)
+                        <p>Modified R-series droid with advanced slicing capabilities and encrypted memory banks. The team's digital infiltration specialist.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group-example force">
+                <h4>The Forgotten Order (Force and Destiny)</h4>
+                <p>Survivors and seekers drawn together by the Force, like modern-day knights errant protecting the innocent in a hostile galaxy.</p>
+                
+                <div class="character-list">
+                    <div class="character">
+                        <strong>Jedi Knight Kira Sunrider</strong> (Human Guardian/Protector)
+                        <p>Padawan who survived Order 66, now seeks to rebuild the Jedi Order while protecting Force-sensitive refugees from Imperial persecution.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Rei Vantai</strong> (Mirialan Consular/Sage)
+                        <p>Scholar of ancient Jedi texts who uses knowledge and diplomacy to solve conflicts. Carries a collection of holocrons and artifacts.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Thorne Blackstar</strong> (Human Mystic/Hunter)
+                        <p>Former bounty hunter who discovered his Force sensitivity. Struggles between his violent past and the light side's calling for peace.</p>
+                    </div>
+                    <div class="character">
+                        <strong>Lyra Kaelen</strong> (Togruta Seeker/Pathfinder)
+                        <p>Young Force-sensitive seeking training while using natural abilities to guide others to safety. Dreams of ancient Jedi temples.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="creation-methodology">
+            <h3>The Group Formation Process</h3>
+            <p>Building a Star Wars character group is like assembling a starship crew - every position must be filled, but the magic happens in how the personalities mesh together under pressure.</p>
+
+            <div class="mermaid">
+                flowchart TD
+                    A[Choose Campaign Theme] --> B[Define Group Concept]
+                    B --> C[Establish Shared Background]
+                    C --> D[Assign Core Roles]
+                    D --> E[Create Individual Characters]
+                    E --> F[Develop Relationships]
+                    F --> G[Define Group Assets]
+                    G --> H[Establish Motivations]
+                    H --> I[Plan Character Growth]
+            </div>
+
+            <div class="methodology-details">
+                <h4>Detailed Formation Steps</h4>
+                
+                <div class="step">
+                    <h5>Campaign Theme Selection</h5>
+                    <p>Start by choosing your primary focus. Are you running a gritty underworld campaign where credits matter and the Empire is an distant threat? A military campaign against Imperial oppression? Or a mystical journey exploring the Force's mysteries? This choice shapes everything else.</p>
+                </div>
+
+                <div class="step">
+                    <h5>Group Concept Development</h5>
+                    <p>Define what brings your characters together. Are they crew members on a smuggling ship? Resistance fighters in the same cell? Fellow survivors seeking Jedi training? The concept should feel natural to the Star Wars universe while being specific enough to drive adventures.</p>
+                </div>
+
+                <div class="step">
+                    <h5>Shared Background Creation</h5>
+                    <p>Establish how the characters know each other. Did they meet in an Imperial prison? Serve together in the Clone Wars? Escape the same disaster? Shared experiences create immediate bonds and provide rich storytelling opportunities.</p>
+                </div>
+
+                <div class="step">
+                    <h5>Asset Distribution</h5>
+                    <p>Determine what the group owns collectively: a starship, a base of operations, contacts in various organizations, or special equipment. These shared resources create investment and adventure hooks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="practical-exercises">
+            <h3>Master Your Skills</h3>
+            <p>Knowledge without application is like a lightsaber without a crystal - it has potential but lacks the power to cut through challenges. These exercises will help you master group creation.</p>
+
+            <div class="exercise">
+                <h4>Exercise One: Faction Relationship Mapping</h4>
+                <p>Create a relationship web showing how your group connects to three different factions. Consider positive relationships (allies, employers, family), negative relationships (enemies, rivals, betrayers), and neutral relationships (potential contacts, unknown quantities). How might these relationships create adventures?</p>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise Two: Crisis Scenario Planning</h4>
+                <p>Design three crisis scenarios and determine how your group would handle each:
+                <br>• Their ship breaks down in Imperial space
+                <br>• A team member is captured by bounty hunters
+                <br>• They discover a Force-sensitive child being hunted
+                <br>How do their different skills and personalities complement each other?</p>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercise Three: Character Arc Integration</h4>
+                <p>Map out how each character's personal goals intersect with the group's mission. The smuggler seeking to pay off debts, the ex-Imperial seeking redemption, the Force-sensitive seeking training - how do these individual journeys strengthen the group's bond?</p>
+            </div>
+        </section>
+
+        <section class="advanced-concepts">
+            <h3>Beyond the Basics</h3>
+            <p>Master storytellers understand that the most memorable Star Wars moments come from character interactions under pressure. These advanced concepts will elevate your groups from functional to legendary.</p>
+
+            <h4>Dynamic Character Growth</h4>
+            <p>Plan how relationships will evolve. The by-the-book Imperial defector learns to trust the scoundrel's instincts. The hot-headed pilot discovers wisdom in the scholar's patience. Growth creates ongoing drama and investment.</p>
+
+            <h4>Shared Resources and Obligations</h4>
+            <p>Every group should have shared assets that create both opportunities and vulnerabilities. A ship provides freedom but needs fuel and repairs. A secret base offers safety but requires protection. These elements drive stories forward.</p>
+
+            <h4>Moral Complexity and Difficult Choices</h4>
+            <p>The best Star Wars stories involve moral dilemmas. Should the group save civilians or complete their mission? Trust a former enemy? Risk exposure to help strangers? These moments define character and create memorable gameplay.</p>
+
+            <h4>Galaxy-Wide Connections</h4>
+            <p>Think beyond immediate concerns. How does the group fit into galactic events? Are they witnesses to history, active participants in major conflicts, or trying to stay hidden from larger forces? Their scale determines the scope of their adventures.</p>
+        </section>
+
+        <section class="troubleshooting">
+            <h3>Common Challenges and Solutions</h3>
+            <p>Even experienced GMs encounter obstacles when crafting character groups. Here are proven solutions to common problems.</p>
+
+            <div class="problem-solution">
+                <h4>Problem: Characters Don't Work Together</h4>
+                <p><strong>Solution:</strong> Create external pressure that forces cooperation. Nothing unites a group like a common enemy or shared goal that none can achieve alone.</p>
+            </div>
+
+            <div class="problem-solution">
+                <h4>Problem: Power Level Imbalances</h4>
+                <p><strong>Solution:</strong> Ensure each character has moments to shine. The Force user handles mystical threats, the pilot handles space combat, the face handles negotiations. Balance spotlight time, not power levels.</p>
+            </div>
+
+            <div class="problem-solution">
+                <h4>Problem: Conflicting Motivations</h4>
+                <p><strong>Solution:</strong> Make conflicting goals create drama, not deadlock. The profit-motivated smuggler and idealistic rebel can disagree on methods while sharing ultimate objectives.</p>
+            </div>
+        </section>
+
+        <section class="next-steps">
+            <h3>Charting Your Course</h3>
+            <p>You now possess the fundamental knowledge to create compelling character groups that capture the essence of Star Wars adventure. Your journey into group mastery has begun, but like any Jedi training, true understanding comes through practice and experience.</p>
+
+           
+        </section>
+    </main>
+
+    <footer>
+        <p>Remember: In a galaxy far, far away, the greatest adventures begin when diverse beings unite for a common cause. May the Force be with you, always.</p>
+    </footer>
+
+    <script>
+        // Campaign Theme Chart Visualization
+        const canvas = document.getElementById('themeChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Set up the chart background
+        ctx.fillStyle = '#000011';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add stars background
+        for(let i = 0; i < 100; i++) {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1);
+        }
+        
+        // Draw theme sections
+        const themes = [
+            { 
+                name: 'Edge of the Empire', 
+                x: 50, y: 50, width: 180, height: 300,
+                color: '#8B4513',
+                description: 'Scoundrels & Outlaws'
+            },
+            { 
+                name: 'Age of Rebellion', 
+                x: 260, y: 50, width: 180, height: 300,
+                color: '#DC143C',
+                description: 'Heroes & Rebels'
+            },
+            { 
+                name: 'Force and Destiny', 
+                x: 470, y: 50, width: 180, height: 300,
+                color: '#4169E1',
+                description: 'Seekers & Mystics'
+            }
+        ];
+        
+        themes.forEach((theme) => {
+            // Draw theme box
+            ctx.fillStyle = theme.color;
+            ctx.globalAlpha = 0.7;
+            ctx.fillRect(theme.x, theme.y, theme.width, theme.height);
+            ctx.globalAlpha = 1.0;
+            
+            // Draw border
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(theme.x, theme.y, theme.width, theme.height);
+            
+            // Add theme title
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(theme.name, theme.x + theme.width/2, theme.y + 30);
+            
+            // Add description
+            ctx.font = '14px Arial';
+            ctx.fillText(theme.description, theme.x + theme.width/2, theme.y + 50);
+        });
+        
+        // Add overlapping regions
+        ctx.fillStyle = '#FFD700';
+        ctx.globalAlpha = 0.3;
+        
+        // Edge/Rebellion overlap
+        ctx.fillRect(230, 100, 60, 200);
+        
+        // Rebellion/Force overlap  
+        ctx.fillRect(440, 100, 60, 200);
+        
+        ctx.globalAlpha = 1.0;
+        
+        // Add overlap labels
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Rebel', 260, 180);
+        ctx.fillText('Smugglers', 260, 195);
+        ctx.fillText('Force-Sensitive', 470, 180);
+        ctx.fillText('Rebels', 470, 195);
+        
+        // Add title
+        ctx.font = 'bold 20px Arial';
+        ctx.fillText('Star Wars RPG Campaign Themes', canvas.width/2, 25);
+        
+        // Reset text alignment
+        ctx.textAlign = 'start';
+    </script>
+
+    <!-- <style>
+        .archetype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .archetype-card {
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #FFD700;
+            transition: transform 0.3s ease;
+        }
+        
+        .archetype-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .archetype-card.pilot {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+        }
+        
+        .archetype-card.warrior {
+            background: linear-gradient(135deg, #DC143C, #8B0000);
+            color: white;
+        }
+        
+        .archetype-card.face {
+            background: linear-gradient(135deg, #4169E1, #1E3A8A);
+            color: white;
+        }
+        
+        .archetype-card.tech {
+            background: linear-gradient(135deg, #32CD32, #228B22);
+            color: white;
+        }
+        
+        .archetype-card.mystic {
+            background: linear-gradient(135deg, #9370DB, #4B0082);
+            color: white;
+        }
+        
+        .archetype-card.support {
+            background: linear-gradient(135deg, #20B2AA, #008B8B);
+            color: white;
+        }
+        
+        .group-example {
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            border: 2px solid #FFD700;
+        }
+        
+        .group-example.edge {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+        }
+        
+        .group-example.rebellion {
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+        }
+        
+        .group-example.force {
+            background: linear-gradient(135deg, #4169E1, #6495ED);
+            color: white;
+        }
+        
+        .character-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .character {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .theme-detail {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .step {
+            margin: 20px 0;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #FF9800;
+        }
+        
+        .problem-solution {
+            background: #f3e5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .preview {
+            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #4CAF50;
+        }
+        
+        canvas {
+            border: 3px solid #FFD700;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .methodology-details {
+            margin-top: 30px;
+        }
+    </style> -->
+</body>
+</html>

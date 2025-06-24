@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - Game Master Techniques</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: Game Master Techniques</h1>
+        <p class="subtitle">Directing the Galaxy's Greatest Stories - Mastering the Art of Star Wars Gamemastering</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>The GM as Galaxy Architect</h2>
+            <p>Being a Star Wars Game Master isn't just about knowing rules or managing dice - you're the director, producer, supporting cast, and special effects department of your own Star Wars epic. You're not just running a game; you're collaborating with your players to create stories worthy of the saga that inspired millions. Think of yourself as George Lucas with a writers' room full of creative partners.</p>
+            
+            <div class="analogy-box">
+                <h3>The Movie Director Analogy</h3>
+                <p>If your players are the lead actors, you're the director who sets the scene, provides supporting characters, and helps guide the story's emotional beats. But unlike a movie director, you don't have a script - you have a living story that changes based on your actors' choices. Your job is to make those choices feel meaningful, dramatic, and authentically Star Wars.</p>
+            </div>
+        </section>
+
+        <section class="gm-philosophy">
+            <h2>The Star Wars GM Mindset</h2>
+            
+            <h3>Embracing the Genre</h3>
+            <p>Star Wars has its own unique tone and style that separates it from other science fiction. It's space opera, not hard sci-fi. It's about heroes and villains, not moral ambiguity. It's about hope triumphing over despair, not gritty realism. Your role as GM is to channel this spirit in every scene.</p>
+
+            <div class="genre-elements">
+                <div class="mermaid">
+                    mindmap
+                        root((Star Wars Elements))
+                            Tone
+                                Heroic Adventure
+                                Optimistic Hope
+                                Clear Morality
+                                Epic Scale
+                            Themes
+                                Good vs Evil
+                                Coming of Age
+                                Redemption
+                                Sacrifice
+                            Style
+                                Pulp Serial
+                                Swashbuckling
+                                Space Opera
+                                Mysticism
+                            Pacing
+                                Action Packed
+                                Dramatic Beats
+                                Cliffhangers
+                                Emotional Moments
+                </div>
+            </div>
+
+            <h3>The Rule of Cool vs Simulation</h3>
+            <p>Star Wars RPG prioritizes dramatic storytelling over realistic simulation. When faced with a choice between "what would realistically happen" and "what would be awesome and Star Wars-like," always choose awesome. The Force doesn't follow physics, heroes make impossible shots, and dramatic timing trumps probability.</p>
+
+            <div class="gm-priorities">
+                <canvas id="gmPriorities" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const priorityCanvas = document.getElementById('gmPriorities');
+                const priorityCtx = priorityCanvas.getContext('2d');
+                
+                // Create priority hierarchy visualization
+                const priorities = [
+                    {name: 'Fun & Engagement', importance: 10, color: '#4CAF50'},
+                    {name: 'Story Drama', importance: 9, color: '#2196F3'},
+                    {name: 'Character Development', importance: 8, color: '#FF9800'},
+                    {name: 'Star Wars Feel', importance: 8, color: '#9C27B0'},
+                    {name: 'Rule Consistency', importance: 6, color: '#FFC107'},
+                    {name: 'Logical Realism', importance: 4, color: '#795548'},
+                    {name: 'Challenge Balance', importance: 7, color: '#607D8B'},
+                    {name: 'Player Agency', importance: 9, color: '#E91E63'}
+                ];
+                
+                // Sort by importance
+                priorities.sort((a, b) => b.importance - a.importance);
+                
+                // Draw bars
+                priorityCtx.fillStyle = '#333';
+                priorityCtx.font = 'bold 16px Arial';
+                priorityCtx.textAlign = 'center';
+                priorityCtx.fillText('GM Priority Hierarchy', 300, 25);
+                
+                const barHeight = 25;
+                const barSpacing = 35;
+                let currentY = 50;
+                
+                priorities.forEach((priority, index) => {
+                    const barWidth = priority.importance * 40;
+                    
+                    // Draw bar
+                    priorityCtx.fillStyle = priority.color;
+                    priorityCtx.fillRect(100, currentY, barWidth, barHeight);
+                    
+                    // Draw border
+                    priorityCtx.strokeStyle = '#333';
+                    priorityCtx.lineWidth = 1;
+                    priorityCtx.strokeRect(100, currentY, barWidth, barHeight);
+                    
+                    // Add label
+                    priorityCtx.fillStyle = '#333';
+                    priorityCtx.font = '14px Arial';
+                    priorityCtx.textAlign = 'left';
+                    priorityCtx.fillText(priority.name, 20, currentY + 17);
+                    
+                    // Add importance score
+                    priorityCtx.font = '12px Arial';
+                    priorityCtx.textAlign = 'center';
+                    priorityCtx.fillText(priority.importance.toString(), 100 + barWidth + 20, currentY + 17);
+                    
+                    currentY += barSpacing;
+                });
+                
+                priorityCtx.fillStyle = '#666';
+                priorityCtx.font = '12px Arial';
+                priorityCtx.textAlign = 'center';
+                priorityCtx.fillText('Higher numbers = Higher priority when making GM decisions', 300, 280);
+            </script>
+        </section>
+
+        <section class="narrative-dice-gming">
+            <h2>Mastering Narrative Dice as a GM</h2>
+            
+            <h3>Beyond Success and Failure</h3>
+            <p>The narrative dice system is your secret weapon for dynamic storytelling. Every roll becomes an opportunity to advance the plot, develop characters, or introduce complications. Your job is to interpret these results in ways that feel natural and exciting.</p>
+
+            <div class="dice-interpretation">
+                <div class="example-box">
+                    <h4>GM's Guide to Dice Result Interpretation</h4>
+                    
+                    <h5>Success with Advantage - "Yes, and..."</h5>
+                    <ul>
+                        <li><strong>Player Action:</strong> "I want to slice into the Imperial computer"</li>
+                        <li><strong>Basic Success:</strong> "You access the system and find the prisoner location"</li>
+                        <li><strong>With Advantage:</strong> "You also discover guard rotation schedules and find evidence of a larger conspiracy"</li>
+                        <li><strong>Story Impact:</strong> Immediate goal achieved PLUS new plot hooks</li>
+                    </ul>
+                    
+                    <h5>Failure with Advantage - "No, but..."</h5>
+                    <ul>
+                        <li><strong>Player Action:</strong> "I try to convince the Imperial officer to let us pass"</li>
+                        <li><strong>Basic Failure:</strong> "He doesn't believe your story and becomes suspicious"</li>
+                        <li><strong>With Advantage:</strong> "He doesn't buy it, but his comlink chimes with an urgent message, distracting him long enough for you to slip away"</li>
+                        <li><strong>Story Impact:</strong> Goal not achieved BUT new opportunity created</li>
+                    </ul>
+                    
+                    <h5>Success with Threat - "Yes, but..."</h5>
+                    <ul>
+                        <li><strong>Player Action:</strong> "I pilot the ship through the asteroid field"</li>
+                        <li><strong>Basic Success:</strong> "You navigate safely through the asteroids"</li>
+                        <li><strong>With Threat:</strong> "You make it through, but the ship takes strain damage and you've attracted the attention of asteroid miners who think you're claim-jumping"</li>
+                        <li><strong>Story Impact:</strong> Goal achieved BUT new complications arise</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Collaborative Interpretation</h3>
+            <p>Don't shoulder all the creative burden yourself. Involve players in interpreting their own results, especially Advantage and Triumph. Ask "How do you want to spend that Advantage?" or "What does your Triumph look like?" This creates investment and ensures the outcomes feel personal to the character.</p>
+
+            <div class="interpretation-flowchart">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Player Rolls Dice] --> B[Determine Core Success/Failure]
+                        B --> C{Advantage/Threat Present?}
+                        C -->|Yes| D[Ask Player for Ideas]
+                        C -->|No| E[Describe Simple Outcome]
+                        D --> F{Player Has Good Idea?}
+                        F -->|Yes| G[Use Player's Suggestion]
+                        F -->|No| H[GM Provides Options]
+                        G --> I[Describe Combined Result]
+                        H --> I
+                        E --> I
+                        I --> J[Continue Story]
+                        
+                        style A fill:#4caf50
+                        style D fill:#2196f3
+                        style F fill:#ff9800
+                        style I fill:#9c27b0
+                </div>
+            </div>
+        </section>
+
+        <section class="npc-mastery">
+            <h2>Creating Memorable NPCs</h2>
+            
+            <h3>The Star Wars Character Archetypes</h3>
+            <p>Star Wars characters are often larger than life, with clear motivations and distinctive personalities. Your NPCs should be instantly recognizable and memorable, even if they only appear for one scene. Think about what makes characters like Greedo, Watto, or Admiral Ackbar stick in our memories.</p>
+
+            <div class="npc-creation-process">
+                <div class="example-box">
+                    <h4>The Five-Minute NPC Method</h4>
+                    
+                    <h5>Step 1: Choose a Core Want</h5>
+                    <p>What does this character want more than anything? Make it simple and clear.</p>
+                    <ul>
+                        <li>Credits and wealth</li>
+                        <li>Power and control</li>
+                        <li>Knowledge and secrets</li>
+                        <li>Safety and security</li>
+                        <li>Recognition and respect</li>
+                    </ul>
+                    
+                    <h5>Step 2: Add a Distinctive Quirk</h5>
+                    <p>One memorable trait that makes them stand out:</p>
+                    <ul>
+                        <li>Speech pattern or accent</li>
+                        <li>Physical tic or mannerism</li>
+                        <li>Obsession or hobby</li>
+                        <li>Unusual appearance detail</li>
+                        <li>Repeated phrase or motto</li>
+                    </ul>
+                    
+                    <h5>Step 3: Define Their Relationship to PCs</h5>
+                    <p>How do they view the characters?</p>
+                    <ul>
+                        <li>Potential allies or assets</li>
+                        <li>Threats to their goals</li>
+                        <li>Sources of what they want</li>
+                        <li>Obstacles to overcome</li>
+                        <li>Means to an end</li>
+                    </ul>
+                    
+                    <h5>Step 4: Give Them Agency</h5>
+                    <p>What will they do if the PCs don't interact with them?</p>
+                </div>
+            </div>
+
+            <h3>Bringing NPCs to Life</h3>
+            <p>Don't just describe your NPCs - inhabit them. Change your posture, voice, and mannerisms. If you feel silly doing voices, remember that your players will connect more with a badly-done but committed character voice than perfect description with no personality.</p>
+
+            <div class="npc-showcase">
+                <div class="npc-card">
+                    <h4>Kresh Vanto - Information Broker</h4>
+                    <p><strong>Core Want:</strong> Acquiring rare and valuable information</p>
+                    <p><strong>Quirk:</strong> Speaks in whispers, constantly checks surveillance devices</p>
+                    <p><strong>Relationship to PCs:</strong> Sees them as sources of fascinating secrets</p>
+                    <p><strong>Agency:</strong> Building network of informants across the sector</p>
+                    <p><strong>Roleplay Notes:</strong> Leans in close, asks probing questions, remembers everything</p>
+                </div>
+                
+                <div class="npc-card">
+                    <h4>Captain Nexu Korr - Imperial Defector</h4>
+                    <p><strong>Core Want:</strong> Redemption for past Imperial service</p>
+                    <p><strong>Quirk:</strong> Still uses military protocol despite being a rebel</p>
+                    <p><strong>Relationship to PCs:</strong> Potential mentor but with dangerous past</p>
+                    <p><strong>Agency:</strong> Secretly undermining Imperial operations</p>
+                    <p><strong>Roleplay Notes:</strong> Rigid posture, formal speech, haunted by guilt</p>
+                </div>
+                
+                <div class="npc-card">
+                    <h4>Zeb "Lucky" Nosarra - Cantina Owner</h4>
+                    <p><strong>Core Want:</strong> Running a peaceful, profitable establishment</p>
+                    <p><strong>Quirk:</strong> Always polishing glasses, mediates all conflicts</p>
+                    <p><strong>Relationship to PCs:</strong> Neutral ground provider, reluctant ally</p>
+                    <p><strong>Agency:</strong> Maintaining delicate balance between factions</p>
+                    <p><strong>Roleplay Notes:</strong> Diplomatic, observant, knows everyone's business</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="encounter-design">
+            <h2>Designing Memorable Encounters</h2>
+            
+            <h3>The Three-Layer Approach</h3>
+            <p>Great Star Wars encounters work on three levels simultaneously: immediate tactical challenge, character development opportunity, and story advancement. Each encounter should push the plot forward while giving characters chances to grow and shine.</p>
+
+            <div class="encounter-layers">
+                <canvas id="encounterLayers" width="600" height="350"></canvas>
+            </div>
+
+            <script>
+                const layerCanvas = document.getElementById('encounterLayers');
+                const layerCtx = layerCanvas.getContext('2d');
+                
+                // Draw three-layer encounter design
+                layerCtx.fillStyle = '#333';
+                layerCtx.font = 'bold 18px Arial';
+                layerCtx.textAlign = 'center';
+                layerCtx.fillText('Three-Layer Encounter Design', 300, 25);
+                
+                // Layer 1 - Story
+                layerCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
+                layerCtx.fillRect(50, 60, 500, 80);
+                layerCtx.strokeStyle = '#4CAF50';
+                layerCtx.lineWidth = 3;
+                layerCtx.strokeRect(50, 60, 500, 80);
+                
+                layerCtx.fillStyle = '#333';
+                layerCtx.font = 'bold 16px Arial';
+                layerCtx.fillText('Layer 1: Story Advancement', 300, 85);
+                layerCtx.font = '14px Arial';
+                layerCtx.fillText('How does this encounter move the plot forward?', 300, 105);
+                layerCtx.fillText('What information is revealed? What questions are answered?', 300, 125);
+                
+                // Layer 2 - Character
+                layerCtx.fillStyle = 'rgba(33, 150, 243, 0.8)';
+                layerCtx.fillRect(75, 140, 450, 80);
+                layerCtx.strokeStyle = '#2196F3';
+                layerCtx.lineWidth = 3;
+                layerCtx.strokeRect(75, 140, 450, 80);
+                
+                layerCtx.fillStyle = '#333';
+                layerCtx.font = 'bold 16px Arial';
+                layerCtx.fillText('Layer 2: Character Development', 300, 165);
+                layerCtx.font = '14px Arial';
+                layerCtx.fillText('Which characters get spotlight moments?', 300, 185);
+                layerCtx.fillText('How do their skills, backgrounds, or goals matter?', 300, 205);
+                
+                // Layer 3 - Tactical
+                layerCtx.fillStyle = 'rgba(255, 152, 0, 0.8)';
+                layerCtx.fillRect(100, 220, 400, 80);
+                layerCtx.strokeStyle = '#FF9800';
+                layerCtx.lineWidth = 3;
+                layerCtx.strokeRect(100, 220, 400, 80);
+                
+                layerCtx.fillStyle = '#333';
+                layerCtx.font = 'bold 16px Arial';
+                layerCtx.fillText('Layer 3: Tactical Challenge', 300, 245);
+                layerCtx.font = '14px Arial';
+                layerCtx.fillText('What is the immediate problem to solve?', 300, 265);
+                layerCtx.fillText('What obstacles must be overcome?', 300, 285);
+                
+                // Add integration note
+                layerCtx.fillStyle = '#666';
+                layerCtx.font = '12px Arial';
+                layerCtx.fillText('All three layers should support and enhance each other', 300, 320);
+            </script>
+
+            <h3>Environmental Storytelling</h3>
+            <p>The galaxy itself should tell stories. A rusted speeder bike half-buried in sand tells a tale of desperation. A cantina where aliens and humans drink separately reveals social tensions. Use environment details to reinforce themes and provide context without exposition.</p>
+
+            <div class="environment-examples">
+                <div class="example-box">
+                    <h4>Environments That Tell Stories</h4>
+                    
+                    <h5>Imperial Facility</h5>
+                    <ul>
+                        <li><strong>Visual:</strong> Sterile white corridors, propaganda posters, security cameras</li>
+                        <li><strong>Audio:</strong> Marching feet, TIE fighter flyovers, comm chatter</li>
+                        <li><strong>Details:</strong> Scorch marks from recent rebel attack, nervous technicians</li>
+                        <li><strong>Story:</strong> The Empire's oppressive control and growing rebel resistance</li>
+                    </ul>
+                    
+                    <h5>Outer Rim Cantina</h5>
+                    <ul>
+                        <li><strong>Visual:</strong> Dim lighting, smoke, diverse alien patrons</li>
+                        <li><strong>Audio:</strong> Jizz music, multiple languages, hushed conversations</li>
+                        <li><strong>Details:</strong> Blaster burns on walls, memorial holo for "lost friends"</li>
+                        <li><strong>Story:</strong> Frontier lawlessness and communities formed by outcasts</li>
+                    </ul>
+                    
+                    <h5>Abandoned Jedi Temple</h5>
+                    <ul>
+                        <li><strong>Visual:</strong> Cracked statues, overgrown gardens, broken lightsabers</li>
+                        <li><strong>Audio:</strong> Wind through ruins, distant Force echoes</li>
+                        <li><strong>Details:</strong> Blaster scoring from Order 66, hidden holocrons</li>
+                        <li><strong>Story:</strong> The fall of the Jedi and hope for renewal</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Cliffhanger Principle</h3>
+            <p>Star Wars episodes end with dramatic hooks that make audiences desperate for the next installment. Your sessions should do the same. End at moments of high tension, revealed secrets, or impossible choices. Leave your players thinking about the game between sessions.</p>
+        </section>
+
+        <section class="managing-the-table">
+            <h2>Table Management and Player Dynamics</h2>
+            
+            <h3>Spotlight Management</h3>
+            <p>One of your most important jobs is ensuring every player gets their moment to shine. Star Wars is an ensemble story - while Luke might be the protagonist, Han, Leia, and Chewbacca all have crucial roles and character arcs.</p>
+
+            <div class="spotlight-techniques">
+                <div class="mermaid">
+                    graph TD
+                        A[Spotlight Management] --> B[Skill-Based Moments]
+                        A --> C[Background Connections]
+                        A --> D[Personal Stakes]
+                        A --> E[Character Relationships]
+                        
+                        B --> B1[Mechanic gets tech challenge]
+                        B --> B2[Diplomat handles negotiations]
+                        B --> B3[Pilot leads space chase]
+                        
+                        C --> C1[Bounty hunter recognizes criminal]
+                        C --> C2[Noble has family connections]
+                        C --> C3[Rebel has inside information]
+                        
+                        D --> D1[Threaten character's motivation]
+                        D --> D2[Challenge their beliefs]
+                        D --> D3[Force difficult choices]
+                        
+                        E --> E1[NPC from their backstory]
+                        E --> E2[Obligation complications]
+                        E --> E3[Duty opportunities]
+                        
+                        style A fill:#2196f3
+                        style B fill:#4caf50
+                        style C fill:#ff9800
+                        style D fill:#f44336
+                        style E fill:#9c27b0
+                </div>
+            </div>
+
+            <h3>Handling Different Player Types</h3>
+            <p>Your table will likely include different types of players with varying interests and play styles. Part of being a great GM is recognizing what each player enjoys and providing opportunities for their preferred style of engagement.</p>
+
+            <div class="player-types">
+                <div class="player-card">
+                    <h4>The Optimizer - "I Want to Be Effective"</h4>
+                    <p><strong>What they enjoy:</strong> Building efficient characters, tactical challenges</p>
+                    <p><strong>How to engage them:</strong> Complex mechanical encounters, opportunities to use their builds</p>
+                    <p><strong>Potential issues:</strong> May overshadow other players, focus on mechanics over story</p>
+                    <p><strong>GM Solutions:</strong> Challenges that require teamwork, narrative consequences for actions</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>The Actor - "I Want to Roleplay"</h4>
+                    <p><strong>What they enjoy:</strong> Character interactions, dramatic moments, voices and mannerisms</p>
+                    <p><strong>How to engage them:</strong> NPC conversations, moral dilemmas, character development scenes</p>
+                    <p><strong>Potential issues:</strong> May dominate social scenes, less interested in combat</p>
+                    <p><strong>GM Solutions:</strong> Rotate social leadership, find ways to make combat personal</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>The Explorer - "I Want to Discover"</h4>
+                    <p><strong>What they enjoy:</strong> Learning about the setting, finding secrets, mapping the unknown</p>
+                    <p><strong>How to engage them:</strong> Hidden locations, lore discoveries, investigation opportunities</p>
+                    <p><strong>Potential issues:</strong> May slow down action scenes, analysis paralysis</p>
+                    <p><strong>GM Solutions:</strong> Time pressure, mysteries that unfold through action</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>The Casual - "I Want to Have Fun"</h4>
+                    <p><strong>What they enjoy:</strong> Social aspects, being part of the group, occasional heroic moments</p>
+                    <p><strong>How to engage them:</strong> Clear goals, supportive role opportunities, group success</p>
+                    <p><strong>Potential issues:</strong> May be overshadowed by more engaged players</p>
+                    <p><strong>GM Solutions:</strong> Ensure they have important contributions, simple but impactful choices</p>
+                </div>
+            </div>
+
+            <h3>Managing Conflict and Failure</h3>
+            <p>Not every plan will succeed, and not every character will survive. Your job is to make failure feel meaningful rather than arbitrary, and to help players learn from setbacks while maintaining the heroic tone of Star Wars.</p>
+        </section>
+
+        <section class="improvisation-mastery">
+            <h2>The Art of GM Improvisation</h2>
+            
+            <h3>The "Yes, And" Philosophy</h3>
+            <p>Borrowed from improv comedy, "Yes, And" means accepting player ideas and building on them rather than shutting them down. When players suggest creative solutions or interpretations, find ways to incorporate their ideas into the story.</p>
+
+            <div class="improvisation-flowchart">
+                <div class="mermaid">
+                    flowchart LR
+                        A[Player Suggests Idea] --> B{Is it Possible?}
+                        B -->|Clearly Yes| C[Say Yes and Add Details]
+                        B -->|Clearly No| D[Explain Why Not, Offer Alternative]
+                        B -->|Maybe| E[Make it a Check]
+                        E --> F{Success?}
+                        F -->|Yes| G[Yes, And...]
+                        F -->|No| H[No, But...]
+                        C --> I[Continue Scene]
+                        D --> I
+                        G --> I
+                        H --> I
+                        
+                        style A fill:#4caf50
+                        style B fill:#ff9800
+                        style E fill:#2196f3
+                        style F fill:#ff9800
+                        style I fill:#9c27b0
+                </div>
+            </div>
+
+            <h3>Building on Player Backstories</h3>
+            <p>Your players have created characters with histories, relationships, and unresolved plot threads. Mine these backstories for story ideas, NPCs, and dramatic moments. When players see their character's history becoming relevant to the main plot, they feel deeply invested.</p>
+
+            <div class="backstory-integration">
+                <div class="example-box">
+                    <h4>Backstory Integration Techniques</h4>
+                    
+                    <h5>The Unexpected Connection</h5>
+                    <p><strong>Setup:</strong> Player mentions their character's sister was kidnapped by slavers</p>
+                    <p><strong>Integration:</strong> The villain your party is chasing turns out to be that slaver</p>
+                    <p><strong>Impact:</strong> Personal stakes elevate the entire story</p>
+                    
+                    <h5>The Cameo Appearance</h5>
+                    <p><strong>Setup:</strong> Player describes their mentor from their homeworld</p>
+                    <p><strong>Integration:</strong> Mentor appears as a hologram with crucial information</p>
+                    <p><strong>Impact:</strong> Character feels connected to larger galaxy</p>
+                    
+                    <h5>The Echoing Choice</h5>
+                    <p><strong>Setup:</strong> Player's backstory involves leaving their military unit</p>
+                    <p><strong>Integration:</strong> Current situation mirrors their past difficult choice</p>
+                    <p><strong>Impact:</strong> Character development through parallel circumstances</p>
+                </div>
+            </div>
+
+            <h3>The GM's Toolkit for Quick Creation</h3>
+            <p>When you need to improvise on the spot, having mental templates can save you. Develop your repertoire of go-to character types, plot complications, and scene structures that you can deploy when players go off-script.</p>
+        </section>
+
+        <section class="using-obligations-duty">
+            <h2>Leveraging Obligations and Duty</h2>
+            
+            <h3>Obligation as Story Engine</h3>
+            <p>Player Obligations aren't just mechanical penalties - they're automatic plot generators. When an Obligation triggers, that player becomes the focus of the session's drama. Their past has caught up with them, and now the whole party gets involved.</p>
+
+            <div class="obligation-scenarios">
+                <div class="example-box">
+                    <h4>Turning Obligations into Adventures</h4>
+                    
+                    <h5>Bounty (15 points) - "Dead or Alive"</h5>
+                    <ul>
+                        <li><strong>Trigger Event:</strong> Bounty hunter tracks down the character</li>
+                        <li><strong>Immediate Conflict:</strong> Confrontation in public place</li>
+                        <li><strong>Complication:</strong> Hunter has leverage (innocent hostages)</li>
+                        <li><strong>Resolution Paths:</strong> Fight, negotiate, redirect hunter to real target</li>
+                        <li><strong>Story Growth:</strong> Learn who placed the bounty and why</li>
+                    </ul>
+                    
+                    <h5>Debt (20 points) - "Collection Time"</h5>
+                    <ul>
+                        <li><strong>Trigger Event:</strong> Creditor demands payment or else</li>
+                        <li><strong>Immediate Conflict:</strong> Impossible deadline, insufficient funds</li>
+                        <li><strong>Complication:</strong> Only way to pay involves illegal activity</li>
+                        <li><strong>Resolution Paths:</strong> Heist, favor trading, finding alternative creditor</li>
+                        <li><strong>Story Growth:</strong> Why was money borrowed? What's the real cost?</li>
+                    </ul>
+                    
+                    <h5>Family (10 points) - "Blood Calls"</h5>
+                    <ul>
+                        <li><strong>Trigger Event:</strong> Family member needs help urgently</li>
+                        <li><strong>Immediate Conflict:</strong> Family duty vs mission goals</li>
+                        <li><strong>Complication:</strong> Family member is in wrong, but still family</li>
+                        <li><strong>Resolution Paths:</strong> Blind loyalty, tough love, compromise</li>
+                        <li><strong>Story Growth:</strong> Explore character's relationship with family legacy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Duty as Heroic Opportunity</h3>
+            <p>Duty represents opportunities for characters to advance their cause and grow as heroes. Unlike Obligation, Duty should feel empowering - a chance to make a difference in the galaxy and earn recognition for heroic service.</p>
+        </section>
+
+        <section class="advanced-gm-techniques">
+            <h2>Advanced GM Techniques</h2>
+            
+            <h3>The Three-Act Session Structure</h3>
+            <p>Structure your sessions like Star Wars films, with clear acts that build tension and deliver satisfying payoffs. This helps maintain pacing and ensures each session feels complete even as part of a larger story.</p>
+
+            <div class="session-structure">
+                <canvas id="sessionStructure" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const structureCanvas = document.getElementById('sessionStructure');
+                const structureCtx = structureCanvas.getContext('2d');
+                
+                // Draw three-act structure
+                structureCtx.fillStyle = '#333';
+                structureCtx.font = 'bold 18px Arial';
+                structureCtx.textAlign = 'center';
+                structureCtx.fillText('Three-Act Session Structure', 300, 25);
+                
+                // Act 1
+                structureCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
+                structureCtx.fillRect(50, 60, 150, 60);
+                structureCtx.strokeStyle = '#4CAF50';
+                structureCtx.lineWidth = 2;
+                structureCtx.strokeRect(50, 60, 150, 60);
+                
+                structureCtx.fillStyle = '#333';
+                structureCtx.font = 'bold 14px Arial';
+                structureCtx.fillText('Act 1: Setup', 125, 80);
+                structureCtx.font = '12px Arial';
+                structureCtx.fillText('Introduce situation', 125, 95);
+                structureCtx.fillText('Establish stakes', 125, 110);
+                
+                // Act 2
+                structureCtx.fillStyle = 'rgba(255, 152, 0, 0.8)';
+                structureCtx.fillRect(225, 40, 150, 100);
+                structureCtx.strokeStyle = '#FF9800';
+                structureCtx.lineWidth = 2;
+                structureCtx.strokeRect(225, 40, 150, 100);
+                
+                structureCtx.fillStyle = '#333';
+                structureCtx.font = 'bold 14px Arial';
+                structureCtx.fillText('Act 2: Confrontation', 300, 60);
+                structureCtx.font = '12px Arial';
+                structureCtx.fillText('Rising action', 300, 75);
+                structureCtx.fillText('Complications', 300, 90);
+                structureCtx.fillText('Major challenges', 300, 105);
+                structureCtx.fillText('Character development', 300, 120);
+                
+                // Act 3
+                structureCtx.fillStyle = 'rgba(244, 67, 54, 0.8)';
+                structureCtx.fillRect(400, 60, 150, 60);
+                structureCtx.strokeStyle = '#F44336';
+                structureCtx.lineWidth = 2;
+                structureCtx.strokeRect(400, 60, 150, 60);
+                
+                structureCtx.fillStyle = '#333';
+                structureCtx.font = 'bold 14px Arial';
+                structureCtx.fillText('Act 3: Resolution', 475, 80);
+                structureCtx.font = '12px Arial';
+                structureCtx.fillText('Climactic action', 475, 95);
+                structureCtx.fillText('Consequences', 475, 110);
+                
+                // Add timing
+                structureCtx.fillStyle = '#666';
+                structureCtx.font = '12px Arial';
+                structureCtx.fillText('25%', 125, 140);
+                structureCtx.fillText('50%', 300, 160);
+                structureCtx.fillText('25%', 475, 140);
+                
+                // Add tension curve
+                structureCtx.strokeStyle = '#E91E63';
+                structureCtx.lineWidth = 3;
+                structureCtx.beginPath();
+                structureCtx.moveTo(50, 180);
+                structureCtx.quadraticCurveTo(200, 160, 300, 180);
+                structureCtx.quadraticCurveTo(400, 200, 550, 160);
+                structureCtx.stroke();
+                
+                structureCtx.fillStyle = '#E91E63';
+                structureCtx.font = '12px Arial';
+                structureCtx.textAlign = 'left';
+                structureCtx.fillText('Dramatic Tension', 50, 200);
+            </script>
+
+            <h3>Cross-Cutting and Scene Transitions</h3>
+            <p>Use cinematic techniques like cross-cutting between different groups of characters, or dramatic scene transitions that maintain pacing. "Meanwhile, on the Star Destroyer..." can instantly shift focus and maintain tension across multiple storylines.</p>
+
+            <h3>The Revelation Ladder</h3>
+            <p>Plan your information reveals in layers. Start with surface details and gradually reveal deeper truths. This mirrors the way Star Wars films reveal information about characters and situations, building to major revelations that recontextualize everything.</p>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: NPC Speed Creation</h3>
+            <p>Practice creating memorable NPCs quickly:</p>
+            <ol>
+                <li>Set a timer for 2 minutes per NPC</li>
+                <li>Create 5 different NPCs using the five-minute method</li>
+                <li>Give each a name, want, quirk, and relationship to potential PCs</li>
+                <li>Practice voice or mannerism for each</li>
+                <li>Write one-sentence summaries you could use during play</li>
+            </ol>
+            
+            <h3>Activity Two: Dice Result Interpretation</h3>
+            <p>Practice interpreting narrative dice results:</p>
+            <ul>
+                <li>Write down 10 different action scenarios (hacking, persuasion, piloting, etc.)</li>
+                <li>For each scenario, write interpretations for different dice outcomes</li>
+                <li>Focus on making Advantage/Threat feel meaningful and story-relevant</li>
+                <li>Practice asking "How do you want to spend that Advantage?"</li>
+            </ul>
+            
+            <h3>Activity Three: Obligation Integration</h3>
+            <p>Turn character backstories into adventures:</p>
+            <ol>
+                <li>Take 3 different Obligation types</li>
+                <li>For each, design a trigger event that activates it</li>
+                <li>Plan how the obligation affects the entire party</li>
+                <li>Create multiple resolution paths</li>
+                <li>Consider how resolution might change the character's story</li>
+            </ol>
+            
+            <h3>Activity Four: Improvisation Exercise</h3>
+            <p>Practice saying "Yes, And" to unexpected player ideas:</p>
+            <ul>
+                <li>Ask someone to give you ridiculous player suggestions</li>
+                <li>Practice finding ways to incorporate them into Star Wars stories</li>
+                <li>Focus on building on ideas rather than shutting them down</li>
+                <li>Develop your mental library of "go-to" explanations and plot devices</li>
+            </ul>
+        </section>
+
+        <section class="common-gm-challenges">
+            <h2>Common GM Challenges and Solutions</h2>
+            
+            <h3>When Players Go Off-Script</h3>
+            <div class="challenge-solution">
+                <p><strong>Challenge:</strong> Players ignore your carefully planned adventure to pursue something completely different.</p>
+                <p><strong>Solution:</strong> Adapt your planned content to their new direction. That Imperial base you designed can become a pirate stronghold. That NPC can appear in the new location with modified motivations.</p>
+            </div>
+            
+            <h3>Analysis Paralysis</h3>
+            <div class="challenge-solution">
+                <p><strong>Challenge:</strong> Players spend 30 minutes debating what to do next.</p>
+                <p><strong>Solution:</strong> Introduce time pressure or complications. "While you're planning, your comlinks chirp with an urgent message..." Forces decision-making and maintains momentum.</p>
+            </div>
+            
+            <h3>One Player Dominates</h3>
+            <div class="challenge-solution">
+                <p><strong>Challenge:</strong> One player speaks for the group or overshadows quieter players.</p>
+                <p><strong>Solution:</strong> Direct questions to specific players. "Sarah, what does your character think about this?" Create situations that require different character specialties.</p>
+            </div>
+            
+            <h3>Players Avoid the Plot</h3>
+            <div class="challenge-solution">
+                <p><strong>Challenge:</strong> Characters have no reason to care about your main storyline.</p>
+                <p><strong>Solution:</strong> Connect the plot to their Obligations, backgrounds, or personal goals. Make it personal rather than abstract.</p>
+            </div>
+        </section>
+
+       
+    </main>
+
+    <footer>
+        <p>Remember: The best GMs aren't perfect - they're adaptable, enthusiastic, and committed to everyone having fun. May the Force be with you as you guide your players through their own Star Wars saga.</p>
+    
+    </footer>
+
+   
+</body>
+</html>

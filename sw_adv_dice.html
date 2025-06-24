@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - Advanced Dice Mechanics</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: Advanced Dice Mechanics</h1>
+        <p class="subtitle">Mastering the Narrative Dice System - Beyond Basic Success and Failure</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Beyond Rolling Dice - The Art of Narrative Interpretation</h2>
+            <p>The Star Wars RPG narrative dice system is more than a random number generator - it's a collaborative storytelling engine that transforms every roll into a dramatic moment. Understanding advanced dice mechanics means learning to read the story the dice are telling and weaving that story seamlessly into your game's narrative flow.</p>
+            
+            <div class="analogy-box">
+                <h3>The Jazz Improvisation Analogy</h3>
+                <p>Think of advanced dice interpretation like jazz improvisation. The dice provide the chord progression and rhythm, but you and your players are the musicians who interpret those musical phrases into something beautiful, surprising, and emotionally resonant. The same dice result can create vastly different stories depending on the skill and creativity of the interpreters.</p>
+            </div>
+        </section>
+
+        <section class="dice-anatomy">
+            <h2>Dice Anatomy - Understanding Each Symbol's Story</h2>
+            
+            <h3>Success and Failure - The Foundation</h3>
+            <p>Success and Failure represent competence and capability, but they're not binary states. They exist on a spectrum, and the magnitude of success or failure should influence your interpretation. A single success feels different from four successes, even if both achieve the goal.</p>
+
+            <div class="success-spectrum">
+                <canvas id="successSpectrum" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const spectrumCanvas = document.getElementById('successSpectrum');
+                const spectrumCtx = spectrumCanvas.getContext('2d');
+                
+                // Create success/failure spectrum visualization
+                spectrumCtx.fillStyle = '#333';
+                spectrumCtx.font = 'bold 18px Arial';
+                spectrumCtx.textAlign = 'center';
+                spectrumCtx.fillText('Success/Failure Spectrum', 300, 25);
+                
+                // Draw spectrum bar
+                const gradient = spectrumCtx.createLinearGradient(50, 0, 550, 0);
+                gradient.addColorStop(0, '#D32F2F');    // Deep failure
+                gradient.addColorStop(0.2, '#F44336');  // Failure
+                gradient.addColorStop(0.4, '#FF9800');  // Marginal failure
+                gradient.addColorStop(0.5, '#FFC107');  // Neutral
+                gradient.addColorStop(0.6, '#8BC34A');  // Marginal success
+                gradient.addColorStop(0.8, '#4CAF50');  // Success
+                gradient.addColorStop(1, '#2E7D32');    // Overwhelming success
+                
+                spectrumCtx.fillStyle = gradient;
+                spectrumCtx.fillRect(50, 80, 500, 40);
+                
+                // Add markers
+                const markers = [
+                    {pos: 50, label: 'Critical Failure', example: 'Catastrophic mistake'},
+                    {pos: 150, label: 'Clear Failure', example: 'Obviously unsuccessful'},
+                    {pos: 250, label: 'Marginal Failure', example: 'Close, but not quite'},
+                    {pos: 300, label: 'Neutral', example: 'No clear outcome'},
+                    {pos: 350, label: 'Marginal Success', example: 'Barely made it'},
+                    {pos: 450, label: 'Clear Success', example: 'Obviously successful'},
+                    {pos: 550, label: 'Overwhelming Success', example: 'Beyond expectations'}
+                ];
+                
+                markers.forEach(marker => {
+                    // Draw marker line
+                    spectrumCtx.strokeStyle = '#333';
+                    spectrumCtx.lineWidth = 2;
+                    spectrumCtx.beginPath();
+                    spectrumCtx.moveTo(marker.pos, 75);
+                    spectrumCtx.lineTo(marker.pos, 125);
+                    spectrumCtx.stroke();
+                    
+                    // Add labels
+                    spectrumCtx.fillStyle = '#333';
+                    spectrumCtx.font = '10px Arial';
+                    spectrumCtx.textAlign = 'center';
+                    spectrumCtx.fillText(marker.label, marker.pos, 145);
+                    spectrumCtx.font = '8px Arial';
+                    spectrumCtx.fillStyle = '#666';
+                    spectrumCtx.fillText(marker.example, marker.pos, 160);
+                });
+                
+                // Add example interpretations
+                spectrumCtx.fillStyle = '#333';
+                spectrumCtx.font = '12px Arial';
+                spectrumCtx.textAlign = 'left';
+                spectrumCtx.fillText('Example: Piloting through asteroid field', 50, 200);
+                
+                spectrumCtx.font = '10px Arial';
+                spectrumCtx.fillText('• 0 Success, 3 Failure: Ship crashes into asteroid, major hull damage', 60, 220);
+                spectrumCtx.fillText('• 0 Success, 1 Failure: Navigation error, forced to backtrack', 60, 235);
+                spectrumCtx.fillText('• 1 Success: Navigate through safely but slowly', 60, 250);
+                spectrumCtx.fillText('• 3 Success: Navigate with style, find optimal route', 60, 265);
+                spectrumCtx.fillText('• 5+ Success: Impossible maneuver that becomes legendary', 60, 280);
+            </script>
+
+            <h3>Advantage and Threat - The Story Modifiers</h3>
+            <p>Advantage and Threat don't change whether you succeed or fail - they change how success or failure happens and what consequences follow. They're the difference between a clean victory and a messy one, between a simple failure and a complicated disaster.</p>
+
+            <div class="advantage-categories">
+                <div class="mermaid">
+                    mindmap
+                        root((Advantage Uses))
+                            Tactical
+                                Gain Cover
+                                Improve Position
+                                Extra Maneuver
+                                Boost Ally
+                            Environmental
+                                Use Surroundings
+                                Create Distraction
+                                Favorable Conditions
+                                Hidden Opportunities
+                            Social
+                                Build Rapport
+                                Gain Information
+                                Create Obligation
+                                Improve Reputation
+                            Narrative
+                                Convenient Timing
+                                Helpful NPC
+                                Plot Advancement
+                                Character Development
+                            Equipment
+                                Weapon Advantages
+                                Tool Benefits
+                                Vehicle Bonuses
+                                Gear Synergy
+                </div>
+            </div>
+
+            <h3>Triumph and Despair - The Game Changers</h3>
+            <p>Triumph and Despair represent pivotal moments that significantly alter the story's trajectory. They're not just "really good advantage" or "really bad threat" - they're opportunities for major plot developments, character revelations, and dramatic shifts.</p>
+
+            <div class="triumph-despair-examples">
+                <div class="example-box">
+                    <h4>Triumph and Despair in Action</h4>
+                    
+                    <h5>Triumph Examples - Heroic Breakthroughs</h5>
+                    <ul>
+                        <li><strong>Combat:</strong> Your desperate attack not only hits but reveals a critical weakness in the enemy's defenses that your allies can exploit</li>
+                        <li><strong>Social:</strong> Your impassioned speech doesn't just convince the crowd - it inspires a previously neutral faction to join your cause</li>
+                        <li><strong>Investigation:</strong> You don't just find the clue you're looking for - you discover evidence of a much larger conspiracy</li>
+                        <li><strong>Piloting:</strong> Your risky maneuver succeeds and opens up a new hyperspace route that cuts travel time in half</li>
+                    </ul>
+                    
+                    <h5>Despair Examples - Dramatic Complications</h5>
+                    <ul>
+                        <li><strong>Combat:</strong> Your weapon not only misfires but explodes, damaging nearby allies and alerting reinforcements</li>
+                        <li><strong>Social:</strong> Your negotiation fails so badly that you accidentally insult the ambassador's entire species</li>
+                        <li><strong>Stealth:</strong> You're not just spotted - you're recognized by someone from your character's dark past</li>
+                        <li><strong>Technical:</strong> Your attempt to slice the computer fails and triggers a security protocol that locks down the entire facility</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="creative-interpretation">
+            <h2>Creative Interpretation Techniques</h2>
+            
+            <h3>The Layered Approach</h3>
+            <p>Advanced dice interpretation involves reading multiple layers of meaning from a single roll. Consider the immediate mechanical effect, the narrative description, the emotional impact, and the long-term story implications.</p>
+
+            <div class="interpretation-layers">
+                <canvas id="interpretationLayers" width="600" height="350"></canvas>
+            </div>
+
+            <script>
+                const layersCanvas = document.getElementById('interpretationLayers');
+                const layersCtx = layersCanvas.getContext('2d');
+                
+                // Create interpretation layers visualization
+                layersCtx.fillStyle = '#333';
+                layersCtx.font = 'bold 16px Arial';
+                layersCtx.textAlign = 'center';
+                layersCtx.fillText('Layered Dice Interpretation', 300, 25);
+                
+                // Draw concentric circles representing layers
+                const centerX = 300;
+                const centerY = 175;
+                const layers = [
+                    {radius: 120, color: '#2196F3', label: 'Mechanical Effect', desc: 'What happens mechanically?'},
+                    {radius: 90, color: '#4CAF50', label: 'Narrative Description', desc: 'How does it look/feel?'},
+                    {radius: 60, color: '#FF9800', label: 'Emotional Impact', desc: 'What does it mean to character?'},
+                    {radius: 30, color: '#F44336', label: 'Story Implications', desc: 'How does it change the story?'}
+                ];
+                
+                // Draw layers from outside to inside
+                layers.forEach((layer, index) => {
+                    layersCtx.fillStyle = layer.color + '40'; // Add transparency
+                    layersCtx.beginPath();
+                    layersCtx.arc(centerX, centerY, layer.radius, 0, 2 * Math.PI);
+                    layersCtx.fill();
+                    
+                    layersCtx.strokeStyle = layer.color;
+                    layersCtx.lineWidth = 2;
+                    layersCtx.stroke();
+                    
+                    // Add labels
+                    layersCtx.fillStyle = '#333';
+                    layersCtx.font = '12px Arial';
+                    layersCtx.textAlign = 'left';
+                    const labelY = 50 + (index * 30);
+                    layersCtx.fillText(`${index + 1}. ${layer.label}`, 50, labelY);
+                    layersCtx.font = '10px Arial';
+                    layersCtx.fillStyle = '#666';
+                    layersCtx.fillText(layer.desc, 70, labelY + 15);
+                });
+                
+                // Example in center
+                layersCtx.fillStyle = '#333';
+                layersCtx.font = 'bold 10px Arial';
+                layersCtx.textAlign = 'center';
+                layersCtx.fillText('Example:', centerX, centerY - 5);
+                layersCtx.font = '9px Arial';
+                layersCtx.fillText('Success + Threat', centerX, centerY + 8);
+            </script>
+
+            <h3>Contextual Interpretation</h3>
+            <p>The same dice result can mean completely different things depending on context. A Threat in a tense negotiation creates different complications than a Threat in a speeder chase. Advanced interpretation considers the current situation, characters involved, and narrative momentum.</p>
+
+            <div class="contextual-examples">
+                <div class="example-box">
+                    <h4>Context-Dependent Interpretations</h4>
+                    
+                    <h5>Same Result: 2 Success, 2 Threat</h5>
+                    
+                    <div class="context-grid">
+                        <div class="context-scenario">
+                            <h6>Context: Diplomatic Negotiation</h6>
+                            <p><strong>Interpretation:</strong> "You successfully negotiate the trade agreement, but your aggressive tactics have offended the ambassador's cultural sensibilities. You'll get what you want, but future negotiations with this species will be more difficult."</p>
+                        </div>
+                        
+                        <div class="context-scenario">
+                            <h6>Context: Starfighter Combat</h6>
+                            <p><strong>Interpretation:</strong> "Your shots connect with the TIE fighter, sending it spinning into an asteroid. However, your aggressive pursuit has led you into the crosshairs of two more enemy fighters."</p>
+                        </div>
+                        
+                        <div class="context-scenario">
+                            <h6>Context: Force Power Use</h6>
+                            <p><strong>Interpretation:</strong> "You successfully lift the fallen beam with the Force, clearing the path for your allies. However, the effort leaves you visibly drained, and nearby Imperial troops notice your unusual abilities."</p>
+                        </div>
+                        
+                        <div class="context-scenario">
+                            <h6>Context: Slicing Computer</h6>
+                            <p><strong>Interpretation:</strong> "You break through the security and access the files you need. Unfortunately, your intrusion triggers a delayed alarm that will activate in a few minutes, shortening your window for escape."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Collaborative Interpretation</h3>
+            <p>The best dice interpretations emerge from collaboration between GM and players. Encourage players to suggest how their Advantage might manifest, or ask them how they want to describe their character's failure. This creates investment and ensures interpretations feel true to each character.</p>
+        </section>
+
+        <section class="advantage-threat-mastery">
+            <h2>Advantage and Threat Mastery</h2>
+            
+            <h3>The Advantage Economy</h3>
+            <p>Think of Advantage as a currency you can spend to purchase narrative benefits. Different situations offer different "exchange rates" - one Advantage might buy a lot in a casual conversation but very little in a desperate lightsaber duel.</p>
+
+            <div class="advantage-costs">
+                <canvas id="advantageCosts" width="600" height="400"></canvas>
+            </div>
+
+            <script>
+                const costsCanvas = document.getElementById('advantageCosts');
+                const costsCtx = costsCanvas.getContext('2d');
+                
+                // Create advantage cost chart
+                costsCtx.fillStyle = '#333';
+                costsCtx.font = 'bold 16px Arial';
+                costsCtx.textAlign = 'center';
+                costsCtx.fillText('Advantage Spending Guide', 300, 25);
+                
+                const advantageOptions = [
+                    {cost: 1, option: 'Gain Boost die for ally', context: 'Any situation'},
+                    {cost: 1, option: 'Notice important detail', context: 'Investigation/Perception'},
+                    {cost: 1, option: 'Gain extra maneuver', context: 'Combat'},
+                    {cost: 2, option: 'Recover 1 Strain', context: 'Any situation'},
+                    {cost: 2, option: 'Create minor environmental effect', context: 'Contextual'},
+                    {cost: 2, option: 'Improve social standing', context: 'Social encounters'},
+                    {cost: 3, option: 'Create substantial advantage', context: 'Major situations'},
+                    {cost: 3, option: 'Inflict system strain on vehicle', context: 'Vehicle combat'},
+                    {cost: 4, option: 'Create lasting environmental change', context: 'Dramatic moments'}
+                ];
+                
+                let currentY2 = 60;
+                advantageOptions.forEach((option, index) => {
+                    // Draw cost indicator
+                    for (let i = 0; i < option.cost; i++) {
+                        costsCtx.fillStyle = '#4CAF50';
+                        costsCtx.beginPath();
+                        costsCtx.arc(60 + (i * 25), currentY2, 8, 0, 2 * Math.PI);
+                        costsCtx.fill();
+                        
+                        costsCtx.strokeStyle = '#2E7D32';
+                        costsCtx.lineWidth = 2;
+                        costsCtx.stroke();
+                    }
+                    
+                    // Add option text
+                    costsCtx.fillStyle = '#333';
+                    costsCtx.font = '14px Arial';
+                    costsCtx.textAlign = 'left';
+                    costsCtx.fillText(option.option, 160, currentY2 + 5);
+                    
+                    costsCtx.font = '12px Arial';
+                    costsCtx.fillStyle = '#666';
+                    costsCtx.fillText(`(${option.context})`, 160, currentY2 + 20);
+                    
+                    currentY2 += 35;
+                });
+                
+                // Add note
+                costsCtx.fillStyle = '#666';
+                costsCtx.font = '12px Arial';
+                costsCtx.textAlign = 'center';
+                costsCtx.fillText('Costs may vary based on situation and GM interpretation', 300, 380);
+            </script>
+
+            <h3>Threat as Story Catalyst</h3>
+            <p>Threat isn't punishment - it's opportunity. Every Threat is a chance to complicate the story in interesting ways, introduce new challenges, or reveal hidden aspects of the situation. The best Threat expenditures make the story more exciting, not more frustrating.</p>
+
+            <div class="threat-philosophy">
+                <div class="example-box">
+                    <h4>Constructive Threat Usage</h4>
+                    
+                    <h5>Immediate Complications</h5>
+                    <ul>
+                        <li><strong>Equipment Issues:</strong> Weapon jams, tool breaks, vehicle systems strain</li>
+                        <li><strong>Environmental Changes:</strong> Alarm triggers, floor collapses, weather worsens</li>
+                        <li><strong>Social Awkwardness:</strong> Misunderstanding, cultural faux pas, relationship strain</li>
+                        <li><strong>Time Pressure:</strong> Guards approaching, deadline advancing, window closing</li>
+                    </ul>
+                    
+                    <h5>Escalating Tension</h5>
+                    <ul>
+                        <li><strong>Attention Drawn:</strong> Someone notices your activities</li>
+                        <li><strong>Resources Depleted:</strong> Ammunition, fuel, credits, or supplies running low</li>
+                        <li><strong>Information Leaked:</strong> Enemies learn about your plans or capabilities</li>
+                        <li><strong>Allies Endangered:</strong> Friends become targets or complications</li>
+                    </ul>
+                    
+                    <h5>Future Consequences</h5>
+                    <ul>
+                        <li><strong>Reputation Damage:</strong> Word spreads about your methods or failures</li>
+                        <li><strong>Enemy Response:</strong> Opposition adapts to counter your tactics</li>
+                        <li><strong>Obligation Increase:</strong> Debts grow, bounties increase, commitments expand</li>
+                        <li><strong>Relationship Strain:</strong> NPCs remember your actions and react accordingly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Balancing Benefits and Costs</h3>
+            <p>Advanced play involves weighing the narrative costs and benefits of different interpretations. Sometimes spending Advantage on a small immediate benefit is better than saving it for something bigger. Sometimes accepting a significant Threat complication creates better story opportunities than avoiding it.</p>
+        </section>
+
+        <section class="dice-pool-optimization">
+            <h2>Dice Pool Construction and Optimization</h2>
+            
+            <h3>Building Effective Pools</h3>
+            <p>Understanding how different dice interact helps you build pools that maximize your chances of interesting outcomes. It's not always about getting the most successes - sometimes you want pools that generate Advantage, or that minimize Threat potential.</p>
+
+            <div class="dice-interaction">
+                <div class="mermaid">
+                    graph TD
+                        A[Base Pool] --> B[Characteristic + Skill]
+                        B --> C[Add Positive Dice]
+                        C --> D[Add Negative Dice]
+                        D --> E[Final Pool]
+                        
+                        F[Boost Dice] --> C
+                        G[Force Dice] --> C
+                        H[Upgrade to Proficiency] --> C
+                        
+                        I[Setback Dice] --> D
+                        J[Difficulty Dice] --> D
+                        K[Challenge Dice] --> D
+                        
+                        L[Favorable Conditions] --> F
+                        M[Equipment Bonuses] --> F
+                        N[Ally Assistance] --> F
+                        
+                        O[Environmental Hazards] --> I
+                        P[Time Pressure] --> I
+                        Q[Opposition Quality] --> K
+                        
+                        style A fill:#4caf50
+                        style E fill:#f44336
+                        style C fill:#2196f3
+                        style D fill:#ff9800
+                </div>
+            </div>
+
+            <h3>Statistical Tendencies</h3>
+            <p>While narrative dice aren't about mathematical optimization, understanding their statistical tendencies helps you make informed decisions about when to attempt actions and how to modify your pools.</p>
+
+            <div class="dice-statistics">
+                <canvas id="diceStats" width="600" height="350"></canvas>
+            </div>
+
+            <script>
+                const statsCanvas = document.getElementById('diceStats');
+                const statsCtx = statsCanvas.getContext('2d');
+                
+                // Create dice probability visualization
+                statsCtx.fillStyle = '#333';
+                statsCtx.font = 'bold 16px Arial';
+                statsCtx.textAlign = 'center';
+                statsCtx.fillText('Dice Probability Profiles', 300, 25);
+                
+                // Define dice types and their general tendencies
+                const diceTypes = [
+                    {name: 'Ability (Green)', success: 0.5, advantage: 0.33, color: '#4CAF50'},
+                    {name: 'Proficiency (Yellow)', success: 0.75, advantage: 0.42, triumph: 0.08, color: '#FFC107'},
+                    {name: 'Difficulty (Purple)', failure: 0.5, threat: 0.33, color: '#9C27B0'},
+                    {name: 'Challenge (Red)', failure: 0.75, threat: 0.42, despair: 0.08, color: '#F44336'},
+                    {name: 'Boost (Blue)', success: 0.33, advantage: 0.5, color: '#2196F3'},
+                    {name: 'Setback (Black)', failure: 0.33, threat: 0.5, color: '#424242'}
+                ];
+                
+                let currentY = 60;
+                diceTypes.forEach(die => {
+                    // Draw die representation
+                    statsCtx.fillStyle = die.color;
+                    statsCtx.fillRect(50, currentY, 30, 30);
+                    statsCtx.strokeStyle = '#333';
+                    statsCtx.lineWidth = 2;
+                    statsCtx.strokeRect(50, currentY, 30, 30);
+                    
+                    // Add die name
+                    statsCtx.fillStyle = '#333';
+                    statsCtx.font = '14px Arial';
+                    statsCtx.textAlign = 'left';
+                    statsCtx.fillText(die.name, 90, currentY + 20);
+                    
+                    // Add probability bars
+                    let barX = 250;
+                    if (die.success) {
+                        statsCtx.fillStyle = '#4CAF50';
+                        statsCtx.fillRect(barX, currentY + 5, die.success * 100, 10);
+                        statsCtx.fillStyle = '#333';
+                        statsCtx.font = '10px Arial';
+                        statsCtx.fillText(`Success: ${Math.round(die.success * 100)}%`, barX, currentY);
+                        barX += 120;
+                    }
+                    if (die.failure) {
+                        statsCtx.fillStyle = '#F44336';
+                        statsCtx.fillRect(barX, currentY + 5, die.failure * 100, 10);
+                        statsCtx.fillStyle = '#333';
+                        statsCtx.fillText(`Failure: ${Math.round(die.failure * 100)}%`, barX, currentY);
+                        barX += 120;
+                    }
+                    if (die.advantage) {
+                        statsCtx.fillStyle = '#2196F3';
+                        statsCtx.fillRect(barX, currentY + 20, die.advantage * 80, 8);
+                        statsCtx.fillStyle = '#333';
+                        statsCtx.fillText(`Adv: ${Math.round(die.advantage * 100)}%`, barX, currentY + 35);
+                    }
+                    if (die.threat) {
+                        statsCtx.fillStyle = '#FF9800';
+                        statsCtx.fillRect(barX, currentY + 20, die.threat * 80, 8);
+                        statsCtx.fillStyle = '#333';
+                        statsCtx.fillText(`Threat: ${Math.round(die.threat * 100)}%`, barX, currentY + 35);
+                    }
+                    
+                    currentY += 45;
+                });
+                
+                statsCtx.fillStyle = '#666';
+                statsCtx.font = '12px Arial';
+                statsCtx.textAlign = 'center';
+                statsCtx.fillText('Approximate probabilities - actual results depend on specific die faces', 300, 320);
+            </script>
+
+            <h3>Pool Modification Strategies</h3>
+            <p>Learning when and how to modify your dice pools is crucial for advanced play. Sometimes it's better to add Boost dice than to upgrade Ability to Proficiency. Sometimes accepting Setback dice is worth it for the narrative opportunities they create.</p>
+
+            <div class="modification-strategies">
+                <div class="example-box">
+                    <h4>Strategic Pool Modifications</h4>
+                    
+                    <h5>Maximizing Success Chance</h5>
+                    <ul>
+                        <li><strong>Upgrade Ability to Proficiency:</strong> Best when you need reliable success</li>
+                        <li><strong>Add Boost dice:</strong> Cheaper way to increase success chance</li>
+                        <li><strong>Remove Setback dice:</strong> Often more valuable than adding positive dice</li>
+                        <li><strong>Aim for target numbers:</strong> Sometimes "good enough" is better than "optimal"</li>
+                    </ul>
+                    
+                    <h5>Generating Advantage</h5>
+                    <ul>
+                        <li><strong>Boost dice are excellent:</strong> High Advantage generation for low cost</li>
+                        <li><strong>Proficiency dice:</strong> Generate both Success and Advantage reliably</li>
+                        <li><strong>Force dice:</strong> Can provide both Advantage and narrative flexibility</li>
+                        <li><strong>Consider the trade-off:</strong> Sometimes accept higher difficulty for more Advantage potential</li>
+                    </ul>
+                    
+                    <h5>Managing Risk</h5>
+                    <ul>
+                        <li><strong>Assess Threat potential:</strong> How bad would Threat complications be?</li>
+                        <li><strong>Challenge dice are dangerous:</strong> High Threat and Despair potential</li>
+                        <li><strong>Setback accumulation:</strong> Multiple Setback dice can be worse than one Challenge</li>
+                        <li><strong>Story vs mechanics:</strong> Sometimes narrative benefits outweigh mechanical risks</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="situational-mastery">
+            <h2>Situational Dice Mastery</h2>
+            
+            <h3>Combat Dice Interpretation</h3>
+            <p>Combat dice results should enhance the cinematic nature of Star Wars action sequences. Every roll is an opportunity to describe amazing maneuvers, environmental interactions, and tactical developments.</p>
+
+            <div class="combat-interpretation">
+                <div class="example-box">
+                    <h4>Advanced Combat Dice Usage</h4>
+                    
+                    <h5>Advantage in Combat</h5>
+                    <ul>
+                        <li><strong>1 Advantage:</strong> Gain boost die for next action, recover 1 strain, or add Boost to ally</li>
+                        <li><strong>2 Advantage:</strong> Perform additional maneuver, notice tactical opportunity, or cause minor environmental effect</li>
+                        <li><strong>3 Advantage:</strong> Upgrade difficulty of enemy's next check, disarm opponent, or create significant cover</li>
+                        <li><strong>4+ Advantage:</strong> Major tactical advantage, environmental change, or narrative benefit</li>
+                    </ul>
+                    
+                    <h5>Threat in Combat</h5>
+                    <ul>
+                        <li><strong>1 Threat:</strong> Opponent gains Boost die, you lose free maneuver, or strain to weapons</li>
+                        <li><strong>2 Threat:</strong> You fall prone, drop weapon, or opponents gain tactical position</li>
+                        <li><strong>3 Threat:</strong> Upgrade difficulty of your next check, environmental hazard, or you grant enemy advantage</li>
+                        <li><strong>4+ Threat:</strong> Major complication, reinforcements arrive, or significant disadvantage</li>
+                    </ul>
+                    
+                    <h5>Triumph in Combat</h5>
+                    <ul>
+                        <li>Critical hit with narrative flair</li>
+                        <li>Discover major tactical weakness</li>
+                        <li>Inspire allies with heroic action</li>
+                        <li>Create lasting environmental advantage</li>
+                        <li>Force enemy morale check or retreat</li>
+                    </ul>
+                    
+                    <h5>Despair in Combat</h5>
+                    <ul>
+                        <li>Weapon critical malfunction</li>
+                        <li>Accidental harm to allies</li>
+                        <li>Enemy reinforcements arrive</li>
+                        <li>Environmental disaster triggered</li>
+                        <li>Tactical information revealed to enemy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Social Encounter Dice</h3>
+            <p>Social encounters offer rich opportunities for dice interpretation. Advantage and Threat in social situations can create ongoing relationships, reputation effects, and information exchanges that influence future scenes.</p>
+
+            <div class="social-dice-mastery">
+                <div class="example-box">
+                    <h4>Social Dice Interpretation Guide</h4>
+                    
+                    <h5>Advantage in Social Situations</h5>
+                    <ul>
+                        <li><strong>Learn additional information:</strong> NPC reveals more than intended</li>
+                        <li><strong>Build rapport:</strong> Create positive relationship for future interactions</li>
+                        <li><strong>Gain favors:</strong> NPC owes you a small service or consideration</li>
+                        <li><strong>Improve reputation:</strong> Word spreads about your honorable conduct</li>
+                        <li><strong>Create opportunities:</strong> NPC offers future meetings or connections</li>
+                    </ul>
+                    
+                    <h5>Threat in Social Situations</h5>
+                    <ul>
+                        <li><strong>Cultural misstep:</strong> Accidentally offend through ignorance</li>
+                        <li><strong>Information leak:</strong> Reveal more about yourself than intended</li>
+                        <li><strong>Reputation damage:</strong> Others witness your social failure</li>
+                        <li><strong>Misunderstanding:</strong> Your words are interpreted incorrectly</li>
+                        <li><strong>Rival creation:</strong> Someone takes offense and remembers it</li>
+                    </ul>
+                    
+                    <h5>Long-term Social Consequences</h5>
+                    <ul>
+                        <li><strong>Track relationship changes:</strong> NPCs remember how you treated them</li>
+                        <li><strong>Reputation effects:</strong> Success and failure follow you to new encounters</li>
+                        <li><strong>Information networks:</strong> What you learn can be used in future scenes</li>
+                        <li><strong>Alliance building:</strong> Social success creates potential allies and resources</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Skill-Specific Interpretations</h3>
+            <p>Different skills lend themselves to different types of Advantage and Threat interpretations. A Mechanics roll creates different opportunities than a Piloting roll, even with identical dice results.</p>
+        </section>
+
+        <section class="gm-advanced-techniques">
+            <h2>GM Advanced Dice Techniques</h2>
+            
+            <h3>Dice as Story Oracles</h3>
+            <p>Advanced GMs learn to use dice results as inspiration for story developments they hadn't planned. When players generate unexpected Advantage or Threat, use it as a prompt to introduce new plot elements or complications.</p>
+
+            <div class="oracle-techniques">
+                <div class="mermaid">
+                    flowchart LR
+                        A[Unexpected Dice Result] --> B{What wasn't planned?}
+                        B --> C[New NPC appears]
+                        B --> D[Environmental change]
+                        B --> E[Plot revelation]
+                        B --> F[Resource discovery]
+                        
+                        C --> G[Friend or foe?]
+                        D --> H[Helpful or harmful?]
+                        E --> I[Answers or questions?]
+                        F --> J[Useful or problematic?]
+                        
+                        G --> K[Integrate into ongoing story]
+                        H --> K
+                        I --> K
+                        J --> K
+                        
+                        style A fill:#ff9800
+                        style B fill:#2196f3
+                        style K fill:#4caf50
+                </div>
+            </div>
+
+            <h3>Collaborative Interpretation</h3>
+            <p>The best dice interpretations emerge from collaboration between GM and players. Create a table culture where everyone contributes to interpreting dice results, especially Advantage and Triumph that directly affect player characters.</p>
+
+            <div class="collaborative-process">
+                <div class="example-box">
+                    <h4>Collaborative Interpretation Process</h4>
+                    
+                    <h5>Step 1: Establish the Framework</h5>
+                    <ul>
+                        <li>GM explains the basic outcome (success/failure)</li>
+                        <li>Identify how much Advantage/Threat needs to be spent</li>
+                        <li>Confirm the general situation and constraints</li>
+                    </ul>
+                    
+                    <h5>Step 2: Generate Options</h5>
+                    <ul>
+                        <li>Ask the player: "How would you like to spend that Advantage?"</li>
+                        <li>Offer 2-3 specific options if the player is stuck</li>
+                        <li>Encourage creative suggestions that fit the scene</li>
+                    </ul>
+                    
+                    <h5>Step 3: Refine and Implement</h5>
+                    <ul>
+                        <li>Adjust player suggestions to fit game balance</li>
+                        <li>Combine multiple ideas for rich interpretation</li>
+                        <li>Describe the final result with narrative flair</li>
+                    </ul>
+                    
+                    <h5>Step 4: Note Consequences</h5>
+                    <ul>
+                        <li>Track ongoing effects for future scenes</li>
+                        <li>Update NPC attitudes and world state</li>
+                        <li>Plant seeds for future story development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Pacing and Dice Interpretation</h3>
+            <p>Adjust the complexity of your dice interpretations based on the scene's pacing needs. Quick action scenes benefit from fast, simple interpretations, while dramatic moments can support more elaborate descriptions.</p>
+        </section>
+
+        <section class="force-dice-mastery">
+            <h2>Force Dice Advanced Techniques</h2>
+            
+            <h3>Beyond Light and Dark</h3>
+            <p>Force dice represent more than just power generation - they're a window into the character's relationship with the Force and the moral choices that define them. Every Force roll is an opportunity for character development.</p>
+
+            <div class="force-interpretation">
+                <div class="example-box">
+                    <h4>Advanced Force Dice Interpretation</h4>
+                    
+                    <h5>Light Side Pips - Harmony and Flow</h5>
+                    <ul>
+                        <li><strong>Abundant Light Pips:</strong> The Force flows freely, suggesting you're in harmony with its will</li>
+                        <li><strong>Few Light Pips:</strong> The Force requires patience and wisdom; rushing leads to conflict</li>
+                        <li><strong>No Light Pips:</strong> The Force suggests this isn't the right path or timing</li>
+                    </ul>
+                    
+                    <h5>Dark Side Pips - Temptation and Power</h5>
+                    <ul>
+                        <li><strong>Using Dark Pips:</strong> Quick power at the cost of inner conflict and corruption</li>
+                        <li><strong>Abundant Dark Pips:</strong> The dark side offers easy solutions to complex problems</li>
+                        <li><strong>Mixed Results:</strong> The Force reflects your internal struggle between light and dark</li>
+                    </ul>
+                    
+                    <h5>No Force Pips - Silence and Reflection</h5>
+                    <ul>
+                        <li>The Force requires different approach or timing</li>
+                        <li>Character needs to reflect on their motivations</li>
+                        <li>External factors are interfering with Force connection</li>
+                        <li>Opportunity for character growth and learning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Force Dice in Non-Force Checks</h3>
+            <p>Force-sensitive characters can add Force dice to many skill checks, creating opportunities to show how the Force guides their actions even in mundane activities. This reinforces the mystical nature of Force sensitivity.</p>
+
+            <h3>Destiny and Force Dice</h3>
+            <p>The interplay between Destiny points and Force dice creates rich storytelling opportunities. Players must choose between immediate power and long-term narrative control, reflecting the Jedi philosophy of patience and wisdom.</p>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: Interpretation Exercises</h3>
+            <p>Practice interpreting complex dice results:</p>
+            <ol>
+                <li>Create 10 different scenarios (combat, social, technical, etc.)</li>
+                <li>For each scenario, interpret these results differently:
+                    <ul>
+                        <li>2 Success, 3 Advantage</li>
+                        <li>1 Failure, 2 Advantage, 1 Threat</li>
+                        <li>3 Success, 1 Triumph, 2 Threat</li>
+                        <li>2 Failure, 1 Despair, 1 Advantage</li>
+                    </ul>
+                </li>
+                <li>Focus on making each interpretation feel appropriate to the specific context</li>
+                <li>Practice collaborative interpretation with other players or GMs</li>
+            </ol>
+            
+            <h3>Activity Two: Advantage/Threat Menu Creation</h3>
+            <p>Build reference guides for different situations:</p>
+            <ul>
+                <li>Create "menus" of Advantage options for combat, social, and technical situations</li>
+                <li>Develop Threat consequence lists that enhance drama without punishing players</li>
+                <li>Design Triumph and Despair effects for different types of encounters</li>
+                <li>Test your menus in actual play and refine based on player response</li>
+            </ul>
+            
+            <h3>Activity Three: Dice Pool Optimization</h3>
+            <p>Experiment with pool construction:</p>
+            <ol>
+                <li>Build pools optimized for different goals (success, advantage generation, risk minimization)</li>
+                <li>Compare the effectiveness of different modification strategies</li>
+                <li>Practice recognizing when to accept risk for narrative benefit</li>
+                <li>Experiment with Force dice integration for Force-sensitive characters</li>
+            </ol>
+            
+            <h3>Activity Four: Collaborative Interpretation Practice</h3>
+            <p>Develop collaborative skills:</p>
+            <ul>
+                <li>Practice asking open-ended questions about dice interpretation</li>
+                <li>Learn to build on player suggestions rather than replacing them</li>
+                <li>Develop techniques for guiding interpretation without railroading</li>
+                <li>Create table culture that encourages creative dice interpretation</li>
+            </ul>
+        </section>
+
+        <section class="common-pitfalls">
+            <h2>Common Advanced Dice Pitfalls</h2>
+            
+            <h3>Over-Interpretation</h3>
+            <div class="pitfall-solution">
+                <p><strong>Problem:</strong> Spending too much time interpreting every pip, slowing down gameplay.</p>
+                <p><strong>Solution:</strong> Match interpretation complexity to scene importance. Quick scenes need quick interpretations.</p>
+            </div>
+            
+            <h3>Mechanical Thinking</h3>
+            <div class="pitfall-solution">
+                <p><strong>Problem:</strong> Treating Advantage/Threat as mere mechanical bonuses rather than story opportunities.</p>
+                <p><strong>Solution:</strong> Always ask "what does this look like in the story?" before applying mechanical effects.</p>
+            </div>
+            
+            <h3>Punishment Paradigm</h3>
+            <div class="pitfall-solution">
+                <p><strong>Problem:</strong> Using Threat to punish players rather than enhance the story.</p>
+                <p><strong>Solution:</strong> Frame Threat as complications that make the story more interesting, not as penalties for failure.</p>
+            </div>
+            
+            <h3>Inconsistent Interpretation</h3>
+            <div class="pitfall-solution">
+                <p><strong>Problem:</strong> Similar dice results having wildly different effects in similar situations.</p>
+                <p><strong>Solution:</strong> Develop consistent interpretation guidelines while maintaining flexibility for special circumstances.</p>
+            </div>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Related Topics to Explore</h2>
+            <ul>
+                <li><strong>Destiny Point Economics:</strong> Strategic use of light and dark side points</li>
+                <li><strong>Group Dice Interpretation:</strong> Managing complex multi-character scenes</li>
+                <li><strong>Digital Dice Tools:</strong> Apps and online tools for managing narrative dice</li>
+                <li><strong>House Rules for Dice:</strong> Common modifications and their impacts</li>
+                <li><strong>Teaching Dice Interpretation:</strong> Helping new players understand the system</li>
+                <li><strong>Cross-System Applications:</strong> Using narrative dice concepts in other games</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Master the dice, and you master the art of collaborative storytelling. Every roll is an opportunity to create something amazing together - never let a good dice result go to waste!</p>
+     
+    </footer>
+
+   
+</body>
+</html>

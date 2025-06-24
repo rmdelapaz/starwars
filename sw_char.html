@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - Character Creation Deep Dive</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: Character Creation Deep Dive</h1>
+        <p class="subtitle">Crafting Heroes Worthy of the Galaxy's Greatest Stories</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>The Art of Character Architecture</h2>
+            <p>Creating a Star Wars character is like designing a skyscraper. You need a solid foundation (species and career), a strong framework (characteristics and skills), beautiful interior design (motivations and personality), and impressive exterior features (equipment and Force powers). But most importantly, it needs to serve a purpose and tell a story that people want to experience.</p>
+            
+            <div class="analogy-box">
+                <h3>The Recipe Analogy</h3>
+                <p>Think of character creation like cooking a signature dish. Your species provides the base ingredients, your career is the cooking method, your characteristics are the seasoning ratios, and your background adds the secret sauce that makes it uniquely yours. The result should be something that feeds both your soul and your table companions' enjoyment.</p>
+            </div>
+        </section>
+
+        <section class="species-deep-dive">
+            <h2>Species - Your Biological Heritage</h2>
+            
+            <h3>Beyond Cosmetic Choices</h3>
+            <p>Species in Star Wars RPG aren't just different costumes for the same character. They're fundamentally different ways of experiencing the galaxy. A Wookiee doesn't just look different from a Bothan - they think differently, approach problems differently, and interact with the world through completely different sensory experiences.</p>
+
+            <div class="species-comparison">
+                <canvas id="speciesStats" width="600" height="400"></canvas>
+            </div>
+
+            <script>
+                const canvas = document.getElementById('speciesStats');
+                const ctx = canvas.getContext('2d');
+                
+                // Create radar chart for species comparison
+                const centerX = 300;
+                const centerY = 200;
+                const radius = 120;
+                
+                // Draw grid circles
+                for (let i = 1; i <= 5; i++) {
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, (radius / 5) * i, 0, 2 * Math.PI);
+                    ctx.strokeStyle = '#e0e0e0';
+                    ctx.stroke();
+                }
+                
+                // Draw axes
+                const axes = ['Brawn', 'Agility', 'Intellect', 'Cunning', 'Willpower', 'Presence'];
+                const angleStep = (2 * Math.PI) / axes.length;
+                
+                axes.forEach((axis, index) => {
+                    const angle = (index * angleStep) - (Math.PI / 2);
+                    const x = centerX + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.lineTo(x, y);
+                    ctx.strokeStyle = '#ccc';
+                    ctx.stroke();
+                    
+                    // Add labels
+                    const labelX = centerX + Math.cos(angle) * (radius + 30);
+                    const labelY = centerY + Math.sin(angle) * (radius + 30);
+                    ctx.fillStyle = '#333';
+                    ctx.font = '12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(axis, labelX, labelY);
+                });
+                
+                // Example species data (Human baseline)
+                const humanStats = [2, 2, 2, 2, 2, 2];
+                const wookieStats = [3, 2, 2, 1, 2, 2];
+                
+                // Draw Human polygon
+                ctx.beginPath();
+                humanStats.forEach((stat, index) => {
+                    const angle = (index * angleStep) - (Math.PI / 2);
+                    const distance = (stat / 5) * radius;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    
+                    if (index === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(33, 150, 243, 0.3)';
+                ctx.fill();
+                ctx.strokeStyle = '#2196F3';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Draw Wookiee polygon
+                ctx.beginPath();
+                wookieStats.forEach((stat, index) => {
+                    const angle = (index * angleStep) - (Math.PI / 2);
+                    const distance = (stat / 5) * radius;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    
+                    if (index === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(139, 69, 19, 0.3)';
+                ctx.fill();
+                ctx.strokeStyle = '#8B4513';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Add legend
+                ctx.fillStyle = '#2196F3';
+                ctx.fillRect(50, 350, 20, 15);
+                ctx.fillStyle = '#333';
+                ctx.font = '14px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText('Human (Balanced)', 80, 362);
+                
+                ctx.fillStyle = '#8B4513';
+                ctx.fillRect(50, 370, 20, 15);
+                ctx.fillStyle = '#333';
+                ctx.fillText('Wookiee (Strong, Loyal)', 80, 382);
+            </script>
+
+            <h3>Species Special Abilities - Your Natural Talents</h3>
+            <p>Every species brings unique abilities to the table. These aren't just mechanical bonuses - they're storytelling opportunities. A Bothan's natural espionage network isn't just a game mechanic; it represents generations of cultural networking and information trading.</p>
+
+            <div class="species-showcase">
+                <div class="mermaid">
+                    mindmap
+                        root((Species Abilities))
+                            Physical
+                                Wookiee Rage
+                                Trandoshan Claws
+                                Rodian Antennae
+                            Mental
+                                Cerean Binary Processing
+                                Duros Intuitive Navigation
+                                Sullustan Enhanced Senses
+                            Social
+                                Bothan Spy Networks
+                                Twi'lek Natural Dancers
+                                Human Extra Skills
+                            Mystical
+                                Miraluka Force Sight
+                                Kel Dor Atmospheric Adaptation
+                                Zabrak Extra Wound Threshold
+                </div>
+            </div>
+
+            <div class="species-examples">
+                <h4>Species in Action - Real World Applications</h4>
+                
+                <div class="example-box">
+                    <h5>The Wookiee Mechanic Advantage</h5>
+                    <p><strong>Scenario:</strong> Repairing the hyperdrive under enemy fire</p>
+                    <p><strong>Human Approach:</strong> Careful, methodical repair using tools and knowledge</p>
+                    <p><strong>Wookiee Approach:</strong> Tear off the damaged panel with bare hands, use massive strength to force components into place, intimidate the machinery into working</p>
+                    <p><strong>Game Impact:</strong> The Wookiee can use Brawn instead of Intellect for certain repairs, changing the entire dynamic of the scene</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="career-mastery">
+            <h2>Careers - Your Life's Training</h2>
+            
+            <h3>The Professional Identity Framework</h3>
+            <p>Your career isn't just what you do for money - it's how you've been trained to think. A Soldier sees tactical opportunities where a Diplomat sees negotiation points. A Smuggler notices escape routes where an Explorer sees new territories to map.</p>
+
+            <div class="career-flow">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Choose Career] --> B[Gain Career Skills]
+                        B --> C[Select Specialization]
+                        C --> D[Receive Spec Skills]
+                        D --> E[Free Skill Ranks]
+                        E --> F[Starting Talents]
+                        
+                        G[Example: Smuggler] --> H[Deception, Knowledge, Piloting, Streetwise]
+                        H --> I[Pick: Pilot, Scoundrel, or Thief]
+                        I --> J[Pilot: Gunnery, Piloting x2, Astrogation]
+                        J --> K[Distribute 4 Free Ranks]
+                        K --> L[Start with Skilled Jockey]
+                        
+                        style G fill:#ff9800
+                        style H fill:#ffcc02
+                        style I fill:#ffd54f
+                        style J fill:#ffe082
+                        style K fill:#ffecb3
+                        style L fill:#fff3e0
+                </div>
+            </div>
+
+            <h3>Career Skills vs Universal Skills</h3>
+            <p>Think of career skills like learning your native language versus learning a foreign language. Career skills come naturally and cost less to improve because they're part of your professional DNA. Universal skills require more effort because you're learning outside your comfort zone.</p>
+
+            <div class="skill-cost-visualization">
+                <canvas id="skillCosts" width="500" height="300"></canvas>
+            </div>
+
+            <script>
+                const skillCanvas = document.getElementById('skillCosts');
+                const skillCtx = skillCanvas.getContext('2d');
+                
+                // Draw cost comparison chart
+                const ranks = [1, 2, 3, 4, 5];
+                const careerCosts = [5, 10, 15, 20, 25];
+                const universalCosts = [5, 10, 15, 20, 25];
+                
+                // Set up chart area
+                const chartX = 60;
+                const chartY = 50;
+                const chartWidth = 400;
+                const chartHeight = 200;
+                
+                // Draw axes
+                skillCtx.strokeStyle = '#333';
+                skillCtx.lineWidth = 2;
+                skillCtx.beginPath();
+                skillCtx.moveTo(chartX, chartY + chartHeight);
+                skillCtx.lineTo(chartX + chartWidth, chartY + chartHeight);
+                skillCtx.moveTo(chartX, chartY + chartHeight);
+                skillCtx.lineTo(chartX, chartY);
+                skillCtx.stroke();
+                
+                // Draw career skill line (cheaper progression)
+                skillCtx.strokeStyle = '#4CAF50';
+                skillCtx.lineWidth = 3;
+                skillCtx.beginPath();
+                for (let i = 0; i < ranks.length; i++) {
+                    const x = chartX + (i * (chartWidth / (ranks.length - 1)));
+                    const y = chartY + chartHeight - (careerCosts[i] * (chartHeight / 25));
+                    if (i === 0) skillCtx.moveTo(x, y);
+                    else skillCtx.lineTo(x, y);
+                }
+                skillCtx.stroke();
+                
+                // Draw universal skill line (more expensive)
+                skillCtx.strokeStyle = '#F44336';
+                skillCtx.lineWidth = 3;
+                skillCtx.beginPath();
+                for (let i = 0; i < ranks.length; i++) {
+                    const x = chartX + (i * (chartWidth / (ranks.length - 1)));
+                    const y = chartY + chartHeight - ((careerCosts[i] + 5) * (chartHeight / 30));
+                    if (i === 0) skillCtx.moveTo(x, y);
+                    else skillCtx.lineTo(x, y);
+                }
+                skillCtx.stroke();
+                
+                // Add labels
+                skillCtx.fillStyle = '#333';
+                skillCtx.font = '14px Arial';
+                skillCtx.textAlign = 'center';
+                skillCtx.fillText('Skill Rank', chartX + chartWidth/2, chartY + chartHeight + 30);
+                
+                skillCtx.save();
+                skillCtx.translate(20, chartY + chartHeight/2);
+                skillCtx.rotate(-Math.PI/2);
+                skillCtx.fillText('XP Cost', 0, 0);
+                skillCtx.restore();
+                
+                // Legend
+                skillCtx.fillStyle = '#4CAF50';
+                skillCtx.fillRect(chartX, 20, 20, 15);
+                skillCtx.fillStyle = '#333';
+                skillCtx.textAlign = 'left';
+                skillCtx.fillText('Career Skills', chartX + 30, 32);
+                
+                skillCtx.fillStyle = '#F44336';
+                skillCtx.fillRect(chartX + 150, 20, 20, 15);
+                skillCtx.fillStyle = '#333';
+                skillCtx.fillText('Universal Skills', chartX + 180, 32);
+            </script>
+
+            <h3>Specializations - Your Unique Focus</h3>
+            <p>If careers are college majors, specializations are your graduate degree focus. They define not just what you can do, but how you approach problems. A Smuggler Pilot thinks differently than a Smuggler Scoundrel, even though they share the same base career.</p>
+
+            <div class="specialization-tree">
+                <h4>Example: The Evolution of a Pilot</h4>
+                <pre><code>Ace Career → Pilot Specialization → Talent Progression
+
+Starting Talents:
+├── Skilled Jockey (Rank 1)
+│   └── Remove Setback die from Piloting checks
+├── Galaxy Mapper (Rank 2) 
+│   └── Remove Setback from Astrogation
+└── Full Throttle (Rank 3)
+    └── Increase vehicle's top speed
+
+Advanced Path:
+├── Ace Gunner (Second Spec)
+│   └── Focuses on vehicle weapons
+├── Driver (Third Spec)  
+│   └── Ground vehicle mastery
+└── Beast Rider (Exotic Spec)
+    └── Living mounts and creatures</code></pre>
+            </div>
+        </section>
+
+        <section class="characteristics-mastery">
+            <h2>Characteristics - Your Core Capabilities</h2>
+            
+            <h3>The Six Pillars of Ability</h3>
+            <p>Characteristics are like the six primary colors on an artist's palette. Every action you take blends these base colors to create the unique shade of your character's approach. Understanding what each characteristic really represents is crucial to building a coherent character concept.</p>
+
+            <div class="characteristics-deep-dive">
+                <div class="characteristic-breakdown">
+                    <h4>Brawn - Physical Power and Endurance</h4>
+                    <div class="char-example">
+                        <p><strong>High Brawn Character:</strong> Chewbacca ripping arms from sockets, carrying injured friends, intimidating through physical presence</p>
+                        <p><strong>Low Brawn Character:</strong> C-3PO requiring constant rescue, relying on wit and protocol instead of strength</p>
+                        <p><strong>Skills Used:</strong> Athletics, Brawl, Resilience, some Mechanics</p>
+                    </div>
+
+                    <h4>Agility - Speed, Dexterity, and Reflexes</h4>
+                    <div class="char-example">
+                        <p><strong>High Agility Character:</strong> Han's quick draw, Luke's lightsaber deflections, acrobatic escapes</p>
+                        <p><strong>Low Agility Character:</strong> Jabba's ponderous movements, Imperial officers preferring tactical command</p>
+                        <p><strong>Skills Used:</strong> Ranged attacks, Piloting, Stealth, Coordination</p>
+                    </div>
+
+                    <h4>Intellect - Raw Intelligence and Memory</h4>
+                    <div class="char-example">
+                        <p><strong>High Intellect Character:</strong> Analyzing Death Star plans, complex technical repairs, strategic planning</p>
+                        <p><strong>Low Intellect Character:</strong> Relying on instinct over analysis, learning through experience not study</p>
+                        <p><strong>Skills Used:</strong> All Knowledge skills, Computers, Medicine, most Mechanics</p>
+                    </div>
+
+                    <h4>Cunning - Practical Intelligence and Street Smarts</h4>
+                    <div class="char-example">
+                        <p><strong>High Cunning Character:</strong> Han's carbonite trick, reading people's motivations, surviving by wit</p>
+                        <p><strong>Low Cunning Character:</strong> Luke's initial naivety, trusting others, approaching problems directly</p>
+                        <p><strong>Skills Used:</strong> Deception, Perception, Streetwise, Survival</p>
+                    </div>
+
+                    <h4>Willpower - Mental Fortitude and Self-Control</h4>
+                    <div class="char-example">
+                        <p><strong>High Willpower Character:</strong> Resisting the Emperor's torture, maintaining hope in dark times</p>
+                        <p><strong>Low Willpower Character:</strong> Susceptible to influence, emotional decision-making</p>
+                        <p><strong>Skills Used:</strong> Discipline, Vigilance, Force powers</p>
+                    </div>
+
+                    <h4>Presence - Charisma and Force of Personality</h4>
+                    <div class="char-example">
+                        <p><strong>High Presence Character:</strong> Leia's natural leadership, inspiring others to action</p>
+                        <p><strong>Low Presence Character:</strong> Preferring to work behind the scenes, uncomfortable in spotlight</p>
+                        <p><strong>Skills Used:</strong> Charm, Coercion, Cool, Leadership, Negotiation</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>The Characteristic Purchase System</h3>
+            <p>Think of buying characteristics like investing in real estate during character creation. It's expensive upfront but pays dividends forever. After character creation, improving characteristics becomes prohibitively expensive - like trying to buy that same property after the neighborhood has been developed.</p>
+
+            <div class="purchase-system">
+                <canvas id="characteristicCosts" width="600" height="250"></canvas>
+            </div>
+
+            <script>
+                const charCostCanvas = document.getElementById('characteristicCosts');
+                const charCostCtx = charCostCanvas.getContext('2d');
+                
+                // Characteristic cost data
+                const charLevels = [2, 3, 4, 5];
+                const creationCosts = [10, 20, 30, 40];
+                const postCreationCosts = [10, 30, 60, 100];
+                
+                const barWidth = 60;
+                const barSpacing = 80;
+                const startX = 80;
+                const chartBottom = 200;
+                
+                // Draw bars for creation costs
+                charCostCtx.fillStyle = '#4CAF50';
+                for (let i = 0; i < charLevels.length; i++) {
+                    const height = creationCosts[i] * 2;
+                    const x = startX + (i * barSpacing * 2);
+                    charCostCtx.fillRect(x, chartBottom - height, barWidth, height);
+                    
+                    // Add value labels
+                    charCostCtx.fillStyle = '#333';
+                    charCostCtx.font = '12px Arial';
+                    charCostCtx.textAlign = 'center';
+                    charCostCtx.fillText(creationCosts[i] + ' XP', x + barWidth/2, chartBottom - height - 5);
+                    charCostCtx.fillText('Rank ' + charLevels[i], x + barWidth/2, chartBottom + 15);
+                    charCostCtx.fillStyle = '#4CAF50';
+                }
+                
+                // Draw bars for post-creation costs
+                charCostCtx.fillStyle = '#F44336';
+                for (let i = 0; i < charLevels.length; i++) {
+                    const height = postCreationCosts[i] * 2;
+                    const x = startX + barWidth + 10 + (i * barSpacing * 2);
+                    charCostCtx.fillRect(x, chartBottom - height, barWidth, height);
+                    
+                    // Add value labels
+                    charCostCtx.fillStyle = '#333';
+                    charCostCtx.fillText(postCreationCosts[i] + ' XP', x + barWidth/2, chartBottom - height - 5);
+                    charCostCtx.fillStyle = '#F44336';
+                }
+                
+                // Add legend and title
+                charCostCtx.fillStyle = '#333';
+                charCostCtx.font = '16px Arial';
+                charCostCtx.textAlign = 'center';
+                charCostCtx.fillText('Characteristic Cost Comparison', 300, 30);
+                
+                charCostCtx.fillStyle = '#4CAF50';
+                charCostCtx.fillRect(100, 50, 20, 15);
+                charCostCtx.fillStyle = '#333';
+                charCostCtx.font = '14px Arial';
+                charCostCtx.textAlign = 'left';
+                charCostCtx.fillText('At Creation', 130, 62);
+                
+                charCostCtx.fillStyle = '#F44336';
+                charCostCtx.fillRect(250, 50, 20, 15);
+                charCostCtx.fillStyle = '#333';
+                charCostCtx.fillText('After Creation', 280, 62);
+            </script>
+        </section>
+
+        <section class="motivations-obligations">
+            <h2>Motivations and Obligations - Your Story Engine</h2>
+            
+            <h3>Motivation - Your Character's North Star</h3>
+            <p>Motivation isn't just background flavor - it's your character's GPS system. When players ask "What would my character do?", motivation provides the answer. It's the difference between a character who reacts to events and one who drives the story forward.</p>
+
+            <div class="motivation-wheel">
+                <div class="mermaid">
+                    pie title Character Motivations
+                        "Ambition" : 20
+                        "Cause" : 18
+                        "Family" : 16
+                        "Faith" : 14
+                        "Love" : 12
+                        "Freedom" : 10
+                        "Justice" : 6
+                        "Knowledge" : 4
+                </div>
+            </div>
+
+            <div class="motivation-examples">
+                <h4>Motivation Categories with Star Wars Examples</h4>
+                
+                <div class="motivation-grid">
+                    <div class="motivation-card">
+                        <h5>Ambition - Personal Achievement</h5>
+                        <p><strong>Example:</strong> Han Solo's desire to pay off Jabba and be free</p>
+                        <p><strong>Story Hook:</strong> Opportunities for advancement, recognition, or personal gain</p>
+                        <p><strong>Conflict:</strong> When ambition conflicts with moral choices</p>
+                    </div>
+                    
+                    <div class="motivation-card">
+                        <h5>Family - Blood and Found Family</h5>
+                        <p><strong>Example:</strong> Luke's drive to save his father's soul</p>
+                        <p><strong>Story Hook:</strong> Family members in danger or need</p>
+                        <p><strong>Conflict:</strong> Choosing between family and greater good</p>
+                    </div>
+                    
+                    <div class="motivation-card">
+                        <h5>Justice - Righting Wrongs</h5>
+                        <p><strong>Example:</strong> Leia's fight against Imperial oppression</p>
+                        <p><strong>Story Hook:</strong> Innocent people suffering injustice</p>
+                        <p><strong>Conflict:</strong> When justice requires morally questionable methods</p>
+                    </div>
+                    
+                    <div class="motivation-card">
+                        <h5>Freedom - Liberation from Oppression</h5>
+                        <p><strong>Example:</strong> The Rebel Alliance's core mission</p>
+                        <p><strong>Story Hook:</strong> Oppressed groups seeking liberation</p>
+                        <p><strong>Conflict:</strong> Freedom for some may mean chaos for others</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Obligation - Your Character's Baggage</h3>
+            <p>Obligation is like having a recurring character arc that follows you throughout the campaign. It's not just a penalty - it's a storytelling opportunity that gives the GM hooks to make your character the center of dramatic moments.</p>
+
+            <div class="obligation-system">
+                <h4>How Obligation Creates Drama</h4>
+                <div class="mermaid">
+                    flowchart LR
+                        A[High Obligation Roll] --> B[Your Past Catches Up]
+                        B --> C[Complications Arise]
+                        C --> D[Character Growth Opportunity]
+                        D --> E[Resolve or Worsen]
+                        E --> F{Obligation Changes}
+                        F -->|Reduced| G[Character Development]
+                        F -->|Increased| H[Deeper Problems]
+                        G --> I[New Story Hooks]
+                        H --> I
+                        I --> A
+                        
+                        style A fill:#ff9800
+                        style C fill:#f44336
+                        style D fill:#4caf50
+                        style G fill:#2196f3
+                        style H fill:#9c27b0
+                </div>
+            </div>
+
+            <div class="obligation-examples">
+                <h4>Obligation Types and Their Story Impact</h4>
+                
+                <pre><code>&lt;!-- Bounty Example --&gt;
+&lt;strong&gt;Obligation:&lt;/strong&gt; Bounty (15 points)
+&lt;strong&gt;Description:&lt;/strong&gt; Your character has a 50,000 credit bounty on their head
+&lt;strong&gt;Story Hooks:&lt;/strong&gt;
+- Bounty hunters appear at inconvenient moments
+- Allies hesitate to associate with you
+- Must use false identities and avoid Imperial scans
+- Could increase if you anger the wrong people
+- Could decrease by paying it off or eliminating the source
+
+&lt;!-- Debt Example --&gt;
+&lt;strong&gt;Obligation:&lt;/strong&gt; Debt (10 points)  
+&lt;strong&gt;Description:&lt;/strong&gt; Owes money to a Hutt crime lord
+&lt;strong&gt;Story Hooks:&lt;/strong&gt;
+- Interest keeps accumulating
+- Debt collectors demand payment in favors
+- Must take dangerous jobs to make payments
+- Family/friends might be threatened
+- Could lead to slavery or worse if unpaid</code></pre>
+            </div>
+        </section>
+
+        <section class="starting-equipment">
+            <h2>Starting Equipment - Tools of the Trade</h2>
+            
+            <h3>Equipment as Character Definition</h3>
+            <p>Your starting equipment tells a story about who your character is and where they've been. A worn-out blaster suggests a hard life on the frontier. Custom modifications show technical expertise. Family heirlooms hint at important backstory connections.</p>
+
+            <div class="equipment-philosophy">
+                <div class="example-box">
+                    <h4>Equipment Storytelling Examples</h4>
+                    <ul>
+                        <li><strong>Smuggler's Modified YT-1300:</strong> Not just a ship, but a character in its own right with history and personality</li>
+                        <li><strong>Jedi's Lightsaber:</strong> Each crystal, each component chosen with care and meaning</li>
+                        <li><strong>Bounty Hunter's Mandalorian Armor:</strong> Ancestral protection carrying the weight of tradition</li>
+                        <li><strong>Diplomat's Formal Robes:</strong> Tools for projecting authority and cultural respect</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The 500 Credit Starting Budget</h3>
+            <p>Think of your starting credits like a college student's budget - you need to prioritize essentials while making tough choices about wants versus needs. Every credit spent should serve your character concept and survival needs.</p>
+
+            <div class="budget-breakdown">
+                <canvas id="budgetChart" width="400" height="300"></canvas>
+            </div>
+
+            <script>
+                const budgetCanvas = document.getElementById('budgetChart');
+                const budgetCtx = budgetCanvas.getContext('2d');
+                
+                // Sample budget breakdown
+                const categories = ['Weapon', 'Armor', 'Gear', 'Supplies', 'Savings'];
+                const amounts = [200, 150, 100, 30, 20];
+                const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+                
+                const centerX2 = 200;
+                const centerY2 = 150;
+                const radius2 = 100;
+                
+                let currentAngle = 0;
+                
+                amounts.forEach((amount, index) => {
+                    const sliceAngle = (amount / 500) * 2 * Math.PI;
+                    
+                    budgetCtx.beginPath();
+                    budgetCtx.arc(centerX2, centerY2, radius, currentAngle, currentAngle + sliceAngle);
+                    budgetCtx.lineTo(centerX2, centerY2);
+                    budgetCtx.fillStyle = colors[index];
+                    budgetCtx.fill();
+                    
+                    // Add labels
+                    const labelAngle = currentAngle + sliceAngle / 2;
+                    const labelX = centerX2 + Math.cos(labelAngle) * (radius + 30);
+                    const labelY = centerY2 + Math.sin(labelAngle) * (radius2 + 30);
+                    
+                    budgetCtx.fillStyle = '#333';
+                    budgetCtx.font = '12px Arial';
+                    budgetCtx.textAlign = 'center';
+                    budgetCtx.fillText(categories[index], labelX, labelY);
+                    budgetCtx.fillText(amounts[index] + 'cr', labelX, labelY + 15);
+                    
+                    currentAngle += sliceAngle;
+                });
+                
+                // Add title
+                budgetCtx.fillStyle = '#333';
+                budgetCtx.font = '16px Arial';
+                budgetCtx.textAlign = 'center';
+                budgetCtx.fillText('Sample Starting Budget', centerX, 30);
+            </script>
+        </section>
+
+        <section class="character-examples">
+            <h2>Putting It All Together - Complete Examples</h2>
+            
+            <h3>Example Character: Kira Thane, Twi'lek Smuggler</h3>
+            <div class="character-sheet-preview">
+                <div class="character-build">
+                    <h4>Build Decisions and Reasoning</h4>
+                    <pre><code><strong>Species:</strong> Twi'lek
+├── +1 Cunning (for reading people and situations)
+├── +1 Charm (natural grace and appeal)  
+└── Remove Setback dice from Charm checks
+
+<strong>Career:</strong> Smuggler
+├── Career Skills: Deception, Knowledge (Underworld), 
+│   Piloting (Space), Streetwise
+└── <strong>Specialization:</strong> Pilot
+    ├── Gunnery, Piloting (Planetary), 
+    │   Piloting (Space), Astrogation
+    └── Starting Talent: Skilled Jockey
+
+<strong>Characteristics (after species bonuses):</strong>
+├── Brawn: 2, Agility: 3, Intellect: 2
+├── Cunning: 3, Willpower: 2, Presence: 3
+└── <em>Focus on social manipulation and piloting</em>
+
+<strong>Skills (with 4 free ranks):</strong>
+├── Piloting (Space): 2 ranks
+├── Deception: 1 rank  
+├── Charm: 1 rank
+└── <em>Can fly well and talk her way out of trouble</em>
+
+<strong>Motivation:</strong> Freedom
+└── <em>Escaped Twi'lek slave trade, now helps others escape oppression</em>
+
+<strong>Obligation:</strong> Bounty (15 points)
+└── <em>Former slave master put a price on her head</em></code></pre>
+                </div>
+                
+                <div class="character-story">
+                    <h4>Character Story Integration</h4>
+                    <p>Kira's build tells a complete story: A Twi'lek who escaped slavery and now uses her natural charm and piloting skills to stay free while helping others escape similar fates. Her bounty obligation creates ongoing tension, while her motivation drives her to take risks for the right cause.</p>
+                    
+                    <p><strong>Gameplay Implications:</strong></p>
+                    <ul>
+                        <li>Excel at social encounters and space chases</li>
+                        <li>Vulnerable in direct combat situations</li>
+                        <li>Strong motivation to help escaped slaves or oppressed peoples</li>
+                        <li>Bounty creates recurring antagonist opportunities</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: Species and Career Synergy</h3>
+            <p>Create character concepts that demonstrate strong species/career synergy:</p>
+            <ol>
+                <li>Choose a species with physical advantages and pair it with a career that uses those advantages</li>
+                <li>Choose a species with mental advantages and pair it with a cerebral career</li>
+                <li>Create an "against type" character where species and career seem to conflict</li>
+            </ol>
+            
+            <h3>Activity Two: Characteristic Distribution</h3>
+            <p>Practice the characteristic purchase system:</p>
+            <ul>
+                <li>Starting with a Human (all 2s), spend 100 XP to create three different character archetypes</li>
+                <li>A combat specialist (focus Brawn/Agility)</li>
+                <li>A technical expert (focus Intellect/Cunning)</li>
+                <li>A social manipulator (focus Presence/Willpower)</li>
+            </ul>
+            
+            <h3>Activity Three: Motivation and Obligation Pairing</h3>
+            <p>Create compelling motivation/obligation combinations:</p>
+            <ol>
+                <li>Design an obligation that directly conflicts with your motivation</li>
+                <li>Create an obligation that could potentially support your motivation</li>
+                <li>Develop a three-act character arc showing how obligation might evolve</li>
+            </ol>
+            
+            <h3>Activity Four: Complete Character Creation</h3>
+            <p>Build a complete character using these guidelines:</p>
+            <ul>
+                <li>Start with a one-sentence character concept</li>
+                <li>Choose species and career that support this concept</li>
+                <li>Distribute characteristics to match your vision</li>
+                <li>Select skills that tell your character's story</li>
+                <li>Create motivation and obligation that create dramatic tension</li>
+                <li>Choose equipment that reinforces your character's background</li>
+            </ul>
+        </section>
+
+        <section class="advanced-concepts">
+            <h2>Advanced Character Creation Concepts</h2>
+            
+            <h3>Multi-Specialization Planning</h3>
+            <p>Think of your character's development like planning a career path. Your starting specialization is your undergraduate degree, but you'll likely want to pursue graduate studies (additional specializations) as your character grows and faces new challenges.</p>
+            
+            <h3>Force Sensitivity Integration</h3>
+            <p>Adding Force sensitivity to any character is like adding a second major to your degree program. It opens new possibilities but requires additional investment and comes with its own complications (Morality instead of Obligation).</p>
+            
+            <h3>Group Character Creation</h3>
+            <p>The best Star Wars groups are created together, like casting a movie. Each character should fill a different role in the party dynamic while having connections to other characters that create natural story hooks.</p>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <p>Your character is more than numbers on a sheet - they're the heart of your Star Wars story. Every choice you make in creation should serve the tale you want to tell and the adventures you want to experience.</p>
+      
+    </footer>
+
+    
+</body>
+</html>

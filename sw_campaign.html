@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - Campaign Creation and Themes</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: Campaign Creation and Themes</h1>
+        <p class="subtitle">Building Epic Sagas - From Concept to Galactic Legend</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Campaigns as Epic Sagas</h2>
+            <p>A Star Wars campaign isn't just a series of connected adventures - it's an epic saga that spans months or years of real time, chronicling the rise of heroes and the fate of the galaxy. Like the films themselves, your campaign should have overarching themes, character growth arcs, and a sense of building toward something greater than the sum of its parts.</p>
+            
+            <div class="analogy-box">
+                <h3>The Television Series Analogy</h3>
+                <p>Think of your campaign like producing a multi-season TV series. Each session is an episode, each story arc is a season, and the entire campaign is the complete series. You need episode-to-episode hooks, season-long storylines, and series-spanning character development. The best campaigns, like the best shows, leave audiences wanting more while delivering satisfying conclusions to major story threads.</p>
+            </div>
+        </section>
+
+        <section class="campaign-foundations">
+            <h2>Laying the Foundation - Core Campaign Elements</h2>
+            
+            <h3>Choosing Your Era</h3>
+            <p>The Star Wars timeline offers multiple distinct eras, each with its own tone, conflicts, and opportunities. Your choice of era fundamentally shapes the types of stories you can tell and the themes you can explore.</p>
+
+            <div class="era-timeline">
+                <canvas id="eraTimeline" width="700" height="400"></canvas>
+            </div>
+
+            <script>
+                const timelineCanvas = document.getElementById('eraTimeline');
+                const timelineCtx = timelineCanvas.getContext('2d');
+                
+                // Draw Star Wars timeline
+                const eras = [
+                    {name: 'Old Republic', years: '25,000-1,000 BBY', themes: 'Jedi Golden Age, Ancient Conflicts', color: '#9C27B0', y: 80},
+                    {name: 'Rise of Empire', years: '32-0 BBY', themes: 'Political Intrigue, Clone Wars', color: '#3F51B5', y: 140},
+                    {name: 'Rebellion Era', years: '0-5 ABY', themes: 'Hope vs Tyranny, Classic Heroes', color: '#2196F3', y: 200},
+                    {name: 'New Republic', years: '5-25 ABY', themes: 'Rebuilding, New Threats', color: '#4CAF50', y: 260},
+                    {name: 'New Jedi Order', years: '25+ ABY', themes: 'Legacy, Next Generation', color: '#FF9800', y: 320}
+                ];
+                
+                // Draw timeline line
+                timelineCtx.strokeStyle = '#333';
+                timelineCtx.lineWidth = 4;
+                timelineCtx.beginPath();
+                timelineCtx.moveTo(50, 50);
+                timelineCtx.lineTo(50, 350);
+                timelineCtx.stroke();
+                
+                // Draw era markers
+                eras.forEach((era, index) => {
+                    // Era marker
+                    timelineCtx.fillStyle = era.color;
+                    timelineCtx.beginPath();
+                    timelineCtx.arc(50, era.y, 12, 0, 2 * Math.PI);
+                    timelineCtx.fill();
+                    
+                    timelineCtx.strokeStyle = '#333';
+                    timelineCtx.lineWidth = 2;
+                    timelineCtx.stroke();
+                    
+                    // Era info box
+                    const boxX = index % 2 === 0 ? 80 : 350;
+                    const boxWidth = 280;
+                    const boxHeight = 50;
+                    
+                    timelineCtx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    timelineCtx.fillRect(boxX, era.y - 25, boxWidth, boxHeight);
+                    timelineCtx.strokeStyle = era.color;
+                    timelineCtx.lineWidth = 3;
+                    timelineCtx.strokeRect(boxX, era.y - 25, boxWidth, boxHeight);
+                    
+                    // Connect to timeline
+                    timelineCtx.strokeStyle = '#666';
+                    timelineCtx.lineWidth = 2;
+                    timelineCtx.setLineDash([5, 5]);
+                    timelineCtx.beginPath();
+                    timelineCtx.moveTo(62, era.y);
+                    timelineCtx.lineTo(boxX, era.y);
+                    timelineCtx.stroke();
+                    timelineCtx.setLineDash([]);
+                    
+                    // Era text
+                    timelineCtx.fillStyle = '#333';
+                    timelineCtx.font = 'bold 14px Arial';
+                    timelineCtx.textAlign = 'left';
+                    timelineCtx.fillText(era.name, boxX + 10, era.y - 8);
+                    timelineCtx.font = '12px Arial';
+                    timelineCtx.fillText(era.years, boxX + 10, era.y + 8);
+                    timelineCtx.font = '11px Arial';
+                    timelineCtx.fillStyle = '#666';
+                    timelineCtx.fillText(era.themes, boxX + 10, era.y + 22);
+                });
+                
+                // Add title
+                timelineCtx.fillStyle = '#333';
+                timelineCtx.font = 'bold 18px Arial';
+                timelineCtx.textAlign = 'center';
+                timelineCtx.fillText('Star Wars Campaign Eras', 350, 25);
+            </script>
+
+            <h3>Campaign Themes and Tone</h3>
+            <p>Star Wars encompasses many different themes and tones. Are you telling a story about hope triumphing over oppression? The corruption of power? The passing of wisdom between generations? Your theme should emerge from your players' character concepts and the era you've chosen.</p>
+
+            <div class="theme-matrix">
+                <div class="mermaid">
+                    quadrantChart
+                        title Campaign Theme Matrix
+                        x-axis Low Conflict --> High Conflict
+                        y-axis Personal Stakes --> Galactic Stakes
+                        quadrant-1 Political Intrigue
+                        quadrant-2 Epic War
+                        quadrant-3 Personal Journey
+                        quadrant-4 Heroic Adventure
+                        
+                        Diplomatic Mission: [0.2, 0.8]
+                        Rebel Cell: [0.6, 0.7]
+                        Coming of Age: [0.3, 0.2]
+                        Galactic War: [0.9, 0.9]
+                        Smuggler Crew: [0.4, 0.3]
+                        Jedi Training: [0.3, 0.4]
+                        Imperial Campaign: [0.7, 0.8]
+                        Outer Rim Survival: [0.5, 0.2]
+                </div>
+            </div>
+
+            <h3>Scale and Scope</h3>
+            <p>Decide early whether your campaign focuses on local, system-wide, sector-wide, or galaxy-spanning events. Each scale offers different storytelling opportunities and requires different preparation approaches.</p>
+
+            <div class="scope-examples">
+                <div class="scope-card">
+                    <h4>Local Scale - Single Planet/System</h4>
+                    <p><strong>Focus:</strong> Deep character development, detailed world-building</p>
+                    <p><strong>Examples:</strong> Tatooine crime syndicate wars, Coruscant underworld politics</p>
+                    <p><strong>Advantages:</strong> Rich detail, personal stakes, manageable scope</p>
+                    <p><strong>Challenges:</strong> May feel small-scale, limited variety</p>
+                </div>
+                
+                <div class="scope-card">
+                    <h4>Regional Scale - Sector or Multiple Systems</h4>
+                    <p><strong>Focus:</strong> Political maneuvering, trade conflicts, regional threats</p>
+                    <p><strong>Examples:</strong> Hutt Space power struggles, Corporate Sector intrigue</p>
+                    <p><strong>Advantages:</strong> Varied locations, political complexity, medium scope</p>
+                    <p><strong>Challenges:</strong> Requires more prep, complex relationships</p>
+                </div>
+                
+                <div class="scope-card">
+                    <h4>Galactic Scale - Galaxy-Wide Events</h4>
+                    <p><strong>Focus:</strong> Epic conflicts, fate of civilizations, legendary heroes</p>
+                    <p><strong>Examples:</strong> Galactic Civil War, Jedi Purge, Yuuzhan Vong invasion</p>
+                    <p><strong>Advantages:</strong> Epic feel, major historical impact, varied opportunities</p>
+                    <p><strong>Challenges:</strong> Can feel impersonal, difficult to manage scope</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="campaign-structure">
+            <h2>Campaign Structure and Pacing</h2>
+            
+            <h3>The Three-Act Campaign</h3>
+            <p>Like the Star Wars trilogy itself, successful campaigns often follow a three-act structure spanning the entire length of the campaign. This provides a satisfying dramatic arc while allowing for multiple story threads and character development.</p>
+
+            <div class="campaign-acts">
+                <canvas id="campaignStructure" width="600" height="350"></canvas>
+            </div>
+
+            <script>
+                const campaignCanvas = document.getElementById('campaignStructure');
+                const campaignCtx = campaignCanvas.getContext('2d');
+                
+                // Draw three-act campaign structure
+                campaignCtx.fillStyle = '#333';
+                campaignCtx.font = 'bold 18px Arial';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Three-Act Campaign Structure', 300, 25);
+                
+                // Act 1 - Establishment
+                campaignCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
+                campaignCtx.fillRect(50, 60, 150, 200);
+                campaignCtx.strokeStyle = '#4CAF50';
+                campaignCtx.lineWidth = 3;
+                campaignCtx.strokeRect(50, 60, 150, 200);
+                
+                campaignCtx.fillStyle = '#333';
+                campaignCtx.font = 'bold 14px Arial';
+                campaignCtx.fillText('Act 1: Establishment', 125, 80);
+                campaignCtx.font = '12px Arial';
+                campaignCtx.textAlign = 'left';
+                const act1Items = [
+                    'Introduce characters',
+                    'Establish setting',
+                    'Present initial threat',
+                    'Build team dynamics',
+                    'Set stakes',
+                    'Reveal opposition',
+                    'First victories'
+                ];
+                act1Items.forEach((item, index) => {
+                    campaignCtx.fillText('• ' + item, 60, 100 + (index * 20));
+                });
+                
+                campaignCtx.font = '11px Arial';
+                campaignCtx.fillStyle = '#666';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Sessions 1-8', 125, 280);
+                
+                // Act 2 - Confrontation
+                campaignCtx.fillStyle = 'rgba(255, 152, 0, 0.8)';
+                campaignCtx.fillRect(225, 40, 150, 240);
+                campaignCtx.strokeStyle = '#FF9800';
+                campaignCtx.lineWidth = 3;
+                campaignCtx.strokeRect(225, 40, 150, 240);
+                
+                campaignCtx.fillStyle = '#333';
+                campaignCtx.font = 'bold 14px Arial';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Act 2: Confrontation', 300, 60);
+                campaignCtx.font = '12px Arial';
+                campaignCtx.textAlign = 'left';
+                const act2Items = [
+                    'Rising opposition',
+                    'Character growth',
+                    'Major setbacks',
+                    'Personal conflicts',
+                    'Higher stakes',
+                    'Key revelations',
+                    'Moral dilemmas',
+                    'Darkest hour',
+                    'Preparation for finale'
+                ];
+                act2Items.forEach((item, index) => {
+                    campaignCtx.fillText('• ' + item, 235, 80 + (index * 20));
+                });
+                
+                campaignCtx.font = '11px Arial';
+                campaignCtx.fillStyle = '#666';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Sessions 9-20', 300, 300);
+                
+                // Act 3 - Resolution
+                campaignCtx.fillStyle = 'rgba(244, 67, 54, 0.8)';
+                campaignCtx.fillRect(400, 60, 150, 200);
+                campaignCtx.strokeStyle = '#F44336';
+                campaignCtx.lineWidth = 3;
+                campaignCtx.strokeRect(400, 60, 150, 200);
+                
+                campaignCtx.fillStyle = '#333';
+                campaignCtx.font = 'bold 14px Arial';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Act 3: Resolution', 475, 80);
+                campaignCtx.font = '12px Arial';
+                campaignCtx.textAlign = 'left';
+                const act3Items = [
+                    'Final preparations',
+                    'Climactic battles',
+                    'Character payoffs',
+                    'Major revelations',
+                    'Heroic sacrifices',
+                    'Victory/Resolution',
+                    'New status quo'
+                ];
+                act3Items.forEach((item, index) => {
+                    campaignCtx.fillText('• ' + item, 410, 100 + (index * 20));
+                });
+                
+                campaignCtx.font = '11px Arial';
+                campaignCtx.fillStyle = '#666';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Sessions 21-25', 475, 280);
+                
+                // Add dramatic arc
+                campaignCtx.strokeStyle = '#E91E63';
+                campaignCtx.lineWidth = 4;
+                campaignCtx.beginPath();
+                campaignCtx.moveTo(50, 320);
+                campaignCtx.quadraticCurveTo(200, 300, 300, 320);
+                campaignCtx.quadraticCurveTo(400, 340, 550, 300);
+                campaignCtx.stroke();
+                
+                campaignCtx.fillStyle = '#E91E63';
+                campaignCtx.font = '12px Arial';
+                campaignCtx.textAlign = 'left';
+                campaignCtx.fillText('Dramatic Intensity', 50, 340);
+            </script>
+
+            <h3>Story Arcs and Subplots</h3>
+            <p>Within your three-act structure, weave multiple story threads that create rich, interconnected narratives. Some arcs focus on individual characters, others on relationships, and still others on larger plot elements. The best campaigns have several arcs running simultaneously at different stages of development.</p>
+
+            <div class="arc-management">
+                <div class="mermaid">
+                    gantt
+                        title Campaign Story Arc Timeline
+                        dateFormat  X
+                        axisFormat %s
+                        
+                        section Main Plot
+                        Discovery Phase    :arc1, 0, 8
+                        Investigation      :arc2, 6, 15
+                        Confrontation      :arc3, 12, 20
+                        Resolution         :arc4, 18, 25
+                        
+                        section Character A
+                        Personal Mystery   :char1, 2, 10
+                        Growth Challenge   :char2, 8, 18
+                        Resolution         :char3, 16, 22
+                        
+                        section Character B
+                        Family Issues      :fam1, 4, 12
+                        Moral Dilemma      :fam2, 10, 20
+                        Legacy Choice      :fam3, 18, 24
+                        
+                        section Faction Plot
+                        Rising Tension     :fact1, 3, 14
+                        Open Conflict      :fact2, 12, 22
+                        New Alliance       :fact3, 20, 25
+                </div>
+            </div>
+
+            <h3>Milestone and Advancement Planning</h3>
+            <p>Plan character advancement to coincide with story beats. Major plot revelations, character growth moments, and story arc conclusions are perfect times for advancement. This ties mechanical progression to narrative development.</p>
+        </section>
+
+        <section class="faction-dynamics">
+            <h2>Factions and Organizations</h2>
+            
+            <h3>The Galactic Chessboard</h3>
+            <p>Star Wars is defined by the conflicts between its great factions. Your campaign should feature multiple organizations with their own agendas, creating a dynamic political landscape that changes based on player actions.</p>
+
+            <div class="faction-relationships">
+                <div class="mermaid">
+                    graph TD
+                        A[Galactic Empire] --> B[Imperial Military]
+                        A --> C[Imperial Intelligence]
+                        A --> D[Regional Governors]
+                        
+                        E[Rebel Alliance] --> F[Alliance Military]
+                        E --> G[Alliance Intelligence]
+                        E --> H[Rebel Cells]
+                        
+                        I[Criminal Organizations] --> J[Hutt Cartels]
+                        I --> K[Black Sun]
+                        I --> L[Local Gangs]
+                        
+                        M[Independent Systems] --> N[Corporate Sectors]
+                        M --> O[Neutral Worlds]
+                        M --> P[Trade Organizations]
+                        
+                        Q[Force Users] --> R[Hidden Jedi]
+                        Q --> S[Dark Side Cults]
+                        Q --> T[Force Traditions]
+                        
+                        A -.->|Opposes| E
+                        E -.->|Fights| A
+                        I -.->|Exploits| A
+                        I -.->|Profits from| E
+                        M -.->|Avoids| A
+                        M -.->|Sometimes aids| E
+                        Q -.->|Hunted by| A
+                        Q -.->|Sought by| E
+                        
+                        style A fill:#f44336
+                        style E fill:#4caf50
+                        style I fill:#ff9800
+                        style M fill:#2196f3
+                        style Q fill:#9c27b0
+                </div>
+            </div>
+
+            <h3>Faction Development Over Time</h3>
+            <p>Factions shouldn't be static. They should grow, decline, change leadership, form alliances, and split apart based on galactic events and player actions. A small rebel cell might become a sector-wide resistance movement, or a corrupt governor might declare independence from the Empire.</p>
+
+            <div class="faction-evolution">
+                <div class="example-box">
+                    <h4>Example: Faction Development Timeline</h4>
+                    
+                    <h5>Sessions 1-5: Initial State</h5>
+                    <ul>
+                        <li><strong>Local Imperial Garrison:</strong> Standard occupation force, corrupt but stable</li>
+                        <li><strong>Rebel Cell:</strong> 12 members, hiding in asteroid base</li>
+                        <li><strong>Hutt Crime Family:</strong> Controls spice trade, bribes Imperials</li>
+                        <li><strong>Merchant Guild:</strong> Neutral, pays protection to all sides</li>
+                    </ul>
+                    
+                    <h5>Sessions 6-10: Player Actions Create Change</h5>
+                    <ul>
+                        <li><strong>Imperial Garrison:</strong> New hardline commander arrives, ends corruption</li>
+                        <li><strong>Rebel Cell:</strong> Recruits new members, establishes safehouse</li>
+                        <li><strong>Hutt Crime Family:</strong> Loses Imperial protection, seeks new allies</li>
+                        <li><strong>Merchant Guild:</strong> Forced to choose sides, splits into factions</li>
+                    </ul>
+                    
+                    <h5>Sessions 11-15: Escalation</h5>
+                    <ul>
+                        <li><strong>Imperial Garrison:</strong> Requests reinforcements, begins crackdown</li>
+                        <li><strong>Rebel Cell:</strong> Coordinates with other cells, major operation planned</li>
+                        <li><strong>Hutt Crime Family:</strong> Allies with rebels for mutual benefit</li>
+                        <li><strong>Merchant Guild:</strong> Pro-rebel faction goes underground</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Creating Original Factions</h3>
+            <p>While using established Star Wars factions provides familiar touchstones, creating your own organizations allows for stories that feel fresh while maintaining the Star Wars feel. Focus on clear motivations, distinctive methods, and interesting internal conflicts.</p>
+        </section>
+
+        <section class="setting-creation">
+            <h2>Building Your Corner of the Galaxy</h2>
+            
+            <h3>Sector Design Philosophy</h3>
+            <p>Whether you create entirely new systems or expand on existing ones, your campaign setting should feel lived-in and authentic to the Star Wars universe. Every planet should have a reason to exist in your story and contribute to the overall narrative.</p>
+
+            <div class="sector-design">
+                <canvas id="sectorMap" width="600" height="400"></canvas>
+            </div>
+
+            <script>
+                const sectorCanvas = document.getElementById('sectorMap');
+                const sectorCtx = sectorCanvas.getContext('2d');
+                
+                // Draw example sector map
+                sectorCtx.fillStyle = '#000';
+                sectorCtx.fillRect(0, 0, 600, 400);
+                
+                // Stars background
+                for (let i = 0; i < 100; i++) {
+                    const x = Math.random() * 600;
+                    const y = Math.random() * 400;
+                    const size = Math.random() * 2;
+                    sectorCtx.fillStyle = '#FFF';
+                    sectorCtx.beginPath();
+                    sectorCtx.arc(x, y, size, 0, 2 * Math.PI);
+                    sectorCtx.fill();
+                }
+                
+                // Sample systems
+                const systems = [
+                    {name: 'Nexus Prime', x: 300, y: 200, type: 'capital', color: '#4CAF50', desc: 'Sector Capital'},
+                    {name: 'Forge World', x: 150, y: 120, type: 'industrial', color: '#FF9800', desc: 'Manufacturing'},
+                    {name: 'Agri-Seven', x: 450, y: 280, type: 'agricultural', color: '#8BC34A', desc: 'Food Production'},
+                    {name: 'Haven Station', x: 200, y: 320, type: 'station', color: '#2196F3', desc: 'Trade Hub'},
+                    {name: 'Shadowport', x: 500, y: 100, type: 'criminal', color: '#F44336', desc: 'Smuggler Base'},
+                    {name: 'The Drift', x: 100, y: 300, type: 'frontier', color: '#9E9E9E', desc: 'Unexplored'}
+                ];
+                
+                // Draw hyperspace routes
+                sectorCtx.strokeStyle = '#444';
+                sectorCtx.lineWidth = 2;
+                sectorCtx.setLineDash([5, 5]);
+                
+                // Connect major systems
+                const routes = [
+                    [0, 1], [0, 2], [0, 3], [1, 3], [2, 4], [3, 5]
+                ];
+                
+                routes.forEach(route => {
+                    const start = systems[route[0]];
+                    const end = systems[route[1]];
+                    sectorCtx.beginPath();
+                    sectorCtx.moveTo(start.x, start.y);
+                    sectorCtx.lineTo(end.x, end.y);
+                    sectorCtx.stroke();
+                });
+                
+                sectorCtx.setLineDash([]);
+                
+                // Draw systems
+                systems.forEach(system => {
+                    // System marker
+                    sectorCtx.fillStyle = system.color;
+                    sectorCtx.beginPath();
+                    sectorCtx.arc(system.x, system.y, 8, 0, 2 * Math.PI);
+                    sectorCtx.fill();
+                    
+                    sectorCtx.strokeStyle = '#FFF';
+                    sectorCtx.lineWidth = 2;
+                    sectorCtx.stroke();
+                    
+                    // System name
+                    sectorCtx.fillStyle = '#FFF';
+                    sectorCtx.font = '12px Arial';
+                    sectorCtx.textAlign = 'center';
+                    sectorCtx.fillText(system.name, system.x, system.y - 15);
+                    
+                    // System type
+                    sectorCtx.font = '10px Arial';
+                    sectorCtx.fillStyle = '#CCC';
+                    sectorCtx.fillText(system.desc, system.x, system.y + 25);
+                });
+                
+                // Add title and legend
+                sectorCtx.fillStyle = '#FFF';
+                sectorCtx.font = 'bold 16px Arial';
+                sectorCtx.textAlign = 'center';
+                sectorCtx.fillText('Example Sector: Outer Reach', 300, 25);
+                
+                // Legend
+                sectorCtx.font = '12px Arial';
+                sectorCtx.textAlign = 'left';
+                sectorCtx.fillText('Hyperspace Routes', 20, 380);
+                sectorCtx.strokeStyle = '#444';
+                sectorCtx.lineWidth = 2;
+                sectorCtx.setLineDash([5, 5]);
+                sectorCtx.beginPath();
+                sectorCtx.moveTo(130, 375);
+                sectorCtx.lineTo(180, 375);
+                sectorCtx.stroke();
+                sectorCtx.setLineDash([]);
+            </script>
+
+            <h3>Planet Creation Framework</h3>
+            <p>Each world in your sector should serve a purpose in your campaign. Use a simple framework to quickly generate planets that feel distinct and contribute to your stories.</p>
+
+            <div class="planet-framework">
+                <div class="example-box">
+                    <h4>The Five-Element Planet Creation Method</h4>
+                    
+                    <h5>1. Primary Function</h5>
+                    <p>What role does this world play in the galactic economy?</p>
+                    <ul>
+                        <li>Agricultural world, mining colony, manufacturing center</li>
+                        <li>Trade hub, military base, prison planet</li>
+                        <li>Research facility, tourist destination, religious site</li>
+                    </ul>
+                    
+                    <h5>2. Dominant Environment</h5>
+                    <p>What defines the planet's physical character?</p>
+                    <ul>
+                        <li>Desert, jungle, ocean, ice, volcanic</li>
+                        <li>Urban ecumenopolis, space stations, underground cities</li>
+                        <li>Multiple biomes, artificial environments, unique phenomena</li>
+                    </ul>
+                    
+                    <h5>3. Political Situation</h5>
+                    <p>Who controls this world and how stable is that control?</p>
+                    <ul>
+                        <li>Imperial occupation, independent government, corporate control</li>
+                        <li>Rebel sympathizers, neutral territory, contested space</li>
+                        <li>Recent regime change, civil unrest, external threats</li>
+                    </ul>
+                    
+                    <h5>4. Notable Inhabitants</h5>
+                    <p>What species live here and what makes them interesting?</p>
+                    <ul>
+                        <li>Dominant species, minority populations, recent immigrants</li>
+                        <li>Cultural traditions, social tensions, unique adaptations</li>
+                        <li>Important individuals, faction representatives, local legends</li>
+                    </ul>
+                    
+                    <h5>5. Adventure Opportunities</h5>
+                    <p>What kinds of stories can this world support?</p>
+                    <ul>
+                        <li>Environmental challenges, political intrigue, hidden secrets</li>
+                        <li>Resource conflicts, cultural misunderstandings, ancient mysteries</li>
+                        <li>Military operations, rescue missions, exploration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Interconnected Storytelling</h3>
+            <p>The best campaign settings feel like living ecosystems where events on one world affect others. Trade disruptions on an agricultural world create food shortages elsewhere. A successful rebel operation in one system encourages uprisings in neighboring sectors.</p>
+        </section>
+
+        <section class="campaign-themes">
+            <h2>Thematic Campaign Types</h2>
+            
+            <h3>The Rebellion Campaign</h3>
+            <p>The classic underdog story of freedom fighters battling tyranny. Characters start as small-time rebels and grow into leaders of the galactic resistance. Themes include hope against overwhelming odds, the cost of freedom, and personal sacrifice for the greater good.</p>
+
+            <div class="campaign-type-breakdown">
+                <div class="campaign-card">
+                    <h4>Rebellion Campaign Structure</h4>
+                    <p><strong>Act 1:</strong> Local resistance cell, small victories against Imperial forces</p>
+                    <p><strong>Act 2:</strong> Growing network, major operations, Imperial crackdowns</p>
+                    <p><strong>Act 3:</strong> Sector-wide rebellion, decisive battles, liberation</p>
+                    
+                    <p><strong>Key Themes:</strong></p>
+                    <ul>
+                        <li>Hope triumphing over despair</li>
+                        <li>Unity despite differences</li>
+                        <li>The price of freedom</li>
+                        <li>David vs Goliath conflicts</li>
+                    </ul>
+                    
+                    <p><strong>Typical Adventures:</strong></p>
+                    <ul>
+                        <li>Rescue missions and prison breaks</li>
+                        <li>Intelligence gathering and sabotage</li>
+                        <li>Recruiting new allies and resources</li>
+                        <li>Protecting civilians from Imperial retaliation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Exploration Campaign</h3>
+            <p>Bold explorers mapping the Unknown Regions or investigating ancient mysteries. Characters might be corporate scouts, military reconnaissance, or independent adventurers seeking fame and fortune in uncharted space.</p>
+
+            <div class="campaign-card">
+                <h4>Exploration Campaign Structure</h4>
+                <p><strong>Act 1:</strong> Initial discoveries, establishing base operations</p>
+                <p><strong>Act 2:</strong> Major finds, dangerous encounters, rival expeditions</p>
+                <p><strong>Act 3:</strong> Ultimate discovery, defending claims, changing the galaxy</p>
+                
+                <p><strong>Key Themes:</strong></p>
+                <ul>
+                    <li>The thrill of discovery</li>
+                    <li>Humanity vs the unknown</li>
+                    <li>Scientific wonder vs exploitation</li>
+                    <li>First contact scenarios</li>
+                </ul>
+                
+                <p><strong>Typical Adventures:</strong></p>
+                <ul>
+                    <li>Surveying dangerous new worlds</li>
+                    <li>First contact with alien species</li>
+                    <li>Uncovering ancient ruins and artifacts</li>
+                    <li>Competing with rival exploration teams</li>
+                </ul>
+            </div>
+
+            <h3>The Criminal Enterprise Campaign</h3>
+            <p>Smugglers, bounty hunters, and crime syndicate members operating in the galaxy's shadows. Characters navigate the complex relationships between criminal organizations while avoiding Imperial entanglements and maintaining their own moral codes.</p>
+
+            <div class="campaign-card">
+                <h4>Criminal Enterprise Structure</h4>
+                <p><strong>Act 1:</strong> Small-time jobs, establishing reputation</p>
+                <p><strong>Act 2:</strong> Major scores, syndicate politics, law enforcement pressure</p>
+                <p><strong>Act 3:</strong> Criminal empire or redemption arc, final big score</p>
+                
+                <p><strong>Key Themes:</strong></p>
+                <ul>
+                    <li>Honor among thieves</li>
+                    <li>Survival in hostile environment</li>
+                    <li>Loyalty vs self-interest</li>
+                    <li>Redemption and second chances</li>
+                </ul>
+                
+                <p><strong>Typical Adventures:</strong></p>
+                <ul>
+                    <li>Heists and smuggling runs</li>
+                    <li>Bounty hunting and debt collection</li>
+                    <li>Territorial wars between crime families</li>
+                    <li>Avoiding or corrupting law enforcement</li>
+                </ul>
+            </div>
+
+            <h3>The Force User Campaign</h3>
+            <p>Hidden Jedi survivors, dark side cults, or alternative Force traditions seeking knowledge, redemption, or power. These campaigns explore the mystical side of Star Wars and the eternal struggle between light and dark.</p>
+
+            <div class="campaign-card">
+                <h4>Force User Campaign Structure</h4>
+                <p><strong>Act 1:</strong> Discovering Force sensitivity, initial training</p>
+                <p><strong>Act 2:</strong> Confronting dark side temptations, finding mentors</p>
+                <p><strong>Act 3:</strong> Mastering abilities, confronting destiny, choosing path</p>
+                
+                <p><strong>Key Themes:</strong></p>
+                <ul>
+                    <li>Power and responsibility</li>
+                    <li>Light vs dark side temptation</li>
+                    <li>Master and apprentice relationships</li>
+                    <li>Destiny vs free will</li>
+                </ul>
+                
+                <p><strong>Typical Adventures:</strong></p>
+                <ul>
+                    <li>Seeking Jedi artifacts and knowledge</li>
+                    <li>Avoiding Imperial Inquisitors</li>
+                    <li>Confronting dark side threats</li>
+                    <li>Training new Force sensitives</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="session-zero">
+            <h2>Session Zero - Building Together</h2>
+            
+            <h3>Collaborative Campaign Creation</h3>
+            <p>The best campaigns emerge from collaboration between GM and players. Session Zero is where you establish the campaign's foundation, ensure everyone's on the same page, and create investment in the shared story you're about to tell.</p>
+
+            <div class="session-zero-agenda">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Session Zero Begins] --> B[Discuss Campaign Concept]
+                        B --> C[Choose Era and Setting]
+                        C --> D[Establish Tone and Themes]
+                        D --> E[Create Characters Together]
+                        E --> F[Build Relationships]
+                        F --> G[Set Expectations]
+                        G --> H[Plan First Session]
+                        
+                        B1[What kind of heroes?] --> B
+                        B2[What themes interest you?] --> B
+                        B3[What do you want to explore?] --> B
+                        
+                        E1[How do characters know each other?] --> E
+                        E2[What brought them together?] --> E
+                        E3[What are their shared goals?] --> E
+                        
+                        G1[Schedule and commitment] --> G
+                        G2[Table rules and safety] --> G
+                        G3[Communication preferences] --> G
+                        
+                        style A fill:#4caf50
+                        style H fill:#f44336
+                        style B fill:#2196f3
+                        style E fill:#ff9800
+                        style G fill:#9c27b0
+                </div>
+            </div>
+
+            <h3>Character Integration</h3>
+            <p>Help players create characters that fit naturally into your campaign world and have built-in reasons to work together. Avoid the "strangers in a tavern" problem by establishing prior relationships, shared backgrounds, or common goals.</p>
+
+            <div class="integration-techniques">
+                <div class="example-box">
+                    <h4>Character Connection Methods</h4>
+                    
+                    <h5>Shared Background</h5>
+                    <ul>
+                        <li>Former Imperial Academy classmates who defected</li>
+                        <li>Survivors of the same planetary disaster</li>
+                        <li>Members of the same military unit or rebel cell</li>
+                    </ul>
+                    
+                    <h5>Professional Relationships</h5>
+                    <ul>
+                        <li>Crew of the same smuggling ship</li>
+                        <li>Team of specialists assembled for specific mission</li>
+                        <li>Employees of the same corporation or organization</li>
+                    </ul>
+                    
+                    <h5>Family and Personal Bonds</h5>
+                    <ul>
+                        <li>Siblings or cousins scattered by galactic events</li>
+                        <li>Mentor-student relationships across generations</li>
+                        <li>Friends who've supported each other through hardship</li>
+                    </ul>
+                    
+                    <h5>Circumstantial Unity</h5>
+                    <ul>
+                        <li>Prisoners who escaped together</li>
+                        <li>Refugees fleeing the same catastrophe</li>
+                        <li>Witnesses to the same crime who must hide together</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Establishing Campaign Boundaries</h3>
+            <p>Clearly communicate what kinds of content and themes your campaign will and won't explore. Star Wars can accommodate many different tones, from lighthearted adventure to serious political drama, but everyone should know what to expect.</p>
+        </section>
+
+        <section class="campaign-tools">
+            <h2>Tools and Techniques for Campaign Management</h2>
+            
+            <h3>The Campaign Bible</h3>
+            <p>Maintain a living document that tracks all the important details of your campaign world. This becomes invaluable as your campaign grows in complexity and helps maintain consistency across sessions.</p>
+
+            <div class="bible-contents">
+                <div class="example-box">
+                    <h4>Campaign Bible Essential Sections</h4>
+                    
+                    <h5>World Information</h5>
+                    <ul>
+                        <li>Sector map with system details</li>
+                        <li>Important planets and their characteristics</li>
+                        <li>Travel times and hyperspace routes</li>
+                        <li>Political boundaries and control</li>
+                    </ul>
+                    
+                    <h5>Organizations and Factions</h5>
+                    <ul>
+                        <li>Leadership hierarchies and goals</li>
+                        <li>Resources and capabilities</li>
+                        <li>Relationships with other factions</li>
+                        <li>Recent actions and current status</li>
+                    </ul>
+                    
+                    <h5>Non-Player Characters</h5>
+                    <ul>
+                        <li>Names, descriptions, and motivations</li>
+                        <li>Relationships with PCs and each other</li>
+                        <li>Current status and location</li>
+                        <li>Character voices and mannerisms</li>
+                    </ul>
+                    
+                    <h5>Timeline and Events</h5>
+                    <ul>
+                        <li>Session summaries and major events</li>
+                        <li>Character development milestones</li>
+                        <li>Faction actions and world changes</li>
+                        <li>Unresolved plot threads and future plans</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Managing Multiple Storylines</h3>
+            <p>Use tools and techniques to track the various plot threads, character arcs, and faction developments that make up your campaign's rich tapestry.</p>
+
+            <div class="storyline-tracking">
+                <canvas id="storylineTracker" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const storyCanvas = document.getElementById('storylineTracker');
+                const storyCtx = storyCanvas.getContext('2d');
+                
+                // Create storyline tracking visualization
+                storyCtx.fillStyle = '#333';
+                storyCtx.font = 'bold 16px Arial';
+                storyCtx.textAlign = 'center';
+                storyCtx.fillText('Multi-Storyline Campaign Tracking', 300, 25);
+                
+                // Storylines
+                const storylines = [
+                    {name: 'Main Plot: Imperial Conspiracy', status: 'Active', sessions: 8, color: '#F44336'},
+                    {name: 'Character Arc: Jedi Training', status: 'Developing', sessions: 5, color: '#2196F3'},
+                    {name: 'Faction Plot: Hutt War', status: 'Background', sessions: 3, color: '#FF9800'},
+                    {name: 'Mystery: Missing Shipments', status: 'Investigating', sessions: 4, color: '#4CAF50'},
+                    {name: 'Romance: Pilot & Mechanic', status: 'Subplot', sessions: 6, color: '#9C27B0'}
+                ];
+                
+                let currentY = 60;
+                storylines.forEach(story => {
+                    // Draw progress bar
+                    const maxWidth = 400;
+                    const progressWidth = (story.sessions / 10) * maxWidth;
+                    
+                    storyCtx.fillStyle = '#E0E0E0';
+                    storyCtx.fillRect(150, currentY, maxWidth, 25);
+                    
+                    storyCtx.fillStyle = story.color;
+                    storyCtx.fillRect(150, currentY, progressWidth, 25);
+                    
+                    storyCtx.strokeStyle = '#333';
+                    storyCtx.lineWidth = 2;
+                    storyCtx.strokeRect(150, currentY, maxWidth, 25);
+                    
+                    // Add labels
+                    storyCtx.fillStyle = '#333';
+                    storyCtx.font = '12px Arial';
+                    storyCtx.textAlign = 'left';
+                    storyCtx.fillText(story.name, 20, currentY + 17);
+                    
+                    storyCtx.textAlign = 'center';
+                    storyCtx.fillText(`${story.sessions}/10`, 350, currentY + 17);
+                    
+                    storyCtx.textAlign = 'right';
+                    storyCtx.fillText(story.status, 580, currentY + 17);
+                    
+                    currentY += 35;
+                });
+                
+                // Add headers
+                storyCtx.fillStyle = '#666';
+                storyCtx.font = 'bold 12px Arial';
+                storyCtx.textAlign = 'left';
+                storyCtx.fillText('Storyline', 20, 50);
+                storyCtx.textAlign = 'center';
+                storyCtx.fillText('Progress', 350, 50);
+                storyCtx.textAlign = 'right';
+                storyCtx.fillText('Status', 580, 50);
+                
+                storyCtx.fillStyle = '#999';
+                storyCtx.font = '10px Arial';
+                storyCtx.textAlign = 'center';
+                storyCtx.fillText('Sessions involved in storyline', 300, 280);
+            </script>
+
+            <h3>Player Engagement Between Sessions</h3>
+            <p>Keep the campaign alive between sessions through recap emails, character journals, faction updates, or collaborative world-building. This maintains investment and helps players remember complex ongoing storylines.</p>
+        </section>
+
+        <section class="campaign-evolution">
+            <h2>Evolving Your Campaign</h2>
+            
+            <h3>Responding to Player Choices</h3>
+            <p>Great campaigns evolve based on player decisions and interests. If your players become fascinated with a minor NPC or decide to pursue a subplot you barely planned, embrace it. The best campaigns feel player-driven even when carefully guided by the GM.</p>
+
+            <div class="adaptation-strategies">
+                <div class="example-box">
+                    <h4>Campaign Adaptation Techniques</h4>
+                    
+                    <h5>The Promotion Strategy</h5>
+                    <p><strong>When:</strong> Players show unexpected interest in minor elements</p>
+                    <p><strong>How:</strong> Promote background NPCs, locations, or plot elements to major status</p>
+                    <p><strong>Example:</strong> Cantina owner becomes key information broker</p>
+                    
+                    <h5>The Pivot Strategy</h5>
+                    <p><strong>When:</strong> Players consistently avoid your planned content</p>
+                    <p><strong>How:</strong> Reshape your plans around their actual interests and goals</p>
+                    <p><strong>Example:</strong> Military campaign becomes political intrigue</p>
+                    
+                    <h5>The Integration Strategy</h5>
+                    <p><strong>When:</strong> Players create new elements through roleplay</p>
+                    <p><strong>How:</strong> Incorporate their creations into your larger narrative</p>
+                    <p><strong>Example:</strong> Player-invented rival becomes recurring antagonist</p>
+                    
+                    <h5>The Escalation Strategy</h5>
+                    <p><strong>When:</strong> Current content feels too small-scale</p>
+                    <p><strong>How:</strong> Raise stakes and expand scope naturally</p>
+                    <p><strong>Example:</strong> Local rebellion becomes sector-wide resistance</p>
+                </div>
+            </div>
+
+            <h3>Handling Campaign Fatigue</h3>
+            <p>Long campaigns can suffer from fatigue as storylines drag or players lose interest. Recognize the signs early and have strategies for reinvigorating your campaign or bringing it to a satisfying conclusion.</p>
+
+            <h3>Planning Campaign Endings</h3>
+            <p>Every campaign should have a satisfying conclusion, whether planned from the beginning or developed as the story progresses. Great endings provide closure for character arcs, resolve major plot threads, and leave players feeling their heroes' stories mattered.</p>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: Campaign Concept Development</h3>
+            <p>Create three different campaign concepts:</p>
+            <ol>
+                <li>Choose different eras and themes for each concept</li>
+                <li>Define the core conflict and player roles</li>
+                <li>Outline the three-act structure for each campaign</li>
+                <li>Identify key factions and their relationships</li>
+                <li>Plan the opening session for each concept</li>
+            </ol>
+            
+            <h3>Activity Two: Sector Creation</h3>
+            <p>Design a campaign setting:</p>
+            <ul>
+                <li>Create 5-8 star systems with distinct purposes</li>
+                <li>Design 2-3 major factions with conflicting goals</li>
+                <li>Plan hyperspace routes and travel considerations</li>
+                <li>Develop current political tensions and opportunities</li>
+                <li>Create hooks for different types of adventures</li>
+            </ul>
+            
+            <h3>Activity Three: Story Arc Planning</h3>
+            <p>Plan interconnected story arcs:</p>
+            <ol>
+                <li>Design one major campaign arc spanning 15-20 sessions</li>
+                <li>Create 2-3 character-specific arcs that intersect with the main plot</li>
+                <li>Plan how faction actions will evolve over time</li>
+                <li>Identify key decision points that could alter the story direction</li>
+                <li>Prepare contingency plans for different player choices</li>
+            </ol>
+            
+            <h3>Activity Four: Session Zero Simulation</h3>
+            <p>Practice collaborative campaign creation:</p>
+            <ul>
+                <li>Create a campaign pitch and present it to friends or fellow GMs</li>
+                <li>Practice asking questions that draw out player interests</li>
+                <li>Develop techniques for integrating player ideas into your concept</li>
+                <li>Plan how to handle conflicting player expectations</li>
+                <li>Create templates for character integration and relationships</li>
+            </ul>
+        </section>
+
+        <section class="advanced-campaign-concepts">
+            <h2>Advanced Campaign Concepts</h2>
+            
+            <h3>Multi-Generational Campaigns</h3>
+            <p>Some campaigns span decades or centuries, allowing players to explore the long-term consequences of their actions and play descendants of their original characters.</p>
+            
+            <h3>Alternate Timeline Campaigns</h3>
+            <p>Explore "what if" scenarios where key Star Wars events unfolded differently, creating familiar yet fresh storytelling opportunities.</p>
+            
+            <h3>Cross-System Integration</h3>
+            <p>Techniques for incorporating elements from different Star Wars RPG systems or even other game systems to create unique hybrid experiences.</p>
+            
+            <h3>Collaborative World-Building</h3>
+            <p>Advanced techniques for sharing creative control with players, allowing them to contribute to setting creation and major story decisions.</p>
+        </section>
+
+      
+    </main>
+
+    <footer>
+        <p>Your campaign will become legend not through perfect planning, but through the collaborative stories you create with your players. Every choice they make, every victory and setback, adds another chapter to your unique corner of the Star Wars galaxy.</p>
+      
+    </footer>
+
+   
+</body>
+</html>

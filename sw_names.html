@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>150 Star Wars RPG Character Names</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: 
+                radial-gradient(ellipse at top, #000000 0%, #1a1a1a 40%, #2d2d2d 100%),
+                linear-gradient(135deg, #000000 0%, #0d1117 25%, #1c1c1c 50%, #2d2d2d 75%, #1a1a1a 100%);
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 85%, rgba(255, 255, 255, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 45% 55%, rgba(255, 255, 255, 0.02) 0%, transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(13, 17, 23, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 
+                0 0 50px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.1);
+            background: linear-gradient(45deg, #ffffff, #e6e6e6, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        h2 {
+            color: #ffffff;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .name-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .name-card {
+            background: linear-gradient(145deg, rgba(28, 28, 28, 0.8), rgba(45, 45, 45, 0.8));
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 2px 15px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        .name-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-left-color: rgba(255, 255, 255, 0.8);
+            background: linear-gradient(145deg, rgba(28, 28, 28, 0.9), rgba(45, 45, 45, 0.9));
+        }
+        .name {
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.1em;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        .origin {
+            font-size: 0.9em;
+            color: #cccccc;
+            font-style: italic;
+        }
+        .race-suggestion {
+            font-size: 0.8em;
+            color: #aaaaaa;
+            margin-top: 5px;
+        }
+        .location-tag {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.7em;
+            margin-top: 5px;
+            display: inline-block;
+            text-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .force-tag {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.6em;
+            margin-left: 5px;
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .tips-section {
+            background: rgba(28, 28, 28, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .example-box {
+            background: rgba(45, 45, 45, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(5px);
+        }
+        .analogy-box {
+            background: rgba(26, 26, 26, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(5px);
+        }
+        .starwars-box {
+            background: rgba(35, 35, 35, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(8px);
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            max-width: 100%;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        .system-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .system-item {
+            background: rgba(28, 28, 28, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .imperial-text {
+            color: #ff4444;
+            text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
+        }
+        .jedi-text {
+            color: #44ff44;
+            text-shadow: 0 0 5px rgba(68, 255, 68, 0.5);
+        }
+        .sith-text {
+            color: #ff4444;
+            text-shadow: 0 0 5px rgba(255, 68, 68, 0.7);
+        }
+        .mandalorian-text {
+            color: #4488ff;
+            text-shadow: 0 0 5px rgba(68, 136, 255, 0.5);
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="starfield"></div>
+    
+    <div class="container">
+        <h1>⭐ 150 Star Wars RPG Character Names ⭐</h1>
+        
+        <div class="tips-section">
+            <h2>🌌 A Galaxy Far, Far Away: Diverse Naming Traditions</h2>
+            <p>The Star Wars galaxy spans thousands of systems and countless species, each with unique naming conventions influenced by their homeworld, culture, and galactic history. From the <span class="imperial-text">disciplined nomenclature of Imperial worlds</span> to the <span class="jedi-text">mystical traditions of Force-sensitive orders</span>, names carry deep meaning and cultural significance across the galaxy.</p>
+            
+            <div class="system-legend">
+                <div class="system-item"><strong>Core Worlds</strong><br>Refined & Formal</div>
+                <div class="system-item"><strong>Mid Rim</strong><br>Practical & Diverse</div>
+                <div class="system-item"><strong>Outer Rim</strong><br>Frontier & Hardy</div>
+                <div class="system-item"><strong>Coruscant</strong><br>Cosmopolitan Elite</div>
+                <div class="system-item"><strong>Mandalore</strong><br>Warrior Clans</div>
+                <div class="system-item"><strong>Ryloth</strong><br>Twi'lek Traditional</div>
+                <div class="system-item"><strong>Kashyyyk</strong><br>Wookiee Sounds</div>
+                <div class="system-item"><strong>Tatooine</strong><br>Desert Practical</div>
+                <div class="system-item"><strong>Naboo</strong><br>Elegant & Artistic</div>
+                <div class="system-item"><strong>Alderaan</strong><br>Noble Heritage</div>
+                <div class="system-item"><strong>Wild Space</strong><br>Unknown Origins</div>
+                <div class="system-item"><strong>Unknown Regions</strong><br>Mysterious & Ancient</div>
+            </div>
+        </div>
+
+        <div class="mermaid">
+            graph TD
+                A[Star Wars Character Creation] --> B[Choose Species]
+                A --> C[Choose Background]
+                A --> D[Choose Homeworld]
+                A --> E[Choose Name]
+                E --> F[Consider Regional Origin]
+                E --> G[Cultural Affiliation]
+                E --> H[Force Sensitivity]
+                E --> I[Professional Identity]
+                F --> J[Core Worlds - Formal]
+                F --> K[Outer Rim - Practical]
+                F --> L[Mid Rim - Diverse]
+                G --> M[Imperial - Structured]
+                G --> N[Rebel - Codenames]
+                G --> O[Criminal - Aliases]
+                H --> P[Jedi - Mystical]
+                H --> Q[Sith - Dark]
+                H --> R[Force Tradition]
+                I --> S[Pilot Callsigns]
+                I --> T[Military Ranks]
+                I --> U[Merchant Names]
+                J --> V[Final Name Choice]
+                K --> V
+                L --> V
+                M --> V
+                N --> V
+                O --> V
+                P --> V
+                Q --> V
+                R --> V
+                S --> V
+                T --> V
+                U --> V
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="starwarsWheel" width="550" height="550"></canvas>
+            <p><em>Galactic Origin Selector - Click to discover your character's homeworld!</em></p>
+        </div>
+
+        <h2>⚔️ Male Character Names (50)</h2>
+        <div class="name-grid" id="maleNames"></div>
+
+        <h2>👑 Female Character Names (50)</h2>
+        <div class="name-grid" id="femaleNames"></div>
+
+        <h2>🌟 Gender-Neutral Character Names (50)</h2>
+        <div class="name-grid" id="neutralNames"></div>
+
+        <div class="starwars-box">
+            <h3>⭐ Star Wars RPG Specific Considerations</h3>
+            <p><strong>Species Heritage:</strong> Each species has distinct naming patterns. Humans vary by planet, while non-humans follow species-specific conventions.</p>
+            <p><strong>Regional Variations:</strong> Core World names tend to be formal and refined, while Outer Rim names are practical and straightforward.</p>
+            <p><strong>Force Traditions:</strong> <span class="jedi-text">Jedi</span> often adopt new names upon training, while <span class="sith-text">Sith</span> take dark titles reflecting their nature.</p>
+            <p><strong>Professional Identity:</strong> Pilots use callsigns, military personnel have ranks, and criminals adopt aliases for protection.</p>
+        </div>
+
+        <div class="example-box">
+            <h3>🚀 Galactic Culture Applications</h3>
+            <p><strong>Imperial Officer:</strong> "Commander Theron Kaine" reflects the Empire's preference for strong, authoritative names with military precision.</p>
+            <p><strong>Outer Rim Smuggler:</strong> "Jax 'Stardust' Varro" combines a simple first name with an earned nickname, typical of frontier culture.</p>
+            <p><strong>Coruscant Noble:</strong> "Lady Seraphina Valorian" demonstrates the refined, multi-syllabic names favored by Core World aristocracy.</p>
+            <p><strong>Mandalorian Warrior:</strong> "Kira Vizsla" follows traditional clan naming with practical, strong-sounding given names.</p>
+        </div>
+
+        <div class="analogy-box">
+            <h3>🌌 Galactic Naming Patterns</h3>
+            <p><strong>Like Colonial America:</strong> Outer Rim settlements develop practical, descriptive names similar to frontier communities in Earth's history.</p>
+            <p><strong>Like Medieval Nobility:</strong> Core World families maintain elaborate naming traditions reflecting status and lineage.</p>
+            <p><strong>Like Military Tradition:</strong> Imperial and Republic forces follow structured naming conventions similar to real-world military organizations.</p>
+        </div>
+
+        <div class="tips-section">
+            <h2>🛸 Advanced Star Wars Naming Strategies</h2>
+            
+            <h3>Species-Specific Patterns</h3>
+            <p><strong>Human:</strong> Varies by homeworld - Core Worlds favor formal names, Outer Rim prefers practical ones.</p>
+            <p><strong>Twi'lek:</strong> Often have apostrophes and flowing sounds, with clan names indicating heritage.</p>
+            <p><strong>Rodian:</strong> Names typically include clicks and unusual consonant combinations.</p>
+            <p><strong>Mon Calamari:</strong> Names often reference water, tides, or maritime concepts.</p>
+            <p><strong>Wookiee:</strong> Growling sounds represented by combinations of consonants and long vowels.</p>
+            <p><strong>Zabrak:</strong> Sharp, angular names reflecting their warrior culture and facial tattoos.</p>
+            
+            <h3>Regional and Cultural Naming</h3>
+            <p><strong>Core Worlds:</strong> Formal, often Latin-influenced names with family lineages</p>
+            <p><strong>Mid Rim:</strong> Balanced between practical and formal, showing cultural diversity</p>
+            <p><strong>Outer Rim:</strong> Simple, functional names often related to local environment or occupation</p>
+            <p><strong>Hutt Space:</strong> Names influenced by criminal culture and alien linguistics</p>
+
+            <h3>Force User Naming Traditions</h3>
+            <p>Force-sensitive individuals often adopt new identities:</p>
+            <ul>
+                <li><strong class="jedi-text">Jedi:</strong> Peaceful, nature-inspired names or titles reflecting wisdom</li>
+                <li><strong class="sith-text">Sith:</strong> Dark, intimidating titles often incorporating "Darth" prefix</li>
+                <li><strong>Gray Jedi:</strong> Names reflecting balance or neutrality</li>
+                <li><strong>Ancient Orders:</strong> Mystical names from forgotten Force traditions</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <h3>📡 Era-Specific Naming</h3>
+            <p><strong>Old Republic Era:</strong> Names tend to be more formal and ancient-sounding, reflecting the galaxy's younger, more mystical age.</p>
+            <p><strong>Imperial Era:</strong> Human names dominate official records, with alien names often suppressed or simplified.</p>
+            <p><strong>New Republic Era:</strong> Greater diversity in naming as non-human species regain cultural prominence.</p>
+            <p><strong>Legacy Era:</strong> Hybrid naming reflecting centuries of cultural mixing and evolution.</p>
+        </div>
+
+        <div class="starwars-box">
+            <h3>🌟 Unique Star Wars Elements</h3>
+            <p><strong>Pilot Callsigns:</strong> Starfighter pilots earn nicknames based on personality, flying style, or memorable incidents.</p>
+            <p><strong>Criminal Aliases:</strong> Smugglers, bounty hunters, and other criminals use false names for protection and reputation.</p>
+            <p><strong>Droid Designations:</strong> Droid names follow manufacturer patterns but may develop personalities and preferred names.</p>
+            <p><strong>Clone Identities:</strong> Clone troopers adopt individual names and nicknames to assert their unique identities.</p>
+        </div>
+
+        <div class="tips-section">
+            <h2>🚀 Related Topics to Explore</h2>
+            <ul>
+                <li><strong>Galactic Basic:</strong> How the common language influences naming across species</li>
+                <li><strong>Historical Eras:</strong> How major galactic events affect naming trends</li>
+                <li><strong>Force Sensitivity:</strong> How Force traditions influence identity and naming</li>
+                <li><strong>Military Service:</strong> Rank structures and their impact on personal identity</li>
+                <li><strong>Criminal Underworld:</strong> Alias creation and reputation management</li>
+                <li><strong>Corporate Culture:</strong> How mega-corporations influence employee naming</li>
+                <li><strong>Alien Integration:</strong> How non-human names adapt to galactic society</li>
+            </ul>
+        </div>
+
+        <div class="mermaid">
+            pie title Star Wars Name Inspiration Sources
+                "Homeworld Culture" : 30
+                "Species Heritage" : 25
+                "Professional Identity" : 15
+                "Regional Origin" : 12
+                "Force Tradition" : 10
+                "Historical Era" : 8
+        </div>
+
+        <div class="example-box">
+            <h3>⭐ The Force and Identity</h3>
+            <p>In the Star Wars universe, the discovery of Force sensitivity often marks a fundamental change in identity. <span class="jedi-text">Jedi</span> traditionally leave their birth names behind, adopting new identities that reflect their spiritual journey. <span class="sith-text">Sith</span> similarly transform their names into titles of power and fear. This tradition of name-changing reflects the transformative nature of embracing the Force, whether for light or dark purposes.</p>
+            <p>Even non-Force users may adopt new names when joining significant organizations like the Rebel Alliance or Imperial military, showing how the galaxy's conflicts shape personal identity.</p>
+        </div>
+    </div>
+
+    <script>
+        // Create animated starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 200;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starfield.appendChild(star);
+            }
+        }
+        createStarfield();
+
+        // Star Wars character name data with galactic diversity
+        const maleNames = [
+            {name: "Theron Kaine", origin: "Coruscant", race: "Human Imperial Officer", affiliation: "Imperial"},
+            {name: "Jax 'Stardust' Varro", origin: "Tatooine", race: "Human Smuggler", affiliation: "Independent"},
+            {name: "Kael Skyborn", origin: "Alderaan", race: "Human Noble", affiliation: "Rebel"},
+            {name: "Commander Vex Darkwater", origin: "Kuat", race: "Human Military", affiliation: "Imperial"},
+            {name: "Zix'hai Vorthak", origin: "Ryloth", race: "Twi'lek Pilot", affiliation: "Independent"},
+            {name: "Master Jorik Starweaver", origin: "Tython", race: "Human Jedi", affiliation: "Jedi"},
+            {name: "Captain Rex Titanborn", origin: "Mandalore", race: "Human Mandalorian", affiliation: "Mandalorian"},
+            {name: "Kai Chen-Vor", origin: "Naboo", race: "Human Artist", affiliation: "Neutral"},
+            {name: "Vex'tar Ironjaw", origin: "Iridonia", race: "Zabrak Warrior", affiliation: "Independent"},
+            {name: "Jerico 'Blaster' Kane", origin: "Nar Shaddaa", race: "Human Bounty Hunter", affiliation: "Criminal"},
+            {name: "Admiral Cosmos Brightfleet", origin: "Corellia", race: "Human Officer", affiliation: "Republic"},
+            {name: "Darius Voidwalker", origin: "Korriban", race: "Human Sith", affiliation: "Sith"},
+            {name: "Brix 'Hyperspace' Torven", origin: "Ord Mantell", race: "Human Pilot", affiliation: "Rebel"},
+            {name: "Maxim Stormrider", origin: "Kamino", race: "Human Clone", affiliation: "Republic"},
+            {name: "Zen'kalar Brightblade", origin: "Mirial", race: "Mirialan Jedi", affiliation: "Jedi"},
+            {name: "Voss Nighthunter", origin: "Nal Hutta", race: "Human Mercenary", affiliation: "Criminal"},
+            {name: "Thane Skyshaper", origin: "Bespin", race: "Human Trader", affiliation: "Independent"},
+            {name: "Korrath Shadowbane", origin: "Dathomir", race: "Human Nightbrother", affiliation: "Dark Side"},
+            {name: "Ajax Quantumleap", origin: "Sullust", race: "Human Engineer", affiliation: "Rebel"},
+            {name: "General Magnus Ironwill", origin: "Anaxes", race: "Human Military", affiliation: "Imperial"},
+            {name: "Phoenix 'Afterburner' Cross", origin: "Corellia", race: "Human Ace Pilot", affiliation: "Rebel"},
+            {name: "Dante Voidcaller", origin: "Dromund Kaas", race: "Human Sith", affiliation: "Sith"},
+            {name: "Storm Starbringer", origin: "Jedha", race: "Human Mystic", affiliation: "Force User"},
+            {name: "Razor 'Edge' Vex", origin: "Kessel", race: "Human Criminal", affiliation: "Criminal"},
+            {name: "Admiral Neo Starforge", origin: "Kuat", race: "Human Officer", affiliation: "Imperial"},
+            {name: "Zephyr Lightcaster", origin: "Ilum", race: "Human Jedi", affiliation: "Jedi"},
+            {name: "Vex Darkcrest", origin: "Mustafar", race: "Human Miner", affiliation: "Independent"},
+            {name: "Orion Skypierce", origin: "Geonosis", race: "Human Explorer", affiliation: "Independent"},
+            {name: "Captain Blaze Starwind", origin: "Yavin 4", race: "Human Rebel", affiliation: "Rebel"},
+            {name: "Saber Nightfall", origin: "Felucia", race: "Human Scout", affiliation: "Independent"},
+            {name: "Tor'ghen Bloodfang", origin: "Iridonia", race: "Zabrak Mercenary", affiliation: "Criminal"},
+            {name: "Jaxon 'Nova' Sterling", origin: "Fondor", race: "Human Shipwright", affiliation: "Independent"},
+            {name: "Kieran Doomseeker", origin: "Malachor", race: "Human Dark Jedi", affiliation: "Dark Side"},
+            {name: "Vector Starshaper", origin: "Mon Cala", race: "Human Diplomat", affiliation: "Republic"},
+            {name: "Nyx Shadowstrike", origin: "Umbara", race: "Human Assassin", affiliation: "Criminal"},
+            {name: "Cosmos 'Warp-Drive' Kane", origin: "Coruscant", race: "Human Pilot", affiliation: "Independent"},
+            {name: "Vex Ironheart", origin: "Mandalore", race: "Human Mandalorian", affiliation: "Mandalorian"},
+            {name: "Sage Lightbringer", origin: "Tython", race: "Human Jedi Master", affiliation: "Jedi"},
+            {name: "Talon Nightwing", origin: "Ryloth", race: "Human Spy", affiliation: "Rebel"},
+            {name: "Drake Starfury", origin: "Scarif", race: "Human Soldier", affiliation: "Imperial"},
+            {name: "Quantum 'Jump' Voss", origin: "Kashyyyk", race: "Human Trader", affiliation: "Independent"},
+            {name: "Zex'tar Voidborn", origin: "Wild Space", race: "Human Explorer", affiliation: "Independent"},
+            {name: "Raven Darkblade", origin: "Korriban", race: "Human Sith Warrior", affiliation: "Sith"},
+            {name: "Admiral Steel Brightfleet", origin: "Chandrila", race: "Human Officer", affiliation: "Republic"},
+            {name: "Jax 'Lightning' Stormborn", origin: "Jakku", race: "Human Scavenger", affiliation: "Independent"},
+            {name: "Void 'Silence' Walker", origin: "Exegol", race: "Human Cultist", affiliation: "Sith"},
+            {name: "Marcus Starseeker", origin: "Alderaan", race: "Human Scholar", affiliation: "Neutral"},
+            {name: "Titan 'Mountain' Rex", origin: "Rishi", race: "Human Commando", affiliation: "Republic"},
+            {name: "Nexus Darkforge", origin: "Lehon", race: "Human Archaeologist", affiliation: "Independent"},
+            {name: "Kai 'Sunburst' Vega", origin: "Taanab", race: "Human Farmer", affiliation: "Independent"}
+        ];
+
+        const femaleNames = [
+            {name: "Lady Seraphina Valorian", origin: "Coruscant", race: "Human Noble", affiliation: "Imperial"},
+            {name: "Kira 'Starbolt' Voss", origin: "Corellia", race: "Human Pilot", affiliation: "Rebel"},
+            {name: "Commander Zara Nightwind", origin: "Kuat", race: "Human Officer", affiliation: "Imperial"},
+            {name: "Jessa 'Phoenix' Kane", origin: "Tatooine", race: "Human Mechanic", affiliation: "Independent"},
+            {name: "Vera Shadowdancer", origin: "Nal Hutta", race: "Human Spy", affiliation: "Criminal"},
+            {name: "Master Luna Starweaver", origin: "Tython", race: "Human Jedi", affiliation: "Jedi"},
+            {name: "Captain Nova Ironheart", origin: "Mandalore", race: "Human Mandalorian", affiliation: "Mandalorian"},
+            {name: "Aria Chen-Vor", origin: "Naboo", race: "Human Artist", affiliation: "Neutral"},
+            {name: "Zix'hala Brightclaw", origin: "Ryloth", race: "Twi'lek Dancer", affiliation: "Independent"},
+            {name: "Admiral Storm Brightfleet", origin: "Mon Cala", race: "Human Officer", affiliation: "Republic"},
+            {name: "Nyx Voidcaller", origin: "Korriban", race: "Human Sith", affiliation: "Sith"},
+            {name: "Echo 'Stealth' Varro", origin: "Ord Mantell", race: "Human Operative", affiliation: "Rebel"},
+            {name: "Lyra Starborn", origin: "Alderaan", race: "Human Princess", affiliation: "Rebel"},
+            {name: "Vex'ara Nightblade", origin: "Dathomir", race: "Human Nightsister", affiliation: "Dark Side"},
+            {name: "Captain Rex Skyforge", origin: "Kamino", race: "Human Clone Commander", affiliation: "Republic"},
+            {name: "Zen'kyla Lightbringer", origin: "Mirial", race: "Mirialan Healer", affiliation: "Jedi"},
+            {name: "Sage 'Quantum' Cross", origin: "Coruscant", race: "Human Scientist", affiliation: "Independent"},
+            {name: "Kira Shadowstrike", origin: "Nar Shaddaa", race: "Human Bounty Hunter", affiliation: "Criminal"},
+            {name: "Admiral Nova Starwind", origin: "Fondor", race: "Human Fleet Admiral", affiliation: "Imperial"},
+            {name: "Vera 'Blaster' Sterling", origin: "Kessel", race: "Human Smuggler", affiliation: "Criminal"},
+            {name: "Phoenix Lightcaster", origin: "Ilum", race: "Human Jedi Knight", affiliation: "Jedi"},
+            {name: "Zara Darkcrest", origin: "Mustafar", race: "Human Engineer", affiliation: "Independent"},
+            {name: "Luna 'Starfall' Vega", origin: "Bespin", race: "Human Trader", affiliation: "Independent"},
+            {name: "Commander Steel Brightblade", origin: "Anaxes", race: "Human Military", affiliation: "Imperial"},
+            {name: "Nyx 'Shadow' Nightwind", origin: "Umbara", race: "Human Assassin", affiliation: "Criminal"},
+            {name: "Kira Stormrider", origin: "Yavin 4", race: "Human Rebel Pilot", affiliation: "Rebel"},
+            {name: "Vera Voidwalker", origin: "Dromund Kaas", race: "Human Sith Lord", affiliation: "Sith"},
+            {name: "Admiral Cosmos Starforge", origin: "Chandrila", race: "Human Leader", affiliation: "Republic"},
+            {name: "Echo 'Whisper' Kane", origin: "Geonosis", race: "Human Scout", affiliation: "Independent"},
+            {name: "Nova Brightstar", origin: "Jedha", race: "Human Mystic", affiliation: "Force User"},
+            {name: "Zara 'Lightning' Stormborn", origin: "Jakku", race: "Human Scavenger", affiliation: "Independent"},
+            {name: "Sage Nightfall", origin: "Felucia", race: "Human Botanist", affiliation: "Independent"},
+            {name: "Captain Vera Ironwill", origin: "Scarif", race: "Human Soldier", affiliation: "Imperial"},
+            {name: "Luna 'Comet' Brightwind", origin: "Sullust", race: "Human Pilot", affiliation: "Rebel"},
+            {name: "Nyx Starseeker", origin: "Kashyyyk", race: "Human Explorer", affiliation: "Independent"},
+            {name: "Kira 'Void-Heart' Magnus", origin: "Malachor", race: "Human Dark Jedi", affiliation: "Dark Side"},
+            {name: "Admiral Storm Darkwater", origin: "Kuat", race: "Human Officer", affiliation: "Imperial"},
+            {name: "Phoenix 'Afterglow' Voss", origin: "Rishi", race: "Human Commando", affiliation: "Republic"},
+            {name: "Zara Lightforge", origin: "Tython", race: "Human Jedi Artisan", affiliation: "Jedi"},
+            {name: "Vera 'Hyperdrive' Cross", origin: "Coruscant", race: "Human Engineer", affiliation: "Independent"},
+            {name: "Nova Shadowbane", origin: "Exegol", race: "Human Sith Cultist", affiliation: "Sith"},
+            {name: "Echo Starwright", origin: "Lehon", race: "Human Archaeologist", affiliation: "Independent"},
+            {name: "Sage 'Nebula' Sterling", origin: "Wild Space", race: "Human Explorer", affiliation: "Independent"},
+            {name: "Kira Doomseeker", origin: "Korriban", race: "Human Sith Apprentice", affiliation: "Sith"},
+            {name: "Admiral Luna Brightfleet", origin: "Mon Cala", race: "Human Naval Officer", affiliation: "Republic"},
+            {name: "Zara 'Turbo' Vego", origin: "Malastare", race: "Human Racer", affiliation: "Independent"},
+            {name: "Nyx Starshaper", origin: "Kamino", race: "Human Geneticist", affiliation: "Republic"},
+            {name: "Phoenix 'Solar-Flare' Kane", origin: "Taanab", race: "Human Pilot", affiliation: "Independent"},
+            {name: "Vera Darkbringer", origin: "Moraband", race: "Human Sith Scholar", affiliation: "Sith"},
+            {name: "Cosmos 'Galaxy' Bright", origin: "Alderaan", race: "Human Diplomat", affiliation: "Republic"}
+        ];
+
+        const neutralNames = [
+            {name: "River 'Stardrift' Vex", origin: "Coruscant", race: "Any Species", affiliation: "Independent"},
+            {name: "Sage Quantumleap", origin: "Wild Space", race: "Any Explorer", affiliation: "Independent"},
+            {name: "Storm 'Nebula' Cross", origin: "Outer Rim", race: "Any Pilot", affiliation: "Independent"},
+            {name: "Echo Voidwalker", origin: "Unknown Regions", race: "Any Mystic", affiliation: "Force User"},
+            {name: "Phoenix 'Binary' Zero", origin: "Coruscant", race: "Any Droid", affiliation: "Independent"},
+            {name: "Nyx Shadowport", origin: "Nar Shaddaa", race: "Any Criminal", affiliation: "Criminal"},
+            {name: "Quantum 'Phase' Drift", origin: "Hyperspace", race: "Any Force User", affiliation: "Gray Jedi"},
+            {name: "Void 'Silence' Walker", origin: "Deep Space", race: "Any Mystic", affiliation: "Unknown"},
+            {name: "Nova Starweaver", origin: "Tython", race: "Any Jedi", affiliation: "Jedi"},
+            {name: "Flux 'Time-Skip' Vega", origin: "Coruscant", race: "Any Scientist", affiliation: "Independent"},
+            {name: "Cyber 'Ghost-Protocol' Net", origin: "Coruscant", race: "Any Droid", affiliation: "Independent"},
+            {name: "Binary Codebreaker", origin: "Kuat", race: "Any Slicer", affiliation: "Criminal"},
+            {name: "Prism 'Light-Bend' Ray", origin: "Ilum", race: "Any Force User", affiliation: "Jedi"},
+            {name: "Vector Starfall", origin: "Alderaan", race: "Any Noble", affiliation: "Rebel"},
+            {name: "Matrix 'Data-Stream' Flow", origin: "Coruscant", race: "Any Hacker", affiliation: "Independent"},
+            {name: "Nexus Brightforge", origin: "Mandalore", race: "Any Artisan", affiliation: "Mandalorian"},
+            {name: "Cosmos 'Universe' Void", origin: "Deep Space", race: "Any Explorer", affiliation: "Independent"},
+            {name: "Drift 'Hyperspace' Jump", origin: "Corellia", race: "Any Pilot", affiliation: "Independent"},
+            {name: "Code 'Algorithm' Prime", origin: "Coruscant", race: "Any Droid", affiliation: "Independent"},
+            {name: "Flux Shadowbane", origin: "Korriban", race: "Any Dark User", affiliation: "Sith"},
+            {name: "Signal 'Transmission' Wave", origin: "Coruscant", race: "Any Comm Tech", affiliation: "Independent"},
+            {name: "Pulse 'Heart-Beat' Rhythm", origin: "Kamino", race: "Any Medic", affiliation: "Republic"},
+            {name: "Ion 'Particle' Storm", origin: "Bespin", race: "Any Engineer", affiliation: "Independent"},
+            {name: "Gravity 'Mass' Well", origin: "Kessel", race: "Any Physicist", affiliation: "Independent"},
+            {name: "Phase 'Matter' State", origin: "Coruscant", race: "Any Scientist", affiliation: "Independent"},
+            {name: "Sync 'Harmony' Link", origin: "Naboo", race: "Any Diplomat", affiliation: "Republic"},
+            {name: "Arc 'Lightning' Strike", origin: "Kamino", race: "Any Force User", affiliation: "Jedi"},
+            {name: "Node 'Network' Hub", origin: "Coruscant", race: "Any Tech", affiliation: "Independent"},
+            {name: "Rift 'Space-Tear' Gap", origin: "Malachor", race: "Any Force User", affiliation: "Dark Side"},
+            {name: "Byte 'Data' Fragment", origin: "Kuat", race: "Any Droid", affiliation: "Independent"},
+            {name: "Mag 'Field' Flux", origin: "Sullust", race: "Any Engineer", affiliation: "Independent"},
+            {name: "Orbit 'Path' Cycle", origin: "Coruscant", race: "Any Navigator", affiliation: "Independent"},
+            {name: "Wave 'Frequency' Peak", origin: "Mon Cala", race: "Any Comm Officer", affiliation: "Republic"},
+            {name: "Link 'Connection' Bridge", origin: "Coruscant", race: "Any Diplomat", affiliation: "Republic"},
+            {name: "Spark 'Energy' Bolt", origin: "Tatooine", race: "Any Mechanic", affiliation: "Independent"},
+            {name: "Flow 'Current' Stream", origin: "Naboo", race: "Any Pilot", affiliation: "Independent"},
+            {name: "Grid 'Matrix' System", origin: "Coruscant", race: "Any Tech", affiliation: "Independent"},
+            {name: "Core 'Central' Prime", origin: "Alderaan", race: "Any Leader", affiliation: "Rebel"},
+            {name: "Web 'Network' Span", origin: "Coruscant", race: "Any Slicer", affiliation: "Criminal"},
+            {name: "Beam 'Light' Ray", origin: "Ilum", race: "Any Jedi", affiliation: "Jedi"},
+            {name: "Field 'Force' Zone", origin: "Tython", race: "Any Mystic", affiliation: "Force User"},
+            {name: "Port 'Gateway' Access", origin: "Nar Shaddaa", race: "Any Smuggler", affiliation: "Criminal"},
+            {name: "Key 'Cipher' Code", origin: "Coruscant", race: "Any Spy", affiliation: "Rebel"},
+            {name: "Path 'Route' Way", origin: "Outer Rim", race: "Any Scout", affiliation: "Independent"},
+            {name: "Gate 'Portal' Door", origin: "Unknown Regions", race: "Any Explorer", affiliation: "Independent"},
+            {name: "Zone 'Area' Sector", origin: "Mid Rim", race: "Any Administrator", affiliation: "Republic"},
+            {name: "Line 'Connection' Link", origin: "Core Worlds", race: "Any Comm Tech", affiliation: "Imperial"},
+            {name: "Point 'Focus' Center", origin: "Jedha", race: "Any Mystic", affiliation: "Force User"},
+            {name: "Edge 'Boundary' Limit", origin: "Outer Rim", race: "Any Frontier", affiliation: "Independent"},
+            {name: "Base 'Foundation' Root", origin: "Any World", race: "Any Class", affiliation: "Any"}
+        ];
+
+        // Function to create name cards with galactic and affiliation tags
+        function createNameCard(nameData) {
+            const affiliationColors = {
+                'Imperial': '#ff4444',
+                'Rebel': '#44ff44',
+                'Republic': '#4488ff',
+                'Jedi': '#44ff44',
+                'Sith': '#ff4444',
+                'Mandalorian': '#4488ff',
+                'Criminal': '#ff8844',
+                'Independent': '#888888',
+                'Neutral': '#cccccc',
+                'Force User': '#44ffff',
+                'Dark Side': '#ff4444',
+                'Gray Jedi': '#8888ff',
+                'Unknown': '#666666',
+                'Any': '#999999'
+            };
+            
+            const affiliationColor = affiliationColors[nameData.affiliation] || '#888888';
+            
+            return `
+                <div class="name-card">
+                    <div class="name">${nameData.name}</div>
+                    <div class="origin">Origin: ${nameData.origin}</div>
+                    <div class="race-suggestion">Best for: ${nameData.race}</div>
+                    <div class="location-tag">${nameData.origin}</div>
+                    <div class="force-tag" style="background-color: ${affiliationColor}; border-color: ${affiliationColor};">${nameData.affiliation}</div>
+                </div>
+            `;
+        }
+
+        // Populate name grids
+        document.getElementById('maleNames').innerHTML = maleNames.map(createNameCard).join('');
+        document.getElementById('femaleNames').innerHTML = femaleNames.map(createNameCard).join('');
+        document.getElementById('neutralNames').innerHTML = neutralNames.map(createNameCard).join('');
+
+        // Interactive Star Wars galactic wheel
+        const canvas = document.getElementById('starwarsWheel');
+        const ctx = canvas.getContext('2d');
+        let spinning = false;
+        let rotation = 0;
+
+        const systems = [
+            'Coruscant', 'Tatooine', 'Alderaan', 'Naboo', 
+            'Mandalore', 'Corellia', 'Kuat', 'Ryloth',
+            'Kashyyyk', 'Mon Cala', 'Geonosis', 'Kamino',
+            'Bespin', 'Yavin 4', 'Nar Shaddaa', 'Outer Rim'
+        ];
+        const systemColors = [
+            '#ffffff', '#ffaa44', '#4488ff', '#44ff88', 
+            '#8844ff', '#ff8844', '#888888', '#44ffff',
+            '#88ff44', '#4488aa', '#aa4444', '#aaaaff',
+            '#ffaaaa', '#44aa44', '#aa8844', '#666666'
+        ];
+
+        function drawStarWarsWheel() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 240;
+            
+            // Draw space background with gradient
+            const bgGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+            bgGradient.addColorStop(0, '#1a1a1a');
+            bgGradient.addColorStop(1, '#000000');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw distant stars
+            for (let i = 0; i < 150; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 1.5 + 0.5;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, 2 * Math.PI);
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.7 + 0.3})`;
+                ctx.fill();
+            }
+            
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotation);
+            
+            for (let i = 0; i < systems.length; i++) {
+                const startAngle = (i * 2 * Math.PI) / systems.length;
+                const endAngle = ((i + 1) * 2 * Math.PI) / systems.length;
+                
+                // Draw sector
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.lineTo(0, 0);
+                ctx.fillStyle = systemColors[i] + '40';
+                ctx.fill();
+                ctx.strokeStyle = systemColors[i];
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Add subtle glow
+                ctx.save();
+                ctx.globalCompositeOperation = 'lighter';
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.lineTo(0, 0);
+                ctx.fillStyle = systemColors[i] + '20';
+                ctx.fill();
+                ctx.restore();
+                
+                // Draw system name
+                ctx.save();
+                ctx.rotate(startAngle + (endAngle - startAngle) / 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 11px Arial';
+                ctx.textAlign = 'center';
+                ctx.shadowColor = '#000000';
+                ctx.shadowBlur = 3;
+                ctx.fillText(systems[i], radius * 0.75, 0);
+                ctx.restore();
+            }
+            
+            ctx.restore();
+            
+            // Draw Imperial-style pointer
+            ctx.beginPath();
+            ctx.moveTo(centerX + radius + 25, centerY);
+            ctx.lineTo(centerX + radius + 50, centerY - 18);
+            ctx.lineTo(centerX + radius + 50, centerY + 18);
+            ctx.closePath();
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.strokeStyle = '#888888';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Add glow to pointer
+            ctx.shadowColor = '#ffffff';
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        function spinStarWarsWheel() {
+            if (spinning) return;
+            spinning = true;
+            
+            const spinAmount = Math.random() * 18 + 25;
+            const spinDuration = 6000;
+            const startTime = Date.now();
+            
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / spinDuration, 1);
+                const easing = 1 - Math.pow(1 - progress, 3);
+                
+                rotation += (spinAmount * (1 - easing)) * 0.05;
+                drawStarWarsWheel();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    spinning = false;
+                    const finalSystem = systems[Math.floor(((rotation % (2 * Math.PI)) / (2 * Math.PI)) * systems.length)];
+                    alert(`⭐ Your character's homeworld: ${finalSystem}! May the Force guide your naming choice.`);
+                }
+            }
+            
+            animate();
+        }
+
+        canvas.addEventListener('click', spinStarWarsWheel);
+        drawStarWarsWheel();
+    </script>
+</body>
+</html>

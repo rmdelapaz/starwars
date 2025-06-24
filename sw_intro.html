@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - The Fundamentals of Force and Dice</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: The Fundamentals of Force and Dice</h1>
+        <p class="subtitle">Welcome to a Galaxy Far, Far Away - Your Journey Begins Here</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>What Makes Star Wars RPG Special</h2>
+            <p>Imagine you're not just watching Luke Skywalker's journey, but <em>living</em> your own. Star Wars RPG isn't just about rolling dice and adding numbers - it's about becoming part of the most beloved space opera of all time. Think of it like being handed the director's chair of your own Star Wars movie, where every decision you make shapes the galaxy's destiny.</p>
+            
+            <div class="analogy-box">
+                <h3>The Orchestra Analogy</h3>
+                <p>If traditional RPGs are like playing solo piano, Star Wars RPG is like conducting a full orchestra. The Game Master is the conductor, players are the musicians, and the dice are the sheet music that guides the improvisation. Together, you create a symphony that would make John Williams proud.</p>
+            </div>
+        </section>
+
+        <section class="core-systems">
+            <h2>The Heart of the Galaxy - Core Systems</h2>
+            
+            <h3>The Narrative Dice System</h3>
+            <p>Unlike your grandfather's six-sided dice, Star Wars RPG uses a revolutionary narrative dice system. Think of these dice as storytelling companions rather than simple number generators. Each die tells a part of your story.</p>
+
+            <div class="dice-visualization">
+                <svg width="600" height="300" viewBox="0 0 600 300">
+                    <!-- Ability Die (Green) -->
+                    <polygon points="50,50 100,25 150,50 150,100 100,125 50,100" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+                    <text x="100" y="80" text-anchor="middle" fill="white" font-weight="bold">Ability</text>
+                    <text x="100" y="95" text-anchor="middle" fill="white" font-size="12">Success &amp; Advantage</text>
+                    
+                    <!-- Difficulty Die (Purple) -->
+                    <polygon points="200,50 250,25 300,50 300,100 250,125 200,100" fill="#9C27B0" stroke="#6A1B9A" stroke-width="2"/>
+                    <text x="250" y="80" text-anchor="middle" fill="white" font-weight="bold">Difficulty</text>
+                    <text x="250" y="95" text-anchor="middle" fill="white" font-size="12">Failure &amp; Threat</text>
+                    
+                    <!-- Proficiency Die (Yellow) -->
+                    <polygon points="350,50 425,25 500,50 500,100 425,125 350,100" fill="#FFC107" stroke="#F57C00" stroke-width="2"/>
+                    <text x="425" y="80" text-anchor="middle" fill="black" font-weight="bold">Proficiency</text>
+                    <text x="425" y="95" text-anchor="middle" fill="black" font-size="12">Triumph &amp; Success</text>
+                    
+                    <!-- Force Die (White) -->
+                    <polygon points="50,200 125,175 200,200 200,250 125,275 50,250" fill="#FFFFFF" stroke="#757575" stroke-width="2"/>
+                    <text x="125" y="230" text-anchor="middle" fill="black" font-weight="bold">Force</text>
+                    <text x="125" y="245" text-anchor="middle" fill="black" font-size="12">Light &amp; Dark Side</text>
+                    
+                    <!-- Arrows showing interaction -->
+                    <path d="M 150 75 Q 175 50 200 75" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <path d="M 300 75 Q 325 50 350 75" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <h3>Success vs Failure - It's Not That Simple</h3>
+            <p>Here's where Star Wars RPG becomes brilliant. Success and failure aren't binary states - they're spectrums of possibility. Imagine Han Solo trying to fix the hyperdrive:</p>
+            
+            <div class="example-box">
+                <h4>Example: Han's Hyperdrive Repair</h4>
+                <ul>
+                    <li><strong>Success + Advantage:</strong> "I fix it AND find a way to boost our speed!"</li>
+                    <li><strong>Success + Threat:</strong> "It's working, but I hear Imperial ships approaching..."</li>
+                    <li><strong>Failure + Advantage:</strong> "Can't fix it, but I learn something useful for next time"</li>
+                    <li><strong>Failure + Threat:</strong> "Not only is it broken, but now we're venting atmosphere!"</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="narrative-flow">
+            <h2>The Story Flow - How Narrative Shapes Gameplay</h2>
+            
+            <div class="mermaid">
+                flowchart TD
+                    A[Player Declares Intent] --> B{GM Sets Difficulty}
+                    B --> C[Assemble Dice Pool]
+                    C --> D[Roll Dice]
+                    D --> E[Interpret Results]
+                    E --> F{Success?}
+                    F -->|Yes| G[Describe Success]
+                    F -->|No| H[Describe Failure]
+                    G --> I{Advantage/Threat?}
+                    H --> I
+                    I -->|Advantage| J[Add Positive Twist]
+                    I -->|Threat| K[Add Complication]
+                    I -->|Neither| L[Simple Outcome]
+                    J --> M[Continue Story]
+                    K --> M
+                    L --> M
+                    M --> A
+            </div>
+
+            <h3>The Power of "Yes, And..." vs "No, But..."</h3>
+            <p>Traditional RPGs often result in simple yes/no answers. Star Wars RPG transforms every roll into a collaborative storytelling moment. It's like the difference between a light switch and a dimmer - you get infinite variations of brightness rather than just on or off.</p>
+        </section>
+
+        <section class="character-creation">
+            <h2>Becoming a Hero - Character Creation Philosophy</h2>
+            
+            <h3>The Three Pillars of Character Identity</h3>
+            <p>Every memorable Star Wars character rests on three pillars, like a three-legged stool. Remove any one, and the character becomes unstable:</p>
+
+            <div class="character-pillars">
+                <canvas id="characterPillars" width="400" height="300"></canvas>
+            </div>
+
+            <script>
+                const canvas = document.getElementById('characterPillars');
+                const ctx = canvas.getContext('2d');
+                
+                // Draw the three pillars
+                ctx.fillStyle = '#4CAF50';
+                ctx.fillRect(50, 200, 60, 80);
+                ctx.fillStyle = '#2196F3';
+                ctx.fillRect(170, 200, 60, 80);
+                ctx.fillStyle = '#FF9800';
+                ctx.fillRect(290, 200, 60, 80);
+                
+                // Draw the platform they support
+                ctx.fillStyle = '#9E9E9E';
+                ctx.fillRect(30, 180, 340, 20);
+                
+                // Add labels
+                ctx.fillStyle = '#000';
+                ctx.font = '14px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Species/Career', 80, 295);
+                ctx.fillText('Motivation', 200, 295);
+                ctx.fillText('Obligation/Duty', 320, 295);
+                
+                ctx.font = '16px Arial';
+                ctx.fillText('Your Character Foundation', 200, 30);
+                
+                // Add character examples
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText('Luke: Farm Boy → Jedi', 50, 160);
+                ctx.fillText('Motivation: Adventure/Justice', 50, 140);
+                ctx.fillText('Obligation: Family Legacy', 50, 120);
+            </script>
+
+            <div class="species-career-combo">
+                <h4>Species + Career = Your Starting Point</h4>
+                <p>Think of this combination as your character's "origin story trailer." A Twi'lek Smuggler has a completely different flavor than a Human Smuggler or a Twi'lek Diplomat. It's like choosing the genre and setting of your personal Star Wars movie.</p>
+                
+                <pre><code>&lt;!-- Example Character Concepts --&gt;
+Human Pilot: "Top Gun" meets Star Wars
+Wookiee Mechanic: Gentle giant with technical genius
+Rodian Bounty Hunter: Professional tracker with honor code
+Corellian Smuggler: Han Solo archetype with personal twist</code></pre>
+            </div>
+        </section>
+
+        <section class="force-sensitivity">
+            <h2>The Force - More Than Magic</h2>
+            
+            <h3>Understanding Force Rating</h3>
+            <p>The Force isn't a magic system - it's a relationship. Your Force Rating represents how deeply you're connected to the living energy that binds the galaxy together. Think of it like learning to play music: Force Rating 1 is like knowing basic chords, while higher ratings are like becoming a virtuoso.</p>
+
+            <div class="force-progression">
+                <h4>The Path of Force Development</h4>
+                <div class="mermaid">
+                    graph LR
+                        A[Force Sensitive] --> B[Force Rating 1]
+                        B --> C[Basic Powers]
+                        C --> D[Force Rating 2]
+                        D --> E[Advanced Techniques]
+                        E --> F[Force Rating 3+]
+                        F --> G[Master Level]
+                        
+                        style A fill:#f9f9f9
+                        style B fill:#e3f2fd
+                        style D fill:#bbdefb
+                        style F fill:#90caf9
+                </div>
+            </div>
+
+            <h3>Light Side vs Dark Side - The Eternal Choice</h3>
+            <p>Every Force power can be fueled by light or dark side energy. It's like choosing between solar power and burning fossil fuels - one is sustainable and harmonious, the other is quick and destructive. The game mechanically reinforces this philosophy through Conflict and Morality systems.</p>
+        </section>
+
+        <section class="practical-examples">
+            <h2>Bringing It All Together - Sample Scenes</h2>
+            
+            <h3>Scene: Cantina Confrontation</h3>
+            <div class="scene-example">
+                <p><strong>Setup:</strong> Your character needs information from a nervous Rodian in the cantina, but Imperial stormtroopers just walked in.</p>
+                
+                <h4>Different Approaches, Different Dice:</h4>
+                <ul>
+                    <li><strong>Diplomat:</strong> Charm + Presence vs. Easy difficulty (1 purple die)</li>
+                    <li><strong>Smuggler:</strong> Deception + Cunning vs. Average difficulty (2 purple dice)</li>
+                    <li><strong>Force User:</strong> Influence power + coercion vs. Hard difficulty (3 purple dice, but with Force dice added)</li>
+                </ul>
+                
+                <p><strong>Potential Outcomes:</strong></p>
+                <pre><code>Success + Advantage: You get the info AND the Rodian offers to help you escape
+Success + Threat: You get the info BUT the stormtroopers notice the conversation  
+Failure + Advantage: No info BUT you overhear something useful from another patron
+Failure + Threat: No info AND the Imperials start asking questions about YOU</code></pre>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: Dice Pool Assembly</h3>
+            <p>Practice building dice pools for these scenarios:</p>
+            <ol>
+                <li>A skilled pilot (Piloting 3, Agility 3) attempting a difficult atmospheric entry</li>
+                <li>A novice mechanic (Mechanics 1, Intellect 2) trying to repair a damaged blaster</li>
+                <li>A Force-sensitive character using Move to lift a heavy cargo container</li>
+            </ol>
+            
+            <h3>Activity Two: Result Interpretation</h3>
+            <p>Given these dice results, describe what happens:</p>
+            <ul>
+                <li>2 Success, 1 Advantage, 1 Threat</li>
+                <li>1 Failure, 2 Advantage</li>
+                <li>3 Success, 1 Triumph, 2 Threat</li>
+            </ul>
+            
+            <h3>Activity Three: Character Concept Creation</h3>
+            <p>Create three different character concepts using different species/career combinations. For each, write:</p>
+            <ul>
+                <li>A one-sentence origin story</li>
+                <li>Their primary motivation</li>
+                <li>One obligation or duty that drives their adventures</li>
+            </ul>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Related Topics to Explore</h2>
+            <ul>
+               <li><strong><a href="/starwars/sw_char.html">Character Creation</a>:</strong> Star Wars characters await</li>
+                <li><strong><a href="/starwars/sw_adv_dice.html">Advanced Dice Mechanics</a>:</strong> Spending Advantage and Threat creatively</li>
+                <li><strong><a href="/starwars/sw_combat.html">Combat Flow</a>:</strong> How structured encounters maintain narrative focus</li>
+                <li><strong><a href="/starwars/sw_force_and_lightsaber.html">Force Powers Deep Dive</a>:</strong> Building your Jedi or Sith character</li>
+                <li><strong><a href="/starwars/sw_vehicles.html">Vehicle Rules</a>:</strong> Starship combat and the Millennium Falcon effect</li>
+                <li><strong><a href="/starwars/sw_gm_techniques.html">GM Techniques</a>:</strong> Creating memorable NPCs and living worlds</li>
+                <li><strong><a href="/starwars/sw_campaign.html">Campaign Themes</a>:</strong> Rebellion, Empire, Clone Wars, and beyond</li>
+            </ul>
+        </section>
+
+        <section class="real-world-applications">
+            <h2>Why This Matters Beyond Gaming</h2>
+            <p>Star Wars RPG teaches valuable real-world skills:</p>
+            <ul>
+                <li><strong>Collaborative Problem Solving:</strong> Like team projects in the workplace</li>
+                <li><strong>Improvisation:</strong> Thinking on your feet when plans change</li>
+                <li><strong>Narrative Thinking:</strong> Understanding cause and effect in complex systems</li>
+                <li><strong>Empathy:</strong> Seeing situations from different perspectives</li>
+                <li><strong>Creative Communication:</strong> Expressing ideas in engaging ways</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>May the Force be with you as you begin this journey. Remember: in Star Wars RPG, failure isn't the end of the story - it's just the beginning of a more interesting chapter.</p>
+     
+    </footer>
+
+   
+</body>
+</html>

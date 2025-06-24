@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG - Combat and Conflict Resolution</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG: Combat and Conflict Resolution</h1>
+        <p class="subtitle">From Lightsaber Duels to Diplomatic Negotiations - Mastering All Forms of Conflict</p>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h2>Beyond the Blaster Fight - Understanding Conflict</h2>
+            <p>Star Wars combat isn't just about who has the biggest gun or the fastest reflexes. It's about dramatic tension, character development, and storytelling moments that define heroes. Think of combat like choreographing a dance - every move should serve the story, reveal character, and create memorable moments that players will talk about for years.</p>
+            
+            <div class="analogy-box">
+                <h3>The Movie Scene Analogy</h3>
+                <p>Every combat encounter should feel like a pivotal scene from a Star Wars film. The cantina confrontation isn't just about Han shooting first - it establishes his character, shows the dangerous world he inhabits, and sets up his relationship with Luke. Your RPG combats should do the same: advance plot, develop characters, and create those "I have a bad feeling about this" moments.</p>
+            </div>
+        </section>
+
+        <section class="structured-encounters">
+            <h2>Structured Time - When Every Second Counts</h2>
+            
+            <h3>Initiative - The Rhythm of Combat</h3>
+            <p>Initiative in Star Wars RPG works like a jazz ensemble rather than a rigid marching band. Players and NPCs don't have fixed turn orders - instead, they have initiative slots that can be filled dynamically, creating fluid, cinematic action sequences.</p>
+
+            <div class="initiative-system">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Roll Initiative] --> B[Generate Initiative Order]
+                        B --> C[PC Slots vs NPC Slots]
+                        C --> D{PC Turn?}
+                        D -->|Yes| E[Any PC Can Act]
+                        D -->|No| F[GM Chooses NPC]
+                        E --> G[PC Declares Action]
+                        F --> H[NPC Acts]
+                        G --> I[Resolve Action]
+                        H --> I
+                        I --> J[Next Initiative Slot]
+                        J --> D
+                        
+                        style D fill:#ff9800
+                        style E fill:#4caf50
+                        style F fill:#f44336
+                        style I fill:#2196f3
+                </div>
+            </div>
+
+            <h3>The Action Economy - Managing Your Turn</h3>
+            <p>Think of your turn like having a budget of time and attention. You get one action, one maneuver, and any number of incidentals. It's like being in a high-stress situation where you can focus on one major task, move or reposition once, and handle small details on autopilot.</p>
+
+            <div class="action-breakdown">
+                <canvas id="actionEconomy" width="600" height="300"></canvas>
+            </div>
+
+            <script>
+                const actionCanvas = document.getElementById('actionEconomy');
+                const actionCtx = actionCanvas.getContext('2d');
+                
+                // Draw action types with examples
+                const actions = ['Action', 'Maneuver', 'Incidental'];
+                const colors = ['#4CAF50', '#FF9800', '#2196F3'];
+                const examples = [
+                    ['Attack', 'Skill Check', 'Force Power', 'Aim'],
+                    ['Move', 'Draw/Holster', 'Activate Item', 'Strain to gain extra'],
+                    ['Speak', 'Drop Item', 'Minor Interaction', 'Simple Gesture']
+                ];
+                
+                let currentY = 50;
+                
+                actions.forEach((actionType, index) => {
+                    // Draw action type header
+                    actionCtx.fillStyle = colors[index];
+                    actionCtx.fillRect(50, currentY, 500, 40);
+                    
+                    actionCtx.fillStyle = 'white';
+                    actionCtx.font = 'bold 18px Arial';
+                    actionCtx.textAlign = 'left';
+                    actionCtx.fillText(actionType, 60, currentY + 25);
+                    
+                    // Draw examples
+                    currentY += 50;
+                    actionCtx.fillStyle = '#333';
+                    actionCtx.font = '14px Arial';
+                    
+                    examples[index].forEach((example, exIndex) => {
+                        const x = 70 + (exIndex * 120);
+                        actionCtx.fillText('• ' + example, x, currentY + 20);
+                    });
+                    
+                    currentY += 40;
+                });
+                
+                // Add title
+                actionCtx.fillStyle = '#333';
+                actionCtx.font = 'bold 20px Arial';
+                actionCtx.textAlign = 'center';
+                actionCtx.fillText('Action Economy Breakdown', 300, 30);
+            </script>
+
+            <h3>Range Bands - Distance Made Simple</h3>
+            <p>Forget measuring tape and grid squares. Star Wars RPG uses range bands that focus on narrative significance rather than exact measurements. It's like how movies show distance - close enough to see facial expressions, far enough to need binoculars, or so distant you need a starship.</p>
+
+            <div class="range-visualization">
+                <svg width="600" height="200" viewBox="0 0 600 200">
+                    <!-- Engaged Range -->
+                    <circle cx="100" cy="100" r="30" fill="#FF5722" stroke="#D84315" stroke-width="3"/>
+                    <text x="100" y="85" text-anchor="middle" fill="white" font-weight="bold">Engaged</text>
+                    <text x="100" y="105" text-anchor="middle" fill="white" font-size="12">Lightsaber</text>
+                    <text x="100" y="120" text-anchor="middle" fill="white" font-size="12">Range</text>
+                    
+                    <!-- Short Range -->
+                    <circle cx="200" cy="100" r="25" fill="#FF9800" stroke="#F57C00" stroke-width="3"/>
+                    <text x="200" y="90" text-anchor="middle" fill="white" font-weight="bold">Short</text>
+                    <text x="200" y="110" text-anchor="middle" fill="white" font-size="12">Pistol Range</text>
+                    
+                    <!-- Medium Range -->
+                    <circle cx="300" cy="100" r="20" fill="#FFC107" stroke="#FF8F00" stroke-width="3"/>
+                    <text x="300" y="90" text-anchor="middle" fill="black" font-weight="bold">Medium</text>
+                    <text x="300" y="110" text-anchor="middle" fill="black" font-size="12">Rifle Range</text>
+                    
+                    <!-- Long Range -->
+                    <circle cx="400" cy="100" r="15" fill="#4CAF50" stroke="#388E3C" stroke-width="3"/>
+                    <text x="400" y="90" text-anchor="middle" fill="white" font-weight="bold">Long</text>
+                    <text x="400" y="110" text-anchor="middle" fill="white" font-size="10">Sniper Range</text>
+                    
+                    <!-- Extreme Range -->
+                    <circle cx="500" cy="100" r="10" fill="#2196F3" stroke="#1976D2" stroke-width="3"/>
+                    <text x="500" y="90" text-anchor="middle" fill="white" font-weight="bold">Extreme</text>
+                    <text x="500" y="110" text-anchor="middle" fill="white" font-size="8">Artillery</text>
+                    
+                    <!-- Arrows showing progression -->
+                    <defs>
+                        <marker id="rangeArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                        </marker>
+                    </defs>
+                    
+                    <line x1="130" y1="100" x2="170" y2="100" stroke="#666" stroke-width="2" marker-end="url(#rangeArrow)"/>
+                    <line x1="225" y1="100" x2="275" y2="100" stroke="#666" stroke-width="2" marker-end="url(#rangeArrow)"/>
+                    <line x1="320" y1="100" x2="375" y2="100" stroke="#666" stroke-width="2" marker-end="url(#rangeArrow)"/>
+                    <line x1="415" y1="100" x2="485" y2="100" stroke="#666" stroke-width="2" marker-end="url(#rangeArrow)"/>
+                    
+                    <text x="300" y="180" text-anchor="middle" font-size="16" font-weight="bold">Increasing Difficulty &amp; Decreasing Damage</text>
+                </svg>
+            </div>
+        </section>
+
+        <section class="attack-mechanics">
+            <h2>Attack Resolution - More Than Just Hitting</h2>
+            
+            <h3>The Attack Process - A Step-by-Step Journey</h3>
+            <p>Every attack in Star Wars RPG tells a story. It's not just "I hit for 8 damage." It's "My blaster bolt catches the stormtrooper in the shoulder, spinning him around as sparks fly from his armor, and the ricochet alerts his squad to our position."</p>
+
+            <div class="attack-flowchart">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Declare Attack] --> B[Choose Target & Weapon]
+                        B --> C[Determine Difficulty]
+                        C --> D[Assemble Dice Pool]
+                        D --> E[Roll Attack]
+                        E --> F{Hit or Miss?}
+                        F -->|Hit| G[Roll Damage]
+                        F -->|Miss| H[Describe Miss]
+                        G --> I[Apply Damage]
+                        I --> J[Check Advantage/Threat]
+                        H --> J
+                        J --> K[Apply Secondary Effects]
+                        K --> L[Describe Complete Result]
+                        
+                        style F fill:#ff9800
+                        style G fill:#4caf50
+                        style H fill:#f44336
+                        style J fill:#2196f3
+                        style L fill:#9c27b0
+                </div>
+            </div>
+
+            <h3>Difficulty Modifiers - Environmental Storytelling</h3>
+            <p>Combat difficulty isn't just about the target's armor. It's about rain making your grip slippery, smoke obscuring vision, and the stress of knowing reinforcements are coming. Each modifier tells part of the scene's story.</p>
+
+            <div class="difficulty-examples">
+                <div class="example-box">
+                    <h4>Sample Combat Difficulties</h4>
+                    <ul>
+                        <li><strong>Easy (1 Purple):</strong> Point-blank shot at surprised target</li>
+                        <li><strong>Average (2 Purple):</strong> Standard firefight conditions</li>
+                        <li><strong>Hard (3 Purple):</strong> Target in cover, poor lighting</li>
+                        <li><strong>Daunting (4 Purple):</strong> Moving target, extreme range, smoke</li>
+                        <li><strong>Formidable (5 Purple):</strong> Shooting through asteroid field during ship battle</li>
+                    </ul>
+                    
+                    <h4>Setback Dice (Black) - Environmental Hindrances</h4>
+                    <ul>
+                        <li><strong>Minor Cover:</strong> 1 Setback (crouching behind low wall)</li>
+                        <li><strong>Poor Visibility:</strong> 1-2 Setback (smoke, darkness, rain)</li>
+                        <li><strong>Distraction:</strong> 1 Setback (explosions nearby, urgent shouting)</li>
+                        <li><strong>Unstable Platform:</strong> 1-2 Setback (moving vehicle, ship combat)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Damage and Wounds - Consequences That Matter</h3>
+            <p>Damage in Star Wars RPG represents more than just physical injury. Strain represents exhaustion, stress, and minor injuries. Wounds are serious harm that affects your ability to function. It's the difference between being winded from running and being shot in the leg.</p>
+
+            <div class="damage-system">
+                <canvas id="damageTracker" width="500" height="300"></canvas>
+            </div>
+
+            <script>
+                const damageCanvas = document.getElementById('damageTracker');
+                const damageCtx = damageCanvas.getContext('2d');
+                
+                // Draw character damage track visualization
+                const maxWounds = 15;
+                const maxStrain = 12;
+                const currentWounds = 8;
+                const currentStrain = 6;
+                
+                // Wound Track
+                damageCtx.fillStyle = '#333';
+                damageCtx.font = 'bold 16px Arial';
+                damageCtx.textAlign = 'left';
+                damageCtx.fillText('Wound Threshold: ' + maxWounds, 50, 30);
+                
+                // Draw wound boxes
+                for (let i = 0; i < maxWounds; i++) {
+                    const x = 50 + (i * 25);
+                    const y = 50;
+                    
+                    if (i < currentWounds) {
+                        damageCtx.fillStyle = '#F44336'; // Filled wound
+                    } else {
+                        damageCtx.fillStyle = '#FFF';
+                        damageCtx.strokeStyle = '#333';
+                        damageCtx.strokeRect(x, y, 20, 20);
+                    }
+                    
+                    if (i < currentWounds) {
+                        damageCtx.fillRect(x, y, 20, 20);
+                    }
+                }
+                
+                // Strain Track
+                damageCtx.fillStyle = '#333';
+                damageCtx.fillText('Strain Threshold: ' + maxStrain, 50, 120);
+                
+                // Draw strain boxes
+                for (let i = 0; i < maxStrain; i++) {
+                    const x = 50 + (i * 25);
+                    const y = 140;
+                    
+                    if (i < currentStrain) {
+                        damageCtx.fillStyle = '#FF9800'; // Filled strain
+                    } else {
+                        damageCtx.fillStyle = '#FFF';
+                        damageCtx.strokeStyle = '#333';
+                        damageCtx.strokeRect(x, y, 20, 20);
+                    }
+                    
+                    if (i < currentStrain) {
+                        damageCtx.fillRect(x, y, 20, 20);
+                    }
+                }
+                
+                // Add status indicators
+                damageCtx.fillStyle = '#333';
+                damageCtx.font = '14px Arial';
+                
+                if (currentWounds > maxWounds * 0.75) {
+                    damageCtx.fillText('Status: Heavily Wounded (-2 to all actions)', 50, 200);
+                } else if (currentWounds > maxWounds * 0.5) {
+                    damageCtx.fillText('Status: Wounded (-1 to all actions)', 50, 200);
+                } else {
+                    damageCtx.fillText('Status: Healthy', 50, 200);
+                }
+                
+                damageCtx.fillText('Critical Injury Risk: ' + (currentWounds > maxWounds * 0.5 ? 'High' : 'Low'), 50, 220);
+                
+                // Add legend
+                damageCtx.fillStyle = '#F44336';
+                damageCtx.fillRect(50, 250, 15, 15);
+                damageCtx.fillStyle = '#333';
+                damageCtx.fillText('Wounds (Serious Injury)', 75, 262);
+                
+                damageCtx.fillStyle = '#FF9800';
+                damageCtx.fillRect(250, 250, 15, 15);
+                damageCtx.fillStyle = '#333';
+                damageCtx.fillText('Strain (Fatigue/Stress)', 275, 262);
+            </script>
+        </section>
+
+        <section class="advantage-threat">
+            <h2>Advantage and Threat - The Story Shapers</h2>
+            
+            <h3>Beyond Success and Failure</h3>
+            <p>Advantage and Threat are the secret sauce that makes Star Wars RPG combat feel cinematic. They transform simple attack rolls into dynamic story moments. Think of them as the director's notes that turn a basic action scene into an unforgettable sequence.</p>
+
+            <div class="advantage-examples">
+                <h4>Creative Advantage Spending in Combat</h4>
+                <div class="advantage-grid">
+                    <div class="advantage-card">
+                        <h5>Environmental (2 Advantage)</h5>
+                        <p><strong>Example:</strong> Your blaster shot ricochets off a pipe, causing steam to vent and provide concealment</p>
+                        <p><strong>Mechanical Effect:</strong> Add Setback dice to enemy attacks next round</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h5>Tactical (1 Advantage)</h5>
+                        <p><strong>Example:</strong> Your attack forces the enemy to duck, giving your ally a clear shot</p>
+                        <p><strong>Mechanical Effect:</strong> Next ally gains Boost die to their attack</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h5>Equipment (2 Advantage)</h5>
+                        <p><strong>Example:</strong> Your precise shot damages the enemy's weapon</p>
+                        <p><strong>Mechanical Effect:</strong> Enemy weapon gains System Strain or loses quality</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <h5>Positioning (1 Advantage)</h5>
+                        <p><strong>Example:</strong> Your charge knocks the enemy off balance</p>
+                        <p><strong>Mechanical Effect:</strong> Target cannot perform maneuvers next turn</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="threat-examples">
+                <h4>Threat as Dramatic Tension</h4>
+                <div class="example-box">
+                    <h5>Threat Spending Examples</h5>
+                    <ul>
+                        <li><strong>1 Threat:</strong> Your weapon overheats (strain to use next round)</li>
+                        <li><strong>2 Threat:</strong> Stray shot alerts nearby enemies</li>
+                        <li><strong>2 Threat:</strong> You slip on debris, falling prone</li>
+                        <li><strong>3 Threat:</strong> Your aggressive attack leaves you exposed (+1 difficulty to defense)</li>
+                        <li><strong>1 Threat per rank:</strong> Enemy gains boost dice to their next action</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="triumph-despair">
+                <h3>Triumph and Despair - Game-Changing Moments</h3>
+                <p>These are the "that's impossible!" and "I've got a bad feeling about this" moments. Triumph creates opportunities for heroic achievements, while Despair ensures that even success comes with complications worthy of a Star Wars film.</p>
+
+                <div class="epic-moments">
+                    <div class="example-box">
+                        <h4>Triumph Examples - Heroic Moments</h4>
+                        <ul>
+                            <li><strong>Combat:</strong> Critical hit that disables enemy equipment or creates major tactical advantage</li>
+                            <li><strong>Narrative:</strong> Discover important information or make crucial ally connection</li>
+                            <li><strong>Environmental:</strong> Your action causes beneficial environmental change</li>
+                            <li><strong>Enemy Morale:</strong> Your display of skill causes enemies to flee or surrender</li>
+                        </ul>
+                        
+                        <h4>Despair Examples - Dramatic Complications</h4>
+                        <ul>
+                            <li><strong>Equipment:</strong> Critical weapon malfunction or gear failure</li>
+                            <li><strong>Reinforcements:</strong> Enemy backup arrives at worst possible moment</li>
+                            <li><strong>Environmental:</strong> Structural damage, fire starts, life support fails</li>
+                            <li><strong>Personal:</strong> Old enemy recognizes you, bounty hunters learn location</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="special-combat-rules">
+            <h2>Special Combat Situations</h2>
+            
+            <h3>Vehicle Combat - Starfighter Battles</h3>
+            <p>Vehicle combat scales up the action without losing the personal stakes. Whether you're piloting an X-wing or manning the guns on the Millennium Falcon, the same core mechanics apply, but with additional considerations for speed, maneuverability, and the fact that your vehicle can be a character in its own right.</p>
+
+            <div class="vehicle-combat-flow">
+                <div class="mermaid">
+                    stateDiagram-v2
+                        [*] --> Pilot
+                        [*] --> Gunner
+                        [*] --> Engineer
+                        
+                        Pilot --> Flying: Piloting Check
+                        Flying --> Evasive: Defensive Maneuver
+                        Flying --> Aggressive: Attack Run
+                        Flying --> Speed: Change Speed
+                        
+                        Gunner --> Gunnery: Fire Weapons
+                        Gunnery --> Target: Acquire Lock
+                        Gunnery --> Barrage: Multiple Targets
+                        
+                        Engineer --> Repair: Fix Systems
+                        Repair --> Boost: Improve Performance
+                        Repair --> Damage_Control: Emergency Repairs
+                        
+                        Evasive --> [*]
+                        Aggressive --> [*]
+                        Speed --> [*]
+                        Target --> [*]
+                        Barrage --> [*]
+                        Boost --> [*]
+                        Damage_Control --> [*]
+                </div>
+            </div>
+
+            <h3>Lightsaber Combat - The Elegant Weapon</h3>
+            <p>Lightsaber combat isn't just sword fighting with glowing blades. It's a meditation, a dance, and a philosophical statement all at once. The weapon's mechanics reflect this: it's incredibly dangerous but requires skill and Force sensitivity to use effectively.</p>
+
+            <div class="lightsaber-mechanics">
+                <div class="example-box">
+                    <h4>Lightsaber Special Properties</h4>
+                    <ul>
+                        <li><strong>Breach 1:</strong> Ignores one point of armor (cuts through most materials)</li>
+                        <li><strong>Sunder:</strong> Can damage weapons and equipment</li>
+                        <li><strong>Dangerous to Untrained:</strong> Despair results can injure the wielder</li>
+                        <li><strong>Deflection:</strong> Can redirect ranged attacks back at attackers</li>
+                        <li><strong>Cortosis Vulnerability:</strong> Temporarily shorts out against cortosis weapons</li>
+                    </ul>
+                    
+                    <h4>Form-Specific Combat Styles</h4>
+                    <pre><code>&lt;!-- Lightsaber Form Examples --&gt;
+&lt;strong&gt;Form I (Shii-Cho):&lt;/strong&gt; Basic, balanced approach
+├── Good for beginners and multiple opponents
+└── Bonus: Extra maneuver when fighting multiple enemies
+
+&lt;strong&gt;Form II (Makashi):&lt;/strong&gt; Dueling focused
+├── Optimized for lightsaber vs lightsaber
+└── Bonus: Add Force dice to Lightsaber vs Lightsaber
+
+&lt;strong&gt;Form III (Soresu):&lt;/strong&gt; Defensive mastery  
+├── Specialized in deflecting blaster fire
+└── Bonus: Improved defensive capabilities
+
+&lt;strong&gt;Form V (Djem So):&lt;/strong&gt; Aggressive counter-attack
+├── Turn defense into offense
+└── Bonus: Reflect damage back to attackers</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-conflict">
+            <h2>Social Conflict - Wars of Words</h2>
+            
+            <h3>Structured Social Encounters</h3>
+            <p>Not every conflict involves blasters and lightsabers. Sometimes the most important battles happen in throne rooms, cantinas, and negotiation chambers. Social conflicts use the same structured time mechanics as physical combat, but the weapons are words, charm, and psychological pressure.</p>
+
+            <div class="social-combat-comparison">
+                <canvas id="socialVsPhysical" width="600" height="400"></canvas>
+            </div>
+
+            <script>
+                const socialCanvas = document.getElementById('socialVsPhysical');
+                const socialCtx = socialCanvas.getContext('2d');
+                
+                // Draw comparison between physical and social combat
+                socialCtx.fillStyle = '#333';
+                socialCtx.font = 'bold 18px Arial';
+                socialCtx.textAlign = 'center';
+                socialCtx.fillText('Physical vs Social Combat', 300, 30);
+                
+                // Physical Combat Column
+                socialCtx.fillStyle = '#F44336';
+                socialCtx.fillRect(50, 60, 200, 30);
+                socialCtx.fillStyle = 'white';
+                socialCtx.font = 'bold 16px Arial';
+                socialCtx.fillText('Physical Combat', 150, 80);
+                
+                const physicalItems = [
+                    'Weapons & Armor',
+                    'Wounds & Strain',
+                    'Range Bands',
+                    'Cover & Concealment',
+                    'Tactical Positioning'
+                ];
+                
+                socialCtx.fillStyle = '#333';
+                socialCtx.font = '14px Arial';
+                socialCtx.textAlign = 'left';
+                
+                physicalItems.forEach((item, index) => {
+                    socialCtx.fillText('• ' + item, 60, 110 + (index * 25));
+                });
+                
+                // Social Combat Column
+                socialCtx.fillStyle = '#2196F3';
+                socialCtx.fillRect(350, 60, 200, 30);
+                socialCtx.fillStyle = 'white';
+                socialCtx.font = 'bold 16px Arial';
+                socialCtx.textAlign = 'center';
+                socialCtx.fillText('Social Combat', 450, 80);
+                
+                const socialItems = [
+                    'Arguments & Evidence',
+                    'Strain & Reputation',
+                    'Social Distance',
+                    'Privacy & Witnesses',
+                    'Emotional Positioning'
+                ];
+                
+                socialCtx.fillStyle = '#333';
+                socialCtx.font = '14px Arial';
+                socialCtx.textAlign = 'left';
+                
+                socialItems.forEach((item, index) => {
+                    socialCtx.fillText('• ' + item, 360, 110 + (index * 25));
+                });
+                
+                // Arrow showing similarity
+                socialCtx.strokeStyle = '#666';
+                socialCtx.lineWidth = 3;
+                socialCtx.setLineDash([10, 5]);
+                socialCtx.beginPath();
+                socialCtx.moveTo(260, 150);
+                socialCtx.lineTo(340, 150);
+                socialCtx.stroke();
+                socialCtx.setLineDash([]);
+                
+                socialCtx.fillStyle = '#666';
+                socialCtx.font = '12px Arial';
+                socialCtx.textAlign = 'center';
+                socialCtx.fillText('Same Mechanics', 300, 145);
+                socialCtx.fillText('Different Fiction', 300, 160);
+                
+                // Add examples at bottom
+                socialCtx.fillStyle = '#4CAF50';
+                socialCtx.fillRect(50, 250, 500, 30);
+                socialCtx.fillStyle = 'white';
+                socialCtx.font = 'bold 14px Arial';
+                socialCtx.textAlign = 'center';
+                socialCtx.fillText('Example: Negotiating with Jabba the Hutt', 300, 270);
+                
+                socialCtx.fillStyle = '#333';
+                socialCtx.font = '12px Arial';
+                socialCtx.textAlign = 'left';
+                socialCtx.fillText('Initiative: Roll Cool vs Presence | Actions: Charm, Coercion, Deception', 60, 300);
+                socialCtx.fillText('Advantage: Gain leverage | Threat: Lose face | Triumph: Major concession', 60, 320);
+                socialCtx.fillText('Despair: Negotiations break down, guards called, relationship damaged', 60, 340);
+            </script>
+
+            <h3>Social "Weapons" and "Armor"</h3>
+            <div class="social-tools">
+                <div class="example-box">
+                    <h4>Social Attack Types</h4>
+                    <ul>
+                        <li><strong>Charm (Presence):</strong> Appeal to positive emotions, build rapport</li>
+                        <li><strong>Coercion (Willpower):</strong> Intimidate, threaten consequences</li>
+                        <li><strong>Deception (Cunning):</strong> Mislead, present false information</li>
+                        <li><strong>Negotiation (Presence):</strong> Find mutually beneficial solutions</li>
+                    </ul>
+                    
+                    <h4>Social "Armor" and Defenses</h4>
+                    <ul>
+                        <li><strong>High Status:</strong> Rank, wealth, or position provides social protection</li>
+                        <li><strong>Witnesses:</strong> Public setting makes certain tactics ineffective</li>
+                        <li><strong>Prior Knowledge:</strong> Knowing opponent's tactics or reputation</li>
+                        <li><strong>Strong Position:</strong> Having leverage or alternatives</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mass-combat">
+            <h2>Mass Combat - Leading Armies</h2>
+            
+            <h3>Squadron and Fleet Rules</h3>
+            <p>Sometimes heroes need to lead entire squadrons or coordinate fleet actions. Mass combat rules allow player characters to have meaningful impact on large-scale battles without getting lost in the crowd. Think of it like being the protagonist in a war film - you're not just another soldier, you're the one whose actions determine the outcome.</p>
+
+            <div class="mass-combat-structure">
+                <div class="mermaid">
+                    graph TB
+                        A[Strategic Phase] --> B[Tactical Phase]
+                        B --> C[Personal Phase]
+                        C --> A
+                        
+                        A1[Fleet/Army Movements] --> A
+                        A2[Overall Strategy] --> A
+                        A3[Resource Allocation] --> A
+                        
+                        B --> B1[Squadron Actions]
+                        B --> B2[Tactical Maneuvers]
+                        B --> B3[Battlefield Control]
+                        
+                        C --> C1[Individual Hero Actions]
+                        C --> C2[Personal Duels]
+                        C --> C3[Critical Missions]
+                        
+                        style A fill:#ff9800
+                        style B fill:#2196f3
+                        style C fill:#4caf50
+                </div>
+            </div>
+        </section>
+
+        <section class="conflict-alternatives">
+            <h2>Alternatives to Combat</h2>
+            
+            <h3>When Fighting Isn't the Answer</h3>
+            <p>The best Star Wars moments often involve avoiding combat through cleverness, negotiation, or pure audacity. The system supports and encourages these alternatives, making them as mechanically interesting and dramatically satisfying as any lightsaber duel.</p>
+
+            <div class="alternative-examples">
+                <div class="example-box">
+                    <h4>Classic Star Wars Non-Combat Solutions</h4>
+                    <ul>
+                        <li><strong>Disguise and Infiltration:</strong> "Aren't you a little short for a stormtrooper?"</li>
+                        <li><strong>Fast Talking:</strong> Han's carbon freeze bluff</li>
+                        <li><strong>Environmental Solutions:</strong> Collapsing the cave entrance</li>
+                        <li><strong>Misdirection:</strong> "Look, your worshipfulness..."</li>
+                        <li><strong>Strategic Retreat:</strong> "The Force will be with you"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Skill-Based Conflict Resolution</h3>
+            <p>Many conflicts can be resolved through extended skill checks that build tension and allow for collaborative problem-solving. These create the same dramatic beats as combat but focus on different character strengths.</p>
+
+            <div class="skill-conflict-example">
+                <pre><code>&lt;!-- Extended Skill Check Example: Escaping Imperial Detention --&gt;
+&lt;strong&gt;Goal:&lt;/strong&gt; Escape detention block before reinforcements arrive
+&lt;strong&gt;Difficulty:&lt;/strong&gt; Hard (3 Purple dice)
+&lt;strong&gt;Required Successes:&lt;/strong&gt; 8 (representing multiple challenges)
+&lt;strong&gt;Time Limit:&lt;/strong&gt; 6 rounds before alarm brings reinforcements
+
+&lt;strong&gt;Player Approaches:&lt;/strong&gt;
+├── Computers: Slice security systems (Intellect + Computers)
+├── Skulduggery: Pick locks and disable cameras (Cunning + Skulduggery)  
+├── Deception: Fool guards with fake authorizations (Cunning + Deception)
+├── Athletics: Climb through ventilation shafts (Brawn + Athletics)
+└── Mechanics: Jury-rig equipment failures (Intellect + Mechanics)
+
+&lt;strong&gt;Advantage/Threat Results:&lt;/strong&gt;
+├── Advantage: Reduce time needed, gain useful equipment, avoid patrols
+├── Threat: Increase noise level, damage equipment, alert guards
+├── Triumph: Discover important intelligence, rescue additional prisoners
+└── Despair: Trigger early alarm, separate party, equipment failure</code></pre>
+            </div>
+        </section>
+
+        <section class="practice-activities">
+            <h2>Practice Activities</h2>
+            
+            <h3>Activity One: Combat Round Simulation</h3>
+            <p>Practice running a complete combat round:</p>
+            <ol>
+                <li>Roll initiative for 2 PCs and 3 NPCs</li>
+                <li>Arrange initiative slots (PC-NPC-PC-NPC-NPC)</li>
+                <li>Have each character take one turn with action, maneuver, and incidentals</li>
+                <li>Practice spending Advantage and Threat creatively</li>
+                <li>Describe each result narratively, not just mechanically</li>
+            </ol>
+            
+            <h3>Activity Two: Advantage/Threat Creativity</h3>
+            <p>Given these dice results, create dramatic descriptions:</p>
+            <ul>
+                <li>Attack hits with 2 Success, 3 Advantage</li>
+                <li>Attack misses with 0 Success, 2 Threat</li>
+                <li>Attack hits with 1 Success, 1 Triumph, 1 Threat</li>
+                <li>Attack fails with 1 Failure, 1 Despair, 2 Advantage</li>
+            </ul>
+            
+            <h3>Activity Three: Social Conflict Design</h3>
+            <p>Design a social encounter:</p>
+            <ol>
+                <li>Choose a classic Star Wars negotiation scenario</li>
+                <li>Define what each side wants and their leverage</li>
+                <li>Determine appropriate skills and difficulties</li>
+                <li>Create consequences for different outcomes</li>
+                <li>Plan how Advantage/Threat might manifest</li>
+            </ol>
+            
+            <h3>Activity Four: Alternative Resolution Brainstorming</h3>
+            <p>For each combat scenario, brainstorm three non-combat solutions:</p>
+            <ul>
+                <li>Stormtroopers blocking the only exit</li>
+                <li>Rival smuggler claims your cargo</li>
+                <li>Imperial officer demands identification</li>
+                <li>Bounty hunter confronts you in a cantina</li>
+            </ul>
+        </section>
+
+        <section class="gm-combat-tips">
+            <h2>Game Master Combat Guidance</h2>
+            
+            <h3>Creating Memorable Encounters</h3>
+            <p>Great combat encounters are like great movie scenes - they have a clear purpose in the larger story, showcase character abilities, and create opportunities for heroic moments and character development.</p>
+
+            <div class="encounter-design">
+                <div class="example-box">
+                    <h4>Combat Encounter Design Checklist</h4>
+                    <ul>
+                        <li><strong>Story Purpose:</strong> How does this advance the plot or develop characters?</li>
+                        <li><strong>Environmental Elements:</strong> What makes this location unique and tactically interesting?</li>
+                        <li><strong>Character Spotlight:</strong> How can each PC shine in this encounter?</li>
+                        <li><strong>Escalation Potential:</strong> How might the situation become more complex?</li>
+                        <li><strong>Multiple Solutions:</strong> What are the non-combat alternatives?</li>
+                        <li><strong>Consequences:</strong> What happens based on how the encounter resolves?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Balancing Challenge and Heroism</h3>
+            <p>Star Wars heroes should feel competent and capable while still facing meaningful challenges. The goal isn't to create insurmountable obstacles but to provide opportunities for clever solutions and dramatic victories.</p>
+        </section>
+
+       
+    </main>
+
+    <footer>
+        <p>Remember: Every dice roll is an opportunity to tell a story. Combat isn't about winning or losing - it's about creating moments that define heroes and shape the galaxy's future.</p>
+  
+    </footer>
+
+    
+</body>
+</html>
