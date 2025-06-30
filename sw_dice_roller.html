@@ -192,6 +192,86 @@
         .despair { background: #000000; }
         .light { background: #FFFFFF; color: #000000; }
         .dark { background: #696969; }
+        
+        /* Percentile Roller Styles */
+        .percentile-section {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #FFA500;
+            margin-top: 15px;
+        }
+        
+        .percentile-section h3 {
+            font-size: 1.4em;
+            color: #FFA500;
+            margin-bottom: 15px;
+        }
+        
+        .percentile-roller {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+        }
+        
+        .percentile-result {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #FFA500;
+            text-shadow: 0 0 8px #FFA500;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .percentile-btn {
+            background: linear-gradient(45deg, #FFA500, #FF8C00);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            padding: 10px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .percentile-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+        }
+        
+        .percentile-history {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            max-width: 500px;
+        }
+        
+        .percentile-history h4 {
+            margin: 0 0 8px 0;
+            color: #FFA500;
+            font-size: 0.9em;
+        }
+        
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .history-roll {
+            background: rgba(255, 165, 0, 0.2);
+            border: 1px solid #FFA500;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -267,6 +347,20 @@
             
             <button class="roll-btn" onclick="rollDice()">Roll Dice</button>
             <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+        
+        <!-- Percentile Roller Section -->
+        <div class="dice-section percentile-section">
+            <h3>🎲 Percentile Roller (d100)</h3>
+            <div class="percentile-roller">
+                <div class="percentile-result" id="percentile-result">Click to Roll!</div>
+                <button class="percentile-btn" onclick="rollPercentile()">Roll d100</button>
+                <div class="percentile-history" id="percentile-history" style="display: none;">
+                    <h4>Recent Rolls:</h4>
+                    <div class="history-list" id="history-list"></div>
+                </div>
+                <button class="clear-btn" onclick="clearPercentileHistory()">Clear History</button>
+            </div>
         </div>
         
         <div id="results" class="results" style="display: none;">
@@ -378,6 +472,10 @@
                     <strong>💀 Despair:</strong> Catastrophic complication, even on success<br>
                     <strong>Multiple ⚪/⚫:</strong> More powerful Force effects possible</p>
                 </div>
+                <div class="interpretation-item">
+                    <h4>Percentile Rolls</h4>
+                    <p><strong>d100:</strong> Used for random tables, skill checks, and percentage-based mechanics. Roll low (01-05) for critical success, roll high (96-00) for critical failure, depending on your system.</p>
+                </div>
             </div>
         </div>
     <script>
@@ -406,10 +504,64 @@
             ]
         };
         
+        // Percentile roller variables
+        let percentileHistory = [];
+        
         function changeDiceCount(type, change) {
             const input = document.getElementById(type + '-count');
             const newValue = Math.max(0, Math.min(10, parseInt(input.value) + change));
             input.value = newValue;
+        }
+        
+        function rollPercentile() {
+            const roll = Math.floor(Math.random() * 100) + 1;
+            const resultElement = document.getElementById('percentile-result');
+            
+            // Add animation effect
+            resultElement.style.transform = 'scale(1.2)';
+            resultElement.style.transition = 'transform 0.3s ease';
+            
+            // Display result with formatting (01-100)
+            const formattedRoll = roll.toString().padStart(2, '0');
+            resultElement.textContent = formattedRoll;
+            
+            // Reset animation
+            setTimeout(() => {
+                resultElement.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Add to history
+            percentileHistory.unshift(formattedRoll);
+            if (percentileHistory.length > 10) {
+                percentileHistory.pop();
+            }
+            
+            updatePercentileHistory();
+        }
+        
+        function updatePercentileHistory() {
+            const historyDiv = document.getElementById('percentile-history');
+            const historyList = document.getElementById('history-list');
+            
+            if (percentileHistory.length > 0) {
+                historyDiv.style.display = 'block';
+                historyList.innerHTML = '';
+                
+                percentileHistory.forEach(roll => {
+                    const rollElement = document.createElement('span');
+                    rollElement.className = 'history-roll';
+                    rollElement.textContent = roll;
+                    historyList.appendChild(rollElement);
+                });
+            } else {
+                historyDiv.style.display = 'none';
+            }
+        }
+        
+        function clearPercentileHistory() {
+            percentileHistory = [];
+            updatePercentileHistory();
+            document.getElementById('percentile-result').textContent = 'Click to Roll!';
         }
         
         function rollDice() {
