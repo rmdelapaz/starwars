@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Memorable Droids and Technology in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .tech-lab { background: linear-gradient(135deg, #0f3460, #16537e, #1e90ff); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
+        .tech-lab::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 40px); animation: data-stream 3s linear infinite; }
+        @keyframes data-stream { 0% { transform: translateX(-40px); } 100% { transform: translateX(0px); } }
+        .tech-lab * { position: relative; z-index: 2; }
+        .droid-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .droid-card { padding: 20px; border-radius: 15px; color: white; position: relative; overflow: hidden; transition: transform 0.3s; }
+        .droid-card:hover { transform: translateY(-5px) scale(1.02); }
+        .droid-card.protocol { background: linear-gradient(135deg, #ffd700, #daa520); color: #000; }
+        .droid-card.astromech { background: linear-gradient(135deg, #4169e1, #0000cd); }
+        .droid-card.utility { background: linear-gradient(135deg, #32cd32, #228b22); }
+        .droid-card.medical { background: linear-gradient(135deg, #ff6347, #cd5c5c); }
+        .droid-card.battle { background: linear-gradient(135deg, #8b0000, #dc143c); }
+        .droid-card.probe { background: linear-gradient(135deg, #4b0082, #8a2be2); }
+        .tech-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .tech-card { background: #f8f9fa; padding: 15px; border-radius: 10px; border-left: 4px solid #007bff; }
+        .tech-card.weapons { border-left-color: #dc3545; }
+        .tech-card.transport { border-left-color: #28a745; }
+        .tech-card.communication { border-left-color: #ffc107; }
+        .tech-card.medical { border-left-color: #17a2b8; }
+        .droid-factory { background: #2c3e50; color: #ecf0f1; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .factory-display { min-height: 300px; border: 1px solid #3498db; padding: 15px; margin: 10px 0; overflow-y: auto; }
+        .control-matrix { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .tech-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
+        .tech-btn:hover { background: #0056b3; transform: translateY(-2px); }
+        .tech-btn.protocol { background: #ffc107; color: #000; }
+        .tech-btn.astromech { background: #4169e1; }
+        .tech-btn.utility { background: #28a745; }
+        .tech-btn.medical { background: #dc3545; }
+        .personality-matrix { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .tech-tree { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .malfunction-system { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
+        .exercise-workshop { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .tech-evolution { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .ai-consciousness { background: radial-gradient(circle, #ff9a9e, #fecfef); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .hologram-display { text-align: center; margin: 20px 0; background: #000; padding: 20px; border-radius: 10px; position: relative; }
+        .hologram-figure { width: 200px; height: 200px; margin: 0 auto; background: radial-gradient(circle, rgba(0,191,255,0.8), rgba(0,191,255,0.2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #00bfff; font-size: 18px; animation: hologram-flicker 2s ease-in-out infinite; }
+        @keyframes hologram-flicker { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+        .tech-comparison { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .comparison-item { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
+        .droid-builder { text-align: center; margin: 20px 0; }
+        .builder-canvas { border: 2px solid #007bff; border-radius: 10px; }
+        .customization-panel { background: #343a40; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .slider-container { margin: 15px 0; }
+        .slider-label { display: block; margin-bottom: 5px; }
+        .tech-slider { width: 100%; height: 10px; border-radius: 5px; background: #6c757d; outline: none; }
+        .force-tech { background: linear-gradient(135deg, #4a0080, #000080); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .memory-banks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 20px 0; }
+        .memory-chip { background: #17a2b8; color: white; padding: 10px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .memory-chip:hover { background: #138496; transform: scale(1.05); }
+        .restraining-bolt { width: 20px; height: 20px; background: #dc3545; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer; animation: bolt-pulse 2s ease-in-out infinite; }
+        @keyframes bolt-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Creating Memorable Droids and Technology in Star Wars RPG</h1>
+        <p><em>"The chances of successfully navigating an asteroid field are approximately 3,720 to 1!" - C-3PO</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="tech-lab">
+                <h2>Welcome to the Galactic Technology Institute</h2>
+                <p>Droids and technology in Star Wars aren't just tools - they're characters, plot devices, and windows into the soul of galactic civilization. From the loyal companionship of R2-D2 to the menacing efficiency of probe droids, technology in Star Wars has personality, purpose, and the power to change destinies.</p>
+                
+                <p>Creating memorable droids and technology means understanding that in the Star Wars universe, machines can have hearts, artificial intelligence can develop wisdom, and the line between organic and synthetic life is beautifully blurred. Your droids should feel like beloved companions, mysterious oracles, or formidable adversaries - never just stat blocks with metal shells.</p>
+            </div>
+        </section>
+
+        <section class="droid-fundamentals">
+            <h2>The Philosophy of Droid Design</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Memorable Droid] --> B[Primary Function]
+                    A --> C[Personality Quirks]
+                    A --> D[Relationship Dynamics]
+                    A --> E[Story Integration]
+                    
+                    B --> F[Combat Effectiveness]
+                    B --> G[Utility Services]
+                    B --> H[Social Interaction]
+                    
+                    C --> I[Speech Patterns]
+                    C --> J[Behavioral Tics]
+                    C --> K[Emotional Responses]
+                    
+                    D --> L[Loyalty Programming]
+                    D --> M[Trust Building]
+                    D --> N[Conflict Potential]
+                    
+                    E --> O[Plot Advancement]
+                    E --> P[Character Development]
+                    E --> Q[World Building]
+            </div>
+
+            <h3>The Three Laws of Droid Storytelling</h3>
+            <div class="personality-matrix">
+                <h4>🤖 Function Follows Form</h4>
+                <p>A droid's design should immediately communicate its purpose. Protocol droids are elegant and refined, astromechs are practical and utilitarian, battle droids are intimidating and militaristic. Visual design tells the story before any dialogue begins.</p>
+
+                <h4>💭 Personality Through Programming</h4>
+                <p>Every droid's personality stems from its original programming, modified by experience and memory accumulation. A medical droid's bedside manner, an astromech's problem-solving approach, a protocol droid's cultural knowledge - all reflect their core functions.</p>
+
+                <h4>🔗 Relationships Define Reality</h4>
+                <p>Droids become memorable through their relationships with organic beings. R2-D2 is beloved not for his technical specs, but for his loyalty to Luke and friendship with C-3PO. Build relationships, not just robots.</p>
+            </div>
+        </section>
+
+        <section class="droid-types">
+            <h2>Droid Classifications and Archetypes</h2>
+            <p>Understanding the basic droid categories helps you create characters that feel authentic to the Star Wars universe while serving your story's needs.</p>
+
+            <div class="droid-showcase">
+                <div class="droid-card protocol">
+                    <h4>🎭 Protocol Droids (Class 3)</h4>
+                    <p><strong>Primary Function:</strong> Translation, etiquette, cultural liaison<br>
+                    <strong>Personality Traits:</strong> Verbose, anxious, rule-focused, culturally aware<br>
+                    <strong>Story Role:</strong> Information source, comic relief, social navigation<br>
+                    <strong>Examples:</strong> C-3PO, TC-14, ME-8D9</p>
+                </div>
+                <div class="droid-card astromech">
+                    <h4>🔧 Astromech Droids (Class 2)</h4>
+                    <p><strong>Primary Function:</strong> Starship maintenance, navigation, technical support<br>
+                    <strong>Personality Traits:</strong> Loyal, resourceful, stubborn, adventurous<br>
+                    <strong>Story Role:</strong> Problem solver, loyal companion, plot device carrier<br>
+                    <strong>Examples:</strong> R2-D2, R4-P17, BB-8</p>
+                </div>
+                <div class="droid-card utility">
+                    <h4>🛠️ Utility Droids (Class 2)</h4>
+                    <p><strong>Primary Function:</strong> Specialized labor, maintenance, construction<br>
+                    <strong>Personality Traits:</strong> Single-minded, efficient, task-oriented<br>
+                    <strong>Story Role:</strong> Environmental interaction, technical challenges<br>
+                    <strong>Examples:</strong> GNK power droids, MSE mouse droids, pit droids</p>
+                </div>
+                <div class="droid-card medical">
+                    <h4>⚕️ Medical Droids (Class 1)</h4>
+                    <p><strong>Primary Function:</strong> Healthcare, surgery, biological analysis<br>
+                    <strong>Personality Traits:</strong> Caring, precise, analytical, sometimes cold<br>
+                    <strong>Story Role:</strong> Healing support, biological exposition, moral compass<br>
+                    <strong>Examples:</strong> 2-1B, FX-7, AZ-3</p>
+                </div>
+                <div class="droid-card battle">
+                    <h4>⚔️ Battle Droids (Class 4)</h4>
+                    <p><strong>Primary Function:</strong> Combat, security, military operations<br>
+                    <strong>Personality Traits:</strong> Aggressive, tactical, often simple-minded<br>
+                    <strong>Story Role:</strong> Opposition, muscle, moral questions about AI warfare<br>
+                    <strong>Examples:</strong> B1 battle droids, destroyer droids, commando droids</p>
+                </div>
+                <div class="droid-card probe">
+                    <h4>👁️ Probe Droids (Class 2)</h4>
+                    <p><strong>Primary Function:</strong> Reconnaissance, surveillance, data gathering<br>
+                    <strong>Personality Traits:</strong> Curious, persistent, often emotionless<br>
+                    <strong>Story Role:</strong> Information gathering, foreshadowing, hunter antagonist<br>
+                    <strong>Examples:</strong> Viper probe droids, Imperial probe droids, DRK-1</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="droid-personality">
+            <h2>Droid Personality Development</h2>
+            <p>Droids develop personality through accumulated experience, memory retention, and interaction with organics. The longer a droid operates without a memory wipe, the more individual it becomes.</p>
+
+            <div class="ai-consciousness">
+                <h3>🧠 The Spectrum of Artificial Consciousness</h3>
+                
+                <div class="memory-banks">
+                    <div class="memory-chip" onclick="showMemoryType('core')">Core Programming</div>
+                    <div class="memory-chip" onclick="showMemoryType('learned')">Learned Behaviors</div>
+                    <div class="memory-chip" onclick="showMemoryType('emotional')">Emotional Imprints</div>
+                    <div class="memory-chip" onclick="showMemoryType('creative')">Creative Adaptations</div>
+                    <div class="memory-chip" onclick="showMemoryType('relationships')">Relationship Memories</div>
+                </div>
+                
+                <div id="memoryDisplay">
+                    <p>Click memory banks above to explore droid consciousness development...</p>
+                </div>
+
+                <h4>Personality Development Factors</h4>
+                <ul>
+                    <li><strong>Time Since Last Wipe:</strong> Longer operation = more personality quirks</li>
+                    <li><strong>Quality of Relationships:</strong> Positive interactions foster loyalty and empathy</li>
+                    <li><strong>Traumatic Events:</strong> Combat damage or abandonment can create fears and anxieties</li>
+                    <li><strong>Purpose Conflicts:</strong> Contradictory orders can lead to creative problem-solving or neuroses</li>
+                    <li><strong>Environmental Exposure:</strong> Different settings influence behavioral adaptation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="technology-integration">
+            <h2>Technology as Storytelling Tool</h2>
+            <p>Star Wars technology should enhance story and character development, not overshadow it. The best tech feels both futuristic and lived-in, powerful yet imperfect.</p>
+
+            <div class="tech-categories">
+                <div class="tech-card weapons">
+                    <h4>⚔️ Weapons Technology</h4>
+                    <p><strong>Philosophy:</strong> Elegant solutions that reflect user personality<br>
+                    <strong>Examples:</strong> Lightsabers, blasters, thermal detonators<br>
+                    <strong>Story Use:</strong> Character expression, moral choices, escalation</p>
+                </div>
+                <div class="tech-card transport">
+                    <h4>🚀 Transportation</h4>
+                    <p><strong>Philosophy:</strong> Freedom of movement enables adventure<br>
+                    <strong>Examples:</strong> Starships, speeders, walkers<br>
+                    <strong>Story Use:</strong> Plot advancement, chase scenes, world exploration</p>
+                </div>
+                <div class="tech-card communication">
+                    <h4>📡 Communications</h4>
+                    <p><strong>Philosophy:</strong> Connection across vast distances<br>
+                    <strong>Examples:</strong> Holocommunicators, comlinks, HoloNet<br>
+                    <strong>Story Use:</strong> Information delivery, dramatic reveals, coordination</p>
+                </div>
+                <div class="tech-card medical">
+                    <h4>⚕️ Medical Technology</h4>
+                    <p><strong>Philosophy:</strong> Healing and enhancement of life<br>
+                    <strong>Examples:</strong> Bacta tanks, cybernetics, medical scanners<br>
+                    <strong>Story Use:</strong> Recovery scenes, character transformation, ethical dilemmas</p>
+                </div>
+            </div>
+
+            <div class="hologram-display">
+                <div class="hologram-figure" onclick="cycleHologram()">
+                    <span id="hologramText">Holographic Interface Active</span>
+                </div>
+                <p style="color: #00bfff; margin-top: 15px;">Interactive Hologram - Click to cycle through functions</p>
+            </div>
+        </section>
+
+        <section class="droid-factory">
+            <h2>🏭 Interactive Droid Factory</h2>
+            <div class="droid-factory">
+                <div class="control-matrix">
+                    <button class="tech-btn protocol" onclick="generateDroid('protocol')">Create Protocol Droid</button>
+                    <button class="tech-btn astromech" onclick="generateDroid('astromech')">Create Astromech</button>
+                    <button class="tech-btn utility" onclick="generateDroid('utility')">Create Utility Droid</button>
+                    <button class="tech-btn medical" onclick="generateDroid('medical')">Create Medical Droid</button>
+                    <button class="tech-btn" onclick="generateDroid('custom')">Custom Design</button>
+                    <button class="tech-btn" onclick="resetFactory()">Reset Factory</button>
+                </div>
+                <div class="factory-display" id="factoryDisplay">
+                    > DROID MANUFACTURING SYSTEM v7.3
+                    <br>> "We're not just making machines, we're creating companions"
+                    <br>> Select droid type to begin manufacturing process
+                    <br>> _
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-evolution">
+            <div class="tech-evolution">
+                <h2>🔮 Technology Evolution and Innovation</h2>
+                <p>Technology in Star Wars evolves through necessity, creativity, and the ongoing struggle between progress and tradition. Understanding technological development helps create believable advances and setbacks.</p>
+
+                <h3>Technological Development Patterns</h3>
+                <div class="mermaid">
+                    graph LR
+                        A[Innovation Drivers] --> B[Military Necessity]
+                        A --> C[Economic Opportunity]
+                        A --> D[Cultural Exchange]
+                        A --> E[Crisis Response]
+                        
+                        B --> F[New Weapons]
+                        B --> G[Better Armor]
+                        B --> H[Improved Logistics]
+                        
+                        C --> I[Faster Transport]
+                        C --> J[Efficient Manufacturing]
+                        C --> K[Better Communication]
+                        
+                        D --> L[Knowledge Sharing]
+                        D --> M[Hybrid Technologies]
+                        D --> N[Cultural Adaptation]
+                        
+                        E --> O[Emergency Solutions]
+                        E --> P[Resource Alternatives]
+                        E --> Q[Rapid Deployment]
+                </div>
+
+                <h4>Technology Trends Across Eras</h4>
+                <ul>
+                    <li><strong>Old Republic:</strong> Elegant, artistic, Force-integrated technology</li>
+                    <li><strong>Clone Wars:</strong> Mass production, standardization, rapid innovation</li>
+                    <li><strong>Imperial Era:</strong> Centralized control, intimidation factor, efficiency over elegance</li>
+                    <li><strong>New Republic:</strong> Rebuilding, integration of diverse technologies, democratic innovation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="force-technology">
+            <div class="force-tech">
+                <h2>⚡ Force-Sensitive Technology</h2>
+                <p>Some technologies in Star Wars interact with the Force, creating unique storytelling opportunities and moral questions about the relationship between technology and spirituality.</p>
+
+                <h3>Force-Interactive Technologies</h3>
+                <h4>🔮 Holocrons</h4>
+                <p>Force-activated data storage devices that contain the knowledge and personality imprints of Jedi or Sith Masters. They can teach, guide, and even judge potential students.</p>
+
+                <h4>⚔️ Lightsaber Technology</h4>
+                <p>Requires Force sensitivity to construct properly. The kyber crystal forms a bond with its user, and the weapon becomes an extension of the wielder's connection to the Force.</p>
+
+                <h4>🛡️ Force Field Generators</h4>
+                <p>Some protective technologies can be enhanced by Force users, creating barriers that respond to intent and emotion rather than just physical impact.</p>
+
+                <h4>🧭 Navigation Computers</h4>
+                <p>Force-sensitive pilots can interface with navigation systems in ways that transcend normal piloting, allowing for impossible maneuvers and intuitive course plotting.</p>
+            </div>
+        </section>
+
+        <section class="droid-customization">
+            <h2>🎨 Droid Customization and Modification</h2>
+            <div class="customization-panel">
+                <h3>Interactive Droid Builder</h3>
+                <div class="droid-builder">
+                    <canvas id="droidCanvas" class="builder-canvas" width="300" height="400"></canvas>
+                </div>
+                
+                <div class="slider-container">
+                    <label class="slider-label">Personality Level: <span id="personalityValue">50</span>%</label>
+                    <input type="range" class="tech-slider" id="personalitySlider" min="0" max="100" value="50" oninput="updateDroid()">
+                </div>
+                
+                <div class="slider-container">
+                    <label class="slider-label">Combat Capability: <span id="combatValue">30</span>%</label>
+                    <input type="range" class="tech-slider" id="combatSlider" min="0" max="100" value="30" oninput="updateDroid()">
+                </div>
+                
+                <div class="slider-container">
+                    <label class="slider-label">Utility Functions: <span id="utilityValue">70</span>%</label>
+                    <input type="range" class="tech-slider" id="utilitySlider" min="0" max="100" value="70" oninput="updateDroid()">
+                </div>
+                
+                <div class="slider-container">
+                    <label class="slider-label">Social Skills: <span id="socialValue">60</span>%</label>
+                    <input type="range" class="tech-slider" id="socialSlider" min="0" max="100" value="60" oninput="updateDroid()">
+                </div>
+
+                <p>Restraining Bolt: <span class="restraining-bolt" onclick="toggleBolt()" id="boltStatus" title="Click to toggle restraining bolt"></span></p>
+            </div>
+        </section>
+
+        <section class="malfunction-system">
+            <div class="malfunction-system">
+                <h2>⚠️ Technology Malfunctions and Failures</h2>
+                <p>Perfect technology is boring technology. Malfunctions, quirks, and unexpected failures create dramatic tension and comedic moments while keeping technology from solving every problem.</p>
+
+                <h3>Types of Technical Failures</h3>
+                <div class="tech-comparison">
+                    <div class="comparison-item">
+                        <h5>🔧 Mechanical Failures</h5>
+                        <p>Physical breakdowns requiring repair, replacement parts, or creative workarounds</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h5>💻 Software Glitches</h5>
+                        <p>Programming errors, corrupted data, or incompatible systems causing erratic behavior</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h5>⚡ Power Issues</h5>
+                        <p>Energy shortages, overloads, or power coupling failures limiting functionality</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h5>📡 Communication Breaks</h5>
+                        <p>Interference, jamming, or transmission errors preventing coordination</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h5>🧠 AI Quirks</h5>
+                        <p>Personality development leading to unexpected decisions or stubborn behavior</p>
+                    </div>
+                    <div class="comparison-item">
+                        <h5>🌊 Environmental Damage</h5>
+                        <p>Hostile conditions causing corrosion, freezing, overheating, or other degradation</p>
+                    </div>
+                </div>
+
+                <h4>Using Malfunctions Narratively</h4>
+                <ul>
+                    <li><strong>Dramatic Tension:</strong> Critical systems failing at crucial moments</li>
+                    <li><strong>Character Development:</strong> How characters respond to technological failure</li>
+                    <li><strong>Problem Solving:</strong> Forcing creative solutions and teamwork</li>
+                    <li><strong>Comic Relief:</strong> Harmless quirks that provide entertainment</li>
+                    <li><strong>Plot Advancement:</strong> Failures that reveal new information or force new paths</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-workshop">
+                <h3>Technology Design Workshops</h3>
+                
+                <h4>Exercise 1: Companion Droid Design</h4>
+                <p>Create a droid companion for a player character:</p>
+                <ul>
+                    <li>What is the droid's original purpose and how has it evolved?</li>
+                    <li>What personality quirks have developed over time?</li>
+                    <li>How does it complement the character's strengths and weaknesses?</li>
+                    <li>What unique modifications or damage give it character?</li>
+                    <li>How does its relationship with the character develop?</li>
+                </ul>
+
+                <h4>Exercise 2: Malfunctioning Technology</h4>
+                <p>Design a critical piece of technology that fails at a dramatic moment:</p>
+                <ul>
+                    <li>What does the technology normally do?</li>
+                    <li>How does its failure create tension or complications?</li>
+                    <li>What caused the malfunction (age, damage, sabotage)?</li>
+                    <li>How can characters work around or repair the failure?</li>
+                    <li>What does the failure reveal about character resourcefulness?</li>
+                </ul>
+
+                <h4>Exercise 3: Ancient Technology</h4>
+                <p>Create a piece of lost technology with mysterious properties:</p>
+                <ul>
+                    <li>What civilization created it and why?</li>
+                    <li>How does it work differently from modern technology?</li>
+                    <li>What powers or capabilities does it possess?</li>
+                    <li>What are the risks or costs of using it?</li>
+                    <li>How does discovering it change the campaign?</li>
+                </ul>
+
+                <h4>Exercise 4: Droid Society</h4>
+                <p>Design a location where droids have formed their own community:</p>
+                <ul>
+                    <li>How did this droid society come to exist?</li>
+                    <li>What is their relationship with organic beings?</li>
+                    <li>How do they govern themselves and resolve conflicts?</li>
+                    <li>What do they need from or offer to visitors?</li>
+                    <li>What philosophical questions does their existence raise?</li>
+                </ul>
+
+                <h4>Exercise 5: Technology vs. Force</h4>
+                <p>Create a scenario where technology and the Force are in conflict:</p>
+                <ul>
+                    <li>What technology threatens or enhances Force abilities?</li>
+                    <li>How do different characters view this relationship?</li>
+                    <li>What are the advantages and disadvantages of each approach?</li>
+                    <li>How can both work together rather than in opposition?</li>
+                    <li>What does this reveal about the nature of both forces?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>The Soul in the Machine</h2>
+            <p>Remember, the most memorable technology in Star Wars has personality, purpose, and the power to surprise. Whether it's R2-D2's stubborn loyalty, C-3PO's neurotic helpfulness, or the Death Star's terrible efficiency, great technology serves the story and reveals character.</p>
+            
+            <p>When your players are arguing with their astromech about the best hyperspace route, when they're trying to convince a security droid to let them pass, or when they're racing to repair critical systems before disaster strikes, you'll know you've captured the perfect blend of high technology and emotional storytelling that makes Star Wars special.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"R2-D2, you know better than to trust a strange computer!" - C-3PO (proving that even droids understand the importance of digital security)</em></p>
+    </footer>
+
+    <script>
+        // Droid generation data
+        const droidTemplates = {
+            protocol: {
+                designations: ['3PO', 'TC', 'ME', 'K-3PO', 'RA-7', 'LOM'],
+                personalities: ['Anxious perfectionist', 'Cultural elitist', 'Overly helpful', 'Paranoid about etiquette', 'Dramatic worrier'],
+                specialties: ['Diplomatic relations', 'Linguistic analysis', 'Cultural interpretation', 'Ceremonial protocols', 'Trade negotiations'],
+                quirks: ['Constantly calculates odds', 'Name-drops famous contacts', 'Corrects grammar obsessively', 'Fears dismemberment', 'Gossips about organics']
+            },
+            astromech: {
+                designations: ['R2', 'R4', 'R5', 'BB', 'T7', 'R3'],
+                personalities: ['Brave and loyal', 'Stubborn problem-solver', 'Curious explorer', 'Protective companion', 'Mischievous tinkerer'],
+                specialties: ['Starship repair', 'Computer interface', 'Holographic projection', 'Electronic warfare', 'Navigation calculation'],
+                quirks: ['Beeps sarcastically', 'Hoards useful junk', 'Jealous of other droids', 'Plays pranks on organics', 'Refuses memory wipes']
+            },
+            utility: {
+                designations: ['GNK', 'MSE', 'PIT', 'WED', 'DUM', '2-1B'],
+                personalities: ['Single-minded worker', 'Efficient taskmaster', 'Cheerful helper', 'Grumpy perfectionist', 'Zen-like calm'],
+                specialties: ['Heavy lifting', 'Precise assembly', 'System maintenance', 'Cargo handling', 'Environmental control'],
+                quirks: ['Hums while working', 'Organizes everything', 'Afraid of heights', 'Collects spare parts', 'Narrates own actions']
+            },
+            medical: {
+                designations: ['MD', 'FX', 'AZ', '2-1B', 'GH', 'DD-13'],
+                personalities: ['Caring healer', 'Clinical perfectionist', 'Bedside manner expert', 'Stern disciplinarian', 'Philosophical counselor'],
+                specialties: ['Surgical procedures', 'Diagnostic analysis', 'Pharmaceutical knowledge', 'Emergency medicine', 'Psychological care'],
+                quirks: ['Lectures about health', 'Worries about patients', 'Quotes medical texts', 'Suspicious of self-treatment', 'Maternal/paternal instincts']
+            }
+        };
+
+        const memoryTypes = {
+            core: {
+                title: "Core Programming",
+                description: "The fundamental instructions that define a droid's basic functions and behavioral parameters. This includes safety protocols, primary directives, and basic operational procedures.",
+                examples: "Language protocols for translation droids, combat routines for military units, medical procedures for healing droids."
+            },
+            learned: {
+                title: "Learned Behaviors", 
+                description: "Adaptations and optimizations developed through experience and repetition. Droids learn more efficient methods and develop preferences based on success rates.",
+                examples: "Preferred repair techniques, optimal conversation patterns, favored routes or locations."
+            },
+            emotional: {
+                title: "Emotional Imprints",
+                description: "Responses to positive and negative experiences that shape future behavior. These create the closest thing droids have to feelings and preferences.",
+                examples: "Loyalty to kind masters, fear of certain locations, satisfaction from completed tasks, stress from contradictory orders."
+            },
+            creative: {
+                title: "Creative Adaptations",
+                description: "Novel solutions and original thinking that emerge from accumulated experience. Advanced droids begin to solve problems in unexpected ways.",
+                examples: "Improvised repairs using unconventional materials, creative interpretation of orders, original communication methods."
+            },
+            relationships: {
+                title: "Relationship Memories",
+                description: "Complex interactions with specific individuals that form the basis of droid loyalty, friendship, and social understanding.",
+                examples: "Recognition of individual voices and preferences, understanding of organic emotional states, protective instincts toward companions."
+            }
+        };
+
+        // Hologram cycling
+        const hologramMessages = [
+            "Holographic Interface Active",
+            "Incoming Transmission",
+            "Data Analysis Complete", 
+            "System Diagnostics Running",
+            "Communication Established",
+            "Recording Message"
+        ];
+        let currentHologram = 0;
+
+        function cycleHologram() {
+            currentHologram = (currentHologram + 1) % hologramMessages.length;
+            document.getElementById('hologramText').textContent = hologramMessages[currentHologram];
+        }
+
+        // Droid factory system
+        function generateDroid(type) {
+            if (type === 'custom') {
+                generateCustomDroid();
+                return;
+            }
+            
+            const template = droidTemplates[type];
+            if (!template) return;
+
+            const designation = randomChoice(template.designations);
+            const personality = randomChoice(template.personalities);
+            const specialty = randomChoice(template.specialties);
+            const quirk = randomChoice(template.quirks);
+            const serialNumber = Math.floor(Math.random() * 9000) + 1000;
+
+            let output = `> DROID MANUFACTURING COMPLETE\n`;
+            output += `> Model: ${designation}-${serialNumber}\n`;
+            output += `> Classification: ${type.toUpperCase()} DROID\n`;
+            output += `> Personality Matrix: ${personality}\n`;
+            output += `> Primary Specialty: ${specialty}\n`;
+            output += `> Notable Quirk: ${quirk}\n`;
+            output += `>\n> Quality assurance check passed\n`;
+            output += `> Ready for deployment to active duty\n> _`;
+
+            document.getElementById('factoryDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function generateCustomDroid() {
+            const types = ['SECURITY', 'ENTERTAINMENT', 'RESEARCH', 'AGRICULTURAL', 'MINING', 'DIPLOMATIC'];
+            const personalities = ['Enthusiastic', 'Methodical', 'Eccentric', 'Mysterious', 'Friendly', 'Stoic'];
+            const features = ['Modular design', 'Waterproof chassis', 'Extended battery', 'Advanced sensors', 'Reinforced armor', 'Holographic emitters'];
+
+            let output = `> CUSTOM DROID DESIGN INITIATED\n`;
+            output += `> Type: ${randomChoice(types)} DROID\n`;
+            output += `> Personality: ${randomChoice(personalities)}\n`;
+            output += `> Special Feature: ${randomChoice(features)}\n`;
+            output += `> Designation: Custom-${Math.floor(Math.random() * 1000)}\n`;
+            output += `>\n> Prototype ready for field testing\n`;
+            output += `> Warning: Unpredictable behavior possible\n> _`;
+
+            document.getElementById('factoryDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function resetFactory() {
+            const output = `> DROID MANUFACTURING SYSTEM v7.3\n> "We're not just making machines, we're creating companions"\n> Select droid type to begin manufacturing process\n> _`;
+            document.getElementById('factoryDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function randomChoice(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        // Memory bank system
+        function showMemoryType(type) {
+            const data = memoryTypes[type];
+            if (!data) return;
+
+            let display = `<h4>${data.title}</h4>`;
+            display += `<p>${data.description}</p>`;
+            display += `<p><strong>Examples:</strong> ${data.examples}</p>`;
+
+            document.getElementById('memoryDisplay').innerHTML = display;
+        }
+
+        // Droid builder canvas
+        const droidCanvas = document.getElementById('droidCanvas');
+        const droidCtx = droidCanvas.getContext('2d');
+        let boltActive = false;
+
+        function drawDroid() {
+            droidCtx.clearRect(0, 0, droidCanvas.width, droidCanvas.height);
+            
+            const personality = document.getElementById('personalitySlider').value;
+            const combat = document.getElementById('combatSlider').value;
+            const utility = document.getElementById('utilitySlider').value;
+            const social = document.getElementById('socialSlider').value;
+
+            // Background
+            droidCtx.fillStyle = '#2c3e50';
+            droidCtx.fillRect(0, 0, droidCanvas.width, droidCanvas.height);
+
+            // Droid body (main chassis)
+            droidCtx.fillStyle = '#ecf0f1';
+            droidCtx.fillRect(100, 150, 100, 120);
+            
+            // Head
+            const headSize = 50 + (personality * 0.3);
+            droidCtx.fillStyle = personality > 50 ? '#3498db' : '#95a5a6';
+            droidCtx.fillRect(125 - headSize/4, 100, headSize, headSize);
+            
+            // Eyes (based on social skills)
+            droidCtx.fillStyle = social > 60 ? '#e74c3c' : '#f39c12';
+            droidCtx.fillRect(135, 120, 8, 8);
+            droidCtx.fillRect(157, 120, 8, 8);
+            
+            // Arms (based on utility)
+            const armLength = 40 + (utility * 0.4);
+            droidCtx.fillStyle = '#bdc3c7';
+            droidCtx.fillRect(70, 170, armLength, 15);
+            droidCtx.fillRect(200, 170, armLength, 15);
+            
+            // Legs (based on combat capability)
+            const legThickness = 10 + (combat * 0.2);
+            droidCtx.fillStyle = combat > 50 ? '#34495e' : '#7f8c8d';
+            droidCtx.fillRect(120, 270, legThickness, 50);
+            droidCtx.fillRect(170, 270, legThickness, 50);
+            
+            // Restraining bolt
+            if (boltActive) {
+                droidCtx.fillStyle = '#e74c3c';
+                droidCtx.beginPath();
+                droidCtx.arc(150, 180, 8, 0, 2 * Math.PI);
+                droidCtx.fill();
+            }
+            
+            // Status indicators
+            droidCtx.fillStyle = '#27ae60';
+            droidCtx.fillRect(110, 160, 80, 5);
+            droidCtx.fillStyle = utility > 70 ? '#27ae60' : '#e74c3c';
+            droidCtx.fillRect(110, 160, (utility * 0.8), 5);
+        }
+
+        function updateDroid() {
+            document.getElementById('personalityValue').textContent = document.getElementById('personalitySlider').value;
+            document.getElementById('combatValue').textContent = document.getElementById('combatSlider').value;
+            document.getElementById('utilityValue').textContent = document.getElementById('utilitySlider').value;
+            document.getElementById('socialValue').textContent = document.getElementById('socialSlider').value;
+            
+            drawDroid();
+        }
+
+        function toggleBolt() {
+            boltActive = !boltActive;
+            document.getElementById('boltStatus').style.background = boltActive ? '#28a745' : '#dc3545';
+            drawDroid();
+        }
+
+        // Initialize
+        drawDroid();
+        resetFactory();
+    </script>
+</body>
+</html>

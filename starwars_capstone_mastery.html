@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars RPG Mastery: The Complete Game Master's Capstone</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .force-nexus { background: radial-gradient(circle, #000428, #004e92, #009ffd, #00d2ff); padding: 40px; border-radius: 20px; color: white; margin: 20px 0; position: relative; overflow: hidden; text-align: center; }
+        .force-nexus::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 40%, rgba(255,215,0,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(138,43,226,0.3) 0%, transparent 50%), radial-gradient(circle at 50% 20%, rgba(0,191,255,0.3) 0%, transparent 50%); animation: cosmic-flow 15s ease-in-out infinite; }
+        @keyframes cosmic-flow { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; } 33% { transform: scale(1.1) rotate(120deg); opacity: 0.5; } 66% { transform: scale(0.9) rotate(240deg); opacity: 0.8; } }
+        .force-nexus * { position: relative; z-index: 2; }
+        .mastery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0; }
+        .mastery-card { padding: 25px; border-radius: 15px; position: relative; overflow: hidden; transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent; }
+        .mastery-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .mastery-card.foundations { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .mastery-card.creative { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .mastery-card.systems { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
+        .mastery-card.narrative { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #2c3e50; }
+        .mastery-card.advanced { background: linear-gradient(135deg, #fa709a, #fee140); color: #2c3e50; }
+        .integration-web { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 15px; margin: 30px 0; }
+        .synthesis-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 25px 0; }
+        .synthesis-node { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); }
+        .mastery-simulator { background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460); color: #00ff88; font-family: 'Courier New', monospace; padding: 25px; border-radius: 15px; margin: 30px 0; border: 3px solid #00ff88; }
+        .simulator-display { min-height: 400px; border: 2px solid #00ff88; padding: 20px; margin: 15px 0; overflow-y: auto; background: rgba(0,0,0,0.7); border-radius: 8px; }
+        .mastery-controls { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; justify-content: center; }
+        .mastery-btn { padding: 12px 24px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-family: 'Courier New', monospace; font-weight: bold; }
+        .mastery-btn:hover { background: #0056b3; transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 20px rgba(0,123,255,0.3); }
+        .mastery-btn.foundation { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .mastery-btn.creative { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .mastery-btn.systems { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .mastery-btn.narrative { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .mastery-btn.advanced { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .philosophy-chamber { background: radial-gradient(circle, #2c3e50, #34495e, #4a6741); color: white; padding: 30px; border-radius: 15px; margin: 30px 0; }
+        .wisdom-scroll { background: linear-gradient(to right, #f5f7fa, #c3cfe2); padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #007bff; }
+        .journey-tracker { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.9); color: #00ff88; padding: 15px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 12px; z-index: 1000; border: 2px solid #00ff88; }
+        .force-balance { width: 100%; height: 60px; background: linear-gradient(to right, #007bff, #28a745, #ffc107, #fd7e14, #dc3545); border-radius: 30px; margin: 20px 0; position: relative; }
+        .balance-indicator { position: absolute; top: 5px; width: 50px; height: 50px; background: radial-gradient(circle, #fff, #e9ecef); border: 3px solid #000; border-radius: 50%; transition: left 0.5s ease; }
+        .mastery-wheel { text-align: center; margin: 30px 0; }
+        .synthesis-challenge { background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 25px; border-radius: 15px; margin: 25px 0; }
+        .final-test { background: radial-gradient(circle, #8b0000, #4b0000); color: #ff6b6b; padding: 30px; border-radius: 15px; margin: 30px 0; border: 3px solid #dc3545; }
+        .achievement-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 25px 0; }
+        .achievement-badge { background: #f8f9fa; padding: 20px; border-radius: 15px; text-align: center; border: 3px solid #28a745; transition: all 0.3s; }
+        .achievement-badge:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(40,167,69,0.3); }
+        .achievement-badge.earned { background: linear-gradient(135deg, #28a745, #20c997); color: white; }
+        .cosmic-conclusion { background: linear-gradient(to bottom, #1e3c72, #2a5298, #667eea, #764ba2); color: white; padding: 40px; border-radius: 20px; margin: 30px 0; text-align: center; }
+        .tutorial-navigator { background: #e9ecef; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 15px 0; }
+        .nav-item { background: #007bff; color: white; padding: 10px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; font-size: 12px; }
+        .nav-item:hover { background: #0056b3; transform: scale(1.05); }
+        .integration-example { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .mastery-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
+        .metric-card { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Star Wars RPG Mastery: The Complete Game Master's Capstone</h1>
+        <p><em>"A Jedi's strength flows from the Force. But beware of the dark side. Anger, fear, aggression; the dark side of the Force are they." - Yoda</em></p>
+    </header>
+
+    <div class="journey-tracker" id="journeyTracker">
+        MASTERY JOURNEY<br>
+        PROGRESS: INITIATE<br>
+        SKILLS: DEVELOPING<br>
+        WISDOM: GROWING
+    </div>
+
+    <main>
+        <section class="intro">
+            <div class="force-nexus">
+                <h2>Welcome to the Jedi Council of Game Masters</h2>
+                <p style="font-size: 1.2em; margin: 20px 0;">You have journeyed through eleven comprehensive tutorials, each building upon the last like the construction of a lightsaber - piece by careful piece, crystal by careful crystal. Now comes the moment of synthesis, where all your knowledge ignites into true mastery.</p>
+                
+                <p style="font-size: 1.1em;">This capstone represents more than the end of your training - it is the beginning of your mastery. Here, you will learn to weave together all the elements of epic Star Wars storytelling into campaigns that transcend mere gaming and become shared legends.</p>
+            </div>
+        </section>
+
+        <section class="tutorial-navigator">
+            <h2>🗺️ Your Journey Through the Galaxy</h2>
+            <p>Let us first acknowledge the path you have traveled. Each tutorial has prepared you for different aspects of Game Master mastery:</p>
+            
+            <div class="nav-grid">
+                <div class="nav-item" onclick="showTutorialSummary('foundations')">Campaign Foundations</div>
+                <div class="nav-item" onclick="showTutorialSummary('planets')">Planet Creation</div>
+                <div class="nav-item" onclick="showTutorialSummary('space')">Space Combat</div>
+                <div class="nav-item" onclick="showTutorialSummary('npcs')">NPCs & Villains</div>
+                <div class="nav-item" onclick="showTutorialSummary('arcs')">Campaign Arcs</div>
+                <div class="nav-item" onclick="showTutorialSummary('social')">Social Encounters</div>
+                <div class="nav-item" onclick="showTutorialSummary('force')">Force Powers</div>
+                <div class="nav-item" onclick="showTutorialSummary('ground')">Ground Combat</div>
+                <div class="nav-item" onclick="showTutorialSummary('politics')">Galactic Politics</div>
+                <div class="nav-item" onclick="showTutorialSummary('droids')">Droids & Technology</div>
+                <div class="nav-item" onclick="showTutorialSummary('time')">Time Travel</div>
+            </div>
+            
+            <div id="tutorialSummary" style="margin-top: 20px; font-style: italic;">
+                Click on any tutorial above to review its key contributions to your mastery...
+            </div>
+        </section>
+
+        <section class="mastery-foundations">
+            <h2>The Five Pillars of Game Master Mastery</h2>
+            <p>True mastery comes from understanding how all elements work together. Like the Force itself, excellent game mastering flows from the harmony between different aspects of storytelling.</p>
+
+            <div class="mastery-grid">
+                <div class="mastery-card foundations" onclick="exploreAspect('foundations')">
+                    <h3>🏛️ Foundational Wisdom</h3>
+                    <p><strong>Core Elements:</strong> Campaign structure, world-building, story architecture</p>
+                    <p><strong>Key Insight:</strong> Strong foundations enable creative freedom</p>
+                    <p><strong>Integration:</strong> Everything builds upon solid fundamentals</p>
+                </div>
+                <div class="mastery-card creative" onclick="exploreAspect('creative')">
+                    <h3>🎨 Creative Vision</h3>
+                    <p><strong>Core Elements:</strong> Planet design, NPC creation, unique scenarios</p>
+                    <p><strong>Key Insight:</strong> Creativity serves story, not spectacle</p>
+                    <p><strong>Integration:</strong> Imagination constrained by narrative purpose</p>
+                </div>
+                <div class="mastery-card systems" onclick="exploreAspect('systems')">
+                    <h3>⚙️ Mechanical Mastery</h3>
+                    <p><strong>Core Elements:</strong> Combat systems, technology rules, game flow</p>
+                    <p><strong>Key Insight:</strong> Mechanics should be invisible supports for story</p>
+                    <p><strong>Integration:</strong> Rules serve narrative, never dominate it</p>
+                </div>
+                <div class="mastery-card narrative" onclick="exploreAspect('narrative')">
+                    <h3>📖 Narrative Artistry</h3>
+                    <p><strong>Core Elements:</strong> Character arcs, plot threading, emotional resonance</p>
+                    <p><strong>Key Insight:</strong> Stories are about transformation, not events</p>
+                    <p><strong>Integration:</strong> Every element serves character development</p>
+                </div>
+                <div class="mastery-card advanced" onclick="exploreAspect('advanced')">
+                    <h3>🌟 Advanced Techniques</h3>
+                    <p><strong>Core Elements:</strong> Politics, temporal mechanics, complex relationships</p>
+                    <p><strong>Key Insight:</strong> Complexity enhances depth without confusion</p>
+                    <p><strong>Integration:</strong> Advanced elements expand rather than overwhelm</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="integration-framework">
+            <div class="integration-web">
+                <h2>🕸️ The Web of Integration</h2>
+                <p>Mastery comes from understanding how every element connects to every other element. A change in politics affects technology development. A character's personal growth influences combat tactics. Time travel implications reshape social encounters.</p>
+
+                <div class="mermaid">
+                    graph TB
+                        A[Campaign Theme] --> B[Character Arcs]
+                        A --> C[World Design]
+                        A --> D[Political Landscape]
+                        
+                        B --> E[Personal Stakes]
+                        B --> F[Relationship Dynamics]
+                        B --> G[Growth Opportunities]
+                        
+                        C --> H[Planet Cultures]
+                        C --> I[Technology Level]
+                        C --> J[Environmental Challenges]
+                        
+                        D --> K[Faction Conflicts]
+                        D --> L[Economic Pressures]
+                        D --> M[Social Tensions]
+                        
+                        E --> N[Combat Motivations]
+                        F --> O[Social Encounters]
+                        G --> P[Force Development]
+                        
+                        H --> Q[NPC Worldviews]
+                        I --> R[Droid Personalities]
+                        J --> S[Adventure Hooks]
+                        
+                        K --> T[Mission Objectives]
+                        L --> U[Resource Scarcity]
+                        M --> V[Moral Dilemmas]
+                </div>
+
+                <div class="synthesis-matrix">
+                    <div class="synthesis-node">
+                        <h4>🎭 Character-Driven Everything</h4>
+                        <p>Every system element should serve character development. Combat reveals personality, politics test values, technology reflects society.</p>
+                    </div>
+                    <div class="synthesis-node">
+                        <h4>🌍 Living World Consistency</h4>
+                        <p>Your galaxy should feel like it exists independent of the players, with its own history, cultures, and ongoing changes.</p>
+                    </div>
+                    <div class="synthesis-node">
+                        <h4>⚖️ Meaningful Choices</h4>
+                        <p>Every decision should matter, from grand political alliances to small personal interactions. Consequences ripple through time.</p>
+                    </div>
+                    <div class="synthesis-node">
+                        <h4>🎬 Cinematic Flow</h4>
+                        <p>Pacing, tension, and emotional beats should create the rhythm of an epic Star Wars story, with quiet moments and explosive climaxes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mastery-simulator">
+            <h2>🎮 Master's Challenge Simulator</h2>
+            <div class="mastery-simulator">
+                <div class="mastery-controls">
+                    <button class="mastery-btn foundation" onclick="runMasteryTest('foundation')">Foundation Test</button>
+                    <button class="mastery-btn creative" onclick="runMasteryTest('creative')">Creative Challenge</button>
+                    <button class="mastery-btn systems" onclick="runMasteryTest('systems')">Systems Integration</button>
+                    <button class="mastery-btn narrative" onclick="runMasteryTest('narrative')">Narrative Mastery</button>
+                    <button class="mastery-btn advanced" onclick="runMasteryTest('advanced')">Advanced Synthesis</button>
+                    <button class="mastery-btn" onclick="runMasteryTest('final')">Final Master's Test</button>
+                </div>
+                <div class="simulator-display" id="masteryDisplay">
+                    > STAR WARS RPG MASTERY SIMULATOR v1.0
+                    <br>> "Your focus determines your reality" - Qui-Gon Jinn
+                    <br>> 
+                    <br>> You have completed all foundational training modules
+                    <br>> Ready to test your mastery across all disciplines
+                    <br>> 
+                    <br>> Select test type to demonstrate your abilities
+                    <br>> May the Force be with you...
+                    <br>> _
+                </div>
+            </div>
+        </section>
+
+        <section class="philosophy-chamber">
+            <div class="philosophy-chamber">
+                <h2>🧘 The Philosophy of Mastery</h2>
+                <p>Before we proceed to practical exercises, let us meditate on what true mastery means in the context of Star Wars storytelling.</p>
+
+                <h3>The Jedi Path of Game Mastering</h3>
+                <h4>🌱 Padawan Level - Learning the Forms</h4>
+                <p>You master individual techniques: how to create NPCs, design encounters, manage mechanics. Each skill is practiced in isolation until proficient.</p>
+
+                <h4>⚔️ Knight Level - Integration and Service</h4>
+                <p>You learn to combine techniques fluidly, adapting to your players' needs and creating cohesive experiences. Your skills serve the story and players' enjoyment.</p>
+
+                <h4>🧙 Master Level - Transcendent Understanding</h4>
+                <p>You no longer think about individual techniques. Game mastering becomes an intuitive art where all elements flow together naturally, creating experiences that feel effortless and inevitable.</p>
+
+                <div class="force-balance">
+                    <div class="balance-indicator" id="masteryBalance" style="left: 10%;"></div>
+                </div>
+                <p style="text-align: center; margin-top: 10px;"><em>Your Mastery Balance: Techniques → Integration → Transcendence</em></p>
+            </div>
+        </section>
+
+        <section class="integration-examples">
+            <h2>🔗 Integration in Practice</h2>
+            <p>Let's examine how master-level Game Masters weave together all elements into seamless storytelling experiences.</p>
+
+            <div class="integration-example">
+                <h3>Master Example: "The Corellian Conspiracy"</h3>
+                <h4>Scenario: Corporate espionage threatens a vital trade route</h4>
+                
+                <p><strong>Foundation Integration:</strong> Campaign theme of "trust vs. betrayal" manifests at every level - personal relationships, political alliances, and technological reliability all become suspect.</p>
+                
+                <p><strong>Character Integration:</strong> Each PC's background connects to different aspects - the pilot knows Corellian culture, the slicer understands corporate networks, the diplomat has Trade Federation contacts, the Force user senses deception.</p>
+                
+                <p><strong>Systems Integration:</strong> Social encounters determine available information, space combat uses Corellian ship modifications, ground combat navigates corporate security systems, politics affects available resources.</p>
+                
+                <p><strong>Creative Integration:</strong> Corellia's shipbuilding culture influences everything from architecture to NPC personalities. Technology reflects corporate priorities. Droids have loyalty programming conflicts.</p>
+                
+                <p><strong>Advanced Integration:</strong> Political ramifications span multiple star systems. Time pressure from impending trade summit. Moral complexity as "villains" have understandable motivations.</p>
+            </div>
+
+            <div class="synthesis-challenge">
+                <h3>🎯 Synthesis Challenge: Multi-Level Integration</h3>
+                <p>A master Game Master creates scenarios where every tutorial's lessons apply simultaneously:</p>
+                
+                <ul>
+                    <li><strong>Planet Design</strong> reflects and reinforces political tensions</li>
+                    <li><strong>NPC Motivations</strong> drive both social encounters and combat situations</li>
+                    <li><strong>Technology</strong> creates both opportunities and complications</li>
+                    <li><strong>Force Powers</strong> provide insight but raise moral questions</li>
+                    <li><strong>Time Elements</strong> add urgency and consequences to choices</li>
+                </ul>
+                
+                <p>The result: Players face situations where personal growth, galactic stakes, and immediate tactics all demand attention simultaneously - just like the climax of any great Star Wars story.</p>
+            </div>
+        </section>
+
+        <section class="mastery-metrics">
+            <h2>📊 Measuring Your Mastery</h2>
+            <p>How do you know when you've truly achieved mastery? Here are the signs to look for in your campaigns and player responses:</p>
+
+            <div class="mastery-metrics">
+                <div class="metric-card">
+                    <h4>🎭 Player Immersion</h4>
+                    <p>Players stay in character even during rules discussions. They reference campaign events months later.</p>
+                </div>
+                <div class="metric-card">
+                    <h4>🌊 Effortless Flow</h4>
+                    <p>Transitions between different encounter types feel natural. Rules fade into background.</p>
+                </div>
+                <div class="metric-card">
+                    <h4>💫 Emergent Stories</h4>
+                    <p>Players create compelling narratives through their choices. Stories emerge you never planned.</p>
+                </div>
+                <div class="metric-card">
+                    <h4>⚡ Emotional Resonance</h4>
+                    <p>Players genuinely care about NPCs, worry about consequences, celebrate victories.</p>
+                </div>
+                <div class="metric-card">
+                    <h4>🔄 Organic Adaptation</h4>
+                    <p>You adjust smoothly to unexpected player actions without breaking immersion.</p>
+                </div>
+                <div class="metric-card">
+                    <h4>🎯 Thematic Coherence</h4>
+                    <p>Every element reinforces your campaign's central themes and emotional core.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="achievement-system">
+            <h2>🏆 Mastery Achievement Gallery</h2>
+            <p>Track your progress toward complete mastery with these achievement milestones:</p>
+
+            <div class="achievement-gallery">
+                <div class="achievement-badge" id="badge-foundation">
+                    <h4>🏛️ Foundation Master</h4>
+                    <p>Campaign structure becomes second nature</p>
+                </div>
+                <div class="achievement-badge" id="badge-creative">
+                    <h4>🎨 Creative Visionary</h4>
+                    <p>Worlds feel alive and unique</p>
+                </div>
+                <div class="achievement-badge" id="badge-systems">
+                    <h4>⚙️ Systems Sage</h4>
+                    <p>Mechanics serve story seamlessly</p>
+                </div>
+                <div class="achievement-badge" id="badge-narrative">
+                    <h4>📖 Story Weaver</h4>
+                    <p>Character arcs reach satisfying conclusions</p>
+                </div>
+                <div class="achievement-badge" id="badge-integration">
+                    <h4>🕸️ Integration Expert</h4>
+                    <p>All elements work in harmony</p>
+                </div>
+                <div class="achievement-badge" id="badge-master">
+                    <h4>🌟 Jedi Master</h4>
+                    <p>Transcendent game mastering artistry</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-test">
+            <div class="final-test">
+                <h2>⚔️ The Master's Final Trial</h2>
+                <p>Your final test is not a simulation or exercise - it is the commitment to continue growing. True Jedi Masters never stop learning, never stop seeking deeper understanding of the Force.</p>
+
+                <h3>Your Ongoing Journey</h3>
+                <h4>🔄 Continuous Improvement</h4>
+                <p>After every session, reflect: What worked? What could be better? How did each element serve the story? Mastery requires constant self-evaluation.</p>
+
+                <h4>🤝 Community Engagement</h4>
+                <p>Share your experiences with other Game Masters. Teach what you've learned. Learn from others' innovations. The community strengthens all masters.</p>
+
+                <h4>🌱 Player-Centered Growth</h4>
+                <p>Always remember that your mastery serves your players' enjoyment and growth. The greatest masters create experiences that help players discover their own creativity and wisdom.</p>
+
+                <h4>⚖️ Balance and Wisdom</h4>
+                <p>Know when to use each tool in your arsenal. Sometimes a simple encounter is perfect. Sometimes complexity is needed. Wisdom lies in choosing appropriately.</p>
+            </div>
+        </section>
+
+        <section class="wisdom-scroll">
+            <div class="wisdom-scroll">
+                <h2>📜 The Master's Creed</h2>
+                <blockquote style="font-size: 1.1em; font-style: italic; text-align: center; margin: 20px 0;">
+                    <p>"I am one with the Force, and the Force is with me."</p>
+                    <p>"I serve the story, and the story serves the players."</p>
+                    <p>"Through challenge, growth. Through growth, wisdom."</p>
+                    <p>"Every session is a new hope, every campaign a new beginning."</p>
+                    <p>"The greatest victories are when all at the table become heroes."</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <section class="cosmic-conclusion">
+            <div class="cosmic-conclusion">
+                <h2>🌌 May the Force Be With You, Always</h2>
+                <p style="font-size: 1.2em; margin: 30px 0;">You began this journey as a Padawan, eager to learn the ways of the Force and the art of Game Mastering. You have studied the ancient texts, practiced the forms, faced the trials, and emerged as a Jedi Knight of storytelling.</p>
+                
+                <p style="font-size: 1.1em; margin: 25px 0;">But remember - the path of mastery never truly ends. Each campaign teaches new lessons. Each group of players presents new challenges. Each story you help create adds to your wisdom and skill.</p>
+                
+                <p style="font-size: 1.1em; margin: 25px 0;">You now possess the knowledge to create campaigns that will be remembered for years, characters that will become beloved friends, and moments that will spark imagination long after the dice are put away.</p>
+                
+                <p style="font-size: 1.3em; margin: 30px 0; font-weight: bold;">Go forth, Master. The galaxy awaits your stories.</p>
+                
+                <div class="mastery-wheel">
+                    <canvas id="masteryWheel" width="400" height="400"></canvas>
+                    <p><em>Your Mastery Constellation - Each point represents your journey through the tutorials</em></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"Pass on what you have learned. Strength, mastery, hmm... but weakness, folly, failure also. Yes, failure most of all. The greatest teacher, failure is." - Yoda</em></p>
+    </footer>
+
+    <script>
+        // Tutorial summaries
+        const tutorialData = {
+            foundations: {
+                title: "Campaign Foundations",
+                summary: "The bedrock of all great campaigns. Taught you to establish themes, create compelling hooks, balance hope and conflict, and structure epic narratives that feel authentically Star Wars.",
+                keyLessons: ["Theme-driven storytelling", "Character-focused adventures", "Balance of heroism and challenge", "Force as narrative element"]
+            },
+            planets: {
+                title: "Planet and Location Creation", 
+                summary: "Transformed you from describing empty backdrops to creating living worlds with personality, purpose, and cultural depth that enhance every story told within them.",
+                keyLessons: ["Environmental storytelling", "Cultural integration", "Atmospheric immersion", "Layered world history"]
+            },
+            space: {
+                title: "Space Encounters and Starship Combat",
+                summary: "Elevated space battles from tactical exercises to cinematic experiences where every maneuver serves character development and story advancement.",
+                keyLessons: ["Three-dimensional tactics", "Cinematic pacing", "Environmental drama", "Character moments in combat"]
+            },
+            npcs: {
+                title: "NPCs and Villain Creation",
+                summary: "Breathed life into the galaxy's population, teaching you to create memorable characters who feel like real people with their own dreams, fears, and complex motivations.",
+                keyLessons: ["Personality through relationship", "Villain justification", "Character voice mastery", "Redemption arc design"]
+            },
+            arcs: {
+                title: "Epic Campaign Arcs and Story Structure",
+                summary: "Provided the blueprint for weaving individual sessions into grand sagas that span star systems and generations, with satisfying character growth throughout.",
+                keyLessons: ["Three-act structure", "Plot threading", "Character transformation", "Escalating stakes"]
+            },
+            social: {
+                title: "Social Encounters and Cantina Scenes",
+                summary: "Taught the subtle art of making conversations as engaging as lightsaber duels, turning social interactions into crucial story moments.",
+                keyLessons: ["Dialogue mastery", "Cultural dynamics", "Information economy", "Atmospheric social spaces"]
+            },
+            force: {
+                title: "Managing Force Powers and Jedi Training",
+                summary: "Revealed the Force as more than magic - a philosophy, a relationship, and a source of both great power and great responsibility in storytelling.",
+                keyLessons: ["Philosophy before power", "Dark side temptation", "Training as character growth", "Spiritual development"]
+            },
+            ground: {
+                title: "Running Epic Ground Combat",
+                summary: "Transformed ground battles into tactical puzzles and cinematic experiences where terrain, objectives, and character abilities create memorable action sequences.",
+                keyLessons: ["Environmental tactics", "Multi-objective missions", "Hero moments", "Escalating action"]
+            },
+            politics: {
+                title: "Managing Galactic Politics and Factions",
+                summary: "Expanded your scope to galactic scale, showing how personal stories connect to vast political movements and how characters can influence the fate of star systems.",
+                keyLessons: ["Political complexity", "Faction relationships", "Moral ambiguity", "Galactic consequences"]
+            },
+            droids: {
+                title: "Creating Memorable Droids and Technology",
+                summary: "Demonstrated that technology in Star Wars has personality and purpose, turning machines into characters and showing how innovation shapes civilization.",
+                keyLessons: ["Technology as character", "AI consciousness", "Function and personality", "Technological storytelling"]
+            },
+            time: {
+                title: "Managing Time Travel and Alternate Timelines",
+                summary: "Explored the most complex narrative tool, teaching you to use temporal elements to examine destiny, consequence, and the weight of choices across time.",
+                keyLessons: ["Causality management", "Paradox prevention", "Moral responsibility", "Temporal philosophy"]
+            }
+        };
+
+        // Mastery tests
+        const masteryTests = {
+            foundation: {
+                title: "FOUNDATION MASTERY ASSESSMENT",
+                challenges: [
+                    "Creating compelling campaign theme that unifies all elements",
+                    "Balancing heroic empowerment with meaningful challenges", 
+                    "Establishing emotional stakes that matter to all players",
+                    "Weaving Force philosophy into narrative structure"
+                ],
+                result: "FOUNDATION SOLID - Ready for creative expression",
+                wisdom: "Strong foundations enable infinite creativity within structured bounds"
+            },
+            creative: {
+                title: "CREATIVE VISION EVALUATION",
+                challenges: [
+                    "Designing planets that enhance story rather than distract",
+                    "Creating NPCs with authentic voices and motivations",
+                    "Balancing familiar Star Wars elements with original content",
+                    "Making every location and character serve narrative purpose"
+                ],
+                result: "CREATIVITY FOCUSED - Imagination serves story effectively",
+                wisdom: "True creativity enhances rather than overwhelms the player experience"
+            },
+            systems: {
+                title: "SYSTEMS INTEGRATION ANALYSIS",
+                challenges: [
+                    "Making combat rules invisible supports for dramatic action",
+                    "Integrating Force powers as story elements, not just mechanics",
+                    "Using technology systems to enhance immersion",
+                    "Balancing complexity with accessibility for all players"
+                ],
+                result: "SYSTEMS MASTERY - Mechanics serve story seamlessly",
+                wisdom: "The best rules are the ones players never notice because they feel natural"
+            },
+            narrative: {
+                title: "NARRATIVE ARTISTRY EXAMINATION",
+                challenges: [
+                    "Weaving character arcs through campaign structure",
+                    "Creating meaningful choices with lasting consequences",
+                    "Building emotional investment in ongoing storylines",
+                    "Balancing individual character growth with group dynamics"
+                ],
+                result: "NARRATIVE MASTERY - Stories transcend mere entertainment",
+                wisdom: "Great narratives change players as much as they change characters"
+            },
+            advanced: {
+                title: "ADVANCED SYNTHESIS TRIAL",
+                challenges: [
+                    "Integrating political complexity without overwhelming players",
+                    "Using temporal elements to deepen rather than confuse story",
+                    "Managing galaxy-spanning consequences of local actions",
+                    "Balancing multiple advanced techniques simultaneously"
+                ],
+                result: "ADVANCED MASTERY - Complexity enhances without confusion",
+                wisdom: "Advanced techniques amplify simple truths rather than obscure them"
+            },
+            final: {
+                title: "FINAL MASTER'S TRIAL",
+                challenges: [
+                    "Demonstrating perfect integration of all tutorial elements",
+                    "Creating experiences that transform players, not just entertain",
+                    "Showing wisdom in choosing when to use each technique",
+                    "Transcending rules to create shared legendary experiences"
+                ],
+                result: "JEDI MASTER STATUS - Ready to teach others and continue growing",
+                wisdom: "True mastery is knowing that the journey of learning never ends"
+            }
+        };
+
+        function showTutorialSummary(type) {
+            const tutorial = tutorialData[type];
+            if (!tutorial) return;
+
+            let summary = `<strong>${tutorial.title}</strong><br><br>`;
+            summary += `${tutorial.summary}<br><br>`;
+            summary += `<strong>Key Lessons:</strong> ${tutorial.keyLessons.join(', ')}`;
+
+            document.getElementById('tutorialSummary').innerHTML = summary;
+        }
+
+        function exploreAspect(aspect) {
+            const aspects = {
+                foundations: "You understand that every great campaign starts with a strong thematic foundation and clear character motivations.",
+                creative: "You can create original content that feels authentically Star Wars while serving your specific story needs.",
+                systems: "You make rules and mechanics invisible supports that enhance rather than hinder the narrative experience.",
+                narrative: "You weave character development through every encounter, making each session contribute to long-term growth.",
+                advanced: "You integrate complex elements like politics and time travel to add depth without overwhelming players."
+            };
+            
+            alert(aspects[aspect] || "Aspect not found");
+        }
+
+        function runMasteryTest(type) {
+            const test = masteryTests[type];
+            if (!test) return;
+
+            let output = `> ${test.title}\n>\n> CHALLENGES:\n`;
+            
+            let challengeIndex = 0;
+            const displayChallenges = () => {
+                if (challengeIndex < test.challenges.length) {
+                    output += `> ✓ ${test.challenges[challengeIndex]}\n`;
+                    document.getElementById('masteryDisplay').innerHTML = output.replace(/\n/g, '<br>');
+                    challengeIndex++;
+                    setTimeout(displayChallenges, 800);
+                } else {
+                    output += `>\n> ASSESSMENT: ${test.result}\n`;
+                    output += `> WISDOM: ${test.wisdom}\n`;
+                    output += `>\n> Continue your journey, Master\n> _`;
+                    document.getElementById('masteryDisplay').innerHTML = output.replace(/\n/g, '<br>');
+                    
+                    // Update journey tracker
+                    if (type === 'final') {
+                        updateJourneyTracker("MASTER", "TRANSCENDENT", "COMPLETE");
+                        earnAchievement('master');
+                    } else {
+                        updateJourneyTracker("KNIGHT", "INTEGRATING", "EXPANDING");
+                        earnAchievement(type);
+                    }
+                }
+            };
+            
+            displayChallenges();
+        }
+
+        function updateJourneyTracker(progress, skills, wisdom) {
+            const tracker = document.getElementById('journeyTracker');
+            tracker.innerHTML = `MASTERY JOURNEY<br>PROGRESS: ${progress}<br>SKILLS: ${skills}<br>WISDOM: ${wisdom}`;
+            
+            // Update mastery balance
+            const balance = document.getElementById('masteryBalance');
+            if (progress === 'MASTER') {
+                balance.style.left = '90%';
+            } else if (progress === 'KNIGHT') {
+                balance.style.left = '60%';
+            } else {
+                balance.style.left = '30%';
+            }
+        }
+
+        function earnAchievement(type) {
+            const badge = document.getElementById(`badge-${type}`);
+            if (badge) {
+                badge.classList.add('earned');
+            }
+        }
+
+        // Mastery wheel drawing
+        const masteryCanvas = document.getElementById('masteryWheel');
+        const masteryCtx = masteryCanvas.getContext('2d');
+
+        function drawMasteryWheel() {
+            const centerX = masteryCanvas.width / 2;
+            const centerY = masteryCanvas.height / 2;
+            const radius = 150;
+            
+            const tutorials = [
+                'Foundations', 'Planets', 'Space', 'NPCs', 'Arcs', 'Social',
+                'Force', 'Ground', 'Politics', 'Droids', 'Time'
+            ];
+            
+            const colors = [
+                '#667eea', '#43e97b', '#4facfe', '#f093fb', '#fa709a',
+                '#38f9d7', '#6c757d', '#ffc107', '#dc3545', '#28a745', '#17a2b8'
+            ];
+            
+            // Clear canvas
+            masteryCtx.clearRect(0, 0, masteryCanvas.width, masteryCanvas.height);
+            
+            // Draw constellation connections
+            masteryCtx.strokeStyle = 'rgba(255,255,255,0.3)';
+            masteryCtx.lineWidth = 1;
+            for (let i = 0; i < tutorials.length; i++) {
+                const angle1 = (i / tutorials.length) * 2 * Math.PI - Math.PI / 2;
+                const angle2 = ((i + 1) / tutorials.length) * 2 * Math.PI - Math.PI / 2;
+                
+                const x1 = centerX + Math.cos(angle1) * radius;
+                const y1 = centerY + Math.sin(angle1) * radius;
+                const x2 = centerX + Math.cos(angle2) * radius;
+                const y2 = centerY + Math.sin(angle2) * radius;
+                
+                masteryCtx.beginPath();
+                masteryCtx.moveTo(x1, y1);
+                masteryCtx.lineTo(x2, y2);
+                masteryCtx.stroke();
+            }
+            
+            // Draw tutorial points
+            tutorials.forEach((tutorial, index) => {
+                const angle = (index / tutorials.length) * 2 * Math.PI - Math.PI / 2;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                // Star point
+                masteryCtx.fillStyle = colors[index];
+                masteryCtx.beginPath();
+                masteryCtx.arc(x, y, 8, 0, 2 * Math.PI);
+                masteryCtx.fill();
+                
+                masteryCtx.strokeStyle = '#fff';
+                masteryCtx.lineWidth = 2;
+                masteryCtx.stroke();
+                
+                // Label
+                masteryCtx.fillStyle = '#fff';
+                masteryCtx.font = '12px Arial';
+                masteryCtx.textAlign = 'center';
+                masteryCtx.fillText(tutorial, x, y - 15);
+            });
+            
+            // Center symbol
+            masteryCtx.fillStyle = '#ffd700';
+            masteryCtx.beginPath();
+            masteryCtx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+            masteryCtx.fill();
+            
+            masteryCtx.fillStyle = '#000';
+            masteryCtx.font = '16px Arial';
+            masteryCtx.textAlign = 'center';
+            masteryCtx.fillText('MASTER', centerX, centerY + 5);
+        }
+
+        // Initialize
+        drawMasteryWheel();
+        
+        // Initial display
+        document.getElementById('masteryDisplay').innerHTML = `> STAR WARS RPG MASTERY SIMULATOR v1.0<br>> "Your focus determines your reality" - Qui-Gon Jinn<br>> <br>> You have completed all foundational training modules<br>> Ready to test your mastery across all disciplines<br>> <br>> Select test type to demonstrate your abilities<br>> May the Force be with you...<br>> _`;
+    </script>
+</body>
+</html>

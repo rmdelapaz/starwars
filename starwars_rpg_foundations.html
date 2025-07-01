@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundations of Star Wars RPG Campaign Building</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .force-diagram { background: linear-gradient(135deg, #000428, #004e92); padding: 20px; border-radius: 10px; color: white; margin: 20px 0; }
+        .jedi-council { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0; }
+        .council-member { background: #f0f8ff; padding: 15px; margin: 10px; border-radius: 8px; text-align: center; min-width: 200px; }
+        .timeline { position: relative; padding: 20px 0; }
+        .timeline-item { margin: 20px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #ffd700; }
+        .exercise-box { background: #e6f3ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a90e2; }
+        .canvas-container { text-align: center; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Foundations of Star Wars RPG Campaign Building</h1>
+        <p><em>"Your focus determines your reality." - Qui-Gon Jinn</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Welcome, Padawan Game Master</h2>
+            <p>Building a Star Wars RPG campaign is like constructing a lightsaber - it requires patience, understanding of the Force (your story), and the right crystals (elements) to make it shine. Just as a Jedi must understand both the light and dark sides of the Force, a Game Master must balance hope and conflict, heroism and moral complexity.</p>
+            
+            <div class="force-diagram">
+                <div class="mermaid">
+                    graph TD
+                        A[Campaign Foundation] --> B[Galaxy Setting]
+                        A --> C[Character Motivations]
+                        A --> D[Conflict & Stakes]
+                        B --> E[Planets & Locations]
+                        B --> F[Factions & Politics]
+                        C --> G[Personal Stories]
+                        C --> H[Group Dynamics]
+                        D --> I[Galactic Threats]
+                        D --> J[Personal Conflicts]
+                </div>
+            </div>
+        </section>
+
+        <section class="understanding-the-force">
+            <h2>Understanding the Force of Storytelling</h2>
+            <p>The Force in Star Wars isn't just magic - it's the binding narrative thread that connects all living things. In your campaign, think of the Force as your central theme or the emotional core that drives everything forward.</p>
+
+            <h3>The Three Pillars of Campaign Force</h3>
+            <div class="jedi-council">
+                <div class="council-member">
+                    <h4>🌟 Hope vs Despair</h4>
+                    <p>Every Star Wars story balances light against darkness. Your campaign should have moments of triumph and setbacks, just like Luke's journey from farm boy to Jedi Knight.</p>
+                </div>
+                <div class="council-member">
+                    <h4>⚔️ Conflict & Choice</h4>
+                    <p>Meaningful decisions define heroes. Present your players with choices that matter - save the hostages or pursue the villain? Trust the suspicious ally or go it alone?</p>
+                </div>
+                <div class="council-member">
+                    <h4>🤝 Connection & Legacy</h4>
+                    <p>Star Wars is about relationships - mentors and students, friends and rivals. Build connections between characters and show how their actions ripple through the galaxy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="galaxy-building">
+            <h2>Constructing Your Galaxy</h2>
+            <p>Think of the Star Wars galaxy like a vast ocean with countless islands (star systems). Each island has its own culture, dangers, and opportunities. You don't need to map every system - just the ones that matter to your story.</p>
+
+            <h3>The Galactic Timeline Approach</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Old Republic Era</h4>
+                    <p><strong>When:</strong> Thousands of years before A New Hope<br>
+                    <strong>Feel:</strong> Ancient mysteries, powerful Force users, grand civilizations<br>
+                    <strong>Perfect for:</strong> Epic quests, exploring Jedi/Sith history, lost technologies</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Clone Wars Era</h4>
+                    <p><strong>When:</strong> 22-19 years before A New Hope<br>
+                    <strong>Feel:</strong> Galactic war, political intrigue, fall of heroes<br>
+                    <strong>Perfect for:</strong> Military campaigns, moral complexity, watching democracy crumble</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Imperial Era</h4>
+                    <p><strong>When:</strong> 19 years before to 4 years after A New Hope<br>
+                    <strong>Feel:</strong> Oppression, rebellion, hope against impossible odds<br>
+                    <strong>Perfect for:</strong> Underdog stories, smuggling, fighting tyranny</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>New Republic Era</h4>
+                    <p><strong>When:</strong> 4-34 years after A New Hope<br>
+                    <strong>Feel:</strong> Rebuilding, new threats, legacy of heroes<br>
+                    <strong>Perfect for:</strong> Exploration, establishing new orders, dealing with Imperial remnants</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="character-creation">
+            <h2>Crafting Compelling Characters</h2>
+            <p>In Star Wars, characters aren't just stats and abilities - they're people with dreams, fears, and destinies. Think of character creation like building a droid: you need the right parts (background, motivation, flaw) to make it come alive.</p>
+
+            <div class="canvas-container">
+                <canvas id="characterWheel" width="400" height="400"></canvas>
+                <p><em>The Character Motivation Wheel - Click to spin and discover character aspects!</em></p>
+            </div>
+
+            <h3>The Hero's Journey in Character Development</h3>
+            <p>Every great Star Wars character follows a transformation arc. Luke starts as a whiny farm boy and becomes a confident Jedi. Anakin begins as a hopeful child and becomes Darth Vader. Your players' characters should have similar potential for growth and change.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Ordinary World] --> B[Call to Adventure]
+                    B --> C[Refusal of Call]
+                    C --> D[Meeting Mentor]
+                    D --> E[Crossing Threshold]
+                    E --> F[Tests & Trials]
+                    F --> G[Death & Rebirth]
+                    G --> H[Return Transformed]
+            </div>
+        </section>
+
+        <section class="conflict-design">
+            <h2>Designing Meaningful Conflict</h2>
+            <p>Conflict in Star Wars operates on multiple levels, like the layers of a planet's atmosphere. Surface conflicts might be about escaping Imperial troops, but deeper conflicts explore themes of redemption, sacrifice, and the nature of good and evil.</p>
+
+            <h3>The Conflict Pyramid</h3>
+            <div class="mermaid">
+                graph TD
+                    A[Galactic Conflict<br/>Empire vs Rebellion] --> B[Sector Conflict<br/>Local Warlord vs Civilians]
+                    B --> C[Personal Conflict<br/>Character vs Past Mistakes]
+                    C --> D[Internal Conflict<br/>Light Side vs Dark Side Temptation]
+            </div>
+
+            <h4>Real-World Parallels</h4>
+            <p>Star Wars draws from real history and current events. The Empire reflects fascist regimes, the Rebellion mirrors resistance movements, and the Jedi's fall echoes the collapse of democratic institutions. Use these parallels to add depth and relevance to your campaign.</p>
+        </section>
+
+        <section class="practical-applications">
+            <h2>Practical Applications</h2>
+            
+            <h3>Session Zero: Your Campaign's Foundation</h3>
+            <p>Before you even roll dice, hold a "Session Zero" - think of it as the Jedi Council meeting where you establish the rules and expectations for your campaign.</p>
+
+            <h4>Essential Questions to Discuss:</h4>
+            <ul>
+                <li><strong>What era interests everyone?</strong> (This determines the galaxy's political state)</li>
+                <li><strong>What type of heroes do you want to be?</strong> (Jedi, smugglers, rebels, etc.)</li>
+                <li><strong>How serious vs. lighthearted?</strong> (Rogue One vs. A New Hope tone)</li>
+                <li><strong>What themes matter to your group?</strong> (Redemption, friendship, justice, etc.)</li>
+            </ul>
+
+            <h3>The Three-Act Structure for Campaigns</h3>
+            <p>Structure your campaign like a Star Wars movie trilogy:</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Act I: The Spark</h4>
+                    <p>Characters meet, discover the threat, and commit to action. Like Luke finding the Death Star plans and joining the Rebellion.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Act II: The Struggle</h4>
+                    <p>Complications arise, victories are costly, and characters face their greatest challenges. Like the Empire striking back and Han being frozen.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Act III: The Resolution</h4>
+                    <p>Final confrontation, character growth pays off, and the main conflict resolves. Like Luke redeeming Vader and the Empire's fall.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-box">
+                <h3>Practice Exercises</h3>
+                
+                <h4>Exercise 1: Galaxy Mapping</h4>
+                <p>Create a simple star map with 5-7 systems. For each system, write one sentence describing:</p>
+                <ul>
+                    <li>What makes it unique</li>
+                    <li>What conflict exists there</li>
+                    <li>How it connects to the larger story</li>
+                </ul>
+
+                <h4>Exercise 2: Character Motivations</h4>
+                <p>Write a character with the following framework:</p>
+                <ul>
+                    <li><strong>Dream:</strong> What they want most</li>
+                    <li><strong>Fear:</strong> What they're afraid of losing</li>
+                    <li><strong>Lie:</strong> What false belief holds them back</li>
+                    <li><strong>Truth:</strong> What they need to learn</li>
+                </ul>
+
+                <h4>Exercise 3: Conflict Layers</h4>
+                <p>Take a simple scenario (like "rescue the prisoners") and add three layers:</p>
+                <ul>
+                    <li><strong>Surface:</strong> The immediate problem</li>
+                    <li><strong>Hidden:</strong> The deeper issue</li>
+                    <li><strong>Personal:</strong> How it affects each character</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Further Exploration</h2>
+            <p>Ready to dive deeper into the galaxy? Consider these advanced topics:</p>
+            
+            <ul>
+                <li><strong>Force Traditions:</strong> Explore non-Jedi Force users like Nightsisters, Guardians of the Whills, or ancient Sith cults</li>
+                <li><strong>Political Intrigue:</strong> Study how the Senate worked, corporate interests, and planetary governments</li>
+                <li><strong>Technology Integration:</strong> How do droids, hyperspace, and the Force interact in your stories?</li>
+                <li><strong>Moral Complexity:</strong> When is the dark side justified? How do good people make bad choices?</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"Remember, a Jedi's strength flows from the Force. But beware. Anger, fear, aggression. The dark side are they. Once you start down the dark path, forever will it dominate your destiny." - Yoda</em></p>
+    </footer>
+
+    <script>
+        // Interactive Character Wheel
+        const canvas = document.getElementById('characterWheel');
+        const ctx = canvas.getContext('2d');
+        
+        const motivations = [
+            'Seeking Redemption',
+            'Protecting Family',
+            'Uncovering Truth',
+            'Gaining Power',
+            'Finding Purpose',
+            'Earning Respect',
+            'Seeking Justice',
+            'Escaping Past'
+        ];
+        
+        const colors = ['#ff4444', '#44ff44', '#4444ff', '#ffff44', '#ff44ff', '#44ffff', '#ff8844', '#88ff44'];
+        
+        let rotation = 0;
+        let spinning = false;
+        
+        function drawWheel() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 180;
+            const anglePerSegment = (2 * Math.PI) / motivations.length;
+            
+            for (let i = 0; i < motivations.length; i++) {
+                const startAngle = i * anglePerSegment + rotation;
+                const endAngle = (i + 1) * anglePerSegment + rotation;
+                
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+                ctx.stroke();
+                
+                // Add text
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(startAngle + anglePerSegment / 2);
+                ctx.textAlign = 'center';
+                ctx.fillStyle = '#000';
+                ctx.font = '14px Arial';
+                ctx.fillText(motivations[i], radius * 0.7, 5);
+                ctx.restore();
+            }
+            
+            // Draw pointer
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY - radius - 20);
+            ctx.lineTo(centerX - 10, centerY - radius - 5);
+            ctx.lineTo(centerX + 10, centerY - radius - 5);
+            ctx.closePath();
+            ctx.fillStyle = '#000';
+            ctx.fill();
+        }
+        
+        function spin() {
+            if (spinning) return;
+            spinning = true;
+            
+            const spinAmount = Math.random() * 8 + 5; // 5-13 rotations
+            const duration = 3000; // 3 seconds
+            const startTime = Date.now();
+            const startRotation = rotation;
+            
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Ease out animation
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                rotation = startRotation + (spinAmount * 2 * Math.PI * easeProgress);
+                
+                drawWheel();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    spinning = false;
+                }
+            }
+            
+            animate();
+        }
+        
+        canvas.addEventListener('click', spin);
+        drawWheel();
+    </script>
+</body>
+</html>

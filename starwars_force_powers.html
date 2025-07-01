@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Force Powers and Jedi Training in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .force-temple { background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
+        .force-temple::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%); animation: force-pulse 4s ease-in-out infinite; }
+        @keyframes force-pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.1); opacity: 0.1; } }
+        .force-temple * { position: relative; z-index: 2; }
+        .power-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .power-card { padding: 20px; border-radius: 15px; position: relative; overflow: hidden; color: white; }
+        .power-card.light { background: linear-gradient(135deg, #00c851, #007e33); }
+        .power-card.neutral { background: linear-gradient(135deg, #ffbb33, #ff8800); }
+        .power-card.dark { background: linear-gradient(135deg, #cc0000, #8b0000); }
+        .power-card.universal { background: linear-gradient(135deg, #6f42c1, #4c2c92); }
+        .training-stages { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
+        .meditation-chamber { background: radial-gradient(circle, #2c3e50, #34495e); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
+        .force-tracker { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .lightsaber-forge { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4); padding: 20px; border-radius: 10px; margin: 20px 0; color: white; }
+        .dark-side-temptations { background: radial-gradient(circle, #8b0000, #000000); color: #ff6666; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .jedi-trials { background: linear-gradient(to right, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .force-simulator { background: #000; color: #00ff00; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .simulator-display { min-height: 250px; border: 1px solid #00ff00; padding: 15px; margin: 10px 0; overflow-y: auto; }
+        .control-interface { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .force-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
+        .force-btn:hover { background: #0056b3; transform: translateY(-2px); }
+        .force-btn.light { background: #28a745; }
+        .force-btn.dark { background: #dc3545; }
+        .force-btn.neutral { background: #ffc107; color: #000; }
+        .exercise-dojo { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .training-progression { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .progression-stage { background: #f0f8ff; padding: 15px; border-radius: 8px; border: 2px solid #4a90e2; text-align: center; }
+        .force-philosophy { background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .crystal-meditation { text-align: center; margin: 20px 0; }
+        .kyber-crystal { width: 60px; height: 60px; margin: 10px; border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.3s; animation: crystal-glow 3s ease-in-out infinite; }
+        .kyber-crystal:hover { transform: scale(1.2); }
+        @keyframes crystal-glow { 0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.5); } 50% { box-shadow: 0 0 20px rgba(255,255,255,0.8); } }
+        .crystal-blue { background: radial-gradient(circle, #4169e1, #0000cd); }
+        .crystal-green { background: radial-gradient(circle, #32cd32, #228b22); }
+        .crystal-red { background: radial-gradient(circle, #ff0000, #8b0000); }
+        .crystal-purple { background: radial-gradient(circle, #9370db, #4b0082); }
+        .crystal-yellow { background: radial-gradient(circle, #ffd700, #daa520); }
+        .wisdom-scroll { background: #f5f5dc; border: 2px solid #8b4513; padding: 20px; margin: 20px 0; border-radius: 10px; font-family: serif; }
+        .moral-compass { position: relative; width: 200px; height: 200px; margin: 20px auto; background: radial-gradient(circle, #f8f9fa, #dee2e6); border-radius: 50%; border: 3px solid #6c757d; }
+        .compass-needle { position: absolute; top: 50%; left: 50%; width: 4px; height: 80px; background: linear-gradient(to bottom, #007bff, #dc3545); transform-origin: bottom center; transform: translate(-50%, -100%) rotate(0deg); transition: transform 0.5s; }
+        .balance-meter { width: 100%; height: 30px; background: linear-gradient(to right, #007bff, #28a745, #ffc107, #fd7e14, #dc3545); border-radius: 15px; margin: 15px 0; position: relative; }
+        .balance-indicator { position: absolute; top: -5px; width: 40px; height: 40px; background: white; border: 3px solid #000; border-radius: 50%; transition: left 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Managing Force Powers and Jedi Training</h1>
+        <p><em>"For my ally is the Force, and a powerful ally it is. Life creates it, makes it grow. Its energy surrounds us and binds us." - Yoda</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="force-temple">
+                <h2>Welcome to the Force Academy</h2>
+                <p>The Force is the heart of Star Wars - not just a collection of supernatural powers, but a philosophy, a way of life, and the source of the saga's most profound moments. Managing Force powers in your RPG requires balancing mechanical effects with spiritual growth, ensuring that wielding the Force feels both powerful and meaningful.</p>
+                
+                <p>Think of the Force not as magic, but as a relationship. Like any relationship, it requires understanding, respect, and constant growth. The most compelling Force users aren't those with the most powers, but those who best understand what the Force means and how it connects all living things.</p>
+            </div>
+        </section>
+
+        <section class="force-fundamentals">
+            <h2>Understanding the Force: Philosophy Before Power</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[The Force] --> B[Living Force]
+                    A --> C[Cosmic Force]
+                    A --> D[Unifying Force]
+                    
+                    B --> E[Present Moment]
+                    B --> F[Life Energy]
+                    B --> G[Instinct & Intuition]
+                    
+                    C --> H[Future Visions]
+                    C --> I[Past Echoes]
+                    C --> J[Destiny & Prophecy]
+                    
+                    D --> K[Balance & Harmony]
+                    D --> L[Connection to All Life]
+                    D --> M[Transcendence]
+            </div>
+
+            <div class="force-philosophy">
+                <h3>The Three Aspects of Force Understanding</h3>
+                
+                <h4>🌱 The Living Force</h4>
+                <p>Present-focused, dealing with immediate awareness and life energy. This aspect governs enhanced reflexes, sensing danger, healing, and animal empathy. Characters strong in the Living Force are grounded in the moment and connected to the world around them.</p>
+
+                <h4>🌌 The Cosmic Force</h4>
+                <p>Time-focused, dealing with destiny and the larger patterns of existence. This aspect governs precognition, postcognition, Force visions, and understanding of fate. Characters strong in the Cosmic Force see the bigger picture but may struggle with present concerns.</p>
+
+                <h4>⚖️ The Unifying Force</h4>
+                <p>Balance-focused, dealing with the connection between all things. This aspect governs telepathy, empathy, Force bonds, and the ability to influence others. Characters strong in the Unifying Force understand relationships and connections but may lose individual identity.</p>
+            </div>
+        </section>
+
+        <section class="power-system">
+            <h2>Categorizing Force Powers by Nature and Intent</h2>
+            <p>Force powers aren't just tools - they reflect the user's understanding and relationship with the Force. The same basic ability can manifest differently based on the wielder's philosophy and emotional state.</p>
+
+            <div class="power-categories">
+                <div class="power-card light">
+                    <h4>✨ Light Side Powers</h4>
+                    <p><strong>Philosophy:</strong> Service, protection, healing<br>
+                    <strong>Examples:</strong> Force Healing, Animal Friendship, Protect, Absorb Energy<br>
+                    <strong>Cost:</strong> Physical exhaustion, emotional drain from caring deeply<br>
+                    <strong>Mastery:</strong> Selfless sacrifice and complete trust in the Force</p>
+                </div>
+                <div class="power-card dark">
+                    <h4>⚡ Dark Side Powers</h4>
+                    <p><strong>Philosophy:</strong> Domination, destruction, personal power<br>
+                    <strong>Examples:</strong> Force Lightning, Drain Life, Dominate Mind, Rage<br>
+                    <strong>Cost:</strong> Corruption, addiction, loss of empathy and connections<br>
+                    <strong>Mastery:</strong> Embracing hatred and fear as sources of strength</p>
+                </div>
+                <div class="power-card neutral">
+                    <h4>⚖️ Neutral Powers</h4>
+                    <p><strong>Philosophy:</strong> Understanding, balance, pragmatism<br>
+                    <strong>Examples:</strong> Force Sight, Telepathy, Precognition, Force Jump<br>
+                    <strong>Cost:</strong> Mental fatigue, sensory overload from expanded awareness<br>
+                    <strong>Mastery:</strong> Perfect balance between passion and peace</p>
+                </div>
+                <div class="power-card universal">
+                    <h4>🔮 Universal Powers</h4>
+                    <p><strong>Philosophy:</strong> Core connection to the Force itself<br>
+                    <strong>Examples:</strong> Telekinesis, Enhanced Reflexes, Sense, Mind Trick<br>
+                    <strong>Cost:</strong> Varies based on intent and emotional state during use<br>
+                    <strong>Mastery:</strong> Using any power with pure intent and clear purpose</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="training-system">
+            <h2>The Path of Jedi Training</h2>
+            <p>Jedi training isn't just about learning powers - it's about developing wisdom, self-control, and understanding of one's place in the cosmic order. Each stage brings new abilities but also new responsibilities and temptations.</p>
+
+            <div class="training-progression">
+                <div class="progression-stage">
+                    <h4>👶 Youngling (Ages 3-12)</h4>
+                    <p><strong>Focus:</strong> Basic Force sensitivity, emotional control<br>
+                    <strong>Powers:</strong> Force Sense, minor telekinesis, enhanced reflexes<br>
+                    <strong>Trials:</strong> Gathering at the Jedi Temple, basic lightsaber forms</p>
+                </div>
+                <div class="progression-stage">
+                    <h4>🎓 Padawan (Ages 13-25)</h4>
+                    <p><strong>Focus:</strong> Personal discipline, mentor relationship<br>
+                    <strong>Powers:</strong> Mind Trick, Force Jump, lightsaber combat<br>
+                    <strong>Trials:</strong> Constructing first lightsaber, field missions</p>
+                </div>
+                <div class="progression-stage">
+                    <h4>⚔️ Knight (Ages 25+)</h4>
+                    <p><strong>Focus:</strong> Independence, specialization, service<br>
+                    <strong>Powers:</strong> Advanced combat, healing, specialized abilities<br>
+                    <strong>Trials:</strong> Trial of Skill, Courage, Flesh, and Spirit</p>
+                </div>
+                <div class="progression-stage">
+                    <h4>🧙 Master (Ages 40+)</h4>
+                    <p><strong>Focus:</strong> Teaching, wisdom, Council responsibilities<br>
+                    <strong>Powers:</strong> Force mastery, rare abilities, deep insight<br>
+                    <strong>Trials:</strong> Successfully training a Padawan to Knighthood</p>
+                </div>
+            </div>
+
+            <div class="jedi-trials">
+                <h3>⚔️ The Traditional Jedi Trials</h3>
+                
+                <div class="mermaid">
+                    graph LR
+                        A[Trial of Skill] --> B[Trial of Courage]
+                        B --> C[Trial of Flesh]
+                        C --> D[Trial of Spirit]
+                        D --> E[Knighthood]
+                        
+                        A1[Combat Mastery<br/>Lightsaber Forms<br/>Force Techniques] --> B1[Facing Fear<br/>Protecting Others<br/>Moral Courage]
+                        B1 --> C1[Physical Sacrifice<br/>Enduring Pain<br/>Accepting Loss]
+                        C1 --> D1[Confronting Darkness<br/>Resisting Temptation<br/>Self-Knowledge]
+                </div>
+
+                <h4>Designing Trials for Your Campaign</h4>
+                <ul>
+                    <li><strong>Trial of Skill:</strong> Not just combat - puzzle-solving, diplomacy, or technical mastery can demonstrate Force mastery</li>
+                    <li><strong>Trial of Courage:</strong> Facing something personally terrifying, not just dangerous</li>
+                    <li><strong>Trial of Flesh:</strong> Physical or emotional sacrifice, loss of something important</li>
+                    <li><strong>Trial of Spirit:</strong> Confronting one's own potential for darkness or greatest fear</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="dark-side-management">
+            <div class="dark-side-temptations">
+                <h2>⚡ Managing the Dark Side: Temptation and Corruption</h2>
+                <p>The dark side isn't evil magic - it's the corruption of good intentions through fear, anger, and the desire for control. Managing dark side temptation is crucial for creating meaningful moral choices in your campaign.</p>
+
+                <h3>The Seductive Path to Darkness</h3>
+                <div class="balance-meter">
+                    <div class="balance-indicator" id="moralIndicator" style="left: 50%;"></div>
+                </div>
+                <div class="control-interface">
+                    <button class="force-btn light" onclick="adjustBalance(-10)">Act with Compassion</button>
+                    <button class="force-btn neutral" onclick="adjustBalance(-5)">Maintain Peace</button>
+                    <button class="force-btn neutral" onclick="adjustBalance(5)">Use Anger</button>
+                    <button class="force-btn dark" onclick="adjustBalance(10)">Embrace Hatred</button>
+                </div>
+
+                <h4>Dark Side Progression Stages</h4>
+                <ul>
+                    <li><strong>Rationalization:</strong> "Just this once, for the greater good"</li>
+                    <li><strong>Habit Formation:</strong> Quick solutions become default responses</li>
+                    <li><strong>Emotional Numbing:</strong> Losing empathy and connection to others</li>
+                    <li><strong>Power Addiction:</strong> Craving increasingly stronger displays of force</li>
+                    <li><strong>Complete Fall:</strong> Dark side becomes the only truth the character knows</li>
+                </ul>
+
+                <h4>Redemption Mechanics</h4>
+                <p>The path back to the light is always available but becomes increasingly difficult:</p>
+                <ul>
+                    <li><strong>Acknowledgment:</strong> Recognizing the harm caused by dark side choices</li>
+                    <li><strong>Sacrifice:</strong> Giving up power to help others</li>
+                    <li><strong>Connection:</strong> Rebuilding relationships damaged by dark side use</li>
+                    <li><strong>Service:</strong> Dedicating oneself to healing the damage done</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="meditation-training">
+            <div class="meditation-chamber">
+                <h2>🧘 Meditation and Force Connection</h2>
+                <p>Meditation isn't just downtime - it's active Force training that develops insight, emotional control, and deeper connection to the cosmic order.</p>
+
+                <div class="crystal-meditation">
+                    <h3>🔮 Kyber Crystal Meditation</h3>
+                    <p>Each crystal type resonates with different aspects of the Force. Click crystals to explore their teachings:</p>
+                    
+                    <div class="kyber-crystal crystal-blue" onclick="crystalMeditation('blue')" title="Blue Crystal - Protection and Peace"></div>
+                    <div class="kyber-crystal crystal-green" onclick="crystalMeditation('green')" title="Green Crystal - Life and Growth"></div>
+                    <div class="kyber-crystal crystal-red" onclick="crystalMeditation('red')" title="Red Crystal - Passion and Power"></div>
+                    <div class="kyber-crystal crystal-purple" onclick="crystalMeditation('purple')" title="Purple Crystal - Balance and Mystery"></div>
+                    <div class="kyber-crystal crystal-yellow" onclick="crystalMeditation('yellow')" title="Yellow Crystal - Wisdom and Vigilance"></div>
+                    
+                    <p id="crystalWisdom">Select a crystal to receive its wisdom...</p>
+                </div>
+
+                <h4>Types of Force Meditation</h4>
+                <div class="training-stages">
+                    <h5>🌊 Flowing Water Meditation</h5>
+                    <p>Teaches adaptability and emotional flow. Practitioners learn to respond rather than react, flowing around obstacles like water around stones.</p>
+
+                    <h5>🗻 Mountain Stone Meditation</h5>
+                    <p>Teaches patience and stability. Practitioners develop unshakeable calm and the ability to endure any storm without losing center.</p>
+
+                    <h5>🔥 Living Flame Meditation</h5>
+                    <p>Teaches passion without attachment. Practitioners learn to feel deeply while maintaining emotional control and clarity of purpose.</p>
+
+                    <h5>🌪️ Moving Air Meditation</h5>
+                    <p>Teaches awareness and perception. Practitioners develop sensitivity to the subtle currents of the Force and the emotions of others.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="lightsaber-construction">
+            <div class="lightsaber-forge">
+                <h2>⚔️ Lightsaber Construction: More Than a Weapon</h2>
+                <p>Building a lightsaber is a rite of passage that reflects the Jedi's understanding of the Force. The process is as important as the result, teaching patience, precision, and self-knowledge.</p>
+
+                <h3>The Sacred Process</h3>
+                <div class="mermaid">
+                    graph TD
+                        A[Crystal Calling] --> B[Gathering Components]
+                        B --> C[Meditation and Assembly]
+                        C --> D[Force Attunement]
+                        D --> E[Testing and Bonding]
+                        
+                        A1[Force guides to crystal<br/>Crystal chooses Jedi<br/>Vision quest] --> B1[Rare metals<br/>Power cells<br/>Focusing elements]
+                        B1 --> C1[30-day meditation<br/>Force-guided assembly<br/>Spiritual preparation]
+                        C1 --> D1[Crystal bonding<br/>Energy alignment<br/>Personal connection]
+                        D1 --> E1[First ignition<br/>Combat testing<br/>Lifetime bond]
+                </div>
+
+                <h4>Lightsaber Personalization</h4>
+                <p>Each lightsaber reflects its builder's personality and Force connection:</p>
+                <ul>
+                    <li><strong>Hilt Design:</strong> Curves for fluid fighters, straight for precise duelists</li>
+                    <li><strong>Crystal Choice:</strong> Blue for guardians, green for consulars, unique colors for special purposes</li>
+                    <li><strong>Length and Weight:</strong> Adapted to fighting style and physical build</li>
+                    <li><strong>Special Features:</strong> Dual-phase, curved hilt, dual-blade, or lightwhip variations</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="force-simulator">
+            <h2>🖥️ Interactive Force Training Simulator</h2>
+            <div class="force-simulator">
+                <div class="control-interface">
+                    <button class="force-btn light" onclick="simulateForce('heal')">Practice Healing</button>
+                    <button class="force-btn neutral" onclick="simulateForce('telekinesis')">Telekinesis Training</button>
+                    <button class="force-btn neutral" onclick="simulateForce('precognition')">Foresight Exercise</button>
+                    <button class="force-btn dark" onclick="simulateForce('lightning')">Lightning Study</button>
+                    <button class="force-btn" onclick="simulateForce('meditation')">Deep Meditation</button>
+                    <button class="force-btn" onclick="resetSimulator()">Reset Training</button>
+                </div>
+                <div class="simulator-display" id="forceDisplay">
+                    > FORCE TRAINING SIMULATOR v3.7
+                    <br>> "Remember, a Jedi's strength flows from the Force"
+                    <br>> Select training exercise above
+                    <br>> May the Force be with you...
+                    <br>> _
+                </div>
+            </div>
+        </section>
+
+        <section class="practical-management">
+            <h2>Practical Force Power Management</h2>
+
+            <div class="force-tracker">
+                <h3>📊 Tracking Force Development</h3>
+                
+                <h4>The Three-Pillar System</h4>
+                <ul>
+                    <li><strong>Knowledge:</strong> Understanding theory, philosophy, and techniques</li>
+                    <li><strong>Practice:</strong> Developing skill through repeated use and training</li>
+                    <li><strong>Wisdom:</strong> Knowing when and how to apply powers appropriately</li>
+                </ul>
+
+                <h4>Force Power Progression Framework</h4>
+                <div class="mermaid">
+                    graph LR
+                        A[Untrained] --> B[Novice]
+                        B --> C[Apprentice]
+                        C --> D[Adept]
+                        D --> E[Expert]
+                        E --> F[Master]
+                        
+                        A1[Instinctive use<br/>Unreliable results<br/>No control] --> B1[Basic training<br/>Simple effects<br/>Guided practice]
+                        B1 --> C1[Consistent results<br/>Multiple techniques<br/>Some independence]
+                        C1 --> D1[Advanced applications<br/>Creative variations<br/>Teaching others]
+                        D1 --> E1[Mastery of principle<br/>Effortless use<br/>Innovation]
+                        E1 --> F1[Transcendent understanding<br/>One with the Force<br/>Beyond technique]
+                </div>
+            </div>
+
+            <div class="wisdom-scroll">
+                <h3>📜 Ancient Jedi Wisdom</h3>
+                <blockquote>
+                    <p><em>"A Jedi uses the Force for knowledge and defense, never for attack. But beware of the dark side. Anger, fear, aggression; the dark side of the Force are they. Easily they flow, quick to join you in a fight."</em> - Master Yoda</p>
+                </blockquote>
+
+                <h4>Core Principles for Force Use</h4>
+                <ul>
+                    <li><strong>Intent Matters:</strong> The same power used with different intentions has different effects</li>
+                    <li><strong>Emotional State:</strong> Fear and anger corrupt even beneficial powers</li>
+                    <li><strong>Consent and Free Will:</strong> Forcing others violates the natural order</li>
+                    <li><strong>Balance and Restraint:</strong> Power without wisdom leads to destruction</li>
+                    <li><strong>Service Over Self:</strong> Powers should serve the greater good, not personal gain</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="alternative-traditions">
+            <h2>Beyond the Jedi: Alternative Force Traditions</h2>
+            <p>The galaxy is vast, and the Jedi are not the only ones who understand the Force. Each tradition offers different perspectives on Force use and philosophy.</p>
+
+            <div class="power-categories">
+                <div class="power-card neutral">
+                    <h4>🌙 Nightsisters of Dathomir</h4>
+                    <p><strong>Philosophy:</strong> Magick through ritual and tribal connection<br>
+                    <strong>Powers:</strong> Spirit summoning, transformation, illusions<br>
+                    <strong>Cost:</strong> Requires ingredients, rituals, and tribal support</p>
+                </div>
+                <div class="power-card light">
+                    <h4>🕊️ Guardians of the Whills</h4>
+                    <p><strong>Philosophy:</strong> Force as universal protector<br>
+                    <strong>Powers:</strong> Enhanced combat, protection, sensing<br>
+                    <strong>Cost:</strong> Devotion to temple service and ancient traditions</p>
+                </div>
+                <div class="power-card universal">
+                    <h4>⚖️ Je'daii Order</h4>
+                    <p><strong>Philosophy:</strong> Perfect balance between light and dark<br>
+                    <strong>Powers:</strong> Both light and dark abilities without corruption<br>
+                    <strong>Cost:</strong> Constant vigilance to maintain perfect balance</p>
+                </div>
+                <div class="power-card dark">
+                    <h4>👁️ Sith Traditions</h4>
+                    <p><strong>Philosophy:</strong> Power through passion and strength<br>
+                    <strong>Powers:</strong> Domination, destruction, Sith alchemy<br>
+                    <strong>Cost:</strong> Corruption, paranoia, inevitable betrayal</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-dojo">
+                <h3>Force Training Exercises</h3>
+                
+                <h4>Exercise 1: Philosophy in Action</h4>
+                <p>Design a scenario where characters must use Force powers, but show how different philosophical approaches lead to different outcomes:</p>
+                <ul>
+                    <li>A Jedi approach (selfless, protective)</li>
+                    <li>A Sith approach (selfish, dominating)</li>
+                    <li>A balanced approach (pragmatic, measured)</li>
+                    <li>How do the results differ? What are the long-term consequences?</li>
+                </ul>
+
+                <h4>Exercise 2: Temptation Design</h4>
+                <p>Create a dark side temptation that's genuinely appealing:</p>
+                <ul>
+                    <li>What noble goal could justify dark means?</li>
+                    <li>How does fear or anger make dark choices seem logical?</li>
+                    <li>What are the immediate benefits vs. long-term costs?</li>
+                    <li>How can characters resist without seeming foolish?</li>
+                </ul>
+
+                <h4>Exercise 3: Training Montage</h4>
+                <p>Design a Force training sequence that develops both power and character:</p>
+                <ul>
+                    <li>What specific ability is being learned?</li>
+                    <li>What personal limitation must be overcome?</li>
+                    <li>How does the training reflect the character's growth?</li>
+                    <li>What setbacks and breakthroughs occur?</li>
+                </ul>
+
+                <h4>Exercise 4: Alternative Tradition</h4>
+                <p>Create your own Force-using culture:</p>
+                <ul>
+                    <li>What is their core philosophy about the Force?</li>
+                    <li>How do they train new practitioners?</li>
+                    <li>What powers do they emphasize or avoid?</li>
+                    <li>How do they view Jedi and Sith?</li>
+                </ul>
+
+                <h4>Exercise 5: Power Paradox</h4>
+                <p>Design a Force power that has built-in moral complexity:</p>
+                <ul>
+                    <li>What beneficial effect does it have?</li>
+                    <li>What hidden cost or consequence exists?</li>
+                    <li>How might it tempt users toward darkness?</li>
+                    <li>When would using it be justified despite the risks?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>The Eternal Journey</h2>
+            <p>Remember, mastering the Force is not about accumulating powers - it's about growing in wisdom, compassion, and understanding. The most powerful Force user is not necessarily the strongest, but the one who best understands their connection to all life and uses that understanding in service of others.</p>
+            
+            <p>In your campaigns, let Force powers be expressions of character growth, not just mechanical abilities. When players reach for the Force, they should be reaching for something deeper than magic - they should be touching the very essence of what makes Star Wars meaningful.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"Luminous beings are we, not this crude matter. You must feel the Force around you; here, between you, me, the tree, the rock, everywhere!" - Yoda</em></p>
+    </footer>
+
+    <script>
+        // Force simulation data
+        const forceExercises = {
+            heal: {
+                title: "FORCE HEALING PRACTICE",
+                description: "You focus on the Living Force, channeling life energy...",
+                steps: [
+                    "Center yourself in the present moment",
+                    "Feel the flow of life energy around you", 
+                    "Direct healing energy toward the wound",
+                    "The tissue begins to knit together slowly",
+                    "Training complete. Exhaustion but no corruption."
+                ]
+            },
+            telekinesis: {
+                title: "TELEKINETIC TRAINING", 
+                description: "Reaching out with your mind to move objects...",
+                steps: [
+                    "Clear your thoughts of doubt and fear",
+                    "Visualize the object as an extension of yourself",
+                    "Feel the Force flowing through and around it",
+                    "Gently lift with your mind, not your emotions",
+                    "Success! Object moves smoothly to your will."
+                ]
+            },
+            precognition: {
+                title: "FORESIGHT MEDITATION",
+                description: "Opening your awareness to the Cosmic Force...",
+                steps: [
+                    "Quiet your mind and release attachment to outcomes",
+                    "Let consciousness expand beyond the present",
+                    "Glimpse shadows of possible futures",
+                    "Warning: Visions are always in motion",
+                    "Return to present with new awareness."
+                ]
+            },
+            lightning: {
+                title: "FORCE LIGHTNING STUDY",
+                description: "WARNING: This power draws on dark emotions...",
+                steps: [
+                    "Feel anger and hatred building within",
+                    "Channel fury into electrical energy",
+                    "Lightning crackles between your fingers",
+                    "Power surges through you - intoxicating!",
+                    "DANGER: Corruption detected. End session."
+                ]
+            },
+            meditation: {
+                title: "DEEP FORCE MEDITATION",
+                description: "Connecting with the deeper mysteries of the Force...",
+                steps: [
+                    "Achieve perfect stillness of body and mind",
+                    "Feel your connection to all living things",
+                    "Transcend the boundaries of self",
+                    "Touch the eternal nature of the Force",
+                    "Return with profound peace and understanding."
+                ]
+            }
+        };
+
+        // Crystal wisdom
+        const crystalWisdom = {
+            blue: "Blue crystals teach protection and peace. 'A guardian's strength comes not from power, but from the desire to protect those who cannot protect themselves.'",
+            green: "Green crystals resonate with life and growth. 'Like a tree that bends but does not break, a wise Jedi adapts to change while staying rooted in principle.'",
+            red: "Red crystals pulse with passion and power. 'Passion without purpose is destruction. Channel your fire toward justice, not vengeance.'",
+            purple: "Purple crystals hold the mystery of balance. 'In the space between light and dark, wisdom dwells. Walk the narrow path with courage.'",
+            yellow: "Yellow crystals shine with wisdom and vigilance. 'The sentinel watches not for glory, but because someone must stand guard while others sleep.'"
+        };
+
+        let currentBalance = 50; // 0 = pure light, 100 = pure dark
+
+        function simulateForce(type) {
+            const exercise = forceExercises[type];
+            if (!exercise) return;
+
+            let output = `> ${exercise.title}\n> ${exercise.description}\n>\n`;
+            
+            exercise.steps.forEach((step, index) => {
+                output += `> ${index + 1}. ${step}\n`;
+            });
+            
+            output += `>\n> Training session complete.\n> _`;
+            
+            document.getElementById('forceDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function resetSimulator() {
+            const output = `> FORCE TRAINING SIMULATOR v3.7\n> "Remember, a Jedi's strength flows from the Force"\n> Select training exercise above\n> May the Force be with you...\n> _`;
+            document.getElementById('forceDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function crystalMeditation(color) {
+            const wisdom = crystalWisdom[color];
+            document.getElementById('crystalWisdom').textContent = wisdom;
+        }
+
+        function adjustBalance(change) {
+            currentBalance = Math.max(0, Math.min(100, currentBalance + change));
+            const indicator = document.getElementById('moralIndicator');
+            indicator.style.left = currentBalance + '%';
+            
+            // Visual feedback
+            if (currentBalance < 30) {
+                indicator.style.background = '#007bff'; // Light side blue
+            } else if (currentBalance > 70) {
+                indicator.style.background = '#dc3545'; // Dark side red
+            } else {
+                indicator.style.background = '#28a745'; // Balanced green
+            }
+        }
+
+        // Initialize
+        resetSimulator();
+    </script>
+</body>
+</html>

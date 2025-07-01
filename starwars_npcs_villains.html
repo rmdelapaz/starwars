@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Compelling NPCs and Villains in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .character-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .character-card { background: linear-gradient(135deg, #2c3e50, #3498db); color: white; padding: 20px; border-radius: 15px; position: relative; overflow: hidden; }
+        .character-card.villain { background: linear-gradient(135deg, #8b0000, #ff4444); }
+        .character-card.ally { background: linear-gradient(135deg, #1e8449, #52c41a); }
+        .character-card.neutral { background: linear-gradient(135deg, #8e44ad, #e74c3c); }
+        .character-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: pulse 4s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; } 50% { transform: scale(1.1) rotate(180deg); opacity: 0.1; } }
+        .character-card * { position: relative; z-index: 2; }
+        .motivation-wheel { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
+        .villain-builder { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .relationship-web { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .personality-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .trait-card { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
+        .dialogue-examples { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
+        .exercise-lab { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .force-spectrum { width: 100%; height: 60px; background: linear-gradient(to right, #00ff00, #ffff00, #ff8800, #ff0000, #8800ff, #000000); border-radius: 10px; margin: 15px 0; position: relative; }
+        .force-marker { position: absolute; top: -10px; width: 20px; height: 80px; background: white; border: 2px solid #000; border-radius: 3px; cursor: pointer; }
+        .character-generator { background: #000; color: #00ff00; padding: 20px; border-radius: 10px; margin: 20px 0; font-family: monospace; }
+        .control-interface { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .interface-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .interface-btn:hover { background: #0056b3; }
+        .interface-btn.active { background: #28a745; }
+        .character-display { min-height: 200px; border: 1px solid #00ff00; padding: 15px; margin: 10px 0; }
+        .relationship-canvas { text-align: center; margin: 20px 0; }
+        .dark-side-corruption { background: radial-gradient(circle, #330000, #000000); color: #ff6666; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .redemption-arc { background: linear-gradient(to right, #330000, #003300); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Creating Compelling NPCs and Villains in Star Wars RPG</h1>
+        <p><em>"You were the chosen one! It was said that you would destroy the Sith, not join them!" - Obi-Wan Kenobi</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Welcome to the Character Forge</h2>
+            <p>Creating memorable NPCs and villains in Star Wars is like conducting a symphony of the Force - each character must play their part in the greater melody of your story. The best Star Wars characters aren't just obstacles or quest-givers; they're living beings with hopes, fears, contradictions, and the potential for both great good and terrible evil.</p>
+            
+            <p>Think of your NPCs as the supporting cast in an ensemble drama. Luke Skywalker is the hero, but without Obi-Wan's wisdom, Han's roguish charm, Leia's determination, and Vader's tragic fall, the story loses its emotional power. Your campaign needs that same rich tapestry of personalities.</p>
+        </section>
+
+        <section class="character-fundamentals">
+            <h2>The Anatomy of Memorable Characters</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Compelling Character] --> B[Core Motivation]
+                    A --> C[Fatal Flaw]
+                    A --> D[Unique Voice]
+                    A --> E[Story Function]
+                    
+                    B --> F[What they want most]
+                    B --> G[What they fear losing]
+                    
+                    C --> H[Blind spot]
+                    C --> I[Self-destructive tendency]
+                    
+                    D --> J[Speech patterns]
+                    D --> K[Mannerisms]
+                    
+                    E --> L[Role in player stories]
+                    E --> M[Relationship dynamics]
+            </div>
+
+            <h3>The Character Trinity</h3>
+            <div class="character-gallery">
+                <div class="character-card ally">
+                    <h4>🌟 Allies & Mentors</h4>
+                    <p><strong>Purpose:</strong> Guide, support, and challenge heroes to grow<br>
+                    <strong>Examples:</strong> Obi-Wan, Yoda, Mon Mothma<br>
+                    <strong>Key Trait:</strong> Wisdom earned through suffering</p>
+                </div>
+                <div class="character-card neutral">
+                    <h4>⚖️ Wildcards & Neutrals</h4>
+                    <p><strong>Purpose:</strong> Complicate situations, provide uncertainty<br>
+                    <strong>Examples:</strong> Han Solo (initially), Lando, Jabba<br>
+                    <strong>Key Trait:</strong> Self-interest that might align with heroes</p>
+                </div>
+                <div class="character-card villain">
+                    <h4>⚡ Villains & Antagonists</h4>
+                    <p><strong>Purpose:</strong> Oppose heroes, represent dark paths<br>
+                    <strong>Examples:</strong> Vader, Palpatine, Tarkin<br>
+                    <strong>Key Trait:</strong> Corrupted versions of heroic virtues</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="villain-crafting">
+            <h2>The Art of Villain Creation</h2>
+            <p>Great Star Wars villains aren't evil for evil's sake - they're heroes of their own stories who've made terrible choices. The most compelling antagonists believe they're saving the galaxy, even as they destroy it.</p>
+
+            <div class="villain-builder">
+                <h3>The Villain's Journey</h3>
+                <p>Every great villain follows a dark mirror of the hero's journey:</p>
+                
+                <div class="mermaid">
+                    graph LR
+                        A[Noble Intention] --> B[Traumatic Event]
+                        B --> C[First Compromise]
+                        C --> D[Escalating Choices]
+                        D --> E[Point of No Return]
+                        E --> F[Becomes the Thing They Fought]
+                        F --> G[Final Confrontation]
+                        G --> H[Redemption or Destruction]
+                </div>
+
+                <h4>Villain Archetypes in Star Wars</h4>
+                <ul>
+                    <li><strong>The Fallen Hero:</strong> Anakin/Vader - once good, corrupted by fear and anger</li>
+                    <li><strong>The Manipulator:</strong> Palpatine - uses others' desires against them</li>
+                    <li><strong>The Zealot:</strong> Tarkin - believes the ends justify any means</li>
+                    <li><strong>The Broken Mentor:</strong> Count Dooku - lost faith in the system they once served</li>
+                    <li><strong>The Mirror:</strong> Kylo Ren - shows what the hero could become</li>
+                </ul>
+            </div>
+
+            <div class="dark-side-corruption">
+                <h3>⚡ The Seductive Power of the Dark Side</h3>
+                <p>The dark side isn't about cackling evil - it's about taking shortcuts to solve real problems. Design your villains around this principle:</p>
+                
+                <h4>Dark Side Motivations</h4>
+                <ul>
+                    <li><strong>Fear of Loss:</strong> "I must gain power to protect what I love"</li>
+                    <li><strong>Righteous Anger:</strong> "The corrupt system must be destroyed"</li>
+                    <li><strong>Impatience:</strong> "I can end suffering faster with force"</li>
+                    <li><strong>Pride:</strong> "I know better than the fools in charge"</li>
+                    <li><strong>Despair:</strong> "If I can't save everyone, then no one deserves saving"</li>
+                </ul>
+
+                <div class="force-spectrum">
+                    <div class="force-marker" style="left: 10%;" title="Jedi"></div>
+                    <div class="force-marker" style="left: 30%;" title="Gray Jedi"></div>
+                    <div class="force-marker" style="left: 50%;" title="Balanced"></div>
+                    <div class="force-marker" style="left: 70%;" title="Dark Jedi"></div>
+                    <div class="force-marker" style="left: 90%;" title="Sith"></div>
+                </div>
+                <p><em>The Force Spectrum - Where do your characters fall?</em></p>
+            </div>
+        </section>
+
+        <section class="character-generator">
+            <h2>🤖 Interactive Character Generator</h2>
+            <div class="character-generator">
+                <div class="control-interface">
+                    <button class="interface-btn" onclick="generateAlly()">Generate Ally</button>
+                    <button class="interface-btn" onclick="generateNeutral()">Generate Neutral</button>
+                    <button class="interface-btn" onclick="generateVillain()">Generate Villain</button>
+                    <button class="interface-btn" onclick="generateBackground()">Add Background</button>
+                    <button class="interface-btn" onclick="generateQuirk()">Add Quirk</button>
+                </div>
+                <div class="character-display" id="characterOutput">
+                    &gt; Ready to generate characters...
+                    <br>&gt; Select character type above
+                    <br>&gt; _
+                </div>
+            </div>
+        </section>
+
+        <section class="personality-design">
+            <h2>Crafting Distinctive Personalities</h2>
+            <p>Personality in Star Wars comes through dialogue, mannerisms, and choices under pressure. Each character should sound different when they speak and act differently when stressed.</p>
+
+            <div class="personality-matrix">
+                <div class="trait-card">
+                    <h4>🗣️ Speech Patterns</h4>
+                    <p><strong>Formal:</strong> "I find your lack of faith disturbing"<br>
+                    <strong>Casual:</strong> "Never tell me the odds!"<br>
+                    <strong>Mystical:</strong> "Do or do not, there is no try"</p>
+                </div>
+                <div class="trait-card">
+                    <h4>😤 Stress Responses</h4>
+                    <p><strong>Aggressive:</strong> Strikes first, asks questions later<br>
+                    <strong>Analytical:</strong> Calculates probabilities and options<br>
+                    <strong>Empathetic:</strong> Worries about others first</p>
+                </div>
+                <div class="trait-card">
+                    <h4>🎯 Decision Making</h4>
+                    <p><strong>Intuitive:</strong> Trusts gut feelings and the Force<br>
+                    <strong>Logical:</strong> Weighs evidence and outcomes<br>
+                    <strong>Emotional:</strong> Follows heart over head</p>
+                </div>
+                <div class="trait-card">
+                    <h4>🤝 Relationship Style</h4>
+                    <p><strong>Loyal:</strong> Fierce protector of chosen family<br>
+                    <strong>Independent:</strong> Reluctant to rely on others<br>
+                    <strong>Manipulative:</strong> Uses others for personal goals</p>
+                </div>
+            </div>
+
+            <h3>Voice and Dialogue Mastery</h3>
+            <div class="dialogue-examples">
+                <h4>Character Voice Examples</h4>
+                
+                <p><strong>Han Solo - Roguish Skeptic:</strong><br>
+                "Kid, I've flown from one side of this galaxy to the other, and I've seen a lot of strange stuff, but I've never seen anything to make me believe that there's one all-powerful Force controlling everything."</p>
+
+                <p><strong>Yoda - Wise Mystic:</strong><br>
+                "Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not. For my ally is the Force, and a powerful ally it is."</p>
+
+                <p><strong>Darth Vader - Authoritative Menace:</strong><br>
+                "You have failed me for the last time, Admiral. The Emperor is not as forgiving as I am."</p>
+
+                <h4>Dialogue Writing Tips</h4>
+                <ul>
+                    <li><strong>Subtext:</strong> Characters rarely say exactly what they mean</li>
+                    <li><strong>Conflict:</strong> Even allies disagree on methods and priorities</li>
+                    <li><strong>Revelation:</strong> Let personality emerge through choices, not exposition</li>
+                    <li><strong>Consistency:</strong> Each character has verbal tics and phrases they return to</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="relationship-dynamics">
+            <h2>Building Relationship Networks</h2>
+            <p>Characters don't exist in isolation - they're part of webs of relationships that create drama, conflict, and emotional stakes. The best NPCs have connections to each other and to the player characters.</p>
+
+            <div class="relationship-canvas">
+                <canvas id="relationshipWeb" width="600" height="400"></canvas>
+                <p><em>Interactive Relationship Web - Click characters to explore connections!</em></p>
+            </div>
+
+            <div class="relationship-web">
+                <h3>Types of Character Relationships</h3>
+                
+                <div class="mermaid">
+                    graph TD
+                        A[Player Character] --> B[Mentor Figure]
+                        A --> C[Rival/Nemesis]
+                        A --> D[Love Interest]
+                        A --> E[Family Member]
+                        A --> F[Ally/Friend]
+                        
+                        B --> G[Past Student/Failure]
+                        C --> H[Shared History]
+                        D --> I[Conflicting Loyalties]
+                        E --> J[Hidden Secrets]
+                        F --> K[Different Methods]
+                </div>
+
+                <h4>Relationship Dynamics That Create Drama</h4>
+                <ul>
+                    <li><strong>Mentor's Dark Past:</strong> The wise teacher has secrets they're ashamed of</li>
+                    <li><strong>Rival's Noble Goal:</strong> Your enemy wants to save the galaxy too, just differently</li>
+                    <li><strong>Ally's Hidden Agenda:</strong> They help you, but for their own reasons</li>
+                    <li><strong>Family Conflict:</strong> Blood relations on opposite sides of the war</li>
+                    <li><strong>Redemption Arc:</strong> Former enemy becomes trusted ally</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="npc-categories">
+            <h2>Essential NPC Categories for Your Campaign</h2>
+            
+            <h3>🏛️ Authority Figures</h3>
+            <p>These characters represent the power structures in your galaxy - government, military, criminal organizations, and religious orders.</p>
+            
+            <div class="character-gallery">
+                <div class="character-card">
+                    <h4>Imperial Commander</h4>
+                    <p><strong>Motivation:</strong> Maintain order through strength<br>
+                    <strong>Flaw:</strong> Values protocol over people<br>
+                    <strong>Use:</strong> Bureaucratic obstacles, moral choices</p>
+                </div>
+                <div class="character-card">
+                    <h4>Rebel Leader</h4>
+                    <p><strong>Motivation:</strong> Free the galaxy from tyranny<br>
+                    <strong>Flaw:</strong> Willing to sacrifice few for many<br>
+                    <strong>Use:</strong> Mission briefings, impossible choices</p>
+                </div>
+                <div class="character-card">
+                    <h4>Crime Boss</h4>
+                    <p><strong>Motivation:</strong> Profit and power<br>
+                    <strong>Flaw:</strong> Trusts no one completely<br>
+                    <strong>Use:</strong> Shady deals, information trading</p>
+                </div>
+            </div>
+
+            <h3>🔧 Everyday People</h3>
+            <p>The galaxy is full of ordinary beings trying to live their lives. These characters ground your story in reality and show what the heroes are fighting for.</p>
+
+            <div class="character-gallery">
+                <div class="character-card">
+                    <h4>Cantina Owner</h4>
+                    <p><strong>Motivation:</strong> Keep the peace, serve all customers<br>
+                    <strong>Flaw:</strong> Willfully blind to darker activities<br>
+                    <strong>Use:</strong> Information hub, neutral ground</p>
+                </div>
+                <div class="character-card">
+                    <h4>Refugee Family</h4>
+                    <p><strong>Motivation:</strong> Find safety for their children<br>
+                    <strong>Flaw:</strong> Desperate enough to trust anyone<br>
+                    <strong>Use:</strong> Human cost of war, protection missions</p>
+                </div>
+                <div class="character-card">
+                    <h4>Droid Mechanic</h4>
+                    <p><strong>Motivation:</strong> Perfect their craft, help friends<br>
+                    <strong>Flaw:</strong> Obsessive about details<br>
+                    <strong>Use:</strong> Equipment support, technical puzzles</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="redemption-arcs">
+            <div class="redemption-arc">
+                <h2>🌅 The Power of Redemption</h2>
+                <p>Star Wars is fundamentally about redemption - the possibility that anyone can choose to do better. The greatest villains are those who can still be saved, and the most powerful moments come when someone chooses light over darkness.</p>
+
+                <h3>Stages of Redemption</h3>
+                <div class="mermaid">
+                    graph TD
+                        A[Rock Bottom] --> B[Moment of Doubt]
+                        B --> C[Small Good Act]
+                        C --> D[Facing Consequences]
+                        D --> E[Choice Point]
+                        E --> F[Sacrifice for Others]
+                        F --> G[Acceptance/Peace]
+                </div>
+
+                <h4>Redemption Story Examples</h4>
+                <ul>
+                    <li><strong>Darth Vader:</strong> Love for his son overcomes years of darkness</li>
+                    <li><strong>Lando Calrissian:</strong> Betrayal followed by heroic sacrifice</li>
+                    <li><strong>Agent Kallus:</strong> Gradual realization that the Empire he serves is evil</li>
+                    <li><strong>Kylo Ren:</strong> Torn between light and dark, ultimately chooses love</li>
+                </ul>
+
+                <p><strong>GM Tip:</strong> Plant seeds of doubt early. Show the villain's human moments before their redemption arc begins. The groundwork makes the payoff meaningful.</p>
+            </div>
+        </section>
+
+        <section class="practical-techniques">
+            <h2>Practical NPC Management Techniques</h2>
+
+            <h3>The NPC Relationship Matrix</h3>
+            <p>Track how your NPCs feel about each other and the player characters. Relationships change based on the heroes' actions, creating dynamic storylines.</p>
+
+            <div class="villain-builder">
+                <h4>Quick NPC Reference Sheet</h4>
+                <p>For each important NPC, keep track of:</p>
+                <ul>
+                    <li><strong>Core Want:</strong> What drives them day to day</li>
+                    <li><strong>Secret Fear:</strong> What they'd never admit to anyone</li>
+                    <li><strong>Verbal Tic:</strong> Unique phrase or speech pattern</li>
+                    <li><strong>Physical Tell:</strong> Gesture or mannerism when stressed</li>
+                    <li><strong>Relationship Status:</strong> How they currently view each PC</li>
+                </ul>
+
+                <h4>Dynamic Relationship Tracking</h4>
+                <p>Relationships should evolve based on player actions:</p>
+                <ul>
+                    <li><strong>Trust (+1):</strong> Characters keep promises, show competence</li>
+                    <li><strong>Respect (+1):</strong> Characters act with honor, make hard choices</li>
+                    <li><strong>Suspicion (-1):</strong> Characters lie, hide important information</li>
+                    <li><strong>Anger (-2):</strong> Characters betray trust, cause harm</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="advanced-techniques">
+            <h2>Advanced Character Design Techniques</h2>
+
+            <h3>The Foil Character Method</h3>
+            <p>Create NPCs who reflect or contrast with your player characters. If a PC is impulsive, give them a mentor who's methodical. If they're cynical, introduce an idealistic ally.</p>
+
+            <h3>Ensemble Cast Management</h3>
+            <p>Like a TV show, your campaign needs recurring characters who can carry storylines when PCs aren't around. Create NPCs who have their own goals and relationships independent of the heroes.</p>
+
+            <h3>The Recurring Rival</h3>
+            <p>Not every antagonist needs to die. Recurring rivals create ongoing tension and allow for character development on both sides. Think Vader and Obi-Wan, or Thrawn and the Ghost crew.</p>
+
+            <h4>Rival Development Stages</h4>
+            <ol>
+                <li><strong>Introduction:</strong> Establish competence and opposing goals</li>
+                <li><strong>Escalation:</strong> Raise the stakes, make it personal</li>
+                <li><strong>Understanding:</strong> Reveal why they're opposed to the heroes</li>
+                <li><strong>Respect:</strong> Acknowledge each other's strengths</li>
+                <li><strong>Resolution:</strong> Final confrontation or redemption</li>
+            </ol>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-lab">
+                <h3>Character Creation Exercises</h3>
+                
+                <h4>Exercise 1: The Villain's Justification</h4>
+                <p>Create a villain who genuinely believes they're saving the galaxy. Write their manifesto in 100 words - why the current system must be destroyed and what they'll build instead. Then show how their noble goals lead to terrible methods.</p>
+
+                <h4>Exercise 2: Relationship Web</h4>
+                <p>Design a family or organization with at least 5 members who have complex relationships with each other. Map out who loves, hates, owes, or competes with whom. Then identify how the player characters' actions could disrupt these relationships.</p>
+
+                <h4>Exercise 3: Character Voice Challenge</h4>
+                <p>Write the same piece of dialogue in the voice of three different characters:</p>
+                <ul>
+                    <li>A young Imperial officer eager to prove themselves</li>
+                    <li>A cynical smuggler who's seen too much</li>
+                    <li>An old Jedi hiding their true identity</li>
+                </ul>
+                <p>The information conveyed should be the same, but the voice should be completely different.</p>
+
+                <h4>Exercise 4: Redemption Arc Planning</h4>
+                <p>Take a classic villain (your choice) and design a complete redemption arc for them spanning 6-8 sessions. What events would need to happen? What choices would they need to make? How would the player characters influence this journey?</p>
+
+                <h4>Exercise 5: The Ordinary Hero</h4>
+                <p>Create an "ordinary" NPC (farmer, mechanic, shop owner) and design three different ways they could become crucial to a major story arc. Show how everyday people can be heroes in the Star Wars universe.</p>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>The Force of Character</h2>
+            <p>Remember, your NPCs are the heart of your Star Wars campaign. They're not just stat blocks or plot devices - they're the living embodiment of the galaxy's hopes, fears, and dreams. When you create characters that your players genuinely care about, you've captured the true spirit of Star Wars.</p>
+            
+            <p>The best NPCs surprise both you and your players. They grow beyond their initial conception, develop new relationships, and sometimes take the story in directions you never expected. Embrace this organic development - it's a sign that your characters have come alive.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"Your insight serves you well. Bury your feelings deep down, Luke. They do you credit, but they could be made to serve the Emperor." - Darth Vader (showing how even villains understand the power of emotional connection)</em></p>
+    </footer>
+
+    <script>
+        // Character Generator Data
+        const characterTypes = {
+            ally: {
+                names: ['Kara Thorne', 'Jorik Sato', 'Zara Chen', 'Miko Vale', 'Ren Storm'],
+                roles: ['Rebel Pilot', 'Jedi Knight', 'Diplomat', 'Tech Specialist', 'Medic'],
+                motivations: ['Protect the innocent', 'Restore justice', 'Preserve knowledge', 'Reunite with family', 'Atone for past mistakes'],
+                flaws: ['Too trusting', 'Haunted by failure', 'Overly cautious', 'Perfectionist', 'Self-sacrificing']
+            },
+            neutral: {
+                names: ['Vex Korren', 'Lyra Cross', 'Bane Orrik', 'Naia Swift', 'Tor Blackstone'],
+                roles: ['Smuggler', 'Information Broker', 'Bounty Hunter', 'Crime Boss', 'Merchant'],
+                motivations: ['Accumulate wealth', 'Survive at all costs', 'Gain respect', 'Protect territory', 'Find lost love'],
+                flaws: ['Greedy', 'Paranoid', 'Short-tempered', 'Addicted to danger', 'Emotionally distant']
+            },
+            villain: {
+                names: ['Admiral Kross', 'Darth Malice', 'Governor Thane', 'Lord Sisko', 'Commander Vex'],
+                roles: ['Imperial Officer', 'Dark Jedi', 'Corporate Executive', 'Warlord', 'Sith Apprentice'],
+                motivations: ['Impose order', 'Gain ultimate power', 'Destroy the Jedi', 'Rule through fear', 'Prove superiority'],
+                flaws: ['Arrogant', 'Consumed by hatred', 'Fears weakness', 'Jealous of others', 'Unable to trust']
+            }
+        };
+
+        const backgrounds = [
+            'Former slave who escaped the outer rim',
+            'Noble family member who lost everything in the war',
+            'Clone War veteran struggling with PTSD',
+            'Force-sensitive child hidden from the Empire',
+            'Corporate heir who discovered family corruption',
+            'Refugee from a destroyed world',
+            'Former Imperial defector',
+            'Street orphan who learned to survive'
+        ];
+
+        const quirks = [
+            'Always quotes ancient proverbs',
+            'Collects vintage droid parts',
+            'Never removes their gloves',
+            'Speaks in third person when nervous',
+            'Has a lucky charm they always touch',
+            'Can\'t resist a good sabacc game',
+            'Hums when thinking',
+            'Always eats the same meal before dangerous missions'
+        ];
+
+        let currentCharacter = null;
+
+        function generateAlly() {
+            generateCharacter('ally');
+        }
+
+        function generateNeutral() {
+            generateCharacter('neutral');
+        }
+
+        function generateVillain() {
+            generateCharacter('villain');
+        }
+
+        function generateCharacter(type) {
+            const data = characterTypes[type];
+            const character = {
+                type: type,
+                name: randomChoice(data.names),
+                role: randomChoice(data.roles),
+                motivation: randomChoice(data.motivations),
+                flaw: randomChoice(data.flaws)
+            };
+            
+            currentCharacter = character;
+            displayCharacter();
+        }
+
+        function generateBackground() {
+            if (!currentCharacter) {
+                updateOutput('> Generate a character first!');
+                return;
+            }
+            currentCharacter.background = randomChoice(backgrounds);
+            displayCharacter();
+        }
+
+        function generateQuirk() {
+            if (!currentCharacter) {
+                updateOutput('> Generate a character first!');
+                return;
+            }
+            currentCharacter.quirk = randomChoice(quirks);
+            displayCharacter();
+        }
+
+        function randomChoice(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function displayCharacter() {
+            let output = `> Character Generated: ${currentCharacter.type.toUpperCase()}\n`;
+            output += `> Name: ${currentCharacter.name}\n`;
+            output += `> Role: ${currentCharacter.role}\n`;
+            output += `> Motivation: ${currentCharacter.motivation}\n`;
+            output += `> Fatal Flaw: ${currentCharacter.flaw}\n`;
+            
+            if (currentCharacter.background) {
+                output += `> Background: ${currentCharacter.background}\n`;
+            }
+            
+            if (currentCharacter.quirk) {
+                output += `> Quirk: ${currentCharacter.quirk}\n`;
+            }
+            
+            output += '> _';
+            updateOutput(output);
+        }
+
+        function updateOutput(text) {
+            document.getElementById('characterOutput').innerHTML = text.replace(/\n/g, '<br>');
+        }
+
+        // Relationship Web Canvas
+        const relationshipCanvas = document.getElementById('relationshipWeb');
+        const relCtx = relationshipCanvas.getContext('2d');
+        
+        const characters = [
+            { name: 'Hero', x: 300, y: 200, type: 'hero', color: '#00ff00' },
+            { name: 'Mentor', x: 150, y: 100, type: 'ally', color: '#4444ff' },
+            { name: 'Rival', x: 450, y: 100, type: 'villain', color: '#ff4444' },
+            { name: 'Love Interest', x: 100, y: 300, type: 'ally', color: '#ff44ff' },
+            { name: 'Villain', x: 500, y: 300, type: 'villain', color: '#8b0000' },
+            { name: 'Ally', x: 300, y: 50, type: 'ally', color: '#44ff44' }
+        ];
+
+        const relationships = [
+            { from: 0, to: 1, type: 'learns from', color: '#4444ff' },
+            { from: 0, to: 2, type: 'competes with', color: '#ffaa00' },
+            { from: 0, to: 3, type: 'loves', color: '#ff44ff' },
+            { from: 0, to: 4, type: 'opposes', color: '#ff4444' },
+            { from: 0, to: 5, type: 'fights alongside', color: '#44ff44' },
+            { from: 1, to: 4, type: 'failed to save', color: '#888888' },
+            { from: 2, to: 4, type: 'secretly works for', color: '#ff8888' },
+            { from: 3, to: 5, type: 'sibling of', color: '#44ffff' }
+        ];
+
+        function drawRelationshipWeb() {
+            relCtx.clearRect(0, 0, relationshipCanvas.width, relationshipCanvas.height);
+            
+            // Draw relationships first (behind characters)
+            relationships.forEach(rel => {
+                const from = characters[rel.from];
+                const to = characters[rel.to];
+                
+                relCtx.strokeStyle = rel.color;
+                relCtx.lineWidth = 2;
+                relCtx.setLineDash([5, 5]);
+                relCtx.beginPath();
+                relCtx.moveTo(from.x, from.y);
+                relCtx.lineTo(to.x, to.y);
+                relCtx.stroke();
+                relCtx.setLineDash([]);
+                
+                // Draw relationship label
+                const midX = (from.x + to.x) / 2;
+                const midY = (from.y + to.y) / 2;
+                relCtx.fillStyle = '#333';
+                relCtx.font = '10px Arial';
+                relCtx.textAlign = 'center';
+                relCtx.fillText(rel.type, midX, midY);
+            });
+            
+            // Draw characters
+            characters.forEach(char => {
+                relCtx.fillStyle = char.color;
+                relCtx.beginPath();
+                relCtx.arc(char.x, char.y, 20, 0, Math.PI * 2);
+                relCtx.fill();
+                
+                relCtx.strokeStyle = '#000';
+                relCtx.lineWidth = 2;
+                relCtx.stroke();
+                
+                relCtx.fillStyle = '#fff';
+                relCtx.font = '12px Arial';
+                relCtx.textAlign = 'center';
+                relCtx.fillText(char.name, char.x, char.y + 35);
+            });
+        }
+
+        relationshipCanvas.addEventListener('click', (e) => {
+            const rect = relationshipCanvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            characters.forEach(char => {
+                const distance = Math.sqrt((x - char.x) ** 2 + (y - char.y) ** 2);
+                if (distance < 20) {
+                    alert(`${char.name}: ${char.type} character\nClick other characters to see their relationships!`);
+                }
+            });
+        });
+
+        // Initialize
+        drawRelationshipWeb();
+        updateOutput('> Ready to generate characters...\n> Select character type above\n> _');
+    </script>
+</body>
+</html>

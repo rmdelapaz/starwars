@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Epic Ground Combat in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .battlefield { background: linear-gradient(135deg, #2c3e50, #4a6741, #8b7355); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
+        .battlefield::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 20px); }
+        .battlefield * { position: relative; z-index: 2; }
+        .combat-theater { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .theater-card { padding: 20px; border-radius: 15px; color: white; position: relative; overflow: hidden; }
+        .theater-card.urban { background: linear-gradient(135deg, #5a6c7d, #34495e); }
+        .theater-card.forest { background: linear-gradient(135deg, #27ae60, #1e8449); }
+        .theater-card.desert { background: linear-gradient(135deg, #f39c12, #d68910); }
+        .theater-card.industrial { background: linear-gradient(135deg, #85929e, #566573); }
+        .tactical-overlay { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
+        .unit-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .unit-card { background: #343a40; color: white; padding: 15px; border-radius: 10px; text-align: center; }
+        .unit-card.infantry { border-left: 4px solid #28a745; }
+        .unit-card.vehicle { border-left: 4px solid #ffc107; }
+        .unit-card.hero { border-left: 4px solid #dc3545; }
+        .unit-card.support { border-left: 4px solid #17a2b8; }
+        .battlemap-builder { background: #000; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
+        .map-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; justify-content: center; }
+        .map-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
+        .map-btn:hover { background: #0056b3; transform: translateY(-2px); }
+        .map-btn.terrain { background: #28a745; }
+        .map-btn.cover { background: #ffc107; color: #000; }
+        .map-btn.objective { background: #dc3545; }
+        .initiative-tracker { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .combat-simulator { background: #2c3e50; color: #ecf0f1; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .simulator-screen { min-height: 300px; border: 1px solid #3498db; padding: 15px; margin: 10px 0; overflow-y: auto; }
+        .action-economy { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .environmental-hazards { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
+        .exercise-barracks { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .cover-system { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .cover-type { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
+        .narrative-integration { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .vehicle-showcase { background: radial-gradient(circle, #ff7b7b, #ff6b6b); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .hero-moments { background: linear-gradient(to right, #ffd89b, #19547b); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .deployment-zones { position: relative; width: 100%; height: 300px; background: #8b7355; border-radius: 10px; margin: 20px 0; overflow: hidden; }
+        .zone { position: absolute; border: 2px solid; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+        .zone.friendly { background: rgba(40, 167, 69, 0.7); border-color: #28a745; }
+        .zone.enemy { background: rgba(220, 53, 69, 0.7); border-color: #dc3545; }
+        .zone.neutral { background: rgba(255, 193, 7, 0.7); border-color: #ffc107; color: #000; }
+        .weapon-ranges { text-align: center; margin: 20px 0; }
+        .range-indicator { display: inline-block; width: 80px; height: 20px; margin: 5px; border-radius: 10px; position: relative; }
+        .range-short { background: linear-gradient(to right, #28a745, #20c997); }
+        .range-medium { background: linear-gradient(to right, #ffc107, #fd7e14); }
+        .range-long { background: linear-gradient(to right, #dc3545, #e83e8c); }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Running Epic Ground Combat in Star Wars RPG</h1>
+        <p><em>"Rebellions are built on hope... and careful tactical planning." - Jyn Erso</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="battlefield">
+                <h2>Welcome to the War College</h2>
+                <p>Ground combat in Star Wars isn't just about rolling dice and tracking hit points - it's about creating cinematic moments where heroes leap from cover as explosions bloom behind them, where desperate last stands turn the tide of battles, and where tactical decisions feel as important as they do dramatic.</p>
+                
+                <p>Think of ground combat as directing an action movie where every participant is the hero of their own story. Your job is to create situations where clever tactics, heroic sacrifices, and split-second decisions combine to create the kind of unforgettable moments that define the Star Wars experience.</p>
+            </div>
+        </section>
+
+        <section class="combat-fundamentals">
+            <h2>The Architecture of Epic Ground Combat</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Epic Ground Combat] --> B[Tactical Layer]
+                    A --> C[Narrative Layer]
+                    A --> D[Environmental Layer]
+                    A --> E[Cinematic Layer]
+                    
+                    B --> F[Unit Positioning]
+                    B --> G[Cover & Concealment]
+                    B --> H[Range & Movement]
+                    
+                    C --> I[Mission Objectives]
+                    C --> J[Character Stakes]
+                    C --> K[Story Consequences]
+                    
+                    D --> L[Terrain Features]
+                    D --> M[Weather Effects]
+                    D --> N[Dynamic Hazards]
+                    
+                    E --> O[Hero Moments]
+                    E --> P[Dramatic Timing]
+                    E --> Q[Visual Spectacle]
+            </div>
+
+            <h3>The Four Pillars of Memorable Ground Combat</h3>
+            <div class="tactical-overlay">
+                <h4>🎯 Clear Objectives</h4>
+                <p>Every battle needs goals beyond "kill all enemies." Rescue missions, sabotage operations, defensive stands, and breakthrough attempts create different tactical challenges and story opportunities.</p>
+
+                <h4>🗺️ Dynamic Terrain</h4>
+                <p>The battlefield should be a character in the fight. Cover that can be destroyed, elevation that provides advantages, chokepoints that create tension, and environmental hazards that force movement.</p>
+
+                <h4>⚡ Escalating Stakes</h4>
+                <p>Combat should build in intensity. Start with skirmishes, add reinforcements, introduce new threats, and culminate in desperate last stands or heroic victories.</p>
+
+                <h4>🎬 Cinematic Moments</h4>
+                <p>Create opportunities for players to feel like action heroes. Swinging from cables, diving behind exploding cover, making impossible shots, and dramatic one-liners.</p>
+            </div>
+        </section>
+
+        <section class="theater-types">
+            <h2>Combat Theaters: Each Environment Tells a Story</h2>
+            <p>Different environments create different tactical challenges and narrative opportunities. Each theater type should feel distinct and require different approaches.</p>
+
+            <div class="combat-theater">
+                <div class="theater-card urban">
+                    <h4>🏙️ Urban Warfare</h4>
+                    <p><strong>Characteristics:</strong> Vertical combat, civilian concerns, structural damage<br>
+                    <strong>Tactics:</strong> Room clearing, rooftop movement, collateral damage<br>
+                    <strong>Opportunities:</strong> Environmental destruction, civilian rescue, multi-level fights</p>
+                </div>
+                <div class="theater-card forest">
+                    <h4>🌲 Jungle/Forest Combat</h4>
+                    <p><strong>Characteristics:</strong> Limited visibility, natural cover, wildlife<br>
+                    <strong>Tactics:</strong> Ambush warfare, stealth movement, survival skills<br>
+                    <strong>Opportunities:</strong> Animal allies, swinging on vines, camouflaged positions</p>
+                </div>
+                <div class="theater-card desert">
+                    <h4>🏜️ Desert Operations</h4>
+                    <p><strong>Characteristics:</strong> Long sightlines, harsh conditions, minimal cover<br>
+                    <strong>Tactics:</strong> Long-range engagement, vehicle combat, resource management<br>
+                    <strong>Opportunities:</strong> Sandstorm concealment, oasis control, dune mobility</p>
+                </div>
+                <div class="theater-card industrial">
+                    <h4>🏭 Industrial Complex</h4>
+                    <p><strong>Characteristics:</strong> Machinery hazards, complex layouts, structural weaknesses<br>
+                    <strong>Tactics:</strong> Sabotage, control room seizure, facility shutdown<br>
+                    <strong>Opportunities:</strong> Environmental kills, power manipulation, factory automation</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="unit-management">
+            <h2>Managing Different Unit Types</h2>
+            <p>Star Wars ground combat features diverse unit types, each with distinct roles, capabilities, and tactical purposes. Understanding how they interact creates dynamic battlefields.</p>
+
+            <div class="unit-types">
+                <div class="unit-card infantry">
+                    <h4>👥 Infantry Units</h4>
+                    <p><strong>Role:</strong> Versatile ground troops<br>
+                    <strong>Strengths:</strong> Flexible, good in cover, urban combat<br>
+                    <strong>Weaknesses:</strong> Vulnerable to vehicles and area weapons<br>
+                    <strong>Examples:</strong> Stormtroopers, Rebel soldiers, Clone troopers</p>
+                </div>
+                <div class="unit-card vehicle">
+                    <h4>🚗 Vehicle Units</h4>
+                    <p><strong>Role:</strong> Heavy firepower and mobility<br>
+                    <strong>Strengths:</strong> Armor, speed, devastating weapons<br>
+                    <strong>Weaknesses:</strong> Terrain limitations, maintenance needs<br>
+                    <strong>Examples:</strong> AT-AT, Speeder bikes, AT-ST walkers</p>
+                </div>
+                <div class="unit-card hero">
+                    <h4>⭐ Hero Characters</h4>
+                    <p><strong>Role:</strong> Game-changing individuals<br>
+                    <strong>Strengths:</strong> Unique abilities, Force powers, leadership<br>
+                    <strong>Weaknesses:</strong> Single targets, emotional decisions<br>
+                    <strong>Examples:</strong> Jedi Knights, Sith Lords, ace pilots</p>
+                </div>
+                <div class="unit-card support">
+                    <h4>🔧 Support Units</h4>
+                    <p><strong>Role:</strong> Force multipliers and specialists<br>
+                    <strong>Strengths:</strong> Unique capabilities, area effects<br>
+                    <strong>Weaknesses:</strong> Limited combat ability, require protection<br>
+                    <strong>Examples:</strong> Medics, engineers, communication specialists</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tactical-systems">
+            <h2>Core Tactical Systems</h2>
+
+            <div class="cover-system">
+                <div class="cover-type">
+                    <h4>🛡️ Light Cover</h4>
+                    <p><strong>Protection:</strong> +2 Defense<br>
+                    <strong>Examples:</strong> Sandbags, thin walls, sparse vegetation<br>
+                    <strong>Vulnerability:</strong> Heavy weapons can destroy</p>
+                </div>
+                <div class="cover-type">
+                    <h4>🏰 Heavy Cover</h4>
+                    <p><strong>Protection:</strong> +5 Defense<br>
+                    <strong>Examples:</strong> Concrete barriers, thick trees, armored positions<br>
+                    <strong>Vulnerability:</strong> Explosives, flanking maneuvers</p>
+                </div>
+                <div class="cover-type">
+                    <h4>👤 Concealment</h4>
+                    <p><strong>Protection:</strong> Harder to target<br>
+                    <strong>Examples:</strong> Smoke, darkness, camouflage<br>
+                    <strong>Vulnerability:</strong> Area weapons, detection equipment</p>
+                </div>
+                <div class="cover-type">
+                    <h4>⚡ Dynamic Cover</h4>
+                    <p><strong>Protection:</strong> Variable<br>
+                    <strong>Examples:</strong> Moving vehicles, energy shields, debris<br>
+                    <strong>Vulnerability:</strong> Unpredictable, may disappear</p>
+                </div>
+            </div>
+
+            <div class="weapon-ranges">
+                <h3>🎯 Weapon Range Categories</h3>
+                <p>Understanding engagement ranges creates tactical depth and realistic combat flow.</p>
+                
+                <div class="range-indicator range-short"></div>
+                <span>Short Range (0-30m): Pistols, grenades, melee weapons</span><br>
+                
+                <div class="range-indicator range-medium"></div>
+                <span>Medium Range (30-150m): Rifles, vehicle weapons, most combat</span><br>
+                
+                <div class="range-indicator range-long"></div>
+                <span>Long Range (150m+): Sniper rifles, artillery, vehicle main guns</span>
+            </div>
+        </section>
+
+        <section class="battlemap-system">
+            <h2>Interactive Battlefield Builder</h2>
+            <div class="battlemap-builder">
+                <canvas id="battleMap" width="800" height="500"></canvas>
+                <div class="map-controls">
+                    <button class="map-btn terrain" onclick="addTerrain()">Add Terrain</button>
+                    <button class="map-btn cover" onclick="addCover()">Add Cover</button>
+                    <button class="map-btn objective" onclick="addObjective()">Add Objective</button>
+                    <button class="map-btn" onclick="addUnit('friendly')">Friendly Unit</button>
+                    <button class="map-btn" onclick="addUnit('enemy')">Enemy Unit</button>
+                    <button class="map-btn" onclick="clearMap()">Clear Map</button>
+                </div>
+                <p><em>Click buttons to build your battlefield, then click on the map to place elements!</em></p>
+            </div>
+
+            <div class="deployment-zones">
+                <div class="zone friendly" style="top: 10px; left: 10px; width: 200px; height: 80px;">
+                    Friendly Deployment
+                </div>
+                <div class="zone enemy" style="top: 10px; right: 10px; width: 200px; height: 80px;">
+                    Enemy Deployment
+                </div>
+                <div class="zone neutral" style="bottom: 10px; left: 50%; transform: translateX(-50%); width: 150px; height: 60px;">
+                    Objectives
+                </div>
+            </div>
+        </section>
+
+        <section class="action-economy">
+            <div class="action-economy">
+                <h2>⚡ Managing Action Economy</h2>
+                <p>Action economy - who gets to do what when - is crucial for maintaining pacing and ensuring every player feels engaged during combat.</p>
+
+                <h3>Initiative and Activation Systems</h3>
+                <div class="mermaid">
+                    graph LR
+                        A[Initiative Roll] --> B[Action Declaration]
+                        B --> C[Resolution]
+                        C --> D[Next Character]
+                        D --> E[Round End Check]
+                        E --> F[Environmental Effects]
+                        F --> A
+                </div>
+
+                <h4>Alternative Initiative Systems</h4>
+                <ul>
+                    <li><strong>Standard Initiative:</strong> Fixed order, predictable but can be slow</li>
+                    <li><strong>Popcorn Initiative:</strong> Active player chooses who goes next, creates tactical decisions</li>
+                    <li><strong>Side-Based Initiative:</strong> Entire team activates together, faster but less granular</li>
+                    <li><strong>Card-Based Initiative:</strong> Draw cards for activation order, adds uncertainty</li>
+                </ul>
+
+                <h4>Action Types and Timing</h4>
+                <ul>
+                    <li><strong>Move Actions:</strong> Positioning, taking cover, climbing</li>
+                    <li><strong>Attack Actions:</strong> Shooting, melee, Force powers</li>
+                    <li><strong>Reaction Actions:</strong> Defensive measures, opportunity attacks</li>
+                    <li><strong>Free Actions:</strong> Communication, minor interactions, aiming</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="environmental-combat">
+            <div class="environmental-hazards">
+                <h2>🌪️ Environmental Combat Elements</h2>
+                <p>The environment should be an active participant in combat, creating opportunities and challenges that force tactical adaptation.</p>
+
+                <h3>Dynamic Environmental Features</h3>
+                <h4>🔥 Destructible Terrain</h4>
+                <ul>
+                    <li><strong>Weak Structures:</strong> Walls that can be blown apart for new routes</li>
+                    <li><strong>Support Columns:</strong> Destroying them collapses sections</li>
+                    <li><strong>Fuel Tanks:</strong> Explosive hazards that can be triggered</li>
+                    <li><strong>Bridges:</strong> Choke points that can be destroyed or defended</li>
+                </ul>
+
+                <h4>⚡ Interactive Elements</h4>
+                <ul>
+                    <li><strong>Blast Doors:</strong> Control chokepoints and escape routes</li>
+                    <li><strong>Lighting Systems:</strong> Create darkness for stealth or confusion</li>
+                    <li><strong>Conveyor Belts:</strong> Force movement or provide mobile cover</li>
+                    <li><strong>Gravity Generators:</strong> Alter movement and physics</li>
+                </ul>
+
+                <h4>🌊 Natural Hazards</h4>
+                <ul>
+                    <li><strong>Weather:</strong> Rain affects visibility, wind affects projectiles</li>
+                    <li><strong>Geological:</strong> Earthquakes, volcanic activity, unstable ground</li>
+                    <li><strong>Biological:</strong> Dangerous animals, toxic plants, disease</li>
+                    <li><strong>Technological:</strong> Radiation zones, energy storms, sensor interference</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="vehicle-combat">
+            <div class="vehicle-showcase">
+                <h2>🚗 Vehicle Combat Integration</h2>
+                <p>Vehicles add speed, firepower, and scale to ground combat but require different tactical considerations and narrative approaches.</p>
+
+                <h3>Vehicle vs Infantry Dynamics</h3>
+                <div class="mermaid">
+                    graph TD
+                        A[Vehicle Advantages] --> B[Heavy Armor]
+                        A --> C[Powerful Weapons]
+                        A --> D[High Mobility]
+                        
+                        E[Infantry Advantages] --> F[Small Profile]
+                        E --> G[Terrain Access]
+                        E --> H[Stealth Capability]
+                        
+                        I[Tactical Balance] --> J[Anti-Vehicle Weapons]
+                        I --> K[Environmental Hazards]
+                        I --> L[Mission Objectives]
+                </div>
+
+                <h4>Vehicle Combat Considerations</h4>
+                <ul>
+                    <li><strong>Scale Differences:</strong> Infantry hiding under AT-AT legs, speeders weaving through buildings</li>
+                    <li><strong>Crew Actions:</strong> Driver, gunner, and passengers have different roles</li>
+                    <li><strong>Damage Systems:</strong> Component damage vs total destruction</li>
+                    <li><strong>Boarding Actions:</strong> Heroes leaping onto moving vehicles</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="narrative-integration">
+            <div class="narrative-integration">
+                <h2>🎬 Integrating Story and Combat</h2>
+                <p>The best ground combat sequences advance the story while providing tactical challenge. Every shot fired should feel meaningful to the larger narrative.</p>
+
+                <h3>Combat as Character Development</h3>
+                <h4>Character Moments in Battle</h4>
+                <ul>
+                    <li><strong>Leadership Decisions:</strong> Choosing who to send into danger</li>
+                    <li><strong>Moral Choices:</strong> Saving civilians vs achieving objectives</li>
+                    <li><strong>Personal Stakes:</strong> Fighting to protect someone important</li>
+                    <li><strong>Growth Opportunities:</strong> Overcoming fears or limitations</li>
+                </ul>
+
+                <h4>Environmental Storytelling</h4>
+                <ul>
+                    <li><strong>Battle Aftermath:</strong> What the destruction reveals about the conflict</li>
+                    <li><strong>Civilian Impact:</strong> How war affects innocent people</li>
+                    <li><strong>Resource Scarcity:</strong> Fighting over limited supplies or territory</li>
+                    <li><strong>Symbolic Locations:</strong> Defending or capturing meaningful places</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="hero-moments">
+            <div class="hero-moments">
+                <h2>⭐ Creating Hero Moments</h2>
+                <p>Epic ground combat should provide opportunities for each character to feel like the hero of an action movie, with moments of triumph that match their unique abilities.</p>
+
+                <h3>Types of Hero Moments</h3>
+                <h4>🎯 The Impossible Shot</h4>
+                <p>Threading a blaster bolt through a tiny gap to hit the exact right target at the crucial moment. Setup requires clear stakes and precise timing.</p>
+
+                <h4>🏃 The Daring Rescue</h4>
+                <p>Rushing into danger to save an ally or civilian. Create situations where tactical risk leads to narrative reward.</p>
+
+                <h4>💥 The Heroic Sacrifice</h4>
+                <p>Giving up tactical advantage to protect others. Ensure the sacrifice feels meaningful and voluntary.</p>
+
+                <h4>🧠 The Brilliant Strategy</h4>
+                <p>Using environment or enemy weaknesses in unexpected ways. Reward creative thinking with dramatic success.</p>
+            </div>
+        </section>
+
+        <section class="combat-simulator">
+            <h2>🎮 Combat Encounter Simulator</h2>
+            <div class="combat-simulator">
+                <div class="map-controls">
+                    <button class="map-btn" onclick="simulateEncounter('ambush')">Ambush Scenario</button>
+                    <button class="map-btn" onclick="simulateEncounter('assault')">Base Assault</button>
+                    <button class="map-btn" onclick="simulateEncounter('rescue')">Rescue Mission</button>
+                    <button class="map-btn" onclick="simulateEncounter('defense')">Defensive Stand</button>
+                    <button class="map-btn" onclick="resetSimulator()">Reset Simulator</button>
+                </div>
+                <div class="simulator-screen" id="combatDisplay">
+                    > GROUND COMBAT SIMULATOR v4.2
+                    <br>> "Hope is not a strategy, but it's a start" - Poe Dameron
+                    <br>> Select encounter type above to begin tactical analysis
+                    <br>> _
+                </div>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-barracks">
+                <h3>Tactical Training Exercises</h3>
+                
+                <h4>Exercise 1: Environmental Integration</h4>
+                <p>Design a battlefield where the environment is crucial to victory:</p>
+                <ul>
+                    <li>Choose a specific location (factory, forest clearing, city street)</li>
+                    <li>Identify 3 environmental features that affect tactics</li>
+                    <li>Show how different approaches lead to different outcomes</li>
+                    <li>Include at least one destructible element</li>
+                </ul>
+
+                <h4>Exercise 2: Asymmetric Engagement</h4>
+                <p>Create a combat where one side has overwhelming firepower advantage:</p>
+                <ul>
+                    <li>How can the weaker side achieve victory?</li>
+                    <li>What objectives could level the playing field?</li>
+                    <li>How does terrain favor different sides?</li>
+                    <li>What environmental factors could change the balance?</li>
+                </ul>
+
+                <h4>Exercise 3: Multi-Objective Battle</h4>
+                <p>Design combat with three simultaneous objectives:</p>
+                <ul>
+                    <li>One requiring force (destroy/capture something)</li>
+                    <li>One requiring finesse (stealth/technical skill)</li>
+                    <li>One requiring sacrifice (protection/distraction)</li>
+                    <li>Show how achieving some objectives affects others</li>
+                </ul>
+
+                <h4>Exercise 4: Character-Focused Combat</h4>
+                <p>Design a battle that highlights different character strengths:</p>
+                <ul>
+                    <li>Include moments for each character type to shine</li>
+                    <li>Show how different skills solve the same problem</li>
+                    <li>Create personal stakes for each participant</li>
+                    <li>Plan specific hero moments for different approaches</li>
+                </ul>
+
+                <h4>Exercise 5: Escalation Design</h4>
+                <p>Plan a combat that escalates through four distinct phases:</p>
+                <ul>
+                    <li>Phase 1: Initial contact and positioning</li>
+                    <li>Phase 2: Complications and new threats</li>
+                    <li>Phase 3: Desperate measures and big risks</li>
+                    <li>Phase 4: Climactic resolution and consequences</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>Victory Conditions</h2>
+            <p>Remember, the goal of ground combat isn't to perfectly simulate warfare - it's to create memorable moments where heroes rise to meet impossible challenges. The best battles are those where tactical decisions feel meaningful, where every character contributes to victory, and where the outcome advances both plot and character development.</p>
+            
+            <p>When your players are telling stories about the time they held the bridge against impossible odds, or when they outwitted the enemy through clever use of terrain, or when they made the heroic sacrifice that saved the day - that's when you know you've mastered the art of epic ground combat.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"The Force will be with you... always." - Obi-Wan Kenobi (because sometimes the best tactics involve trusting in something greater than strategy)</em></p>
+    </footer>
+
+    <script>
+        // Battle map system
+        const mapCanvas = document.getElementById('battleMap');
+        const mapCtx = mapCanvas.getContext('2d');
+        let mapElements = [];
+        let placementMode = null;
+        let elementCounter = 0;
+
+        function initializeBattleMap() {
+            mapCtx.fillStyle = '#654321'; // Battlefield brown
+            mapCtx.fillRect(0, 0, mapCanvas.width, mapCanvas.height);
+            
+            // Add grid
+            mapCtx.strokeStyle = 'rgba(255,255,255,0.2)';
+            mapCtx.lineWidth = 1;
+            for (let x = 0; x < mapCanvas.width; x += 40) {
+                mapCtx.beginPath();
+                mapCtx.moveTo(x, 0);
+                mapCtx.lineTo(x, mapCanvas.height);
+                mapCtx.stroke();
+            }
+            for (let y = 0; y < mapCanvas.height; y += 40) {
+                mapCtx.beginPath();
+                mapCtx.moveTo(0, y);
+                mapCtx.lineTo(mapCanvas.width, y);
+                mapCtx.stroke();
+            }
+        }
+
+        function drawBattleMap() {
+            initializeBattleMap();
+            
+            mapElements.forEach(element => {
+                mapCtx.fillStyle = element.color;
+                mapCtx.fillRect(element.x - element.width/2, element.y - element.height/2, element.width, element.height);
+                
+                mapCtx.fillStyle = '#000';
+                mapCtx.font = '12px Arial';
+                mapCtx.textAlign = 'center';
+                mapCtx.fillText(element.type, element.x, element.y + 4);
+            });
+        }
+
+        function addTerrain() {
+            placementMode = 'terrain';
+            updateMapStatus('Click on map to place terrain feature');
+        }
+
+        function addCover() {
+            placementMode = 'cover';
+            updateMapStatus('Click on map to place cover');
+        }
+
+        function addObjective() {
+            placementMode = 'objective';
+            updateMapStatus('Click on map to place objective');
+        }
+
+        function addUnit(type) {
+            placementMode = type;
+            updateMapStatus(`Click on map to place ${type} unit`);
+        }
+
+        function clearMap() {
+            mapElements = [];
+            placementMode = null;
+            drawBattleMap();
+            updateMapStatus('Map cleared. Ready for new battlefield design.');
+        }
+
+        function updateMapStatus(message) {
+            // Visual feedback could be added here
+            console.log(message);
+        }
+
+        mapCanvas.addEventListener('click', (e) => {
+            if (!placementMode) return;
+            
+            const rect = mapCanvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const elementTypes = {
+                terrain: { color: '#8B4513', width: 60, height: 40, type: 'Terrain' },
+                cover: { color: '#708090', width: 40, height: 30, type: 'Cover' },
+                objective: { color: '#FFD700', width: 30, height: 30, type: 'Objective' },
+                friendly: { color: '#32CD32', width: 20, height: 20, type: 'Ally' },
+                enemy: { color: '#DC143C', width: 20, height: 20, type: 'Enemy' }
+            };
+            
+            const elementData = elementTypes[placementMode];
+            if (elementData) {
+                mapElements.push({
+                    id: elementCounter++,
+                    x: x,
+                    y: y,
+                    ...elementData
+                });
+                drawBattleMap();
+            }
+            
+            placementMode = null;
+        });
+
+        // Combat encounter simulator
+        const encounterScenarios = {
+            ambush: {
+                title: "AMBUSH SCENARIO ANALYSIS",
+                setup: "Enemy forces lie in wait along a suspected route...",
+                phases: [
+                    "PHASE 1: Initial surprise attack from concealed positions",
+                    "PHASE 2: Heroes seek cover and identify threat locations", 
+                    "PHASE 3: Counter-attack or tactical withdrawal",
+                    "PHASE 4: Resolution - pursuit or escape"
+                ],
+                tactics: "Use terrain for concealment, establish crossfire zones, plan escape routes",
+                victory: "Eliminate ambush threat or successfully extract team"
+            },
+            assault: {
+                title: "BASE ASSAULT ANALYSIS",
+                setup: "Fortified enemy position must be taken by direct attack...",
+                phases: [
+                    "PHASE 1: Reconnaissance and approach under fire",
+                    "PHASE 2: Breach outer defenses and establish foothold",
+                    "PHASE 3: Clear defensive positions room by room",
+                    "PHASE 4: Secure objectives and consolidate control"
+                ],
+                tactics: "Concentrate firepower on weak points, use suppression, advance by bounds",
+                victory: "Control key objectives within the enemy stronghold"
+            },
+            rescue: {
+                title: "RESCUE MISSION ANALYSIS", 
+                setup: "Friendly forces or civilians require immediate extraction...",
+                phases: [
+                    "PHASE 1: Infiltrate to target location under stealth",
+                    "PHASE 2: Locate and secure rescue targets",
+                    "PHASE 3: Fighting withdrawal under enemy pursuit",
+                    "PHASE 4: Extract to safety with all personnel"
+                ],
+                tactics: "Speed over firepower, minimize exposure time, protect non-combatants",
+                victory: "Successfully extract targets with minimal casualties"
+            },
+            defense: {
+                title: "DEFENSIVE STAND ANALYSIS",
+                setup: "Overwhelming enemy force approaches defended position...",
+                phases: [
+                    "PHASE 1: Prepare defensive positions and fields of fire",
+                    "PHASE 2: Engage enemy advance with ranged weapons",
+                    "PHASE 3: Repel close assault and counterattack",
+                    "PHASE 4: Hold position or conduct fighting withdrawal"
+                ],
+                tactics: "Use terrain advantages, conserve ammunition, maintain communication",
+                victory: "Hold critical ground or delay enemy advance sufficiently"
+            }
+        };
+
+        function simulateEncounter(type) {
+            const scenario = encounterScenarios[type];
+            if (!scenario) return;
+
+            let output = `> ${scenario.title}\n`;
+            output += `> ${scenario.setup}\n>\n`;
+            output += `> TACTICAL PHASES:\n`;
+            scenario.phases.forEach((phase, index) => {
+                output += `> ${phase}\n`;
+            });
+            output += `>\n> RECOMMENDED TACTICS: ${scenario.tactics}\n`;
+            output += `> VICTORY CONDITIONS: ${scenario.victory}\n`;
+            output += `> \n> Adapt these guidelines to your specific battlefield\n> _`;
+
+            document.getElementById('combatDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function resetSimulator() {
+            const output = `> GROUND COMBAT SIMULATOR v4.2\n> "Hope is not a strategy, but it's a start" - Poe Dameron\n> Select encounter type above to begin tactical analysis\n> _`;
+            document.getElementById('combatDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        // Initialize
+        initializeBattleMap();
+        resetSimulator();
+    </script>
+</body>
+</html>

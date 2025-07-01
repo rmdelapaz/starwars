@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Time Travel and Alternate Timelines in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .temporal-nexus { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
+        .temporal-nexus::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 70%, rgba(138,43,226,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(75,0,130,0.3) 0%, transparent 50%); animation: temporal-flux 8s ease-in-out infinite; }
+        @keyframes temporal-flux { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; } 50% { transform: scale(1.1) rotate(180deg); opacity: 0.3; } }
+        .temporal-nexus * { position: relative; z-index: 2; }
+        .timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .timeline-card { padding: 20px; border-radius: 15px; position: relative; overflow: hidden; transition: transform 0.3s; border: 2px solid; }
+        .timeline-card:hover { transform: translateY(-5px) scale(1.02); }
+        .timeline-card.prime { background: linear-gradient(135deg, #28a745, #20c997); color: white; border-color: #17a2b8; }
+        .timeline-card.alternate { background: linear-gradient(135deg, #ffc107, #fd7e14); color: #000; border-color: #e83e8c; }
+        .timeline-card.dark { background: linear-gradient(135deg, #dc3545, #6f42c1); color: white; border-color: #e74c3c; }
+        .timeline-card.paradox { background: linear-gradient(135deg, #6c757d, #495057); color: white; border-color: #adb5bd; }
+        .time-mechanics { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
+        .temporal-simulator { background: #1a1a1a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #00ff41; }
+        .simulator-screen { min-height: 350px; border: 1px solid #00ff41; padding: 15px; margin: 10px 0; overflow-y: auto; background: rgba(0,0,0,0.8); }
+        .temporal-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .temporal-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; font-family: 'Courier New', monospace; }
+        .temporal-btn:hover { background: #0056b3; transform: translateY(-2px) scale(1.05); }
+        .temporal-btn.prime { background: #28a745; }
+        .temporal-btn.alternate { background: #ffc107; color: #000; }
+        .temporal-btn.paradox { background: #dc3545; }
+        .temporal-btn.reset { background: #6c757d; }
+        .force-temporal { background: radial-gradient(circle, #4a0080, #8a2be2, #9370db); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .paradox-warning { background: linear-gradient(45deg, #dc3545, #ffc107); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; animation: paradox-pulse 2s ease-in-out infinite; }
+        @keyframes paradox-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); } 50% { box-shadow: 0 0 0 15px rgba(220, 53, 69, 0); } }
+        .timeline-mapper { text-align: center; margin: 20px 0; background: #000; padding: 20px; border-radius: 10px; position: relative; overflow: hidden; }
+        .timeline-mapper::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, rgba(0,255,65,0.1) 0px, rgba(0,255,65,0.1) 2px, transparent 2px, transparent 20px); animation: matrix-rain 10s linear infinite; }
+        @keyframes matrix-rain { 0% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+        .exercise-chamber { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .causality-web { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .causality-node { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; position: relative; }
+        .causality-node.changed { border-color: #dc3545; background: #fff5f5; animation: timeline-shift 3s ease-in-out infinite; }
+        @keyframes timeline-shift { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .temporal-philosophy { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .multiverse-map { position: relative; width: 100%; height: 400px; background: radial-gradient(circle, #0a0a23, #1a1a40); border-radius: 10px; margin: 20px 0; overflow: hidden; }
+        .universe-bubble { position: absolute; border-radius: 50%; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; }
+        .universe-bubble:hover { transform: scale(1.2); z-index: 10; }
+        .universe-prime { background: radial-gradient(circle, #28a745, #20c997); }
+        .universe-dark { background: radial-gradient(circle, #dc3545, #6f42c1); }
+        .universe-alternate { background: radial-gradient(circle, #ffc107, #fd7e14); color: #000; }
+        .universe-unknown { background: radial-gradient(circle, #6c757d, #495057); }
+        .temporal-anchor { background: #e6f3ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a90e2; }
+        .world-between-worlds { background: linear-gradient(to right, #ff9a9e, #fad0c4, #a8edea, #fed6e3); padding: 20px; border-radius: 10px; margin: 20px 0; color: #2c3e50; }
+        .decision-tree { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .bootstrap-paradox { background: radial-gradient(circle, #2c3e50, #34495e); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .timeline-status { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: #00ff41; padding: 10px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 12px; z-index: 1000; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Managing Time Travel and Alternate Timelines in Star Wars RPG</h1>
+        <p><em>"Time isn't a river flowing in one direction. Time is an ocean in a storm." - Ezra Bridger</em></p>
+    </header>
+
+    <div class="timeline-status" id="timelineStatus">
+        TIMELINE STATUS: STABLE<br>
+        PARADOX LEVEL: MINIMAL<br>
+        CAUSALITY: INTACT
+    </div>
+
+    <main>
+        <section class="intro">
+            <div class="temporal-nexus">
+                <h2>Welcome to the Temporal Mechanics Academy</h2>
+                <p>Time travel in Star Wars opens infinite possibilities - and infinite complications. From the mystical World Between Worlds to Force visions that transcend time, temporal elements can add profound depth to your campaigns while creating some of the most challenging storytelling situations you'll ever encounter.</p>
+                
+                <p>Think of time travel not as a convenient plot device, but as a dangerous tool that comes with cosmic responsibility. Like wielding a lightsaber, manipulating time requires wisdom, restraint, and understanding of the consequences. One careless action can unravel the very fabric of reality - or create entirely new universes of possibility.</p>
+            </div>
+        </section>
+
+        <section class="temporal-fundamentals">
+            <h2>Understanding Time in the Star Wars Universe</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Temporal Mechanics] --> B[Linear Time]
+                    A --> C[Cyclical Patterns]
+                    A --> D[Force Echoes]
+                    A --> E[Parallel Dimensions]
+                    
+                    B --> F[Cause and Effect]
+                    B --> G[Historical Records]
+                    B --> H[Prophecy Fulfillment]
+                    
+                    C --> I[Eternal Recurrence]
+                    C --> J[Chosen One Cycle]
+                    C --> K[Rise and Fall Patterns]
+                    
+                    D --> L[Past Visions]
+                    D --> M[Future Glimpses]
+                    D --> N[Temporal Shadows]
+                    
+                    E --> O[What-If Scenarios]
+                    E --> P[Mirror Universes]
+                    E --> Q[Quantum Possibilities]
+            </div>
+
+            <div class="time-mechanics">
+                <h3>The Four Pillars of Temporal Storytelling</h3>
+                
+                <h4>⏳ Causality and Consequence</h4>
+                <p>Every action in time creates ripples. Small changes can have massive effects (butterfly effect), while some events are so significant they resist alteration (temporal anchors). Understanding causality helps you predict and manage the consequences of time travel.</p>
+
+                <h4>🔮 The Force as Temporal Compass</h4>
+                <p>The Force exists outside normal time, allowing Force-sensitive individuals to perceive past and future events. This provides a natural explanation for precognition, postcognition, and temporal anomalies without breaking immersion.</p>
+
+                <h4>🌊 Timeline Flexibility vs. Stability</h4>
+                <p>Some events are fixed points that cannot be changed, while others are fluid and subject to alteration. Major galactic events (like the rise and fall of the Empire) may be inevitable, while personal stories remain changeable.</p>
+
+                <h4>⚖️ Moral Responsibility</h4>
+                <p>Time travel raises profound ethical questions. Do you have the right to change the past? What about the responsibility to prevent tragedies? These dilemmas create rich roleplay opportunities and character development.</p>
+            </div>
+        </section>
+
+        <section class="timeline-types">
+            <h2>Types of Temporal Scenarios</h2>
+            <p>Different approaches to time travel create different storytelling opportunities and mechanical challenges. Understanding these frameworks helps you choose the right approach for your campaign.</p>
+
+            <div class="timeline-grid">
+                <div class="timeline-card prime">
+                    <h4>🌟 Prime Timeline Preservation</h4>
+                    <p><strong>Philosophy:</strong> History cannot be changed; attempts create predestination loops<br>
+                    <strong>Mechanics:</strong> Time travel ensures events happen as they "always did"<br>
+                    <strong>Story Use:</strong> Mystery solving, character revelation, dramatic irony<br>
+                    <strong>Example:</strong> Going back to witness the fall of the Jedi, discovering you were always there</p>
+                </div>
+                <div class="timeline-card alternate">
+                    <h4>🔄 Branching Timelines</h4>
+                    <p><strong>Philosophy:</strong> Changes create new parallel universes<br>
+                    <strong>Mechanics:</strong> Original timeline preserved, new realities branch off<br>
+                    <strong>Story Use:</strong> Consequence-free exploration, alternate character development<br>
+                    <strong>Example:</strong> What if the Empire won? What if Order 66 failed?</p>
+                </div>
+                <div class="timeline-card dark">
+                    <h4>⚡ Mutable History</h4>
+                    <p><strong>Philosophy:</strong> The past can be changed, altering the present<br>
+                    <strong>Mechanics:</strong> Timeline overwrites create dramatic consequences<br>
+                    <strong>Story Use:</strong> High-stakes missions, dramatic reversals, character sacrifice<br>
+                    <strong>Example:</strong> Preventing Vader's fall, but losing the Rebellion's victory</p>
+                </div>
+                <div class="timeline-card paradox">
+                    <h4>🌀 Paradox Resolution</h4>
+                    <p><strong>Philosophy:</strong> Universe actively resists temporal paradoxes<br>
+                    <strong>Mechanics:</strong> Reality "self-corrects" through improbable events<br>
+                    <strong>Story Use:</strong> Cosmic horror, fate vs. free will, universe as character<br>
+                    <strong>Example:</strong> Trying to kill baby Palpatine, but circumstances prevent it</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="force-temporal-connection">
+            <div class="force-temporal">
+                <h2>🔮 The Force and Temporal Perception</h2>
+                <p>The Force transcends linear time, allowing those strong in the Force to perceive echoes of past and future events. This creates natural, lore-appropriate ways to introduce temporal elements without breaking immersion.</p>
+
+                <h3>Force-Based Temporal Abilities</h3>
+                <h4>🌅 Force Visions</h4>
+                <p>Glimpses of possible futures or echoes of significant past events. These visions guide characters but remain cryptic and subject to interpretation.</p>
+
+                <h4>👻 Force Echoes</h4>
+                <p>Psychometric impressions left by traumatic or emotionally significant events. Sensitive individuals can experience these echoes as if they were present during the original event.</p>
+
+                <h4>⏰ Temporal Meditation</h4>
+                <p>Deep meditation allowing consciousness to drift through time, observing but not interacting with past or future events.</p>
+
+                <h4>🌐 World Between Worlds</h4>
+                <p>A mystical realm where all times and places converge, allowing limited interaction with other temporal moments through doorways and windows.</p>
+            </div>
+        </section>
+
+        <section class="multiverse-explorer">
+            <h2>Interactive Multiverse Map</h2>
+            <div class="multiverse-map" id="multiverseMap">
+                <div class="universe-bubble universe-prime" style="top: 180px; left: 200px; width: 80px; height: 80px;" onclick="exploreUniverse('prime')">
+                    Prime Timeline
+                </div>
+                <div class="universe-bubble universe-dark" style="top: 120px; left: 350px; width: 60px; height: 60px;" onclick="exploreUniverse('dark')">
+                    Dark Empire
+                </div>
+                <div class="universe-bubble universe-alternate" style="top: 250px; left: 450px; width: 70px; height: 70px;" onclick="exploreUniverse('alternate')">
+                    Jedi Victory
+                </div>
+                <div class="universe-bubble universe-unknown" style="top: 80px; left: 500px; width: 50px; height: 50px;" onclick="exploreUniverse('unknown')">
+                    Unknown
+                </div>
+                <div class="universe-bubble universe-alternate" style="top: 300px; left: 150px; width: 65px; height: 65px;" onclick="exploreUniverse('republic')">
+                    Eternal Republic
+                </div>
+                <div class="universe-bubble universe-dark" style="top: 50px; left: 250px; width: 55px; height: 55px;" onclick="exploreUniverse('sith')">
+                    Sith Dominion
+                </div>
+            </div>
+            <p id="universeInfo" style="text-align: center; margin-top: 15px; font-style: italic;">Click on universe bubbles to explore different timelines...</p>
+        </section>
+
+        <section class="temporal-simulator">
+            <h2>⚡ Temporal Mechanics Simulator</h2>
+            <div class="temporal-simulator">
+                <div class="temporal-controls">
+                    <button class="temporal-btn prime" onclick="simulateScenario('preservation')">Test Timeline Preservation</button>
+                    <button class="temporal-btn alternate" onclick="simulateScenario('branching')">Create Branching Path</button>
+                    <button class="temporal-btn paradox" onclick="simulateScenario('paradox')">Trigger Paradox</button>
+                    <button class="temporal-btn" onclick="simulateScenario('force')">Force Vision</button>
+                    <button class="temporal-btn reset" onclick="resetTemporal()">Reset Timeline</button>
+                </div>
+                <div class="simulator-screen" id="temporalDisplay">
+                    > TEMPORAL MECHANICS SIMULATOR v∞.1
+                    <br>> "Time is not a river, but an ocean in a storm"
+                    <br>> WARNING: Temporal experimentation may cause paradoxes
+                    <br>> Select scenario type to begin analysis
+                    <br>> Timeline Status: STABLE
+                    <br>> _
+                </div>
+            </div>
+        </section>
+
+        <section class="paradox-management">
+            <div class="paradox-warning">
+                <h2>⚠️ Paradox Prevention and Management</h2>
+                <p>Temporal paradoxes are among the most dangerous threats to reality itself. Understanding how to prevent, identify, and resolve paradoxes is crucial for any Game Master dealing with time travel elements.</p>
+
+                <h3>Common Types of Temporal Paradoxes</h3>
+                <h4>👴 Grandfather Paradox</h4>
+                <p>Preventing your own existence through past actions. In Star Wars: stopping your master from training you, preventing the events that led to your birth.</p>
+
+                <h4>🔄 Bootstrap Paradox</h4>
+                <p>Information or objects with no clear origin point. Example: Teaching someone a Force technique you learned from them in the future.</p>
+
+                <h4>⚖️ Consistency Paradox</h4>
+                <p>Creating a situation where past and future contradict each other. Knowing something will happen because you saw it, but that knowledge changes the outcome.</p>
+
+                <h4>🌪️ Butterfly Effect</h4>
+                <p>Small changes creating massive unintended consequences. Moving a single pebble in the past causes a different outcome to the Battle of Yavin.</p>
+            </div>
+        </section>
+
+        <section class="world-between-worlds">
+            <div class="world-between-worlds">
+                <h2>🌈 The World Between Worlds</h2>
+                <p>This mystical realm represents Star Wars' most direct approach to time manipulation - a place where all moments exist simultaneously, connected by pathways of light and shadow.</p>
+
+                <h3>Characteristics of the World Between Worlds</h3>
+                <h4>🚪 Doorways and Windows</h4>
+                <p>Gateways that allow observation of and limited interaction with other times and places. Some doors permit travel, others only viewing.</p>
+
+                <h4>🌊 Temporal Currents</h4>
+                <p>Flows of time and Force energy that can carry travelers to different eras or realities. These currents are unpredictable and potentially dangerous.</p>
+
+                <h4>👥 Echoes and Shadows</h4>
+                <p>Imprints of significant events and people that exist in this space, allowing interaction with temporal echoes of past and future beings.</p>
+
+                <h4>⚡ Force Sensitivity Required</h4>
+                <p>Only those strong in the Force can perceive and navigate this realm effectively. Non-Force users may become lost or driven mad by the experience.</p>
+            </div>
+        </section>
+
+        <section class="causality-mapping">
+            <h2>Causality Chain Analysis</h2>
+            <p>Understanding how events connect across time helps you predict the consequences of temporal interference and create compelling butterfly effect scenarios.</p>
+
+            <div class="causality-web">
+                <div class="causality-node">
+                    <h5>Original Event</h5>
+                    <p>Padmé survives childbirth</p>
+                </div>
+                <div class="causality-node changed">
+                    <h5>Immediate Effect</h5>
+                    <p>Anakin doesn't fully fall to dark side</p>
+                </div>
+                <div class="causality-node changed">
+                    <h5>Short-term</h5>
+                    <p>Luke and Leia raised together</p>
+                </div>
+                <div class="causality-node changed">
+                    <h5>Medium-term</h5>
+                    <p>Rebellion has Jedi support</p>
+                </div>
+                <div class="causality-node changed">
+                    <h5>Long-term</h5>
+                    <p>Empire falls much earlier</p>
+                </div>
+                <div class="causality-node changed">
+                    <h5>Unforeseen</h5>
+                    <p>New Sith threat emerges</p>
+                </div>
+            </div>
+
+            <div class="decision-tree">
+                <h3>📊 Temporal Decision Framework</h3>
+                <div class="mermaid">
+                    graph TD
+                        A[Temporal Intervention Opportunity] --> B{Fixed Point?}
+                        B -->|Yes| C[Cannot Be Changed]
+                        B -->|No| D{Major Historical Event?}
+                        D -->|Yes| E[High Consequence Risk]
+                        D -->|No| F{Personal Event?}
+                        F -->|Yes| G[Moderate Risk]
+                        F -->|No| H[Low Risk]
+                        
+                        C --> I[Predestination Loop]
+                        E --> J[Timeline Branch/Overwrite]
+                        G --> K[Character Development]
+                        H --> L[Minor Adjustment]
+                </div>
+            </div>
+        </section>
+
+        <section class="temporal-anchors">
+            <div class="temporal-anchor">
+                <h2>⚓ Temporal Anchors and Fixed Points</h2>
+                <p>Some events are so crucial to the fabric of reality that they resist change, creating stable reference points in the timestream. Understanding these anchors helps maintain narrative coherence.</p>
+
+                <h3>Types of Temporal Anchors</h3>
+                <h4>🌟 Mythic Events</h4>
+                <p>Events so fundamental to galactic history that they transcend individual timelines. The rise of the Jedi Order, the discovery of hyperspace travel, the creation of the Republic.</p>
+
+                <h4>👑 Destiny Nodes</h4>
+                <p>Moments where the fate of significant individuals is determined. Anakin's birth, Luke's first contact with the Force, Rey's awakening to her power.</p>
+
+                <h4>💫 Convergence Points</h4>
+                <p>Times when multiple potential timelines collapse into a single outcome. Major battles, the death of galactic leaders, the destruction of planets.</p>
+
+                <h4>🔮 Prophetic Fulfillments</h4>
+                <p>Events foretold by ancient prophecies that seem to fulfill themselves regardless of interference. The balance of the Force, the chosen one's destiny.</p>
+            </div>
+        </section>
+
+        <section class="bootstrap-paradox-section">
+            <div class="bootstrap-paradox">
+                <h2>🔄 The Bootstrap Paradox in Star Wars</h2>
+                <p>Information or objects that exist in a causal loop with no clear origin point create some of the most mind-bending temporal scenarios in storytelling.</p>
+
+                <h3>Bootstrap Examples in Star Wars Context</h3>
+                <h4>📚 The Jedi Texts</h4>
+                <p>A time traveler brings ancient Jedi knowledge to the past, which is then preserved in the texts they originally learned from. Who actually wrote the knowledge?</p>
+
+                <h4>⚔️ Lightsaber Legacy</h4>
+                <p>A lightsaber is passed from future to past, becoming the very weapon that inspired its own creation. The craftsmanship exists in a temporal loop.</p>
+
+                <h4>🔮 Prophetic Visions</h4>
+                <p>A Force vision shows the future, which informs actions that create that exact future. The prophecy causes its own fulfillment.</p>
+
+                <h4>🧬 Bloodline Mysteries</h4>
+                <p>A character discovers their ancestry by traveling to the past and becoming their own ancestor through temporal displacement.</p>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-chamber">
+                <h3>Temporal Storytelling Workshops</h3>
+                
+                <h4>Exercise 1: Butterfly Effect Design</h4>
+                <p>Create a minor change that has major consequences:</p>
+                <ul>
+                    <li>Choose a small, seemingly insignificant event from Star Wars history</li>
+                    <li>Alter one minor detail (a delayed message, a missed meeting, a different choice)</li>
+                    <li>Trace the logical consequences through short, medium, and long-term effects</li>
+                    <li>Show how this creates entirely different galactic outcomes</li>
+                    <li>Identify what new conflicts and opportunities arise</li>
+                </ul>
+
+                <h4>Exercise 2: Fixed Point Challenge</h4>
+                <p>Design a scenario where players try to change history but cannot:</p>
+                <ul>
+                    <li>Choose a major tragic event players would want to prevent</li>
+                    <li>Create multiple seemingly viable approaches to changing it</li>
+                    <li>Show how each attempt fails or creates the event they tried to prevent</li>
+                    <li>Explore the emotional impact of powerlessness against fate</li>
+                    <li>Reveal deeper truths about destiny and free will</li>
+                </ul>
+
+                <h4>Exercise 3: Mirror Universe</h4>
+                <p>Create an alternate timeline where one major choice went differently:</p>
+                <ul>
+                    <li>Pick a crucial decision point in Star Wars history</li>
+                    <li>Reverse the choice and develop the logical consequences</li>
+                    <li>Show how familiar characters develop differently</li>
+                    <li>Create new conflicts and alliances in this altered reality</li>
+                    <li>Design a way for players to interact with this alternate timeline</li>
+                </ul>
+
+                <h4>Exercise 4: Bootstrap Mystery</h4>
+                <p>Design a mystery with a bootstrap paradox at its core:</p>
+                <ul>
+                    <li>Create an important object or piece of knowledge with unclear origins</li>
+                    <li>Show how investigating its history leads to temporal loops</li>
+                    <li>Reveal that the investigators are part of the object's origin story</li>
+                    <li>Explore the philosophical implications of causeless effects</li>
+                    <li>Determine how this affects the characters' understanding of reality</li>
+                </ul>
+
+                <h4>Exercise 5: Temporal Sacrifice</h4>
+                <p>Create a scenario requiring characters to sacrifice their timeline for the greater good:</p>
+                <ul>
+                    <li>Present a choice between preserving their reality or creating a better one</li>
+                    <li>Show the personal costs of erasing their own achievements</li>
+                    <li>Explore what makes one timeline "better" than another</li>
+                    <li>Consider who has the right to make such decisions</li>
+                    <li>Design meaningful consequences for either choice</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="temporal-philosophy">
+            <div class="temporal-philosophy">
+                <h2>🤔 The Philosophy of Time in Star Wars</h2>
+                <p>Time travel in Star Wars isn't just about changing events - it's about exploring fundamental questions of destiny, free will, and moral responsibility that lie at the heart of the saga.</p>
+
+                <h3>Core Temporal Themes</h3>
+                <h4>⚖️ Destiny vs. Free Will</h4>
+                <p>Are some events truly fixed, or does free will always provide a choice? The tension between prophecy and self-determination creates rich character development opportunities.</p>
+
+                <h4>🌟 The Greater Good</h4>
+                <p>When is it justified to sacrifice one timeline for another? Who decides what constitutes "better" outcomes? These questions challenge characters' moral frameworks.</p>
+
+                <h4>🔄 Learning from History</h4>
+                <p>Sometimes the value of time travel isn't in changing the past, but in understanding it. Wisdom gained from temporal journeys can guide present actions.</p>
+
+                <h4>💫 Acceptance and Growth</h4>
+                <p>Some of the most powerful temporal stories involve characters learning to accept painful truths about the past while finding the strength to create better futures.</p>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>Temporal Mastery</h2>
+            <p>Remember, time travel is one of the most powerful narrative tools in your arsenal - and with great power comes great responsibility. Use temporal elements to explore character growth, examine moral choices, and reveal hidden truths about your campaign's central themes.</p>
+            
+            <p>The best temporal stories don't just change events - they change characters. When your players emerge from a journey through time with deeper understanding of themselves, their relationships, and their place in the cosmic order, you'll know you've mastered the art of temporal storytelling in a galaxy far, far away.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"Time isn't a river flowing in one direction. Time is an ocean in a storm. You may wonder who you are and why you're here." - The Daughter (representing the balance between all temporal possibilities)</em></p>
+    </footer>
+
+    <script>
+        // Universe data for multiverse exploration
+        const universeData = {
+            prime: {
+                name: "Prime Timeline",
+                description: "The familiar Star Wars universe where events unfold as we know them. The Empire rises and falls, the Jedi are redeemed, and balance is restored to the Force.",
+                keyEvents: "Order 66, Luke's journey, Vader's redemption, New Republic formation",
+                characters: "Luke becomes a Jedi, Leia leads the Rebellion, Han becomes a hero"
+            },
+            dark: {
+                name: "Dark Empire Timeline", 
+                description: "A timeline where the dark side achieves total victory. The Jedi are extinct, the Sith rule unopposed, and the galaxy lives under eternal tyranny.",
+                keyEvents: "Jedi genocide completed, Sith Empire established, resistance crushed",
+                characters: "Luke falls to the dark side, Leia dies in rebellion, Han becomes an Imperial agent"
+            },
+            alternate: {
+                name: "Jedi Victory Timeline",
+                description: "A timeline where Order 66 failed and the Jedi Order survived. The Clone Wars ended differently, and the galaxy achieved peace under Jedi guidance.",
+                keyEvents: "Order 66 prevented, Palpatine exposed early, Clone Wars end in Republic victory",
+                characters: "Anakin remains a Jedi, Padmé lives, children raised in peace"
+            },
+            unknown: {
+                name: "Unknown Regions Timeline",
+                description: "A mysterious timeline where unknown forces from beyond the galaxy have intervened, creating unpredictable changes to galactic history.",
+                keyEvents: "First Contact with extragalactic entities, technology beyond comprehension",
+                characters: "Familiar figures transformed by alien influence, new hybrid civilizations"
+            },
+            republic: {
+                name: "Eternal Republic Timeline",
+                description: "A timeline where the Republic never fell. Through different choices and circumstances, democracy has endured for millennia without corruption or collapse.",
+                keyEvents: "No Sith manipulation, gradual democratic reform, peaceful expansion",
+                characters: "Generations of Jedi peacekeepers, evolving democratic institutions"
+            },
+            sith: {
+                name: "Sith Dominion Timeline",
+                description: "A timeline where the ancient Sith Empire never fell and has ruled the galaxy for thousands of years, creating a fundamentally different civilization.",
+                keyEvents: "Sith victory in ancient wars, structured dark side hierarchy, millennia of expansion",
+                characters: "Hereditary Sith nobility, enslaved Jedi survivors, adapted population"
+            }
+        };
+
+        // Temporal scenario data
+        const temporalScenarios = {
+            preservation: {
+                title: "TIMELINE PRESERVATION TEST",
+                process: [
+                    "Attempting to prevent Order 66...",
+                    "Temporal resistance detected - events adapting",
+                    "Alternative paths converging on same outcome",
+                    "Jedi still die, but through different means",
+                    "Timeline preservation confirmed - destiny intact"
+                ],
+                result: "STABLE - Major events resist alteration",
+                lesson: "Some events are fixed points that will occur regardless of intervention"
+            },
+            branching: {
+                title: "BRANCHING TIMELINE CREATION",
+                process: [
+                    "Saving Padmé during childbirth...",
+                    "Timeline bifurcation detected",
+                    "New branch: Anakin remains Jedi",
+                    "Parallel universe established",
+                    "Original timeline preserved alongside new reality"
+                ],
+                result: "MULTIVERSE EXPANSION - Two stable timelines",
+                lesson: "Changes create parallel realities without destroying originals"
+            },
+            paradox: {
+                title: "PARADOX SCENARIO TRIGGERED",
+                process: [
+                    "Attempting to kill baby Palpatine...",
+                    "CAUSALITY ERROR - Bootstrap loop detected",
+                    "Your knowledge came from this timeline",
+                    "Preventing it erases the reason you came",
+                    "REALITY FAILURE - Temporal collapse imminent"
+                ],
+                result: "CRITICAL - Universe stability compromised",
+                lesson: "Self-contradictory actions threaten the fabric of reality"
+            },
+            force: {
+                title: "FORCE VISION ANALYSIS",
+                process: [
+                    "Meditating on temporal currents...",
+                    "Accessing World Between Worlds",
+                    "Observing multiple timeline possibilities",
+                    "Gaining wisdom without intervention",
+                    "Returning with expanded understanding"
+                ],
+                result: "ENLIGHTENMENT - Knowledge gained safely",
+                lesson: "Observation and understanding are often more valuable than action"
+            }
+        };
+
+        let currentTimelineStatus = "STABLE";
+
+        function exploreUniverse(type) {
+            const universe = universeData[type];
+            if (!universe) return;
+
+            let info = `<strong>${universe.name}</strong><br><br>`;
+            info += `${universe.description}<br><br>`;
+            info += `<strong>Key Events:</strong> ${universe.keyEvents}<br><br>`;
+            info += `<strong>Character Fates:</strong> ${universe.characters}`;
+
+            document.getElementById('universeInfo').innerHTML = info;
+        }
+
+        function simulateScenario(type) {
+            const scenario = temporalScenarios[type];
+            if (!scenario) return;
+
+            let output = `> ${scenario.title}\n>\n`;
+            
+            // Simulate processing with delays
+            let lineIndex = 0;
+            const displayLines = () => {
+                if (lineIndex < scenario.process.length) {
+                    output += `> ${scenario.process[lineIndex]}\n`;
+                    document.getElementById('temporalDisplay').innerHTML = output.replace(/\n/g, '<br>');
+                    lineIndex++;
+                    setTimeout(displayLines, 1000);
+                } else {
+                    output += `>\n> RESULT: ${scenario.result}\n`;
+                    output += `> LESSON: ${scenario.lesson}\n> _`;
+                    document.getElementById('temporalDisplay').innerHTML = output.replace(/\n/g, '<br>');
+                    
+                    // Update timeline status
+                    if (type === 'paradox') {
+                        updateTimelineStatus("UNSTABLE", "CRITICAL", "COMPROMISED");
+                    } else if (type === 'branching') {
+                        updateTimelineStatus("BRANCHED", "ELEVATED", "MULTIPLE");
+                    } else {
+                        updateTimelineStatus("STABLE", "MINIMAL", "INTACT");
+                    }
+                }
+            };
+            
+            displayLines();
+        }
+
+        function resetTemporal() {
+            const output = `> TEMPORAL MECHANICS SIMULATOR v∞.1\n> "Time is not a river, but an ocean in a storm"\n> WARNING: Temporal experimentation may cause paradoxes\n> Select scenario type to begin analysis\n> Timeline Status: STABLE\n> _`;
+            document.getElementById('temporalDisplay').innerHTML = output.replace(/\n/g, '<br>');
+            updateTimelineStatus("STABLE", "MINIMAL", "INTACT");
+        }
+
+        function updateTimelineStatus(status, paradox, causality) {
+            const statusDisplay = document.getElementById('timelineStatus');
+            statusDisplay.innerHTML = `TIMELINE STATUS: ${status}<br>PARADOX LEVEL: ${paradox}<br>CAUSALITY: ${causality}`;
+            
+            // Color coding based on status
+            if (status === "UNSTABLE") {
+                statusDisplay.style.color = '#ff0000';
+                statusDisplay.style.backgroundColor = 'rgba(220,53,69,0.2)';
+            } else if (status === "BRANCHED") {
+                statusDisplay.style.color = '#ffc107';
+                statusDisplay.style.backgroundColor = 'rgba(255,193,7,0.2)';
+            } else {
+                statusDisplay.style.color = '#00ff41';
+                statusDisplay.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            }
+        }
+
+        // Initialize
+        resetTemporal();
+    </script>
+</body>
+</html>

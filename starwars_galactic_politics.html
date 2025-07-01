@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Galactic Politics and Factions in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .senate-chamber { background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
+        .senate-chamber::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%); animation: political-pulse 6s ease-in-out infinite; }
+        @keyframes political-pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.1); opacity: 0.1; } }
+        .senate-chamber * { position: relative; z-index: 2; }
+        .faction-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .faction-card { padding: 20px; border-radius: 15px; color: white; position: relative; overflow: hidden; transition: transform 0.3s; }
+        .faction-card:hover { transform: translateY(-5px); }
+        .faction-card.republic { background: linear-gradient(135deg, #007bff, #0056b3); }
+        .faction-card.empire { background: linear-gradient(135deg, #343a40, #1a1a1a); }
+        .faction-card.rebellion { background: linear-gradient(135deg, #dc3545, #c82333); }
+        .faction-card.corporate { background: linear-gradient(135deg, #ffc107, #e0a800); color: #000; }
+        .faction-card.criminal { background: linear-gradient(135deg, #6f42c1, #5a2d91); }
+        .faction-card.religious { background: linear-gradient(135deg, #20c997, #17a085); }
+        .power-dynamics { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
+        .political-simulator { background: #2c3e50; color: #ecf0f1; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .simulator-display { min-height: 300px; border: 1px solid #3498db; padding: 15px; margin: 10px 0; overflow-y: auto; }
+        .control-interface { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .political-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
+        .political-btn:hover { background: #0056b3; transform: translateY(-2px); }
+        .political-btn.republic { background: #007bff; }
+        .political-btn.empire { background: #343a40; }
+        .political-btn.rebellion { background: #dc3545; }
+        .political-btn.corporate { background: #ffc107; color: #000; }
+        .intrigue-web { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .diplomacy-table { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .war-economy { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
+        .exercise-council { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .influence-tracker { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .influence-meter { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
+        .power-balance { text-align: center; margin: 20px 0; }
+        .balance-wheel { width: 300px; height: 300px; margin: 20px auto; position: relative; }
+        .wheel-segment { position: absolute; width: 100%; height: 100%; border-radius: 50%; }
+        .conspiracy-matrix { background: radial-gradient(circle, #2c3e50, #1a252f); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .trade-routes { background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .senate-voting { background: linear-gradient(to right, #ffecd2, #fcb69f); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .relationship-matrix { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .relationship-matrix th, .relationship-matrix td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        .relationship-matrix th { background: #f8f9fa; }
+        .ally { background: #d4edda; }
+        .neutral { background: #fff3cd; }
+        .rival { background: #f8d7da; }
+        .enemy { background: #f5c6cb; }
+        .galactic-map { text-align: center; margin: 20px 0; background: #000; padding: 20px; border-radius: 10px; }
+        .sector-display { display: inline-block; width: 60px; height: 60px; margin: 5px; border-radius: 50%; cursor: pointer; transition: all 0.3s; position: relative; }
+        .sector-display:hover { transform: scale(1.2); }
+        .sector-core { background: radial-gradient(circle, #ffd700, #daa520); }
+        .sector-mid { background: radial-gradient(circle, #32cd32, #228b22); }
+        .sector-outer { background: radial-gradient(circle, #ff6347, #cd5c5c); }
+        .sector-unknown { background: radial-gradient(circle, #9370db, #663399); }
+        .crisis-generator { background: #e74c3c; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Managing Galactic Politics and Factions in Star Wars RPG</h1>
+        <p><em>"So this is how liberty dies... with thunderous applause." - Padmé Amidala</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="senate-chamber">
+                <h2>Welcome to the Galactic Senate Academy</h2>
+                <p>Politics in Star Wars isn't just background noise - it's the engine that drives the galaxy's greatest conflicts and most personal stories. From the corruption of the Republic to the tyranny of the Empire, from corporate machinations to religious movements, understanding galactic politics helps you create campaigns that feel connected to the larger Star Wars universe.</p>
+                
+                <p>Think of galactic politics as a vast game of dejarik played across star systems, where every move creates ripples that affect millions of lives. Your players aren't just heroes with lightsabers - they're actors on a galactic stage where their choices can topple governments, forge alliances, and reshape the balance of power across the galaxy.</p>
+            </div>
+        </section>
+
+        <section class="political-fundamentals">
+            <h2>The Architecture of Galactic Power</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Galactic Politics] --> B[Government Structures]
+                    A --> C[Economic Systems]
+                    A --> D[Military Forces]
+                    A --> E[Cultural Movements]
+                    
+                    B --> F[Democratic Republics]
+                    B --> G[Imperial Autocracies]
+                    B --> H[Corporate Oligarchies]
+                    B --> I[Feudal Systems]
+                    
+                    C --> J[Trade Routes]
+                    C --> K[Resource Control]
+                    C --> L[Currency Systems]
+                    
+                    D --> M[Standing Armies]
+                    D --> N[Mercenary Groups]
+                    D --> O[Paramilitary Forces]
+                    
+                    E --> P[Religious Orders]
+                    E --> Q[Liberation Movements]
+                    E --> R[Ideological Factions]
+            </div>
+
+            <h3>The Five Spheres of Galactic Influence</h3>
+            <div class="power-dynamics">
+                <h4>🏛️ Political Power</h4>
+                <p>Government control, legislative authority, diplomatic recognition. Who makes the laws and how they're enforced across star systems.</p>
+
+                <h4>💰 Economic Power</h4>
+                <p>Trade route control, resource monopolies, financial institutions. The credits that fund armies and buy loyalty.</p>
+
+                <h4>⚔️ Military Power</h4>
+                <p>Fleet strength, ground forces, technological superiority. The ability to project force and defend interests.</p>
+
+                <h4>📡 Information Power</h4>
+                <p>Intelligence networks, propaganda, communication control. Shaping what people know and believe.</p>
+
+                <h4>🎭 Cultural Power</h4>
+                <p>Religious influence, social movements, popular support. The hearts and minds that legitimize authority.</p>
+            </div>
+        </section>
+
+        <section class="major-factions">
+            <h2>Major Faction Archetypes</h2>
+            <p>Understanding the motivations and methods of different faction types helps you create believable political conflicts and meaningful player choices.</p>
+
+            <div class="faction-gallery">
+                <div class="faction-card republic">
+                    <h4>🏛️ Democratic Republics</h4>
+                    <p><strong>Motivation:</strong> Representative government, individual rights, peaceful resolution<br>
+                    <strong>Methods:</strong> Voting, debate, diplomatic negotiation, legal processes<br>
+                    <strong>Weaknesses:</strong> Slow decision-making, corruption, bureaucratic inefficiency<br>
+                    <strong>Example:</strong> Galactic Republic, New Republic</p>
+                </div>
+                <div class="faction-card empire">
+                    <h4>👑 Imperial Autocracies</h4>
+                    <p><strong>Motivation:</strong> Order, stability, centralized control, efficient governance<br>
+                    <strong>Methods:</strong> Military force, propaganda, fear, technological superiority<br>
+                    <strong>Weaknesses:</strong> Rebellion, succession crises, over-extension<br>
+                    <strong>Example:</strong> Galactic Empire, First Order</p>
+                </div>
+                <div class="faction-card rebellion">
+                    <h4>✊ Liberation Movements</h4>
+                    <p><strong>Motivation:</strong> Freedom from oppression, self-determination, justice<br>
+                    <strong>Methods:</strong> Guerrilla warfare, propaganda, popular uprising, terrorism<br>
+                    <strong>Weaknesses:</strong> Limited resources, factional infighting, extremism<br>
+                    <strong>Example:</strong> Rebel Alliance, Resistance</p>
+                </div>
+                <div class="faction-card corporate">
+                    <h4>🏢 Corporate Oligarchies</h4>
+                    <p><strong>Motivation:</strong> Profit maximization, market control, economic efficiency<br>
+                    <strong>Methods:</strong> Economic pressure, lobbying, private security, monopolies<br>
+                    <strong>Weaknesses:</strong> Public backlash, regulatory oversight, competition<br>
+                    <strong>Example:</strong> Trade Federation, Corporate Sector Authority</p>
+                </div>
+                <div class="faction-card criminal">
+                    <h4>🔫 Criminal Organizations</h4>
+                    <p><strong>Motivation:</strong> Wealth accumulation, territorial control, survival<br>
+                    <strong>Methods:</strong> Violence, extortion, smuggling, corruption<br>
+                    <strong>Weaknesses:</strong> Internal betrayal, law enforcement, rival gangs<br>
+                    <strong>Example:</strong> Hutt Cartels, Black Sun, Crimson Dawn</p>
+                </div>
+                <div class="faction-card religious">
+                    <h4>⛪ Religious Orders</h4>
+                    <p><strong>Motivation:</strong> Spiritual enlightenment, moral guidance, cosmic balance<br>
+                    <strong>Methods:</strong> Teaching, healing, prophecy, peaceful resistance<br>
+                    <strong>Weaknesses:</strong> Dogmatic thinking, persecution, internal schisms<br>
+                    <strong>Example:</strong> Jedi Order, Church of the Force, Guardians of the Whills</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="galactic-geography">
+            <h2>Political Geography of the Galaxy</h2>
+            <p>The galaxy's structure creates natural political divisions and power dynamics. Understanding galactic geography helps explain why certain factions arise where they do.</p>
+
+            <div class="galactic-map">
+                <h3>🌌 Interactive Galactic Sectors</h3>
+                <p>Click sectors to explore their political characteristics:</p>
+                
+                <div class="sector-display sector-core" onclick="exploreRegion('core')" title="Core Worlds"></div>
+                <div class="sector-display sector-core" onclick="exploreRegion('core')" title="Core Worlds"></div>
+                <div class="sector-display sector-core" onclick="exploreRegion('core')" title="Core Worlds"></div>
+                <br>
+                <div class="sector-display sector-mid" onclick="exploreRegion('mid')" title="Mid Rim"></div>
+                <div class="sector-display sector-mid" onclick="exploreRegion('mid')" title="Mid Rim"></div>
+                <div class="sector-display sector-mid" onclick="exploreRegion('mid')" title="Mid Rim"></div>
+                <div class="sector-display sector-mid" onclick="exploreRegion('mid')" title="Mid Rim"></div>
+                <br>
+                <div class="sector-display sector-outer" onclick="exploreRegion('outer')" title="Outer Rim"></div>
+                <div class="sector-display sector-outer" onclick="exploreRegion('outer')" title="Outer Rim"></div>
+                <div class="sector-display sector-unknown" onclick="exploreRegion('unknown')" title="Unknown Regions"></div>
+                <div class="sector-display sector-outer" onclick="exploreRegion('outer')" title="Outer Rim"></div>
+                
+                <p id="regionInfo">Select a region to learn about its political dynamics...</p>
+            </div>
+
+            <div class="trade-routes">
+                <h3>🚀 Hyperspace Trade Routes</h3>
+                <p>Control of major hyperspace routes equals economic and political power. The Core worlds became wealthy and influential partly due to their position at the center of trade networks.</p>
+
+                <h4>Major Trade Routes and Their Political Impact</h4>
+                <ul>
+                    <li><strong>Corellian Trade Spine:</strong> North-south route connecting Core to Outer Rim, controlled by various powers</li>
+                    <li><strong>Hydian Way:</strong> East-west route crucial for Imperial expansion and Rebel supply lines</li>
+                    <li><strong>Perlemian Trade Route:</strong> Ancient route that built the Republic's early power base</li>
+                    <li><strong>Smuggler's Routes:</strong> Hidden paths used by criminals and rebels to avoid Imperial control</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="political-mechanics">
+            <h2>Political Interaction Mechanics</h2>
+
+            <div class="relationship-matrix">
+                <h3>📊 Faction Relationship Matrix</h3>
+                <table class="relationship-matrix">
+                    <tr>
+                        <th>Faction</th>
+                        <th>Republic</th>
+                        <th>Empire</th>
+                        <th>Rebellion</th>
+                        <th>Corporate</th>
+                        <th>Criminal</th>
+                    </tr>
+                    <tr>
+                        <th>Republic</th>
+                        <td class="ally">Self</td>
+                        <td class="enemy">Hostile</td>
+                        <td class="ally">Allied</td>
+                        <td class="neutral">Complex</td>
+                        <td class="rival">Opposed</td>
+                    </tr>
+                    <tr>
+                        <th>Empire</th>
+                        <td class="enemy">Hostile</td>
+                        <td class="ally">Self</td>
+                        <td class="enemy">War</td>
+                        <td class="neutral">Useful</td>
+                        <td class="neutral">Tolerated</td>
+                    </tr>
+                    <tr>
+                        <th>Rebellion</th>
+                        <td class="ally">Allied</td>
+                        <td class="enemy">War</td>
+                        <td class="ally">Self</td>
+                        <td class="rival">Suspicious</td>
+                        <td class="neutral">Pragmatic</td>
+                    </tr>
+                    <tr>
+                        <th>Corporate</th>
+                        <td class="neutral">Complex</td>
+                        <td class="neutral">Useful</td>
+                        <td class="rival">Suspicious</td>
+                        <td class="ally">Self</td>
+                        <td class="neutral">Business</td>
+                    </tr>
+                    <tr>
+                        <th>Criminal</th>
+                        <td class="rival">Opposed</td>
+                        <td class="neutral">Tolerated</td>
+                        <td class="neutral">Pragmatic</td>
+                        <td class="neutral">Business</td>
+                        <td class="ally">Self</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="influence-tracker">
+                <div class="influence-meter">
+                    <h5>💰 Economic Influence</h5>
+                    <div style="background: linear-gradient(to right, #28a745, #ffc107, #dc3545); height: 20px; border-radius: 10px; margin: 10px 0;"></div>
+                    <p>Corporate > Empire > Republic</p>
+                </div>
+                <div class="influence-meter">
+                    <h5>⚔️ Military Influence</h5>
+                    <div style="background: linear-gradient(to right, #dc3545, #6c757d, #28a745); height: 20px; border-radius: 10px; margin: 10px 0;"></div>
+                    <p>Empire > Rebellion > Criminal</p>
+                </div>
+                <div class="influence-meter">
+                    <h5>🗳️ Popular Support</h5>
+                    <div style="background: linear-gradient(to right, #007bff, #dc3545, #343a40); height: 20px; border-radius: 10px; margin: 10px 0;"></div>
+                    <p>Republic > Rebellion > Empire</p>
+                </div>
+                <div class="influence-meter">
+                    <h5>📡 Information Control</h5>
+                    <div style="background: linear-gradient(to right, #343a40, #ffc107, #007bff); height: 20px; border-radius: 10px; margin: 10px 0;"></div>
+                    <p>Empire > Corporate > Republic</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="intrigue-system">
+            <div class="intrigue-web">
+                <h2>🕸️ Political Intrigue and Espionage</h2>
+                <p>Behind every galactic conflict lies a web of secrets, double agents, and hidden agendas. Political intrigue creates opportunities for investigation, roleplay, and moral complexity.</p>
+
+                <h3>Types of Political Intrigue</h3>
+                <h4>🔍 Intelligence Operations</h4>
+                <ul>
+                    <li><strong>Espionage:</strong> Gathering secret information about enemy plans</li>
+                    <li><strong>Counterintelligence:</strong> Protecting secrets and catching spies</li>
+                    <li><strong>Disinformation:</strong> Spreading false information to confuse enemies</li>
+                    <li><strong>Assassination:</strong> Eliminating key political figures</li>
+                </ul>
+
+                <h4>💰 Economic Warfare</h4>
+                <ul>
+                    <li><strong>Trade Embargos:</strong> Cutting off enemy supply lines</li>
+                    <li><strong>Currency Manipulation:</strong> Destabilizing enemy economies</li>
+                    <li><strong>Corporate Espionage:</strong> Stealing trade secrets and technology</li>
+                    <li><strong>Resource Denial:</strong> Controlling access to vital materials</li>
+                </ul>
+
+                <h4>🎭 Propaganda Wars</h4>
+                <ul>
+                    <li><strong>Media Control:</strong> Shaping public opinion through news</li>
+                    <li><strong>Cultural Influence:</strong> Using entertainment to spread ideology</li>
+                    <li><strong>Historical Revision:</strong> Rewriting past events to support current goals</li>
+                    <li><strong>Martyrdom Creation:</strong> Using deaths to rally support</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="diplomacy-mechanics">
+            <div class="diplomacy-table">
+                <h2>🤝 Diplomatic Relations and Negotiations</h2>
+                <p>Not every political conflict ends in war. Skilled negotiators can achieve through words what armies cannot accomplish through force.</p>
+
+                <h3>Diplomatic Tools and Techniques</h3>
+                <div class="mermaid">
+                    graph LR
+                        A[Diplomatic Options] --> B[Treaties & Agreements]
+                        A --> C[Economic Incentives]
+                        A --> D[Cultural Exchange]
+                        A --> E[Threat & Coercion]
+                        
+                        B --> F[Trade Pacts]
+                        B --> G[Non-Aggression Treaties]
+                        B --> H[Mutual Defense Alliances]
+                        
+                        C --> I[Financial Aid]
+                        C --> J[Technology Transfer]
+                        C --> K[Market Access]
+                        
+                        D --> L[Student Exchanges]
+                        D --> M[Cultural Festivals]
+                        D --> N[Diplomatic Marriages]
+                        
+                        E --> O[Economic Sanctions]
+                        E --> P[Military Demonstrations]
+                        E --> Q[Ultimatums]
+                </div>
+
+                <h4>Diplomatic Complications</h4>
+                <ul>
+                    <li><strong>Cultural Misunderstandings:</strong> Species differences create communication barriers</li>
+                    <li><strong>Hidden Agendas:</strong> Negotiators have secret objectives</li>
+                    <li><strong>Time Pressure:</strong> Urgent situations force quick decisions</li>
+                    <li><strong>Public Opinion:</strong> Popular sentiment limits negotiator flexibility</li>
+                    <li><strong>Past Grievances:</strong> Historical conflicts poison current talks</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="war-economy-section">
+            <div class="war-economy">
+                <h2>⚡ War Economy and Resource Management</h2>
+                <p>Wars consume vast resources, and controlling those resources often determines victory more than battlefield tactics. Understanding galactic economics adds depth to political campaigns.</p>
+
+                <h3>Critical Galactic Resources</h3>
+                <h4>🔋 Energy Sources</h4>
+                <ul>
+                    <li><strong>Tibanna Gas:</strong> Essential for blaster weapons and starship fuel</li>
+                    <li><strong>Hypermatter:</strong> Powers Star Destroyers and superweapons</li>
+                    <li><strong>Coaxium:</strong> Refined hyperfuel for faster-than-light travel</li>
+                    <li><strong>Power Crystals:</strong> Energy storage and focusing elements</li>
+                </ul>
+
+                <h4>⚙️ Strategic Materials</h4>
+                <ul>
+                    <li><strong>Durasteel:</strong> Primary construction material for ships and buildings</li>
+                    <li><strong>Cortosis:</strong> Rare metal that can resist lightsaber strikes</li>
+                    <li><strong>Beskar:</strong> Mandalorian iron, nearly indestructible</li>
+                    <li><strong>Kyber Crystals:</strong> Focus the Force and power superweapons</li>
+                </ul>
+
+                <h4>👥 Population Resources</h4>
+                <ul>
+                    <li><strong>Military Recruitment:</strong> Manpower for armies and navies</li>
+                    <li><strong>Technical Expertise:</strong> Engineers, scientists, and specialists</li>
+                    <li><strong>Agricultural Production:</strong> Food to feed massive populations</li>
+                    <li><strong>Industrial Capacity:</strong> Factories to produce war materials</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="political-simulator">
+            <h2>🎮 Political Crisis Simulator</h2>
+            <div class="political-simulator">
+                <div class="control-interface">
+                    <button class="political-btn republic" onclick="simulateCrisis('succession')">Succession Crisis</button>
+                    <button class="political-btn empire" onclick="simulateCrisis('rebellion')">Popular Uprising</button>
+                    <button class="political-btn corporate" onclick="simulateCrisis('economic')">Economic Collapse</button>
+                    <button class="political-btn" onclick="simulateCrisis('war')">Interstellar War</button>
+                    <button class="political-btn" onclick="simulateCrisis('conspiracy')">Secret Conspiracy</button>
+                    <button class="political-btn" onclick="resetPolitical()">Reset Simulator</button>
+                </div>
+                <div class="simulator-display" id="politicalDisplay">
+                    > GALACTIC POLITICAL SIMULATOR v2.4
+                    <br>> "Politics is the art of the possible" - Otto von Bismarck
+                    <br>> Select crisis type to analyze political dynamics
+                    <br>> _
+                </div>
+            </div>
+        </section>
+
+        <section class="conspiracy-mechanics">
+            <div class="conspiracy-matrix">
+                <h2>🎭 Secret Societies and Hidden Powers</h2>
+                <p>The galaxy's true power often lies in shadows, with secret organizations pulling strings from behind the scenes. These conspiracies create long-term campaign mysteries and reveal hidden connections.</p>
+
+                <h3>Types of Secret Organizations</h3>
+                <h4>🔺 Ancient Orders</h4>
+                <p>Organizations that predate current governments, holding ancient knowledge and mysterious agendas. Examples: Sith Eternal, Je'daii Order</p>
+
+                <h4>💼 Shadow Corporations</h4>
+                <p>Business conglomerates that secretly control multiple legitimate companies and government officials. Examples: Kuat Drive Yards' political influence</p>
+
+                <h4>🔒 Intelligence Networks</h4>
+                <p>Spy organizations operating across faction lines, sometimes serving their own interests rather than their supposed masters. Examples: Fulcrum network</p>
+
+                <h4>🏛️ Political Cabals</h4>
+                <p>Secret groups within governments working to advance hidden agendas or overthrow the current order. Examples: Imperial Inner Circle</p>
+            </div>
+        </section>
+
+        <section class="senate-mechanics">
+            <div class="senate-voting">
+                <h2>🗳️ Senate Politics and Voting Mechanics</h2>
+                <p>When political conflicts can't be resolved through force or negotiation, they often end up in formal political bodies where votes determine outcomes.</p>
+
+                <h3>Senate Voting Dynamics</h3>
+                <div class="power-balance">
+                    <canvas id="votingWheel" width="300" height="300"></canvas>
+                    <p><em>Senate Vote Predictor - Hover over sections to see faction positions</em></p>
+                </div>
+
+                <h4>Voting Blocs and Coalitions</h4>
+                <ul>
+                    <li><strong>Core World Faction:</strong> Wealthy, conservative, pro-business</li>
+                    <li><strong>Rim World Alliance:</strong> Independent, suspicious of central authority</li>
+                    <li><strong>Human High Culture:</strong> Pro-human, traditionalist</li>
+                    <li><strong>Non-Human Coalition:</strong> Alien species seeking equal representation</li>
+                    <li><strong>Military Committee:</strong> Focused on security and defense spending</li>
+                    <li><strong>Free Trade Caucus:</strong> Corporate interests and deregulation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-council">
+                <h3>Political Campaign Exercises</h3>
+                
+                <h4>Exercise 1: Faction Design</h4>
+                <p>Create a new political faction for your campaign:</p>
+                <ul>
+                    <li>What is their core ideology and motivation?</li>
+                    <li>What resources and capabilities do they control?</li>
+                    <li>Who are their allies, rivals, and enemies?</li>
+                    <li>What methods do they use to achieve their goals?</li>
+                    <li>What internal conflicts or weaknesses do they have?</li>
+                </ul>
+
+                <h4>Exercise 2: Political Crisis</h4>
+                <p>Design a galactic crisis that forces player involvement:</p>
+                <ul>
+                    <li>What event triggers the crisis?</li>
+                    <li>How do different factions respond?</li>
+                    <li>What are the possible outcomes?</li>
+                    <li>How can player characters influence the result?</li>
+                    <li>What are the long-term consequences?</li>
+                </ul>
+
+                <h4>Exercise 3: Diplomatic Negotiation</h4>
+                <p>Create a multi-party negotiation scenario:</p>
+                <ul>
+                    <li>What is each faction trying to achieve?</li>
+                    <li>What can they offer to others?</li>
+                    <li>What are their red lines and deal-breakers?</li>
+                    <li>What complications arise during negotiations?</li>
+                    <li>How do player actions affect the outcome?</li>
+                </ul>
+
+                <h4>Exercise 4: Economic Warfare</h4>
+                <p>Design a conflict fought with economics rather than weapons:</p>
+                <ul>
+                    <li>What resources are being contested?</li>
+                    <li>How do factions try to gain economic advantage?</li>
+                    <li>What are the civilian consequences?</li>
+                    <li>How can players affect the economic balance?</li>
+                    <li>What military actions result from economic pressure?</li>
+                </ul>
+
+                <h4>Exercise 5: Secret Conspiracy</h4>
+                <p>Create a hidden organization pulling strings behind the scenes:</p>
+                <ul>
+                    <li>What is their ultimate goal?</li>
+                    <li>How do they maintain secrecy?</li>
+                    <li>Who are their agents and infiltrators?</li>
+                    <li>What clues might expose them?</li>
+                    <li>How do they react when discovered?</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="conclusion">
+            <h2>The Galactic Stage Awaits</h2>
+            <p>Remember, politics in Star Wars isn't just about governments and laws - it's about the clash of ideologies, the struggle between different visions of how the galaxy should be governed, and the personal cost of political involvement. The best political campaigns make players feel like their choices matter not just to their characters, but to entire star systems and the future of galactic civilization.</p>
+            
+            <p>When your players are debating whether to support a controversial senate bill, negotiating a trade agreement that could prevent a war, or deciding whether to expose a conspiracy that could topple a government, you'll know you've successfully brought the complex political landscape of Star Wars to life in your campaign.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"The dark side of the Force is a pathway to many abilities some consider to be unnatural... including political power." - Chancellor Palpatine</em></p>
+    </footer>
+
+    <script>
+        // Political crisis scenarios
+        const crisisScenarios = {
+            succession: {
+                title: "SUCCESSION CRISIS ANALYSIS",
+                trigger: "Planetary ruler dies without clear heir...",
+                dynamics: [
+                    "Multiple claimants emerge with different faction backing",
+                    "Rival houses mobilize private armies and mercenaries",
+                    "Off-world powers support different candidates for advantage",
+                    "Economic uncertainty causes market crashes and unrest",
+                    "Resolution depends on legitimacy, force, and negotiation"
+                ],
+                opportunities: "Diplomatic missions, intelligence gathering, military protection",
+                consequences: "New government alliance patterns, refugee crisis, economic disruption"
+            },
+            rebellion: {
+                title: "POPULAR UPRISING ANALYSIS",
+                trigger: "Government oppression reaches breaking point...",
+                dynamics: [
+                    "Mass protests evolve into armed resistance movements",
+                    "Government forces attempt to restore order through force",
+                    "External powers provide covert support to both sides",
+                    "Media coverage and propaganda shape public opinion",
+                    "Economic disruption spreads to neighboring systems"
+                ],
+                opportunities: "Choosing sides, protecting civilians, gathering intelligence",
+                consequences: "Government overthrow or crackdown, galactic alignment shifts"
+            },
+            economic: {
+                title: "ECONOMIC COLLAPSE ANALYSIS",
+                trigger: "Major trade route disruption causes economic cascade...",
+                dynamics: [
+                    "Key worlds lose access to essential goods and materials",
+                    "Corporate interests clash as markets destabilize",
+                    "Popular unrest grows as unemployment and prices rise",
+                    "Government responses vary from intervention to neglect",
+                    "Criminal organizations exploit chaos for territory"
+                ],
+                opportunities: "Smuggling operations, corporate espionage, relief missions",
+                consequences: "Political realignment, new trade agreements, social upheaval"
+            },
+            war: {
+                title: "INTERSTELLAR WAR ANALYSIS",
+                trigger: "Border dispute escalates to open military conflict...",
+                dynamics: [
+                    "Formal declarations of war and alliance mobilization",
+                    "Resource allocation shifts to military production",
+                    "Neutral systems forced to choose sides or face occupation",
+                    "Civilian populations suffer under blockades and bombing",
+                    "War crimes and atrocities create lasting grudges"
+                ],
+                opportunities: "Military service, diplomatic intervention, humanitarian aid",
+                consequences: "Territorial changes, reparations, lasting enmities"
+            },
+            conspiracy: {
+                title: "SECRET CONSPIRACY ANALYSIS",
+                trigger: "Hidden organization's influence is partially exposed...",
+                dynamics: [
+                    "Conspiracy members activate sleeper agents and contingencies",
+                    "Evidence gathering becomes dangerous as targets fight back",
+                    "Public revelation could destabilize multiple governments",
+                    "Counter-intelligence operations try to contain exposure",
+                    "Conspiracy splinters as members pursue different strategies"
+                ],
+                opportunities: "Investigation, infiltration, protection of witnesses",
+                consequences: "Government purges, public trust crisis, power vacuum"
+            }
+        };
+
+        // Galactic region data
+        const regionData = {
+            core: {
+                name: "Core Worlds",
+                politics: "Wealthy, influential, politically sophisticated. Home to Coruscant and the galactic government. Conservative and stability-focused.",
+                economy: "Financial centers, high technology, luxury goods. Controls banking and major trade routes.",
+                culture: "Cosmopolitan, diverse, trend-setting. High education and living standards.",
+                challenges: "Corruption, inequality, disconnection from frontier struggles."
+            },
+            mid: {
+                name: "Mid Rim Territories", 
+                politics: "Moderate influence, balanced representation. Often swing votes in galactic politics. Mix of independent and aligned systems.",
+                economy: "Manufacturing, agriculture, trade hubs. Backbone of galactic economy.",
+                culture: "Practical, hardworking, traditional values. Regional identity strong.",
+                challenges: "Caught between Core interests and Outer Rim independence."
+            },
+            outer: {
+                name: "Outer Rim Territories",
+                politics: "Independent-minded, suspicious of central authority. Weak government presence, local strongmen.",
+                economy: "Raw materials, farming, mining. Often exploited by Core corporations.",
+                culture: "Frontier spirit, self-reliance, diverse and rough. Home to criminals and rebels.",
+                challenges: "Lawlessness, poverty, exploitation, isolation."
+            },
+            unknown: {
+                name: "Unknown Regions",
+                politics: "Mysterious, isolated, potentially hostile. Unknown government structures.",
+                economy: "Unknown resources and capabilities. Potential for great wealth or danger.",
+                culture: "Alien, incomprehensible, possibly ancient. Few reliable contacts.",
+                challenges: "Communication barriers, unknown threats, navigation hazards."
+            }
+        };
+
+        function simulateCrisis(type) {
+            const crisis = crisisScenarios[type];
+            if (!crisis) return;
+
+            let output = `> ${crisis.title}\n`;
+            output += `> TRIGGER EVENT: ${crisis.trigger}\n>\n`;
+            output += `> POLITICAL DYNAMICS:\n`;
+            crisis.dynamics.forEach((dynamic, index) => {
+                output += `> ${index + 1}. ${dynamic}\n`;
+            });
+            output += `>\n> PLAYER OPPORTUNITIES: ${crisis.opportunities}\n`;
+            output += `> LONG-TERM CONSEQUENCES: ${crisis.consequences}\n`;
+            output += `>\n> Adapt scenario details to your campaign setting\n> _`;
+
+            document.getElementById('politicalDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function resetPolitical() {
+            const output = `> GALACTIC POLITICAL SIMULATOR v2.4\n> "Politics is the art of the possible" - Otto von Bismarck\n> Select crisis type to analyze political dynamics\n> _`;
+            document.getElementById('politicalDisplay').innerHTML = output.replace(/\n/g, '<br>');
+        }
+
+        function exploreRegion(region) {
+            const data = regionData[region];
+            if (!data) return;
+
+            let info = `<strong>${data.name}</strong><br><br>`;
+            info += `<strong>Politics:</strong> ${data.politics}<br><br>`;
+            info += `<strong>Economy:</strong> ${data.economy}<br><br>`;
+            info += `<strong>Culture:</strong> ${data.culture}<br><br>`;
+            info += `<strong>Challenges:</strong> ${data.challenges}`;
+
+            document.getElementById('regionInfo').innerHTML = info;
+        }
+
+        // Senate voting wheel
+        const votingCanvas = document.getElementById('votingWheel');
+        const votingCtx = votingCanvas.getContext('2d');
+
+        const votingBlocs = [
+            { name: 'Core Worlds', seats: 120, color: '#007bff', position: 'Pro-Government' },
+            { name: 'Rim Alliance', seats: 80, color: '#dc3545', position: 'Opposition' },
+            { name: 'Human High Culture', seats: 60, color: '#ffc107', position: 'Conservative' },
+            { name: 'Non-Human Coalition', seats: 90, color: '#28a745', position: 'Progressive' },
+            { name: 'Military Committee', seats: 40, color: '#6c757d', position: 'Security-Focused' },
+            { name: 'Free Trade Caucus', seats: 50, color: '#17a2b8', position: 'Pro-Business' }
+        ];
+
+        function drawVotingWheel() {
+            const centerX = votingCanvas.width / 2;
+            const centerY = votingCanvas.height / 2;
+            const radius = 120;
+            
+            let totalSeats = votingBlocs.reduce((sum, bloc) => sum + bloc.seats, 0);
+            let currentAngle = 0;
+
+            votingBlocs.forEach(bloc => {
+                const sliceAngle = (bloc.seats / totalSeats) * 2 * Math.PI;
+                
+                votingCtx.beginPath();
+                votingCtx.moveTo(centerX, centerY);
+                votingCtx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+                votingCtx.closePath();
+                votingCtx.fillStyle = bloc.color;
+                votingCtx.fill();
+                votingCtx.strokeStyle = '#fff';
+                votingCtx.lineWidth = 2;
+                votingCtx.stroke();
+
+                // Add labels
+                const labelAngle = currentAngle + sliceAngle / 2;
+                const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+                const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+                
+                votingCtx.fillStyle = '#000';
+                votingCtx.font = '10px Arial';
+                votingCtx.textAlign = 'center';
+                votingCtx.fillText(bloc.seats, labelX, labelY);
+
+                currentAngle += sliceAngle;
+            });
+
+            // Center circle
+            votingCtx.beginPath();
+            votingCtx.arc(centerX, centerY, 30, 0, 2 * Math.PI);
+            votingCtx.fillStyle = '#fff';
+            votingCtx.fill();
+            votingCtx.strokeStyle = '#000';
+            votingCtx.stroke();
+            
+            votingCtx.fillStyle = '#000';
+            votingCtx.font = '12px Arial';
+            votingCtx.textAlign = 'center';
+            votingCtx.fillText('Senate', centerX, centerY);
+        }
+
+        votingCanvas.addEventListener('mousemove', (e) => {
+            const rect = votingCanvas.getBoundingClientRect();
+            const x = e.clientX - rect.left - votingCanvas.width / 2;
+            const y = e.clientY - rect.top - votingCanvas.height / 2;
+            const angle = Math.atan2(y, x);
+            
+            // Convert to positive angle
+            const positiveAngle = angle < 0 ? angle + 2 * Math.PI : angle;
+            
+            // Find which bloc this angle corresponds to
+            let totalSeats = votingBlocs.reduce((sum, bloc) => sum + bloc.seats, 0);
+            let currentAngle = 0;
+            
+            for (let bloc of votingBlocs) {
+                const sliceAngle = (bloc.seats / totalSeats) * 2 * Math.PI;
+                if (positiveAngle >= currentAngle && positiveAngle < currentAngle + sliceAngle) {
+                    votingCanvas.title = `${bloc.name}: ${bloc.seats} seats - ${bloc.position}`;
+                    break;
+                }
+                currentAngle += sliceAngle;
+            }
+        });
+
+        // Initialize
+        drawVotingWheel();
+        resetPolitical();
+    </script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Epic Space Encounters and Starship Combat in Star Wars RPG</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .space-theater { background: linear-gradient(135deg, #000428, #004e92); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
+        .space-theater::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="0.5" fill="white"/><circle cx="80" cy="15" r="0.3" fill="white"/><circle cx="25" cy="70" r="0.4" fill="white"/><circle cx="90" cy="80" r="0.2" fill="white"/><circle cx="60" cy="40" r="0.3" fill="white"/></svg>') repeat; opacity: 0.6; }
+        .space-theater * { position: relative; z-index: 2; }
+        .combat-phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .phase-card { background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #007bff; }
+        .ship-showcase { display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; }
+        .ship-card { flex: 1; min-width: 200px; background: #343a40; color: white; padding: 15px; border-radius: 10px; }
+        .encounter-builder { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
+        .tactics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .tactic-card { background: #e8f5e8; padding: 15px; border-radius: 8px; border: 2px solid #28a745; }
+        .environmental-hazards { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
+        .exercise-zone { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
+        .combat-simulator { background: #000; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
+        .control-panel { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; justify-content: center; }
+        .control-btn { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        .control-btn:hover { background: #0056b3; }
+        .control-btn:disabled { background: #6c757d; cursor: not-allowed; }
+        .status-display { color: #00ff00; font-family: monospace; margin: 10px 0; }
+        .hyperspace-tunnel { position: relative; height: 300px; overflow: hidden; border-radius: 10px; }
+        @keyframes hyperspace { 0% { transform: translateZ(-1000px) rotateY(0deg); } 100% { transform: translateZ(1000px) rotateY(360deg); } }
+        .star-line { position: absolute; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, white, transparent); animation: hyperspace 0.5s linear infinite; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Designing Epic Space Encounters and Starship Combat</h1>
+        <p><em>"Never tell me the odds!" - Han Solo</em></p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="space-theater">
+                <h2>Welcome to the Academy of Stellar Warfare</h2>
+                <p>Space combat in Star Wars isn't just about who has the bigger guns - it's about speed, wit, teamwork, and sometimes sheer audacity. From the trench run on the Death Star to the asteroid chase in Empire, the best space encounters combine tactical challenge with cinematic drama.</p>
+                
+                <p>Think of space combat like a three-dimensional chess game played at lightspeed, where the board itself can explode and the pieces have personalities. Your job as a Game Master is to create encounters that make every player feel like the hero of their own action movie.</p>
+            </div>
+        </section>
+
+        <section class="fundamentals">
+            <h2>The Foundations of Space Encounter Design</h2>
+            
+            <div class="mermaid">
+                graph TD
+                    A[Space Encounter Design] --> B[Tactical Layer]
+                    A --> C[Narrative Layer] 
+                    A --> D[Environmental Layer]
+                    B --> E[Ship Capabilities]
+                    B --> F[Pilot Skills]
+                    B --> G[Formation Tactics]
+                    C --> H[Story Stakes]
+                    C --> I[Character Moments]
+                    C --> J[Emotional Beats]
+                    D --> K[Asteroid Fields]
+                    D --> L[Nebulae & Gas Clouds]
+                    D --> M[Gravity Wells]
+            </div>
+
+            <h3>The Three Pillars of Space Combat</h3>
+            <div class="combat-phases">
+                <div class="phase-card">
+                    <h4>🎯 Tactical Engagement</h4>
+                    <p>The mechanical layer - movement, weapons, shields, and system management. This gives players concrete choices and consequences, like deciding whether to divert power from weapons to shields.</p>
+                </div>
+                <div class="phase-card">
+                    <h4>🎬 Cinematic Narrative</h4>
+                    <p>The story layer - why this fight matters, what's at stake, and how characters respond under pressure. This transforms "I roll to hit" into "I dive through the explosion to save my wingman."</p>
+                </div>
+                <div class="phase-card">
+                    <h4>🌌 Environmental Drama</h4>
+                    <p>The setting layer - asteroid fields, nebulae, and gravity wells that create dynamic battlefields. This makes space feel alive and dangerous, not just an empty void.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="ship-roles">
+            <h2>Understanding Starship Roles and Capabilities</h2>
+            <p>Just like characters in a party, starships have roles that complement each other. Understanding these roles helps you design encounters where every ship and pilot can shine.</p>
+
+            <h3>The Starship Ecosystem</h3>
+            <div class="ship-showcase">
+                <div class="ship-card">
+                    <h4>⚡ Fighters & Interceptors</h4>
+                    <p><strong>Role:</strong> Speed and agility<br>
+                    <strong>Examples:</strong> X-wing, TIE Fighter, A-wing<br>
+                    <strong>Tactics:</strong> Hit-and-run, escort, dogfighting</p>
+                </div>
+                <div class="ship-card">
+                    <h4>💥 Bombers & Assault Ships</h4>
+                    <p><strong>Role:</strong> Heavy damage vs large targets<br>
+                    <strong>Examples:</strong> Y-wing, TIE Bomber, B-wing<br>
+                    <strong>Tactics:</strong> Torpedo runs, capital ship attacks</p>
+                </div>
+                <div class="ship-card">
+                    <h4>🛡️ Corvettes & Frigates</h4>
+                    <p><strong>Role:</strong> Balanced offense and defense<br>
+                    <strong>Examples:</strong> CR90 Corvette, Nebulon-B<br>
+                    <strong>Tactics:</strong> Escort, patrol, anti-fighter</p>
+                </div>
+                <div class="ship-card">
+                    <h4>⭐ Capital Ships</h4>
+                    <p><strong>Role:</strong> Command and heavy firepower<br>
+                    <strong>Examples:</strong> Star Destroyer, Mon Calamari Cruiser<br>
+                    <strong>Tactics:</strong> Fleet command, bombardment, fighter launch</p>
+                </div>
+            </div>
+
+            <h4>The Rock-Paper-Scissors of Space Combat</h4>
+            <div class="mermaid">
+                graph LR
+                    A[Fighters] --> B[Bombers]
+                    B --> C[Capital Ships]
+                    C --> A
+                    
+                    A1[Fast & Agile] --> B1[Slow but Armored]
+                    B1 --> C1[Powerful but Vulnerable]
+                    C1 --> A1
+            </div>
+        </section>
+
+        <section class="encounter-types">
+            <h2>Types of Space Encounters</h2>
+            <p>Not every space encounter needs to be a dogfight. The best Star Wars space scenes often combine multiple challenges and objectives.</p>
+
+            <div class="encounter-builder">
+                <h3>The Encounter Menu</h3>
+                
+                <h4>🔫 Combat Encounters</h4>
+                <ul>
+                    <li><strong>Dogfight:</strong> Fighter vs fighter, skill and maneuverability</li>
+                    <li><strong>Fleet Battle:</strong> Large-scale warfare with multiple ship types</li>
+                    <li><strong>Asymmetric Combat:</strong> David vs Goliath scenarios</li>
+                    <li><strong>Running Battle:</strong> Fighting while moving toward an objective</li>
+                </ul>
+
+                <h4>🏃 Chase Encounters</h4>
+                <ul>
+                    <li><strong>Pursuit:</strong> Being chased through dangerous terrain</li>
+                    <li><strong>Intercept:</strong> Racing to catch or stop someone</li>
+                    <li><strong>Escort:</strong> Protecting a vulnerable ship while moving</li>
+                    <li><strong>Blockade Running:</strong> Breaking through enemy lines</li>
+                </ul>
+
+                <h4>🧩 Puzzle Encounters</h4>
+                <ul>
+                    <li><strong>Navigation:</strong> Finding safe passage through hazards</li>
+                    <li><strong>Stealth:</strong> Avoiding detection while accomplishing goals</li>
+                    <li><strong>Rescue:</strong> Extracting people or cargo under pressure</li>
+                    <li><strong>Sabotage:</strong> Getting close enough to disable enemy systems</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="environmental-design">
+            <h2>Environmental Battlefield Design</h2>
+            <p>Space isn't empty - it's full of phenomena that can turn a simple firefight into a three-dimensional puzzle. Environmental hazards make encounters memorable and force tactical thinking.</p>
+
+            <div class="environmental-hazards">
+                <h3>🌌 Classic Space Environments</h3>
+                
+                <h4>Asteroid Fields</h4>
+                <p><strong>Tactical Impact:</strong> Cover, collision damage, sensor interference<br>
+                <strong>Story Opportunities:</strong> "Never tell me the odds" moments, mining operations, hidden bases<br>
+                <strong>GM Tips:</strong> Use asteroids as moving cover, create narrow passages, hide surprises inside large rocks</p>
+
+                <h4>Nebulae & Gas Clouds</h4>
+                <p><strong>Tactical Impact:</strong> Reduced sensors, engine strain, visual concealment<br>
+                <strong>Story Opportunities:</strong> Ambush sites, lost ships, mysterious phenomena<br>
+                <strong>GM Tips:</strong> Limit communication range, create sensor ghosts, use beautiful but dangerous effects</p>
+
+                <h4>Gravity Wells & Stellar Phenomena</h4>
+                <p><strong>Tactical Impact:</strong> Forced movement, hyperspace interference, tidal forces<br>
+                <strong>Story Opportunities:</strong> Slingshot maneuvers, emergency exits from hyperspace, ancient mysteries<br>
+                <strong>GM Tips:</strong> Use gravity to pull ships off course, create time pressure with stellar events</p>
+
+                <h4>Space Stations & Megastructures</h4>
+                <p><strong>Tactical Impact:</strong> Complex terrain, multiple objective points, civilian considerations<br>
+                <strong>Story Opportunities:</strong> Boarding actions, evacuation scenarios, political intrigue<br>
+                <strong>GM Tips:</strong> Multi-level combat, use station systems as tactical elements, consider collateral damage</p>
+            </div>
+        </section>
+
+        <section class="combat-simulator">
+            <h2>Interactive Combat Simulator</h2>
+            <div class="combat-simulator">
+                <canvas id="spaceField" width="800" height="500"></canvas>
+                <div class="control-panel">
+                    <button class="control-btn" onclick="addFighter()">Add Fighter</button>
+                    <button class="control-btn" onclick="addAsteroid()">Add Asteroid</button>
+                    <button class="control-btn" onclick="addNebula()">Add Nebula</button>
+                    <button class="control-btn" onclick="startCombat()">Start Combat</button>
+                    <button class="control-btn" onclick="resetField()">Reset Field</button>
+                </div>
+                <div class="status-display" id="combatStatus">Click buttons to build your space encounter!</div>
+            </div>
+        </section>
+
+        <section class="tactical-considerations">
+            <h2>Advanced Tactical Considerations</h2>
+            
+            <h3>Formation Flying and Squadron Tactics</h3>
+            <p>Real space combat isn't just individual ships flying around randomly. Military forces use formations and coordinated tactics, just like naval or air combat.</p>
+
+            <div class="tactics-grid">
+                <div class="tactic-card">
+                    <h4>⚔️ Fighter Formations</h4>
+                    <p><strong>Finger Four:</strong> Classic dogfighting formation for mutual support<br>
+                    <strong>Attack Pattern Delta:</strong> Coordinated multi-angle assault<br>
+                    <strong>Screen Formation:</strong> Protective barrier for larger ships</p>
+                </div>
+                <div class="tactic-card">
+                    <h4>🎯 Bombing Runs</h4>
+                    <p><strong>Torpedo Spread:</strong> Multiple angles to overwhelm point defenses<br>
+                    <strong>Saturation Attack:</strong> Overwhelming firepower concentration<br>
+                    <strong>Trench Run:</strong> Using terrain to avoid defensive fire</p>
+                </div>
+                <div class="tactic-card">
+                    <h4>🛡️ Defensive Tactics</h4>
+                    <p><strong>Combat Air Patrol:</strong> Fighters protecting key assets<br>
+                    <strong>Missile Picket:</strong> Ships positioned to intercept torpedoes<br>
+                    <strong>Overlapping Fields:</strong> Mutual defensive fire support</p>
+                </div>
+                <div class="tactic-card">
+                    <h4>🌊 Fleet Maneuvers</h4>
+                    <p><strong>Line of Battle:</strong> Maximizing broadside firepower<br>
+                    <strong>Pincer Movement:</strong> Attacking from multiple directions<br>
+                    <strong>Fighting Withdrawal:</strong> Organized retreat under fire</p>
+                </div>
+            </div>
+
+            <h3>Power Management and System Damage</h3>
+            <p>Star Wars ships aren't just hit point buckets - they're complex machines with interconnected systems. Tactical power management adds depth and creates dramatic moments.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Ship's Reactor] --> B[Weapons]
+                    A --> C[Shields]
+                    A --> D[Engines]
+                    A --> E[Life Support]
+                    A --> F[Sensors]
+                    
+                    B --> G[Laser Cannons]
+                    B --> H[Ion Cannons]
+                    B --> I[Torpedo Launchers]
+                    
+                    C --> J[Forward Shields]
+                    C --> K[Rear Shields]
+                    C --> L[Deflector Screens]
+            </div>
+        </section>
+
+        <section class="narrative-integration">
+            <h2>Integrating Narrative and Combat</h2>
+            <p>The best space encounters tell stories. Every maneuver should feel motivated by character goals, and every explosion should have emotional weight.</p>
+
+            <h3>Character Moments in Combat</h3>
+            <div class="encounter-builder">
+                <h4>Creating Hero Moments</h4>
+                <ul>
+                    <li><strong>The Impossible Shot:</strong> Luke's Death Star trench run - using the Force instead of targeting computers</li>
+                    <li><strong>The Sacrifice Play:</strong> Ramming an enemy ship to save allies, or drawing fire to protect others</li>
+                    <li><strong>The Clutch Repair:</strong> R2-D2 fixing the hyperdrive while under fire</li>
+                    <li><strong>The Brilliant Maneuver:</strong> Using the environment creatively, like hiding in garbage or flying through an asteroid field</li>
+                </ul>
+
+                <h4>Emotional Stakes</h4>
+                <p>Every space encounter should answer: "What happens if we lose?" The best answers are personal and immediate:</p>
+                <ul>
+                    <li>A character's home world is threatened</li>
+                    <li>Important allies or civilians are in danger</li>
+                    <li>Critical information must be delivered</li>
+                    <li>A chance for redemption or revenge is at stake</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="hyperspace-mechanics">
+            <h2>Hyperspace: The Ultimate Tactical Tool</h2>
+            <p>Hyperspace isn't just fast travel - it's a fundamental part of Star Wars tactical thinking. Controlling when and where ships can jump creates strategic depth.</p>
+
+            <div class="hyperspace-tunnel">
+                <div class="star-line" style="left: 10%;"></div>
+                <div class="star-line" style="left: 30%; animation-delay: -0.1s;"></div>
+                <div class="star-line" style="left: 50%; animation-delay: -0.2s;"></div>
+                <div class="star-line" style="left: 70%; animation-delay: -0.3s;"></div>
+                <div class="star-line" style="left: 90%; animation-delay: -0.4s;"></div>
+            </div>
+
+            <h3>Hyperspace Tactical Applications</h3>
+            <ul>
+                <li><strong>Interdiction:</strong> Gravity well generators prevent enemy escape</li>
+                <li><strong>Microjumps:</strong> Short hops to outflank enemy formations</li>
+                <li><strong>Emergency Exit:</strong> Jumping away from overwhelming odds</li>
+                <li><strong>Hyperspace Ramming:</strong> The ultimate sacrifice play (use sparingly!)</li>
+                <li><strong>Navigation Hazards:</strong> Stellar phenomena that prevent safe jumps</li>
+            </ul>
+        </section>
+
+        <section class="encounter-examples">
+            <h2>Complete Encounter Examples</h2>
+            
+            <div class="encounter-builder">
+                <h3>Example 1: "Asteroid Ambush"</h3>
+                <p><strong>Setup:</strong> Characters are transporting medical supplies through the Hoth asteroid field when Imperial forces attack.</p>
+                
+                <p><strong>Objectives:</strong></p>
+                <ul>
+                    <li>Primary: Protect the medical transport</li>
+                    <li>Secondary: Disable Imperial ships for questioning</li>
+                    <li>Hidden: Discover this was a trap - someone leaked the route</li>
+                </ul>
+
+                <p><strong>Environmental Challenges:</strong></p>
+                <ul>
+                    <li>Collision damage from asteroids</li>
+                    <li>Sensor shadows hiding enemy ships</li>
+                    <li>Mining equipment that can be weaponized</li>
+                </ul>
+
+                <p><strong>Escalation:</strong> Imperial reinforcements arrive, forcing difficult choices about when to retreat vs. continue fighting.</p>
+            </div>
+
+            <div class="encounter-builder">
+                <h3>Example 2: "Death Star Reactor Run"</h3>
+                <p><strong>Setup:</strong> Classic trench run scenario, but the exhaust port is defended by a squadron of elite TIE fighters.</p>
+                
+                <p><strong>Objectives:</strong></p>
+                <ul>
+                    <li>Primary: Destroy the thermal exhaust port</li>
+                    <li>Secondary: Minimize Rebel casualties</li>
+                    <li>Tertiary: Escape before the Death Star fires</li>
+                </ul>
+
+                <p><strong>Environmental Challenges:</strong></p>
+                <ul>
+                    <li>Turbolaser towers creating deadly crossfire</li>
+                    <li>Narrow trench limiting maneuverability</li>
+                    <li>Time pressure as Death Star charges to fire</li>
+                </ul>
+
+                <p><strong>Character Moments:</strong> Opportunities for Force use, self-sacrifice, and trusting in friends vs. technology.</p>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <div class="exercise-zone">
+                <h3>Practice Exercises</h3>
+                
+                <h4>Exercise 1: Environmental Challenge Design</h4>
+                <p>Choose a space phenomenon (pulsar, black hole, solar flare, etc.) and design three different ways it could affect a space encounter:</p>
+                <ul>
+                    <li>One tactical challenge (movement/combat effects)</li>
+                    <li>One narrative opportunity (story implications)</li>
+                    <li>One puzzle element (problem to solve)</li>
+                </ul>
+
+                <h4>Exercise 2: Asymmetric Encounter</h4>
+                <p>Design an encounter where the players are clearly outgunned, but can win through clever tactics. Consider:</p>
+                <ul>
+                    <li>What environmental advantage can they exploit?</li>
+                    <li>What weakness does the enemy have?</li>
+                    <li>How can teamwork overcome individual weakness?</li>
+                </ul>
+
+                <h4>Exercise 3: Multi-Objective Mission</h4>
+                <p>Create a space encounter with three simultaneous objectives that require splitting the party's attention:</p>
+                <ul>
+                    <li>One combat objective (fight something)</li>
+                    <li>One rescue objective (save someone/something)</li>
+                    <li>One puzzle objective (solve a problem)</li>
+                </ul>
+
+                <h4>Exercise 4: Character-Driven Combat</h4>
+                <p>Take a personal character conflict and design a space encounter that forces the characters to confront it. Examples:</p>
+                <ul>
+                    <li>A character's old mentor is now flying for the enemy</li>
+                    <li>Saving civilians means letting the villain escape</li>
+                    <li>Two characters have conflicting orders from their superiors</li>
+                </ul>
+
+                <h4>Exercise 5: Escalation Planning</h4>
+                <p>Design a simple escort mission and plan three escalation stages:</p>
+                <ul>
+                    <li>Stage 1: Minor pirate harassment</li>
+                    <li>Stage 2: Serious Imperial patrol</li>
+                    <li>Stage 3: Major fleet engagement</li>
+                </ul>
+                <p>How does each stage build on the previous one? What choices lead to escalation?</p>
+            </div>
+        </section>
+
+        <section class="advanced-topics">
+            <h2>Advanced Topics for Master Tacticians</h2>
+            
+            <h3>Electronic Warfare</h3>
+            <p>Ion cannons, sensor jamming, and communication disruption add layers of complexity to space combat. These systems can disable enemies without destroying them, creating capture opportunities and moral dilemmas.</p>
+
+            <h3>Capital Ship Operations</h3>
+            <p>Large ships fight differently than fighters. They have multiple weapon systems, hangar bays launching fighters, and crew operating different stations. Bridge combat becomes about coordinating multiple systems and teams.</p>
+
+            <h3>Cross-System Encounters</h3>
+            <p>Some encounters span multiple star systems, with hyperspace jumps between battle sites. This creates campaign-spanning conflicts and opportunities for strategic thinking beyond individual battles.</p>
+
+            <h3>Force Powers in Space Combat</h3>
+            <p>How do Jedi and Sith powers work in the vacuum of space? Precognition helps with piloting, telekinesis can move asteroids or redirect missiles, and Force lightning can disable ship systems.</p>
+        </section>
+
+        <section class="conclusion">
+            <h2>Final Approach</h2>
+            <p>Remember, the goal isn't to simulate realistic space combat - it's to create the feeling of being in a Star Wars movie. Focus on speed, drama, and meaningful choices. Make every player feel like they're the hero of their own action sequence, whether they're piloting an X-wing or commanding a Star Destroyer.</p>
+            
+            <p>The best space encounters combine tactical challenge with emotional stakes, environmental drama with character development. When your players are cheering after successfully pulling off an impossible maneuver to save their friends, you'll know you've captured the true spirit of Star Wars space combat.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p><em>"Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not. For my ally is the Force, and a powerful ally it is." - Yoda (proving that even small fighters can take down massive ships with the right tactics)</em></p>
+    </footer>
+
+    <script>
+        // Space Combat Simulator
+        const canvas = document.getElementById('spaceField');
+        const ctx = canvas.getContext('2d');
+        
+        let ships = [];
+        let asteroids = [];
+        let nebulae = [];
+        let combatActive = false;
+        let animationId = null;
+        
+        function clearCanvas() {
+            ctx.fillStyle = '#000011';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add stars
+            ctx.fillStyle = '#ffffff';
+            for (let i = 0; i < 100; i++) {
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1);
+            }
+        }
+        
+        function addFighter() {
+            ships.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 4,
+                vy: (Math.random() - 0.5) * 4,
+                type: 'fighter',
+                color: Math.random() > 0.5 ? '#00ff00' : '#ff0000',
+                angle: Math.random() * Math.PI * 2
+            });
+            updateStatus(`Fighter added! Total ships: ${ships.length}`);
+        }
+        
+        function addAsteroid() {
+            asteroids.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 30 + 10,
+                rotation: Math.random() * Math.PI * 2,
+                rotSpeed: (Math.random() - 0.5) * 0.1
+            });
+            updateStatus(`Asteroid added! Total asteroids: ${asteroids.length}`);
+        }
+        
+        function addNebula() {
+            nebulae.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 100 + 50,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+            updateStatus(`Nebula added! Total nebulae: ${nebulae.length}`);
+        }
+        
+        function startCombat() {
+            if (combatActive) return;
+            combatActive = true;
+            updateStatus('Combat initiated! Ships are maneuvering...');
+            animate();
+        }
+        
+        function resetField() {
+            ships = [];
+            asteroids = [];
+            nebulae = [];
+            combatActive = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            clearCanvas();
+            updateStatus('Battlefield reset. Ready for new encounter design!');
+        }
+        
+        function updateStatus(message) {
+            document.getElementById('combatStatus').textContent = message;
+        }
+        
+        function drawShip(ship) {
+            ctx.save();
+            ctx.translate(ship.x, ship.y);
+            ctx.rotate(ship.angle);
+            
+            // Ship body
+            ctx.strokeStyle = ship.color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(10, 0);
+            ctx.lineTo(-8, -6);
+            ctx.lineTo(-5, 0);
+            ctx.lineTo(-8, 6);
+            ctx.closePath();
+            ctx.stroke();
+            
+            // Engine glow
+            ctx.fillStyle = ship.color + '66';
+            ctx.fillRect(-8, -2, -6, 4);
+            
+            ctx.restore();
+        }
+        
+        function drawAsteroid(asteroid) {
+            ctx.save();
+            ctx.translate(asteroid.x, asteroid.y);
+            ctx.rotate(asteroid.rotation);
+            
+            ctx.strokeStyle = '#888888';
+            ctx.fillStyle = '#444444';
+            ctx.lineWidth = 1;
+            
+            // Irregular asteroid shape
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const variance = 0.7 + Math.random() * 0.6;
+                const x = Math.cos(angle) * asteroid.size * variance;
+                const y = Math.sin(angle) * asteroid.size * variance;
+                
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            
+            ctx.restore();
+        }
+        
+        function drawNebula(nebula) {
+            const gradient = ctx.createRadialGradient(
+                nebula.x, nebula.y, 0,
+                nebula.x, nebula.y, nebula.size
+            );
+            gradient.addColorStop(0, `rgba(128, 0, 255, ${nebula.opacity})`);
+            gradient.addColorStop(0.5, `rgba(64, 0, 128, ${nebula.opacity * 0.5})`);
+            gradient.addColorStop(1, 'rgba(128, 0, 255, 0)');
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(nebula.x, nebula.y, nebula.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function animate() {
+            clearCanvas();
+            
+            // Draw nebulae first (background)
+            nebulae.forEach(drawNebula);
+            
+            // Draw asteroids
+            asteroids.forEach(asteroid => {
+                asteroid.rotation += asteroid.rotSpeed;
+                drawAsteroid(asteroid);
+            });
+            
+            // Update and draw ships
+            ships.forEach(ship => {
+                // Simple AI movement
+                ship.angle += (Math.random() - 0.5) * 0.2;
+                ship.x += ship.vx;
+                ship.y += ship.vy;
+                
+                // Wrap around screen
+                if (ship.x < 0) ship.x = canvas.width;
+                if (ship.x > canvas.width) ship.x = 0;
+                if (ship.y < 0) ship.y = canvas.height;
+                if (ship.y > canvas.height) ship.y = 0;
+                
+                drawShip(ship);
+                
+                // Draw laser shots occasionally
+                if (Math.random() < 0.05) {
+                    ctx.strokeStyle = ship.color;
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(ship.x, ship.y);
+                    ctx.lineTo(
+                        ship.x + Math.cos(ship.angle) * 50,
+                        ship.y + Math.sin(ship.angle) * 50
+                    );
+                    ctx.stroke();
+                }
+            });
+            
+            if (combatActive) {
+                animationId = requestAnimationFrame(animate);
+            }
+        }
+        
+        // Initialize
+        clearCanvas();
+    </script>
+</body>
+</html>
