@@ -4,56 +4,419 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - The Fundamentals of Force and Dice</title>
-    <link rel="stylesheet" href="/styles/main.css">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="/styles/nav.js" defer></script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: #020810;
+            color: #c8d6e5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ---- starfield ---- */
+        .stars, .stars2 {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background: transparent;
+        }
+        .stars {
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.7), transparent),
+                radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,.5), transparent),
+                radial-gradient(1.5px 1.5px at 70% 10%, rgba(255,255,255,.8), transparent),
+                radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,.4), transparent),
+                radial-gradient(1px 1px at 25% 80%, rgba(255,255,255,.6), transparent),
+                radial-gradient(1.2px 1.2px at 55% 35%, rgba(255,255,255,.5), transparent),
+                radial-gradient(1px 1px at 92% 75%, rgba(255,255,255,.3), transparent);
+            background-size: 250px 250px;
+            animation: drift 90s linear infinite;
+        }
+        .stars2 {
+            background-image:
+                radial-gradient(1px 1px at 15% 55%, rgba(180,210,255,.5), transparent),
+                radial-gradient(1.5px 1.5px at 60% 25%, rgba(255,220,150,.6), transparent),
+                radial-gradient(1px 1px at 80% 85%, rgba(200,200,255,.4), transparent);
+            background-size: 350px 350px;
+            animation: drift 140s linear infinite reverse;
+        }
+        @keyframes drift { to { background-position: 1000px 500px; } }
+
+        /* ---- hero ---- */
+        .hero {
+            position: relative; z-index: 1;
+            text-align: center;
+            padding: 4rem 1.5rem 3rem;
+            background: radial-gradient(ellipse at 50% 120%, rgba(59,130,246,.12) 0%, transparent 70%);
+        }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 40%, #fcd34d 100%);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            margin-bottom: .6rem;
+            animation: fadeUp .8s ease-out both;
+        }
+        .hero .tagline {
+            font-size: clamp(.95rem, 2.2vw, 1.25rem);
+            font-weight: 300;
+            color: #94a3b8;
+            max-width: 640px; margin: 0 auto;
+            animation: fadeUp .8s .15s ease-out both;
+        }
+        .hero .stat-bar {
+            display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+            margin-top: 1.8rem;
+            animation: fadeUp .8s .3s ease-out both;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'Orbitron', sans-serif; font-weight: 700;
+            font-size: 1.6rem; color: #fbbf24;
+        }
+        .stat-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: #64748b; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---- content ---- */
+        .content {
+            position: relative; z-index: 1;
+            max-width: 1100px; margin: 0 auto;
+            padding: 0 1.25rem 4rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: #60a5fa;
+            border-bottom: 1px solid rgba(96,165,250,.25);
+            padding-bottom: .5rem;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        /* ---- cards ---- */
+        .card {
+            display: flex; align-items: flex-start; gap: .9rem;
+            background: rgba(15,23,42,.65);
+            border: 1px solid rgba(96,165,250,.12);
+            border-radius: 12px;
+            padding: 1rem 1.15rem;
+            text-decoration: none; color: #c8d6e5;
+            transition: transform .2s, border-color .2s, box-shadow .2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(251,191,36,.4);
+            box-shadow: 0 6px 24px rgba(251,191,36,.08);
+        }
+        .card-icon {
+            font-size: 1.6rem; line-height: 1;
+            flex-shrink: 0; padding-top: 2px;
+        }
+        .card-body { flex: 1; min-width: 0; }
+        .card-title {
+            font-weight: 600; font-size: 1rem; color: #e2e8f0;
+            margin-bottom: .25rem;
+        }
+        .card-desc {
+            font-size: .82rem; line-height: 1.45; color: #94a3b8;
+        }
+
+        /* ---- cta ---- */
+        .cta {
+            text-align: center; margin-top: 3rem;
+            animation: fadeUp .8s .5s ease-out both;
+        }
+        .cta a {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif; font-weight: 700;
+            font-size: .95rem; letter-spacing: .06em; text-transform: uppercase;
+            color: #020810; background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            padding: .85rem 2.4rem; border-radius: 8px;
+            text-decoration: none;
+            transition: box-shadow .2s, transform .2s;
+        }
+        .cta a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(251,191,36,.35);
+        }
+
+        /* ---- footer ---- */
+        .index-footer {
+            position: relative; z-index: 1;
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            font-size: .8rem; color: #475569;
+            border-top: 1px solid rgba(96,165,250,.1);
+            max-width: 1100px; margin: 0 auto;
+        }
+        .index-footer a { color: #60a5fa; text-decoration: none; }
+        .index-footer a:hover { text-decoration: underline; }
+
+        /* ---- responsive ---- */
+        @media (max-width: 480px) {
+            .hero { padding: 3rem 1rem 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .stat-bar { gap: 1.2rem; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Star Wars RPG: The Fundamentals of Force and Dice</h1>
-        <p class="subtitle">Welcome to a Galaxy Far, Far Away - Your Journey Begins Here</p>
-    </header>
+    <div class="stars"></div>
+    <div class="stars2"></div>
 
-    <main>
-        <h3>Star Wars RPG</h3>
-            <p>Live out your own Star Wars saga. Play as Jedi, smugglers, or rebels fighting the Empire. Great for fans of the movies who want to create their own adventures in that universe.</p>
-            <ul>
-                <li><a href="/sw_intro.html">Introduction</a></li>
-                <li><a href="/sw_char.html">Character Creation</a></li>
-                <li><a href="/sw_character_examples.html">Character Examples</a></li>
-                
-                <li><a href="/sw_100.html">100 Characters</a></li>
-                <li><a href="/sw_names.html">Character Names</a></li>
-                <li><a href="/sw_groups.html">Character Group Dynamics</a></li>
-                <li><a href="/sw_combat.html">Combat Game Mechanics</a></li>
-                <li><a href="/sw_dice_roller.html">Dice Roller</a></li>
-                <li><a href="/sw_force_and_lightsaber.html">The Force</a></li>
-                <li><a href="/sw_vehicles.html">Vehicles</a></li>
-                <li><a href="/sw_adv_dice.html">Advanced Dice</a></li>
-                <li><a href="/sw_campaign.html">Campaign</a></li>
-                <li><a href="/sw_gm_techniques.html">Introduction to Game Mastery</a></li>
-                <li><a href="/starwars_rpg_foundations.html">RPG Foundations</a></li>
-                <li><a href="/starwars_planets_locations.html">Memorable planets and Locations</a></li>
-                <li><a href="/starwars_space_encounters.html">Space Encounters</a></li>
-                <li><a href="/starwars_npcs_villains.html">NPCs and Villains</a></li>
-                <li><a href="/starwars_campaign_arcs.html">Campaign arcs and stories</a></li>
-                <li><a href="/starwars_social_encounters.html">Social Encounters</a></li>
-                <li><a href="/starwars_force_powers.html">Force Powers</a></li>
-                <li><a href="/starwars_ground_combat.html">Ground Combat</a></li>
-                <li><a href="/starwars_galactic_politics.html">Galactic Politics</a></li>
-                <li><a href="/starwars_droids_technology.html">Droids and Technology</a></li>
-                <li><a href="/starwars_time_travel.html">Time Travel</a></li>
-                <li><a href="/starwars_capstone_mastery.html">Capstone</a></li>
+    <section class="hero">
+        <h1>The Fundamentals of Force&nbsp;&amp;&nbsp;Dice</h1>
+        <p class="tagline">Your complete guide to running &amp; playing Star Wars RPG — from your first character to mastering the galaxy.</p>
+        <div class="stat-bar">
+            <div class="stat"><div class="stat-num">25</div><div class="stat-label">Lessons</div></div>
+            <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Characters</div></div>
+            <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Adventures</div></div>
+        </div>
+    </section>
 
-            </ul>
-    </main>
+    <div class="content">
+        <div class="cta"><a href="/sw_intro.html">Start Your Journey →</a></div>
 
+        <!-- Getting Started -->
+        <h2 class="section-title">Getting Started</h2>
+        <div class="grid">
+            <a class="card" href="/sw_intro.html">
+                <span class="card-icon">🌌</span>
+                <div class="card-body">
+                    <div class="card-title">Introduction</div>
+                    <div class="card-desc">What makes this RPG unique and why the narrative dice system changes everything.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_rpg_foundations.html">
+                <span class="card-icon">📐</span>
+                <div class="card-body">
+                    <div class="card-title">RPG Foundations</div>
+                    <div class="card-desc">Core concepts, session structure, and the pillars of collaborative storytelling.</div>
+                </div>
+            </a>
+        </div>
 
+        <!-- Characters -->
+        <h2 class="section-title">Characters</h2>
+        <div class="grid">
+            <a class="card" href="/sw_char.html">
+                <span class="card-icon">🧑‍🚀</span>
+                <div class="card-body">
+                    <div class="card-title">Character Creation</div>
+                    <div class="card-desc">Build your hero step-by-step — species, career, obligation, and motivation.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_character_examples.html">
+                <span class="card-icon">📋</span>
+                <div class="card-body">
+                    <div class="card-title">Character Examples</div>
+                    <div class="card-desc">Ready-made characters to study or drop straight into your first session.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_100.html">
+                <span class="card-icon">👥</span>
+                <div class="card-body">
+                    <div class="card-title">100 Characters</div>
+                    <div class="card-desc">A massive roster of NPCs, allies, and foes ready for any campaign.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_names.html">
+                <span class="card-icon">🔤</span>
+                <div class="card-body">
+                    <div class="card-title">Character Names</div>
+                    <div class="card-desc">Name generators and conventions for every species in the galaxy.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_groups.html">
+                <span class="card-icon">🤝</span>
+                <div class="card-body">
+                    <div class="card-title">Group Dynamics</div>
+                    <div class="card-desc">Party composition, shared backstories, and inter-character relationships.</div>
+                </div>
+            </a>
+        </div>
 
-   
+        <!-- Combat & Dice -->
+        <h2 class="section-title">Combat &amp; Dice</h2>
+        <div class="grid">
+            <a class="card" href="/sw_combat.html">
+                <span class="card-icon">⚔️</span>
+                <div class="card-body">
+                    <div class="card-title">Combat Mechanics</div>
+                    <div class="card-desc">Initiative, range bands, critical hits, and the flow of structured encounters.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_dice_roller.html">
+                <span class="card-icon">🎲</span>
+                <div class="card-body">
+                    <div class="card-title">Dice Roller</div>
+                    <div class="card-desc">Interactive tool — roll Boost, Ability, Proficiency, and more right in your browser.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_adv_dice.html">
+                <span class="card-icon">🎯</span>
+                <div class="card-body">
+                    <div class="card-title">Advanced Dice</div>
+                    <div class="card-desc">Triumph, Despair, opposed checks, and spending narrative results like a pro.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_ground_combat.html">
+                <span class="card-icon">💥</span>
+                <div class="card-body">
+                    <div class="card-title">Ground Combat</div>
+                    <div class="card-desc">Tactical encounters, cover mechanics, and cinematic battlefield set pieces.</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- The Force -->
+        <h2 class="section-title">The Force</h2>
+        <div class="grid">
+            <a class="card" href="/sw_force_and_lightsaber.html">
+                <span class="card-icon">🔦</span>
+                <div class="card-body">
+                    <div class="card-title">Force &amp; Lightsabers</div>
+                    <div class="card-desc">Force-sensitive characters, lightsaber forms, and Conflict mechanics.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_force_powers.html">
+                <span class="card-icon">✨</span>
+                <div class="card-body">
+                    <div class="card-title">Force Powers Deep Dive</div>
+                    <div class="card-desc">Power trees, Force dice, dark side temptation, and Jedi training arcs.</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Vehicles & Space -->
+        <h2 class="section-title">Vehicles &amp; Space</h2>
+        <div class="grid">
+            <a class="card" href="/sw_vehicles.html">
+                <span class="card-icon">🚀</span>
+                <div class="card-body">
+                    <div class="card-title">Vehicles &amp; Starships</div>
+                    <div class="card-desc">Piloting, ship combat, modifications, and the Millennium Falcon stat block.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_space_encounters.html">
+                <span class="card-icon">🛸</span>
+                <div class="card-body">
+                    <div class="card-title">Space Encounters</div>
+                    <div class="card-desc">Dogfights, asteroid fields, blockade runs, and capital ship engagements.</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Campaign & Game Mastery -->
+        <h2 class="section-title">Campaign &amp; Game Mastery</h2>
+        <div class="grid">
+            <a class="card" href="/sw_campaign.html">
+                <span class="card-icon">🗺️</span>
+                <div class="card-body">
+                    <div class="card-title">Campaign Creation</div>
+                    <div class="card-desc">Themes, era selection, session zero, and long-term story planning.</div>
+                </div>
+            </a>
+            <a class="card" href="/sw_gm_techniques.html">
+                <span class="card-icon">🎬</span>
+                <div class="card-body">
+                    <div class="card-title">Game Master Techniques</div>
+                    <div class="card-desc">Pacing, improvisation, managing player expectations, and cinematic narration.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_campaign_arcs.html">
+                <span class="card-icon">📖</span>
+                <div class="card-body">
+                    <div class="card-title">Campaign Arcs &amp; Stories</div>
+                    <div class="card-desc">Multi-session story structures, cliffhangers, and escalating stakes.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_npcs_villains.html">
+                <span class="card-icon">🦹</span>
+                <div class="card-body">
+                    <div class="card-title">NPCs &amp; Villains</div>
+                    <div class="card-desc">Memorable antagonists, recurring rivals, and morally grey allies.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_social_encounters.html">
+                <span class="card-icon">🍸</span>
+                <div class="card-body">
+                    <div class="card-title">Social Encounters</div>
+                    <div class="card-desc">Cantina negotiations, Senate intrigue, underworld deals, and charm checks.</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- World Building -->
+        <h2 class="section-title">World Building</h2>
+        <div class="grid">
+            <a class="card" href="/starwars_planets_locations.html">
+                <span class="card-icon">🪐</span>
+                <div class="card-body">
+                    <div class="card-title">Planets &amp; Locations</div>
+                    <div class="card-desc">Biomes, culture hooks, and making every landing feel like a new adventure.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_galactic_politics.html">
+                <span class="card-icon">🏛️</span>
+                <div class="card-body">
+                    <div class="card-title">Galactic Politics</div>
+                    <div class="card-desc">Factions, power struggles, trade disputes, and Senate machinations.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_droids_technology.html">
+                <span class="card-icon">🤖</span>
+                <div class="card-body">
+                    <div class="card-title">Droids &amp; Technology</div>
+                    <div class="card-desc">Droid personalities, slicing, gadgets, and the tech that runs the galaxy.</div>
+                </div>
+            </a>
+            <a class="card" href="/starwars_time_travel.html">
+                <span class="card-icon">⏳</span>
+                <div class="card-body">
+                    <div class="card-title">Time Travel</div>
+                    <div class="card-desc">World Between Worlds, paradox mechanics, and alternate timelines.</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Capstone -->
+        <h2 class="section-title">Mastery</h2>
+        <div class="grid">
+            <a class="card" href="/starwars_capstone_mastery.html">
+                <span class="card-icon">🏆</span>
+                <div class="card-body">
+                    <div class="card-title">Capstone: Complete GM Mastery</div>
+                    <div class="card-desc">Tie everything together — run your definitive Star Wars campaign from start to finish.</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="index-footer">
+        <p>Built by <a href="https://rays-home.netlify.app/">Ray's House of Fun</a> · <a href="https://rays-home.netlify.app/contact">Contact</a></p>
+    </footer>
 </body>
 </html>
