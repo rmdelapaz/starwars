@@ -376,3 +376,81 @@ table {
   justify-content: center;
   width: 100%;
 }
+
+/* ========= DARK MODE ========= */
+html.dark body {
+  background-color: #0f172a;
+  color: #cbd5e1;
+}
+html.dark h1, html.dark h2, html.dark h3, html.dark h4 {
+  background-color: #1e3a5f;
+  color: #e2e8f0;
+}
+html.dark strong { color: #f1f5f9; }
+html.dark a { color: #60a5fa; }
+html.dark h3 a { color: #e2e8f0; }
+html.dark code, html.dark pre {
+  background-color: #1e293b;
+  color: #4ade80;
+}
+html.dark blockquote {
+  background-color: #1e293b;
+  color: #cbd5e1;
+}
+html.dark table, html.dark td, html.dark tr, html.dark th {
+  border-color: #475569;
+  color: #cbd5e1;
+}
+html.dark .mermaid_container, html.dark .mermaid-diagram, html.dark .mermaid {
+  background-color: #1e293b;
+  border-color: #475569;
+}
+html.dark .mermaid .label text, html.dark .mermaid text {
+  fill: #e2e8f0 !important;
+}
+html.dark .mermaid .node rect, html.dark .mermaid .node circle,
+html.dark .mermaid .node ellipse, html.dark .mermaid .node polygon {
+  fill: #334155; stroke: #64748b;
+}
+html.dark .mermaid .edgePath .path { stroke: #94a3b8; }
+html.dark .comment-block { border-left-color: #3b82f6; }
+
+/* ========= SITE NAVBAR ========= */
+.site-nav {
+  background: #1e3a5f;
+  padding: 0.5rem 1rem;
+  position: sticky; top: 0; z-index: 1000;
+}
+.site-nav-inner {
+  max-width: 1200px; margin: auto;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.nav-link {
+  color: #e2e8f0 !important; text-decoration: none; font-weight: bold; font-size: 0.95rem;
+}
+.nav-link:hover { color: #fbbf24 !important; }
+.nav-btn {
+  margin-left: auto; background: none; border: 1px solid #94a3b8;
+  color: #e2e8f0; padding: 0.3rem 0.7rem; border-radius: 6px;
+  cursor: pointer; font-size: 0.85rem;
+}
+.nav-btn:hover { background: #334155; }
+
+/* ========= PREV / NEXT NAV ========= */
+.page-nav {
+  margin: 2rem 1rem 1rem; padding: 1rem 0;
+  border-top: 2px solid #cbd5e1;
+}
+html.dark .page-nav { border-top-color: #475569; }
+.page-nav-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
+}
+.page-nav-link {
+  text-decoration: none; font-weight: bold; font-size: 0.95rem;
+  color: #3b82f6;
+}
+.page-nav-link:hover { text-decoration: underline; }
+.page-nav-link.prev { text-align: left; }
+.page-nav-link.next { text-align: right; }
+html.dark .page-nav-link { color: #60a5fa; }
