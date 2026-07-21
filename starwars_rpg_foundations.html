@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundations of Star Wars RPG Campaign Building</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Core concepts, session structure, and the pillars of collaborative storytelling in a Star Wars campaign.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Foundations of Star Wars RPG Campaign Building">
+    <meta property="og:description" content="Core concepts, session structure, and the pillars of collaborative storytelling in a Star Wars campaign.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .force-diagram { background: linear-gradient(135deg, #000428, #004e92); padding: 20px; border-radius: 10px; color: white; margin: 20px 0; }
@@ -18,16 +32,31 @@
         .timeline-item { margin: 20px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #ffd700; }
         .exercise-box { background: #e6f3ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a90e2; }
         .canvas-container { text-align: center; margin: 20px 0; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .council-member { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .timeline-item { background: #222c35; border-left: 4px solid #867727; color: #e2e8f0; }
+        html:not(.light) .exercise-box { background: #142c43; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .force-diagram :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .council-member { color: #1f2937; }
+        .timeline-item { color: #1f2937; }
+        .exercise-box { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Foundations of Star Wars RPG Campaign Building</h1>
         <p><em>"Your focus determines your reality." - Qui-Gon Jinn</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <h2>Welcome, Padawan Game Master</h2>
             <p>Building a Star Wars RPG campaign is like constructing a lightsaber - it requires patience, understanding of the Force (your story), and the right crystals (elements) to make it shine. Just as a Jedi must understand both the light and dark sides of the Force, a Game Master must balance hope and conflict, heroism and moral complexity.</p>
@@ -82,24 +111,37 @@
                     <strong>Perfect for:</strong> Epic quests, exploring Jedi/Sith history, lost technologies</p>
                 </div>
                 <div class="timeline-item">
+                    <h4>The High Republic</h4>
+                    <p><strong>When:</strong> Roughly 500-100 years before A New Hope<br>
+                    <strong>Feel:</strong> Jedi at their confident height, frontier expansion, optimism with cracks in it<br>
+                    <strong>Perfect for:</strong> Exploration, disaster response, and the only era where playing a Jedi means playing an <em>institution</em> rather than a fugitive</p>
+                </div>
+                <div class="timeline-item">
                     <h4>Clone Wars Era</h4>
                     <p><strong>When:</strong> 22-19 years before A New Hope<br>
                     <strong>Feel:</strong> Galactic war, political intrigue, fall of heroes<br>
                     <strong>Perfect for:</strong> Military campaigns, moral complexity, watching democracy crumble</p>
                 </div>
                 <div class="timeline-item">
+                    <h4>Reign of the Empire</h4>
+                    <p><strong>When:</strong> 19-5 years before A New Hope<br>
+                    <strong>Feel:</strong> Surveillance, paperwork and fear — no organised Rebellion to join yet<br>
+                    <strong>Perfect for:</strong> Tense, low-firefight play where small acts of defiance cost enormously. The <em>Andor</em> register</p>
+                </div>
+                <div class="timeline-item">
                     <h4>Imperial Era</h4>
-                    <p><strong>When:</strong> 19 years before to 4 years after A New Hope<br>
+                    <p><strong>When:</strong> 5 years before to 4 years after A New Hope<br>
                     <strong>Feel:</strong> Oppression, rebellion, hope against impossible odds<br>
                     <strong>Perfect for:</strong> Underdog stories, smuggling, fighting tyranny</p>
                 </div>
                 <div class="timeline-item">
                     <h4>New Republic Era</h4>
                     <p><strong>When:</strong> 4-34 years after A New Hope<br>
-                    <strong>Feel:</strong> Rebuilding, new threats, legacy of heroes<br>
-                    <strong>Perfect for:</strong> Exploration, establishing new orders, dealing with Imperial remnants</p>
+                    <strong>Feel:</strong> Rebuilding, thin central authority, warlords and bounty guilds filling the gaps<br>
+                    <strong>Perfect for:</strong> Frontier work and salvage — the <em>Mandalorian</em> and <em>Ahsoka</em> window, and the natural home for Edge of the Empire play</p>
                 </div>
             </div>
+            <p>Two practical notes. First, pick the era whose <em>pressure</em> you want rather than the one containing your favourite characters — players enjoy being the most interesting people in the room, which is difficult if Vader is standing in it. Second, you are not obliged to sit near the films at all: <em>The Acolyte</em> went back a century before them and <em>Skeleton Crew</em> showed the galaxy works fine at kid-adventure scale.</p>
         </section>
 
         <section class="character-creation">
@@ -156,6 +198,34 @@
                 <li><strong>What themes matter to your group?</strong> (Redemption, friendship, justice, etc.)</li>
             </ul>
 
+            <h4>The Unglamorous Half: Logistics</h4>
+            <p>Campaigns die of scheduling far more often than they die of bad storytelling. Settle these while everyone is still enthusiastic, because enthusiasm is a poor substitute for a calendar:</p>
+            <ul>
+                <li><strong>How often, and for how long?</strong> Fortnightly three-hour sessions that actually happen beat weekly five-hour ones that keep collapsing.</li>
+                <li><strong>What counts as quorum?</strong> Decide now whether you play with someone missing. Groups that never decide this end up cancelling by default.</li>
+                <li><strong>How does a session end?</strong> Stopping on time, mid-arc, is a skill. Ending on a cliffhanger beats ending because everyone is exhausted.</li>
+                <li><strong>Who brings what?</strong> Dice, snacks, and the character sheets someone will inevitably forget.</li>
+            </ul>
+
+            <h4>Safety Tools: Agreeing the Edges</h4>
+            <p>Star Wars runs on torture droids, amputation, slavery, genocide and family betrayal. That range is exactly why the setting has lasted — but it also means a table can wander somewhere a player did not sign up for, usually by accident and usually mid-scene. Safety tools are how you find those edges before you hit them. They take ten minutes, and they are standard practice now rather than an optional courtesy.</p>
+            <ul>
+                <li><strong>Lines</strong> — content that will not appear at all. Collect them privately if anyone prefers; a written list passed round works better than going around the table aloud.</li>
+                <li><strong>Veils</strong> — content that exists but happens off screen. The interrogation occurs; you cut away and rejoin afterwards. Most Star Wars darkness plays better veiled anyway.</li>
+                <li><strong>An escape hatch</strong> — one agreed signal, a card or a word, that any player <em>including the GM</em> can use to rewind or skip a scene. No explanation required, no discussion afterwards. The point is that it costs nothing to use.</li>
+                <li><strong>A check-in after session one.</strong> People rarely know their own edges in the abstract. Ask again once everyone has seen what the game is actually like.</li>
+            </ul>
+            <p>Two things make these work. First, they apply to you as well — running a scene that is upsetting you is not professionalism. Second, using one is never up for debate: a veil invoked mid-scene is honoured immediately and play moves on. A table that argues about a safety tool has just demonstrated why it needed one.</p>
+
+            <h4>What the Game Master Owes the Table</h4>
+            <p>Session zero usually covers what the players want. Stating the reverse prevents most GM burnout:</p>
+            <ul>
+                <li><strong>Preparation proportional to the group's investment</strong> — and no more. A GM who prepares four hours for a group that forgets the plot weekly will quit by month three.</li>
+                <li><strong>Consistency.</strong> Rulings can be wrong; they should not be arbitrary. If you rule something on the fly, write it down and keep it.</li>
+                <li><strong>Spotlight discipline.</strong> Everyone gets a scene that is theirs. That is a scheduling problem, not a talent problem, and it belongs to the GM.</li>
+                <li><strong>The right to say "let me think about it."</strong> You may rule provisionally and correct it next week.</li>
+            </ul>
+
             <h3>The Three-Act Structure for Campaigns</h3>
             <p>Structure your campaign like a Star Wars movie trilogy:</p>
             
@@ -203,6 +273,17 @@
                     <li><strong>Hidden:</strong> The deeper issue</li>
                     <li><strong>Personal:</strong> How it affects each character</li>
                 </ul>
+
+                <details class="answer">
+                    <summary>A worked example for Exercise 3</summary>
+                    <p>Scenario: <em>rescue the prisoners from an Imperial holding facility.</em></p>
+                    <ul>
+                        <li><strong>Surface:</strong> Twelve prisoners, one transport, a garrison that calls for reinforcements in six minutes. This layer is a logistics puzzle and it is what the players will engage with first.</li>
+                        <li><strong>Hidden:</strong> The prisoners were arrested on information sold by a broker the party has used before and will want to use again. Rescuing them exposes the leak. This layer turns a raid into a decision.</li>
+                        <li><strong>Personal:</strong> One prisoner recognises a character — same homeworld, same failed evacuation years ago — and remembers them leaving. This layer costs you nothing to prepare and is the part they will still be discussing months later.</li>
+                    </ul>
+                    <p>Notice the pattern: the surface layer is a problem to solve, the hidden layer is a price to weigh, and the personal layer is a wound to press. You rarely need all three in one session, but a scenario with only the surface layer is the one players forget on the drive home.</p>
+                </details>
             </div>
         </section>
 
@@ -215,6 +296,18 @@
                 <li><strong>Political Intrigue:</strong> Study how the Senate worked, corporate interests, and planetary governments</li>
                 <li><strong>Technology Integration:</strong> How do droids, hyperspace, and the Force interact in your stories?</li>
                 <li><strong>Moral Complexity:</strong> When is the dark side justified? How do good people make bad choices?</li>
+            </ul>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>You have the foundations. These build directly on them:</p>
+            <ul>
+                <li><strong><a href="/sw_intro.html">Introduction</a>:</strong> The dice engine everything here runs on. Read it if the Success/Advantage split is still fuzzy.</li>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Turns these principles into an actual campaign with an era, a premise and a first session.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> The table-craft half: pacing, improvisation, and handling players who go sideways.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Where world-building starts — give your galaxy places worth landing on.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> And populate it. A setting is only as good as the people arguing in it.</li>
             </ul>
         </section>
     </main>

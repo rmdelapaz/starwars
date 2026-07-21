@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG Mastery: The Complete Game Master's Capstone</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Tie every technique together and run your definitive Star Wars campaign from start to finish.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG Mastery: The Complete Game Master's Capstone">
+    <meta property="og:description" content="Tie every technique together and run your definitive Star Wars campaign from start to finish.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .force-nexus { background: radial-gradient(circle, #000428, #004e92, #009ffd, #00d2ff); padding: 40px; border-radius: 20px; color: white; margin: 20px 0; position: relative; overflow: hidden; text-align: center; }
@@ -56,10 +70,64 @@
         .integration-example { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
         .mastery-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
         .metric-card { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .force-nexus { background: radial-gradient(circle, #000428, #004e92, #009ffd, #143b43); }
+        html:not(.light) .mastery-card.systems { background: linear-gradient(135deg, #142d43, #0e3031); }
+        html:not(.light) .mastery-card.narrative { background: linear-gradient(135deg, #144324, #0e312b); color: #e2e8f0; }
+        html:not(.light) .mastery-card.advanced { background: linear-gradient(135deg, #fa709a, #433c14); color: #e2e8f0; }
+        html:not(.light) .mastery-simulator { border: 3px solid #27865a; }
+        html:not(.light) .simulator-display { border: 2px solid #27865a; }
+        html:not(.light) .mastery-btn.systems { background: linear-gradient(135deg, #142d43, #0e3031); color: #e2e8f0; }
+        html:not(.light) .mastery-btn.narrative { background: linear-gradient(135deg, #144324, #0e312b); color: #e2e8f0; }
+        html:not(.light) .mastery-btn.advanced { background: linear-gradient(135deg, #fa709a, #433c14); color: #e2e8f0; }
+        html:not(.light) .wisdom-scroll { background: linear-gradient(to right, #1d283a, #151d2b); color: #e2e8f0; }
+        html:not(.light) .journey-tracker { border: 2px solid #27865a; }
+        html:not(.light) .force-balance { background: linear-gradient(to right, #007bff, #28a745, #433714, #fd7e14, #dc3545); color: #e2e8f0; }
+        html:not(.light) .balance-indicator { background: radial-gradient(circle, #222c35, #162029); color: #e2e8f0; }
+        html:not(.light) .synthesis-challenge { background: linear-gradient(135deg, #431415, #310e26); color: #e2e8f0; }
+        html:not(.light) .achievement-badge { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .tutorial-navigator { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .integration-example { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .metric-card { background: #142d43; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .force-nexus :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .mastery-card.foundations :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .integration-web :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .mastery-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .simulator-display { color: #e2e8f0; }
+        .simulator-display :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .philosophy-chamber :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .journey-tracker :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .final-test :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .cosmic-conclusion :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .mastery-card.creative { background: linear-gradient(135deg, #e127f7, #cf0c26); }
+        .mastery-btn { background: #0071eb; }
+        .mastery-btn.creative { background: linear-gradient(135deg, #e127f7, #cf0c26); }
+        .achievement-badge.earned { background: linear-gradient(135deg, #1c7631, #18946f); }
+        .nav-item { background: #0071eb; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .mastery-btn.systems { color: #1f2937; }
+        .mastery-btn.narrative { color: #1f2937; }
+        .mastery-btn.advanced { color: #1f2937; }
+        .wisdom-scroll { color: #1f2937; }
+        .force-balance { color: #1f2937; }
+        .balance-indicator { color: #1f2937; }
+        .synthesis-challenge { color: #1f2937; }
+        .achievement-badge { color: #1f2937; }
+        .tutorial-navigator { color: #1f2937; }
+        .integration-example { color: #1f2937; }
+        .metric-card { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG Mastery: The Complete Game Master's Capstone</h1>
         <p><em>"A Jedi's strength flows from the Force. But beware of the dark side. Anger, fear, aggression; the dark side of the Force are they." - Yoda</em></p>
@@ -72,7 +140,7 @@
         WISDOM: GROWING
     </div>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="force-nexus">
                 <h2>Welcome to the Jedi Council of Game Masters</h2>
@@ -282,6 +350,35 @@
             </div>
         </section>
 
+        <section class="first-campaign-plan">
+            <h2>🚀 Your First Campaign, Start to Finish</h2>
+            <p>Mastery is a direction, not a destination, and the fastest way to travel it is to run something. This is the whole course assembled into one concrete plan — roughly twenty sessions, every stage pointing at the lesson that covers it. Follow it once and you will have done every skill on this site at least once.</p>
+
+            <h3>Before Session One</h3>
+            <ol>
+                <li><strong>Pick an era and a premise</strong> in one sentence — "a salvage crew working a debris field the Empire has declared off-limits." Era selection is in <a href="/sw_campaign.html">Campaign Creation</a>.</li>
+                <li><strong>Run session zero properly:</strong> expectations, logistics, and safety tools. All three are in <a href="/starwars_rpg_foundations.html">RPG Foundations</a> — do not skip the third.</li>
+                <li><strong>Build characters together, at the table.</strong> <a href="/sw_char.html">Character Creation</a> for the mechanics, <a href="/sw_groups.html">Group Dynamics</a> for making them a party rather than four strangers, and settle the "why do you stay together" question out loud.</li>
+                <li><strong>Prepare one situation, not a plot.</strong> Three names, two locations, one thing that happens regardless — see <a href="/sw_gm_techniques.html">Game Master Techniques</a>.</li>
+            </ol>
+
+            <h3>Sessions 1-4 — Establish</h3>
+            <p>Small stakes, close focus. Give every character one scene that is theirs. Let the dice do narrative work early so the table learns the system's rhythm — <a href="/sw_adv_dice.html">Advanced Dice</a> for spending results, and the <a href="/sw_dice_roller.html">Dice Roller</a> if anyone is still hesitant about pools. Fire each character's Obligation or Duty at least once. End session four on your first real cliffhanger.</p>
+
+            <h3>Sessions 5-12 — Complicate</h3>
+            <p>Introduce the antagonist and start their clock running: <a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>. Widen the map — a second and third world from <a href="/starwars_planets_locations.html">Planets &amp; Locations</a>, and the faction pressure behind them from <a href="/starwars_galactic_politics.html">Galactic Politics</a>. Vary the register deliberately: a firefight (<a href="/sw_combat.html">Combat</a>), a negotiation (<a href="/starwars_social_encounters.html">Social Encounters</a>), a chase (<a href="/sw_vehicles.html">Vehicles</a>). Land your first arc around session eight and immediately seed the next.</p>
+
+            <h3>Sessions 13-18 — Escalate</h3>
+            <p>Consequences arrive. The villain has won something and the party can see it. Raise scale and complexity rather than enemy statistics — the pacing guidance is in <a href="/starwars_campaign_arcs.html">Campaign Arcs</a>, and the advancement curve in <a href="/sw_campaign.html">Campaign Creation</a>. If you have a Force user, this is where Morality should have visibly moved: <a href="/starwars_force_powers.html">Force Powers</a>.</p>
+
+            <h3>Sessions 19-20 — Land It</h3>
+            <p>Finish. This is the single rarest skill in the hobby and the one worth practising most. Give every character a beat that pays off something established in the first four sessions, let the villain's plan reach its final step whether or not the party stops it, and end deliberately rather than drifting into a hiatus that never resolves.</p>
+
+            <div class="callout">
+                <p><strong>The only advice that really matters:</strong> a finished twenty-session campaign will teach you more than five abandoned forty-session ones. Scope small, land the ending, then start something more ambitious with everything you learned. That is the actual capstone.</p>
+            </div>
+        </section>
+
         <section class="mastery-metrics">
             <h2>📊 Measuring Your Mastery</h2>
             <p>How do you know when you've truly achieved mastery? Here are the signs to look for in your campaigns and player responses:</p>
@@ -395,6 +492,19 @@
                     <p><em>Your Mastery Constellation - Each point represents your journey through the tutorials</em></p>
                 </div>
             </div>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>The capstone assumes the rest of the course. Revisit whichever pillar feels thin:</p>
+            <ul>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Campaign construction — era, premise and long-term planning.</li>
+                <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Arc architecture across many sessions.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Week-to-week table craft.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists to carry a whole campaign.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> The galaxy-scale forces your players push against.</li>
+                <li><strong><a href="/sw_intro.html">Introduction</a>:</strong> And the beginning, which reads differently once you have run a campaign.</li>
+            </ul>
         </section>
     </main>
 

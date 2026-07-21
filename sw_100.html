@@ -4,24 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG Sample Characters - Complete Guide</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="A roster of over 100 ready-to-play characters, NPCs, allies and foes for any Star Wars campaign.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG Sample Characters - Complete Guide">
+    <meta property="og:description" content="A roster of over 100 ready-to-play characters, NPCs, allies and foes for any Star Wars campaign.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG Sample Characters</h1>
         <h2>A Complete Guide with Over 100 Ready-to-Play Characters from a Galaxy Far, Far Away</h2>
     </header>
 
-    <main>
+    <main id="main">
         <section id="introduction">
             <h2>Understanding Star Wars RPG Characters</h2>
-            <p>The Star Wars RPG (using Fantasy Flight Games' system) creates characters through a unique combination of <strong>Species</strong>, <strong>Career</strong>, and <strong>Specializations</strong>. Unlike traditional class-based systems, Star Wars RPG allows for incredible flexibility while maintaining the iconic archetypes that make the galaxy far, far away so compelling.</p>
+            <p>The Star Wars RPG (the narrative dice system originally published by Fantasy Flight Games and carried on today by <strong>Edge Studio</strong> — you will see either logo depending on the printing) creates characters through a unique combination of <strong>Species</strong>, <strong>Career</strong>, and <strong>Specializations</strong>. Unlike traditional class-based systems, Star Wars RPG allows for incredible flexibility while maintaining the iconic archetypes that make the galaxy far, far away so compelling.</p>
 
             <div class="mermaid">
                 graph TD
@@ -1005,9 +1020,43 @@
             </div>
         </section>
 
+        <section id="at-the-table">
+            <h2>Before You Run One: The Missing Numbers</h2>
+            <p>Every entry above gives you characteristics, skills, talents and gear — everything that is <em>chosen</em>. What none of them list are the numbers that get <em>derived</em>, and those are exactly the ones you need the moment someone takes a hit. Work them out once, pencil them onto the entry, and the character is table-ready.</p>
+            <ul>
+                <li><strong>Wound Threshold</strong> = species base + Brawn. This is how much physical punishment they absorb before falling over.</li>
+                <li><strong>Strain Threshold</strong> = species base + Willpower. Strain is fatigue, fear and mental strain — spent voluntarily for extra manoeuvres, and inflicted by social attacks.</li>
+                <li><strong>Soak</strong> = Brawn + armour. Subtracted from every hit before it touches the Wound Threshold.</li>
+                <li><strong>Defence</strong> = from armour, cover or a ship's shields. Usually 0 for an unarmoured character standing in the open.</li>
+            </ul>
+            <p>Humans use 10 and 10 as their two species bases, which makes them the useful baseline. Other species trade one against the other — tough species buy a higher wound base by accepting a lower strain base — so check the species entry rather than assuming. Taking Kira Nexu from the top of the list: Brawn 2, Willpower 3, human, so <strong>Wound Threshold 12, Strain Threshold 13, Soak 2</strong>. That took ten seconds and she is now runnable.</p>
+
+            <h3>Turning a Character Sheet Into an Opponent</h3>
+            <p>Most of these entries are written as player characters, but a GM raiding this list usually wants an <em>adversary</em>. Adversaries come in three tiers, and picking the right one matters more than adjusting any statistic:</p>
+            <table>
+                <thead>
+                    <tr><th>Tier</th><th>How it works</th><th>Use it for</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Minion</strong></td><td>Operates as a group sharing one wound threshold. No strain. The group's skill is driven by how many are still standing, so they get worse as you thin them out.</td><td>Stormtroopers, dock guards, hired muscle — anyone whose job is to lose impressively</td></tr>
+                    <tr><td><strong>Rival</strong></td><td>An individual with a wound threshold but no strain threshold. Dangerous, but cannot be worn down mentally and does not suffer critical injuries.</td><td>The bounty hunter who keeps turning up, a lieutenant, a recurring nuisance</td></tr>
+                    <tr><td><strong>Nemesis</strong></td><td>Built exactly like a player character — both thresholds, critical injuries, the lot. Treat any entry above as a nemesis with no conversion at all.</td><td>The villain of the arc. Use sparingly; a nemesis should be an event</td></tr>
+                </tbody>
+            </table>
+            <p>The practical shortcut: <strong>any character on this page is already a nemesis.</strong> To demote one to a rival, drop the strain threshold and stop tracking critical injuries. To make minions, keep the two or three skills that define them and discard everything else — nobody at the table will ever ask what a stormtrooper's Willpower is.</p>
+
+            <h3>Scaling to Your Party</h3>
+            <p>These builds assume a starting character. Two adjustments come up constantly:</p>
+            <ul>
+                <li><strong>If your party is experienced,</strong> do not inflate an opponent's characteristics — that makes the maths swingy without making the fight interesting. Add minions, add terrain, or add a second objective competing for the party's attention.</li>
+                <li><strong>If you are short a player,</strong> running one of these as an NPC ally works, but hand it to a player rather than yourself. A GM voicing an ally in combat slows every round and quietly steers the party.</li>
+            </ul>
+            <p><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a> goes further into making an antagonist memorable rather than merely statted, and <a href="/sw_combat.html">Combat Mechanics</a> covers how these thresholds behave under fire.</p>
+        </section>
+
         <section id="using-these-characters">
             <h2>How to Use These Characters in Your Games</h2>
-            
+
             <h3>For Game Masters</h3>
             <p>These Star Wars characters serve multiple purposes in your campaigns:</p>
             
@@ -1247,6 +1296,18 @@
             <p>Remember: in the Star Wars universe, even the smallest character can change the fate of the galaxy. The Force flows through all living things, connecting everyone to the grand tapestry of galactic destiny. Your characters—and your stories—are part of that endless adventure among the stars.</p>
 
             <p><em>May the Force be with you, always.</em></p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A hundred characters is a resource, not a reading list. Put them to work:</p>
+            <ul>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Promote any entry here into a recurring antagonist worth fearing.</li>
+                <li><strong><a href="/sw_character_examples.html">Character Examples</a>:</strong> Fuller worked examples if you want to see the build reasoning, not just the result.</li>
+                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Renaming is the fastest way to make a stock character feel like yours.</li>
+                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> Assemble several into a balanced party rather than picking favourites.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> What to do when players talk to someone you had not planned for — raid this list.</li>
+            </ul>
         </section>
     </main>
 

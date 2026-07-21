@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Managing Time Travel and Alternate Timelines in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="The World Between Worlds, paradox mechanics and alternate timelines in Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Managing Time Travel and Alternate Timelines in Star Wars RPG">
+    <meta property="og:description" content="The World Between Worlds, paradox mechanics and alternate timelines in Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .temporal-nexus { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -56,10 +70,62 @@
         .decision-tree { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
         .bootstrap-paradox { background: radial-gradient(circle, #2c3e50, #34495e); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
         .timeline-status { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: #00ff41; padding: 10px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 12px; z-index: 1000; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .timeline-card.alternate { background: linear-gradient(135deg, #433714, #fd7e14); color: #e2e8f0; }
+        html:not(.light) .time-mechanics { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .temporal-simulator { border: 2px solid #27863f; }
+        html:not(.light) .simulator-screen { border: 1px solid #27863f; }
+        html:not(.light) .temporal-btn.alternate { background: #433714; color: #e2e8f0; }
+        html:not(.light) .exercise-chamber { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .causality-node { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .causality-node.changed { background: #431414; color: #e2e8f0; }
+        html:not(.light) .universe-prime { background: radial-gradient(circle, #28a745, #144335); color: #e2e8f0; }
+        html:not(.light) .universe-alternate { background: radial-gradient(circle, #433714, #fd7e14); color: #e2e8f0; }
+        html:not(.light) .temporal-anchor { background: #142c43; color: #e2e8f0; }
+        html:not(.light) .world-between-worlds { background: linear-gradient(to right, #431415, #31160e, #174f4d, #431423); color: #e2e8f0; }
+        html:not(.light) .decision-tree { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .temporal-nexus :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .timeline-card.dark :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .timeline-card.paradox :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .temporal-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .simulator-screen { color: #e2e8f0; }
+        .simulator-screen :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .force-temporal :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .timeline-mapper { color: #e2e8f0; }
+        .timeline-mapper :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .temporal-philosophy :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .multiverse-map { color: #e2e8f0; }
+        .multiverse-map :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .universe-dark { color: #e2e8f0; }
+        .universe-dark :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .universe-unknown { color: #e2e8f0; }
+        .universe-unknown :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .bootstrap-paradox :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .timeline-status :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .timeline-card.prime { background: linear-gradient(135deg, #1c7631, #18946f); }
+        .temporal-btn { background: #0071eb; }
+        .temporal-btn.prime { background: #208637; }
+        .paradox-warning { background: linear-gradient(45deg, #ad1e2c, #c09000); }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .time-mechanics { color: #1f2937; }
+        .exercise-chamber { color: #1f2937; }
+        .causality-node { color: #1f2937; }
+        .causality-node.changed { color: #1f2937; }
+        .universe-prime { color: #1f2937; }
+        .temporal-anchor { color: #1f2937; }
+        .decision-tree { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Managing Time Travel and Alternate Timelines in Star Wars RPG</h1>
         <p><em>"Time isn't a river flowing in one direction. Time is an ocean in a storm." - Ezra Bridger</em></p>
@@ -71,7 +137,7 @@
         CAUSALITY: INTACT
     </div>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="temporal-nexus">
                 <h2>Welcome to the Temporal Mechanics Academy</h2>
@@ -225,6 +291,36 @@
                     <br>> _
                 </div>
             </div>
+        </section>
+
+        <section class="should-you">
+            <h2>🛑 First, Decide Whether to Use This At All</h2>
+            <p>This is the one lesson on the site that comes with a warning attached. Time travel is the most powerful tool covered here and the most likely to damage a campaign, and the damage is rarely obvious until several sessions after the decision was made. Before running any of it, be honest about what it costs.</p>
+
+            <h3>What Time Travel Takes Away</h3>
+            <ul>
+                <li><strong>Stakes.</strong> If the past is editable, no loss is permanent. Every death, sacrifice and hard choice your campaign has accumulated becomes provisional, retroactively.</li>
+                <li><strong>Player confidence.</strong> Once players suspect that events can be undone, they stop committing to decisions. Why agonise over a choice that might be revisable?</li>
+                <li><strong>Your own consistency.</strong> Timeline plots demand bookkeeping that gets heavier every session, and the first contradiction the players catch tends to end the goodwill.</li>
+            </ul>
+            <p>Notice that none of these are problems with the <em>rules</em>. They are problems with what the possibility does to a table, which is why they cannot be solved by a better paradox mechanic.</p>
+
+            <h3>Four Containment Strategies, Weakest Constraint Last</h3>
+            <ol>
+                <li><strong>Vision, not travel.</strong> Characters <em>see</em> another time and cannot act in it. You get every atmospheric benefit — dread, prophecy, revelation — with none of the causal damage. This is what the films almost always do, and it is the right default.</li>
+                <li><strong>One-way and one-time.</strong> A single jump, no return. The campaign continues in the new situation rather than looping. Dramatic, bounded, and it cannot spiral.</li>
+                <li><strong>Fixed points.</strong> Establish loudly and early that certain events cannot be changed, only witnessed or contextualised. The story becomes about understanding rather than editing — and understanding does not erase stakes.</li>
+                <li><strong>Full access.</strong> The party can travel and change things freely. Reserve this for a deliberate finale or a self-contained arc you have agreed with the table in advance. It is not a mode a long campaign survives.</li>
+            </ol>
+
+            <h3>If You Do Run It</h3>
+            <ul>
+                <li><strong>Agree the rules out loud, in advance,</strong> and write them where players can see them. An inconsistent time-travel campaign is worse than no time-travel campaign, and consistency is far easier to promise than to remember.</li>
+                <li><strong>Keep the scope tiny.</strong> One event, one question, one journey. Sprawl is what kills these arcs.</li>
+                <li><strong>Never undo a player's meaningful choice</strong> without their agreement. It is their character's history, and rewriting it without consent is exactly the situation the safety tools in <a href="/starwars_rpg_foundations.html">RPG Foundations</a> exist for.</li>
+                <li><strong>Give it an ending you have already designed.</strong> Decide how the arc closes before it opens. Improvised time travel is how campaigns end by exhaustion rather than by climax — see <a href="/starwars_campaign_arcs.html">Campaign Arcs</a> on landing an arc early.</li>
+            </ul>
+            <p>Everything that follows in this lesson assumes you have made that decision deliberately. Used as a scalpel, it produces the most memorable session a campaign will ever have. Used as a habit, it dissolves the campaign around it.</p>
         </section>
 
         <section class="paradox-management">
@@ -439,6 +535,18 @@
             <p>Remember, time travel is one of the most powerful narrative tools in your arsenal - and with great power comes great responsibility. Use temporal elements to explore character growth, examine moral choices, and reveal hidden truths about your campaign's central themes.</p>
             
             <p>The best temporal stories don't just change events - they change characters. When your players emerge from a journey through time with deeper understanding of themselves, their relationships, and their place in the cosmic order, you'll know you've mastered the art of temporal storytelling in a galaxy far, far away.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Temporal play needs firm ground underneath it:</p>
+            <ul>
+                <li><strong><a href="/starwars_force_powers.html">Force Powers</a>:</strong> Force visions and prophecy — the grounded end of this material.</li>
+                <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Structuring a timeline arc so players can follow the causality.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Keeping a paradox plot comprehensible at the table.</li>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Deciding whether your campaign can support this at all before you commit.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists who remember a timeline your players erased.</li>
+            </ul>
         </section>
     </main>
 

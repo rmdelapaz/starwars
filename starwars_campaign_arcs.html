@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating Epic Campaign Arcs and Story Structure in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Multi-session story structures, cliffhangers and escalating stakes for Star Wars campaigns.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Creating Epic Campaign Arcs and Story Structure in Star Wars RPG">
+    <meta property="og:description" content="Multi-session story structures, cliffhangers and escalating stakes for Star Wars campaigns.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .saga-theater { background: linear-gradient(135deg, #000428, #004e92, #009ffd); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -44,16 +58,56 @@
         .narrative-thread { position: absolute; width: 4px; background: linear-gradient(to bottom, #007bff, #28a745, #ffc107, #dc3545); height: 100%; left: 20px; }
         .thread-point { background: white; border: 3px solid #007bff; border-radius: 50%; width: 20px; height: 20px; position: relative; margin: 20px 0 20px 40px; }
         .thread-content { margin-left: 80px; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .saga-theater::before { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="0.5" fill="#222c35"/><circle cx="80" cy="15" r="0.3" fill="#192027"/><circle cx="25" cy="70" r="0.4" fill="#28333e"/><circle cx="90" cy="80" r="0.2" fill="#222c35"/><circle cx="60" cy="40" r="0.3" fill="#192027"/></svg>') repeat; color: #e2e8f0; }
+        html:not(.light) .arc-card { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .arc-card.act2 { border-left-color: #866f27; }
+        html:not(.light) .timeline-builder { background: linear-gradient(to right, #1a3c1a, #31290e, #4f171c); color: #e2e8f0; }
+        html:not(.light) .session-card.current { background: #433714; color: #e2e8f0; }
+        html:not(.light) .story-weaver { background: #142c43; color: #e2e8f0; }
+        html:not(.light) .resolution-zone { background: linear-gradient(135deg, #431415, #310e26); color: #e2e8f0; }
+        html:not(.light) .exercise-workshop { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .journey-stage { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .narrative-thread { background: linear-gradient(to bottom, #007bff, #28a745, #433714, #dc3545); color: #e2e8f0; }
+        html:not(.light) .thread-point { background: #222c35; color: #e2e8f0; }
+        html:not(.light) .thread-content { background: #1e2b38; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .saga-theater :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .session-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .climax-builder :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .mystery-box :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .story-generator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .session-card.completed { background: #208637; }
+        .pacing-btn { background: #0071eb; }
+        .pacing-btn.active { background: #208637; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .saga-theater::before { color: #1f2937; }
+        .arc-card { color: #1f2937; }
+        .timeline-builder { color: #1f2937; }
+        .story-weaver { color: #1f2937; }
+        .resolution-zone { color: #1f2937; }
+        .exercise-workshop { color: #1f2937; }
+        .journey-stage { color: #1f2937; }
+        .narrative-thread { color: #1f2937; }
+        .thread-point { color: #1f2937; }
+        .thread-content { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Creating Epic Campaign Arcs and Story Structure</h1>
         <p><em>"A long time ago, in a galaxy far, far away..." - The opening that started it all</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="saga-theater">
                 <h2>Welcome to the Saga Academy</h2>
@@ -380,6 +434,38 @@
             </div>
         </section>
 
+        <section class="arc-length">
+            <h2>How Long Should an Arc Actually Be?</h2>
+            <p>Arc structure is easy to describe and hard to time. Almost every campaign that loses momentum does so because an arc ran roughly twice as long as the group's enthusiasm for it — so it is worth having concrete numbers to plan against, and concrete symptoms to watch for.</p>
+
+            <h3>Working Numbers</h3>
+            <table>
+                <thead><tr><th>Unit</th><th>Sessions</th><th>What it should deliver</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>A scene</strong></td><td>Part of one</td><td>One decision that changes something</td></tr>
+                    <tr><td><strong>A session</strong></td><td>1</td><td>One complete beat, and a reason to come back</td></tr>
+                    <tr><td><strong>An arc</strong></td><td>4-8</td><td>A question raised, complicated, and answered</td></tr>
+                    <tr><td><strong>A campaign</strong></td><td>3-5 arcs</td><td>A transformation the characters could not have predicted</td></tr>
+                </tbody>
+            </table>
+            <p>Four to eight sessions is the sweet spot for an arc, and the reason is practical rather than aesthetic: at fortnightly play, eight sessions is about four months. Any single storyline asked to hold a group's attention for longer than that is competing with real life and will usually lose.</p>
+
+            <h3>Symptoms That an Arc Has Overrun</h3>
+            <ul>
+                <li><strong>Recaps are getting longer.</strong> If it takes ten minutes to remember where you were, the thread has more slack in it than the players can hold.</li>
+                <li><strong>Players stop referencing the arc's question</strong> in their own plans. They have quietly moved on; the arc has not.</li>
+                <li><strong>You are inventing delays.</strong> A new obstacle arriving because the party got close to resolution is a sign you are padding, and players detect it faster than GMs expect.</li>
+                <li><strong>The villain has stopped losing anything.</strong> If your antagonist has survived four confrontations unchanged, the arc has become a treadmill.</li>
+            </ul>
+
+            <h3>Landing It Early Is Almost Always Right</h3>
+            <p>When an arc has overrun, the instinct is to add a big finale to justify the time spent. Do the opposite: <strong>cut to the climax next session.</strong> Collapse two planned confrontations into one, hand the party the information they were going to spend a session extracting, and let the arc end while people still care.</p>
+            <p>Nobody has ever complained that a story resolved slightly sooner than expected. Plenty of campaigns have died of the alternative. And a short, decisive arc buys you enormous credit for the next one — players who have seen you land an ending will follow you into a longer story willingly.</p>
+
+            <h3>Overlap Your Arcs</h3>
+            <p>The cleanest way to keep momentum is to refuse to let arcs start and stop in lockstep. Seed the next arc's question two or three sessions <em>before</em> the current one resolves — a name mentioned in passing, a shipment that does not add up. When the current arc lands, the party already has somewhere to go, and you skip the flat session that otherwise follows every resolution.</p>
+        </section>
+
         <section class="advanced-techniques">
             <h2>Advanced Storytelling Techniques</h2>
 
@@ -471,6 +557,18 @@
             <p>Remember, you're not just running a game - you're collaborating with your players to create a new chapter in the Star Wars saga. The best campaigns feel like they could fit seamlessly into the larger mythology while telling uniquely personal stories.</p>
             
             <p>Your campaign structure is the skeleton that supports the living story you'll create together. Build it strong enough to hold epic adventures, but flexible enough to accommodate the unexpected moments of brilliance that arise when great characters face impossible choices in a galaxy far, far away.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Arcs need material to be made of:</p>
+            <ul>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> The campaign-level scaffolding these arcs hang from.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Recurring antagonists — the cheapest way to make an arc feel connected.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Faction conflict as a source of arcs that write themselves.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Keeping an arc on the rails week to week without railroading.</li>
+                <li><strong><a href="/starwars_capstone_mastery.html">Capstone: GM Mastery</a>:</strong> Tying multiple arcs into one campaign that lands.</li>
+            </ul>
         </section>
     </main>
 

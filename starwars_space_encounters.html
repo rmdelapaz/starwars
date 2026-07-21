@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Designing Epic Space Encounters and Starship Combat in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Dogfights, asteroid fields, blockade runs and capital ship engagements in Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Designing Epic Space Encounters and Starship Combat in Star Wars RPG">
+    <meta property="og:description" content="Dogfights, asteroid fields, blockade runs and capital ship engagements in Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .space-theater { background: linear-gradient(135deg, #000428, #004e92); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -32,16 +46,45 @@
         .hyperspace-tunnel { position: relative; height: 300px; overflow: hidden; border-radius: 10px; }
         @keyframes hyperspace { 0% { transform: translateZ(-1000px) rotateY(0deg); } 100% { transform: translateZ(1000px) rotateY(360deg); } }
         .star-line { position: absolute; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, white, transparent); animation: hyperspace 0.5s linear infinite; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .space-theater::before { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="0.5" fill="#222c35"/><circle cx="80" cy="15" r="0.3" fill="#192027"/><circle cx="25" cy="70" r="0.4" fill="#28333e"/><circle cx="90" cy="80" r="0.2" fill="#222c35"/><circle cx="60" cy="40" r="0.3" fill="#192027"/></svg>') repeat; color: #e2e8f0; }
+        html:not(.light) .phase-card { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .encounter-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .tactic-card { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .environmental-hazards { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-zone { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .star-line { background: linear-gradient(to bottom, transparent, #222c35, transparent); color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .space-theater :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .ship-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .combat-simulator { color: #e2e8f0; }
+        .combat-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .control-btn { background: #0071eb; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .space-theater::before { color: #1f2937; }
+        .phase-card { color: #1f2937; }
+        .encounter-builder { color: #1f2937; }
+        .tactic-card { color: #1f2937; }
+        .environmental-hazards { color: #1f2937; }
+        .exercise-zone { color: #1f2937; }
+        .star-line { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Designing Epic Space Encounters and Starship Combat</h1>
         <p><em>"Never tell me the odds!" - Han Solo</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="space-theater">
                 <h2>Welcome to the Academy of Stellar Warfare</h2>
@@ -163,6 +206,39 @@
                     <li><strong>Sabotage:</strong> Getting close enough to disable enemy systems</li>
                 </ul>
             </div>
+        </section>
+
+        <section class="scale-and-silhouette">
+            <h2>Scale: Why a Blaster Cannot Hurt a Star Destroyer</h2>
+            <p>Before any of the tactics above will work at the table, one rule has to be understood, because it silently governs every mixed encounter: <strong>silhouette</strong>. Every ship, vehicle and person carries a size rating, and that rating decides what can meaningfully hurt what.</p>
+
+            <h3>The Ladder</h3>
+            <table>
+                <thead><tr><th>Silhouette</th><th>Roughly</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>0-1</strong></td><td>An astromech; a person</td></tr>
+                    <tr><td><strong>2-3</strong></td><td>Speeders, airspeeders, small walkers</td></tr>
+                    <tr><td><strong>4</strong></td><td>Starfighters and light freighters — the <em>Millennium Falcon</em> sits here</td></tr>
+                    <tr><td><strong>5-6</strong></td><td>Corvettes and frigates</td></tr>
+                    <tr><td><strong>7-8</strong></td><td>Cruisers and Star Destroyers</td></tr>
+                    <tr><td><strong>9+</strong></td><td>The genuinely enormous</td></tr>
+                </tbody>
+            </table>
+
+            <h3>What Silhouette Actually Does</h3>
+            <ul>
+                <li><strong>It sets how hard something is to hit.</strong> A large target is easier to shoot than a small one; a starfighter attacking a Star Destroyer barely has to aim, while the Star Destroyer's turbolaser batteries struggle to track a snubfighter. This is the mechanical reason the trench run works.</li>
+                <li><strong>It decides which scale the damage is on.</strong> Personal weapons and vehicle weapons do not share a scale. Vehicle-scale damage applied to a person is multiplied enormously — a hit that lightly scorches a hull vaporises a human being. Personal-scale damage applied to a ship is divided by the same factor, which usually rounds to <strong>nothing at all</strong>.</li>
+            </ul>
+            <p>That second point is the one that saves GMs from an awkward table moment. When a player announces they are shooting the incoming Star Destroyer with a blaster rifle, you do not need to invent a ruling: the maths already says it does nothing. And when a walker's cannon fires at a character on foot, you do not need to fudge the damage either — the scale multiplier means it should be terrifying.</p>
+
+            <h3>Using Scale Deliberately</h3>
+            <ol>
+                <li><strong>Give the small ships a job the big ones cannot do.</strong> Capital ships cannot hit fighters reliably, which is precisely why fighters exist. Build encounters where the party's smallness is the advantage — sneaking inside a shield perimeter, hitting an exhaust port, boarding.</li>
+                <li><strong>Do not let personal weapons resolve ship problems.</strong> If a party wants to disable a freighter, they need ship weapons, ion cannons, slicing, or to get aboard. That constraint is what produces the boarding actions and infiltrations that make space campaigns interesting.</li>
+                <li><strong>Remember scale cuts both ways in a boarding action.</strong> Once your characters are <em>inside</em> the enemy ship, everything reverts to personal scale and the Star Destroyer's guns are irrelevant. The most reliable way to threaten a huge ship is to stop fighting it from outside.</li>
+            </ol>
+            <p><a href="/sw_vehicles.html">Vehicles &amp; Starships</a> covers the full statistics behind silhouette, and <a href="/sw_combat.html">Combat Mechanics</a> covers what happens once the fight moves into corridors.</p>
         </section>
 
         <section class="environmental-design">
@@ -424,6 +500,18 @@
             <p>Remember, the goal isn't to simulate realistic space combat - it's to create the feeling of being in a Star Wars movie. Focus on speed, drama, and meaningful choices. Make every player feel like they're the hero of their own action sequence, whether they're piloting an X-wing or commanding a Star Destroyer.</p>
             
             <p>The best space encounters combine tactical challenge with emotional stakes, environmental drama with character development. When your players are cheering after successfully pulling off an impossible maneuver to save their friends, you'll know you've captured the true spirit of Star Wars space combat.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Space fights mean more when they are about something:</p>
+            <ul>
+                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> The ship statistics and piloting rules underneath these encounters.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Blockades and trade disputes — the reasons fleets end up pointed at each other.</li>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The core resolution these engagements extend.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> The worlds being fought over, blockaded or evacuated.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> The commander on the bridge opposite. Give the fleet a face.</li>
+            </ul>
         </section>
     </main>
 

@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Advanced Dice Mechanics</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Triumph, Despair, opposed checks, and how to spend Advantage and Threat like a pro.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Advanced Dice Mechanics">
+    <meta property="og:description" content="Triumph, Despair, opposed checks, and how to spend Advantage and Threat like a pro.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Advanced Dice Mechanics</h1>
         <p class="subtitle">Mastering the Narrative Dice System - Beyond Basic Success and Failure</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>Beyond Rolling Dice - The Art of Narrative Interpretation</h2>
             <p>The Star Wars RPG narrative dice system is more than a random number generator - it's a collaborative storytelling engine that transforms every roll into a dramatic moment. Understanding advanced dice mechanics means learning to read the story the dice are telling and weaving that story seamlessly into your game's narrative flow.</p>
@@ -368,9 +383,45 @@
             <p>Advanced play involves weighing the narrative costs and benefits of different interpretations. Sometimes spending Advantage on a small immediate benefit is better than saving it for something bigger. Sometimes accepting a significant Threat complication creates better story opportunities than avoiding it.</p>
         </section>
 
+        <section class="spend-menu">
+            <h2>The Spend Menu - A Table-Ready Reference</h2>
+            <p>Everything above is about interpreting results well. This section is for the other moment: mid-session, four Advantage on the table, five people looking at you, and nobody able to think of anything. Creativity works better with a floor under it. Keep this list to hand, use it when inspiration does not arrive, and improvise when it does.</p>
+
+            <h3>Spending Advantage</h3>
+            <table>
+                <thead><tr><th>Cost</th><th>Common options</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1 Advantage</strong></td><td>Recover 1 strain. Add a Boost die to the next allied check. Notice a useful detail — an exit, a tell, a loose panel.</td></tr>
+                    <tr><td><strong>2 Advantage</strong></td><td>Perform a free manoeuvre (aim, reposition, draw). Add a Setback die to an opponent's next check. Inflict 1 strain on a foe by rattling them.</td></tr>
+                    <tr><td><strong>3 Advantage</strong></td><td>Activate a weapon's special quality. Ignore a piece of difficult terrain or environmental penalty for the rest of the encounter. Grant an ally a free manoeuvre.</td></tr>
+                    <tr><td><strong>Triumph</strong></td><td>Inflict a Critical Injury outright. Upgrade an ally's next check. Change something about the <em>scene</em> rather than the roll — the alarm was never wired, the contact owes you a favour after all.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Spending Threat</h3>
+            <p>Threat is the GM's half of the same menu, and it should be spent with the same energy. A GM who only ever converts Threat into "you lose a strain" is wasting the most useful narrative tool in the system.</p>
+            <table>
+                <thead><tr><th>Cost</th><th>Common options</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1 Threat</strong></td><td>Lose 1 strain. A small tell gives you away. Something minor is dropped, snagged or misplaced.</td></tr>
+                    <tr><td><strong>2 Threat</strong></td><td>An opponent gets a free manoeuvre or a Boost die. You lose the advantage of cover. Reinforcements are now aware of the noise.</td></tr>
+                    <tr><td><strong>3 Threat</strong></td><td>The weapon jams or runs dry — a manoeuvre to clear. A piece of gear is damaged. The environment turns against you.</td></tr>
+                    <tr><td><strong>Despair</strong></td><td>Something breaks permanently, an ally is exposed, or the situation itself changes for the worse. Despair should alter what the scene <em>is</em>, not merely subtract from it.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Three Rules for Using the Menu Well</h3>
+            <ol>
+                <li><strong>Spend it immediately, or lose it.</strong> Advantage and Threat do not bank between checks. A table that pauses to deliberate on every point will grind to a halt — call something, move on, and trust that another roll is thirty seconds away.</li>
+                <li><strong>Let the player spend their own Advantage.</strong> It is their reward and their idea. The GM's job is to say yes, or to offer two options when they are stuck. Spending it for them turns a creative moment into an announcement.</li>
+                <li><strong>Threat is a complication, not a punishment.</strong> The test: does your Threat spend make the next thirty seconds <em>more interesting</em>? "You take one strain" almost never does. "The blast door grinds shut behind you — you're in, but you're committed" always does.</li>
+            </ol>
+            <p>The rulebooks carry longer tables broken out by situation — combat, social, vehicle — and they are worth reading once. But in practice most GMs converge on a dozen favourites, and the list above is roughly that dozen. Practise them on the <a href="/sw_dice_roller.html">Dice Roller</a> by rolling pools and narrating every result aloud until reaching for a spend stops feeling like a pause.</p>
+        </section>
+
         <section class="dice-pool-optimization">
             <h2>Dice Pool Construction and Optimization</h2>
-            
+
             <h3>Building Effective Pools</h3>
             <p>Understanding how different dice interact helps you build pools that maximize your chances of interesting outcomes. It's not always about getting the most successes - sometimes you want pools that generate Advantage, or that minimize Threat potential.</p>
 
@@ -802,6 +853,18 @@
                 <li><strong>House Rules for Dice:</strong> Common modifications and their impacts</li>
                 <li><strong>Teaching Dice Interpretation:</strong> Helping new players understand the system</li>
                 <li><strong>Cross-System Applications:</strong> Using narrative dice concepts in other games</li>
+            </ul>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Interpretation is a skill you build. Take it into these:</p>
+            <ul>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The highest-pressure place to spend Advantage well.</li>
+                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Advantage in conversation is subtler and often more valuable than in a firefight.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Reading the dice from behind the screen, where you owe the table a consequence every roll.</li>
+                <li><strong><a href="/sw_dice_roller.html">Dice Roller</a>:</strong> Roll the pools from this page and practise calling results aloud.</li>
+                <li><strong><a href="/sw_intro.html">Introduction</a>:</strong> The basics again, if any of the symbol interactions here felt like a leap.</li>
             </ul>
         </section>
     </main>

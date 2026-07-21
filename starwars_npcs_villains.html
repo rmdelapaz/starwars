@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating Compelling NPCs and Villains in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Building memorable antagonists, recurring rivals and morally grey allies for Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Creating Compelling NPCs and Villains in Star Wars RPG">
+    <meta property="og:description" content="Building memorable antagonists, recurring rivals and morally grey allies for Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .character-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
@@ -37,16 +51,55 @@
         .relationship-canvas { text-align: center; margin: 20px 0; }
         .dark-side-corruption { background: radial-gradient(circle, #330000, #000000); color: #ff6666; padding: 20px; border-radius: 10px; margin: 20px 0; }
         .redemption-arc { background: linear-gradient(to right, #330000, #003300); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .motivation-wheel { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .villain-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .relationship-web { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .trait-card { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .dialogue-examples { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-lab { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .force-spectrum { background: linear-gradient(to right, #144314, #31310e, #ff8800, #ff0000, #8800ff, #000000); color: #e2e8f0; }
+        html:not(.light) .force-marker { background: #222c35; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .character-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .character-card.villain { color: #e2e8f0; }
+        .character-card.villain :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .character-card.neutral { color: #e2e8f0; }
+        .character-card.neutral :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .force-spectrum { color: #e2e8f0; }
+        .force-spectrum :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .character-generator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .dark-side-corruption :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .redemption-arc :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .character-card.ally { background: linear-gradient(135deg, #176337, #43a015); }
+        .interface-btn { background: #0071eb; }
+        .interface-btn.active { background: #208637; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .motivation-wheel { color: #1f2937; }
+        .villain-builder { color: #1f2937; }
+        .relationship-web { color: #1f2937; }
+        .trait-card { color: #1f2937; }
+        .dialogue-examples { color: #1f2937; }
+        .exercise-lab { color: #1f2937; }
+        .force-spectrum { color: #1f2937; }
+        .force-marker { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Creating Compelling NPCs and Villains in Star Wars RPG</h1>
         <p><em>"You were the chosen one! It was said that you would destroy the Sith, not join them!" - Obi-Wan Kenobi</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <h2>Welcome to the Character Forge</h2>
             <p>Creating memorable NPCs and villains in Star Wars is like conducting a symphony of the Force - each character must play their part in the greater melody of your story. The best Star Wars characters aren't just obstacles or quest-givers; they're living beings with hopes, fears, contradictions, and the potential for both great good and terrible evil.</p>
@@ -315,6 +368,38 @@
             </div>
         </section>
 
+        <section class="villain-clock">
+            <h2>⏱️ What Your Villain Does While Nobody Is Watching</h2>
+            <p>Everything above builds a villain worth meeting. This section is about the time between meetings — because the difference between a memorable antagonist and a set of statistics the party fights occasionally is simply whether they <em>acted while off screen</em>.</p>
+
+            <h3>Give Them a Plan With Steps</h3>
+            <p>Write the villain's goal, then break it into four or five concrete stages, in order. Not a plot — a plan, the one they would carry out if the party had never existed:</p>
+            <div class="callout">
+                <p><strong>Goal:</strong> Moff Sarreth wants the sector's hyperlane tariffs under her personal control.<br>
+                <strong>1.</strong> Discredit the current port authority.<br>
+                <strong>2.</strong> Install her own inspectors "temporarily".<br>
+                <strong>3.</strong> Engineer a smuggling incident violent enough to justify permanence.<br>
+                <strong>4.</strong> Have the arrangement ratified from Coruscant.<br>
+                <strong>5.</strong> Remove everyone who remembers steps one through three.</p>
+            </div>
+            <p>Now advance one step whenever the party is elsewhere, or whenever they fail to stop one. That is the entire technique, and it does three things at once: the world feels alive, the villain feels competent, and you always know what is happening next without railroading anyone.</p>
+
+            <h3>Let the Players See the Clock</h3>
+            <p>A plan the party never notices is just GM bookkeeping. Leak each step — a news item, a new checkpoint that was not there last month, a contact who has stopped returning calls. The tension comes from the party <em>knowing</em> the clock is running and having to choose what to spend their time on. That choice is the game.</p>
+            <p>Crucially, this makes the party's failures interesting rather than merely disappointing. If they lose a session, the plan advances, and the world visibly changes as a result. Consequence beats punishment every time.</p>
+
+            <h3>Let Them Adapt, Visibly</h3>
+            <ul>
+                <li><strong>Villains should learn.</strong> If the party sliced their network last time, this time it is on paper couriers. Show the countermeasure and the players feel respected as opponents.</li>
+                <li><strong>Villains should lose something real.</strong> An antagonist who survives every encounter unchanged becomes furniture. Take a lieutenant, an asset, a base — each loss makes the next confrontation feel earned.</li>
+                <li><strong>Villains should occasionally win outright</strong> and move on. A plan completing is not a failure state for your campaign; it is the beginning of a harder one.</li>
+            </ul>
+
+            <h3>How This Ends</h3>
+            <p>Decide early, in private, what the villain would accept short of destruction — surrender, exile, a bargain, a genuine change of heart. Players will nearly always try something you did not plan for, and a GM who has already thought about the villain's breaking point can say yes to it. That preparation is also what makes the redemption arcs below possible: you cannot redeem someone whose limits you never established.</p>
+            <p>For pacing these steps across a campaign, see <a href="/starwars_campaign_arcs.html">Campaign Arcs</a>; for antagonists whose power is institutional rather than personal, see <a href="/starwars_galactic_politics.html">Galactic Politics</a>.</p>
+        </section>
+
         <section class="redemption-arcs">
             <div class="redemption-arc">
                 <h2>🌅 The Power of Redemption</h2>
@@ -425,6 +510,18 @@
             <p>Remember, your NPCs are the heart of your Star Wars campaign. They're not just stat blocks or plot devices - they're the living embodiment of the galaxy's hopes, fears, and dreams. When you create characters that your players genuinely care about, you've captured the true spirit of Star Wars.</p>
             
             <p>The best NPCs surprise both you and your players. They grow beyond their initial conception, develop new relationships, and sometimes take the story in directions you never expected. Embrace this organic development - it's a sign that your characters have come alive.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A villain is only as good as the scenes they appear in:</p>
+            <ul>
+                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Where most NPCs actually live — conversation, not combat.</li>
+                <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Spreading a villain across a campaign so their return means something.</li>
+                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A hundred ready-made characters to promote, demote or repurpose.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Antagonists with institutional power rather than personal menace.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Playing them convincingly at the table, which is harder than writing them.</li>
+            </ul>
         </section>
     </main>
 

@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Starships and Vehicle Rules</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Piloting, starship combat, modifications and vehicle stat blocks for Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Starships and Vehicle Rules">
+    <meta property="og:description" content="Piloting, starship combat, modifications and vehicle stat blocks for Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Starships and Vehicle Rules</h1>
         <p class="subtitle">From Speeders to Star Destroyers - Mastering the Galaxy's Transportation</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>Vehicles as Characters</h2>
             <p>In Star Wars, vehicles aren't just transportation - they're characters with personalities, histories, and destinies. The Millennium Falcon isn't just Han's ship; it's his partner, his home, and sometimes his salvation. A Jedi's starfighter isn't just a weapon; it's an extension of their connection to the Force. Understanding this relationship transforms vehicle rules from dry mechanics into storytelling opportunities.</p>
@@ -437,9 +452,43 @@
             </div>
         </section>
 
+        <section class="crew-roles">
+            <h2>Giving Everyone Something to Do</h2>
+            <p>Ship combat has one notorious failure mode, and it has nothing to do with the rules: the pilot has a wonderful time while three other players watch. If your space battles feel flat, this is almost always why. The fix is not more rules — it is making sure every seat has a decision in it.</p>
+
+            <h3>The Seats, and What Each One Actually Rolls</h3>
+            <table>
+                <thead><tr><th>Role</th><th>Rolls</th><th>The decision they own</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Pilot</strong></td><td>Piloting</td><td>Range, facing and manoeuvres — which arc the enemy ends up in</td></tr>
+                    <tr><td><strong>Co-pilot</strong></td><td>Piloting, Leadership</td><td>Assisting the pilot, or spending their action to set up someone else's</td></tr>
+                    <tr><td><strong>Gunner</strong></td><td>Gunnery</td><td>Which target, and which weapon — arcs mean this is a real choice</td></tr>
+                    <tr><td><strong>Engineer</strong></td><td>Mechanics</td><td>Repairs mid-fight, rerouting power, patching what just broke</td></tr>
+                    <tr><td><strong>Sensors / Comms</strong></td><td>Computers, Perception, Charm or Deception</td><td>Finding what else is out there — and talking to it</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Four Habits That Fix Flat Ship Combat</h3>
+            <ol>
+                <li><strong>Assign seats before the shooting starts.</strong> Do it during downtime, not during round one. A player who knows they are the engineer will start thinking like one.</li>
+                <li><strong>Never let a seat be purely reactive.</strong> "You repair the thing that broke" is a chore. "The shields or the hyperdrive — you have time for one" is a decision. Give the engineer competing demands rather than a queue.</li>
+                <li><strong>Put objectives outside the dogfight.</strong> If winning means shooting down the other ship, only the gunner matters. If it means surviving four rounds until the hyperdrive spins up, reaching a transport before it is boarded, or jamming a signal before it reaches the fleet, every seat suddenly has a stake.</li>
+                <li><strong>Let non-pilots act on the fiction.</strong> A character with no ship skill at all can still brace an injured passenger, throw cargo out of the airlock to lighten the load, or shout something that lets the pilot ignore a Setback. Reward the attempt with a Boost die and the problem disappears.</li>
+            </ol>
+
+            <h3>When the Party Is Bigger Than the Ship</h3>
+            <p>Small fighters are the hardest case — a single-seater simply cannot hold five players. Three workable answers, in rough order of preference:</p>
+            <ul>
+                <li><strong>Fly a squadron.</strong> Each player takes their own fighter. The most fun option, and it makes formation and mutual support matter.</li>
+                <li><strong>Split the scene.</strong> Cut between the pilots outside and the rest of the party doing something urgent inside. Keep the cuts short and the two halves on the same clock so tension carries across.</li>
+                <li><strong>Scale up the ship.</strong> Sometimes the honest fix is to give the party a freighter instead. A ship with five seats is worth more to a campaign than a faster one with two.</li>
+            </ul>
+            <p><a href="/sw_groups.html">Group Dynamics</a> covers picking seats that match the party you actually have, and <a href="/starwars_space_encounters.html">Space Encounters</a> has encounter designs built around objectives rather than pure dogfights.</p>
+        </section>
+
         <section class="hyperspace-travel">
             <h2>Hyperspace - Faster Than Light Travel</h2>
-            
+
             <h3>The Nature of Hyperspace</h3>
             <p>Hyperspace isn't just "going really fast" - it's entering an alternate dimension where the normal rules of physics don't apply. It's like stepping through a looking glass into a realm where distance is negotiable and time flows differently. This mystical aspect makes hyperspace travel both practical necessity and plot device.</p>
 
@@ -894,6 +943,18 @@
                 <li><strong>Vehicle-Specific Force Powers:</strong> Battle meditation and Force piloting</li>
                 <li><strong>Mass Production vs Custom Builds:</strong> Imperial standardization vs Rebel ingenuity</li>
                 <li><strong>Economic Aspects:</strong> Vehicle costs, maintenance, and black market modifications</li>
+            </ul>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A ship needs somewhere to go and something to fight:</p>
+            <ul>
+                <li><strong><a href="/starwars_space_encounters.html">Space Encounters</a>:</strong> Encounter designs to fly these ships into — dogfights, blockades, capital engagements.</li>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The personal-scale rules these vehicle rules mirror.</li>
+                <li><strong><a href="/starwars_ground_combat.html">Ground Combat</a>:</strong> Vehicles used in ground battles, where scale differences get interesting.</li>
+                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> The crew. A ship with defined roles gives quiet players a job.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Somewhere worth landing once the flying is done.</li>
             </ul>
         </section>
     </main>

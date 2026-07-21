@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Managing Force Powers and Jedi Training in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Force power trees, Force dice, dark side temptation and running Jedi training arcs.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Managing Force Powers and Jedi Training in Star Wars RPG">
+    <meta property="og:description" content="Force power trees, Force dice, dark side temptation and running Jedi training arcs.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .force-temple { background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -53,16 +67,72 @@
         .compass-needle { position: absolute; top: 50%; left: 50%; width: 4px; height: 80px; background: linear-gradient(to bottom, #007bff, #dc3545); transform-origin: bottom center; transform: translate(-50%, -100%) rotate(0deg); transition: transform 0.5s; }
         .balance-meter { width: 100%; height: 30px; background: linear-gradient(to right, #007bff, #28a745, #ffc107, #fd7e14, #dc3545); border-radius: 15px; margin: 15px 0; position: relative; }
         .balance-indicator { position: absolute; top: -5px; width: 40px; height: 40px; background: white; border: 3px solid #000; border-radius: 50%; transition: left 0.5s; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .power-card.neutral { background: linear-gradient(135deg, #433314, #ff8800); color: #e2e8f0; }
+        html:not(.light) .training-stages { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .force-tracker { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .lightsaber-forge { background: linear-gradient(45deg, #ff6b6b, #144340, #0e2b31, #204634); }
+        html:not(.light) .force-btn.neutral { background: #433714; color: #e2e8f0; }
+        html:not(.light) .exercise-dojo { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .progression-stage { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .force-philosophy { background: linear-gradient(135deg, #431415, #310e26); color: #e2e8f0; }
+        html:not(.light) .crystal-green { background: radial-gradient(circle, #144314, #228b22); color: #e2e8f0; }
+        html:not(.light) .crystal-yellow { background: radial-gradient(circle, #433c14, #31270e); color: #e2e8f0; }
+        html:not(.light) .wisdom-scroll { background: #434314; color: #e2e8f0; }
+        html:not(.light) .moral-compass { background: radial-gradient(circle, #1e2b38, #162029); color: #e2e8f0; }
+        html:not(.light) .balance-meter { background: linear-gradient(to right, #007bff, #28a745, #433714, #fd7e14, #dc3545); color: #e2e8f0; }
+        html:not(.light) .balance-indicator { background: #222c35; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .force-temple :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .power-card.dark { color: #e2e8f0; }
+        .power-card.dark :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .power-card.universal { color: #e2e8f0; }
+        .power-card.universal :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .meditation-chamber :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .dark-side-temptations :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .jedi-trials :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .force-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .crystal-blue { color: #e2e8f0; }
+        .crystal-blue :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .crystal-red { color: #e2e8f0; }
+        .crystal-red :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .crystal-purple { color: #e2e8f0; }
+        .crystal-purple :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .compass-needle { color: #e2e8f0; }
+        .compass-needle :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .power-card.light { background: linear-gradient(135deg, #00a944, #005f26); }
+        .force-btn { background: #0071eb; }
+        .force-btn.light { background: #208637; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .power-card.neutral { color: #1f2937; }
+        .training-stages { color: #1f2937; }
+        .force-tracker { color: #1f2937; }
+        .exercise-dojo { color: #1f2937; }
+        .progression-stage { color: #1f2937; }
+        .force-philosophy { color: #1f2937; }
+        .crystal-green { color: #1f2937; }
+        .crystal-yellow { color: #1f2937; }
+        .wisdom-scroll { color: #1f2937; }
+        .moral-compass { color: #1f2937; }
+        .balance-meter { color: #1f2937; }
+        .balance-indicator { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Managing Force Powers and Jedi Training</h1>
         <p><em>"For my ally is the Force, and a powerful ally it is. Life creates it, makes it grow. Its energy surrounds us and binds us." - Yoda</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="force-temple">
                 <h2>Welcome to the Force Academy</h2>
@@ -234,6 +304,37 @@
                     <li><strong>Service:</strong> Dedicating oneself to healing the damage done</li>
                 </ul>
             </div>
+        </section>
+
+        <section class="conflict-morality">
+            <h2>⚖️ Putting Numbers on the Temptation</h2>
+            <p>Everything above describes the dark side philosophically. The system also tracks it arithmetically, and the arithmetic is what stops "resisting temptation" being a matter of the player simply declaring that they do. Two linked mechanics carry it.</p>
+
+            <h3>Conflict — Earned Within the Session</h3>
+            <p>Conflict is a running tally accumulated during play. A character earns it two ways:</p>
+            <ul>
+                <li><strong>By choosing dark side results.</strong> When you power an ability using dark side pips from the Force die, you take Conflict for it. This is the crucial design move — the dark side is not forbidden, it is <em>available and effective</em>, and it invoices you afterwards.</li>
+                <li><strong>By acting badly.</strong> Cruelty, betrayal, killing where you did not need to. The GM assigns this, and the amount should scale with how deliberate the act was rather than how bloody it looked.</li>
+            </ul>
+            <p>Note what this means at the table: a Force user under pressure, short on light side pips, can always reach for the dark and succeed. That temptation is real, immediate and mechanical, which is exactly why it works dramatically.</p>
+
+            <h3>Morality — Settled Between Sessions</h3>
+            <p>Morality is a long-run score, starting in the middle of the range for a newly created character. At the end of each session it moves, and the movement is a genuine gamble rather than a simple subtraction: roll a die and compare it against the Conflict you accrued that session. Come in under your Conflict and your Morality falls; stay above it and your Morality rises.</p>
+            <p>Two things follow that are easy to miss:</p>
+            <ul>
+                <li><strong>A small amount of Conflict is usually survivable</strong> — you will often still drift upward. This is the system quietly telling you that the occasional dark choice is part of the story, not a death sentence.</li>
+                <li><strong>Sustained Conflict compounds.</strong> It is not one dramatic fall that darkens a character, it is six sessions of small compromises. Players almost never see it coming, which is the point.</li>
+            </ul>
+            <p>Drift far enough toward either extreme and the character changes state — a light-side paragon gains benefits reflecting their conviction, while a character who falls far enough passes to the dark side and begins drawing strength from it instead. Both ends of the scale are playable; the middle is where most characters actually live.</p>
+
+            <h3>How to Actually Run This</h3>
+            <ol>
+                <li><strong>Make the player say it out loud.</strong> "I'm using the dark side pip" should be spoken, not quietly ticked. The moment of choosing is the entire mechanic.</li>
+                <li><strong>Assign Conflict immediately and without argument</strong> — and say the number. Retroactive Conflict at session end feels like a punishment; Conflict named in the moment feels like a price.</li>
+                <li><strong>Tie the emotional weakness in.</strong> Every Force-sensitive has a paired strength and weakness. Aim your temptations at the weakness specifically, and the mechanic stops being generic — it becomes about <em>that</em> character.</li>
+                <li><strong>Do not protect them.</strong> A GM who never offers a genuinely attractive dark option has removed the subsystem. The temptation must be worth taking, sometimes.</li>
+            </ol>
+            <p>Exact values, the Conflict tables and the paragon thresholds live in Force and Destiny; <a href="/sw_char.html">Character Creation</a> covers how Morality compares with Obligation and Duty, and why a mixed party rolls all three separately.</p>
         </section>
 
         <section class="meditation-training">
@@ -457,6 +558,18 @@
             <p>Remember, mastering the Force is not about accumulating powers - it's about growing in wisdom, compassion, and understanding. The most powerful Force user is not necessarily the strongest, but the one who best understands their connection to all life and uses that understanding in service of others.</p>
             
             <p>In your campaigns, let Force powers be expressions of character growth, not just mechanical abilities. When players reach for the Force, they should be reaching for something deeper than magic - they should be touching the very essence of what makes Star Wars meaningful.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Powers are only half of it. The other half:</p>
+            <ul>
+                <li><strong><a href="/sw_force_and_lightsaber.html">Force &amp; Lightsabers</a>:</strong> Lightsaber combat and the Conflict system that governs how you use these powers.</li>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Fitting a Force user into a party without overshadowing everyone.</li>
+                <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Training arcs — spreading a character's development across a whole campaign.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists who use these same powers, and how to make that frightening.</li>
+                <li><strong><a href="/starwars_time_travel.html">Time Travel</a>:</strong> Force visions and prophecy taken to their logical extreme.</li>
+            </ul>
         </section>
     </main>
 

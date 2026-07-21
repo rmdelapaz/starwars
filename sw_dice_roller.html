@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG Dice Roller</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Interactive Star Wars RPG dice roller — roll Boost, Ability, Proficiency, Difficulty and Force dice in your browser.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG Dice Roller">
+    <meta property="og:description" content="Interactive Star Wars RPG dice roller — roll Boost, Ability, Proficiency, Difficulty and Force dice in your browser.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Exo 2', Arial, sans-serif;
             background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
             color: #ffffff;
             margin: 0;
@@ -272,11 +282,42 @@
             padding: 5px 10px;
             font-weight: bold;
         }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .boost { border-color: #276b86; }
+        html:not(.light) .proficiency { border-color: #867727; }
+        html:not(.light) .force { border-color: #44576a; }
+        html:not(.light) .success { background: #144314; color: #e2e8f0; }
+        html:not(.light) .advantage { background: #143543; color: #e2e8f0; }
+        html:not(.light) .triumph { background: #433c14; color: #e2e8f0; }
+        html:not(.light) .light { background: #222c35; color: #e2e8f0; }
+        html:not(.light) .percentile-btn { background: linear-gradient(45deg, #433214, #FF8C00); }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        body :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .failure { color: #e2e8f0; }
+        .failure :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .threat { color: #e2e8f0; }
+        .threat :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .despair { color: #e2e8f0; }
+        .despair :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .dark { color: #e2e8f0; }
+        .dark :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .roll-btn { background: linear-gradient(45deg, #ff1919, #b23a0e); }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .success { color: #1f2937; }
+        .advantage { color: #1f2937; }
+        .triumph { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <div class="container">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="container" id="main" role="main">
         <h1>Star Wars RPG Dice Roller</h1>
         
         <div class="dice-section">
@@ -452,6 +493,58 @@
             </div>
         </div>
         
+        <div class="dice-section">
+            <h2>🧮 Building the Right Pool</h2>
+            <p>The roller will happily roll whatever you hand it. Knowing <em>what</em> to hand it is the actual skill, and it comes down to three questions asked in order.</p>
+
+            <h3>1. How good are you? (your dice)</h3>
+            <p>Compare the characteristic against the skill. Take the <strong>larger</strong> of the two as your number of dice, then <strong>upgrade</strong> a number of them equal to the <strong>smaller</strong> value from Ability (green) to Proficiency (yellow).</p>
+            <div class="interpretation-grid">
+                <div class="interpretation-item">
+                    <h4>Agility 3, Piloting 2</h4>
+                    <p>Three dice, two upgraded → <strong>2 Proficiency + 1 Ability</strong>. Talented and trained.</p>
+                </div>
+                <div class="interpretation-item">
+                    <h4>Intellect 2, Mechanics 1</h4>
+                    <p>Two dice, one upgraded → <strong>1 Proficiency + 1 Ability</strong>. Competent, still learning.</p>
+                </div>
+                <div class="interpretation-item">
+                    <h4>Brawn 3, Skill 0</h4>
+                    <p>Three dice, none upgraded → <strong>3 Ability</strong>. Naturally strong, completely untrained.</p>
+                </div>
+                <div class="interpretation-item">
+                    <h4>Presence 1, Charm 3</h4>
+                    <p>Three dice, one upgraded → <strong>1 Proficiency + 2 Ability</strong>. Well drilled, not naturally charming.</p>
+                </div>
+            </div>
+            <p>Note the last one: the pool is capped by whichever value is <em>larger</em>, so pouring points into a skill while ignoring its characteristic gives diminishing returns. This is why characteristics are expensive at character creation.</p>
+
+            <h3>2. How hard is it? (the GM's dice)</h3>
+            <p>Difficulty is set by the GM in purple dice, before anyone considers who is attempting it. A locked door is exactly as hard whether a slicer or a pilot is standing in front of it — the difference shows up in the <em>attempt</em>, not the lock.</p>
+            <div class="interpretation-grid">
+                <div class="interpretation-item"><h4>Simple — no dice</h4><p>Do not roll. If failure is not interesting, just say yes.</p></div>
+                <div class="interpretation-item"><h4>Easy — 1 purple</h4><p>Routine for anyone, but circumstances make it worth checking.</p></div>
+                <div class="interpretation-item"><h4>Average — 2 purple</h4><p>The workhorse difficulty. When unsure, use this.</p></div>
+                <div class="interpretation-item"><h4>Hard — 3 purple</h4><p>Genuinely demanding. A trained specialist expects to sweat.</p></div>
+                <div class="interpretation-item"><h4>Daunting — 4 purple</h4><p>Near the edge of plausible. Reserve it for real turning points.</p></div>
+                <div class="interpretation-item"><h4>Formidable — 5 purple</h4><p>Should feel absurd. Used sparingly, it is memorable.</p></div>
+            </div>
+            <p>When the opposition is a <em>person</em> actively resisting rather than a passive obstacle, upgrade Difficulty dice into <strong>Challenge (red)</strong> — that is what makes an adversary feel different from a stuck hatch.</p>
+
+            <h3>3. What else is true? (circumstances)</h3>
+            <ul>
+                <li><strong>Add Boost (blue)</strong> for anything working in your favour: aiming, good equipment, high ground, an ally's assistance, a previous roll's leftover Advantage.</li>
+                <li><strong>Add Setback (black)</strong> for anything working against you: darkness, a bad angle, an injury, improvised tools.</li>
+            </ul>
+            <p>Boost and Setback are deliberately cheap to hand out. They are the fastest way to make the fiction matter mechanically without recalculating anything — if a player describes something clever, give them a blue die and keep the scene moving.</p>
+
+            <div class="interpretation-item">
+                <h4>Worked example</h4>
+                <p>A smuggler (Agility 3, Piloting 2) threads a damaged freighter through an asteroid field while being chased. The GM calls it <strong>Hard</strong> — three purple. The ship is damaged, so one black. The co-pilot spends their turn assisting, so one blue.</p>
+                <p><strong>Roll: 2 Proficiency + 1 Ability + 3 Difficulty + 1 Setback + 1 Boost.</strong> Set that up above and roll it a few times — watching the same pool produce a clean escape, a scraped hull, and a spectacular near-miss is the fastest way to understand why this system is built the way it is.</p>
+            </div>
+        </div>
+
         <div class="dice-section">
             <h2>🎯 How to Interpret Results</h2>
             <div class="interpretation-grid">
@@ -700,5 +793,16 @@
             document.getElementById('results').style.display = 'none';
         }
     </script>
+
+        <section class="further-exploration page-wrap" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>The roller is a tool. These pages explain what it is telling you:</p>
+            <ul>
+                <li><strong><a href="/sw_intro.html">Introduction</a>:</strong> What each symbol means and why Success and Advantage are separate questions.</li>
+                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> What to spend the results on once you have them — the real skill of this system.</li>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> Assembling attack pools and reading them under pressure.</li>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Where the dice in your pool come from in the first place.</li>
+            </ul>
+        </section>
 </body>
 </html>

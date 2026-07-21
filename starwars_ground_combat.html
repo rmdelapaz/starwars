@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Running Epic Ground Combat in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Tactical ground encounters, cover mechanics and cinematic battlefield set pieces for Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Running Epic Ground Combat in Star Wars RPG">
+    <meta property="og:description" content="Tactical ground encounters, cover mechanics and cinematic battlefield set pieces for Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .battlefield { background: linear-gradient(135deg, #2c3e50, #4a6741, #8b7355); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -55,16 +69,65 @@
         .range-short { background: linear-gradient(to right, #28a745, #20c997); }
         .range-medium { background: linear-gradient(to right, #ffc107, #fd7e14); }
         .range-long { background: linear-gradient(to right, #dc3545, #e83e8c); }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .tactical-overlay { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .unit-card.vehicle { border-left: 4px solid #866f27; }
+        html:not(.light) .map-btn.cover { background: #433714; color: #e2e8f0; }
+        html:not(.light) .initiative-tracker { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .action-economy { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .environmental-hazards { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-barracks { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .cover-type { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .zone.neutral { border-color: #866f27; }
+        html:not(.light) .range-short { background: linear-gradient(to right, #28a745, #144335); color: #e2e8f0; }
+        html:not(.light) .range-medium { background: linear-gradient(to right, #433714, #fd7e14); color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .battlefield :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .theater-card.urban { color: #e2e8f0; }
+        .theater-card.urban :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .unit-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .battlemap-builder { color: #e2e8f0; }
+        .battlemap-builder :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .combat-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .narrative-integration :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .zone.enemy { color: #e2e8f0; }
+        .zone.enemy :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .range-long { color: #e2e8f0; }
+        .range-long :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .theater-card.forest { background: linear-gradient(135deg, #219552, #186b3b); }
+        .theater-card.desert { background: linear-gradient(135deg, #b47209, #935e0b); }
+        .theater-card.industrial { background: linear-gradient(135deg, #7f8d99, #515f6d); }
+        .map-btn { background: #0071eb; }
+        .map-btn.terrain { background: #208637; }
+        .vehicle-showcase { background: radial-gradient(circle, #f50000, #e50000); }
+        .hero-moments { background: linear-gradient(to right, #ffc05e, #0f3148); }
+        .zone.friendly { background: rgba(32, 134, 55, 0.7); }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .tactical-overlay { color: #1f2937; }
+        .initiative-tracker { color: #1f2937; }
+        .action-economy { color: #1f2937; }
+        .environmental-hazards { color: #1f2937; }
+        .exercise-barracks { color: #1f2937; }
+        .cover-type { color: #1f2937; }
+        .range-short { color: #1f2937; }
+        .range-medium { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Running Epic Ground Combat in Star Wars RPG</h1>
         <p><em>"Rebellions are built on hope... and careful tactical planning." - Jyn Erso</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="battlefield">
                 <h2>Welcome to the War College</h2>
@@ -292,6 +355,30 @@
             </div>
         </section>
 
+        <section class="initiative-slots">
+            <h2>🔀 The Initiative Rule Everyone Gets Wrong</h2>
+            <p>This system does not hand initiative to individuals, and missing that costs you the most tactical thing about its combat. Worth stating plainly, because almost every group imports the assumption from other games and never notices.</p>
+
+            <h3>Slots Belong to the Side, Not the Person</h3>
+            <p>At the start of an encounter everyone rolls — <strong>Cool</strong> if your side is ready and expecting trouble, <strong>Vigilance</strong> if you are caught out. Those results are sorted into an ordered list of <em>slots</em>, each marked only as a player slot or an enemy slot. The names come off.</p>
+            <p>Then each round, when a player slot comes up, <strong>the players decide together who takes it.</strong> Whoever rolled highest does not own the top slot; the party does. A slow, heavily armoured character can act first this round because a quick teammate generated an early slot — and next round the order can be completely different.</p>
+
+            <h3>Why This Changes How Combat Feels</h3>
+            <ul>
+                <li><strong>It makes the party tactical rather than sequential.</strong> "Who takes this one?" gets asked aloud every round, and quieter players are pulled into the conversation by the structure itself.</li>
+                <li><strong>It rewards planning across the round.</strong> The medic can be held back for the slot after the enemy acts, instead of being locked into going third forever.</li>
+                <li><strong>It makes ambushes bite properly.</strong> Being caught out shifts you to Vigilance and hands the enemy the early slots — and losing the first two slots of a firefight is far more frightening than losing a point of accuracy.</li>
+            </ul>
+
+            <h3>Running It Cleanly</h3>
+            <p>Write the slots on index cards or a strip of paper and physically work down them. Two habits keep it fast:</p>
+            <ol>
+                <li><strong>Ask the table, not a person.</strong> "Player slot — who's taking it?" If two people want it they will sort it out in seconds; if nobody does, give it to whoever is most obviously placed to act.</li>
+                <li><strong>Set a decision limit.</strong> The failure mode of shared initiative is a committee. Agree that if the party has not chosen within a few seconds, whoever spoke first takes the slot. Speed matters more than optimisation.</li>
+            </ol>
+            <p>One consequence worth flagging to players early: because slots persist but assignment does not, a character can effectively act twice in quick succession — last slot of one round, first slot of the next. That is legal, it is powerful, and a party that spots it has understood the system.</p>
+        </section>
+
         <section class="environmental-combat">
             <div class="environmental-hazards">
                 <h2>🌪️ Environmental Combat Elements</h2>
@@ -474,6 +561,18 @@
             <p>Remember, the goal of ground combat isn't to perfectly simulate warfare - it's to create memorable moments where heroes rise to meet impossible challenges. The best battles are those where tactical decisions feel meaningful, where every character contributes to victory, and where the outcome advances both plot and character development.</p>
             
             <p>When your players are telling stories about the time they held the bridge against impossible odds, or when they outwitted the enemy through clever use of terrain, or when they made the heroic sacrifice that saved the day - that's when you know you've mastered the art of epic ground combat.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Ground combat touches almost everything else at the table:</p>
+            <ul>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The core resolution rules these tactical layers sit on top of.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Terrain is the cheapest way to make two firefights feel different.</li>
+                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> Speeders and walkers turning an infantry fight into something else entirely.</li>
+                <li><strong><a href="/starwars_space_encounters.html">Space Encounters</a>:</strong> What is happening overhead while your players are pinned down.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> The person giving the orders on the other side.</li>
+            </ul>
         </section>
     </main>
 

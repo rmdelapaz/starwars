@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Combat and Conflict Resolution</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Initiative, range bands, critical hits and the flow of structured encounters in Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Combat and Conflict Resolution">
+    <meta property="og:description" content="Initiative, range bands, critical hits and the flow of structured encounters in Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Combat and Conflict Resolution</h1>
         <p class="subtitle">From Lightsaber Duels to Diplomatic Negotiations - Mastering All Forms of Conflict</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>Beyond the Blaster Fight - Understanding Conflict</h2>
             <p>Star Wars combat isn't just about who has the biggest gun or the fastest reflexes. It's about dramatic tension, character development, and storytelling moments that define heroes. Think of combat like choreographing a dance - every move should serve the story, reveal character, and create memorable moments that players will talk about for years.</p>
@@ -376,9 +391,43 @@
             </div>
         </section>
 
+        <section class="aftermath">
+            <h2>After the Shooting Stops</h2>
+            <p>Combat rules get all the attention, but what happens <em>afterwards</em> is what determines whether your campaign feels like Star Wars or like a war film. The system draws a hard line between two kinds of harm, and understanding that line is what lets you push characters to the edge without killing them.</p>
+
+            <h3>Two Tracks, Two Recovery Speeds</h3>
+            <table>
+                <thead>
+                    <tr><th></th><th>Wounds</th><th>Strain</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Represents</strong></td><td>Physical injury — blaster burns, broken bones</td><td>Fatigue, fear, mental pressure, exertion</td></tr>
+                    <tr><td><strong>Exceeding it</strong></td><td>Incapacitated <em>and</em> you take a Critical Injury</td><td>Incapacitated only — you collapse, unhurt</td></tr>
+                    <tr><td><strong>Recovery</strong></td><td>Slow. Medical attention, bacta, days of rest</td><td>Fast. Most of it returns at the end of the encounter</td></tr>
+                </tbody>
+            </table>
+            <p>That asymmetry is the whole design. Strain is meant to be spent — you push yourself for an extra manoeuvre, you grit your teeth through a frightening moment — because you will get it back shortly. Wounds are meant to accumulate and worry you. A character who ends a session battered but conscious is the system working correctly.</p>
+
+            <h3>Critical Injuries — Where the Real Danger Lives</h3>
+            <p>Exceeding your Wound Threshold does not usually kill you; it knocks you out and hands you a lasting injury rolled on a table. The important wrinkle is that <strong>criticals stack</strong>: each injury a character is already carrying makes the next roll more severe. This is what makes a long campaign day genuinely dangerous even when no single hit was dramatic.</p>
+            <p>Triumph can also inflict a critical directly, without exceeding any threshold at all — which is why a single lucky yellow die can end a duel that damage alone would not have.</p>
+
+            <h3>Getting Back Up</h3>
+            <ul>
+                <li><strong>Strain</strong> comes back at the end of an encounter, and a Cool or Discipline check during a breather recovers more. This is deliberately cheap — the system wants you to keep going.</li>
+                <li><strong>Wounds</strong> need a Medicine check, and a patient can only benefit from so much treatment in a day. A party without anyone trained in Medicine will discover this the hard way, which is a good argument for the medic seat in <a href="/sw_groups.html">Group Dynamics</a>.</li>
+                <li><strong>Bacta</strong> is the setting's answer to serious harm, and it is worth keeping expensive and inconvenient. The moment bacta is freely available, wounds stop mattering and so does combat.</li>
+                <li><strong>Critical Injuries</strong> take the longest and may need a proper facility. Let one linger — a limp, a tremor, a scar — and the players will treat the next firefight with far more respect.</li>
+            </ul>
+
+            <h3>The Pacing Lesson Hidden in the Recovery Rules</h3>
+            <p>Because strain returns quickly and wounds do not, the system quietly encourages a particular rhythm: several encounters in one push, then a real rest. If you let the party retreat to full health after every fight, you flatten that rhythm and every encounter becomes independently survivable — which is precisely when combat gets boring. Attrition across a session is the tension. Guard it.</p>
+            <p>The corollary for GMs: <strong>an unconscious character is not a dead one.</strong> Incapacitation is the system's default outcome, and capture, rescue and hard bargains are far more interesting than a replacement character. Use death deliberately, or not at all.</p>
+        </section>
+
         <section class="special-combat-rules">
             <h2>Special Combat Situations</h2>
-            
+
             <h3>Vehicle Combat - Starfighter Battles</h3>
             <p>Vehicle combat scales up the action without losing the personal stakes. Whether you're piloting an X-wing or manning the guns on the Millennium Falcon, the same core mechanics apply, but with additional considerations for speed, maneuverability, and the fact that your vehicle can be a character in its own right.</p>
 
@@ -711,6 +760,18 @@
         </section>
 
        
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Combat rarely stays in one register. Where it goes next:</p>
+            <ul>
+                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> What to actually spend Advantage and Threat on mid-fight — the skill that makes combat sing.</li>
+                <li><strong><a href="/starwars_ground_combat.html">Ground Combat</a>:</strong> Scaling up to tactical set pieces with terrain, cover and objectives.</li>
+                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> When the fight leaves the ground and everyone piles into a ship.</li>
+                <li><strong><a href="/sw_force_and_lightsaber.html">Force &amp; Lightsabers</a>:</strong> Lightsaber duels, which follow these rules with important exceptions.</li>
+                <li><strong><a href="/sw_dice_roller.html">Dice Roller</a>:</strong> Practise assembling attack pools until it stops needing thought.</li>
+            </ul>
+        </section>
     </main>
 
     <footer>

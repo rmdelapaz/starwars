@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Game Master Techniques</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Pacing, improvisation, managing player expectations and cinematic narration for Star Wars GMs.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Game Master Techniques">
+    <meta property="og:description" content="Pacing, improvisation, managing player expectations and cinematic narration for Star Wars GMs.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Game Master Techniques</h1>
         <p class="subtitle">Directing the Galaxy's Greatest Stories - Mastering the Art of Star Wars Gamemastering</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>The GM as Galaxy Architect</h2>
             <p>Being a Star Wars Game Master isn't just about knowing rules or managing dice - you're the director, producer, supporting cast, and special effects department of your own Star Wars epic. You're not just running a game; you're collaborating with your players to create stories worthy of the saga that inspired millions. Think of yourself as George Lucas with a writers' room full of creative partners.</p>
@@ -555,9 +570,40 @@
             <p>Duty represents opportunities for characters to advance their cause and grow as heroes. Unlike Obligation, Duty should feel empowering - a chance to make a difference in the galaxy and earn recognition for heroic service.</p>
         </section>
 
+        <section class="prep-economy">
+            <h2>Preparation: Doing Less, Better</h2>
+            <p>Most GMs who quit do not quit because a session went badly. They quit because preparation quietly expanded until running the game stopped being worth the hours. Prep is a budget, and the goal is not to spend more of it — it is to spend it on the things that survive contact with the players.</p>
+
+            <h3>Prepare Situations, Not Plots</h3>
+            <p>A plot is a sequence you expect to happen. A situation is a set of pressures that will produce a sequence you did not expect. Plots are fragile because the players are not reading them; situations are robust because they generate material no matter which direction the party goes.</p>
+            <p>In practice this means writing down <strong>who wants what, and what happens if nobody stops them</strong> — then letting the session be about the party colliding with that. If your notes contain the phrase "and then the players will", you have written a plot, and the odds are good it will be wasted.</p>
+
+            <h3>The Things Actually Worth Writing Down</h3>
+            <p>A session's worth of prep fits on one side of an index card. Prepare these:</p>
+            <ul>
+                <li><strong>Three names.</strong> Not characters, just names, unused and ready. This solves the single most common improvisation failure — see <a href="/sw_names.html">Character Names</a> for generating them fast.</li>
+                <li><strong>Two locations</strong> with one sensory detail each. "The hangar smells of scorched coolant." That detail does more work than a page of description.</li>
+                <li><strong>One thing that happens whatever the party does.</strong> A convoy departs, a deadline expires, someone is executed. This is your engine; it keeps the session moving when the party stalls.</li>
+                <li><strong>One complication in reserve</strong> for when momentum dies or a Threat spend needs somewhere to land.</li>
+                <li><strong>The opposition's goal in one sentence</strong> — not their statistics. Statistics can be improvised; motive cannot.</li>
+            </ul>
+
+            <h3>What Not to Prepare</h3>
+            <ul>
+                <li><strong>Dialogue.</strong> It will not survive the first question a player asks, and reading it aloud sounds like reading it aloud.</li>
+                <li><strong>Detailed maps</strong> for locations the party may never enter. Sketch when they arrive.</li>
+                <li><strong>Contingency branches.</strong> Preparing for three possible player choices means throwing away two-thirds of your work. Prepare the situation once and respond live.</li>
+                <li><strong>Full statistics for minor opposition.</strong> A number you invent confidently at the table is indistinguishable from one you invented carefully at home.</li>
+            </ul>
+
+            <h3>Make Prep Reusable</h3>
+            <p>The cheapest prep is prep you already did. Keep a running file of unused names, half-built NPCs, locations the party skipped and complications that never fired — then raid it every week. Nothing is wasted, only deferred, and after a few months you will have a personal toolkit that makes improvisation almost effortless.</p>
+            <p>One discipline makes this work: <strong>write down what you improvised, immediately after the session.</strong> The NPC you invented on the spot and the players adored is now canon, and forgetting their name next week costs you more credibility than any amount of unprepared material.</p>
+        </section>
+
         <section class="advanced-gm-techniques">
             <h2>Advanced GM Techniques</h2>
-            
+
             <h3>The Three-Act Session Structure</h3>
             <p>Structure your sessions like Star Wars films, with clear acts that build tension and deliver satisfying payoffs. This helps maintain pacing and ensures each session feels complete even as part of a larger story.</p>
 
@@ -719,6 +765,18 @@
         </section>
 
        
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Technique compounds. Where to take it:</p>
+            <ul>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists worth all this craft.</li>
+                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> Reading dice results fast enough to keep narration flowing.</li>
+                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> The encounter type that most rewards a confident GM.</li>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Zooming out from the session to the campaign.</li>
+                <li><strong><a href="/starwars_capstone_mastery.html">Capstone: GM Mastery</a>:</strong> The capstone, which assumes everything on this page.</li>
+            </ul>
+        </section>
     </main>
 
     <footer>

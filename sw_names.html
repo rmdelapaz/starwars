@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>150 Star Wars RPG Character Names</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="150 Star Wars character names plus naming conventions and generators for every species in the galaxy.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="150 Star Wars RPG Character Names">
+    <meta property="og:description" content="150 Star Wars character names plus naming conventions and generators for every species in the galaxy.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Exo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            color: #e2e8f0;
             margin: 0;
             padding: 20px;
             background: 
@@ -226,13 +241,33 @@
             0% { opacity: 0.3; }
             100% { opacity: 1; }
         }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) h1 { background: linear-gradient(45deg, #222c35, #192027, #28333e); }
+        html:not(.light) .star { background: #222c35; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        body :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .container { color: #e2e8f0; }
+        .container :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .name-card { color: #e2e8f0; }
+        .name-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .tips-section { color: #e2e8f0; }
+        .tips-section :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .system-item { color: #e2e8f0; }
+        .system-item :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .star { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="stars" id="starfield"></div>
     
-    <div class="container">
+    <div class="container" id="main" role="main">
         <h1>⭐ 150 Star Wars RPG Character Names ⭐</h1>
         
         <div class="tips-section">
@@ -369,6 +404,32 @@
             <p><strong>Criminal Aliases:</strong> Smugglers, bounty hunters, and other criminals use false names for protection and reputation.</p>
             <p><strong>Droid Designations:</strong> Droid names follow manufacturer patterns but may develop personalities and preferred names.</p>
             <p><strong>Clone Identities:</strong> Clone troopers adopt individual names and nicknames to assert their unique identities.</p>
+        </div>
+
+        <div class="tips-section">
+            <h2>🗣️ The Test That Matters: Saying It Out Loud</h2>
+            <p>A name on a character sheet is read once. A name at a table is <em>spoken</em> — by you, by four other people, in a hurry, across months. That is a completely different job, and it is where most invented Star Wars names quietly fail. Before committing to one, say it aloud five times in a row and watch for these:</p>
+            <ul>
+                <li><strong>Does it survive a fast sentence?</strong> "Zhal'kryssa, get to the ship!" is a name that will be shortened to "Zhal" by session two whether you intended that or not. If a nickname is inevitable, choose it yourself.</li>
+                <li><strong>Can the whole table say it the same way?</strong> If two players pronounce it differently, the character effectively has two names and neither will stick.</li>
+                <li><strong>Does it collide with anything at the table?</strong> Kira and Kyra in the same party is a genuine problem. Vary the <em>opening sound</em>, not just the spelling — the ear sorts names by their first syllable.</li>
+            </ul>
+
+            <h3>The Apostrophe Trap</h3>
+            <p>Apostrophes are the fastest way to make a name look alien and the fastest way to make it unsayable. They work when they mark a real break — a clan prefix, a title fused to a name — and stop working the moment they are decoration. One apostrophe carries meaning; two make a password. Compare the effortless <em>Obi-Wan</em> and <em>Wedge Antilles</em> against anything with three consonants in a row: the canon names that lasted are overwhelmingly easy to pronounce.</p>
+            <p>The same applies to length. Star Wars names are usually one or two syllables for the given name and two or three for the surname. That is not an accident, it is what fits comfortably into shouted dialogue.</p>
+
+            <h3>Generating a Name in Four Seconds Flat</h3>
+            <p>The real crisis is not building a character at leisure — it is a player asking "what's the bartender called?" when you had not planned a bartender. Three reliable tricks:</p>
+            <ol>
+                <li><strong>Take a real word and bend one sound.</strong> Marshal → Marsalek. Copper → Coppen. This is most of how the films do it, and it produces names that sound familiar without being recognisable.</li>
+                <li><strong>Name them for their job or their planet.</strong> "Dockmaster Venn." "Yavo of Bracca." Nobody minds that it is functional, and it gives the players a hook they can actually use.</li>
+                <li><strong>Steal the rhythm, not the name.</strong> Pick any canon name you like and keep only its shape — two syllables, hard consonant, soft ending — then fill it with different sounds.</li>
+            </ol>
+            <p>Write down whatever you improvise, immediately. An NPC the players liked is worth keeping, and the single most common GM failure is being unable to remember what you called them last month.</p>
+
+            <h3>A Note on Canon Collisions</h3>
+            <p>Reusing a canon surname is a strong move used deliberately and a confusing one used carelessly. A character called Antilles invites the table to ask about the connection — which is excellent if you have an answer and a distraction if you do not. Either commit to the implication or pick something else.</p>
         </div>
 
         <div class="tips-section">
@@ -752,5 +813,17 @@
         canvas.addEventListener('click', spinStarWarsWheel);
         drawStarWarsWheel();
     </script>
+
+        <section class="further-exploration page-wrap" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A name is a hook. These pages give it something to hang on:</p>
+            <ul>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Attach the name to an actual character sheet.</li>
+                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A hundred pre-named characters, if you would rather borrow than invent.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Homeworld shapes naming more than species does. Build the world, get the name free.</li>
+                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Names carry weight in play — using the right one is a social move.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Villains especially benefit from a name players can repeat with dread.</li>
+            </ul>
+        </section>
 </body>
 </html>

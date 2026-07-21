@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Character Creation Deep Dive</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Build your hero step by step — species, career, obligation and motivation, with worked examples.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Character Creation Deep Dive">
+    <meta property="og:description" content="Build your hero step by step — species, career, obligation and motivation, with worked examples.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Character Creation Deep Dive</h1>
         <p class="subtitle">Crafting Heroes Worthy of the Galaxy's Greatest Stories</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>The Art of Character Architecture</h2>
             <p>Creating a Star Wars character is like designing a skyscraper. You need a solid foundation (species and career), a strong framework (characteristics and skills), beautiful interior design (motivations and personality), and impressive exterior features (equipment and Force powers). But most importantly, it needs to serve a purpose and tell a story that people want to experience.</p>
@@ -536,9 +551,41 @@ Advanced Path:
             </div>
         </section>
 
+        <section class="obligation-siblings">
+            <h2>Obligation's Two Siblings - Duty and Morality</h2>
+            <p>Obligation is the version of this mechanic printed in <strong>Edge of the Empire</strong>. The other two core rulebooks each replace it, because a rebel operative and a hunted Force-sensitive are not driven by the same pressures a fringer is. All three do the same structural job — they hand the GM a lever attached to your backstory — but they pull in opposite directions.</p>
+
+            <table>
+                <thead>
+                    <tr><th>Mechanic</th><th>Core rulebook</th><th>What it measures</th><th>Which way you want it</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Obligation</strong></td><td>Edge of the Empire</td><td>What you owe, and who is collecting</td><td><strong>Low</strong> — you want it to shrink</td></tr>
+                    <tr><td><strong>Duty</strong></td><td>Age of Rebellion</td><td>What you have earned from the Alliance</td><td><strong>High</strong> — you want it to grow</td></tr>
+                    <tr><td><strong>Morality</strong></td><td>Force and Destiny</td><td>Your pull between light and dark</td><td><strong>Either</strong> — movement matters more than position</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Duty - What You Have Earned</h3>
+            <p>Duty inverts Obligation. Where Obligation is a debt that triggers complications, Duty is standing that accumulates as you serve, and triggers <em>recognition</em> — better assignments, rarer equipment, eventually rank. Mechanically it is still a number that gets rolled against between sessions. Narratively it is the difference between "the Hutt's collectors have found you" and "High Command has something only you can be trusted with."</p>
+            <p>That changes a campaign's texture more than it appears to. An Obligation table is reactive: the past keeps arriving uninvited. A Duty table is aspirational: the characters are building toward something, and the pressure comes from wanting to deserve it. Neither is better — but a group expecting one and handed the other will feel the mismatch without being able to name it.</p>
+
+            <h3>Morality - Which Way You Are Facing</h3>
+            <p>Morality tracks a Force-sensitive's relationship with temptation. The character takes an emotional strength and a matching weakness — Compassion paired with Recklessness, say — and play keeps returning to that pairing under pressure. Drawing on dark side energy generates <strong>Conflict</strong>, accumulated Conflict drags Morality down, and resisting pulls it back up.</p>
+            <p>The design point most often missed: <em>Morality is not an alignment score.</em> A character who never dips toward the dark is not playing the mechanic well, they are avoiding it. The system rewards the swing — falling and climbing back — because that is the arc every significant Force user in Star Wars actually has. Vader is not compelling because he sits at the bottom of the scale; he is compelling because he moved along it, twice.</p>
+
+            <h3>Running a Table That Mixes All Three</h3>
+            <p>Because the three lines share one engine, a party can hold a smuggler with Obligation, a soldier with Duty and a Padawan with Morality at the same table. That works, with two adjustments:</p>
+            <ul>
+                <li><strong>Keep them separate.</strong> Each has its own trigger and its own between-session roll. Merging them into a single number destroys what makes each one distinctive.</li>
+                <li><strong>Give each a scene per arc.</strong> The failure mode of a mixed table is that whichever mechanic the GM finds easiest to write for quietly becomes the only one that ever fires — usually Obligation, because debts are easy plot. Watch for it.</li>
+            </ul>
+            <p>Choosing for a first campaign: Obligation is the most forgiving, since its hooks are concrete and a new GM can improvise them at speed. Morality asks the most of everyone, because it only pays off across many sessions. <a href="/starwars_force_powers.html">Force Powers</a> covers the Conflict side in depth; <a href="/sw_campaign.html">Campaign Creation</a> covers matching the line to your premise.</p>
+        </section>
+
         <section class="starting-equipment">
             <h2>Starting Equipment - Tools of the Trade</h2>
-            
+
             <h3>Equipment as Character Definition</h3>
             <p>Your starting equipment tells a story about who your character is and where they've been. A worn-out blaster suggests a hard life on the frontier. Custom modifications show technical expertise. Family heirlooms hint at important backstory connections.</p>
 
@@ -714,6 +761,19 @@ Advanced Path:
         </section>
 
 
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Your character exists on paper. Now give them a name, a crew and something to do:</p>
+            <ul>
+                <li><strong><a href="/sw_character_examples.html">Character Examples</a>:</strong> Finished builds to compare yours against — useful for sanity-checking your spread.</li>
+                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Naming conventions by species, so your Twi'lek does not end up called Dave.</li>
+                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> How your character fits a party. Build in isolation and you get four loners.</li>
+                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> How the characteristics and skills you just picked become actual dice pools.</li>
+                <li><strong><a href="/sw_force_and_lightsaber.html">Force &amp; Lightsabers</a>:</strong> If you took a Force-sensitive career, this is the half of the rules you still need.</li>
+                <li><strong><a href="/sw_dice_roller.html">Dice Roller</a>:</strong> Roll your new character's signature skill a few times before session one.</li>
+            </ul>
+        </section>
     </main>
 
     <footer>

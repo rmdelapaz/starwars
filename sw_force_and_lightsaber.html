@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Force Powers and Lightsaber Combat</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Force-sensitive characters, lightsaber forms and Conflict mechanics in Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Force Powers and Lightsaber Combat">
+    <meta property="og:description" content="Force-sensitive characters, lightsaber forms and Conflict mechanics in Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Force Powers and Lightsaber Combat</h1>
         <p class="subtitle">An Elegant Weapon for a More Civilized Age - Mastering the Force and the Lightsaber</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>The Force - An Energy Field Created by All Living Things</h2>
             <p>The Force isn't magic - it's the fundamental energy that binds the galaxy together. In Star Wars RPG, using the Force is like learning to conduct a symphony orchestra where every instrument is a living being, every note is an emotion, and every measure is a moment of connection with something greater than yourself. It's not about memorizing spells; it's about understanding your relationship with the universe itself.</p>
@@ -524,9 +539,40 @@
             </div>
         </section>
 
+        <section class="forms-mechanics">
+            <h2>What a Form Actually Does to Your Dice</h2>
+            <p>The forms above are presented as philosophies, which is how the fiction treats them. Mechanically they do something far more concrete, and it is the real reason a player picks one: <strong>a form's signature talent changes which characteristic you roll Lightsaber checks with.</strong></p>
+            <p>By default a lightsaber is a Brawn weapon — you swing it with your body. Learning a form lets you swap that for the characteristic your philosophy actually trains, so your fighting style and your character concept stop being separate things.</p>
+
+            <table>
+                <thead><tr><th>Form</th><th>Rolls with</th><th>The character it suits</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>I — Shii-Cho</strong></td><td>Brawn</td><td>The straightforward guardian. No swap needed — the default, done well.</td></tr>
+                    <tr><td><strong>II — Makashi</strong></td><td>Presence</td><td>The duellist whose force of personality <em>is</em> the weapon. Elegant, personal, built for one-on-one.</td></tr>
+                    <tr><td><strong>III — Soresu</strong></td><td>Intellect</td><td>The analyst who wins by outlasting. Defence as a thinking exercise.</td></tr>
+                    <tr><td><strong>IV — Ataru</strong></td><td>Agility</td><td>The acrobat. Fast, mobile, and fragile if the fight runs long.</td></tr>
+                    <tr><td><strong>V — Shien / Djem So</strong></td><td>Cunning / Brawn</td><td>The counter-attacker, turning incoming fire back on its source.</td></tr>
+                    <tr><td><strong>VI — Niman</strong></td><td>Willpower</td><td>The balanced practitioner splitting attention between blade and Force powers.</td></tr>
+                    <tr><td><strong>VII — Juyo</strong></td><td>Brawn, at a price</td><td>The ferocious form — powerful, and entangled with Conflict by design.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Why This Matters More Than It Looks</h3>
+            <p>Characteristics are the most expensive thing on a character sheet, and almost nobody can afford two high ones. So your form quietly determines <em>where your entire build points</em>:</p>
+            <ul>
+                <li>A <strong>Soresu</strong> defender invests in Intellect — which also buys Computers, Mechanics and Medicine. They end up being the party's technician.</li>
+                <li>A <strong>Makashi</strong> duellist invests in Presence — so they are also the party's negotiator. Their combat style and their social role come from the same purchase.</li>
+                <li>An <strong>Ataru</strong> striker invests in Agility — shared with Piloting, Stealth and ranged weapons. Frequently the best pilot in the group.</li>
+            </ul>
+            <p>That is the design payoff: choosing a form is not really a combat decision, it is a decision about who your character is <em>outside</em> of fights. Pick the form whose characteristic you wanted anyway, and the concept assembles itself.</p>
+
+            <h3>A Practical Warning</h3>
+            <p>The swap comes from a talent bought inside a specialization, so it is neither free nor immediate — a starting character may spend a while swinging on plain Brawn before their chosen form comes online. Plan the route rather than assuming the label grants the ability. <a href="/sw_char.html">Character Creation</a> covers how specializations and talents are purchased, and <a href="/starwars_force_powers.html">Force Powers</a> covers the Conflict that Form VII invites.</p>
+        </section>
+
         <section class="force-traditions">
             <h2>Force Traditions Beyond Jedi and Sith</h2>
-            
+
             <h3>The Galaxy's Hidden Force Users</h3>
             <p>The Force flows through many traditions across the galaxy. While Jedi and Sith are the most famous, countless other groups have developed their own understanding of this mystical energy. Each tradition offers a different perspective on the Force's nature and proper use.</p>
 
@@ -838,6 +884,18 @@
         </section>
 
         
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>The Force is a long road. Further along it:</p>
+            <ul>
+                <li><strong><a href="/starwars_force_powers.html">Force Powers</a>:</strong> Power trees, upgrades and how a Force user actually develops over a campaign.</li>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Building a Force-sensitive from scratch, including the costs of doing so.</li>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> How duels sit inside the ordinary combat rules.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Dark side antagonists, and why the good ones are tempting rather than merely evil.</li>
+                <li><strong><a href="/starwars_time_travel.html">Time Travel</a>:</strong> The World Between Worlds, if your campaign goes somewhere stranger.</li>
+            </ul>
+        </section>
     </main>
 
     <footer>

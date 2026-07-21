@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG - Campaign Creation and Themes</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Themes, era selection, session zero and long-term story planning for a Star Wars campaign.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG - Campaign Creation and Themes">
+    <meta property="og:description" content="Themes, era selection, session zero and long-term story planning for a Star Wars campaign.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG: Campaign Creation and Themes</h1>
         <p class="subtitle">Building Epic Sagas - From Concept to Galactic Legend</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h2>Campaigns as Epic Sagas</h2>
             <p>A Star Wars campaign isn't just a series of connected adventures - it's an epic saga that spans months or years of real time, chronicling the rise of heroes and the fate of the galaxy. Like the films themselves, your campaign should have overarching themes, character growth arcs, and a sense of building toward something greater than the sum of its parts.</p>
@@ -43,17 +58,23 @@
                 const timelineCanvas = document.getElementById('eraTimeline');
                 const timelineCtx = timelineCanvas.getContext('2d');
                 
-                // Draw Star Wars timeline
+                // Canvases render on their own light surface (see site.css), so
+                // dark ink stays correct in both themes.
+                const tlInk = '#333333';
+
+                // Star Wars timeline, following Lucasfilm's current era framework
                 const eras = [
-                    {name: 'Old Republic', years: '25,000-1,000 BBY', themes: 'Jedi Golden Age, Ancient Conflicts', color: '#9C27B0', y: 80},
-                    {name: 'Rise of Empire', years: '32-0 BBY', themes: 'Political Intrigue, Clone Wars', color: '#3F51B5', y: 140},
-                    {name: 'Rebellion Era', years: '0-5 ABY', themes: 'Hope vs Tyranny, Classic Heroes', color: '#2196F3', y: 200},
-                    {name: 'New Republic', years: '5-25 ABY', themes: 'Rebuilding, New Threats', color: '#4CAF50', y: 260},
-                    {name: 'New Jedi Order', years: '25+ ABY', themes: 'Legacy, Next Generation', color: '#FF9800', y: 320}
+                    {name: 'Old Republic', years: '25,000-1,000 BBY', themes: 'Jedi Golden Age, Ancient Conflicts', color: '#9C27B0', y: 65},
+                    {name: 'The High Republic', years: '500-100 BBY', themes: 'Jedi at their height, Frontier Expansion', color: '#00ACC1', y: 108},
+                    {name: 'Fall of the Jedi', years: '32-19 BBY', themes: 'Political Intrigue, Clone Wars', color: '#3F51B5', y: 151},
+                    {name: 'Reign of the Empire', years: '19-5 BBY', themes: 'Surveillance, Early Resistance', color: '#78909C', y: 194},
+                    {name: 'Age of Rebellion', years: '5 BBY-4 ABY', themes: 'Hope vs Tyranny, Classic Heroes', color: '#2196F3', y: 237},
+                    {name: 'The New Republic', years: '4-28 ABY', themes: 'Warlords, Bounty Guilds, Rebuilding', color: '#4CAF50', y: 280},
+                    {name: 'Rise of the First Order', years: '28+ ABY', themes: 'Legacy, The Next Generation', color: '#FF9800', y: 323}
                 ];
-                
+
                 // Draw timeline line
-                timelineCtx.strokeStyle = '#333';
+                timelineCtx.strokeStyle = tlInk;
                 timelineCtx.lineWidth = 4;
                 timelineCtx.beginPath();
                 timelineCtx.moveTo(50, 50);
@@ -105,8 +126,8 @@
                     timelineCtx.fillText(era.themes, boxX + 10, era.y + 22);
                 });
                 
-                // Add title
-                timelineCtx.fillStyle = '#333';
+                // Add title (drawn on the bare canvas, so it must use theme ink)
+                timelineCtx.fillStyle = tlInk;
                 timelineCtx.font = 'bold 18px Arial';
                 timelineCtx.textAlign = 'center';
                 timelineCtx.fillText('Star Wars Campaign Eras', 350, 25);
@@ -333,9 +354,39 @@
             <p>Plan character advancement to coincide with story beats. Major plot revelations, character growth moments, and story arc conclusions are perfect times for advancement. This ties mechanical progression to narrative development.</p>
         </section>
 
+        <section class="advancement-pacing">
+            <h2>How Fast Should Characters Grow?</h2>
+            <p>Campaign planning usually stops at story and skips the question players actually ask after session two: <em>when do I get better?</em> Advancement pace is a campaign-design decision, not an afterthought, because it determines how long your campaign can run before the characters outgrow the galaxy you built.</p>
+
+            <h3>The Rough Shape of It</h3>
+            <p>Most tables settle somewhere around fifteen to twenty XP per session, with extra for finishing a major arc. What matters is less the exact figure than what it <em>buys</em>, so hold the costs alongside it:</p>
+            <ul>
+                <li><strong>A skill rank</strong> costs five times the new rank — cheap early, steep later. Going from rank 1 to 2 is trivial; pushing to rank 4 or 5 is a genuine investment.</li>
+                <li><strong>A characteristic</strong> costs ten times the new value and can only be raised with dedicated advances after creation. This is why the advice in <a href="/sw_char.html">Character Creation</a> is to buy your defining characteristic <em>at</em> creation.</li>
+                <li><strong>A new specialization</strong> is a substantial lump sum, and it opens a whole new talent tree.</li>
+            </ul>
+            <p>At roughly twenty XP a session, that means a noticeable improvement every session or two, a new specialization every several sessions, and a genuinely transformed character around the twenty-session mark. Plan your campaign's escalation against that curve.</p>
+
+            <h3>Three Pacing Decisions Worth Making Deliberately</h3>
+            <ol>
+                <li><strong>Flat rate or variable?</strong> A flat per-session award is predictable and rewards attendance. A variable award rewards achievement but quietly punishes anyone who missed the session where the arc landed. Flat rates cause fewer arguments; variable rates create more drive. Pick one and say which.</li>
+                <li><strong>Does everyone advance equally?</strong> Almost always yes. Individual XP awards for "good roleplay" sound fair and reliably create resentment, because the criteria are invisible. If you want to reward a great scene, reward it in the fiction — contacts, reputation, gear.</li>
+                <li><strong>What about absent players?</strong> Award them anyway. A party where one character falls behind because their player had a work trip is a party with a permanent structural problem, and the fix costs you nothing.</li>
+            </ol>
+
+            <h3>Escalating the Galaxy to Match</h3>
+            <p>The failure mode of a long campaign is not that characters get too strong — it is that the GM keeps sending the same opposition. As the party's dice pools grow, escalate along these axes rather than simply inflating enemy statistics:</p>
+            <ul>
+                <li><strong>Scale.</strong> Early sessions concern a cargo hold; later ones concern a sector. Same tension, larger stakes.</li>
+                <li><strong>Complexity.</strong> Give them problems with no clean answer instead of tougher guards. A competent party enjoys a dilemma far more than an inflated wound threshold.</li>
+                <li><strong>Consequence.</strong> Powerful characters attract attention. What they broke in session three should have a name and a grudge by session twenty.</li>
+            </ul>
+            <p>And decide early roughly how long the campaign should run. A campaign built for twelve sessions and a campaign built for fifty want completely different advancement rates — see <a href="/starwars_campaign_arcs.html">Campaign Arcs</a> for structuring the sessions themselves.</p>
+        </section>
+
         <section class="faction-dynamics">
             <h2>Factions and Organizations</h2>
-            
+
             <h3>The Galactic Chessboard</h3>
             <p>Star Wars is defined by the conflicts between its great factions. Your campaign should feature multiple organizations with their own agendas, creating a dynamic political landscape that changes based on player actions.</p>
 
@@ -982,6 +1033,19 @@
         </section>
 
       
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A campaign is built in layers. The next ones:</p>
+            <ul>
+                <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Multi-session arc structure, cliffhangers and escalation.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Running it week to week once the planning is done.</li>
+                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> Session zero and getting the party pointed the same direction.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> The factions your campaign premise will inevitably collide with.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> The worlds your players will spend the campaign moving between.</li>
+                <li><strong><a href="/starwars_capstone_mastery.html">Capstone: GM Mastery</a>:</strong> The synthesis lesson, once you have run a few sessions and want to tighten everything.</li>
+            </ul>
+        </section>
     </main>
 
     <footer>

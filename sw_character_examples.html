@@ -4,22 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG Character Examples and Crew Groups</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Ready-made Star Wars RPG characters to study or drop straight into your first session.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG Character Examples and Crew Groups">
+    <meta property="og:description" content="Ready-made Star Wars RPG characters to study or drop straight into your first session.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="container">
         <header>
             <h1>Star Wars RPG Character Examples and Crew Groups</h1>
             <p>A comprehensive guide to creating heroic characters and balanced crews for adventures in a galaxy far, far away</p>
         </header>
 
-        <main>
+        <main id="main">
             <section class="character-creation-basics">
                 <h2>Understanding Star Wars RPG Character Creation</h2>
                 <p>Creating a Star Wars character is like forging a lightsaber—each component must resonate with the Force and your personal vision. Whether you follow the path of the Jedi, embrace the shadows of the underworld, or chart a course through the stars, your character becomes part of an epic saga where destiny and choice dance together like binary suns.</p>
@@ -153,6 +168,51 @@
                     </div>
                     <p><strong>Role in Crew:</strong> The pathfinder—reading hyperspace routes like ancient star maps, finding safe passage through dangerous sectors. His knowledge of forgotten worlds makes him invaluable for crews seeking hidden treasures or sanctuary.</p>
                 </div>
+            </section>
+
+            <section class="concept-to-sheet">
+                <h2>From Concept to Playable Sheet</h2>
+                <p>Everything above is a <em>concept</em> — career, motivation, obligation, the shape of a personality. What none of them carry yet is numbers, and you cannot roll a personality. Here is Kira Voss built all the way out, with every figure shown so you can repeat the process for any of the others.</p>
+
+                <h3>Kira Voss, Human Ace (Pilot) — Complete Build</h3>
+                <table>
+                    <thead><tr><th>Brawn</th><th>Agility</th><th>Intellect</th><th>Cunning</th><th>Willpower</th><th>Presence</th></tr></thead>
+                    <tbody><tr><td>2</td><td><strong>4</strong></td><td>2</td><td>2</td><td>2</td><td>2</td></tr></tbody>
+                </table>
+                <ul>
+                    <li><strong>Wound Threshold 12</strong> — species base 10 + Brawn 2</li>
+                    <li><strong>Strain Threshold 12</strong> — species base 10 + Willpower 2</li>
+                    <li><strong>Soak 2</strong> — equal to Brawn, before any armour</li>
+                    <li><strong>Skills:</strong> Piloting (Space) 2, Gunnery 2, Astrogation 2, Cool 2, Perception 1, Streetwise 1</li>
+                </ul>
+
+                <h4>Where the 110 XP went</h4>
+                <p>A human starts with every characteristic at 2 and 110 XP. Raising a characteristic at creation costs ten times the <em>new</em> value:</p>
+                <ul>
+                    <li><strong>Agility 2 → 3:</strong> 30 XP. <strong>3 → 4:</strong> 40 XP. Total <strong>70 XP</strong>, leaving 40.</li>
+                    <li><strong>Remaining 40 XP</strong> spent lifting four career skills from their free rank 1 up to rank 2, at 5 × new rank each: Piloting (Space), Gunnery, Astrogation and Cool, 10 XP apiece.</li>
+                    <li><strong>Perception and Streetwise</strong> cost nothing — they are the two free non-career ranks humans receive.</li>
+                </ul>
+                <p>Notice that a single characteristic consumed nearly two-thirds of her budget. That is deliberate: characteristics are brutally expensive at creation and get worse afterwards, whereas skills stay affordable for the life of the campaign. If a concept leans on one characteristic, buy it now. You will regret it later otherwise.</p>
+
+                <h4>What she actually rolls</h4>
+                <p>Applying the pool rule — larger value sets the number of dice, smaller value upgrades that many to Proficiency:</p>
+                <ul>
+                    <li><strong>Flying:</strong> Agility 4, Piloting 2 → four dice, two upgraded → <strong>2 Proficiency + 2 Ability</strong></li>
+                    <li><strong>Shooting from the cockpit:</strong> Agility 4, Gunnery 2 → <strong>2 Proficiency + 2 Ability</strong></li>
+                    <li><strong>Holding her nerve:</strong> Presence 2, Cool 2 → two dice, both upgraded → <strong>2 Proficiency</strong></li>
+                    <li><strong>Plotting a jump:</strong> Intellect 2, Astrogation 2 → <strong>2 Proficiency</strong></li>
+                </ul>
+                <p>Those last two are worth studying. Two Proficiency dice is a <em>small but excellent</em> pool — fewer dice than her flying, yet every one of them can roll Triumph. Wide-and-shallow versus narrow-and-sharp is a real strategic choice, not a rounding artefact. Roll both shapes on the <a href="/sw_dice_roller.html">Dice Roller</a> and the difference becomes obvious quickly.</p>
+
+                <h4>Repeating this for the others</h4>
+                <ol>
+                    <li><strong>Find the concept's one defining characteristic</strong> and take it to 4. Ranks of 5 are almost never worth it at creation.</li>
+                    <li><strong>Spend what remains on three or four skills</strong> that the concept obviously implies. Resist spreading thin; a rank-1 skill you never roll is wasted XP.</li>
+                    <li><strong>Derive the thresholds</strong> from species base plus Brawn and Willpower, then add Soak from armour.</li>
+                    <li><strong>Sanity-check against the party.</strong> Two characters with the same defining characteristic will compete for the same spotlight all campaign — see <a href="/sw_groups.html">Group Dynamics</a>.</li>
+                </ol>
+                <p>Species other than human shift the starting numbers — different characteristic spreads, different XP totals, different thresholds — so check the entry in <a href="/sw_char.html">Character Creation</a> before building a non-human version of any concept here.</p>
             </section>
 
             <section class="crew-groups">
@@ -432,7 +492,19 @@
             <footer>
                 <p>Remember: In the Star Wars galaxy, heroes are not born but forged—through difficult choices, impossible odds, and the bonds they form with fellow travelers on the journey from ordinary beings to legends whose stories inspire hope across the stars.</p>
             </footer>
-        </main>
+        
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Take one of these and run with it, or build outward from them:</p>
+            <ul>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Build your own from scratch using the same steps these were made with.</li>
+                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A far larger roster if none of these quite fit.</li>
+                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> How to combine several of these into a crew that covers each other's gaps.</li>
+                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Rename any of them to make them yours.</li>
+                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> Most crews need a ship. It is effectively another party member.</li>
+            </ul>
+        </section>
+    </main>
     </div>
 
     <script>

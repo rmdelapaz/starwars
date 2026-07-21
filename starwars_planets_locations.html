@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating Memorable Planets and Locations in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Biomes, culture hooks and making every landing feel like a new adventure in Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Creating Memorable Planets and Locations in Star Wars RPG">
+    <meta property="og:description" content="Biomes, culture hooks and making every landing feel like a new adventure in Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .planet-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
@@ -29,16 +43,41 @@
         .biome-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
         .biome-btn:hover { background: #0056b3; }
         .biome-btn.active { background: #28a745; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .ecosystem-diagram { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .location-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .terrain-type { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .adventure-hooks { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-section { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .planet-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .canvas-container { color: #e2e8f0; }
+        .canvas-container :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .biome-btn { background: #0071eb; }
+        .biome-btn.active { background: #208637; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .ecosystem-diagram { color: #1f2937; }
+        .location-builder { color: #1f2937; }
+        .terrain-type { color: #1f2937; }
+        .adventure-hooks { color: #1f2937; }
+        .exercise-section { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Creating Memorable Planets and Locations in Star Wars RPG</h1>
         <p><em>"The Force is what gives a Jedi his power. It's an energy field created by all living things. It surrounds us and penetrates us; it binds the galaxy together." - Obi-Wan Kenobi</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <h2>Welcome to the Galaxy's Architect Academy</h2>
             <p>Creating planets in Star Wars is like being a cosmic chef - you're not just mixing random ingredients, you're crafting entire worlds that tell stories through their landscapes, cultures, and mysteries. Every memorable Star Wars location, from the twin suns of Tatooine to the floating city of Cloud City, serves the story while feeling like a real place where real people live, work, and dream.</p>
@@ -203,9 +242,36 @@
             </div>
         </section>
 
+        <section class="ninety-second-world">
+            <h2>Building a World in Ninety Seconds</h2>
+            <p>Everything above is how to build a world properly, with time and intent. This section is for the other situation, which is far more common: the party has just jumped somewhere you did not plan, four people are waiting, and you need a planet <em>now</em>.</p>
+
+            <h3>Answer Four Questions, Out Loud</h3>
+            <ol>
+                <li><strong>What one thing does this world sell?</strong> Ore, grain, secrecy, medicine, labour, passage. Every inhabited planet exports something, and that single fact generates its economy, its politics and its criminals for free.</li>
+                <li><strong>Who resents whom?</strong> Name two groups and the grievance between them. Miners and the company. Old settlers and new. The city and everywhere else. This is your plot supply for the whole visit.</li>
+                <li><strong>What does landing feel like?</strong> One sensory detail, delivered as the ramp comes down — the smell, the light, the sound, the temperature. This does more to make a world real than a page of history ever will.</li>
+                <li><strong>What is the one rule visitors break?</strong> No open weapons. No droids past the perimeter. Do not mention the previous governor. It gives the players something to trip over within minutes of arriving.</li>
+            </ol>
+            <p>That is a functioning planet. Not a detailed one — a <em>usable</em> one, and the difference matters, because the details you invent under pressure at the table are the ones your players will actually remember.</p>
+
+            <h3>A Worked Example, at Speed</h3>
+            <div class="callout">
+                <p><strong>Sells:</strong> desalinated water, shipped off-world at enormous profit.<br>
+                <strong>Resentment:</strong> the rig crews who produce it live rationed; the port authority that exports it does not.<br>
+                <strong>Landing feels like:</strong> salt crusting on everything within minutes, and a wind that never stops.<br>
+                <strong>The rule visitors break:</strong> nobody asks how much water anyone else has.</p>
+            </div>
+            <p>Four sentences, and there is already a strike waiting to happen, an obvious black market, a reason for the party to be watched at the cantina, and a social landmine they can step on within the first ten minutes. No map required.</p>
+
+            <h3>Only Build Outward When They Return</h3>
+            <p>The discipline that keeps this sustainable is refusing to develop a world further until the players give you a reason. If they leave and never come back, you spent ninety seconds. If they keep returning, <em>then</em> add the district, the rival family, the history — and add it in response to what they showed interest in, which guarantees it lands.</p>
+            <p>Write down whatever you improvised the moment the session ends. The single most damaging thing a GM can do to a world is contradict themselves about it three sessions later; see the prep notes in <a href="/sw_gm_techniques.html">Game Master Techniques</a>. For linking worlds into something larger, <a href="/sw_campaign.html">Campaign Creation</a> covers sector design, and <a href="/starwars_galactic_politics.html">Galactic Politics</a> covers who is arguing over them.</p>
+        </section>
+
         <section class="advanced-techniques">
             <h2>Advanced World-Building Techniques</h2>
-            
+
             <h3>The Layered History Approach</h3>
             <p>Great planets have layers of history visible in their landscape, like geological strata. Each layer tells a story of who was there before and what happened to them.</p>
 
@@ -301,6 +367,18 @@
             <p>Remember, you're not just creating backdrops for adventures - you're creating worlds that feel real enough that your players will remember them long after the campaign ends. The best Star Wars planets become characters in their own right, with personalities, moods, and stories to tell.</p>
             
             <p>Start simple, add layers gradually, and always ask yourself: "What story is this place telling?" Whether your characters are negotiating in the crystal spires of Christophsis or hiding in the swamps of Dagobah, every location should feel like it has a purpose and a past.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A world is a stage. What gets performed on it:</p>
+            <ul>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Who governs the world, who resents it, and what that costs.</li>
+                <li><strong><a href="/starwars_ground_combat.html">Ground Combat</a>:</strong> Terrain turned into tactical encounters.</li>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Linking several worlds into a campaign map players want to cross.</li>
+                <li><strong><a href="/starwars_space_encounters.html">Space Encounters</a>:</strong> Getting there, and what waits in orbit.</li>
+                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Place and person naming that makes a world feel authored rather than generated.</li>
+            </ul>
         </section>
     </main>
 

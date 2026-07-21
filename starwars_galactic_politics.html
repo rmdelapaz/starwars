@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Managing Galactic Politics and Factions in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Galactic Politics &amp; Factions — Star Wars RPG</title>
+    <meta name="description" content="Run Senate intrigue, faction power struggles and trade disputes in your Star Wars RPG campaign — with an interactive political simulator and faction relationship matrix.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Galactic Politics &amp; Factions — Star Wars RPG">
+    <meta property="og:description" content="Run Senate intrigue, faction power struggles and trade disputes in your Star Wars RPG campaign.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
     <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .senate-chamber { background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -61,16 +75,77 @@
         .sector-outer { background: radial-gradient(circle, #ff6347, #cd5c5c); }
         .sector-unknown { background: radial-gradient(circle, #9370db, #663399); }
         .crisis-generator { background: #e74c3c; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .faction-card.corporate { background: linear-gradient(135deg, #433714, #31290e); color: #e2e8f0; }
+        html:not(.light) .power-dynamics { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .political-btn.corporate { background: #433714; color: #e2e8f0; }
+        html:not(.light) .intrigue-web { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .diplomacy-table { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .war-economy { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-council { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .influence-meter { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .senate-voting { background: linear-gradient(to right, #432f14, #31170e); color: #e2e8f0; }
+        html:not(.light) .relationship-matrix th, html:not(.light) .relationship-matrix td { border: 1px solid #44576a; }
+        html:not(.light) .relationship-matrix th { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .ally { background: #1a3d22; color: #e2e8f0; }
+        html:not(.light) .neutral { background: #433814; color: #e2e8f0; }
+        html:not(.light) .rival { background: #431418; color: #e2e8f0; }
+        html:not(.light) .enemy { background: #431419; color: #e2e8f0; }
+        html:not(.light) .sector-core { background: radial-gradient(circle, #433c14, #31270e); color: #e2e8f0; }
+        html:not(.light) .sector-mid { background: radial-gradient(circle, #144314, #228b22); color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .senate-chamber :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .faction-card.republic { color: #e2e8f0; }
+        .faction-card.republic :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .faction-card.empire { color: #e2e8f0; }
+        .faction-card.empire :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .faction-card.rebellion { color: #e2e8f0; }
+        .faction-card.rebellion :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .faction-card.criminal { color: #e2e8f0; }
+        .faction-card.criminal :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .political-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .conspiracy-matrix :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .trade-routes :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .galactic-map { color: #e2e8f0; }
+        .galactic-map :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .sector-unknown { color: #e2e8f0; }
+        .sector-unknown :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .faction-card.religious { background: linear-gradient(135deg, #18946f, #0f6b59); }
+        .political-btn { background: #0071eb; }
+        .political-btn.republic { background: #0071eb; }
+        .crisis-generator { background: #df2e1b; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .power-dynamics { color: #1f2937; }
+        .intrigue-web { color: #1f2937; }
+        .diplomacy-table { color: #1f2937; }
+        .war-economy { color: #1f2937; }
+        .exercise-council { color: #1f2937; }
+        .influence-meter { color: #1f2937; }
+        .senate-voting { color: #1f2937; }
+        .relationship-matrix th { color: #1f2937; }
+        .ally { color: #1f2937; }
+        .neutral { color: #1f2937; }
+        .rival { color: #1f2937; }
+        .enemy { color: #1f2937; }
+        .sector-core { color: #1f2937; }
+        .sector-mid { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Managing Galactic Politics and Factions in Star Wars RPG</h1>
-        <p><em>"So this is how liberty dies... with thunderous applause." - Padmé Amidala</em></p>
+        <p class="subtitle"><em>"So this is how liberty dies… with thunderous applause." — Padmé Amidala</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="senate-chamber">
                 <h2>Welcome to the Galactic Senate Academy</h2>
@@ -422,6 +497,46 @@
             </div>
         </section>
 
+        <section class="playable-politics">
+            <h2>🎯 Making Politics Something Players Can Touch</h2>
+            <p>Everything above describes how galactic power works. The hard part is different: politics happens at a scale far above four people with a freighter, and a table that cannot <em>act</em> on it will disengage no matter how well built the setting is. Political campaigns fail in a specific, recognisable way — the GM explains the situation, the players nod politely, and then ask where the nearest cantina is.</p>
+
+            <h3>The One Rule</h3>
+            <p><strong>A political development that does not arrive as a person, a deadline, or a bill the party must pay is not in the game yet.</strong> It is background. The Senate ratifying a tariff is background; the inspector standing on your ramp <em>because</em> of that tariff is a scene.</p>
+            <p>Before introducing any political element, do the translation:</p>
+            <table>
+                <thead><tr><th>Background</th><th>What actually reaches the table</th></tr></thead>
+                <tbody>
+                    <tr><td>A faction is gaining influence in the sector</td><td>Their checkpoints are on a route you use weekly, and the bribe has doubled</td></tr>
+                    <tr><td>Two houses are feuding over a succession</td><td>Both have hired you. Neither knows about the other yet</td></tr>
+                    <tr><td>A trade bill is being debated on Coruscant</td><td>A senator's aide needs a package delivered before the vote, and will not say what is in it</td></tr>
+                    <tr><td>The Empire is tightening its grip</td><td>Your contact's shop has new owners, and they do not recognise you</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Give Them Currency They Can Spend</h3>
+            <p>Players engage with politics the moment they hold something a faction wants. Track a simple standing with each faction the party deals with — one number from hostile to allied is plenty — and let it move visibly in response to what they do. Then let them spend it:</p>
+            <ul>
+                <li><strong>Favours</strong> — a called-in debt that opens a door, drops a charge or delays a patrol. Finite, specific, and always worth more than credits.</li>
+                <li><strong>Leverage</strong> — what they know about someone. The most flexible political resource, and the most dangerous to be holding.</li>
+                <li><strong>Access</strong> — being in the room at all. Frequently the real objective of a political arc.</li>
+            </ul>
+            <p>Say the standing out loud whenever it changes: "the port authority now considers you useful." Reputation the players cannot see is not a mechanic, it is a note in your file.</p>
+
+            <h3>Never Resolve Off Screen What They Could Have Influenced</h3>
+            <p>If a vote, a treaty or a purge happens without the party present, it should be because they chose to be elsewhere — not because you had already decided the outcome. The moment players suspect the political layer is scenery that resolves regardless of them, they stop investing in it, permanently.</p>
+            <p>The corollary is that you must be willing to let them change large things. A party that swings a sector vote through three sessions of grubby, indirect work has earned an outcome you did not plan for. Take the note and rebuild forward.</p>
+
+            <h3>For Parties Who Do Not Care About Politics</h3>
+            <p>Some groups want to fly and shoot, and that is a perfectly legitimate campaign. You do not have to abandon this material — attach it to things they already want:</p>
+            <ol>
+                <li><strong>Route it through their Obligations.</strong> The debt they already owe is now held by someone with political ambitions. They engage because it is <em>theirs</em>, not because it is important.</li>
+                <li><strong>Make it logistics.</strong> Politics expressed as fuel prices, permits, blockades and inspections is politics a smuggler cares about intensely.</li>
+                <li><strong>Keep the cast small.</strong> Two named rivals the players recognise will always outperform six accurately modelled institutions.</li>
+            </ol>
+            <p><a href="/starwars_social_encounters.html">Social Encounters</a> covers running the resulting negotiations as structured scenes, and <a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a> covers giving a faction a face worth opposing.</p>
+        </section>
+
         <section class="conspiracy-mechanics">
             <div class="conspiracy-matrix">
                 <h2>🎭 Secret Societies and Hidden Powers</h2>
@@ -526,6 +641,20 @@
             <p>Remember, politics in Star Wars isn't just about governments and laws - it's about the clash of ideologies, the struggle between different visions of how the galaxy should be governed, and the personal cost of political involvement. The best political campaigns make players feel like their choices matter not just to their characters, but to entire star systems and the future of galactic civilization.</p>
             
             <p>When your players are debating whether to support a controversial senate bill, negotiating a trade agreement that could prevent a war, or deciding whether to expose a conspiracy that could topple a government, you'll know you've successfully brought the complex political landscape of Star Wars to life in your campaign.</p>
+        </section>
+
+        <section class="related-topics" aria-labelledby="related-heading">
+            <h2 id="related-heading">Where to Go Next</h2>
+            <p>Galactic politics touches nearly every other part of a campaign. These lessons pick up the threads started here:</p>
+            <ul>
+                <li><a href="/starwars_social_encounters.html">Social Encounters</a> — the scene-level counterpart to this lesson: how a senate bill actually gets argued across a cantina table, with charm, deception and negotiation checks.</li>
+                <li><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a> — give your factions faces. A trade dispute only lands when it is <em>Senator Vess</em> blocking the vote, not "the Corporate bloc".</li>
+                <li><a href="/starwars_campaign_arcs.html">Campaign Arcs &amp; Stories</a> — stretch a political crisis across a multi-session arc so the conspiracy unravels at the right pace.</li>
+                <li><a href="/starwars_planets_locations.html">Planets &amp; Locations</a> — tie each faction to real worlds, so votes in the Senate have consequences the players can walk around in.</li>
+                <li><a href="/sw_vehicles.html">Vehicles &amp; Starships</a> — when a trade dispute stops being rhetorical and a blockade turns into a shooting war.</li>
+                <li><a href="/starwars_droids_technology.html">Droids &amp; Technology</a> — slicing a senator's datapad is often the fastest route into a conspiracy plot.</li>
+                <li><a href="/sw_gm_techniques.html">Game Master Techniques</a> — pacing and improvisation tools for when players derail a carefully planned political summit.</li>
+            </ul>
         </section>
     </main>
 

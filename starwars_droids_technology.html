@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating Memorable Droids and Technology in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Droid personalities, slicing, gadgets and the technology that runs the Star Wars galaxy.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Creating Memorable Droids and Technology in Star Wars RPG">
+    <meta property="og:description" content="Droid personalities, slicing, gadgets and the technology that runs the Star Wars galaxy.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .tech-lab { background: linear-gradient(135deg, #0f3460, #16537e, #1e90ff); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
@@ -62,16 +76,64 @@
         .memory-chip:hover { background: #138496; transform: scale(1.05); }
         .restraining-bolt { width: 20px; height: 20px; background: #dc3545; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer; animation: bolt-pulse 2s ease-in-out infinite; }
         @keyframes bolt-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); } }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .droid-card.protocol { background: linear-gradient(135deg, #433c14, #31270e); color: #e2e8f0; }
+        html:not(.light) .tech-card { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .tech-card.communication { border-left-color: #866f27; }
+        html:not(.light) .tech-btn.protocol { background: #433714; color: #e2e8f0; }
+        html:not(.light) .personality-matrix { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .tech-tree { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .malfunction-system { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-workshop { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .ai-consciousness { background: radial-gradient(circle, #431415, #310e26); color: #e2e8f0; }
+        html:not(.light) .comparison-item { background: #142d43; color: #e2e8f0; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .tech-lab :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .droid-card.astromech { color: #e2e8f0; }
+        .droid-card.astromech :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .droid-card.battle { color: #e2e8f0; }
+        .droid-card.battle :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .droid-card.probe { color: #e2e8f0; }
+        .droid-card.probe :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .droid-factory :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .tech-evolution :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .hologram-display { color: #e2e8f0; }
+        .hologram-display :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .customization-panel :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .force-tech :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .restraining-bolt { color: #e2e8f0; }
+        .restraining-bolt :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .droid-card.utility { background: linear-gradient(135deg, #28a428, #186218); }
+        .droid-card.medical { background: linear-gradient(135deg, #ff300a, #b53838); }
+        .tech-btn { background: #0071eb; }
+        .tech-btn.utility { background: #208637; }
+        .hologram-figure { background: radial-gradient(circle, rgba(0, 69, 92, 0.8), rgba(0,191,255,0.2)); }
+        .memory-chip { background: #128294; }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .tech-card { color: #1f2937; }
+        .personality-matrix { color: #1f2937; }
+        .tech-tree { color: #1f2937; }
+        .malfunction-system { color: #1f2937; }
+        .exercise-workshop { color: #1f2937; }
+        .ai-consciousness { color: #1f2937; }
+        .comparison-item { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Creating Memorable Droids and Technology in Star Wars RPG</h1>
         <p><em>"The chances of successfully navigating an asteroid field are approximately 3,720 to 1!" - C-3PO</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="tech-lab">
                 <h2>Welcome to the Galactic Technology Institute</h2>
@@ -258,6 +320,36 @@
                     <br>> _
                 </div>
             </div>
+        </section>
+
+        <section class="playing-a-droid">
+            <h2>🤖 Playing a Droid Character</h2>
+            <p>Everything above treats droids as things the party owns, meets or repairs. They are also a playable species, and one that behaves differently enough from the others to be worth its own section — because a player who picks a droid without knowing the trade-offs usually regrets it by session three.</p>
+
+            <h3>What You Gain</h3>
+            <ul>
+                <li><strong>Flexibility at creation.</strong> Droids are built rather than born, and start less specialised than organic species — with more freedom to distribute what they have.</li>
+                <li><strong>Immunity to a great deal.</strong> Poison, disease, suffocation, vacuum, hard radiation. A droid can walk into places that would kill the rest of the party, which is a genuine and repeatable plot advantage.</li>
+                <li><strong>Cybernetic capacity.</strong> Droids accept modification more readily than organics. Over a long campaign this compounds into real capability.</li>
+                <li><strong>Nobody expects anything of you.</strong> The galaxy treats droids as furniture. That is a social disadvantage that doubles as the best infiltration tool in the game.</li>
+            </ul>
+
+            <h3>What You Give Up</h3>
+            <ul>
+                <li><strong>The Force.</strong> Droids are not Force-sensitive, and this is not negotiable. If the campaign is Force-centred, understand that you are opting out of an entire subsystem.</li>
+                <li><strong>Healing.</strong> Medicine does nothing for you. Repairs come from <strong>Mechanics</strong> instead — which means a party with a droid PC and no mechanic has a member nobody can fix. Check this against <a href="/sw_groups.html">Group Dynamics</a> before committing.</li>
+                <li><strong>Some social ground.</strong> Many worlds restrict, tax or simply switch off droids. Expect to be left outside.</li>
+                <li><strong>Starting resources.</strong> The flexibility above is paid for somewhere, usually in what you begin play with.</li>
+            </ul>
+
+            <h3>Playing One Well</h3>
+            <p>The most common failure is playing a droid as a human in a metal shell, which wastes everything distinctive about the choice. The second most common is playing one as a comic appliance, which gets old faster than the player expects. Between those:</p>
+            <ol>
+                <li><strong>Pick one thing you cannot do,</strong> and be consistent about it. Cannot lie. Cannot disobey a direct instruction from an owner. Cannot leave a task unfinished. A single hard constraint generates more character than any amount of beeping.</li>
+                <li><strong>Decide how you regard your own memory.</strong> Wipes are the defining droid horror — a character who has been wiped, and knows it, has a past they cannot access but the campaign can.</li>
+                <li><strong>Let the galaxy's dismissal do work.</strong> Being ignored in a room full of people who assume you cannot understand them is not a penalty. It is a scene the other players cannot have.</li>
+            </ol>
+            <p>Run well, a droid PC is the party member who walks through the vacuum, hears what nobody meant them to hear, and quietly asks the campaign's most uncomfortable question — whether they are property. <a href="/starwars_social_encounters.html">Social Encounters</a> covers the friction that generates at a table full of organics.</p>
         </section>
 
         <section class="tech-evolution">
@@ -457,6 +549,18 @@
             <p>Remember, the most memorable technology in Star Wars has personality, purpose, and the power to surprise. Whether it's R2-D2's stubborn loyalty, C-3PO's neurotic helpfulness, or the Death Star's terrible efficiency, great technology serves the story and reveals character.</p>
             
             <p>When your players are arguing with their astromech about the best hyperspace route, when they're trying to convince a security droid to let them pass, or when they're racing to repair critical systems before disaster strikes, you'll know you've captured the perfect blend of high technology and emotional storytelling that makes Star Wars special.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Technology is a story lever. Pull it here:</p>
+            <ul>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Playing a droid character, and what that changes about a party.</li>
+                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> The larger machines — same design philosophy, bigger scale.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Slicing a datapad is usually the fastest route into a conspiracy plot.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Droid antagonists and the people who build them.</li>
+                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> Where gadgets and droids actually get used under pressure.</li>
+            </ul>
         </section>
     </main>
 

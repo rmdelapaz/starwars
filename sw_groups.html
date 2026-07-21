@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG Character Groups - Introduction to Galactic Dynamics</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Party composition, shared backstories and inter-character relationships for Star Wars RPG crews.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Star Wars RPG Character Groups - Introduction to Galactic Dynamics">
+    <meta property="og:description" content="Party composition, shared backstories and inter-character relationships for Star Wars RPG crews.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Star Wars RPG Character Groups</h1>
         <h2>Mastering Galactic Dynamics and Team Creation</h2>
     </header>
 
-    <main>
+    <main id="main">
         <section class="introduction">
             <h3>A Galaxy of Infinite Possibilities</h3>
             <p>Creating compelling character groups in Star Wars RPG is like assembling a diverse crew for the ultimate space adventure. Think of it as putting together the perfect heist team where everyone brings unique skills, but instead of robbing banks, you're saving the galaxy from tyranny, exploring ancient mysteries, or carving out your own destiny among the stars.</p>
@@ -273,6 +288,40 @@
             <p>Think beyond immediate concerns. How does the group fit into galactic events? Are they witnesses to history, active participants in major conflicts, or trying to stay hidden from larger forces? Their scale determines the scope of their adventures.</p>
         </section>
 
+        <section class="party-as-unit">
+            <h3>The Party as a Mechanical Unit</h3>
+            <p>Everything above treats the group as a social arrangement. The system also treats it as a <em>mechanical</em> one, and this is the part most new tables miss entirely — which is a shame, because it is the machinery that stops a party being four people who happen to share a ship.</p>
+
+            <h4>Obligation Is a Group Track, Not a Personal One</h4>
+            <p>Individual Obligations are pooled into a single percentile track covering the whole party. At the start of a session the GM rolls against that combined pool, and if the roll lands inside a character's slice, <strong>that character's baggage is this week's problem</strong> — their creditor surfaces, their old unit makes contact, their past walks into the cantina.</p>
+            <p>The crucial detail: when an Obligation triggers, the <em>entire party</em> feels it, typically as a small penalty to everyone's strain threshold for the session. That single rule is what converts backstory from decoration into a shared concern. Your smuggler's debt is not merely flavour; it is the reason everyone is tired and on edge tonight. Tables that house-rule this penalty away usually find that Obligation stops mattering within a month.</p>
+
+            <h4>Two Consequences Worth Planning For</h4>
+            <ul>
+                <li><strong>Bigger parties start with smaller individual Obligations.</strong> The pooled total is what the GM rolls against, so it is kept roughly constant regardless of headcount. Adding a sixth player does not mean six times the complications.</li>
+                <li><strong>Extra Obligation buys extra starting resources</strong> — more XP or more credits at creation. This looks like a personal choice and is not: taking on more baggage widens <em>your</em> slice of a track everyone shares, making it likelier that your problems dominate the campaign. Agree it as a group in session zero, or you get one character whose past is the plot and three who are along for the ride.</li>
+            </ul>
+            <p>Age of Rebellion's Duty and Force and Destiny's Morality work the same structural way — see <a href="/sw_char.html">Character Creation</a> for how the three differ, and note that a mixed party needs each track rolled separately.</p>
+
+            <h4>The Question Session Zero Usually Forgets</h4>
+            <p>Groups spend an evening deciding what each character can do and almost none deciding <strong>why they stay</strong>. "We met in a cantina" explains the first session; it does not explain the fortieth. Answer one of these instead, out loud, before play:</p>
+            <ul>
+                <li><strong>A shared debt</strong> — they are collectively liable for something, so leaving is not free.</li>
+                <li><strong>A shared asset</strong> — the ship belongs to all of them, and it is worth more together than divided.</li>
+                <li><strong>A shared enemy</strong> — someone is hunting them as a set, whatever they would prefer.</li>
+                <li><strong>A shared belief</strong> — the hardest to sustain and the most rewarding when it holds.</li>
+            </ul>
+            <p>Then have each player name <em>one specific thing</em> they owe another character, and one they resent. Two sentences each, eight sentences total, and the party arrives at session one already entangled rather than politely cooperating.</p>
+
+            <h4>When Someone Cannot Make It</h4>
+            <p>Decide the absent-player rule before you need it, because deciding it in the moment always favours whoever is loudest:</p>
+            <ul>
+                <li><strong>Write them out</strong> — the character is off doing something plausible. Cleanest, but they miss the session's developments and can drift.</li>
+                <li><strong>Run them as a quiet background presence</strong> — present, contributing nothing decisive, taking no risks that would matter. Fair, and requires no bookkeeping.</li>
+                <li><strong>Hand the sheet to another player</strong> — works well for combat-heavy sessions, badly for anything touching that character's Obligation or relationships. Never let a borrowed character make a decision the absent player would want to make themselves.</li>
+            </ul>
+        </section>
+
         <section class="troubleshooting">
             <h3>Common Challenges and Solutions</h3>
             <p>Even experienced GMs encounter obstacles when crafting character groups. Here are proven solutions to common problems.</p>
@@ -298,6 +347,18 @@
             <p>You now possess the fundamental knowledge to create compelling character groups that capture the essence of Star Wars adventure. Your journey into group mastery has begun, but like any Jedi training, true understanding comes through practice and experience.</p>
 
            
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A party is a machine with moving parts. These pages cover the rest of it:</p>
+            <ul>
+                <li><strong><a href="/sw_character_examples.html">Character Examples</a>:</strong> Pre-built crews showing these dynamics already balanced.</li>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> The individual build rules behind each seat in the party.</li>
+                <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Session zero — where group expectations get agreed out loud rather than assumed.</li>
+                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Intra-party conflict handled as drama instead of as an argument.</li>
+                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> The shared ship is often what actually holds a group together.</li>
+            </ul>
         </section>
     </main>
 
@@ -528,6 +589,38 @@
         .methodology-details {
             margin-top: 30px;
         }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .archetype-card { border: 2px solid #867727; }
+        html:not(.light) .group-example { border: 2px solid #867727; }
+        html:not(.light) .character { border-left: 4px solid #867727; }
+        html:not(.light) .theme-detail { background: #1e2b38; border-left: 4px solid #867727; color: #e2e8f0; }
+        html:not(.light) .step { background: #142f43; color: #e2e8f0; }
+        html:not(.light) .exercise { background: linear-gradient(135deg, #433114, #31230e); color: #e2e8f0; }
+        html:not(.light) .problem-solution { background: #3a183f; color: #e2e8f0; }
+        html:not(.light) .preview { background: linear-gradient(135deg, #1a3c1a, #142c15); color: #e2e8f0; }
+        html:not(.light) canvas { border: 3px solid #867727; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .archetype-card.warrior :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .archetype-card.face :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .archetype-card.mystic :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .group-example.edge :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .group-example.rebellion :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .archetype-card.pilot { background: linear-gradient(135deg, #d83a00, #b36406); }
+        .archetype-card.tech { background: linear-gradient(135deg, #28a428, #186218); }
+        .archetype-card.support { background: linear-gradient(135deg, #1b9790, #006b6b); }
+        .group-example.force { background: linear-gradient(135deg, #2654dd, #4882ea); }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .theme-detail { color: #1f2937; }
+        .step { color: #1f2937; }
+        .exercise { color: #1f2937; }
+        .problem-solution { color: #1f2937; }
+        .preview { color: #1f2937; }
     </style> -->
 </body>
 </html>

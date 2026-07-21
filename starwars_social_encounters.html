@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mastering Social Encounters and Cantina Scenes in Star Wars RPG</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <meta name="description" content="Cantina negotiations, underworld deals and charm checks — running social scenes in Star Wars RPG.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mastering Social Encounters and Cantina Scenes in Star Wars RPG">
+    <meta property="og:description" content="Cantina negotiations, underworld deals and charm checks — running social scenes in Star Wars RPG.">
+    <meta property="og:image" content="/favicon.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/styles/nav.css">
+    <link rel="stylesheet" href="/styles/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" type="image/png">
     <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      window.mermaid = mermaid;
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
+      });
     </script>
     <style>
         .cantina-atmosphere { background: linear-gradient(135deg, #8B4513, #CD853F, #DEB887); padding: 30px; border-radius: 15px; color: #2F1B14; margin: 20px 0; position: relative; overflow: hidden; }
@@ -46,16 +60,59 @@
         .music-controls { display: flex; justify-content: center; gap: 15px; margin: 15px 0; }
         .music-btn { padding: 10px 20px; background: rgba(255,255,255,0.2); border: 2px solid white; border-radius: 25px; color: white; cursor: pointer; transition: all 0.3s; }
         .music-btn:hover { background: rgba(255,255,255,0.4); transform: scale(1.05); }
+
+
+        /* --- dark-theme panel overrides (generated) --- */
+        html:not(.light) .cantina-atmosphere { background: linear-gradient(135deg, #8B4513, #CD853F, #432e14); color: #e2e8f0; }
+        html:not(.light) .patron-card.merchant { background: linear-gradient(135deg, #b8860b, #433614); color: #e2e8f0; }
+        html:not(.light) .social-mechanics { background: #1e2b38; color: #e2e8f0; }
+        html:not(.light) .conversation-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
+        html:not(.light) .tension-tracker { background: #1a3c1a; color: #e2e8f0; }
+        html:not(.light) .reputation-card { background: #142d43; color: #e2e8f0; }
+        html:not(.light) .information-economy { background: #431418; color: #e2e8f0; }
+        html:not(.light) .exercise-tavern { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html:not(.light) .scene-template { background: #142c43; color: #e2e8f0; }
+        html:not(.light) .species-card { background: #222c35; color: #e2e8f0; }
+        html:not(.light) .music-btn { border: 2px solid #44576a; }
+
+        /* --- always-dark panels: keep their text legible in light mode too --- */
+        .patron-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .patron-card.smuggler { color: #e2e8f0; }
+        .patron-card.smuggler :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .patron-card.bounty-hunter { color: #e2e8f0; }
+        .patron-card.bounty-hunter :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .patron-card.information-broker { color: #e2e8f0; }
+        .patron-card.information-broker :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .dialogue-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .mood-low :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .mood-high :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+
+        /* --- button labels nudged to WCAG AA contrast --- */
+        .control-btn { background: #0071eb; }
+        .control-btn.active { background: #208637; }
+        .mood-medium { background: linear-gradient(135deg, #ab6c09, #a45713); }
+        .jukebox { background: radial-gradient(circle, #ff1a1a, #2c9e95); }
+
+        /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
+        .social-mechanics { color: #1f2937; }
+        .conversation-builder { color: #1f2937; }
+        .tension-tracker { color: #1f2937; }
+        .reputation-card { color: #1f2937; }
+        .information-economy { color: #1f2937; }
+        .exercise-tavern { color: #1f2937; }
+        .scene-template { color: #1f2937; }
+        .species-card { color: #1f2937; }
     </style>
     <script src="/styles/nav.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
         <h1>Mastering Social Encounters and Cantina Scenes</h1>
         <p><em>"Mos Eisley cantina. You will never find a more wretched hive of scum and villainy. We must be cautious." - Obi-Wan Kenobi</em></p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="intro">
             <div class="cantina-atmosphere">
                 <h2>Welcome to the Social Hub Academy</h2>
@@ -219,6 +276,41 @@
                     <strong>Taboos:</strong> Dismissing art, cultural insensitivity, pure materialism</p>
                 </div>
             </div>
+        </section>
+
+        <section class="social-as-combat">
+            <h2>💬 Social Conflict Runs on Strain</h2>
+            <p>Everything above is about making conversations <em>interesting</em>. This section is about making them <em>mechanical</em> — because the system already contains a full structure for social conflict, and most tables never use it, defaulting instead to a single Charm check that decides everything.</p>
+
+            <h3>The Core Idea</h3>
+            <p>A social encounter can be run exactly like a fight, with one substitution: <strong>strain replaces wounds</strong>. Arguments, threats, appeals and flattery inflict strain rather than injury. Someone who exceeds their strain threshold in a social conflict is not hurt — they are worn down. They concede, storm out, agree to something they will regret, or simply stop resisting.</p>
+            <p>This is the same strain track described in <a href="/sw_combat.html">Combat Mechanics</a>, which produces an excellent knock-on effect: a character who has spent the afternoon being interrogated arrives at the evening's firefight with less in reserve. The two halves of the game connect.</p>
+
+            <h3>Social Weapons and Social Armour</h3>
+            <table>
+                <thead><tr><th>Approach</th><th>Skill</th><th>Works best against</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Charm</strong></td><td>Presence</td><td>The receptive, the lonely, the flattered — resisted with Cool</td></tr>
+                    <tr><td><strong>Negotiation</strong></td><td>Presence</td><td>Anyone with an interest to trade — resisted with Negotiation or Cool</td></tr>
+                    <tr><td><strong>Coercion</strong></td><td>Willpower</td><td>The frightened and the outmatched — resisted with Discipline</td></tr>
+                    <tr><td><strong>Deception</strong></td><td>Cunning</td><td>The trusting and the distracted — resisted with Discipline or Vigilance</td></tr>
+                    <tr><td><strong>Leadership</strong></td><td>Presence</td><td>Those who already accept your authority — rallying rather than persuading</td></tr>
+                </tbody>
+            </table>
+            <p>The pairing matters. A character built on Willpower coerces well and charms badly, which means <em>who approaches the contact</em> is a genuine tactical decision rather than a formality. Give the party a reason to send the right person, and quiet characters get a spotlight.</p>
+
+            <h3>Making It Last More Than One Roll</h3>
+            <p>The reason most social scenes collapse into a single check is that nothing forces a second one. Fix that the way combat does — by giving the encounter a shape:</p>
+            <ol>
+                <li><strong>Set a threshold, not a difficulty.</strong> "Three net successes across the conversation" turns one roll into a scene with momentum, reversals and a chance for several characters to contribute.</li>
+                <li><strong>Let the NPC push back.</strong> They inflict strain too. A hostile official wears down the party's patience just as the party wears down theirs.</li>
+                <li><strong>Spend Advantage on position, not just outcome.</strong> Advantage in conversation buys you a name, a tell, a moment of doubt — see the spend menu in <a href="/sw_adv_dice.html">Advanced Dice</a>.</li>
+                <li><strong>Let failure change the relationship</strong> rather than ending the scene. Nobody enjoys "you failed, they say no." Try "they agree, but now they know exactly how badly you needed it."</li>
+            </ol>
+
+            <h3>When Not to Use This</h3>
+            <p>Structured social conflict is a tool for scenes that genuinely matter — the negotiation the arc turns on, the interrogation, the standoff. Do not run it for buying supplies or asking directions; there, a single check or simply saying yes is correct. Reaching for the full structure every time is the fastest way to make players dread talking to anyone.</p>
+            <p>One caution worth stating explicitly: these mechanics point at <em>NPCs</em>. Using Coercion or Deception on another player's character should always be a conversation between the players first, never a dice roll that removes someone's agency without warning. See the safety-tools discussion in <a href="/starwars_rpg_foundations.html">RPG Foundations</a>.</p>
         </section>
 
         <section class="information-economy">
@@ -414,6 +506,18 @@
             <p>Remember, cantinas are microcosms of the galaxy - places where all the themes, conflicts, and relationships of your campaign can play out on an intimate scale. The best cantina scenes don't just advance the plot; they reveal character, build atmosphere, and create the kinds of memorable moments that players will reference years later.</p>
             
             <p>Every time your players walk into a cantina, they're entering a world of possibilities. Maybe they'll find the information that saves the Rebellion, or maybe they'll start a bar fight that changes nothing but creates a legendary story. Either way, they'll experience the living, breathing galaxy that makes Star Wars magical.</p>
+        </section>
+    
+        <section class="further-exploration" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>Social scenes connect outward faster than combat does:</p>
+            <ul>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> The people on the other side of the table in these conversations.</li>
+                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> Spending Advantage and Threat in conversation, where the effects are subtler.</li>
+                <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Scaling a cantina negotiation up to a senate floor.</li>
+                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Getting names and forms of address right — a social move in itself.</li>
+                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> Someone to fill the next barstool when players talk to a stranger.</li>
+            </ul>
         </section>
     </main>
 
