@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
@@ -52,8 +51,8 @@
                         G --> H[Obligations & Duty]
                         H --> I[Complete Hero]
                         
-                        style A fill:#FFE81F
-                        style I fill:#00FF00
+                        style A fill:#ffe81f,color:#1f2937
+                        style I fill:#00ff00,color:#1f2937
                 </div>
 
                 <p>The character creation process flows like the Force itself—mysterious currents that guide seemingly random choices toward a greater destiny, creating heroes ready to face the Empire's tyranny or explore the Unknown Regions.</p>
@@ -312,9 +311,9 @@
                         D --> L[Practical Application]
                         D --> M[Emotional Control]
                         
-                        style B fill:#00FF00
-                        style C fill:#FF0000
-                        style D fill:#FFD700
+                        style B fill:#00ff00,color:#1f2937
+                        style C fill:#eb0000,color:#ffffff
+                        style D fill:#ffd700,color:#1f2937
                 </div>
 
                 <h3>Force Power Progression Examples</h3>

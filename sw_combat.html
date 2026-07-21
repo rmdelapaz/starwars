@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
@@ -65,10 +64,10 @@
                         I --> J[Next Initiative Slot]
                         J --> D
                         
-                        style D fill:#ff9800
-                        style E fill:#4caf50
-                        style F fill:#f44336
-                        style I fill:#2196f3
+                        style D fill:#ff9800,color:#1f2937
+                        style E fill:#4caf50,color:#1f2937
+                        style F fill:#f65e53,color:#1f2937
+                        style I fill:#2196f3,color:#1f2937
                 </div>
             </div>
 
@@ -194,11 +193,11 @@
                         J --> K[Apply Secondary Effects]
                         K --> L[Describe Complete Result]
                         
-                        style F fill:#ff9800
-                        style G fill:#4caf50
-                        style H fill:#f44336
-                        style J fill:#2196f3
-                        style L fill:#9c27b0
+                        style F fill:#ff9800,color:#1f2937
+                        style G fill:#4caf50,color:#1f2937
+                        style H fill:#f65e53,color:#1f2937
+                        style J fill:#2196f3,color:#1f2937
+                        style L fill:#9c27b0,color:#ffffff
                 </div>
             </div>
 
@@ -642,9 +641,9 @@
                         C --> C2[Personal Duels]
                         C --> C3[Critical Missions]
                         
-                        style A fill:#ff9800
-                        style B fill:#2196f3
-                        style C fill:#4caf50
+                        style A fill:#ff9800,color:#1f2937
+                        style B fill:#2196f3,color:#1f2937
+                        style C fill:#4caf50,color:#1f2937
                 </div>
             </div>
         </section>

@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
@@ -251,10 +250,10 @@ Corellian Smuggler: Han Solo archetype with personal twist</code></pre>
                         E --> F[Force Rating 3+]
                         F --> G[Master Level]
                         
-                        style A fill:#f9f9f9
-                        style B fill:#e3f2fd
-                        style D fill:#bbdefb
-                        style F fill:#90caf9
+                        style A fill:#f9f9f9,color:#1f2937
+                        style B fill:#e3f2fd,color:#1f2937
+                        style D fill:#bbdefb,color:#1f2937
+                        style F fill:#90caf9,color:#1f2937
                 </div>
             </div>
 

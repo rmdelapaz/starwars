@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <style>
         .character-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }

@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
@@ -209,12 +208,12 @@
                         J --> K[Distribute 4 Free Ranks]
                         K --> L[Start with Skilled Jockey]
                         
-                        style G fill:#ff9800
-                        style H fill:#ffcc02
-                        style I fill:#ffd54f
-                        style J fill:#ffe082
-                        style K fill:#ffecb3
-                        style L fill:#fff3e0
+                        style G fill:#ff9800,color:#1f2937
+                        style H fill:#ffcc02,color:#1f2937
+                        style I fill:#ffd54f,color:#1f2937
+                        style J fill:#ffe082,color:#1f2937
+                        style K fill:#ffecb3,color:#1f2937
+                        style L fill:#fff3e0,color:#1f2937
                 </div>
             </div>
 
@@ -518,11 +517,11 @@ Advanced Path:
                         H --> I
                         I --> A
                         
-                        style A fill:#ff9800
-                        style C fill:#f44336
-                        style D fill:#4caf50
-                        style G fill:#2196f3
-                        style H fill:#9c27b0
+                        style A fill:#ff9800,color:#1f2937
+                        style C fill:#f65e53,color:#1f2937
+                        style D fill:#4caf50,color:#1f2937
+                        style G fill:#2196f3,color:#1f2937
+                        style H fill:#9c27b0,color:#ffffff
                 </div>
             </div>
 

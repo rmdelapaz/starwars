@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
@@ -449,10 +448,10 @@
                         P[Time Pressure] --> I
                         Q[Opposition Quality] --> K
                         
-                        style A fill:#4caf50
-                        style E fill:#f44336
-                        style C fill:#2196f3
-                        style D fill:#ff9800
+                        style A fill:#4caf50,color:#1f2937
+                        style E fill:#f65e53,color:#1f2937
+                        style C fill:#2196f3,color:#1f2937
+                        style D fill:#ff9800,color:#1f2937
                 </div>
             </div>
 
@@ -681,9 +680,9 @@
                         I --> K
                         J --> K
                         
-                        style A fill:#ff9800
-                        style B fill:#2196f3
-                        style K fill:#4caf50
+                        style A fill:#ff9800,color:#1f2937
+                        style B fill:#2196f3,color:#1f2937
+                        style K fill:#4caf50,color:#1f2937
                 </div>
             </div>
 

@@ -277,11 +277,15 @@ footer {
   text-align: center;
 }
 
-/* ---------- mermaid ---------- */
+/* ---------- mermaid ----------
+   These diagrams were authored for a light page: 21 of them carry hardcoded
+   light `style X fill:#...` directives that cannot follow a theme. So they get
+   their own light surface and render in mermaid's light theme in BOTH modes —
+   same treatment as the canvases above. Dark ink is therefore always correct. */
 .mermaid, .mermaid_container, .mermaid-diagram {
   margin: 1.75rem auto;
   padding: 1.25rem;
-  background: var(--panel);
+  background: #f5f7fa;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   max-width: 100%;
@@ -290,19 +294,35 @@ footer {
 }
 .mermaid svg { margin: 0 auto; display: block; height: auto; }
 
-/* Mermaid 11 renders node text as HTML inside foreignObject and sometimes
-   leaks its default-theme dark label colour onto our dark panels. Pin every
-   label to the themed text colour so diagrams stay legible in both modes. */
+/* Mermaid renders labels as HTML in a foreignObject, which INHERITS the page
+   text colour unless something sets it — light-on-light once the page went dark.
+   So supply a dark default, but deliberately WITHOUT !important: nodes carrying
+   a custom `style X fill:...,color:...` must be able to override it (light ink
+   on dark fills). Specificity here is low on purpose. */
 .mermaid .nodeLabel, .mermaid .nodeLabel p,
 .mermaid .edgeLabel, .mermaid .edgeLabel p,
 .mermaid .cluster-label, .mermaid .cluster-label p,
 .mermaid .label, .mermaid .titleText, .mermaid .pieTitleText {
-  color: var(--text-strong) !important;
-  fill: var(--text-strong) !important;
+  color: #1f2937;
 }
-/* edge labels sit on their own chip: give it a themed backdrop */
-.mermaid .edgeLabel rect, .mermaid .edgeLabel .labelBkg { opacity: 0; }
 .mermaid .edgeLabel > * { background: transparent !important; }
+
+/* Mindmaps are the exception: mermaid paints its own section palette and puts
+   WHITE labels on it, which fails against every branch colour (measured 1.06 -
+   2.57:1). Numbered sections are light, so they take dark ink; only the root
+   node is dark and keeps white. */
+.mermaid .mindmap-node .nodeLabel,
+.mermaid .mindmap-node .nodeLabel p,
+.mermaid .mindmap-node text {
+  color: #1f2937 !important;
+  fill: #1f2937 !important;
+}
+.mermaid .mindmap-node.section-root .nodeLabel,
+.mermaid .mindmap-node.section-root .nodeLabel p,
+.mermaid .mindmap-node.section-root text {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
 
 /* ---------- generic panel helper (used by the darkened inline styles) ---------- */
 .sw-panel {

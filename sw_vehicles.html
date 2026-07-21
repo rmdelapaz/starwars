@@ -19,10 +19,9 @@
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       window.mermaid = mermaid;
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: localStorage.getItem('sw-theme') === 'light' ? 'default' : 'dark'
-      });
+      // Diagrams render on their own light surface (see site.css), so the
+      // light theme is correct in both page themes.
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
     </script>
     <script src="/styles/nav.js" defer></script>
 </head>
@@ -258,10 +257,10 @@
                         D --> D2[Turret Operations]
                         D --> D3[Missile Systems]
                         
-                        style A fill:#2196f3
-                        style B fill:#4caf50
-                        style C fill:#ff9800
-                        style D fill:#f44336
+                        style A fill:#2196f3,color:#1f2937
+                        style B fill:#4caf50,color:#1f2937
+                        style C fill:#ff9800,color:#1f2937
+                        style D fill:#f65e53,color:#1f2937
                 </div>
             </div>
 
@@ -317,10 +316,10 @@
                         J --> C
                         K --> L[Chase Ends]
                         
-                        style A fill:#4caf50
-                        style D fill:#ff9800
-                        style I fill:#f44336
-                        style K fill:#9c27b0
+                        style A fill:#4caf50,color:#1f2937
+                        style D fill:#ff9800,color:#1f2937
+                        style I fill:#f65e53,color:#1f2937
+                        style K fill:#9c27b0,color:#ffffff
                 </div>
             </div>
         </section>
@@ -510,11 +509,11 @@
                         L --> N[Off-Course/Lost/Worse]
                         K --> O[Drop to Realspace]
                         
-                        style E fill:#ff9800
-                        style J fill:#ff9800
-                        style G fill:#f44336
-                        style L fill:#f44336
-                        style N fill:#d32f2f
+                        style E fill:#ff9800,color:#1f2937
+                        style J fill:#ff9800,color:#1f2937
+                        style G fill:#f65e53,color:#1f2937
+                        style L fill:#f65e53,color:#1f2937
+                        style N fill:#d32f2f,color:#ffffff
                 </div>
             </div>
 

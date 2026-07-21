@@ -59,29 +59,11 @@
     document.documentElement.classList.toggle('light');
     localStorage.setItem(STORE, isLight() ? 'light' : 'dark');
     updateToggleLabel();
-    retintMermaid();
   }
 
-  /* ---- re-render mermaid diagrams so they follow the theme ---- */
-  function retintMermaid() {
-    const nodes = Array.from(document.querySelectorAll('.mermaid'));
-    if (!nodes.length || !window.mermaid) return;
-    nodes.forEach(function (n) {
-      if (n.dataset.swSource) {
-        n.textContent = n.dataset.swSource;
-        n.removeAttribute('data-processed');
-      }
-    });
-    try {
-      window.mermaid.initialize({ startOnLoad: false, theme: isLight() ? 'default' : 'dark' });
-      window.mermaid.run({ nodes: nodes });
-    } catch (e) { /* diagram re-render is best-effort */ }
-  }
-
-  /* Stash each diagram's source before mermaid replaces it with SVG. */
-  document.querySelectorAll('.mermaid').forEach(function (n) {
-    if (!n.dataset.swSource) n.dataset.swSource = n.textContent;
-  });
+  /* Diagrams are deliberately NOT re-themed on toggle: many carry hardcoded
+     light `style X fill:#...` directives, so they render on their own light
+     surface in mermaid's light theme regardless of the page theme. */
 
   /* ---- top navbar ---- */
   const nav = document.createElement('nav');
