@@ -3,83 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating Memorable Planets and Locations in Star Wars RPG</title>
-    <meta name="description" content="Biomes, culture hooks and making every landing feel like a new adventure in Star Wars RPG.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Creating Memorable Planets and Locations in Star Wars RPG">
-    <meta property="og:description" content="Biomes, culture hooks and making every landing feel like a new adventure in Star Wars RPG.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Planets &amp; Locations - The Star Wars RPG Guide</title>
+    <meta name="description" content="Planets and locations for Star Wars RPG campaigns: biomes, cultures, hazards with real mechanical effects, and building a world quickly.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .planet-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .planet-card { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 20px; border-radius: 15px; position: relative; overflow: hidden; }
-        .planet-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite; }
-        .planet-card h3 { position: relative; z-index: 2; }
-        .planet-card p { position: relative; z-index: 2; }
+        .planet-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .planet-card {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .planet-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        .planet-card h3 {
+            position: relative;
+            z-index: 2;
+        }
+        .planet-card p {
+            position: relative;
+            z-index: 2;
+        }
         @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .ecosystem-diagram { background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .location-builder { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
-        .terrain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .terrain-type { background: #e8f5e8; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #28a745; }
-        .culture-wheel { margin: 30px 0; text-align: center; }
-        .adventure-hooks { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
-        .exercise-section { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .canvas-container { text-align: center; margin: 20px 0; background: #000; padding: 20px; border-radius: 10px; }
-        .biome-selector { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .biome-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .biome-btn:hover { background: #0056b3; }
-        .biome-btn.active { background: #28a745; }
+        .ecosystem-diagram {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .location-builder {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .terrain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .terrain-type {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #28a745;
+        }
+        .culture-wheel {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .adventure-hooks {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #dc3545;
+        }
+        .exercise-section {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .biome-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .biome-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .biome-btn:hover {
+            background: #0056b3 !important;
+            color: #fff;
+        }
+        .biome-btn.active {
+            background: #1f8336 !important;
+            color: #fff;
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .ecosystem-diagram { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .location-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
-        html:not(.light) .terrain-type { background: #1a3c1a; color: #e2e8f0; }
-        html:not(.light) .adventure-hooks { background: #431418; color: #e2e8f0; }
-        html:not(.light) .exercise-section { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
+        html[data-theme="dark"] .ecosystem-diagram {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .location-builder {
+            border: 2px solid #866f27;
+        }
+        html[data-theme="dark"] .terrain-type {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .adventure-hooks {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .exercise-section {
+            border: 2px solid #297885;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .planet-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .canvas-container { color: #e2e8f0; }
-        .canvas-container :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .planet-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .canvas-container {
+            
+        }
+        .canvas-container :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .biome-btn { background: #0071eb; }
-        .biome-btn.active { background: #208637; }
+        .biome-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .biome-btn.active {
+            background: #208637 !important;
+            color: #fff;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .ecosystem-diagram { color: #1f2937; }
-        .location-builder { color: #1f2937; }
-        .terrain-type { color: #1f2937; }
-        .adventure-hooks { color: #1f2937; }
-        .exercise-section { color: #1f2937; }
+        .ecosystem-diagram {
+            
+        }
+        .location-builder {
+            
+        }
+        .terrain-type {
+            
+        }
+        .adventure-hooks {
+            
+        }
+        .exercise-section {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .biome-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .biome-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .biome-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Creating Memorable Planets and Locations in Star Wars RPG</h1>
-        <p><em>"The Force is what gives a Jedi his power. It's an energy field created by all living things. It surrounds us and penetrates us; it binds the galaxy together." - Obi-Wan Kenobi</em></p>
+        <h1>Planets &amp; Locations</h1>
+        <p>How to build worlds, cultures and locations that feel lived-in and give your players something to do when they land.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
-            <h2>Welcome to the Galaxy's Architect Academy</h2>
-            <p>Creating planets in Star Wars is like being a cosmic chef - you're not just mixing random ingredients, you're crafting entire worlds that tell stories through their landscapes, cultures, and mysteries. Every memorable Star Wars location, from the twin suns of Tatooine to the floating city of Cloud City, serves the story while feeling like a real place where real people live, work, and dream.</p>
+            <h2>Worlds That Tell Stories</h2>
+            <p>Creating planets in Star Wars is like being a cosmic chef - you're not just mixing random ingredients, you're crafting entire worlds that tell stories through their landscapes, cultures, and mysteries. Every memorable Star Wars location, from the twin suns of Tatooine to Cloud City floating above Bespin, serves the story while feeling like a real place where real people live, work, and dream.</p>
             
             <p>Think of planets as characters in your story. Dagobah isn't just a swamp - it's a wise, ancient teacher hiding in humble appearance. Coruscant isn't just a city - it's the beating heart of galactic civilization, beautiful and corrupt in equal measure.</p>
         </section>
@@ -109,7 +223,7 @@
             <div class="planet-showcase">
                 <div class="planet-card">
                     <h3>🌍 Environmental Storytelling</h3>
-                    <p>Your planet's environment should tell a story before anyone speaks. The crystal caves of Ilum whisper of ancient Jedi traditions. The industrial smog of Geonosis speaks of a species that values function over beauty.</p>
+                    <p>Your planet's environment should tell a story before anyone speaks. The crystal caves of Ilum whisper of ancient Jedi traditions. The hive-spires and droid foundries of Geonosis speak of a species that values function over beauty.</p>
                 </div>
                 <div class="planet-card">
                     <h3>🏛️ Cultural Depth</h3>
@@ -148,7 +262,7 @@
 
             <div class="canvas-container">
                 <canvas id="planetGenerator" width="600" height="400"></canvas>
-                <p><em>Interactive Planet Surface Generator - Click to generate new worlds!</em></p>
+                <p><em>Planet sketcher: click the picture to roll a new world type and look.</em></p>
             </div>
         </section>
 
@@ -158,7 +272,7 @@
 
             <h3>The Cultural Evolution Framework</h3>
             <div class="mermaid">
-                graph LR
+                graph TD
                     A[Environmental Pressures] --> B[Survival Adaptations]
                     B --> C[Social Structures]
                     C --> D[Belief Systems]
@@ -169,19 +283,19 @@
             </div>
 
             <h4>Real-World Cultural Parallels</h4>
-            <p>Star Wars draws heavily from Earth cultures, but twisted through the lens of different environments and histories:</p>
+            <p>Many Star Wars worlds echo Earth places and cultures, twisted through different environments and histories. Reading them this way (a GM's lens, not official design notes) is a handy model for your own worlds:</p>
             
             <ul>
                 <li><strong>Tatooine:</strong> Combines elements of the American Wild West, Bedouin desert culture, and North African trading posts</li>
-                <li><strong>Naboo:</strong> Blends Italian Renaissance architecture with Swiss democratic traditions and Japanese aesthetic sensibilities</li>
+                <li><strong>Naboo:</strong> Italian palace and Renaissance architecture (much of it filmed at real Italian locations), wrapped around an elected monarchy</li>
                 <li><strong>Coruscant:</strong> Reflects the cosmopolitan nature of cities like New York, with the stratified society of ancient Rome</li>
-                <li><strong>Endor:</strong> Draws from Pacific Northwest indigenous cultures, emphasizing harmony with nature and guerrilla warfare tactics</li>
+                <li><strong>Endor:</strong> Filmed in California's redwood forests; its Ewok villages show a forest people in harmony with nature who beat a high-tech army with guerrilla tactics</li>
             </ul>
 
             <div class="culture-wheel">
                 <h4>Cultural Aspect Generator</h4>
-                <canvas id="cultureWheel" width="400" height="400"></canvas>
-                <p><em>Spin to discover unique cultural traits for your civilizations!</em></p>
+                <canvas id="cultureWheel" width="400" height="440"></canvas>
+                <p><em>Click the wheel to spin it; the trait under the pointer is shown below the wheel.</em></p>
             </div>
         </section>
 
@@ -219,24 +333,24 @@
 
         <section class="environmental-challenges">
             <h2>Environmental Storytelling Through Challenges</h2>
-            <p>Your planet's environment should create both obstacles and opportunities for your players. Like a good dungeon master, nature itself becomes a character in your story.</p>
+            <p>Your planet's environment should create both obstacles and opportunities for your players. Like a good Game Master, nature itself becomes a character in your story.</p>
 
             <h3>Environmental Hazards as Plot Devices</h3>
             <div class="adventure-hooks">
                 <h4>🌪️ Sandstorms on Desert Worlds</h4>
-                <p><strong>Mechanical Effect:</strong> Reduced visibility, equipment damage<br>
+                <p><strong>Mechanical Effect:</strong> Setback dice on Perception and ranged attacks, Survival checks to navigate, gear that may need repairs<br>
                 <strong>Story Opportunity:</strong> Forces characters together, reveals hidden structures, creates time pressure</p>
 
                 <h4>🌊 Tidal Changes on Ocean Worlds</h4>
-                <p><strong>Mechanical Effect:</strong> Changing terrain accessibility<br>
+                <p><strong>Mechanical Effect:</strong> Changing terrain accessibility; Athletics checks to cross before the water turns<br>
                 <strong>Story Opportunity:</strong> Time-sensitive missions, revealing underwater secrets, separating party members</p>
 
                 <h4>❄️ Blizzards on Ice Worlds</h4>
-                <p><strong>Mechanical Effect:</strong> Cold damage, navigation difficulty<br>
+                <p><strong>Mechanical Effect:</strong> Resilience checks to resist exposure (failure costs strain or wounds), Setback dice on Survival to navigate<br>
                 <strong>Story Opportunity:</strong> Finding shelter together, testing character relationships, discovering ice-preserved artifacts</p>
 
                 <h4>🌋 Volcanic Activity</h4>
-                <p><strong>Mechanical Effect:</strong> Heat damage, unstable terrain<br>
+                <p><strong>Mechanical Effect:</strong> Heat and fumes that cost strain or wounds, Coordination or Athletics checks on unstable ground<br>
                 <strong>Story Opportunity:</strong> Epic lightsaber duels, forging/destroying important items, symbolic transformation moments</p>
             </div>
         </section>
@@ -276,10 +390,10 @@
 
             <div class="mermaid">
                 graph TB
-                    A[Current Era] --> B[Recent History<br/>50-200 years ago]
-                    B --> C[Classical Period<br/>500-1000 years ago]
-                    C --> D[Ancient History<br/>1000+ years ago]
-                    D --> E[Prehistoric/Mythical<br/>Lost to legend]
+                    A[Current Era] --> B[Recent History&lt;br/&gt;50-200 years ago]
+                    B --> C[Classical Period&lt;br/&gt;500-1000 years ago]
+                    C --> D[Ancient History&lt;br/&gt;1000+ years ago]
+                    D --> E[Prehistoric/Mythical&lt;br/&gt;Lost to legend]
                     
                     A1[Modern Settlements] --> B1[Industrial Ruins]
                     B1 --> C1[Classical Architecture]
@@ -301,7 +415,7 @@
 
         <section class="practical-examples">
             <h2>Case Study: Building a Complete World</h2>
-            <p>Let's walk through creating a planet from scratch using our framework.</p>
+            <p>Here is a planet built from scratch using the framework above.</p>
 
             <div class="location-builder">
                 <h3>Planet Kythara: A Step-by-Step Example</h3>
@@ -326,7 +440,7 @@
 
         <section class="exercises">
             <div class="exercise-section">
-                <h3>Practice Exercises</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: The Five-Sense Planet</h4>
                 <p>Pick a basic terrain type (desert, forest, ocean, etc.) and describe what characters experience through all five senses when they first arrive. Don't just say "it's a desert" - tell us about the gritty sand between their teeth, the way heat shimmers create false mirages, the surprising cool touch of morning dew on metal equipment.</p>
@@ -355,7 +469,7 @@
             <p>Some places are strong in the Force. How does this affect local wildlife, weather patterns, and the people who live there? Consider places like the Wellspring of Life or the Sith worlds of Korriban and Dromund Kaas.</p>
 
             <h3>Technological Integration</h3>
-            <p>How does galactic technology interact with local conditions? Moisture farms on Tatooine, Cloud City's gas mining, or the energy shields protecting Naboo's underwater cities all show technology adapted to environment.</p>
+            <p>How does galactic technology interact with local conditions? Moisture farms on Tatooine, Cloud City's gas mining, or the hydrostatic bubbles of the Gungan cities under Naboo's lakes all show technology adapted to environment.</p>
 
             <h3>Political Geography</h3>
             <p>How do physical features affect political boundaries? Mountain ranges create natural borders, while river systems or hyperspace routes might unite diverse regions under single governments.</p>
@@ -373,17 +487,13 @@
             <p>A world is a stage. What gets performed on it:</p>
             <ul>
                 <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Who governs the world, who resents it, and what that costs.</li>
-                <li><strong><a href="/starwars_ground_combat.html">Ground Combat</a>:</strong> Terrain turned into tactical encounters.</li>
+                <li><strong><a href="/starwars_ground_combat.html">Running Ground Combat</a>:</strong> Terrain turned into tactical encounters.</li>
                 <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Linking several worlds into a campaign map players want to cross.</li>
-                <li><strong><a href="/starwars_space_encounters.html">Space Encounters</a>:</strong> Getting there, and what waits in orbit.</li>
-                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Place and person naming that makes a world feel authored rather than generated.</li>
+                <li><strong><a href="/starwars_space_encounters.html">Running Space Encounters</a>:</strong> Getting there, and what waits in orbit.</li>
+                <li><strong><a href="/sw_names.html">150 Character Names</a>:</strong> Place and person naming that makes a world feel authored rather than generated.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not. For my ally is the Force, and a powerful ally it is." - Yoda (proving that even small swamp planets can hide great teachers)</em></p>
-    </footer>
 
     <script>
         // Biome display system
@@ -434,8 +544,9 @@
 
         function showBiome(type) {
             // Update button states
-            document.querySelectorAll('.biome-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            document.querySelectorAll('.biome-btn').forEach(btn => {
+                btn.classList.toggle('active', (btn.getAttribute('onclick') || '').indexOf("'" + type + "'") !== -1);
+            });
             
             // Update display
             const biome = biomeData[type];
@@ -455,151 +566,213 @@
         // Planet Generator Canvas
         const planetCanvas = document.getElementById('planetGenerator');
         const planetCtx = planetCanvas.getContext('2d');
-        
+
+        // Each world type has a base colour and a darker feature colour
+        const planetLooks = [
+            { type: 'desert', base: '#e0b46a', feature: '#b8843a' },
+            { type: 'forest', base: '#5f9e57', feature: '#3d6e37' },
+            { type: 'ice', base: '#cfe6f2', feature: '#9cc3d8' },
+            { type: 'ocean', base: '#3f7fbf', feature: '#7fb0d8' },
+            { type: 'urban', base: '#9a9a9a', feature: '#e6c34a' },
+            { type: 'volcanic', base: '#5a3a30', feature: '#e0552b' }
+        ];
+
         function generatePlanet() {
-            planetCtx.clearRect(0, 0, planetCanvas.width, planetCanvas.height);
-            
-            // Space background
-            planetCtx.fillStyle = '#000011';
-            planetCtx.fillRect(0, 0, planetCanvas.width, planetCanvas.height);
-            
-            // Stars
-            for (let i = 0; i < 50; i++) {
-                planetCtx.fillStyle = '#ffffff';
-                planetCtx.fillRect(Math.random() * planetCanvas.width, Math.random() * planetCanvas.height, 1, 1);
+            const W = planetCanvas.width, H = planetCanvas.height;
+            planetCtx.clearRect(0, 0, W, H);
+
+            // Light panel background
+            planetCtx.fillStyle = '#fbf8f2';
+            planetCtx.fillRect(0, 0, W, H);
+
+            // Faint stars
+            planetCtx.fillStyle = '#b9b0a2';
+            for (let i = 0; i < 60; i++) {
+                planetCtx.fillRect(Math.random() * W, Math.random() * (H - 50), 1.5, 1.5);
             }
-            
-            // Planet
-            const centerX = planetCanvas.width / 2;
-            const centerY = planetCanvas.height / 2;
+
+            const look = planetLooks[Math.floor(Math.random() * planetLooks.length)];
+            const centerX = W / 2;
+            const centerY = 170;
             const radius = 120;
-            
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffd93d', '#ff8a65'];
-            const planetColor = colors[Math.floor(Math.random() * colors.length)];
-            
+
+            // Atmospheric glow
+            const glow = planetCtx.createRadialGradient(centerX, centerY, radius, centerX, centerY, radius + 18);
+            glow.addColorStop(0, look.base + '80');
+            glow.addColorStop(1, look.base + '00');
+            planetCtx.beginPath();
+            planetCtx.arc(centerX, centerY, radius + 18, 0, 2 * Math.PI);
+            planetCtx.fillStyle = glow;
+            planetCtx.fill();
+
             // Planet base
             planetCtx.beginPath();
             planetCtx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-            planetCtx.fillStyle = planetColor;
+            planetCtx.fillStyle = look.base;
             planetCtx.fill();
-            
-            // Atmospheric glow
-            const gradient = planetCtx.createRadialGradient(centerX, centerY, radius, centerX, centerY, radius + 20);
-            gradient.addColorStop(0, planetColor + '40');
-            gradient.addColorStop(1, 'transparent');
-            
+
+            // Surface features, clipped to the planet disc
+            planetCtx.save();
             planetCtx.beginPath();
-            planetCtx.arc(centerX, centerY, radius + 20, 0, 2 * Math.PI);
-            planetCtx.fillStyle = gradient;
-            planetCtx.fill();
-            
-            // Surface features
-            for (let i = 0; i < 8; i++) {
-                const featureX = centerX + (Math.random() - 0.5) * radius * 1.5;
-                const featureY = centerY + (Math.random() - 0.5) * radius * 1.5;
-                const featureRadius = Math.random() * 30 + 10;
-                
+            planetCtx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            planetCtx.clip();
+            for (let i = 0; i < 9; i++) {
+                const fx = centerX + (Math.random() - 0.5) * radius * 1.8;
+                const fy = centerY + (Math.random() - 0.5) * radius * 1.8;
+                const fr = Math.random() * 28 + 8;
                 planetCtx.beginPath();
-                planetCtx.arc(featureX, featureY, featureRadius, 0, 2 * Math.PI);
-                planetCtx.fillStyle = planetColor + '80';
+                planetCtx.arc(fx, fy, fr, 0, 2 * Math.PI);
+                planetCtx.fillStyle = look.feature;
+                planetCtx.globalAlpha = 0.75;
                 planetCtx.fill();
             }
+            planetCtx.globalAlpha = 1;
+            // Night-side shading
+            const shade = planetCtx.createLinearGradient(centerX - radius, 0, centerX + radius, 0);
+            shade.addColorStop(0, 'rgba(0,0,0,0)');
+            shade.addColorStop(0.6, 'rgba(0,0,0,0)');
+            shade.addColorStop(1, 'rgba(0,0,0,0.35)');
+            planetCtx.fillStyle = shade;
+            planetCtx.fillRect(centerX - radius, centerY - radius, radius * 2, radius * 2);
+            planetCtx.restore();
+
+            // Caption: world type and its suggested examples
+            const info = biomeData[look.type];
+            planetCtx.fillStyle = '#2a2420';
+            planetCtx.textAlign = 'center';
+            planetCtx.font = 'bold 18px Arial';
+            planetCtx.fillText(info.title.replace(/^\S+\s/, ''), centerX, H - 40);
+            planetCtx.fillStyle = '#4a4239';
+            planetCtx.font = '14px Arial';
+            planetCtx.fillText('Like ' + info.examples + '  ·  click for another', centerX, H - 16);
         }
-        
+
         planetCanvas.addEventListener('click', generatePlanet);
         generatePlanet(); // Initial generation
 
         // Culture Wheel
         const cultureCanvas = document.getElementById('cultureWheel');
         const cultureCtx = cultureCanvas.getContext('2d');
-        
+
         const culturalTraits = [
             'Honor-bound warriors',
-            'Peaceful traders', 
-            'Technological innovators',
+            'Peaceful traders',
+            'Tech innovators',
             'Spiritual mystics',
             'Nomadic wanderers',
             'Underground dwellers',
             'Sky city builders',
             'Ocean explorers'
         ];
-        
-        const cultureColors = ['#ff4444', '#44ff44', '#4444ff', '#ffff44', '#ff44ff', '#44ffff', '#ff8844', '#88ff44'];
-        
+
+        // Light segment colours so dark text stays readable
+        const cultureColors = ['#f4a3a3', '#a8e0a8', '#a9c4f2', '#f5e79a', '#e3b0e8', '#a6e3e3', '#f7c79a', '#cde59a'];
+
         let cultureRotation = 0;
         let cultureSpinning = false;
-        
+        let cultureResult = '';
+
         function drawCultureWheel() {
-            cultureCtx.clearRect(0, 0, cultureCanvas.width, cultureCanvas.height);
-            
-            const centerX = cultureCanvas.width / 2;
-            const centerY = cultureCanvas.height / 2;
-            const radius = 180;
+            const W = cultureCanvas.width;
+            cultureCtx.clearRect(0, 0, W, cultureCanvas.height);
+            cultureCtx.fillStyle = '#fbf8f2';
+            cultureCtx.fillRect(0, 0, W, cultureCanvas.height);
+
+            const centerX = W / 2;
+            const centerY = 200;
+            const radius = 170;
             const anglePerSegment = (2 * Math.PI) / culturalTraits.length;
-            
+
             for (let i = 0; i < culturalTraits.length; i++) {
                 const startAngle = i * anglePerSegment + cultureRotation;
                 const endAngle = (i + 1) * anglePerSegment + cultureRotation;
-                
+
                 cultureCtx.beginPath();
                 cultureCtx.moveTo(centerX, centerY);
                 cultureCtx.arc(centerX, centerY, radius, startAngle, endAngle);
                 cultureCtx.closePath();
                 cultureCtx.fillStyle = cultureColors[i];
                 cultureCtx.fill();
+                cultureCtx.strokeStyle = '#5a5045';
+                cultureCtx.lineWidth = 1;
                 cultureCtx.stroke();
-                
-                // Add text
+
+                // Label, right-aligned just inside the rim so it never spills out
                 cultureCtx.save();
                 cultureCtx.translate(centerX, centerY);
                 cultureCtx.rotate(startAngle + anglePerSegment / 2);
-                cultureCtx.textAlign = 'center';
-                cultureCtx.fillStyle = '#000';
-                cultureCtx.font = '12px Arial';
-                cultureCtx.fillText(culturalTraits[i], radius * 0.7, 5);
+                cultureCtx.textAlign = 'right';
+                cultureCtx.fillStyle = '#1f1a16';
+                cultureCtx.font = '13px Arial';
+                cultureCtx.fillText(culturalTraits[i], radius - 10, 5);
                 cultureCtx.restore();
             }
-            
-            // Draw pointer
+
+            // Pointer at the top
             cultureCtx.beginPath();
-            cultureCtx.moveTo(centerX, centerY - radius - 20);
-            cultureCtx.lineTo(centerX - 10, centerY - radius - 5);
-            cultureCtx.lineTo(centerX + 10, centerY - radius - 5);
+            cultureCtx.moveTo(centerX, centerY - radius + 12);
+            cultureCtx.lineTo(centerX - 11, centerY - radius - 12);
+            cultureCtx.lineTo(centerX + 11, centerY - radius - 12);
             cultureCtx.closePath();
-            cultureCtx.fillStyle = '#000';
+            cultureCtx.fillStyle = '#2a2420';
             cultureCtx.fill();
+
+            // Result line
+            cultureCtx.fillStyle = '#2a2420';
+            cultureCtx.textAlign = 'center';
+            cultureCtx.font = 'bold 16px Arial';
+            cultureCtx.fillText(cultureResult ? 'Result: ' + cultureResult : 'Click the wheel to spin', centerX, 420);
         }
-        
+
+        function traitUnderPointer() {
+            const seg = (2 * Math.PI) / culturalTraits.length;
+            let a = (-Math.PI / 2 - cultureRotation) % (2 * Math.PI);
+            if (a < 0) a += 2 * Math.PI;
+            return culturalTraits[Math.floor(a / seg) % culturalTraits.length];
+        }
+
         function spinCultureWheel() {
             if (cultureSpinning) return;
             cultureSpinning = true;
-            
+            cultureResult = '';
+
             const spinAmount = Math.random() * 6 + 4;
             const duration = 2500;
             const startTime = Date.now();
             const startRotation = cultureRotation;
-            
+
             function animate() {
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                
+
                 const easeProgress = 1 - Math.pow(1 - progress, 3);
                 cultureRotation = startRotation + (spinAmount * 2 * Math.PI * easeProgress);
-                
+
+                if (progress >= 1) {
+                    cultureSpinning = false;
+                    cultureResult = traitUnderPointer();
+                }
                 drawCultureWheel();
-                
+
                 if (progress < 1) {
                     requestAnimationFrame(animate);
-                } else {
-                    cultureSpinning = false;
                 }
             }
-            
+
             animate();
         }
-        
+
         cultureCanvas.addEventListener('click', spinCultureWheel);
         drawCultureWheel();
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_droids_technology.html">Droids &amp; Technology</a>
+    <a class="next" href="/starwars_galactic_politics.html">Galactic Politics</a>
+</div>
+        <p class="closing-quote">"Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not. For my ally is the Force, and a powerful ally it is." - Yoda (proving that even small swamp planets can hide great teachers)</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

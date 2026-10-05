@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG Character Groups - Introduction to Galactic Dynamics</title>
-    <meta name="description" content="Party composition, shared backstories and inter-character relationships for Star Wars RPG crews.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG Character Groups - Introduction to Galactic Dynamics">
-    <meta property="og:description" content="Party composition, shared backstories and inter-character relationships for Star Wars RPG crews.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Crews &amp; Group Dynamics - The Star Wars RPG Guide</title>
+    <meta name="description" content="Crews and group dynamics in the Star Wars RPG: why the crew is together, shared ships and goals, and how Obligation, Duty and Morality shape a party.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG Character Groups</h1>
-        <h2>Mastering Galactic Dynamics and Team Creation</h2>
+        <h1>Crews &amp; Group Dynamics</h1>
+        <p>How to build a party that works together, at the table and under the rules.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h3>A Galaxy of Infinite Possibilities</h3>
             <p>Creating compelling character groups in Star Wars RPG is like assembling a diverse crew for the ultimate space adventure. Think of it as putting together the perfect heist team where everyone brings unique skills, but instead of robbing banks, you're saving the galaxy from tyranny, exploring ancient mysteries, or carving out your own destiny among the stars.</p>
@@ -45,7 +40,7 @@
             <p>The Star Wars universe operates like a complex ecosystem where various factions, organizations, and individuals navigate an ever-changing political landscape. Understanding these relationships is like reading a galactic weather map - knowing which way the winds blow can mean the difference between success and becoming space dust.</p>
 
             <div class="mermaid">
-                graph TD
+                graph LR
                     A[Galactic Empire] --> B[Imperial Navy]
                     A --> C[Imperial Army]
                     A --> D[ISB Intelligence]
@@ -138,7 +133,7 @@
                         <p>Grew up in a junkyard on Raxus Prime, can make anything work with spare parts and ingenuity. Her droid companion helps with complex repairs.</p>
                     </div>
                     <div class="character">
-                        <strong>Dash Rendar</strong> (Corellian Scoundrel/Face)
+                        <strong>Dash Rendar</strong> (Human Smuggler/Scoundrel)
                         <p>Smooth-talking former noble who lost everything to gambling debts. Uses charm and connections to open doors and close deals.</p>
                     </div>
                     <div class="character">
@@ -158,7 +153,7 @@
                 
                 <div class="character-list">
                     <div class="character">
-                        <strong>Commander Sarah Thorne</strong> (Human Officer/Tactician)
+                        <strong>Commander Sarah Thorne</strong> (Human Commander/Tactician)
                         <p>Former Imperial Intelligence turned Rebel after witnessing Alderaan's destruction. Brilliant strategist with insider knowledge of Imperial procedures.</p>
                     </div>
                     <div class="character">
@@ -194,7 +189,7 @@
                         <p>Scholar of ancient Jedi texts who uses knowledge and diplomacy to solve conflicts. Carries a collection of holocrons and artifacts.</p>
                     </div>
                     <div class="character">
-                        <strong>Thorne Blackstar</strong> (Human Mystic/Hunter)
+                        <strong>Thorne Blackstar</strong> (Human Seeker/Hunter)
                         <p>Former bounty hunter who discovered his Force sensitivity. Struggles between his violent past and the light side's calling for peace.</p>
                     </div>
                     <div class="character">
@@ -226,7 +221,7 @@
                 
                 <div class="step">
                     <h5>Campaign Theme Selection</h5>
-                    <p>Start by choosing your primary focus. Are you running a gritty underworld campaign where credits matter and the Empire is an distant threat? A military campaign against Imperial oppression? Or a mystical journey exploring the Force's mysteries? This choice shapes everything else.</p>
+                    <p>Start by choosing your primary focus. Are you running a gritty underworld campaign where credits matter and the Empire is a distant threat? A military campaign against Imperial oppression? Or a mystical journey exploring the Force's mysteries? This choice shapes everything else.</p>
                 </div>
 
                 <div class="step">
@@ -247,8 +242,8 @@
         </section>
 
         <section class="practical-exercises">
-            <h3>Master Your Skills</h3>
-            <p>Knowledge without application is like a lightsaber without a crystal - it has potential but lacks the power to cut through challenges. These exercises will help you master group creation.</p>
+            <h3>Try It at the Table</h3>
+            <p>Knowledge without application is like a lightsaber without a crystal - it has potential but lacks the power to cut through challenges. These exercises help you put a group together.</p>
 
             <div class="exercise">
                 <h4>Exercise One: Faction Relationship Mapping</h4>
@@ -293,14 +288,14 @@
 
             <h4>Obligation Is a Group Track, Not a Personal One</h4>
             <p>Individual Obligations are pooled into a single percentile track covering the whole party. At the start of a session the GM rolls against that combined pool, and if the roll lands inside a character's slice, <strong>that character's baggage is this week's problem</strong> — their creditor surfaces, their old unit makes contact, their past walks into the cantina.</p>
-            <p>The crucial detail: when an Obligation triggers, the <em>entire party</em> feels it, typically as a small penalty to everyone's strain threshold for the session. That single rule is what converts backstory from decoration into a shared concern. Your smuggler's debt is not merely flavour; it is the reason everyone is tired and on edge tonight. Tables that house-rule this penalty away usually find that Obligation stops mattering within a month.</p>
+            <p>The crucial detail: when an Obligation triggers, the <em>entire party</em> feels it. Every character's strain threshold drops by 1 for the session, and by 2 for the character whose Obligation came up; if the GM rolled doubles, those penalties double. That single rule is what converts backstory from decoration into a shared concern. Your smuggler's debt is not merely flavour; it is the reason everyone is tired and on edge tonight. Tables that house-rule this penalty away usually find that Obligation stops mattering within a month.</p>
 
             <h4>Two Consequences Worth Planning For</h4>
             <ul>
                 <li><strong>Bigger parties start with smaller individual Obligations.</strong> The pooled total is what the GM rolls against, so it is kept roughly constant regardless of headcount. Adding a sixth player does not mean six times the complications.</li>
                 <li><strong>Extra Obligation buys extra starting resources</strong> — more XP or more credits at creation. This looks like a personal choice and is not: taking on more baggage widens <em>your</em> slice of a track everyone shares, making it likelier that your problems dominate the campaign. Agree it as a group in session zero, or you get one character whose past is the plot and three who are along for the ride.</li>
             </ul>
-            <p>Age of Rebellion's Duty and Force and Destiny's Morality work the same structural way — see <a href="/sw_char.html">Character Creation</a> for how the three differ, and note that a mixed party needs each track rolled separately.</p>
+            <p>Age of Rebellion's Duty works the same way as a pooled d100 track, except that a trigger <em>raises</em> wound thresholds (+1 for everyone, +2 for the character whose Duty came up). Force and Destiny's Morality is personal instead: each character settles it with their own roll at the end of the session. See <a href="/sw_char.html">Character Creation</a> for how the three differ, and note that a mixed party needs each track handled separately.</p>
 
             <h4>The Question Session Zero Usually Forgets</h4>
             <p>Groups spend an evening deciding what each character can do and almost none deciding <strong>why they stay</strong>. "We met in a cantina" explains the first session; it does not explain the fortieth. Answer one of these instead, out loud, before play:</p>
@@ -343,7 +338,7 @@
 
         <section class="next-steps">
             <h3>Charting Your Course</h3>
-            <p>You now possess the fundamental knowledge to create compelling character groups that capture the essence of Star Wars adventure. Your journey into group mastery has begun, but like any Jedi training, true understanding comes through practice and experience.</p>
+            <p>That is everything you need to build a crew that holds together. The rest comes from play: notice which bonds and rivalries your table actually uses, and lean on those.</p>
 
            
         </section>
@@ -352,18 +347,14 @@
             <h2>Where to Go Next</h2>
             <p>A party is a machine with moving parts. These pages cover the rest of it:</p>
             <ul>
-                <li><strong><a href="/sw_character_examples.html">Character Examples</a>:</strong> Pre-built crews showing these dynamics already balanced.</li>
+                <li><strong><a href="/sw_character_examples.html">Character Examples &amp; Crews</a>:</strong> Pre-built crews showing these dynamics already balanced.</li>
                 <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> The individual build rules behind each seat in the party.</li>
                 <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Session zero — where group expectations get agreed out loud rather than assumed.</li>
                 <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Intra-party conflict handled as drama instead of as an argument.</li>
-                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> The shared ship is often what actually holds a group together.</li>
+                <li><strong><a href="/sw_vehicles.html">Starships &amp; Vehicles</a>:</strong> The shared ship is often what actually holds a group together.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p>Remember: In a galaxy far, far away, the greatest adventures begin when diverse beings unite for a common cause. May the Force be with you, always.</p>
-    </footer>
 
     <script>
         // Campaign Theme Chart Visualization
@@ -371,12 +362,12 @@
         const ctx = canvas.getContext('2d');
         
         // Set up the chart background
-        ctx.fillStyle = '#000011';
+        ctx.fillStyle = '#fbf8f2';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         // Add stars background
         for(let i = 0; i < 100; i++) {
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#ded7cb';
             ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1, 1);
         }
         
@@ -384,70 +375,70 @@
         const themes = [
             { 
                 name: 'Edge of the Empire', 
-                x: 50, y: 50, width: 180, height: 300,
+                x: 50, y: 50, width: 180, height: 290,
                 color: '#8B4513',
-                description: 'Scoundrels & Outlaws'
+                description: 'Scoundrels & Outlaws',
+                mechanic: 'Obligation',
+                careers: ['Bounty Hunter', 'Colonist', 'Explorer', 'Hired Gun', 'Smuggler', 'Technician']
             },
             { 
                 name: 'Age of Rebellion', 
-                x: 260, y: 50, width: 180, height: 300,
+                x: 260, y: 50, width: 180, height: 290,
                 color: '#DC143C',
-                description: 'Heroes & Rebels'
+                description: 'Heroes & Rebels',
+                mechanic: 'Duty',
+                careers: ['Ace', 'Commander', 'Diplomat', 'Engineer', 'Soldier', 'Spy']
             },
             { 
                 name: 'Force and Destiny', 
-                x: 470, y: 50, width: 180, height: 300,
+                x: 470, y: 50, width: 180, height: 290,
                 color: '#4169E1',
-                description: 'Seekers & Mystics'
+                description: 'Seekers & Mystics',
+                mechanic: 'Morality',
+                careers: ['Consular', 'Guardian', 'Mystic', 'Seeker', 'Sentinel', 'Warrior']
             }
         ];
         
         themes.forEach((theme) => {
-            // Draw theme box
+            // Draw theme box (light tint so dark text stays readable)
             ctx.fillStyle = theme.color;
-            ctx.globalAlpha = 0.7;
+            ctx.globalAlpha = 0.3;
             ctx.fillRect(theme.x, theme.y, theme.width, theme.height);
             ctx.globalAlpha = 1.0;
             
             // Draw border
-            ctx.strokeStyle = '#FFD700';
+            ctx.strokeStyle = theme.color;
             ctx.lineWidth = 2;
             ctx.strokeRect(theme.x, theme.y, theme.width, theme.height);
             
-            // Add theme title
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 16px Arial';
+            const cx = theme.x + theme.width/2;
+            ctx.fillStyle = '#1f1d1a';
             ctx.textAlign = 'center';
-            ctx.fillText(theme.name, theme.x + theme.width/2, theme.y + 30);
-            
-            // Add description
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText(theme.name, cx, theme.y + 28);
             ctx.font = '14px Arial';
-            ctx.fillText(theme.description, theme.x + theme.width/2, theme.y + 50);
+            ctx.fillText(theme.description, cx, theme.y + 50);
+            
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('Tracks: ' + theme.mechanic, cx, theme.y + 85);
+            ctx.font = 'bold 13px Arial';
+            ctx.fillText('Careers', cx, theme.y + 120);
+            ctx.font = '13px Arial';
+            theme.careers.forEach((c, i) => {
+                ctx.fillText(c, cx, theme.y + 142 + i * 20);
+            });
         });
         
-        // Add overlapping regions
-        ctx.fillStyle = '#FFD700';
-        ctx.globalAlpha = 0.3;
-        
-        // Edge/Rebellion overlap
-        ctx.fillRect(230, 100, 60, 200);
-        
-        // Rebellion/Force overlap  
-        ctx.fillRect(440, 100, 60, 200);
-        
-        ctx.globalAlpha = 1.0;
-        
-        // Add overlap labels
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '12px Arial';
+        // Footer note: the books mix freely
+        ctx.fillStyle = '#1f1d1a';
+        ctx.font = '13px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('Rebel', 260, 180);
-        ctx.fillText('Smugglers', 260, 195);
-        ctx.fillText('Force-Sensitive', 470, 180);
-        ctx.fillText('Rebels', 470, 195);
+        ctx.fillText('One shared engine: rebel smugglers and Force-sensitive rebels mix freely across the three books.', canvas.width/2, 372);
         
         // Add title
+        ctx.fillStyle = '#1f1d1a';
         ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'center';
         ctx.fillText('Star Wars RPG Campaign Themes', canvas.width/2, 25);
         
         // Reset text alignment
@@ -457,7 +448,7 @@
     <!-- <style>
         .archetype-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 20px;
             margin: 20px 0;
         }
@@ -465,7 +456,7 @@
         .archetype-card {
             padding: 20px;
             border-radius: 10px;
-            border: 2px solid #FFD700;
+            border: 2px solid var(--border);
             transition: transform 0.3s ease;
         }
         
@@ -474,55 +465,46 @@
         }
         
         .archetype-card.pilot {
-            background: linear-gradient(135deg, #FF6B35, #F7931E);
-            color: white;
+            border-left: 5px solid var(--danger) !important;
         }
         
         .archetype-card.warrior {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-            color: white;
+            border-left: 5px solid var(--danger) !important;
         }
         
         .archetype-card.face {
-            background: linear-gradient(135deg, #4169E1, #1E3A8A);
-            color: white;
+            border-left: 5px solid var(--gold) !important;
         }
         
         .archetype-card.tech {
-            background: linear-gradient(135deg, #32CD32, #228B22);
-            color: white;
+            border-left: 5px solid var(--success) !important;
         }
         
         .archetype-card.mystic {
-            background: linear-gradient(135deg, #9370DB, #4B0082);
-            color: white;
+            border-left: 5px solid var(--gold) !important;
         }
         
         .archetype-card.support {
-            background: linear-gradient(135deg, #20B2AA, #008B8B);
-            color: white;
+            border-left: 5px solid var(--gold) !important;
         }
         
         .group-example {
             padding: 25px;
             margin: 25px 0;
             border-radius: 10px;
-            border: 2px solid #FFD700;
+            border: 2px solid var(--border);
         }
         
         .group-example.edge {
-            background: linear-gradient(135deg, #8B4513, #A0522D);
-            color: white;
+            border-left: 5px solid var(--accent) !important;
         }
         
         .group-example.rebellion {
-            background: linear-gradient(135deg, #DC143C, #B22222);
-            color: white;
+            border-left: 5px solid var(--danger) !important;
         }
         
         .group-example.force {
-            background: linear-gradient(135deg, #4169E1, #6495ED);
-            color: white;
+            border-left: 5px solid var(--gold) !important;
         }
         
         .character-list {
@@ -532,31 +514,27 @@
         }
         
         .character {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
+            color: var(--text);
             padding: 15px;
             border-radius: 8px;
-            border-left: 4px solid #FFD700;
+            border-left: 4px solid var(--border);
         }
         
         .theme-detail {
             margin: 20px 0;
             padding: 20px;
-            background: #f8f9fa;
             border-radius: 8px;
-            border-left: 4px solid #FFD700;
+            border-left: 4px solid var(--border);
         }
         
         .step {
             margin: 20px 0;
             padding: 20px;
-            background: #e3f2fd;
             border-radius: 8px;
             border-left: 4px solid #2196f3;
         }
         
         .exercise {
-            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
             padding: 20px;
             margin: 20px 0;
             border-radius: 10px;
@@ -564,7 +542,6 @@
         }
         
         .problem-solution {
-            background: #f3e5f5;
             padding: 15px;
             margin: 15px 0;
             border-radius: 8px;
@@ -572,14 +549,13 @@
         }
         
         .preview {
-            background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
             padding: 20px;
             border-radius: 10px;
             border: 2px solid #4CAF50;
         }
         
         canvas {
-            border: 3px solid #FFD700;
+            border: 3px solid var(--border);
             border-radius: 10px;
             margin: 20px 0;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -591,35 +567,94 @@
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .archetype-card { border: 2px solid #867727; }
-        html:not(.light) .group-example { border: 2px solid #867727; }
-        html:not(.light) .character { border-left: 4px solid #867727; }
-        html:not(.light) .theme-detail { background: #1e2b38; border-left: 4px solid #867727; color: #e2e8f0; }
-        html:not(.light) .step { background: #142f43; color: #e2e8f0; }
-        html:not(.light) .exercise { background: linear-gradient(135deg, #433114, #31230e); color: #e2e8f0; }
-        html:not(.light) .problem-solution { background: #3a183f; color: #e2e8f0; }
-        html:not(.light) .preview { background: linear-gradient(135deg, #1a3c1a, #142c15); color: #e2e8f0; }
-        html:not(.light) canvas { border: 3px solid #867727; }
+        html[data-theme="dark"] .archetype-card {
+            border: 2px solid #867727;
+        }
+        html[data-theme="dark"] .group-example {
+            border: 2px solid #867727;
+        }
+        html[data-theme="dark"] .character {
+            border-left: 4px solid #867727;
+        }
+        html[data-theme="dark"] .theme-detail {
+            border-left: 4px solid #867727;
+        }
+        html[data-theme="dark"] .step {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .exercise {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .problem-solution {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .preview {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] canvas {
+            border: 3px solid #867727;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .archetype-card.warrior :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .archetype-card.face :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .archetype-card.mystic :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .group-example.edge :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .group-example.rebellion :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .archetype-card.warrior :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .archetype-card.face :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .archetype-card.mystic :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .group-example.edge :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .group-example.rebellion :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .archetype-card.pilot { background: linear-gradient(135deg, #d83a00, #b36406); }
-        .archetype-card.tech { background: linear-gradient(135deg, #28a428, #186218); }
-        .archetype-card.support { background: linear-gradient(135deg, #1b9790, #006b6b); }
-        .group-example.force { background: linear-gradient(135deg, #2654dd, #4882ea); }
+        .archetype-card.pilot {
+            background: linear-gradient(135deg, #d83a00, #ad6105) !important;
+            color: #fff;
+        }
+        .archetype-card.tech {
+            border-left: 5px solid var(--success) !important;
+        }
+        .archetype-card.support {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .group-example.force {
+            border-left: 5px solid var(--gold) !important;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .theme-detail { color: #1f2937; }
-        .step { color: #1f2937; }
-        .exercise { color: #1f2937; }
-        .problem-solution { color: #1f2937; }
-        .preview { color: #1f2937; }
+        .theme-detail {
+            
+        }
+        .step {
+            
+        }
+        .exercise {
+            
+        }
+        .problem-solution {
+            
+        }
+        .preview {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .archetype-card.pilot :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
     </style> -->
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/sw_names.html">150 Character Names</a>
+    <a class="next" href="/sw_combat.html">Combat &amp; Conflict</a>
+</div>
+        <p class="closing-quote">Remember: In a galaxy far, far away, the greatest adventures begin when diverse beings unite for a common cause. May the Force be with you, always.</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

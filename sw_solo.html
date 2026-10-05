@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing Star Wars Solo - The Star Wars RPG Guide</title>
+    <meta name="description" content="Play the Star Wars RPG with no GM: a narrative-dice oracle with exact odds, scene checks, NPC attitudes, sparks, Destiny Points for one player, an in-page tool with a session log and a worked example.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        .die-ability { --die: #2e7d32; --ink: #fff; }
+        .die-proficiency { --die: #f2c200; --ink: #1a1400; }
+        .die-difficulty { --die: #5b2a86; --ink: #fff; }
+        .die-challenge { --die: #b3261e; --ink: #fff; }
+        .die-force { --die: #ffffff; --ink: #111; }
+        main .solo-tool { border-left: 5px solid var(--gold); }
+        .tool-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 10px; }
+        main .tool-row button { width: auto; margin: 0; }
+        main .tool-row input[type="text"] { flex: 1 1 260px; width: auto; }
+        main .tool-row select { width: auto; }
+        .verdict { font-size: 1.2rem; font-weight: 700; color: var(--heading); margin: 6px 0 2px; min-height: 1.5em; }
+        .verdict-note { color: var(--muted); margin: 0 0 8px; min-height: 1.3em; }
+        .faces { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; padding: 0; list-style: none; }
+        .faces li { margin: 0; min-width: 42px; height: 40px; padding: 0 6px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; background: var(--die); color: var(--ink); font-weight: 700; font-size: 0.88rem; border: 1px solid var(--border-strong); }
+        .destiny-line { font-weight: 700; color: var(--heading); }
+        .log { list-style: none; padding: 0; margin: 8px 0 10px; max-height: 320px; overflow-y: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); }
+        .log li { margin: 0; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        .log li:last-child { border-bottom: 0; }
+        .log:empty::before { content: "Nothing logged yet."; display: block; padding: 8px 12px; color: var(--muted); }
+        .odds td:not(:first-child), .odds th:not(:first-child) { text-align: right; white-space: nowrap; }
+        .roll-line { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-size: 0.92em; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Playing Star Wars Solo</h1>
+        <p>No GM, no group: one hero, the narrative dice and a journal, with the dice answering your questions about the galaxy.</p>
+    </header>
+
+    <main id="main">
+        <section>
+            <h2>Why These Dice Suit Solo Play</h2>
+            <p>Solo roleplaying replaces the GM with an <strong>oracle</strong>: you ask the yes-or-no questions a GM would answer ("Is the hangar guarded?") and a roll decides. Most oracles bolt a "but" onto a plain yes or no. The Star Wars narrative dice already have one. Every roll tells you whether you succeeded <em>and</em> what else happened along the way, so the same dice that run your hero's checks can run the galaxy around them.</p>
+            <p>Nothing on this page is from the official rulebooks. The oracle, the scene check and the solo Destiny rules are tools for playing alone; anything that changes a rule is labelled <strong>house rule</strong>.</p>
+            <h3>What you need</h3>
+            <ul>
+                <li>A character built with the normal rules (see <a href="/sw_char.html">Character Creation</a>), or one of the <a href="/sw_100.html">75 Sample Characters</a>.</li>
+                <li>A set of narrative dice, or the <a href="#solo-tool">tool on this page</a> and the <a href="/sw_dice_roller.html">Narrative Dice Roller</a>.</li>
+                <li>A d12 (an ordinary numbered one) for the attitude and spark tables, or the tool.</li>
+                <li>A journal: paper, a document or the session log below.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>The Oracle</h2>
+            <p>Ask a question that can be answered yes or no. Decide how likely a "yes" is, given what you know about the scene, then roll the oracle pool:</p>
+            <div class="info-box">
+                <p><strong>Always roll 2 Ability (green) + 1 Proficiency (yellow)</strong> against the opposition for your likelihood. The opposition always includes <strong>1 Challenge (red)</strong>, plus Difficulty (purple) dice. Together they climb the game's own difficulty ladder:</p>
+                <ul>
+                    <li><strong>Very likely</strong>: Easy, 1 die: 1 Challenge</li>
+                    <li><strong>Likely</strong>: Average, 2 dice: 1 Challenge + 1 Difficulty</li>
+                    <li><strong>Toss-up</strong>: Hard, 3 dice: 1 Challenge + 2 Difficulty</li>
+                    <li><strong>Unlikely</strong>: Daunting, 4 dice: 1 Challenge + 3 Difficulty</li>
+                    <li><strong>Very unlikely</strong>: Formidable, 5 dice: 1 Challenge + 4 Difficulty</li>
+                </ul>
+            </div>
+            <p>The yellow die is always there so that a Triumph is possible, and the red die so that a Despair is possible. Read the result the way you would read any check:</p>
+            <table>
+                <thead><tr><th>The roll shows</th><th>Answer</th></tr></thead>
+                <tbody>
+                    <tr><td>Success and net Advantage</td><td><strong>Yes, and…</strong> You get what you asked for, plus something extra.</td></tr>
+                    <tr><td>Success, Advantage and Threat cancel</td><td><strong>Yes.</strong></td></tr>
+                    <tr><td>Success and net Threat</td><td><strong>Yes, but…</strong> It's true, with a cost or complication.</td></tr>
+                    <tr><td>Failure and net Advantage</td><td><strong>No, but…</strong> It's not true, but something helps.</td></tr>
+                    <tr><td>Failure, Advantage and Threat cancel</td><td><strong>No.</strong></td></tr>
+                    <tr><td>Failure and net Threat</td><td><strong>No, and…</strong> It's not true, and things get worse.</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Triumph and Despair are twists</strong>, on top of the answer. A Triumph means something new and good arrives: an ally, an opening, a clue you didn't ask about. A Despair means something new and bad: an enemy, a breakdown, a betrayal. If you're stuck for what, roll a <a href="#sparks">spark</a>. A roll can show both.</p>
+
+            <h3>Exact odds</h3>
+            <p>Worked out by going through every combination of faces (for a Toss-up that is 589,824 combinations of 2 green, 1 yellow, 1 red and 2 purple dice). The tool on this page uses the same calculation, and you can check any of it on the <a href="/sw_dice_roller.html">dice roller</a>.</p>
+            <table class="odds">
+                <thead><tr><th>Likelihood</th><th>Yes, and</th><th>Yes</th><th>Yes, but</th><th>No, but</th><th>No</th><th>No, and</th><th>Any yes</th></tr></thead>
+                <tbody id="oddsBody">
+                    <tr><td>Very likely</td><td>43.1%</td><td>18.3%</td><td>10.4%</td><td>25.9%</td><td>2.0%</td><td>0.3%</td><td>71.8%</td></tr>
+                    <tr><td>Likely</td><td>19.0%</td><td>16.4%</td><td>23.1%</td><td>30.4%</td><td>7.5%</td><td>3.7%</td><td>58.5%</td></tr>
+                    <tr><td>Toss-up</td><td>6.6%</td><td>9.5%</td><td>30.7%</td><td>26.3%</td><td>13.0%</td><td>13.9%</td><td>46.7%</td></tr>
+                    <tr><td>Unlikely</td><td>1.9%</td><td>4.0%</td><td>30.8%</td><td>18.8%</td><td>14.4%</td><td>30.0%</td><td>36.7%</td></tr>
+                    <tr><td>Very unlikely</td><td>0.5%</td><td>1.4%</td><td>26.6%</td><td>12.0%</td><td>12.3%</td><td>47.3%</td><td>28.5%</td></tr>
+                </tbody>
+            </table>
+            <p>A Triumph comes up 8.3% of the time (1 in 12) and a Despair 8.3% at every likelihood, because there is always exactly one yellow and one red die.</p>
+            <p>Two things stand out. First, the spread is gentle: even "very unlikely" is a yes more than a quarter of the time, so save it for things that really shouldn't happen. Second, look at where the "buts" fall. When an easy question comes up no, it is usually "no, but", and when a long shot comes up yes, it is usually "yes, but". Good fortune rarely comes clean against the odds, and bad luck rarely comes total when you were favoured. That is the narrative dice doing what they do in a normal game.</p>
+            <p>Ask only questions where both answers would be interesting. If you already know the answer, or one answer would stop the story, just decide.</p>
+        </section>
+
+        <section>
+            <h2>Scenes, People and Sparks</h2>
+            <h3>Scene check</h3>
+            <p>When you start a new scene, decide what you expect to happen, then roll one <strong>Force die</strong>:</p>
+            <table>
+                <thead><tr><th>Force die</th><th>The scene is…</th><th>Chance</th></tr></thead>
+                <tbody>
+                    <tr><td>Double dark side (●●)</td><td><strong>Interrupted</strong>: something else happens instead. Roll a spark.</td><td>1 in 12 (8.3%)</td></tr>
+                    <tr><td>Single light side (○)</td><td><strong>Altered</strong>: as expected, but one important detail is different. Ask the oracle what.</td><td>2 in 12 (16.7%)</td></tr>
+                    <tr><td>Anything else</td><td><strong>As expected.</strong></td><td>9 in 12 (75%)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>NPC attitude</h3>
+            <p>When you meet someone whose attitude isn't obvious from the fiction, roll a d12:</p>
+            <table>
+                <thead><tr><th>d12</th><th>Attitude</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td><strong>Hostile</strong>: wants you gone, hurt or arrested.</td></tr>
+                    <tr><td>2–3</td><td><strong>Unfriendly</strong>: suspicious, unhelpful, looking for an angle.</td></tr>
+                    <tr><td>4–8</td><td><strong>Neutral</strong>: busy with their own problems; will deal for the right price.</td></tr>
+                    <tr><td>9–11</td><td><strong>Friendly</strong>: willing to help if it doesn't cost much.</td></tr>
+                    <tr><td>12</td><td><strong>Helpful</strong>: on your side, maybe for reasons of their own.</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="sparks">Sparks</h3>
+            <p>When the oracle or a twist needs filling in, roll two d12s and read an action and a subject. Interpret freely; the first idea that fits is usually right.</p>
+            <table>
+                <thead><tr><th>d12</th><th>Action</th><th>Subject</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Betray</td><td>a bounty</td></tr>
+                    <tr><td>2</td><td>Pursue</td><td>a starship</td></tr>
+                    <tr><td>3</td><td>Smuggle</td><td>an Imperial officer</td></tr>
+                    <tr><td>4</td><td>Protect</td><td>an old debt</td></tr>
+                    <tr><td>5</td><td>Hunt</td><td>a stolen datapad</td></tr>
+                    <tr><td>6</td><td>Bargain for</td><td>a Force relic</td></tr>
+                    <tr><td>7</td><td>Sabotage</td><td>a droid with a secret</td></tr>
+                    <tr><td>8</td><td>Rescue</td><td>a crime boss</td></tr>
+                    <tr><td>9</td><td>Hide</td><td>a sealed cargo hold</td></tr>
+                    <tr><td>10</td><td>Reveal</td><td>a rebel cell</td></tr>
+                    <tr><td>11</td><td>Ambush</td><td>an old friend</td></tr>
+                    <tr><td>12</td><td>Abandon</td><td>a hyperspace route</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Destiny Points for One</h2>
+            <p>The normal rule has each player roll one Force die at the start of a session, so a single player gets a pool of one or two points. That is too thin to matter, and there is no GM to spend the dark side. Two house rules fix both:</p>
+            <div class="scene-box">
+                <p><strong>House rule: a pool of three.</strong> At the start of a session, roll three Force dice. Each light-side pip is a light-side Destiny Point, each dark-side pip a dark-side one. You spend light-side points exactly as the rules say: upgrade one of your checks, upgrade the Difficulty of a check made against you, or introduce a convenient detail. Each spent point flips to the dark side.</p>
+                <p><strong>House rule: the galaxy spends the dark.</strong> At the start of each scene, if the dark-side points outnumber the light-side ones, flip one dark-side point to the light side. The galaxy has spent it: upgrade the Difficulty of your next check in that scene once.</p>
+            </div>
+            <p>The pool then does what it does at a table. Each time you lean on luck you hand the galaxy a little more power, and it pushes back when the balance tips. Three Force dice hold 4.0 pips on average, so a typical solo session starts with roughly four points.</p>
+
+            <h3>A party of one</h3>
+            <p>The rules assume a crew of several characters. Alone, a few adjustments help. They are optional house rules:</p>
+            <ul>
+                <li><strong>A sidekick</strong> (house rule): one companion, such as an astromech, a co-pilot or a loyal muscle, built as a rival. They don't take turns of their own unless you want them to; when they help, give your check a Boost die.</li>
+                <li><strong>Fewer, smaller foes</strong> (house rule): use minion groups of two or three rather than five, and one rival rather than a squad. One hero cannot soak a fight built for four.</li>
+                <li><strong>Obligation still bites</strong>: if your character has Obligation, Duty or Morality, use it as written. A single character's Obligation rarely triggers, so treat a trigger as the session's main complication.</li>
+            </ul>
+        </section>
+
+        <section id="solo-tool">
+            <h2>Solo Tool</h2>
+            <div class="solo-tool">
+                <div class="tool-row">
+                    <label for="question" style="flex-basis:100%">Your question</label>
+                    <input type="text" id="question" placeholder="Is the hangar guarded?">
+                    <select id="likely" aria-label="Likelihood">
+                        <option value="0">Very likely</option>
+                        <option value="1">Likely</option>
+                        <option value="2" selected>Toss-up</option>
+                        <option value="3">Unlikely</option>
+                        <option value="4">Very unlikely</option>
+                    </select>
+                    <button type="button" id="ask">Ask the oracle</button>
+                </div>
+                <p class="verdict" id="verdict" aria-live="polite"></p>
+                <p class="verdict-note" id="verdictNote"></p>
+                <ul class="faces" id="faces" aria-label="Dice rolled"></ul>
+
+                <div class="tool-row">
+                    <button type="button" id="sceneBtn">Scene check</button>
+                    <button type="button" id="attBtn">NPC attitude</button>
+                    <button type="button" id="sparkBtn">Spark</button>
+                </div>
+
+                <p class="destiny-line" id="destinyLine">Destiny pool: not rolled yet</p>
+                <div class="tool-row">
+                    <button type="button" id="destRoll">Roll the pool (3 Force dice)</button>
+                    <button type="button" id="destSpend">Spend a light point</button>
+                    <button type="button" id="destGalaxy">New scene: galaxy check</button>
+                </div>
+
+                <h3>Session log</h3>
+                <ol class="log" id="log" aria-live="polite"></ol>
+                <div class="tool-row">
+                    <label for="note" style="flex-basis:100%">Add a note</label>
+                    <input type="text" id="note" placeholder="Kessa slips into the docking bay…">
+                    <button type="button" id="addNote">Add note</button>
+                </div>
+                <div class="tool-row">
+                    <button type="button" id="copyLog">Copy log</button>
+                    <button type="button" id="clearLog">Clear log</button>
+                </div>
+                <p class="verdict-note">The log is kept in this browser only.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Your First Solo Session</h2>
+            <ol>
+                <li><strong>Make a hero and a hook.</strong> One character, one reason to be somewhere dangerous today: a cargo to deliver, a debt to pay, a message to carry.</li>
+                <li><strong>Roll the Destiny pool</strong> (three Force dice) and, if your hero has Obligation, Duty or Morality, handle it as written.</li>
+                <li><strong>Frame the first scene.</strong> Write one line: where you are and what you expect. Make a scene check.</li>
+                <li><strong>Play it.</strong> When you'd ask a GM something, ask the oracle. When your hero tries something risky, make a normal check with your real dice pool. Let the Advantage, Threat, Triumph and Despair on both kinds of roll shape what happens next.</li>
+                <li><strong>End the scene</strong> when the immediate question is answered. At the next scene, run the galaxy check on the Destiny pool and make a new scene check.</li>
+                <li><strong>Stop after three or four scenes.</strong> Write one line about what's still unresolved. That's next session's hook.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>An Example of Play</h2>
+            <div class="info-box">
+                <p><strong>Kessa Vaal</strong> is a human smuggler with a light freighter, an astromech sidekick called R7 and a debt to a Hutt-run cartel. Tonight she has to collect a crate from a spaceport on an Outer Rim world without the port authority noticing.</p>
+                <p><strong>Destiny.</strong> Three Force dice show <span class="roll-line">○○, ●, ●</span>: 2 light and 2 dark. Pool: 2 light, 2 dark.</p>
+                <p><strong>Scene 1: the docking bay.</strong> I expect a quiet bay and a nervous contact. Galaxy check: dark doesn't outnumber light, so nothing happens. Scene check: the Force die shows <span class="roll-line">●</span>, so the scene is as expected.</p>
+                <p><strong>Oracle: "Is my contact already here?"</strong> Likely, so 2 Ability + 1 Proficiency against 1 Challenge + 1 Difficulty. The green dice show <span class="roll-line">S</span> and <span class="roll-line">A</span>, the yellow <span class="roll-line">S A</span>, the red <span class="roll-line">T</span> and the purple <span class="roll-line">F</span>. That's 2 Success against 1 Failure (1 net Success) and 2 Advantage against 1 Threat (1 net Advantage): <strong>Yes, and…</strong> He's here, and he has already loaded the crate onto a repulsor sled.</p>
+                <p><strong>A real check.</strong> A port inspector strolls towards the sled. Kessa tries to bluff her way past: Deception, Cunning 3 and Deception 1, so 1 Proficiency + 2 Ability. The GM's job falls to me: an Average check, 2 Difficulty. I want this badly, so I spend a light Destiny Point to upgrade my pool: 2 Proficiency + 1 Ability. The pool is now 1 light, 3 dark.</p>
+                <p>The yellow dice show <span class="roll-line">SS</span> and <span class="roll-line">Triumph</span>, the green a blank; the purple dice show <span class="roll-line">F T</span> and <span class="roll-line">TT</span>. Successes: 2 + 1 (the Triumph) = 3 against 1 Failure, so 2 net Successes. Advantage 0 against 3 Threat, so 3 net Threat. <strong>Success, with 3 Threat and a Triumph.</strong> The inspector waves the sled through (success), but he logs the freighter's transponder code (Threat). The Triumph is a gift: as he turns away, Kessa sees him pocket a bribe from a cartel enforcer. She now knows who in this port belongs to whom.</p>
+                <p><strong>Scene 2: lifting off.</strong> I expect a clean take-off. Galaxy check: 3 dark against 1 light, so the galaxy flips one: pool 2 light, 2 dark, and my next check this scene has its Difficulty upgraded once. Scene check: the Force die shows <span class="roll-line">●●</span>, so the scene is <strong>interrupted</strong>. Spark: 2 and 11, <em>pursue an old friend</em>. A familiar voice on the comm: Kessa's former co-pilot, now flying for the port authority, ordering her to hold position. Her next Piloting check, to break away, will roll against an upgraded Difficulty.</p>
+                <p>That's the loop: ask, roll, interpret, write a line, move on. The interesting decisions are still yours: whether to answer that comm call is a question no oracle can settle.</p>
+            </div>
+        </section>
+
+        <section class="further-exploration">
+            <h2>Where to Go Next</h2>
+            <ul>
+                <li><strong><a href="/sw_dice_roller.html">Narrative Dice Roller</a>:</strong> Roll your hero's real checks, with exact odds and a Destiny tracker.</li>
+                <li><strong><a href="/sw_adv_dice.html">Reading the Narrative Dice</a>:</strong> Ideas for spending Advantage, Threat, Triumph and Despair, which matter twice as much when you are your own GM.</li>
+                <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Improvisation advice works just as well when the GM is you.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_putting_it_together.html">Putting It All Together</a>
+    <a class="next" href="/sw_dice_roller.html">Narrative Dice Roller</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
+
+<script>
+(function () {
+    // Face = [success, failure, advantage, threat, triumph, despair, light, dark]
+    function f(o) { o = o || {}; return [o.s || 0, o.F || 0, o.a || 0, o.t || 0, o.tr || 0, o.de || 0, o.l || 0, o.d || 0]; }
+    var DIE = {
+        ability:     [f(), f({s:1}), f({s:1}), f({s:2}), f({a:1}), f({a:1}), f({s:1,a:1}), f({a:2})],
+        proficiency: [f(), f({s:1}), f({s:1}), f({s:2}), f({s:2}), f({a:1}), f({s:1,a:1}), f({s:1,a:1}), f({s:1,a:1}), f({a:2}), f({a:2}), f({tr:1})],
+        difficulty:  [f(), f({F:1}), f({F:2}), f({t:1}), f({t:1}), f({t:1}), f({F:1,t:1}), f({t:2})],
+        challenge:   [f(), f({F:1}), f({F:1}), f({F:2}), f({F:2}), f({t:1}), f({t:1}), f({F:1,t:1}), f({F:1,t:1}), f({t:2}), f({t:2}), f({de:1})],
+        force:       [f({d:1}), f({d:1}), f({d:1}), f({d:1}), f({d:1}), f({d:1}), f({d:2}), f({l:1}), f({l:1}), f({l:2}), f({l:2}), f({l:2})]
+    };
+    var LEVELS = ['Very likely', 'Likely', 'Toss-up', 'Unlikely', 'Very unlikely'];
+    var KEYS = ['yesAnd', 'yes', 'yesBut', 'noBut', 'no', 'noAnd'];
+    var LABEL = { yesAnd: 'Yes, and…', yes: 'Yes.', yesBut: 'Yes, but…', noBut: 'No, but…', no: 'No.', noAnd: 'No, and…' };
+    function oraclePool(level) { return { ability: 2, proficiency: 1, challenge: 1, difficulty: level }; }
+    function answer(netS, netA) {
+        if (netS >= 1) return netA > 0 ? 'yesAnd' : netA < 0 ? 'yesBut' : 'yes';
+        return netA > 0 ? 'noBut' : netA < 0 ? 'noAnd' : 'no';
+    }
+    // Exact outcome table by going through every face combination
+    function table(level) {
+        var pool = oraclePool(level), states = [{ s: 0, a: 0, tr: 0, de: 0, p: 1 }];
+        ['ability', 'proficiency', 'challenge', 'difficulty'].forEach(function (k) {
+            for (var n = 0; n < pool[k]; n++) {
+                var next = [], faces = DIE[k];
+                states.forEach(function (st) {
+                    faces.forEach(function (x) {
+                        next.push({ s: st.s + x[0] - x[1] + x[4] - x[5], a: st.a + x[2] - x[3], tr: st.tr + x[4], de: st.de + x[5], p: st.p / faces.length });
+                    });
+                });
+                states = next;
+            }
+        });
+        var r = { yesAnd: 0, yes: 0, yesBut: 0, noBut: 0, no: 0, noAnd: 0, anyYes: 0, triumph: 0, despair: 0, combos: states.length };
+        states.forEach(function (st) {
+            var k = answer(st.s, st.a); r[k] += st.p;
+            if (st.s >= 1) r.anyYes += st.p;
+            if (st.tr) r.triumph += st.p;
+            if (st.de) r.despair += st.p;
+        });
+        return r;
+    }
+    function pct(x) { return (x * 100).toFixed(1) + '%'; }
+    // Fill the odds table from the same calculation (it matches the static numbers)
+    document.getElementById('oddsBody').innerHTML = LEVELS.map(function (name, i) {
+        var t = table(i);
+        return '<tr><td>' + name + '</td>' + KEYS.map(function (k) { return '<td>' + pct(t[k]) + '</td>'; }).join('') + '<td>' + pct(t.anyYes) + '</td></tr>';
+    }).join('');
+
+    function rnd(n) { return Math.floor(Math.random() * n); }
+    function roll(k) { return DIE[k][rnd(DIE[k].length)]; }
+    function label(x) {
+        var p = [];
+        if (x[4]) p.push('Triumph'); if (x[5]) p.push('Despair');
+        if (x[0]) p.push(x[0] === 2 ? 'SS' : 'S'); if (x[1]) p.push(x[1] === 2 ? 'FF' : 'F');
+        if (x[2]) p.push(x[2] === 2 ? 'AA' : 'A'); if (x[3]) p.push(x[3] === 2 ? 'TT' : 'T');
+        if (x[6]) p.push(x[6] === 2 ? '○○' : '○'); if (x[7]) p.push(x[7] === 2 ? '●●' : '●');
+        return p.length ? p.join(' ') : 'blank';
+    }
+    var ACTIONS = ['Betray', 'Pursue', 'Smuggle', 'Protect', 'Hunt', 'Bargain for', 'Sabotage', 'Rescue', 'Hide', 'Reveal', 'Ambush', 'Abandon'];
+    var SUBJECTS = ['a bounty', 'a starship', 'an Imperial officer', 'an old debt', 'a stolen datapad', 'a Force relic', 'a droid with a secret', 'a crime boss', 'a sealed cargo hold', 'a rebel cell', 'an old friend', 'a hyperspace route'];
+    function spark() { var a = rnd(12), b = rnd(12); return (a + 1) + ' and ' + (b + 1) + ': ' + ACTIONS[a] + ' ' + SUBJECTS[b]; }
+
+    // ---------- session log (this browser only) ----------
+    var LOGKEY = 'sw-solo-log', entries = [];
+    try { entries = JSON.parse(localStorage.getItem(LOGKEY) || '[]') || []; } catch (e) { entries = []; }
+    var logEl = document.getElementById('log');
+    function drawLog() {
+        logEl.innerHTML = '';
+        entries.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; logEl.appendChild(li); });
+        logEl.scrollTop = logEl.scrollHeight;
+    }
+    function log(t) {
+        entries.push(t); if (entries.length > 300) entries.shift();
+        try { localStorage.setItem(LOGKEY, JSON.stringify(entries)); } catch (e) { /* storage blocked: log still works this visit */ }
+        drawLog();
+    }
+    drawLog();
+
+    document.getElementById('ask').addEventListener('click', function () {
+        var level = Number(document.getElementById('likely').value), pool = oraclePool(level), rolled = [];
+        ['ability', 'proficiency', 'challenge', 'difficulty'].forEach(function (k) { for (var n = 0; n < pool[k]; n++) rolled.push({ k: k, x: roll(k) }); });
+        var s = 0, a = 0, tr = 0, de = 0;
+        rolled.forEach(function (r) { s += r.x[0] - r.x[1] + r.x[4] - r.x[5]; a += r.x[2] - r.x[3]; tr += r.x[4]; de += r.x[5]; });
+        var ans = LABEL[answer(s, a)], notes = [];
+        if (tr) notes.push('Triumph: something new and good arrives.');
+        if (de) notes.push('Despair: something new and bad arrives.');
+        var q = document.getElementById('question').value.trim();
+        document.getElementById('verdict').textContent = ans;
+        document.getElementById('verdictNote').textContent = (s >= 1 ? s + ' net Success' : 'no net Success') + ', ' + (a > 0 ? a + ' Advantage' : a < 0 ? (-a) + ' Threat' : 'Advantage and Threat even') + (notes.length ? '. ' + notes.join(' ') : '');
+        var faces = document.getElementById('faces'); faces.innerHTML = '';
+        rolled.forEach(function (r) { var li = document.createElement('li'); li.className = 'die-' + r.k; li.textContent = label(r.x); li.title = r.k; faces.appendChild(li); });
+        log((q ? 'Q: ' + q + ' ' : 'Oracle ') + '(' + LEVELS[level] + ') → ' + ans + (tr ? ' + Triumph' : '') + (de ? ' + Despair' : ''));
+    });
+    document.getElementById('sceneBtn').addEventListener('click', function () {
+        var x = roll('force'), t = x[7] === 2 ? 'Interrupted: something else happens. Spark: ' + spark() : x[6] === 1 ? 'Altered: one important detail is different.' : 'As expected.';
+        document.getElementById('verdict').textContent = 'Scene check';
+        document.getElementById('verdictNote').textContent = 'Force die ' + label(x) + ': ' + t;
+        document.getElementById('faces').innerHTML = '';
+        log('Scene check (' + label(x) + '): ' + t);
+    });
+    document.getElementById('attBtn').addEventListener('click', function () {
+        var d = rnd(12) + 1, t = d === 1 ? 'Hostile' : d <= 3 ? 'Unfriendly' : d <= 8 ? 'Neutral' : d <= 11 ? 'Friendly' : 'Helpful';
+        document.getElementById('verdict').textContent = 'NPC attitude: ' + t;
+        document.getElementById('verdictNote').textContent = 'd12 rolled ' + d + '.';
+        document.getElementById('faces').innerHTML = '';
+        log('NPC attitude (d12 ' + d + '): ' + t);
+    });
+    document.getElementById('sparkBtn').addEventListener('click', function () {
+        var t = spark();
+        document.getElementById('verdict').textContent = 'Spark';
+        document.getElementById('verdictNote').textContent = t;
+        document.getElementById('faces').innerHTML = '';
+        log('Spark ' + t);
+    });
+
+    // ---------- Destiny pool (house rules above) ----------
+    var dest = null;
+    function drawDest() {
+        document.getElementById('destinyLine').textContent = dest ? 'Destiny pool: ' + dest.light + ' light, ' + dest.dark + ' dark' : 'Destiny pool: not rolled yet';
+    }
+    document.getElementById('destRoll').addEventListener('click', function () {
+        var l = 0, d = 0, shown = [];
+        for (var i = 0; i < 3; i++) { var x = roll('force'); l += x[6]; d += x[7]; shown.push(label(x)); }
+        dest = { light: l, dark: d }; drawDest();
+        log('Destiny pool rolled (' + shown.join(', ') + '): ' + l + ' light, ' + d + ' dark');
+    });
+    document.getElementById('destSpend').addEventListener('click', function () {
+        if (!dest || !dest.light) { document.getElementById('destinyLine').textContent = 'No light-side points to spend.'; return; }
+        dest.light--; dest.dark++; drawDest(); log('Spent a light Destiny Point (now ' + dest.light + ' light, ' + dest.dark + ' dark)');
+    });
+    document.getElementById('destGalaxy').addEventListener('click', function () {
+        if (!dest) { document.getElementById('destinyLine').textContent = 'Roll the pool first.'; return; }
+        if (dest.dark > dest.light) { dest.dark--; dest.light++; drawDest(); log('Galaxy check: the galaxy spends a dark point; upgrade the Difficulty of your next check this scene'); }
+        else { drawDest(); log('Galaxy check: dark does not outnumber light; nothing happens'); }
+    });
+    drawDest();
+
+    document.getElementById('addNote').addEventListener('click', function () {
+        var n = document.getElementById('note'); if (!n.value.trim()) return; log('Note: ' + n.value.trim()); n.value = '';
+    });
+    document.getElementById('copyLog').addEventListener('click', function () {
+        var text = entries.join('\n'), btn = this;
+        if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy log'; }, 1500); }, function () {});
+    });
+    document.getElementById('clearLog').addEventListener('click', function () {
+        entries = []; try { localStorage.removeItem(LOGKEY); } catch (e) { /* ignore */ } drawLog();
+    });
+
+    window.swOracle = { table: table, answer: answer, LEVELS: LEVELS };
+})();
+</script>
+</body>
+</html>

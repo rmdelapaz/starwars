@@ -3,39 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG Sample Characters - Complete Guide</title>
-    <meta name="description" content="A roster of over 100 ready-to-play characters, NPCs, allies and foes for any Star Wars campaign.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG Sample Characters - Complete Guide">
-    <meta property="og:description" content="A roster of over 100 ready-to-play characters, NPCs, allies and foes for any Star Wars campaign.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>75 Sample Characters - The Star Wars RPG Guide</title>
+    <meta name="description" content="75 sample characters for the Star Wars RPG, alone or in teams of two to six, with careers, specializations and Obligation, Duty or Morality.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG Sample Characters</h1>
-        <h2>A Complete Guide with Over 100 Ready-to-Play Characters from a Galaxy Far, Far Away</h2>
+        <h1>75 Sample Characters</h1>
     </header>
 
     <main id="main">
+
         <section id="introduction">
             <h2>Understanding Star Wars RPG Characters</h2>
-            <p>The Star Wars RPG (the narrative dice system originally published by Fantasy Flight Games and carried on today by <strong>Edge Studio</strong> — you will see either logo depending on the printing) creates characters through a unique combination of <strong>Species</strong>, <strong>Career</strong>, and <strong>Specializations</strong>. Unlike traditional class-based systems, Star Wars RPG allows for incredible flexibility while maintaining the iconic archetypes that make the galaxy far, far away so compelling.</p>
+            <p>The Star Wars RPG (the narrative dice system originally published by Fantasy Flight Games and carried on today by <strong>Edge Studio</strong> — you will see either logo depending on the printing) creates characters through a unique combination of <strong>Species</strong>, <strong>Career</strong>, and <strong>Specializations</strong>. Instead of classes and levels, you build and advance characters by spending experience points (XP), which allows for incredible flexibility while maintaining the iconic archetypes that make the galaxy far, far away so compelling.</p>
 
             <div class="mermaid">
                 graph TD
@@ -63,7 +57,7 @@
             <p>Think of Star Wars character creation like choosing a profession in our world. Your species is like your cultural background - it influences how you see the world and what advantages you might have. Your career is your general field - like "military" or "entertainment." Your specialization is your specific job within that field - like "fighter pilot" or "musician." Just as a military communications specialist and a military medic have different skills despite the same career background, Star Wars specializations provide focused abilities within broader career paths.</p>
 
             <h3>The Role of the Force</h3>
-            <p>Force sensitivity is a special characteristic that can be added to any character concept. Force-sensitive characters have access to Force powers and can develop along Jedi or Sith paths, but they can also be smugglers, diplomats, or any other career who happen to have a connection to the Force.</p>
+            <p>Force sensitivity is not a characteristic. In <em>Force and Destiny</em> every career starts with a Force rating of 1; in the other two books a character buys a universal Force-sensitive specialization (Force Sensitive Exile or Force Sensitive Emergent) to gain one. Force-sensitive characters have access to Force powers and can develop along Jedi or Sith paths, but they can also be smugglers, diplomats, or any other career who happen to have a connection to the Force.</p>
         </section>
 
         <section id="character-creation-process">
@@ -71,17 +65,14 @@
             <p>Creating a Star Wars character involves balancing mechanical effectiveness with compelling narrative hooks that fit the space opera genre.</p>
 
             <div class="mermaid">
-                flowchart LR
+                flowchart TD
                     A[Choose Species] --> B[Select Career]
                     B --> C[Pick Specialization]
-                    C --> D[Allocate Characteristics]
-                    D --> E[Spend Skill Points]
-                    E --> F[Choose Starting Talents]
-                    F --> G[Determine Motivation]
-                    G --> H[Calculate Obligation/Duty]
-                    H --> I[Select Equipment]
-                    I --> J[Force Rating Optional]
-                    J --> K[Final Character]
+                    C --> H[Obligation / Duty / Morality]
+                    H --> D[Spend Starting XP on&lt;br/&gt;Characteristics, Skills, Talents]
+                    D --> G[Determine Motivation]
+                    G --> I[Select Equipment]
+                    I --> K[Final Character]
             </div>
 
             <h3>When to Use These Sample Characters</h3>
@@ -111,7 +102,7 @@
                 <h3>The Reluctant Force Sensitive</h3>
                 <div class="character">
                     <h4>Kira Nexu (Human)</h4>
-                    <p><strong>Career:</strong> Smuggler / <strong>Specialization:</strong> Pilot</p>
+                    <p><strong>Career:</strong> Smuggler / <strong>Specialization:</strong> Pilot + Force Sensitive Exile</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 3, Intellect 2, Cunning 3, Willpower 3, Presence 2</p>
                     <p><strong>Skills:</strong> Piloting (Space) 3, Astrogation 2, Gunnery 2, Mechanics 2, Streetwise 2, Deception 2, Cool 1, Coordination 1</p>
                     <p><strong>Talents:</strong> Skilled Jockey, Full Throttle, Galaxy Mapper</p>
@@ -219,7 +210,7 @@
                 <h3>The Performer</h3>
                 <div class="character">
                     <h4>Zeltron Singer Melody Starlight (Zeltron)</h4>
-                    <p><strong>Career:</strong> Performer / <strong>Specialization:</strong> Entertainer</p>
+                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Performer</p>
                     <p><strong>Characteristics:</strong> Brawn 1, Agility 2, Intellect 2, Cunning 3, Willpower 2, Presence 5</p>
                     <p><strong>Skills:</strong> Charm 4, Cool 3, Deception 2, Knowledge (Core Worlds) 2, Streetwise 2, Coordination 1, Leadership 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Kill with Kindness, Distracting Behavior, Inspiring Rhetoric</p>
@@ -232,7 +223,7 @@
                 <h3>The Academic</h3>
                 <div class="character">
                     <h4>Professor Tam Renik (Duros)</h4>
-                    <p><strong>Career:</strong> Scholar / <strong>Specialization:</strong> Archaeologist</p>
+                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Scholar</p>
                     <p><strong>Characteristics:</strong> Brawn 1, Agility 2, Intellect 4, Cunning 3, Willpower 3, Presence 2</p>
                     <p><strong>Skills:</strong> Knowledge (Lore) 4, Knowledge (Education) 3, Perception 2, Computers 2, Athletics 2, Cool 1, Vigilance 1, Charm 1</p>
                     <p><strong>Talents:</strong> Researcher, Well Rounded, Valuable Facts</p>
@@ -255,18 +246,20 @@
                     <p><strong>Career:</strong> Mystic / <strong>Specialization:</strong> Advisor</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 2, Intellect 3, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Discipline 4, Lore 3, Leadership 3, Cool 2, Charm 2, Lightsaber 2, Perception 1, Vigilance 1</p>
-                    <p><strong>Talents:</strong> Force Rating 2, Seek, Sense, Foresee</p>
-                    <p><strong>Force Powers:</strong> Foresee (Basic + Duration), Sense (Basic + Control), Influence (Basic)</p>
+                    <p><strong>Talents:</strong> Force Rating</p>
+                    <p><strong>Force Rating:</strong> 2</p>
+                    <p><strong>Force Powers:</strong> Foresee (Basic + Duration), Sense (Basic + Control), Influence (Basic), Seek (Basic)</p>
                     <p><strong>Motivation:</strong> Morality - "Rebuild the Jedi Order properly"</p>
                     <p><strong>Background:</strong> A wise former Jedi who survived Order 66 and now carefully trains select students in the Force, emphasizing wisdom over combat prowess.</p>
                 </div>
 
                 <div class="character">
                     <h4>Padawan Naia Tharr (Togruta)</h4>
-                    <p><strong>Career:</strong> Warrior / <strong>Specialization:</strong> Ataru Striker</p>
+                    <p><strong>Career:</strong> Seeker / <strong>Specialization:</strong> Ataru Striker</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 2, Cunning 2, Willpower 3, Presence 2</p>
                     <p><strong>Skills:</strong> Lightsaber 3, Athletics 3, Coordination 2, Discipline 2, Cool 2, Piloting (Planetary) 1, Perception 1, Stealth 1</p>
-                    <p><strong>Talents:</strong> Force Rating 1, Hawk Bat Swoop, Saber Swarm</p>
+                    <p><strong>Talents:</strong> Hawk Bat Swoop, Saber Swarm</p>
+                    <p><strong>Force Rating:</strong> 1</p>
                     <p><strong>Force Powers:</strong> Enhance (Basic + Control: Coordination)</p>
                     <p><strong>Motivation:</strong> Justice - "Prove worthy of Master Kess's teachings"</p>
                     <p><strong>Background:</strong> An eager young Togruta learning to balance her natural agility and combat instincts with the patience and wisdom her master teaches.</p>
@@ -396,10 +389,11 @@
 
                 <div class="character">
                     <h4>Keph Naran (Zabrak)</h4>
-                    <p><strong>Career:</strong> Emergent / <strong>Specialization:</strong> Force Sensitive Exile</p>
+                    <p><strong>Career:</strong> Soldier / <strong>Specialization:</strong> Force Sensitive Exile (universal)</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 3, Intellect 2, Cunning 2, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Discipline 3, Lightsaber 3, Cool 2, Vigilance 2, Athletics 2, Survival 2, Perception 1, Stealth 1</p>
-                    <p><strong>Talents:</strong> Force Rating 1, Uncanny Reactions, Uncanny Senses</p>
+                    <p><strong>Talents:</strong> Uncanny Reactions, Uncanny Senses</p>
+                    <p><strong>Force Rating:</strong> 1</p>
                     <p><strong>Force Powers:</strong> Sense (Basic), Move (Basic)</p>
                     <p><strong>Motivation:</strong> Knowledge - "Understand my Force abilities"</p>
                     <p><strong>Duty:</strong> 15 - Personnel</p>
@@ -409,7 +403,7 @@
                 <h3>The Exploration Team</h3>
                 <div class="character">
                     <h4>Captain Nova Starwind (Human)</h4>
-                    <p><strong>Career:</strong> Explorer / <strong>Specialization:</strong> Captain</p>
+                    <p><strong>Career:</strong> Explorer / <strong>Specialization:</strong> Fringer</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 3, Intellect 3, Cunning 3, Willpower 2, Presence 3</p>
                     <p><strong>Skills:</strong> Piloting (Space) 4, Leadership 3, Astrogation 2, Cool 2, Gunnery 2, Knowledge (Outer Rim) 2, Charm 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Command, Natural Captain, Full Throttle</p>
@@ -420,7 +414,7 @@
 
                 <div class="character">
                     <h4>Dr. Vex Korrath (Duros)</h4>
-                    <p><strong>Career:</strong> Scholar / <strong>Specialization:</strong> Archaeologist</p>
+                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Scholar</p>
                     <p><strong>Characteristics:</strong> Brawn 1, Agility 2, Intellect 4, Cunning 3, Willpower 3, Presence 2</p>
                     <p><strong>Skills:</strong> Knowledge (Lore) 4, Knowledge (Xenology) 3, Computers 2, Perception 2, Cool 2, Athletics 2, Vigilance 1, Survival 1</p>
                     <p><strong>Talents:</strong> Researcher, Well Rounded, Valuable Facts</p>
@@ -477,7 +471,7 @@
                 <h3>The Imperial Defectors</h3>
                 <div class="character">
                     <h4>Former Admiral Thara Vex (Human)</h4>
-                    <p><strong>Career:</strong> Commander / <strong>Specialization:</strong> Naval Commander</p>
+                    <p><strong>Career:</strong> Commander / <strong>Specialization:</strong> Commodore</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 2, Intellect 4, Cunning 3, Willpower 3, Presence 3</p>
                     <p><strong>Skills:</strong> Leadership 4, Knowledge (Warfare) 3, Cool 3, Discipline 2, Gunnery 2, Vigilance 2, Computers 1, Charm 1</p>
                     <p><strong>Talents:</strong> Command, Tactical Direction, Natural Leader</p>
@@ -499,7 +493,7 @@
 
                 <div class="character">
                     <h4>Stormtrooper FN-1337 "Finn" (Human)</h4>
-                    <p><strong>Career:</strong> Soldier / <strong>Specialization:</strong> Trooper</p>
+                    <p><strong>Career:</strong> Soldier / <strong>Specialization:</strong> Commando</p>
                     <p><strong>Characteristics:</strong> Brawn 3, Agility 3, Intellect 2, Cunning 2, Willpower 3, Presence 3</p>
                     <p><strong>Skills:</strong> Ranged (Heavy) 3, Discipline 3, Athletics 2, Cool 2, Vigilance 2, Brawl 2, Leadership 1, Survival 1</p>
                     <p><strong>Talents:</strong> Armor Master, Point Blank, Tactical Combat Training</p>
@@ -521,7 +515,8 @@
                     <p><strong>Career:</strong> Mystic / <strong>Specialization:</strong> Advisor</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 2, Intellect 3, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Lightsaber 3, Discipline 4, Leadership 3, Lore 3, Cool 2, Perception 2, Charm 1, Vigilance 1</p>
-                    <p><strong>Talents:</strong> Force Rating 2, Sense, Foresee, Influence</p>
+                    <p><strong>Talents:</strong> Force Rating</p>
+                    <p><strong>Force Rating:</strong> 2</p>
                     <p><strong>Force Powers:</strong> Sense (Basic + Duration + Magnitude), Foresee (Basic + Control), Influence (Basic + Control)</p>
                     <p><strong>Motivation:</strong> Morality - "Guide the team with wisdom"</p>
                     <p><strong>Background:</strong> A wise Jedi Master who leads through example and foresight, serving as the team's strategic mind and moral compass.</p>
@@ -529,10 +524,11 @@
 
                 <div class="character">
                     <h4>Knight Jaxon Vess (Human)</h4>
-                    <p><strong>Career:</strong> Warrior / <strong>Specialization:</strong> Soresu Defender</p>
+                    <p><strong>Career:</strong> Guardian / <strong>Specialization:</strong> Soresu Defender</p>
                     <p><strong>Characteristics:</strong> Brawn 3, Agility 3, Intellect 2, Cunning 2, Willpower 3, Presence 3</p>
                     <p><strong>Skills:</strong> Lightsaber 4, Discipline 3, Athletics 2, Cool 2, Leadership 2, Vigilance 2, Perception 1, Survival 1</p>
-                    <p><strong>Talents:</strong> Force Rating 1, Reflect, Improved Reflect, Defensive Stance</p>
+                    <p><strong>Talents:</strong> Reflect, Improved Reflect, Defensive Stance</p>
+                    <p><strong>Force Rating:</strong> 1</p>
                     <p><strong>Force Powers:</strong> Enhance (Basic + Control: Brawn), Protect (Basic)</p>
                     <p><strong>Motivation:</strong> Justice - "Protect the innocent at all costs"</p>
                     <p><strong>Background:</strong> A dedicated guardian who specializes in defense and protection, always placing himself between danger and those he's sworn to protect.</p>
@@ -543,7 +539,8 @@
                     <p><strong>Career:</strong> Consular / <strong>Specialization:</strong> Healer</p>
                     <p><strong>Characteristics:</strong> Brawn 1, Agility 2, Intellect 4, Cunning 3, Willpower 4, Presence 2</p>
                     <p><strong>Skills:</strong> Medicine 4, Discipline 3, Lore 3, Cool 2, Charm 2, Lightsaber 2, Knowledge (Xenology) 1, Vigilance 1</p>
-                    <p><strong>Talents:</strong> Force Rating 1, Surgeon, Healing Trance</p>
+                    <p><strong>Talents:</strong> Surgeon, Healing Trance</p>
+                    <p><strong>Force Rating:</strong> 1</p>
                     <p><strong>Force Powers:</strong> Heal (Basic + Control + Magnitude), Sense (Basic)</p>
                     <p><strong>Motivation:</strong> Morality - "Preserve life in all its forms"</p>
                     <p><strong>Background:</strong> A compassionate healer whose Force abilities focus on preserving and restoring life, serving as the team's medic and emotional anchor.</p>
@@ -554,7 +551,8 @@
                     <p><strong>Career:</strong> Seeker / <strong>Specialization:</strong> Pathfinder</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 3, Cunning 3, Willpower 2, Presence 2</p>
                     <p><strong>Skills:</strong> Survival 3, Lightsaber 3, Athletics 3, Stealth 2, Perception 2, Cool 2, Coordination 1, Vigilance 1</p>
-                    <p><strong>Talents:</strong> Force Rating 1, Forager, Outdoorsman, Quick Strike</p>
+                    <p><strong>Talents:</strong> Forager, Outdoorsman, Quick Strike</p>
+                    <p><strong>Force Rating:</strong> 1</p>
                     <p><strong>Force Powers:</strong> Enhance (Basic + Control: Agility), Move (Basic)</p>
                     <p><strong>Motivation:</strong> Knowledge - "Prove myself worthy of the Jedi path"</p>
                     <p><strong>Background:</strong> An eager young Padawan whose natural agility and survival instincts make her the team's scout and reconnaissance specialist.</p>
@@ -621,7 +619,7 @@
                     <h4>Security Chief Han Corren (Human)</h4>
                     <p><strong>Career:</strong> Hired Gun / <strong>Specialization:</strong> Bodyguard</p>
                     <p><strong>Characteristics:</strong> Brawn 3, Agility 4, Intellect 2, Cunning 3, Willpower 2, Presence 3</p>
-                    <p><strong>Skills:</strong> Ranged (Light) 4, Vigilance 3, Cool 3, Athletics 2, Coordination 2, Charm 2, Pilot (Space) 1, Streetwise 1</p>
+                    <p><strong>Skills:</strong> Ranged (Light) 4, Vigilance 3, Cool 3, Athletics 2, Coordination 2, Charm 2, Piloting (Space) 1, Streetwise 1</p>
                     <p><strong>Talents:</strong> Bodyguard, Quick Draw, True Aim</p>
                     <p><strong>Motivation:</strong> Relationship - "Protect Ambassador Antilles"</p>
                     <p><strong>Duty:</strong> 20 - Personnel</p>
@@ -653,7 +651,7 @@
                 <h3>The Corporate Espionage Team</h3>
                 <div class="character">
                     <h4>Executive Director Kira Syndulla (Twi'lek)</h4>
-                    <p><strong>Career:</strong> Entrepreneur / <strong>Specialization:</strong> Executive</p>
+                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Entrepreneur</p>
                     <p><strong>Characteristics:</strong> Brawn 1, Agility 2, Intellect 4, Cunning 3, Willpower 3, Presence 4</p>
                     <p><strong>Skills:</strong> Leadership 4, Negotiation 4, Knowledge (Core Worlds) 3, Computers 2, Deception 2, Cool 2, Charm 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Natural Leader, Smooth Talker, Business Sense</p>
@@ -664,7 +662,7 @@
 
                 <div class="character">
                     <h4>Industrial Saboteur Jyn Kestis (Human)</h4>
-                    <p><strong>Career:</strong> Spy / <strong>Specialization:</strong> Saboteur</p>
+                    <p><strong>Career:</strong> Engineer / <strong>Specialization:</strong> Saboteur</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 3, Cunning 3, Willpower 2, Presence 2</p>
                     <p><strong>Skills:</strong> Skulduggery 4, Stealth 3, Mechanics 3, Athletics 2, Cool 2, Ranged (Light) 2, Coordination 1, Computers 1</p>
                     <p><strong>Talents:</strong> Bypass Security, Saboteur, Sleight of Mind</p>
@@ -705,7 +703,7 @@
                 <h3>The Rebel Starfighter Squadron</h3>
                 <div class="character">
                     <h4>Squadron Leader Luke Skystrider (Human)</h4>
-                    <p><strong>Career:</strong> Ace / <strong>Specialization:</strong> Driver</p>
+                    <p><strong>Career:</strong> Ace / <strong>Specialization:</strong> Pilot + Force Sensitive Emergent</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 2, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Piloting (Space) 4, Gunnery 4, Leadership 3, Cool 3, Discipline 2, Mechanics 2, Athletics 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Ace Pilot, Full Throttle, Natural Pilot</p>
@@ -796,7 +794,7 @@
 
                 <div class="character">
                     <h4>Slicer Mara Jade (Human)</h4>
-                    <p><strong>Career:</strong> Spy / <strong>Specialization:</strong> Slicer</p>
+                    <p><strong>Career:</strong> Spy / <strong>Specialization:</strong> Slicer + Force Sensitive Emergent</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 3, Intellect 4, Cunning 4, Willpower 3, Presence 2</p>
                     <p><strong>Skills:</strong> Computers 4, Skulduggery 3, Stealth 3, Deception 2, Cool 2, Ranged (Light) 2, Coordination 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Codebreaker, Natural Programmer, Defensive Slicing</p>
@@ -809,9 +807,9 @@
 
                 <div class="character">
                     <h4>Fence Dash Rendar (Human)</h4>
-                    <p><strong>Career:</strong> Entrepreneur / <strong>Specialization:</strong> Trader</p>
+                    <p><strong>Career:</strong> Explorer / <strong>Specialization:</strong> Trader</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 3, Intellect 3, Cunning 4, Willpower 2, Presence 3</p>
-                    <p><strong>Skills:</strong> Negotiation 4, Streetwise 4, Knowledge (Underworld) 3, Charm 2, Deception 2, Cool 2, Contacts 1, Piloting (Space) 1</p>
+                    <p><strong>Skills:</strong> Negotiation 4, Streetwise 4, Knowledge (Underworld) 3, Charm 2, Deception 2, Cool 2, Skulduggery 1, Piloting (Space) 1</p>
                     <p><strong>Talents:</strong> Black Market Contacts, Smooth Talker, Know Somebody</p>
                     <p><strong>Motivation:</strong> Credits - "Find buyers for anything"</p>
                     <p><strong>Obligation:</strong> 15 - Criminal record</p>
@@ -821,7 +819,7 @@
                 <h3>The Archaeological Expedition</h3>
                 <div class="character">
                     <h4>Professor Indiana Antilles (Human)</h4>
-                    <p><strong>Career:</strong> Scholar / <strong>Specialization:</strong> Archaeologist</p>
+                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Scholar</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 3, Intellect 4, Cunning 3, Willpower 3, Presence 2</p>
                     <p><strong>Skills:</strong> Knowledge (Lore) 4, Athletics 3, Survival 3, Perception 2, Cool 2, Ranged (Light) 2, Computers 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Researcher, Well Rounded, Valuable Facts</p>
@@ -854,7 +852,7 @@
 
                 <div class="character">
                     <h4>Tech Specialist Sabine Wren (Mandalorian Human)</h4>
-                    <p><strong>Career:</strong> Technician / <strong>Specialization:</strong> Saboteur</p>
+                    <p><strong>Career:</strong> Engineer / <strong>Specialization:</strong> Saboteur</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 3, Cunning 3, Willpower 2, Presence 3</p>
                     <p><strong>Skills:</strong> Mechanics 4, Skulduggery 3, Athletics 3, Computers 2, Cool 2, Ranged (Light) 2, Coordination 1, Stealth 1</p>
                     <p><strong>Talents:</strong> Bypass Security, Saboteur, Gearhead</p>
@@ -865,7 +863,7 @@
 
                 <div class="character">
                     <h4>Medic Kanan Jarrus (Human)</h4>
-                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Doctor</p>
+                    <p><strong>Career:</strong> Colonist / <strong>Specialization:</strong> Doctor + Force Sensitive Exile</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 2, Intellect 3, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Medicine 4, Discipline 3, Cool 2, Charm 2, Knowledge (Xenology) 2, Lightsaber 2, Perception 1, Vigilance 1</p>
                     <p><strong>Talents:</strong> Surgeon, Stim Application, Healer</p>
@@ -888,9 +886,10 @@
                     <h4>Master Yoda (Unknown Species)</h4>
                     <p><strong>Career:</strong> Mystic / <strong>Specialization:</strong> Advisor</p>
                     <p><strong>Characteristics:</strong> Brawn 1, Agility 3, Intellect 4, Cunning 4, Willpower 6, Presence 4</p>
-                    <p><strong>Skills:</strong> Discipline 6, Lightsaber 5, Lore 5, Leadership 4, Cool 4, Perception 4, Charm 3, Vigilance 3</p>
-                    <p><strong>Talents:</strong> Force Rating 4, Sense, Foresee, Influence, Move</p>
-                    <p><strong>Force Powers:</strong> All Basic + Multiple Upgrades</p>
+                    <p><strong>Skills:</strong> Discipline 5, Lightsaber 5, Lore 5, Leadership 4, Cool 4, Perception 4, Charm 3, Vigilance 3</p>
+                    <p><strong>Talents:</strong> Force Rating (taken three times)</p>
+                    <p><strong>Force Rating:</strong> 4</p>
+                    <p><strong>Force Powers:</strong> Sense, Foresee, Influence, Move and more, most with several upgrades</p>
                     <p><strong>Motivation:</strong> Morality - "Guide the galaxy back to the Light"</p>
                     <p><strong>Background:</strong> The ancient Jedi Master who leads the surviving Council members in rebuilding the Jedi Order and training a new generation of Force users.</p>
                 </div>
@@ -900,7 +899,8 @@
                     <p><strong>Career:</strong> Warrior / <strong>Specialization:</strong> Juyo Berserker</p>
                     <p><strong>Characteristics:</strong> Brawn 3, Agility 3, Intellect 3, Cunning 3, Willpower 4, Presence 4</p>
                     <p><strong>Skills:</strong> Lightsaber 5, Discipline 4, Leadership 4, Cool 3, Athletics 3, Coercion 3, Vigilance 2, Perception 2</p>
-                    <p><strong>Talents:</strong> Force Rating 3, Reflect, Improved Reflect, Frenzy</p>
+                    <p><strong>Talents:</strong> Force Rating (taken twice), Reflect, Improved Reflect, Frenzy</p>
+                    <p><strong>Force Rating:</strong> 3</p>
                     <p><strong>Force Powers:</strong> Enhance (Full Tree), Move (Basic + Magnitude), Protect (Basic)</p>
                     <p><strong>Motivation:</strong> Justice - "Destroy the Sith once and for all"</p>
                     <p><strong>Background:</strong> A master of combat who survived Order 66 and now serves as the Council's military strategist and combat instructor.</p>
@@ -911,7 +911,8 @@
                     <p><strong>Career:</strong> Consular / <strong>Specialization:</strong> Sage</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 2, Intellect 5, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Lore 5, Knowledge (Education) 4, Discipline 4, Lightsaber 3, Cool 3, Leadership 3, Computers 2, Medicine 2</p>
-                    <p><strong>Talents:</strong> Force Rating 3, Researcher, Well Rounded, Knowledge Specialization</p>
+                    <p><strong>Talents:</strong> Force Rating (taken twice), Researcher, Well Rounded, Knowledge Specialization</p>
+                    <p><strong>Force Rating:</strong> 3</p>
                     <p><strong>Force Powers:</strong> Foresee (Full Tree), Sense (Basic + Duration), Influence (Basic)</p>
                     <p><strong>Motivation:</strong> Knowledge - "Preserve Jedi wisdom for future generations"</p>
                     <p><strong>Background:</strong> The Council's keeper of knowledge who maintains the Jedi archives and trains new Padawans in the ways of the Force.</p>
@@ -922,7 +923,8 @@
                     <p><strong>Career:</strong> Guardian / <strong>Specialization:</strong> Protector</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 3, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Lightsaber 4, Athletics 4, Discipline 4, Cool 3, Vigilance 3, Leadership 3, Perception 2, Stealth 2</p>
-                    <p><strong>Talents:</strong> Force Rating 2, Reflect, Defensive Stance, Protector</p>
+                    <p><strong>Talents:</strong> Force Rating, Reflect, Defensive Stance, Protector</p>
+                    <p><strong>Force Rating:</strong> 2</p>
                     <p><strong>Force Powers:</strong> Protect (Basic + Strength), Enhance (Basic + Control), Heal (Basic)</p>
                     <p><strong>Motivation:</strong> Morality - "Protect the innocent and defenseless"</p>
                     <p><strong>Background:</strong> A guardian master who specializes in protecting civilians and training Jedi in defensive combat techniques.</p>
@@ -930,10 +932,11 @@
 
                 <div class="character">
                     <h4>Master Plo Koon (Kel Dor)</h4>
-                    <p><strong>Career:</strong> Ace / <strong>Specialization:</strong> Starfighter Ace</p>
+                    <p><strong>Career:</strong> Warrior / <strong>Specialization:</strong> Starfighter Ace</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 4, Intellect 3, Cunning 3, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Piloting (Space) 5, Gunnery 4, Lightsaber 4, Discipline 3, Cool 3, Astrogation 3, Mechanics 2, Leadership 2</p>
-                    <p><strong>Talents:</strong> Force Rating 2, Ace Pilot, Full Throttle, Skilled Jockey</p>
+                    <p><strong>Talents:</strong> Force Rating, Ace Pilot, Full Throttle, Skilled Jockey</p>
+                    <p><strong>Force Rating:</strong> 2</p>
                     <p><strong>Force Powers:</strong> Enhance (Basic + Control: Piloting), Sense (Basic + Control), Move (Basic)</p>
                     <p><strong>Motivation:</strong> Duty - "Lead from the front in starfighter combat"</p>
                     <p><strong>Background:</strong> A master pilot who leads the Council's starfighter operations and trains Force-sensitive pilots in aerial combat.</p>
@@ -943,8 +946,9 @@
                     <h4>Master Kit Fisto (Nautolan)</h4>
                     <p><strong>Career:</strong> Seeker / <strong>Specialization:</strong> Pathfinder</p>
                     <p><strong>Characteristics:</strong> Brawn 3, Agility 3, Intellect 3, Cunning 4, Willpower 4, Presence 3</p>
-                    <p><strong>Skills:</strong> Survival 4, Lightsaber 4, Athletics 4, Perception 3, Stealth 3, Cool 3, Vigilance 2, Swimming 2</p>
-                    <p><strong>Talents:</strong> Force Rating 2, Forager, Outdoorsman, Heightened Awareness</p>
+                    <p><strong>Skills:</strong> Survival 4, Lightsaber 4, Athletics 4, Perception 3, Stealth 3, Cool 3, Vigilance 2, Coordination 2</p>
+                    <p><strong>Talents:</strong> Force Rating, Forager, Outdoorsman, Heightened Awareness</p>
+                    <p><strong>Force Rating:</strong> 2</p>
                     <p><strong>Force Powers:</strong> Sense (Basic + Duration), Enhance (Basic + Control), Move (Basic)</p>
                     <p><strong>Motivation:</strong> Discovery - "Explore the Living Force in nature"</p>
                     <p><strong>Background:</strong> A master scout who leads missions into dangerous environments and teaches Jedi to connect with the Living Force in all its forms.</p>
@@ -975,7 +979,7 @@
 
                 <div class="character">
                     <h4>Captain Thrawn (Chiss)</h4>
-                    <p><strong>Career:</strong> Commander / <strong>Specialization:</strong> Tactical Specialist</p>
+                    <p><strong>Career:</strong> Commander / <strong>Specialization:</strong> Tactician</p>
                     <p><strong>Characteristics:</strong> Brawn 2, Agility 2, Intellect 5, Cunning 4, Willpower 4, Presence 3</p>
                     <p><strong>Skills:</strong> Knowledge (Warfare) 5, Leadership 4, Cool 4, Perception 4, Knowledge (Xenology) 3, Gunnery 3, Discipline 2, Vigilance 2</p>
                     <p><strong>Talents:</strong> Tactical Direction, Brilliant Strategist, Natural Leader</p>
@@ -1038,19 +1042,19 @@
                 </thead>
                 <tbody>
                     <tr><td><strong>Minion</strong></td><td>Operates as a group sharing one wound threshold. No strain. The group's skill is driven by how many are still standing, so they get worse as you thin them out.</td><td>Stormtroopers, dock guards, hired muscle — anyone whose job is to lose impressively</td></tr>
-                    <tr><td><strong>Rival</strong></td><td>An individual with a wound threshold but no strain threshold. Dangerous, but cannot be worn down mentally and does not suffer critical injuries.</td><td>The bounty hunter who keeps turning up, a lieutenant, a recurring nuisance</td></tr>
+                    <tr><td><strong>Rival</strong></td><td>An individual with a wound threshold but no strain threshold (strain it would suffer is taken as wounds instead). Dangerous, and it can suffer Critical Injuries, but going past its wound threshold simply takes it out of the fight.</td><td>The bounty hunter who keeps turning up, a lieutenant, a recurring nuisance</td></tr>
                     <tr><td><strong>Nemesis</strong></td><td>Built exactly like a player character — both thresholds, critical injuries, the lot. Treat any entry above as a nemesis with no conversion at all.</td><td>The villain of the arc. Use sparingly; a nemesis should be an event</td></tr>
                 </tbody>
             </table>
-            <p>The practical shortcut: <strong>any character on this page is already a nemesis.</strong> To demote one to a rival, drop the strain threshold and stop tracking critical injuries. To make minions, keep the two or three skills that define them and discard everything else — nobody at the table will ever ask what a stormtrooper's Willpower is.</p>
+            <p>The practical shortcut: <strong>any character on this page is already a nemesis.</strong> To demote one to a rival, drop the strain threshold and apply any strain it suffers as wounds. To make minions, keep the two or three skills that define them and discard everything else — nobody at the table will ever ask what a stormtrooper's Willpower is.</p>
 
             <h3>Scaling to Your Party</h3>
-            <p>These builds assume a starting character. Two adjustments come up constantly:</p>
+            <p>Most of these builds are seasoned characters rather than fresh ones (a brand-new character cannot start with any skill above rank 2), so treat them as having already earned a good deal of XP. Two adjustments come up constantly:</p>
             <ul>
                 <li><strong>If your party is experienced,</strong> do not inflate an opponent's characteristics — that makes the maths swingy without making the fight interesting. Add minions, add terrain, or add a second objective competing for the party's attention.</li>
                 <li><strong>If you are short a player,</strong> running one of these as an NPC ally works, but hand it to a player rather than yourself. A GM voicing an ally in combat slows every round and quietly steers the party.</li>
             </ul>
-            <p><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a> goes further into making an antagonist memorable rather than merely statted, and <a href="/sw_combat.html">Combat Mechanics</a> covers how these thresholds behave under fire.</p>
+            <p><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a> goes further into making an antagonist memorable rather than merely statted, and <a href="/sw_combat.html">Combat &amp; Conflict</a> covers how these thresholds behave under fire.</p>
         </section>
 
         <section id="using-these-characters">
@@ -1271,7 +1275,7 @@
 
         <section id="conclusion">
             <h2>Conclusion</h2>
-            <p>These 100+ Star Wars RPG characters represent the rich diversity of a galaxy far, far away. From Force-sensitive Jedi to pragmatic smugglers, from Imperial loyalists to Rebel freedom fighters, each character embodies the themes and archetypes that make Star Wars storytelling so compelling.</p>
+            <p>These 75 Star Wars RPG characters represent the rich diversity of a galaxy far, far away. From Force-sensitive Jedi to pragmatic smugglers, from Imperial loyalists to Rebel freedom fighters, each character embodies the themes and archetypes that make Star Wars storytelling so compelling.</p>
 
             <p>The magic of Star Wars lies not just in lightsaber duels and space battles, but in the personal journeys of characters struggling with destiny, choice, and the consequences of their actions. These pre-generated characters provide the foundation for exploring those themes while delivering the excitement and adventure that defines the Star Wars experience.</p>
 
@@ -1299,19 +1303,24 @@
     
         <section class="further-exploration" data-generated="where-next">
             <h2>Where to Go Next</h2>
-            <p>A hundred characters is a resource, not a reading list. Put them to work:</p>
+            <p>Seventy-five characters is a resource, not a reading list. Put them to work:</p>
             <ul>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Promote any entry here into a recurring antagonist worth fearing.</li>
-                <li><strong><a href="/sw_character_examples.html">Character Examples</a>:</strong> Fuller worked examples if you want to see the build reasoning, not just the result.</li>
-                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Renaming is the fastest way to make a stock character feel like yours.</li>
-                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> Assemble several into a balanced party rather than picking favourites.</li>
+                <li><strong><a href="/sw_character_examples.html">Character Examples &amp; Crews</a>:</strong> Fuller worked examples if you want to see the build reasoning, not just the result.</li>
+                <li><strong><a href="/sw_names.html">150 Character Names</a>:</strong> Renaming is the fastest way to make a stock character feel like yours.</li>
+                <li><strong><a href="/sw_groups.html">Crews &amp; Group Dynamics</a>:</strong> Assemble several into a balanced party rather than picking favourites.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> What to do when players talk to someone you had not planned for — raid this list.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>Created for Star Wars RPG enthusiasts. All characters and concepts are inspired by the Star Wars universe created by George Lucas. This is unofficial fan content for gaming purposes only.</p>
+<div class="page-nav">
+    <a class="prev" href="/sw_character_examples.html">Character Examples &amp; Crews</a>
+    <a class="next" href="/sw_names.html">150 Character Names</a>
+</div>
+        <p class="closing-quote">Created for Star Wars RPG enthusiasts. All characters and concepts are inspired by the Star Wars universe created by George Lucas. This is unofficial fan content for gaming purposes only.</p>
     </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

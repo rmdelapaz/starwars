@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction: Why the Narrative Dice Change Everything — Star Wars RPG</title>
-    <meta name="description" content="What makes Star Wars RPG unique, and why the narrative dice system changes everything about how a session plays.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Introduction: Why the Narrative Dice Change Everything — Star Wars RPG">
-    <meta property="og:description" content="What makes Star Wars RPG unique, and why the narrative dice system changes everything about how a session plays.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Welcome to the Star Wars RPG - The Star Wars RPG Guide</title>
+    <meta name="description" content="Welcome to the Star Wars RPG by Fantasy Flight Games and Edge Studio: which game this is, the seven narrative dice, how a check works and what a session looks like.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG: The Fundamentals of Force and Dice</h1>
-        <p class="subtitle">Welcome to a Galaxy Far, Far Away - Your Journey Begins Here</p>
+        <h1>Welcome to the Star Wars RPG</h1>
+        <p>What this game is, which edition this guide covers, and how its narrative dice work.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h2>What Makes Star Wars RPG Special</h2>
             <p>Imagine you're not just watching Luke Skywalker's journey, but <em>living</em> your own. Star Wars RPG isn't just about rolling dice and adding numbers - it's about becoming part of the most beloved space opera of all time. Think of it like being handed the director's chair of your own Star Wars movie, where every decision you make shapes the galaxy's destiny.</p>
@@ -45,7 +40,7 @@
 
         <section class="which-game">
             <h2>Which Star Wars RPG Is This?</h2>
-            <p>Worth saying plainly, because several very different Star Wars roleplaying games have existed over the years. This guide covers the <strong>narrative dice system</strong> — the one built around custom symbol dice instead of numbers. It was published in three parallel core rulebooks, each a complete game on its own:</p>
+            <p>Worth saying plainly, because several very different Star Wars roleplaying games have existed over the years. This guide covers the <strong>Star Wars Roleplaying Game by Fantasy Flight Games, now published by Edge Studio</strong>: the <strong>narrative dice system</strong>, built around custom symbol dice instead of numbers. It was published in three parallel core rulebooks, each a complete game on its own:</p>
 
             <table>
                 <thead>
@@ -62,14 +57,15 @@
 
             <div class="callout">
                 <h3>A note on publishers</h3>
-                <p>These books were originally published by <strong>Fantasy Flight Games</strong>, which is the name printed on most copies you will find secondhand. The licence later moved to <strong>Edge Studio</strong>, which handles the line today — so you may see either logo depending on the printing. The rules are the same. If you want this dice engine without the Star Wars setting, the generic version is called <strong>Genesys</strong>.</p>
+                <p>The short history: <strong>Fantasy Flight Games</strong> took the licence in 2012 and released Edge of the Empire (2013), Age of Rebellion (2014) and Force and Destiny (2015); the line moved to <strong>Edge Studio</strong> in 2020, so you may see either logo depending on the printing. The rules are the same. If you want this dice engine without the Star Wars setting, the generic version is <strong>Genesys</strong> (2017).</p>
+                <p>It is <em>not</em> West End Games' d6 Star Wars game (1987) or Wizards of the Coast's d20 Saga Edition (2007). Those are different games with different rules, so advice written for them (Wild Die, Force Points, Defense scores, d20 rolls) does not apply here.</p>
             </div>
 
             <h3>What You Actually Need to Start</h3>
             <p>Less than you might think. A core rulebook, pencils, and something to roll:</p>
             <ul>
                 <li><strong>The special dice.</strong> The symbols are not printed on ordinary dice, so you need the official set — or a substitute. Many groups never buy physical dice at all.</li>
-                <li><strong>Or a roller.</strong> This site has one built in: the <a href="/sw_dice_roller.html">Dice Roller</a> rolls every die type in your browser, free, no set required. It is the cheapest possible way to try the system tonight.</li>
+                <li><strong>Or a roller.</strong> This site has one built in: the <a href="/sw_dice_roller.html">Narrative Dice Roller</a> rolls every die type in your browser, free, no set required. It is the cheapest possible way to try the system tonight.</li>
                 <li><strong>Or ordinary dice plus a conversion chart.</strong> Workable, but it adds a lookup step to every roll and tends to slow new players down. Use it as a stopgap.</li>
                 <li><strong>Three to five friends.</strong> One runs the game, the rest play characters. The system works fine with two players and a GM, and strains above six.</li>
             </ul>
@@ -79,33 +75,29 @@
             <h2>The Heart of the Galaxy - Core Systems</h2>
             
             <h3>The Narrative Dice System</h3>
-            <p>Unlike your grandfather's six-sided dice, Star Wars RPG uses a revolutionary narrative dice system. Think of these dice as storytelling companions rather than simple number generators. Each die tells a part of your story.</p>
+            <p>Instead of adding up numbers, Star Wars RPG uses a narrative dice system. Think of these dice as storytelling companions rather than simple number generators. Each die tells a part of your story.</p>
 
             <div class="dice-visualization">
                 <svg width="600" height="300" viewBox="0 0 600 300">
                     <!-- Ability Die (Green) -->
-                    <polygon points="50,50 100,25 150,50 150,100 100,125 50,100" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
-                    <text x="100" y="80" text-anchor="middle" fill="white" font-weight="bold">Ability</text>
-                    <text x="100" y="95" text-anchor="middle" fill="white" font-size="12">Success &amp; Advantage</text>
+                    <polygon points="20,50 95,25 170,50 170,100 95,125 20,100" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+                    <text x="95" y="80" text-anchor="middle" fill="#1f1d1a" font-weight="bold">Ability</text>
+                    <text x="95" y="96" text-anchor="middle" fill="#1f1d1a" font-size="12">Success &amp; Advantage</text>
                     
                     <!-- Difficulty Die (Purple) -->
-                    <polygon points="200,50 250,25 300,50 300,100 250,125 200,100" fill="#9C27B0" stroke="#6A1B9A" stroke-width="2"/>
-                    <text x="250" y="80" text-anchor="middle" fill="white" font-weight="bold">Difficulty</text>
-                    <text x="250" y="95" text-anchor="middle" fill="white" font-size="12">Failure &amp; Threat</text>
+                    <polygon points="210,50 285,25 360,50 360,100 285,125 210,100" fill="#7B1FA2" stroke="#4A148C" stroke-width="2"/>
+                    <text x="285" y="80" text-anchor="middle" fill="#ffffff" font-weight="bold">Difficulty</text>
+                    <text x="285" y="96" text-anchor="middle" fill="#ffffff" font-size="12">Failure &amp; Threat</text>
                     
                     <!-- Proficiency Die (Yellow) -->
-                    <polygon points="350,50 425,25 500,50 500,100 425,125 350,100" fill="#FFC107" stroke="#F57C00" stroke-width="2"/>
-                    <text x="425" y="80" text-anchor="middle" fill="black" font-weight="bold">Proficiency</text>
-                    <text x="425" y="95" text-anchor="middle" fill="black" font-size="12">Triumph &amp; Success</text>
+                    <polygon points="400,50 490,25 580,50 580,100 490,125 400,100" fill="#FFC107" stroke="#F57C00" stroke-width="2"/>
+                    <text x="490" y="80" text-anchor="middle" fill="black" font-weight="bold">Proficiency</text>
+                    <text x="490" y="96" text-anchor="middle" fill="black" font-size="12">Success, Advantage, Triumph</text>
                     
                     <!-- Force Die (White) -->
-                    <polygon points="50,200 125,175 200,200 200,250 125,275 50,250" fill="#FFFFFF" stroke="#757575" stroke-width="2"/>
-                    <text x="125" y="230" text-anchor="middle" fill="black" font-weight="bold">Force</text>
-                    <text x="125" y="245" text-anchor="middle" fill="black" font-size="12">Light &amp; Dark Side</text>
-                    
-                    <!-- Arrows showing interaction -->
-                    <path d="M 150 75 Q 175 50 200 75" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
-                    <path d="M 300 75 Q 325 50 350 75" fill="none" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <polygon points="210,200 285,175 360,200 360,250 285,275 210,250" fill="#FFFFFF" stroke="#757575" stroke-width="2"/>
+                    <text x="285" y="230" text-anchor="middle" fill="black" font-weight="bold">Force</text>
+                    <text x="285" y="246" text-anchor="middle" fill="black" font-size="12">Light &amp; dark pips</text>
                     
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -123,13 +115,13 @@
                     <tr><th>Die</th><th>Shape</th><th>Job</th><th>What it contributes</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><span class="die-chip" style="background:#7fbde8"></span><strong>Boost</strong></td><td>d6</td><td>Helps you</td><td>Small bonuses — good gear, high ground, a friend's assist</td></tr>
-                    <tr><td><span class="die-chip" style="background:#4CAF50"></span><strong>Ability</strong></td><td>d8</td><td>Helps you</td><td>Your raw characteristic — how naturally capable you are</td></tr>
-                    <tr><td><span class="die-chip" style="background:#FFC107"></span><strong>Proficiency</strong></td><td>d12</td><td>Helps you</td><td>Trained skill. The only die that can roll <em>Triumph</em></td></tr>
-                    <tr><td><span class="die-chip" style="background:#2b2b2b"></span><strong>Setback</strong></td><td>d6</td><td>Opposes you</td><td>Minor hindrances — poor light, an awkward angle</td></tr>
-                    <tr><td><span class="die-chip" style="background:#9C27B0"></span><strong>Difficulty</strong></td><td>d8</td><td>Opposes you</td><td>How hard the task inherently is</td></tr>
-                    <tr><td><span class="die-chip" style="background:#c62828"></span><strong>Challenge</strong></td><td>d12</td><td>Opposes you</td><td>Skilled active opposition. The only die that can roll <em>Despair</em></td></tr>
-                    <tr><td><span class="die-chip" style="background:#f5f5f5"></span><strong>Force</strong></td><td>d12</td><td>Neither</td><td>Light- and dark-side pips, used for Force powers and destiny</td></tr>
+                    <tr><td><span class="die-chip" ></span><strong>Boost</strong></td><td>d6</td><td>Helps you</td><td>Small bonuses — good gear, high ground, a friend's assist</td></tr>
+                    <tr><td><span class="die-chip" style="border-left: 5px solid var(--success) !important;"></span><strong>Ability</strong></td><td>d8</td><td>Helps you</td><td>Your basic capability: one die per point of your characteristic or skill rank, whichever is higher</td></tr>
+                    <tr><td><span class="die-chip" ></span><strong>Proficiency</strong></td><td>d12</td><td>Helps you</td><td>An upgraded Ability die (training plus talent). The only die that can roll <em>Triumph</em></td></tr>
+                    <tr><td><span class="die-chip" style="border-left: 5px solid var(--gold) !important;"></span><strong>Setback</strong></td><td>d6</td><td>Opposes you</td><td>Minor hindrances: poor light, an awkward angle</td></tr>
+                    <tr><td><span class="die-chip" style="border-left: 5px solid var(--gold) !important;"></span><strong>Difficulty</strong></td><td>d8</td><td>Opposes you</td><td>How hard the task is: Easy 1, Average 2, Hard 3, Daunting 4, Formidable 5</td></tr>
+                    <tr><td><span class="die-chip" style="border-left: 5px solid var(--danger) !important;"></span><strong>Challenge</strong></td><td>d12</td><td>Opposes you</td><td>An upgraded Difficulty die (skilled opposition, a Destiny Point). The only die that can roll <em>Despair</em></td></tr>
+                    <tr><td><span class="die-chip" ></span><strong>Force</strong></td><td>d12</td><td>Neither</td><td>Light- and dark-side pips, rolled for Force powers and for the Destiny Point pool</td></tr>
                 </tbody>
             </table>
 
@@ -143,12 +135,12 @@
                     <tr><th>Symbol</th><th>Cancels</th><th>Meaning</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>Success</strong></td><td>Failure</td><td>Did the thing work? One net Success is enough.</td></tr>
+                    <tr><td><strong>Success</strong></td><td>Failure</td><td>Did the thing work? You need at least one <em>net</em> Success; a tie fails.</td></tr>
                     <tr><td><strong>Failure</strong></td><td>Success</td><td>It did not work — but something still happens.</td></tr>
                     <tr><td><strong>Advantage</strong></td><td>Threat</td><td>A side benefit, independent of whether you succeeded.</td></tr>
                     <tr><td><strong>Threat</strong></td><td>Advantage</td><td>A cost or complication, independent of success.</td></tr>
-                    <tr><td><strong>Triumph</strong></td><td>—</td><td>Counts as a Success <em>and</em> grants something dramatic. Never cancelled.</td></tr>
-                    <tr><td><strong>Despair</strong></td><td>—</td><td>Counts as a Failure <em>and</em> something goes badly wrong. Never cancelled.</td></tr>
+                    <tr><td><strong>Triumph</strong></td><td>—</td><td>Counts as a Success (which Failure can cancel) <em>and</em> grants something dramatic. The Triumph effect itself is never cancelled.</td></tr>
+                    <tr><td><strong>Despair</strong></td><td>—</td><td>Counts as a Failure (which Success can cancel) <em>and</em> something goes badly wrong. The Despair effect itself is never cancelled.</td></tr>
                 </tbody>
             </table>
 
@@ -237,18 +229,18 @@ Corellian Smuggler: Han Solo archetype with personal twist</code></pre>
             <h2>The Force - More Than Magic</h2>
             
             <h3>Understanding Force Rating</h3>
-            <p>The Force isn't a magic system - it's a relationship. Your Force Rating represents how deeply you're connected to the living energy that binds the galaxy together. Think of it like learning to play music: Force Rating 1 is like knowing basic chords, while higher ratings are like becoming a virtuoso.</p>
+            <p>The Force isn't a magic system - it's a relationship. Your Force Rating represents how deeply you're connected to the living energy that binds the galaxy together. Mechanically, it is the number of Force dice you roll when you use a power; Force and Destiny careers start at 1, and Force Rating talents raise it. Think of it like learning to play music: Force Rating 1 is knowing basic chords, while higher ratings are like becoming a virtuoso.</p>
 
             <div class="force-progression">
                 <h4>The Path of Force Development</h4>
                 <div class="mermaid">
-                    graph LR
-                        A[Force Sensitive] --> B[Force Rating 1]
-                        B --> C[Basic Powers]
+                    graph TD
+                        A[Force-sensitive] --> B[Force Rating 1]
+                        B --> C[Buy basic powers&lt;br/&gt;with XP]
                         C --> D[Force Rating 2]
-                        D --> E[Advanced Techniques]
+                        D --> E[Buy power upgrades]
                         E --> F[Force Rating 3+]
-                        F --> G[Master Level]
+                        F --> G[Deep upgrade trees]
                         
                         style A fill:#f9f9f9,color:#1f2937
                         style B fill:#e3f2fd,color:#1f2937
@@ -258,7 +250,7 @@ Corellian Smuggler: Han Solo archetype with personal twist</code></pre>
             </div>
 
             <h3>Light Side vs Dark Side - The Eternal Choice</h3>
-            <p>Every Force power can be fueled by light or dark side energy. It's like choosing between solar power and burning fossil fuels - one is sustainable and harmonious, the other is quick and destructive. The game mechanically reinforces this philosophy through Conflict and Morality systems.</p>
+            <p>Every Force power can be fueled by light or dark side energy. It's like choosing between solar power and burning fossil fuels - one is sustainable and harmonious, the other is quick and destructive. The game reinforces this mechanically: a light-side character who uses dark pips must flip a light Destiny Point to dark and suffer 1 strain per dark pip, and in Force and Destiny gains Conflict that drags on their Morality.</p>
         </section>
 
         <section class="when-you-play">
@@ -293,7 +285,7 @@ Corellian Smuggler: Han Solo archetype with personal twist</code></pre>
                 <ul>
                     <li><strong>Diplomat:</strong> Charm + Presence vs. Easy difficulty (1 purple die)</li>
                     <li><strong>Smuggler:</strong> Deception + Cunning vs. Average difficulty (2 purple dice)</li>
-                    <li><strong>Force User:</strong> Influence power + coercion vs. Hard difficulty (3 purple dice, but with Force dice added)</li>
+                    <li><strong>Force User:</strong> Coercion + Willpower vs. Hard difficulty (3 purple dice), with Force dice added through an upgrade of the Influence power</li>
                 </ul>
                 
                 <p><strong>Potential Outcomes:</strong></p>
@@ -305,7 +297,7 @@ Failure + Threat: No info AND the Imperials start asking questions about YOU</co
         </section>
 
         <section class="practice-activities">
-            <h2>Practice Activities</h2>
+            <h2>Try It at the Table</h2>
             
             <h3>Activity One: Dice Pool Assembly</h3>
             <p>A pool is built by comparing skill rank against characteristic. Take the larger of the two as your number of dice, then <em>upgrade</em> a number of them equal to the smaller value from Ability to Proficiency. Try these:</p>
@@ -320,7 +312,7 @@ Failure + Threat: No info AND the Imperials start asking questions about YOU</co
                 <ol>
                     <li><strong>Three Proficiency dice</strong>, against the difficulty the GM sets. Skill 3 and characteristic 3 means three dice, all three upgraded — a specialist operating at the top of their game.</li>
                     <li><strong>One Proficiency and one Ability.</strong> Characteristic 2 is the larger value, so two dice; skill 1 upgrades one of them. Notice how a low skill with a decent characteristic still gets you rolling.</li>
-                    <li>Their normal <strong>Discipline or Force-power pool, plus Force dice</strong> equal to their Force Rating. The weight of the container sets the difficulty; the Force dice are what actually power the effect.</li>
+                    <li><strong>Force dice equal to their Force Rating</strong>, as a Force power check. There is no difficulty to beat: they spend light-side pips to make the power work, and something as big as a cargo container needs the right upgrades to the Move power.</li>
                 </ol>
             </details>
 
@@ -337,7 +329,7 @@ Failure + Threat: No info AND the Imperials start asking questions about YOU</co
                 <ul>
                     <li><strong>Two net Success, nothing else.</strong> The Advantage and Threat cancel exactly, so the task simply works with no side effects — a clean, unremarkable win.</li>
                     <li><strong>Failure with two Advantage.</strong> The task does not work, but two good things come out of the attempt: you spot the real problem, or you keep hold of the tool you were about to drop. This combination is the heart of the system — narrate the failure first, then the compensation.</li>
-                    <li><strong>Three Success, a Triumph, and two Threat.</strong> A decisive win with a bill attached. Triumph is never cancelled, so spend it on something structural — the door stays open behind you — while the two Threat cost you time, ammunition, or the attention of someone you would rather not have attracted.</li>
+                    <li><strong>Four Success (the Triumph counts as one), a Triumph, and two Threat.</strong> A decisive win with a bill attached. The Triumph effect is never cancelled, so spend it on something structural — the door stays open behind you — while the two Threat cost you time, ammunition, or the attention of someone you would rather not have attracted.</li>
                 </ul>
             </details>
 
@@ -356,26 +348,26 @@ Failure + Threat: No info AND the Imperials start asking questions about YOU</co
 
             <h3>If you are going to play a character</h3>
             <ul>
-                <li><strong><a href="/starwars_rpg_foundations.html">RPG Foundations</a>:</strong> Start here if this is your first tabletop RPG of any kind — how a session is structured and what is expected of you.</li>
-                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> The step-by-step build. Takes the three pillars above and turns them into an actual sheet.</li>
-                <li><strong><a href="/sw_character_examples.html">Character Examples</a>:</strong> Finished characters to study, or to play as-is if you would rather not build one on your first night.</li>
-                <li><strong><a href="/sw_dice_roller.html">Dice Roller</a>:</strong> Roll the pools from the exercises above and watch the symbols cancel. The fastest way to make this click.</li>
+                                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> The step-by-step build. Takes the three pillars above and turns them into an actual sheet.</li>
+                <li><strong><a href="/sw_character_examples.html">Character Examples &amp; Crews</a>:</strong> Finished characters to study, or to play as-is if you would rather not build one on your first night.</li>
+                <li><strong><a href="/sw_dice_roller.html">Narrative Dice Roller</a>:</strong> Roll the pools from the examples above and watch the symbols cancel. The fastest way to make this click.</li>
             </ul>
 
             <h3>If you want the mechanics in depth</h3>
             <ul>
-                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> What to actually <em>spend</em> Advantage and Threat on, plus opposed checks and Triumph economics.</li>
-                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> Initiative, range bands, and how structured encounters keep the narrative flow described above.</li>
-                <li><strong><a href="/sw_force_and_lightsaber.html">Force &amp; Lightsabers</a>:</strong> Force powers, lightsaber forms, and how Conflict turns the light/dark choice into a mechanic.</li>
-                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> Piloting and ship combat, including why the Millennium Falcon is statted the way it is.</li>
+                <li><strong><a href="/sw_adv_dice.html">Reading the Narrative Dice</a>:</strong> What to actually <em>spend</em> Advantage and Threat on, plus opposed checks and Triumph economics.</li>
+                <li><strong><a href="/sw_combat.html">Combat &amp; Conflict</a>:</strong> Initiative, range bands, and how structured encounters keep the narrative flow described above.</li>
+                <li><strong><a href="/sw_force_and_lightsaber.html">The Force &amp; Lightsabers</a>:</strong> Force powers, lightsaber forms, and how Conflict turns the light/dark choice into a mechanic.</li>
+                <li><strong><a href="/sw_vehicles.html">Starships &amp; Vehicles</a>:</strong> Piloting and ship combat, including why the Millennium Falcon is statted the way it is.</li>
             </ul>
 
             <h3>If you are going to run the game</h3>
             <ul>
+                <li><strong><a href="/starwars_rpg_foundations.html">Campaign Foundations</a>:</strong> The core ideas, table agreements and structure a campaign is built on.</li>
                 <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Era selection, session zero, and planning something that survives past week three.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Pacing, improvisation, and reading a table — the skills the dice cannot give you.</li>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists your players will remember and rivals worth bringing back.</li>
-                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A roster to raid whenever a player talks to someone you had not planned for.</li>
+                <li><strong><a href="/sw_100.html">75 Sample Characters</a>:</strong> A roster to raid whenever a player talks to someone you had not planned for.</li>
             </ul>
         </section>
 
@@ -393,10 +385,12 @@ Failure + Threat: No info AND the Imperials start asking questions about YOU</co
     </main>
 
     <footer>
-        <p>May the Force be with you as you begin this journey. Remember: in Star Wars RPG, failure isn't the end of the story - it's just the beginning of a more interesting chapter.</p>
-     
+<div class="page-nav">
+    <a class="prev" href="/index.html">Guide Home</a>
+    <a class="next" href="/sw_char.html">Character Creation</a>
+</div>
+        <p class="closing-quote">May the Force be with you as you begin this journey. Remember: in Star Wars RPG, failure isn't the end of the story - it's just the beginning of a more interesting chapter.</p>
     </footer>
-
-   
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

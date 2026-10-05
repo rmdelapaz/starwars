@@ -3,104 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating Compelling NPCs and Villains in Star Wars RPG</title>
-    <meta name="description" content="Building memorable antagonists, recurring rivals and morally grey allies for Star Wars RPG.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Creating Compelling NPCs and Villains in Star Wars RPG">
-    <meta property="og:description" content="Building memorable antagonists, recurring rivals and morally grey allies for Star Wars RPG.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>NPCs &amp; Villains - The Star Wars RPG Guide</title>
+    <meta name="description" content="NPCs and villains for the Star Wars RPG: minions, rivals and nemeses, villains with plans, relationship webs, redemption arcs and an NPC generator.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .character-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .character-card { background: linear-gradient(135deg, #2c3e50, #3498db); color: white; padding: 20px; border-radius: 15px; position: relative; overflow: hidden; }
-        .character-card.villain { background: linear-gradient(135deg, #8b0000, #ff4444); }
-        .character-card.ally { background: linear-gradient(135deg, #1e8449, #52c41a); }
-        .character-card.neutral { background: linear-gradient(135deg, #8e44ad, #e74c3c); }
-        .character-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: pulse 4s ease-in-out infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; } 50% { transform: scale(1.1) rotate(180deg); opacity: 0.1; } }
-        .character-card * { position: relative; z-index: 2; }
-        .motivation-wheel { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
-        .villain-builder { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
-        .relationship-web { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .personality-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .trait-card { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
-        .dialogue-examples { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
-        .exercise-lab { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .force-spectrum { width: 100%; height: 60px; background: linear-gradient(to right, #00ff00, #ffff00, #ff8800, #ff0000, #8800ff, #000000); border-radius: 10px; margin: 15px 0; position: relative; }
-        .force-marker { position: absolute; top: -10px; width: 20px; height: 80px; background: white; border: 2px solid #000; border-radius: 3px; cursor: pointer; }
-        .character-generator { background: #000; color: #00ff00; padding: 20px; border-radius: 10px; margin: 20px 0; font-family: monospace; }
-        .control-interface { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .interface-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .interface-btn:hover { background: #0056b3; }
-        .interface-btn.active { background: #28a745; }
-        .character-display { min-height: 200px; border: 1px solid #00ff00; padding: 15px; margin: 10px 0; }
-        .relationship-canvas { text-align: center; margin: 20px 0; }
-        .dark-side-corruption { background: radial-gradient(circle, #330000, #000000); color: #ff6666; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .redemption-arc { background: linear-gradient(to right, #330000, #003300); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .character-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .character-card {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .character-card.villain {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .character-card.ally {
+            border-left: 5px solid var(--success) !important;
+        }
+        .character-card.neutral {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%, 100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 0.3;
+        } 50% { transform: scale(1.1) rotate(180deg); opacity: 0.1; } }
+        .character-card * {
+            position: relative;
+            z-index: 2;
+        }
+        .motivation-wheel {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .villain-builder {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .relationship-web {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .personality-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .trait-card {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #4a90e2;
+        }
+        .dialogue-examples {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #dc3545;
+        }
+        .exercise-lab {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .force-spectrum {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to right, #008400, #757500, #b25f00, #e80000, #8800ff, #000000) !important;
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            color: #fff;
+        }
+        .force-marker {
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 80px;
+            border: 2px solid #000;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .character-generator {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        .control-interface {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .interface-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .interface-btn:hover {
+            background: #0056b3 !important;
+            color: #fff;
+        }
+        .interface-btn.active {
+            background: #1f8336 !important;
+            color: #fff;
+        }
+        .character-display {
+            min-height: 200px;
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .relationship-canvas {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .dark-side-corruption {
+            border-left: 5px solid var(--danger) !important;
+            color: var(--danger);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .redemption-arc {
+            border-left: 5px solid var(--danger) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .motivation-wheel { background: #1e2b38; color: #e2e8f0; }
-        html:not(.light) .villain-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
-        html:not(.light) .relationship-web { background: #1a3c1a; color: #e2e8f0; }
-        html:not(.light) .trait-card { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .dialogue-examples { background: #431418; color: #e2e8f0; }
-        html:not(.light) .exercise-lab { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
-        html:not(.light) .force-spectrum { background: linear-gradient(to right, #144314, #31310e, #ff8800, #ff0000, #8800ff, #000000); color: #e2e8f0; }
-        html:not(.light) .force-marker { background: #222c35; color: #e2e8f0; }
+        html[data-theme="dark"] .motivation-wheel {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .villain-builder {
+            border: 2px solid #866f27;
+        }
+        html[data-theme="dark"] .relationship-web {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .trait-card {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .dialogue-examples {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .exercise-lab {
+            border: 2px solid #297885;
+        }
+        html[data-theme="dark"] .force-spectrum {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .force-marker {
+            background: #222c35 !important;
+            color: #e2e8f0;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .character-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .character-card.villain { color: #e2e8f0; }
-        .character-card.villain :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .character-card.neutral { color: #e2e8f0; }
-        .character-card.neutral :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .force-spectrum { color: #e2e8f0; }
-        .force-spectrum :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .character-generator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .dark-side-corruption :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .redemption-arc :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .character-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .character-card.villain {
+            
+        }
+        .character-card.villain :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .character-card.neutral {
+            
+        }
+        .character-card.neutral :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .force-spectrum {
+            
+        }
+        .force-spectrum :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .character-generator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .dark-side-corruption :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .redemption-arc :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .character-card.ally { background: linear-gradient(135deg, #176337, #43a015); }
-        .interface-btn { background: #0071eb; }
-        .interface-btn.active { background: #208637; }
+        .character-card.ally {
+            background: linear-gradient(135deg, #176337, #368311) !important;
+            color: #fff;
+        }
+        .interface-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .interface-btn.active {
+            background: #208637 !important;
+            color: #fff;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .motivation-wheel { color: #1f2937; }
-        .villain-builder { color: #1f2937; }
-        .relationship-web { color: #1f2937; }
-        .trait-card { color: #1f2937; }
-        .dialogue-examples { color: #1f2937; }
-        .exercise-lab { color: #1f2937; }
-        .force-spectrum { color: #1f2937; }
-        .force-marker { color: #1f2937; }
+        .motivation-wheel {
+            
+        }
+        .villain-builder {
+            
+        }
+        .relationship-web {
+            
+        }
+        .trait-card {
+            
+        }
+        .dialogue-examples {
+            
+        }
+        .exercise-lab {
+            
+        }
+        .force-spectrum {
+            
+        }
+        .force-marker {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .force-spectrum :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .interface-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .character-card.ally :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .interface-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .interface-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Creating Compelling NPCs and Villains in Star Wars RPG</h1>
-        <p><em>"You were the chosen one! It was said that you would destroy the Sith, not join them!" - Obi-Wan Kenobi</em></p>
+        <h1>NPCs &amp; Villains</h1>
+        <p>How to build allies, wildcards and villains your players remember, and how to stat them as minions, rivals and nemeses.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
-            <h2>Welcome to the Character Forge</h2>
+            <h2>Why the Supporting Cast Matters</h2>
             <p>Creating memorable NPCs and villains in Star Wars is like conducting a symphony of the Force - each character must play their part in the greater melody of your story. The best Star Wars characters aren't just obstacles or quest-givers; they're living beings with hopes, fears, contradictions, and the potential for both great good and terrible evil.</p>
             
             <p>Think of your NPCs as the supporting cast in an ensemble drama. Luke Skywalker is the hero, but without Obi-Wan's wisdom, Han's roguish charm, Leia's determination, and Vader's tragic fall, the story loses its emotional power. Your campaign needs that same rich tapestry of personalities.</p>
@@ -110,7 +299,7 @@
             <h2>The Anatomy of Memorable Characters</h2>
             
             <div class="mermaid">
-                graph TD
+                graph LR
                     A[Compelling Character] --> B[Core Motivation]
                     A --> C[Fatal Flaw]
                     A --> D[Unique Voice]
@@ -161,7 +350,7 @@
                 <p>Every great villain follows a dark mirror of the hero's journey:</p>
                 
                 <div class="mermaid">
-                    graph LR
+                    graph TD
                         A[Noble Intention] --> B[Traumatic Event]
                         B --> C[First Compromise]
                         C --> D[Escalating Choices]
@@ -230,9 +419,9 @@
             <div class="personality-matrix">
                 <div class="trait-card">
                     <h4>🗣️ Speech Patterns</h4>
-                    <p><strong>Formal:</strong> "I find your lack of faith disturbing"<br>
-                    <strong>Casual:</strong> "Never tell me the odds!"<br>
-                    <strong>Mystical:</strong> "Do or do not, there is no try"</p>
+                    <p><strong>Formal:</strong> "I trust the delay will not be repeated, Captain."<br>
+                    <strong>Casual:</strong> "Relax. I've flown worse than this. Once."<br>
+                    <strong>Mystical:</strong> "The Force does not care how tired you are."</p>
                 </div>
                 <div class="trait-card">
                     <h4>😤 Stress Responses</h4>
@@ -254,18 +443,18 @@
                 </div>
             </div>
 
-            <h3>Voice and Dialogue Mastery</h3>
+            <h3>Voice and Dialogue</h3>
             <div class="dialogue-examples">
                 <h4>Character Voice Examples</h4>
                 
                 <p><strong>Han Solo - Roguish Skeptic:</strong><br>
-                "Kid, I've flown from one side of this galaxy to the other, and I've seen a lot of strange stuff, but I've never seen anything to make me believe that there's one all-powerful Force controlling everything."</p>
+                Short sentences, jokes as armour, and boasts that dare you to call them. He dismisses what he cannot see and shows he cares only through action.</p>
 
                 <p><strong>Yoda - Wise Mystic:</strong><br>
                 "Size matters not. Look at me. Judge me by my size, do you? Hmm? Hmm. And well you should not. For my ally is the Force, and a powerful ally it is."</p>
 
                 <p><strong>Darth Vader - Authoritative Menace:</strong><br>
-                "You have failed me for the last time, Admiral. The Emperor is not as forgiving as I am."</p>
+                Few words, never raised. He states outcomes rather than threats, and the silence after he speaks does the rest.</p>
 
                 <h4>Dialogue Writing Tips</h4>
                 <ul>
@@ -283,7 +472,7 @@
 
             <div class="relationship-canvas">
                 <canvas id="relationshipWeb" width="600" height="400"></canvas>
-                <p><em>Interactive Relationship Web - Click characters to explore connections!</em></p>
+                <p><em>A relationship web: click a character to list their connections.</em></p>
             </div>
 
             <div class="relationship-web">
@@ -297,7 +486,7 @@
                         A --> E[Family Member]
                         A --> F[Ally/Friend]
                         
-                        B --> G[Past Student/Failure]
+                        B --> G[Past Apprentice/Failure]
                         C --> H[Shared History]
                         D --> I[Conflicting Loyalties]
                         E --> J[Hidden Secrets]
@@ -418,7 +607,7 @@
                 <h4>Redemption Story Examples</h4>
                 <ul>
                     <li><strong>Darth Vader:</strong> Love for his son overcomes years of darkness</li>
-                    <li><strong>Lando Calrissian:</strong> Betrayal followed by heroic sacrifice</li>
+                    <li><strong>Lando Calrissian:</strong> Betrays his friends, then turns on the Empire and leads the attack on the second Death Star</li>
                     <li><strong>Agent Kallus:</strong> Gradual realization that the Empire he serves is evil</li>
                     <li><strong>Kylo Ren:</strong> Torn between light and dark, ultimately chooses love</li>
                 </ul>
@@ -429,6 +618,15 @@
 
         <section class="practical-techniques">
             <h2>Practical NPC Management Techniques</h2>
+
+            <h3>Minions, Rivals and Nemeses</h3>
+            <p>The rules sort NPCs into three types, and choosing the right one is most of the work of statting them:</p>
+            <ul>
+                <li><strong>Minions</strong> are faceless rank and file, such as stormtroopers or gang muscle. They act in groups that share one pooled wound threshold, gain skill as the group grows, have no strain threshold, and a single Critical Injury takes one out.</li>
+                <li><strong>Rivals</strong> are named, capable individuals: a customs chief, a bounty hunter's partner. They have a wound threshold but no strain threshold, and they can be killed outright once their wounds pass it.</li>
+                <li><strong>Nemeses</strong> are your real villains. They work like player characters, with wound and strain thresholds, talents and the full range of options. Keep them for the antagonists an arc is built around.</li>
+            </ul>
+            <p>A useful habit: give every nemesis a rival lieutenant and a group or two of minions. That gives a confrontation layers the party has to cut through, and gives you someone to lose before the villain does.</p>
 
             <h3>The NPC Relationship Matrix</h3>
             <p>Track how your NPCs feel about each other and the player characters. Relationships change based on the heroes' actions, creating dynamic storylines.</p>
@@ -465,7 +663,7 @@
             <p>Like a TV show, your campaign needs recurring characters who can carry storylines when PCs aren't around. Create NPCs who have their own goals and relationships independent of the heroes.</p>
 
             <h3>The Recurring Rival</h3>
-            <p>Not every antagonist needs to die. Recurring rivals create ongoing tension and allow for character development on both sides. Think Vader and Obi-Wan, or Thrawn and the Ghost crew.</p>
+            <p>Not every antagonist needs to die. Recurring rivals create ongoing tension and allow for character development on both sides. Think Vader and Obi-Wan, or Thrawn and the Ghost crew. (In the rules, a recurring antagonist like this is usually statted as a nemesis, not a rival; see the NPC types above.)</p>
 
             <h4>Rival Development Stages</h4>
             <ol>
@@ -479,7 +677,7 @@
 
         <section class="exercises">
             <div class="exercise-lab">
-                <h3>Character Creation Exercises</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: The Villain's Justification</h4>
                 <p>Create a villain who genuinely believes they're saving the galaxy. Write their manifesto in 100 words - why the current system must be destroyed and what they'll build instead. Then show how their noble goals lead to terrible methods.</p>
@@ -517,16 +715,12 @@
             <ul>
                 <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Where most NPCs actually live — conversation, not combat.</li>
                 <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Spreading a villain across a campaign so their return means something.</li>
-                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A hundred ready-made characters to promote, demote or repurpose.</li>
+                <li><strong><a href="/sw_100.html">75 Sample Characters</a>:</strong> Seventy-five ready-made characters to promote, demote or repurpose.</li>
                 <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Antagonists with institutional power rather than personal menace.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Playing them convincingly at the table, which is harder than writing them.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"Your insight serves you well. Bury your feelings deep down, Luke. They do you credit, but they could be made to serve the Emperor." - Darth Vader (showing how even villains understand the power of emotional connection)</em></p>
-    </footer>
 
     <script>
         // Character Generator Data
@@ -544,7 +738,7 @@
                 flaws: ['Greedy', 'Paranoid', 'Short-tempered', 'Addicted to danger', 'Emotionally distant']
             },
             villain: {
-                names: ['Admiral Kross', 'Darth Malice', 'Governor Thane', 'Lord Sisko', 'Commander Vex'],
+                names: ['Admiral Kross', 'Darth Malice', 'Governor Thane', 'Lord Vessick', 'Commander Vex'],
                 roles: ['Imperial Officer', 'Dark Jedi', 'Corporate Executive', 'Warlord', 'Sith Apprentice'],
                 motivations: ['Impose order', 'Gain ultimate power', 'Destroy the Jedi', 'Rule through fear', 'Prove superiority'],
                 flaws: ['Arrogant', 'Consumed by hatred', 'Fears weakness', 'Jealous of others', 'Unable to trust']
@@ -552,7 +746,7 @@
         };
 
         const backgrounds = [
-            'Former slave who escaped the outer rim',
+            'Former slave who escaped to the Outer Rim',
             'Noble family member who lost everything in the war',
             'Clone War veteran struggling with PTSD',
             'Force-sensitive child hidden from the Empire',
@@ -572,6 +766,18 @@
             'Hums when thinking',
             'Always eats the same meal before dangerous missions'
         ];
+
+        // NPC type in the rules (minion / rival / nemesis), weighted per role
+        const npcTiers = {
+            ally: ['Rival', 'Rival', 'Nemesis'],
+            neutral: ['Rival', 'Rival', 'Rival', 'Nemesis'],
+            villain: ['Nemesis', 'Nemesis', 'Rival']
+        };
+        const tierNotes = {
+            Rival: 'Rival (wound threshold, no strain threshold)',
+            Nemesis: 'Nemesis (built like a PC: wounds, strain, talents)'
+        };
+        const minionGroups = ['a squad of stormtroopers', 'hired thugs', 'security droids', 'gang enforcers', 'house guards', 'pirate boarders'];
 
         let currentCharacter = null;
 
@@ -594,8 +800,12 @@
                 name: randomChoice(data.names),
                 role: randomChoice(data.roles),
                 motivation: randomChoice(data.motivations),
-                flaw: randomChoice(data.flaws)
+                flaw: randomChoice(data.flaws),
+                tier: randomChoice(npcTiers[type])
             };
+            if (type === 'villain') {
+                character.minions = `${2 + Math.floor(Math.random() * 4)} minions (${randomChoice(minionGroups)}) acting as one group`;
+            }
             
             currentCharacter = character;
             displayCharacter();
@@ -629,6 +839,10 @@
             output += `> Role: ${currentCharacter.role}\n`;
             output += `> Motivation: ${currentCharacter.motivation}\n`;
             output += `> Fatal Flaw: ${currentCharacter.flaw}\n`;
+            output += `> Stat as: ${tierNotes[currentCharacter.tier]}\n`;
+            if (currentCharacter.minions) {
+                output += `> Backed by: ${currentCharacter.minions}\n`;
+            }
             
             if (currentCharacter.background) {
                 output += `> Background: ${currentCharacter.background}\n`;
@@ -643,41 +857,56 @@
         }
 
         function updateOutput(text) {
-            document.getElementById('characterOutput').innerHTML = text.replace(/\n/g, '<br>');
+            const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            document.getElementById('characterOutput').innerHTML = esc(text).replace(/\n/g, '<br>');
         }
 
         // Relationship Web Canvas
         const relationshipCanvas = document.getElementById('relationshipWeb');
         const relCtx = relationshipCanvas.getContext('2d');
         
+        const relCaption = relationshipCanvas.closest('.relationship-canvas').querySelector('p em');
+
         const characters = [
-            { name: 'Hero', x: 300, y: 200, type: 'hero', color: '#00ff00' },
-            { name: 'Mentor', x: 150, y: 100, type: 'ally', color: '#4444ff' },
-            { name: 'Rival', x: 450, y: 100, type: 'villain', color: '#ff4444' },
-            { name: 'Love Interest', x: 100, y: 300, type: 'ally', color: '#ff44ff' },
-            { name: 'Villain', x: 500, y: 300, type: 'villain', color: '#8b0000' },
-            { name: 'Ally', x: 300, y: 50, type: 'ally', color: '#44ff44' }
+            { name: 'Hero', x: 300, y: 200, type: 'player character', color: '#7ccf7c' },
+            { name: 'Mentor', x: 300, y: 50, type: 'ally', color: '#8fa8f0' },
+            { name: 'Rival', x: 500, y: 90, type: 'antagonist', color: '#f08f8f' },
+            { name: 'Love Interest', x: 120, y: 320, type: 'ally', color: '#f0a8e0' },
+            { name: 'Villain', x: 480, y: 330, type: 'antagonist', color: '#d96060' },
+            { name: 'Ally', x: 90, y: 170, type: 'ally', color: '#a8e0a8' }
         ];
 
+        // t = where along the line the label sits (0 = from, 1 = to)
         const relationships = [
-            { from: 0, to: 1, type: 'learns from', color: '#4444ff' },
-            { from: 0, to: 2, type: 'competes with', color: '#ffaa00' },
-            { from: 0, to: 3, type: 'loves', color: '#ff44ff' },
-            { from: 0, to: 4, type: 'opposes', color: '#ff4444' },
-            { from: 0, to: 5, type: 'fights alongside', color: '#44ff44' },
-            { from: 1, to: 4, type: 'failed to save', color: '#888888' },
-            { from: 2, to: 4, type: 'secretly works for', color: '#ff8888' },
-            { from: 3, to: 5, type: 'sibling of', color: '#44ffff' }
+            { from: 0, to: 1, type: 'learns from', color: '#3355cc', t: 0.5 },
+            { from: 0, to: 2, type: 'competes with', color: '#b36b00', t: 0.45 },
+            { from: 0, to: 3, type: 'loves', color: '#b0309a', t: 0.45 },
+            { from: 0, to: 4, type: 'opposes', color: '#c0282d', t: 0.45 },
+            { from: 0, to: 5, type: 'fights alongside', color: '#2e8a2e', t: 0.5 },
+            { from: 1, to: 4, type: 'failed to save', color: '#666666', t: 0.6 },
+            { from: 2, to: 4, type: 'secretly works for', color: '#b04848', t: 0.35 },
+            { from: 3, to: 5, type: 'sibling of', color: '#1f7f8a', t: 0.5 }
         ];
+
+        function labelBox(text, x, y, font) {
+            relCtx.font = font;
+            const w = relCtx.measureText(text).width + 8;
+            relCtx.fillStyle = 'rgba(255,255,255,0.92)';
+            relCtx.fillRect(x - w / 2, y - 10, w, 15);
+            relCtx.fillStyle = '#222222';
+            relCtx.textAlign = 'center';
+            relCtx.fillText(text, x, y + 1);
+        }
 
         function drawRelationshipWeb() {
             relCtx.clearRect(0, 0, relationshipCanvas.width, relationshipCanvas.height);
+            relCtx.fillStyle = '#ffffff';
+            relCtx.fillRect(0, 0, relationshipCanvas.width, relationshipCanvas.height);
             
-            // Draw relationships first (behind characters)
+            // Draw relationship lines first (behind characters)
             relationships.forEach(rel => {
                 const from = characters[rel.from];
                 const to = characters[rel.to];
-                
                 relCtx.strokeStyle = rel.color;
                 relCtx.lineWidth = 2;
                 relCtx.setLineDash([5, 5]);
@@ -686,14 +915,13 @@
                 relCtx.lineTo(to.x, to.y);
                 relCtx.stroke();
                 relCtx.setLineDash([]);
-                
-                // Draw relationship label
-                const midX = (from.x + to.x) / 2;
-                const midY = (from.y + to.y) / 2;
-                relCtx.fillStyle = '#333';
-                relCtx.font = '10px Arial';
-                relCtx.textAlign = 'center';
-                relCtx.fillText(rel.type, midX, midY);
+            });
+
+            // Relationship labels on a light box so crossing lines do not hide them
+            relationships.forEach(rel => {
+                const from = characters[rel.from];
+                const to = characters[rel.to];
+                labelBox(rel.type, from.x + (to.x - from.x) * rel.t, from.y + (to.y - from.y) * rel.t, '11px Arial');
             });
             
             // Draw characters
@@ -702,34 +930,38 @@
                 relCtx.beginPath();
                 relCtx.arc(char.x, char.y, 20, 0, Math.PI * 2);
                 relCtx.fill();
-                
-                relCtx.strokeStyle = '#000';
+                relCtx.strokeStyle = '#222222';
                 relCtx.lineWidth = 2;
                 relCtx.stroke();
-                
-                relCtx.fillStyle = '#fff';
-                relCtx.font = '12px Arial';
-                relCtx.textAlign = 'center';
-                relCtx.fillText(char.name, char.x, char.y + 35);
+                labelBox(char.name, char.x, char.y + 35, 'bold 12px Arial');
             });
         }
 
         relationshipCanvas.addEventListener('click', (e) => {
             const rect = relationshipCanvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x = (e.clientX - rect.left) * relationshipCanvas.width / rect.width;
+            const y = (e.clientY - rect.top) * relationshipCanvas.height / rect.height;
             
-            characters.forEach(char => {
-                const distance = Math.sqrt((x - char.x) ** 2 + (y - char.y) ** 2);
-                if (distance < 20) {
-                    alert(`${char.name}: ${char.type} character\nClick other characters to see their relationships!`);
-                }
-            });
+            const idx = characters.findIndex(char => Math.hypot(x - char.x, y - char.y) < 24);
+            if (idx < 0 || !relCaption) return;
+            const char = characters[idx];
+            const links = relationships
+                .filter(r => r.from === idx || r.to === idx)
+                .map(r => r.from === idx ? `${r.type} ${characters[r.to].name}` : `${characters[r.from].name} ${r.type} them`);
+            relCaption.textContent = `${char.name} (${char.type}): ${links.join('; ')}.`;
         });
 
         // Initialize
         drawRelationshipWeb();
         updateOutput('> Ready to generate characters...\n> Select character type above\n> _');
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_social_encounters.html">Social Encounters</a>
+    <a class="next" href="/starwars_droids_technology.html">Droids &amp; Technology</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

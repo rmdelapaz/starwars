@@ -3,161 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>150 Star Wars RPG Character Names</title>
-    <meta name="description" content="150 Star Wars character names plus naming conventions and generators for every species in the galaxy.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="150 Star Wars RPG Character Names">
-    <meta property="og:description" content="150 Star Wars character names plus naming conventions and generators for every species in the galaxy.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>150 Character Names - The Star Wars RPG Guide</title>
+    <meta name="description" content="150 Star Wars character names, 50 masculine, 50 feminine and 50 gender-neutral, plus how names work across species and a homeworld wheel.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        body {
-            font-family: 'Exo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #e2e8f0;
-            margin: 0;
-            padding: 20px;
-            background: 
-                radial-gradient(ellipse at top, #000000 0%, #1a1a1a 40%, #2d2d2d 100%),
-                linear-gradient(135deg, #000000 0%, #0d1117 25%, #1c1c1c 50%, #2d2d2d 75%, #1a1a1a 100%);
-            color: #ffffff;
-            position: relative;
-            overflow-x: hidden;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 15% 85%, rgba(255, 255, 255, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.05) 0%, transparent 25%),
-                radial-gradient(circle at 45% 55%, rgba(255, 255, 255, 0.02) 0%, transparent 30%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(13, 17, 23, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 
-                0 0 50px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-        h1 {
-            text-align: center;
-            color: #ffffff;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-shadow: 
-                0 0 10px rgba(255, 255, 255, 0.5),
-                0 0 20px rgba(255, 255, 255, 0.3),
-                0 0 30px rgba(255, 255, 255, 0.1);
-            background: linear-gradient(45deg, #ffffff, #e6e6e6, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+
+
+
+
         h2 {
-            color: #ffffff;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 3px solid var(--border);
             padding-bottom: 10px;
             margin-top: 40px;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         .name-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 15px;
             margin: 20px 0;
         }
         .name-card {
-            background: linear-gradient(145deg, rgba(28, 28, 28, 0.8), rgba(45, 45, 45, 0.8));
             padding: 15px;
             border-radius: 10px;
-            border-left: 4px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 
-                0 2px 15px rgba(0,0,0,0.5),
+            border-left: 4px solid var(--border);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
             backdrop-filter: blur(5px);
         }
         .name-card:hover {
             transform: translateY(-3px);
-            box-shadow: 
-                0 8px 25px rgba(255, 255, 255, 0.1),
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border-left-color: rgba(255, 255, 255, 0.8);
-            background: linear-gradient(145deg, rgba(28, 28, 28, 0.9), rgba(45, 45, 45, 0.9));
+            border-left-color: var(--border);
         }
         .name {
             font-weight: bold;
-            color: #ffffff;
             font-size: 1.1em;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
         .origin {
             font-size: 0.9em;
-            color: #cccccc;
             font-style: italic;
         }
         .race-suggestion {
             font-size: 0.8em;
-            color: #aaaaaa;
+            color: var(--muted);
             margin-top: 5px;
         }
         .location-tag {
             background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-            color: white;
             padding: 3px 8px;
             border-radius: 15px;
             font-size: 0.7em;
             margin-top: 5px;
             display: inline-block;
             text-shadow: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border);
         }
         .force-tag {
             background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
-            color: white;
             padding: 2px 6px;
             border-radius: 10px;
             font-size: 0.6em;
             margin-left: 5px;
             display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--border);
         }
         .tips-section {
-            background: rgba(28, 28, 28, 0.6);
             padding: 20px;
             border-radius: 10px;
             margin: 30px 0;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--border);
             backdrop-filter: blur(10px);
         }
         .example-box {
             background: rgba(45, 45, 45, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid var(--border);
             border-radius: 8px;
             padding: 15px;
             margin: 15px 0;
@@ -165,15 +95,14 @@
         }
         .analogy-box {
             background: rgba(26, 26, 26, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.25);
+            border: 2px solid var(--border);
             border-radius: 8px;
             padding: 15px;
             margin: 15px 0;
             backdrop-filter: blur(5px);
         }
         .starwars-box {
-            background: rgba(35, 35, 35, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            border: 2px solid var(--border);
             border-radius: 8px;
             padding: 15px;
             margin: 15px 0;
@@ -184,41 +113,37 @@
             margin: 20px 0;
         }
         canvas {
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid var(--border);
             border-radius: 10px;
             max-width: 100%;
-            box-shadow: 
-                0 0 20px rgba(255, 255, 255, 0.2),
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
         .system-legend {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 10px;
             margin: 20px 0;
         }
         .system-item {
-            background: rgba(28, 28, 28, 0.7);
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border);
             text-align: center;
             backdrop-filter: blur(5px);
         }
         .imperial-text {
-            color: #ff4444;
+            color: var(--danger);
             text-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
         }
         .jedi-text {
-            color: #44ff44;
             text-shadow: 0 0 5px rgba(68, 255, 68, 0.5);
         }
         .sith-text {
-            color: #ff4444;
+            color: var(--danger);
             text-shadow: 0 0 5px rgba(255, 68, 68, 0.7);
         }
         .mandalorian-text {
-            color: #4488ff;
             text-shadow: 0 0 5px rgba(68, 136, 255, 0.5);
         }
         .stars {
@@ -232,7 +157,6 @@
         }
         .star {
             position: absolute;
-            background: white;
             border-radius: 50%;
             animation: twinkle 2s infinite alternate;
         }
@@ -243,31 +167,63 @@
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) h1 { background: linear-gradient(45deg, #222c35, #192027, #28333e); }
-        html:not(.light) .star { background: #222c35; color: #e2e8f0; }
+
+        html[data-theme="dark"] .star {
+            border-left: 5px solid var(--gold) !important;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        body :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .container { color: #e2e8f0; }
-        .container :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .name-card { color: #e2e8f0; }
-        .name-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .tips-section { color: #e2e8f0; }
-        .tips-section :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .system-item { color: #e2e8f0; }
-        .system-item :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        body :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .container {
+            
+        }
+        .container :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .name-card {
+            
+        }
+        .name-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .tips-section {
+            
+        }
+        .tips-section :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .system-item {
+            
+        }
+        .system-item :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .star { color: #1f2937; }
+        .star {
+            
+        }
+    
+        .force-tag { color: #fff !important; font-size: 0.75em; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="stars" id="starfield"></div>
-    
-    <div class="container" id="main" role="main">
-        <h1>⭐ 150 Star Wars RPG Character Names ⭐</h1>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>150 Character Names</h1>
+    </header>
+
+    <main id="main">
+
+<section>
         
         <div class="tips-section">
             <h2>🌌 A Galaxy Far, Far Away: Diverse Naming Traditions</h2>
@@ -291,43 +247,23 @@
 
         <div class="mermaid">
             graph TD
-                A[Star Wars Character Creation] --> B[Choose Species]
-                A --> C[Choose Background]
-                A --> D[Choose Homeworld]
-                A --> E[Choose Name]
-                E --> F[Consider Regional Origin]
-                E --> G[Cultural Affiliation]
-                E --> H[Force Sensitivity]
-                E --> I[Professional Identity]
-                F --> J[Core Worlds - Formal]
-                F --> K[Outer Rim - Practical]
-                F --> L[Mid Rim - Diverse]
-                G --> M[Imperial - Structured]
-                G --> N[Rebel - Codenames]
-                G --> O[Criminal - Aliases]
-                H --> P[Jedi - Mystical]
-                H --> Q[Sith - Dark]
-                H --> R[Force Tradition]
-                I --> S[Pilot Callsigns]
-                I --> T[Military Ranks]
-                I --> U[Merchant Names]
-                J --> V[Final Name Choice]
-                K --> V
-                L --> V
+                A[Choosing a Name] --> F[Regional Origin]
+                A --> G[Faction]
+                A --> H[Force Tradition]
+                A --> I[Profession]
+                F --> J[Core Worlds: formal&lt;br/&gt;Outer Rim: practical]
+                G --> M[Imperial: structured&lt;br/&gt;Rebel: codenames&lt;br/&gt;Criminal: aliases]
+                H --> P[Jedi: simple&lt;br/&gt;Sith: dark titles]
+                I --> S[Callsigns, ranks,&lt;br/&gt;trade names]
+                J --> V[Final Name]
                 M --> V
-                N --> V
-                O --> V
                 P --> V
-                Q --> V
-                R --> V
                 S --> V
-                T --> V
-                U --> V
         </div>
 
         <div class="canvas-container">
             <canvas id="starwarsWheel" width="550" height="550"></canvas>
-            <p><em>Galactic Origin Selector - Click to discover your character's homeworld!</em></p>
+            <p><em>Galactic origin wheel: click it (or press Enter) to pick a homeworld for your character.</em></p>
         </div>
 
         <h2>⚔️ Male Character Names (50)</h2>
@@ -445,13 +381,12 @@
         </div>
 
         <div class="mermaid">
-            pie title Star Wars Name Inspiration Sources
-                "Homeworld Culture" : 30
-                "Species Heritage" : 25
-                "Professional Identity" : 15
-                "Regional Origin" : 12
-                "Force Tradition" : 10
-                "Historical Era" : 8
+            graph LR
+                A[Homeworld culture] --> N[A name that fits]
+                B[Species heritage] --> N
+                C[Profession] --> N
+                D[Force tradition] --> N
+                E[Historical era] --> N
         </div>
 
         <div class="example-box">
@@ -459,7 +394,19 @@
             <p>In the Star Wars universe, the discovery of Force sensitivity often marks a fundamental change in identity. <span class="jedi-text">Jedi</span> traditionally leave their birth names behind, adopting new identities that reflect their spiritual journey. <span class="sith-text">Sith</span> similarly transform their names into titles of power and fear. This tradition of name-changing reflects the transformative nature of embracing the Force, whether for light or dark purposes.</p>
             <p>Even non-Force users may adopt new names when joining significant organizations like the Rebel Alliance or Imperial military, showing how the galaxy's conflicts shape personal identity.</p>
         </div>
-    </div>
+    </section>
+<section class="further-exploration page-wrap" data-generated="where-next">
+            <h2>Where to Go Next</h2>
+            <p>A name is a hook. These pages give it something to hang on:</p>
+            <ul>
+                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Attach the name to an actual character sheet.</li>
+                <li><strong><a href="/sw_100.html">75 Sample Characters</a>:</strong> Seventy-five pre-named characters, if you would rather borrow than invent.</li>
+                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Homeworld shapes naming more than species does. Build the world, get the name free.</li>
+                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Names carry weight in play — using the right one is a social move.</li>
+                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Villains especially benefit from a name players can repeat with dread.</li>
+            </ul>
+        </section>
+    </main>
 
     <script>
         // Create animated starfield
@@ -478,7 +425,7 @@
                 starfield.appendChild(star);
             }
         }
-        createStarfield();
+
 
         // Star Wars character name data with galactic diversity
         const maleNames = [
@@ -549,7 +496,7 @@
             {name: "Echo 'Stealth' Varro", origin: "Ord Mantell", race: "Human Operative", affiliation: "Rebel"},
             {name: "Lyra Starborn", origin: "Alderaan", race: "Human Princess", affiliation: "Rebel"},
             {name: "Vex'ara Nightblade", origin: "Dathomir", race: "Human Nightsister", affiliation: "Dark Side"},
-            {name: "Captain Rex Skyforge", origin: "Kamino", race: "Human Clone Commander", affiliation: "Republic"},
+            {name: "Captain Rex Skyforge", origin: "Kamino", race: "Human Republic Officer", affiliation: "Republic"},
             {name: "Zen'kyla Lightbringer", origin: "Mirial", race: "Mirialan Healer", affiliation: "Jedi"},
             {name: "Sage 'Quantum' Cross", origin: "Coruscant", race: "Human Scientist", affiliation: "Independent"},
             {name: "Kira Shadowstrike", origin: "Nar Shaddaa", race: "Human Bounty Hunter", affiliation: "Criminal"},
@@ -637,29 +584,29 @@
             {name: "Line 'Connection' Link", origin: "Core Worlds", race: "Any Comm Tech", affiliation: "Imperial"},
             {name: "Point 'Focus' Center", origin: "Jedha", race: "Any Mystic", affiliation: "Force User"},
             {name: "Edge 'Boundary' Limit", origin: "Outer Rim", race: "Any Frontier", affiliation: "Independent"},
-            {name: "Base 'Foundation' Root", origin: "Any World", race: "Any Class", affiliation: "Any"}
+            {name: "Base 'Foundation' Root", origin: "Any World", race: "Any Career", affiliation: "Any"}
         ];
 
         // Function to create name cards with galactic and affiliation tags
         function createNameCard(nameData) {
             const affiliationColors = {
-                'Imperial': '#ff4444',
-                'Rebel': '#44ff44',
-                'Republic': '#4488ff',
-                'Jedi': '#44ff44',
-                'Sith': '#ff4444',
-                'Mandalorian': '#4488ff',
-                'Criminal': '#ff8844',
-                'Independent': '#888888',
-                'Neutral': '#cccccc',
-                'Force User': '#44ffff',
-                'Dark Side': '#ff4444',
-                'Gray Jedi': '#8888ff',
-                'Unknown': '#666666',
-                'Any': '#999999'
+                'Imperial': '#b3261e',
+                'Rebel': '#1f7a3d',
+                'Republic': '#1d4f91',
+                'Jedi': '#1f7a3d',
+                'Sith': '#b3261e',
+                'Mandalorian': '#1d4f91',
+                'Criminal': '#a64600',
+                'Independent': '#555555',
+                'Neutral': '#555555',
+                'Force User': '#0e6e7a',
+                'Dark Side': '#b3261e',
+                'Gray Jedi': '#4b3fa0',
+                'Unknown': '#555555',
+                'Any': '#555555'
             };
             
-            const affiliationColor = affiliationColors[nameData.affiliation] || '#888888';
+            const affiliationColor = affiliationColors[nameData.affiliation] || '#555555';
             
             return `
                 <div class="name-card">
@@ -690,139 +637,143 @@
             'Bespin', 'Yavin 4', 'Nar Shaddaa', 'Outer Rim'
         ];
         const systemColors = [
-            '#ffffff', '#ffaa44', '#4488ff', '#44ff88', 
-            '#8844ff', '#ff8844', '#888888', '#44ffff',
-            '#88ff44', '#4488aa', '#aa4444', '#aaaaff',
-            '#ffaaaa', '#44aa44', '#aa8844', '#666666'
+            '#1f4e8c', '#8a4b0f', '#2e6b30', '#6a2c8a',
+            '#9b2226', '#0f5f66', '#4a4e57', '#7a2e5c',
+            '#3f5f12', '#1d4f6e', '#8c3a1b', '#3b3f8f',
+            '#6b4a12', '#155e45', '#7d2340', '#384250'
         ];
+        const caption = canvas.nextElementSibling;
+        if (caption) caption.setAttribute('aria-live', 'polite');
+        canvas.setAttribute('tabindex', '0');
+        canvas.setAttribute('role', 'button');
+        canvas.setAttribute('aria-label', 'Spin the galactic origin wheel');
 
-        function drawStarWarsWheel() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function drawStarWarsWheel(highlight) {
             const centerX = canvas.width / 2;
             const centerY = canvas.height / 2;
-            const radius = 240;
-            
-            // Draw space background with gradient
-            const bgGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
-            bgGradient.addColorStop(0, '#1a1a1a');
-            bgGradient.addColorStop(1, '#000000');
-            ctx.fillStyle = bgGradient;
+            const radius = 230;
+            const slice = (2 * Math.PI) / systems.length;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Light panel behind the wheel
+            ctx.fillStyle = '#f4f6fa';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw distant stars
-            for (let i = 0; i < 150; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                const size = Math.random() * 1.5 + 0.5;
-                ctx.beginPath();
-                ctx.arc(x, y, size, 0, 2 * Math.PI);
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.7 + 0.3})`;
-                ctx.fill();
-            }
-            
+
             ctx.save();
             ctx.translate(centerX, centerY);
             ctx.rotate(rotation);
-            
             for (let i = 0; i < systems.length; i++) {
-                const startAngle = (i * 2 * Math.PI) / systems.length;
-                const endAngle = ((i + 1) * 2 * Math.PI) / systems.length;
-                
-                // Draw sector
+                const startAngle = i * slice;
+                const endAngle = startAngle + slice;
                 ctx.beginPath();
+                ctx.moveTo(0, 0);
                 ctx.arc(0, 0, radius, startAngle, endAngle);
-                ctx.lineTo(0, 0);
-                ctx.fillStyle = systemColors[i] + '40';
+                ctx.closePath();
+                ctx.fillStyle = systemColors[i];
                 ctx.fill();
-                ctx.strokeStyle = systemColors[i];
-                ctx.lineWidth = 2;
+                ctx.strokeStyle = (i === highlight) ? '#ffd23f' : '#ffffff';
+                ctx.lineWidth = (i === highlight) ? 5 : 2;
                 ctx.stroke();
-                
-                // Add subtle glow
+
+                // System name, kept upright on the left half of the wheel
                 ctx.save();
-                ctx.globalCompositeOperation = 'lighter';
-                ctx.beginPath();
-                ctx.arc(0, 0, radius, startAngle, endAngle);
-                ctx.lineTo(0, 0);
-                ctx.fillStyle = systemColors[i] + '20';
-                ctx.fill();
-                ctx.restore();
-                
-                // Draw system name
-                ctx.save();
-                ctx.rotate(startAngle + (endAngle - startAngle) / 2);
+                const mid = startAngle + slice / 2;
+                ctx.rotate(mid);
+                const worldAngle = ((mid + rotation) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+                const flip = worldAngle > Math.PI / 2 && worldAngle < 3 * Math.PI / 2;
+                ctx.translate(radius * 0.66, 0);
+                if (flip) ctx.rotate(Math.PI);
                 ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 11px Arial';
+                ctx.font = 'bold 14px Arial, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.shadowColor = '#000000';
-                ctx.shadowBlur = 3;
-                ctx.fillText(systems[i], radius * 0.75, 0);
+                ctx.textBaseline = 'middle';
+                ctx.fillText(systems[i], 0, 0);
                 ctx.restore();
             }
-            
             ctx.restore();
-            
-            // Draw Imperial-style pointer
+
+            // Centre hub
             ctx.beginPath();
-            ctx.moveTo(centerX + radius + 25, centerY);
-            ctx.lineTo(centerX + radius + 50, centerY - 18);
-            ctx.lineTo(centerX + radius + 50, centerY + 18);
-            ctx.closePath();
-            ctx.fillStyle = '#ffffff';
+            ctx.arc(centerX, centerY, 34, 0, 2 * Math.PI);
+            ctx.fillStyle = '#1b1f2a';
             ctx.fill();
-            ctx.strokeStyle = '#888888';
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 13px Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SPIN', centerX, centerY);
+
+            // Pointer on the right edge, pointing at the wheel
+            ctx.beginPath();
+            ctx.moveTo(centerX + radius - 6, centerY);
+            ctx.lineTo(centerX + radius + 28, centerY - 16);
+            ctx.lineTo(centerX + radius + 28, centerY + 16);
+            ctx.closePath();
+            ctx.fillStyle = '#1b1f2a';
+            ctx.fill();
+            ctx.strokeStyle = '#ffd23f';
             ctx.lineWidth = 2;
             ctx.stroke();
-            
-            // Add glow to pointer
-            ctx.shadowColor = '#ffffff';
-            ctx.shadowBlur = 8;
-            ctx.fill();
-            ctx.shadowBlur = 0;
+        }
+
+        // Which sector sits under the pointer (angle 0, the right-hand side)
+        function sectorUnderPointer() {
+            const slice = (2 * Math.PI) / systems.length;
+            const a = ((-rotation) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+            return Math.floor(a / slice) % systems.length;
         }
 
         function spinStarWarsWheel() {
             if (spinning) return;
             spinning = true;
-            
+            if (caption) caption.textContent = 'Spinning…';
+
             const spinAmount = Math.random() * 18 + 25;
             const spinDuration = 6000;
             const startTime = Date.now();
-            
+
             function animate() {
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / spinDuration, 1);
                 const easing = 1 - Math.pow(1 - progress, 3);
-                
+
                 rotation += (spinAmount * (1 - easing)) * 0.05;
-                drawStarWarsWheel();
-                
+
                 if (progress < 1) {
+                    drawStarWarsWheel();
                     requestAnimationFrame(animate);
                 } else {
                     spinning = false;
-                    const finalSystem = systems[Math.floor(((rotation % (2 * Math.PI)) / (2 * Math.PI)) * systems.length)];
-                    alert(`⭐ Your character's homeworld: ${finalSystem}! May the Force guide your naming choice.`);
+                    const idx = sectorUnderPointer();
+                    drawStarWarsWheel(idx);
+                    if (caption) {
+                        caption.textContent = '';
+                        const em = document.createElement('em');
+                        em.textContent = 'Your character\'s homeworld: ' + systems[idx] + '. Click or press Enter to spin again.';
+                        caption.appendChild(em);
+                    }
                 }
             }
-            
+
             animate();
         }
 
         canvas.addEventListener('click', spinStarWarsWheel);
+        canvas.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinStarWarsWheel(); }
+        });
         drawStarWarsWheel();
     </script>
 
-        <section class="further-exploration page-wrap" data-generated="where-next">
-            <h2>Where to Go Next</h2>
-            <p>A name is a hook. These pages give it something to hang on:</p>
-            <ul>
-                <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Attach the name to an actual character sheet.</li>
-                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A hundred pre-named characters, if you would rather borrow than invent.</li>
-                <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Homeworld shapes naming more than species does. Build the world, get the name free.</li>
-                <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Names carry weight in play — using the right one is a social move.</li>
-                <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Villains especially benefit from a name players can repeat with dread.</li>
-            </ul>
-        </section>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/sw_100.html">75 Sample Characters</a>
+    <a class="next" href="/sw_groups.html">Crews &amp; Group Dynamics</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

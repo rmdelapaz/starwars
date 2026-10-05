@@ -3,118 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mastering Social Encounters and Cantina Scenes in Star Wars RPG</title>
-    <meta name="description" content="Cantina negotiations, underworld deals and charm checks — running social scenes in Star Wars RPG.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Mastering Social Encounters and Cantina Scenes in Star Wars RPG">
-    <meta property="og:description" content="Cantina negotiations, underworld deals and charm checks — running social scenes in Star Wars RPG.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Social Encounters - The Star Wars RPG Guide</title>
+    <meta name="description" content="Social encounters in the Star Wars RPG: cantina scenes, opposed social checks, strain as social damage, information trading and negotiation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .cantina-atmosphere { background: linear-gradient(135deg, #8B4513, #CD853F, #DEB887); padding: 30px; border-radius: 15px; color: #2F1B14; margin: 20px 0; position: relative; overflow: hidden; }
-        .cantina-atmosphere::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, rgba(139,69,19,0.1) 0px, rgba(139,69,19,0.1) 2px, transparent 2px, transparent 10px); }
-        .cantina-atmosphere * { position: relative; z-index: 2; }
-        .patron-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
-        .patron-card { background: #2c3e50; color: white; padding: 20px; border-radius: 15px; position: relative; overflow: hidden; transition: transform 0.3s; }
-        .patron-card:hover { transform: translateY(-5px); }
-        .patron-card.smuggler { background: linear-gradient(135deg, #34495e, #2c3e50); }
-        .patron-card.bounty-hunter { background: linear-gradient(135deg, #8b0000, #dc143c); }
-        .patron-card.merchant { background: linear-gradient(135deg, #b8860b, #daa520); color: #2F1B14; }
-        .patron-card.information-broker { background: linear-gradient(135deg, #4b0082, #8a2be2); }
-        .social-mechanics { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
-        .conversation-builder { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
-        .dialogue-simulator { background: #000; color: #00ff00; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .simulator-screen { min-height: 300px; border: 1px solid #00ff00; padding: 15px; margin: 10px 0; overflow-y: auto; }
-        .control-panel { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .control-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .control-btn:hover { background: #0056b3; }
-        .control-btn.active { background: #28a745; }
-        .tension-tracker { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .reputation-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .reputation-card { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
-        .information-economy { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
-        .exercise-tavern { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .scene-template { background: #e6f3ff; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #007bff; }
-        .mood-lighting { position: relative; padding: 20px; margin: 20px 0; border-radius: 10px; }
-        .mood-low { background: linear-gradient(135deg, #2c3e50, #34495e); color: white; }
-        .mood-medium { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; }
-        .mood-high { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
-        .species-interactions { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .species-card { background: #fff; padding: 15px; border-radius: 8px; border: 2px solid #28a745; }
-        .cantina-builder { text-align: center; margin: 20px 0; }
-        .jukebox { background: radial-gradient(circle, #ff6b6b, #4ecdc4); padding: 20px; border-radius: 15px; margin: 20px 0; color: white; }
-        .music-controls { display: flex; justify-content: center; gap: 15px; margin: 15px 0; }
-        .music-btn { padding: 10px 20px; background: rgba(255,255,255,0.2); border: 2px solid white; border-radius: 25px; color: white; cursor: pointer; transition: all 0.3s; }
-        .music-btn:hover { background: rgba(255,255,255,0.4); transform: scale(1.05); }
+        .cantina-atmosphere {
+            border-left: 5px solid var(--accent) !important;
+            padding: 30px;
+            border-radius: 15px;
+            color: var(--danger);
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .cantina-atmosphere::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg, rgba(139,69,19,0.1) 0px, rgba(139,69,19,0.1) 2px, transparent 2px, transparent 10px);
+        }
+        .cantina-atmosphere * {
+            position: relative;
+            z-index: 2;
+        }
+        .patron-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .patron-card {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .patron-card:hover {
+            transform: translateY(-5px);
+        }
+        .patron-card.smuggler {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .patron-card.bounty-hunter {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .patron-card.merchant {
+            border-left: 5px solid var(--accent) !important;
+            color: var(--danger);
+        }
+        .patron-card.information-broker {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .social-mechanics {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #007bff;
+        }
+        .conversation-builder {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .dialogue-simulator {
+            border-left: 5px solid var(--gold) !important;
+            font-family: monospace;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .simulator-screen {
+            min-height: 300px;
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin: 10px 0;
+            overflow-y: auto;
+        }
+        .control-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .control-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .control-btn:hover {
+            background: #0056b3 !important;
+            color: #fff;
+        }
+        .control-btn.active {
+            background: #1f8336 !important;
+            color: #fff;
+        }
+        .tension-tracker {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .reputation-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .reputation-card {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #4a90e2;
+        }
+        .information-economy {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #dc3545;
+        }
+        .exercise-tavern {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .scene-template {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        .mood-lighting {
+            position: relative;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        .mood-low {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .mood-medium {
+            border-left: 5px solid var(--accent) !important;
+        }
+        .mood-high {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .species-interactions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .species-card {
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #28a745;
+        }
+        .cantina-builder {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .jukebox {
+            border-left: 5px solid var(--danger) !important;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .music-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .music-btn:hover {
+            background: rgba(255,255,255,0.4);
+            transform: scale(1.05);
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .cantina-atmosphere { background: linear-gradient(135deg, #8B4513, #CD853F, #432e14); color: #e2e8f0; }
-        html:not(.light) .patron-card.merchant { background: linear-gradient(135deg, #b8860b, #433614); color: #e2e8f0; }
-        html:not(.light) .social-mechanics { background: #1e2b38; color: #e2e8f0; }
-        html:not(.light) .conversation-builder { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
-        html:not(.light) .tension-tracker { background: #1a3c1a; color: #e2e8f0; }
-        html:not(.light) .reputation-card { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .information-economy { background: #431418; color: #e2e8f0; }
-        html:not(.light) .exercise-tavern { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
-        html:not(.light) .scene-template { background: #142c43; color: #e2e8f0; }
-        html:not(.light) .species-card { background: #222c35; color: #e2e8f0; }
-        html:not(.light) .music-btn { border: 2px solid #44576a; }
+        html[data-theme="dark"] .cantina-atmosphere {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .patron-card.merchant {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .social-mechanics {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .conversation-builder {
+            border: 2px solid #866f27;
+        }
+        html[data-theme="dark"] .tension-tracker {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .reputation-card {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .information-economy {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .exercise-tavern {
+            border: 2px solid #297885;
+        }
+        html[data-theme="dark"] .scene-template {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .species-card {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .music-btn {
+            border: 2px solid #44576a;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .patron-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .patron-card.smuggler { color: #e2e8f0; }
-        .patron-card.smuggler :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .patron-card.bounty-hunter { color: #e2e8f0; }
-        .patron-card.bounty-hunter :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .patron-card.information-broker { color: #e2e8f0; }
-        .patron-card.information-broker :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .dialogue-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .mood-low :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .mood-high :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .patron-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .patron-card.smuggler {
+            
+        }
+        .patron-card.smuggler :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .patron-card.bounty-hunter {
+            
+        }
+        .patron-card.bounty-hunter :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .patron-card.information-broker {
+            
+        }
+        .patron-card.information-broker :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .dialogue-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .mood-low :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .mood-high :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .control-btn { background: #0071eb; }
-        .control-btn.active { background: #208637; }
-        .mood-medium { background: linear-gradient(135deg, #ab6c09, #a45713); }
-        .jukebox { background: radial-gradient(circle, #ff1a1a, #2c9e95); }
+        .control-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .control-btn.active {
+            background: #208637 !important;
+            color: #fff;
+        }
+        .mood-medium {
+            border-left: 5px solid var(--accent) !important;
+        }
+        .jukebox {
+            border-left: 5px solid var(--danger) !important;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .social-mechanics { color: #1f2937; }
-        .conversation-builder { color: #1f2937; }
-        .tension-tracker { color: #1f2937; }
-        .reputation-card { color: #1f2937; }
-        .information-economy { color: #1f2937; }
-        .exercise-tavern { color: #1f2937; }
-        .scene-template { color: #1f2937; }
-        .species-card { color: #1f2937; }
+        .social-mechanics {
+            
+        }
+        .conversation-builder {
+            
+        }
+        .tension-tracker {
+            
+        }
+        .reputation-card {
+            
+        }
+        .information-economy {
+            
+        }
+        .exercise-tavern {
+            
+        }
+        .scene-template {
+            
+        }
+        .species-card {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .control-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .control-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .control-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Mastering Social Encounters and Cantina Scenes</h1>
-        <p><em>"Mos Eisley cantina. You will never find a more wretched hive of scum and villainy. We must be cautious." - Obi-Wan Kenobi</em></p>
+        <h1>Social Encounters</h1>
+        <p>How to run cantina scenes, negotiations and other conversations that matter, with the dice doing real work.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
             <div class="cantina-atmosphere">
-                <h2>Welcome to the Social Hub Academy</h2>
+                <h2>Why Cantinas Matter</h2>
                 <p>Cantinas in Star Wars aren't just places to buy drinks - they're crossroads of the galaxy where information flows like ale, deals are struck in shadowy booths, and heroes meet the contacts who will change their destiny. These social encounters are where your campaign's personality truly shines, where NPCs come alive, and where players learn that sometimes the right word is more powerful than a lightsaber.</p>
                 
                 <p>Think of cantinas as the galaxy's living rooms - places where the formal structures of civilization relax and reveal the raw humanity (and alienity) beneath. Here, Imperial officers drink beside smugglers, Jedi hide among bounty hunters, and the fate of worlds is decided over rounds of Corellian ale.</p>
@@ -125,7 +348,7 @@
             <h2>The Architecture of Social Encounters</h2>
             
             <div class="mermaid">
-                graph TD
+                graph LR
                     A[Social Encounter] --> B[Atmosphere & Setting]
                     A --> C[Character Motivations]
                     A --> D[Information Exchange]
@@ -223,16 +446,11 @@
                 <h3>The Conversation Framework</h3>
                 
                 <div class="mermaid">
-                    graph LR
-                        A[Opening Gambit] --> B[Feeling Out]
-                        B --> C[Information Exchange]
-                        C --> D[Negotiation/Conflict]
-                        D --> E[Resolution/Hook]
-                        
-                        A1[Set tone<br/>Establish relationship] --> B1[Test trustworthiness<br/>Assess motivations]
-                        B1 --> C1[Share information<br/>Make requests]
-                        C1 --> D1[Handle disagreements<br/>Find common ground]
-                        D1 --> E1[Reach agreement<br/>Plant future seeds]
+                    graph TD
+                        A["Opening Gambit&lt;br/&gt;Set the tone, establish the relationship"] --> B["Feeling Out&lt;br/&gt;Test trust, assess motives"]
+                        B --> C["Information Exchange&lt;br/&gt;Share information, make requests"]
+                        C --> D["Negotiation or Conflict&lt;br/&gt;Handle disagreement, find common ground"]
+                        D --> E["Resolution or Hook&lt;br/&gt;Reach agreement, plant future seeds"]
                 </div>
 
                 <h4>Conversation Techniques That Bring NPCs to Life</h4>
@@ -278,21 +496,21 @@
         </section>
 
         <section class="social-as-combat">
-            <h2>💬 Social Conflict Runs on Strain</h2>
-            <p>Everything above is about making conversations <em>interesting</em>. This section is about making them <em>mechanical</em> — because the system already contains a full structure for social conflict, and most tables never use it, defaulting instead to a single Charm check that decides everything.</p>
+            <h2>💬 Running Social Conflict with Strain</h2>
+            <p>Everything above is about making conversations <em>interesting</em>. This section is about making them <em>mechanical</em>. The rules already give you the parts: social skills are rolled as opposed checks (the target's resisting skill sets the Difficulty), Advantage and Threat colour the outcome, and several talents inflict or recover strain through words alone. Most tables still default to a single Charm check that decides everything. What follows is a way to build those parts into a longer scene.</p>
 
             <h3>The Core Idea</h3>
-            <p>A social encounter can be run exactly like a fight, with one substitution: <strong>strain replaces wounds</strong>. Arguments, threats, appeals and flattery inflict strain rather than injury. Someone who exceeds their strain threshold in a social conflict is not hurt — they are worn down. They concede, storm out, agree to something they will regret, or simply stop resisting.</p>
-            <p>This is the same strain track described in <a href="/sw_combat.html">Combat Mechanics</a>, which produces an excellent knock-on effect: a character who has spent the afternoon being interrogated arrives at the evening's firefight with less in reserve. The two halves of the game connect.</p>
+            <p>This is a GM technique rather than a rule printed in the core books: run an important social encounter like a fight, with one substitution, <strong>strain replaces wounds</strong>. Arguments, threats, appeals and flattery inflict strain rather than injury. Someone who exceeds their strain threshold in a social conflict is not hurt — they are worn down. They concede, storm out, agree to something they will regret, or simply stop resisting.</p>
+            <p>This is the same strain track described in <a href="/sw_combat.html">Combat &amp; Conflict</a>, which produces an excellent knock-on effect: a character who has spent the afternoon being interrogated arrives at the evening's firefight with less in reserve. The two halves of the game connect.</p>
 
             <h3>Social Weapons and Social Armour</h3>
             <table>
-                <thead><tr><th>Approach</th><th>Skill</th><th>Works best against</th></tr></thead>
+                <thead><tr><th>Skill</th><th>Characteristic</th><th>Works best against</th></tr></thead>
                 <tbody>
                     <tr><td><strong>Charm</strong></td><td>Presence</td><td>The receptive, the lonely, the flattered — resisted with Cool</td></tr>
                     <tr><td><strong>Negotiation</strong></td><td>Presence</td><td>Anyone with an interest to trade — resisted with Negotiation or Cool</td></tr>
                     <tr><td><strong>Coercion</strong></td><td>Willpower</td><td>The frightened and the outmatched — resisted with Discipline</td></tr>
-                    <tr><td><strong>Deception</strong></td><td>Cunning</td><td>The trusting and the distracted — resisted with Discipline or Vigilance</td></tr>
+                    <tr><td><strong>Deception</strong></td><td>Cunning</td><td>The trusting and the distracted — resisted with Discipline</td></tr>
                     <tr><td><strong>Leadership</strong></td><td>Presence</td><td>Those who already accept your authority — rallying rather than persuading</td></tr>
                 </tbody>
             </table>
@@ -301,15 +519,15 @@
             <h3>Making It Last More Than One Roll</h3>
             <p>The reason most social scenes collapse into a single check is that nothing forces a second one. Fix that the way combat does — by giving the encounter a shape:</p>
             <ol>
-                <li><strong>Set a threshold, not a difficulty.</strong> "Three net successes across the conversation" turns one roll into a scene with momentum, reversals and a chance for several characters to contribute.</li>
+                <li><strong>Set a threshold, not a difficulty.</strong> "Three net Successes in total across the conversation" turns one roll into a scene with momentum, reversals and a chance for several characters to contribute.</li>
                 <li><strong>Let the NPC push back.</strong> They inflict strain too. A hostile official wears down the party's patience just as the party wears down theirs.</li>
-                <li><strong>Spend Advantage on position, not just outcome.</strong> Advantage in conversation buys you a name, a tell, a moment of doubt — see the spend menu in <a href="/sw_adv_dice.html">Advanced Dice</a>.</li>
+                <li><strong>Spend Advantage on position, not just outcome.</strong> Advantage in conversation buys you a name, a tell, a moment of doubt — see <a href="/sw_adv_dice.html">Reading the Narrative Dice</a>.</li>
                 <li><strong>Let failure change the relationship</strong> rather than ending the scene. Nobody enjoys "you failed, they say no." Try "they agree, but now they know exactly how badly you needed it."</li>
             </ol>
 
             <h3>When Not to Use This</h3>
             <p>Structured social conflict is a tool for scenes that genuinely matter — the negotiation the arc turns on, the interrogation, the standoff. Do not run it for buying supplies or asking directions; there, a single check or simply saying yes is correct. Reaching for the full structure every time is the fastest way to make players dread talking to anyone.</p>
-            <p>One caution worth stating explicitly: these mechanics point at <em>NPCs</em>. Using Coercion or Deception on another player's character should always be a conversation between the players first, never a dice roll that removes someone's agency without warning. See the safety-tools discussion in <a href="/starwars_rpg_foundations.html">RPG Foundations</a>.</p>
+            <p>One caution worth stating explicitly: these mechanics point at <em>NPCs</em>. Using Coercion or Deception on another player's character should always be a conversation between the players first, never a dice roll that removes someone's agency without warning. See the safety-tools discussion in <a href="/starwars_rpg_foundations.html">Campaign Foundations</a>.</p>
         </section>
 
         <section class="information-economy">
@@ -443,13 +661,13 @@
                     <button class="control-btn" onclick="addPatron()">Add Patron</button>
                     <button class="control-btn" onclick="clearCantina()">Clear Layout</button>
                 </div>
-                <p><em>Click elements to interact! Design the perfect cantina for your scene.</em></p>
+                <p><em>Add pieces to sketch a cantina floor plan, then click a piece for a scene prompt.</em></p>
             </div>
         </section>
 
         <section class="exercises">
             <div class="exercise-tavern">
-                <h3>Social Encounter Workshops</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: The Perfect Patron</h4>
                 <p>Create a cantina regular with these elements:</p>
@@ -512,17 +730,13 @@
             <p>Social scenes connect outward faster than combat does:</p>
             <ul>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> The people on the other side of the table in these conversations.</li>
-                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> Spending Advantage and Threat in conversation, where the effects are subtler.</li>
+                <li><strong><a href="/sw_adv_dice.html">Reading the Narrative Dice</a>:</strong> Spending Advantage and Threat in conversation, where the effects are subtler.</li>
                 <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Scaling a cantina negotiation up to a senate floor.</li>
-                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Getting names and forms of address right — a social move in itself.</li>
-                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> Someone to fill the next barstool when players talk to a stranger.</li>
+                <li><strong><a href="/sw_names.html">150 Character Names</a>:</strong> Getting names and forms of address right — a social move in itself.</li>
+                <li><strong><a href="/sw_100.html">75 Sample Characters</a>:</strong> Someone to fill the next barstool when players talk to a stranger.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"This little one's not worth the effort. Come, let me get you something." - Obi-Wan Kenobi (demonstrating how the right words can defuse any cantina situation)</em></p>
-    </footer>
 
     <script>
         // Patron Generator Data
@@ -537,7 +751,7 @@
         const rumors = [
             "Imperial patrol schedules have changed - someone's tipped them off about rebel activity",
             "Abandoned ship spotted in the Kessel system, but the hyperlane's been blockaded",
-            "Corporate executive is looking for 'discrete individuals' for a high-paying job",
+            "Corporate executive is looking for 'discreet individuals' for a high-paying job",
             "Strange lights seen near the old temple ruins on Yavin 4",
             "Bounty on a missing protocol droid has been posted by a mysterious benefactor",
             "Shipment of rare crystals went missing between Christophsis and Coruscant",
@@ -598,7 +812,8 @@
         }
 
         function updateCantinaDisplay(content) {
-            document.getElementById('cantinaDisplay').innerHTML = content.replace(/\n/g, '<br>');
+            const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            document.getElementById('cantinaDisplay').innerHTML = esc(content).replace(/\n/g, '<br>');
         }
 
         // Music System
@@ -613,27 +828,36 @@
             const description = musicMoods[mood];
             document.getElementById('musicDescription').textContent = description;
             
-            // Visual feedback
-            document.querySelectorAll('.music-btn').forEach(btn => btn.style.background = 'rgba(255,255,255,0.2)');
-            event.target.style.background = 'rgba(255,255,255,0.6)';
+            // Visual feedback: outline the chosen mood (keeps the label's contrast intact in both themes)
+            const chosen = window.event && window.event.target && window.event.target.closest('.music-btn');
+            document.querySelectorAll('.music-btn').forEach(btn => { btn.style.outline = ''; });
+            if (chosen) chosen.style.outline = '3px solid #c9a227';
         }
 
         // Cantina Layout Builder
         const layoutCanvas = document.getElementById('cantinaLayout');
         const layoutCtx = layoutCanvas.getContext('2d');
+        const layoutCaption = layoutCanvas.closest('.cantina-builder').querySelector('p em');
         
         let cantinaElements = [];
         let elementId = 0;
+
+        const scenePrompts = {
+            Table: 'A table: who is sitting here, and what are they pretending not to discuss?',
+            Bar: 'The bar: the bartender hears everything. What will they sell, and to whom?',
+            Stage: 'The stage: the band covers a quiet conversation, until the song ends.',
+            Patron: 'A patron: what do they want from the party, and what are they afraid of?'
+        };
 
         function drawCantinaLayout() {
             layoutCtx.clearRect(0, 0, layoutCanvas.width, layoutCanvas.height);
             
             // Background
-            layoutCtx.fillStyle = '#8B4513';
+            layoutCtx.fillStyle = '#fbf8f2';
             layoutCtx.fillRect(0, 0, layoutCanvas.width, layoutCanvas.height);
             
-            // Floor pattern
-            layoutCtx.fillStyle = '#A0522D';
+            // Floor pattern (subtle, so labels stay readable)
+            layoutCtx.fillStyle = '#efe2cc';
             for (let x = 0; x < layoutCanvas.width; x += 40) {
                 for (let y = 0; y < layoutCanvas.height; y += 40) {
                     if ((x/40 + y/40) % 2 === 0) {
@@ -642,15 +866,36 @@
                 }
             }
             
+            if (cantinaElements.length === 0) {
+                layoutCtx.fillStyle = '#4a3b2a';
+                layoutCtx.font = '16px Arial';
+                layoutCtx.textAlign = 'center';
+                layoutCtx.fillText('Empty floor: use the buttons below to add pieces.', layoutCanvas.width / 2, layoutCanvas.height / 2);
+                return;
+            }
+            
             // Draw elements
             cantinaElements.forEach(element => {
                 layoutCtx.fillStyle = element.color;
-                layoutCtx.fillRect(element.x - element.width/2, element.y - element.height/2, element.width, element.height);
-                
-                layoutCtx.fillStyle = '#000';
-                layoutCtx.font = '12px Arial';
-                layoutCtx.textAlign = 'center';
-                layoutCtx.fillText(element.type, element.x, element.y + 4);
+                layoutCtx.strokeStyle = '#4a3b2a';
+                layoutCtx.lineWidth = 1.5;
+                if (element.type === 'Patron') {
+                    layoutCtx.beginPath();
+                    layoutCtx.arc(element.x, element.y, element.width / 2, 0, Math.PI * 2);
+                    layoutCtx.fill();
+                    layoutCtx.stroke();
+                    layoutCtx.fillStyle = '#1a1a1a';
+                    layoutCtx.font = '11px Arial';
+                    layoutCtx.textAlign = 'center';
+                    layoutCtx.fillText('Patron', element.x, element.y + element.height / 2 + 12);
+                } else {
+                    layoutCtx.fillRect(element.x - element.width/2, element.y - element.height/2, element.width, element.height);
+                    layoutCtx.strokeRect(element.x - element.width/2, element.y - element.height/2, element.width, element.height);
+                    layoutCtx.fillStyle = '#1a1a1a';
+                    layoutCtx.font = '12px Arial';
+                    layoutCtx.textAlign = 'center';
+                    layoutCtx.fillText(element.type, element.x, element.y + 4);
+                }
             });
         }
 
@@ -662,7 +907,7 @@
                 y: Math.random() * (layoutCanvas.height - 100) + 50,
                 width: 60,
                 height: 40,
-                color: '#8B4513'
+                color: '#e0b07a'
             });
             drawCantinaLayout();
         }
@@ -675,7 +920,7 @@
                 y: Math.random() * (layoutCanvas.height - 80) + 40,
                 width: 120,
                 height: 30,
-                color: '#654321'
+                color: '#c9a27a'
             });
             drawCantinaLayout();
         }
@@ -688,7 +933,7 @@
                 y: Math.random() * (layoutCanvas.height - 60) + 30,
                 width: 80,
                 height: 50,
-                color: '#DAA520'
+                color: '#f2d36b'
             });
             drawCantinaLayout();
         }
@@ -697,35 +942,49 @@
             cantinaElements.push({
                 id: elementId++,
                 type: 'Patron',
-                x: Math.random() * (layoutCanvas.width - 20) + 10,
-                y: Math.random() * (layoutCanvas.height - 20) + 10,
+                x: Math.random() * (layoutCanvas.width - 40) + 20,
+                y: Math.random() * (layoutCanvas.height - 50) + 15,
                 width: 20,
                 height: 20,
-                color: '#FF6347'
+                color: '#f4a08c'
             });
             drawCantinaLayout();
         }
 
         function clearCantina() {
             cantinaElements = [];
+            if (layoutCaption) layoutCaption.textContent = 'Add pieces to sketch a cantina floor plan, then click a piece for a scene prompt.';
             drawCantinaLayout();
         }
 
         layoutCanvas.addEventListener('click', (e) => {
             const rect = layoutCanvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            // Convert from on-screen size to canvas coordinates (the canvas may be scaled down)
+            const x = (e.clientX - rect.left) * layoutCanvas.width / rect.width;
+            const y = (e.clientY - rect.top) * layoutCanvas.height / rect.height;
             
-            cantinaElements.forEach(element => {
+            // Topmost element under the pointer wins
+            for (let i = cantinaElements.length - 1; i >= 0; i--) {
+                const element = cantinaElements[i];
                 if (x >= element.x - element.width/2 && x <= element.x + element.width/2 &&
                     y >= element.y - element.height/2 && y <= element.y + element.height/2) {
-                    alert(`${element.type} - This could be where important conversations happen!`);
+                    if (layoutCaption) layoutCaption.textContent = scenePrompts[element.type];
+                    return;
                 }
-            });
+            }
         });
 
         // Initialize
         drawCantinaLayout();
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_force_powers.html">Running Force Users</a>
+    <a class="next" href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>
+</div>
+        <p class="closing-quote">"This little one's not worth the effort. Come, let me get you something." - Obi-Wan Kenobi (seconds before the lightsaber came out: have a plan for when the right words fail)</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

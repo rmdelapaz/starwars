@@ -3,134 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Running Epic Ground Combat in Star Wars RPG</title>
-    <meta name="description" content="Tactical ground encounters, cover mechanics and cinematic battlefield set pieces for Star Wars RPG.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Running Epic Ground Combat in Star Wars RPG">
-    <meta property="og:description" content="Tactical ground encounters, cover mechanics and cinematic battlefield set pieces for Star Wars RPG.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Running Ground Combat - The Star Wars RPG Guide</title>
+    <meta name="description" content="Running ground combat in the Star Wars RPG: initiative slots, range bands, cover, terrain, unit types and keeping big battles readable.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .battlefield { background: linear-gradient(135deg, #2c3e50, #4a6741, #8b7355); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
-        .battlefield::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 20px); }
-        .battlefield * { position: relative; z-index: 2; }
-        .combat-theater { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .theater-card { padding: 20px; border-radius: 15px; color: white; position: relative; overflow: hidden; }
-        .theater-card.urban { background: linear-gradient(135deg, #5a6c7d, #34495e); }
-        .theater-card.forest { background: linear-gradient(135deg, #27ae60, #1e8449); }
-        .theater-card.desert { background: linear-gradient(135deg, #f39c12, #d68910); }
-        .theater-card.industrial { background: linear-gradient(135deg, #85929e, #566573); }
-        .tactical-overlay { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
-        .unit-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
-        .unit-card { background: #343a40; color: white; padding: 15px; border-radius: 10px; text-align: center; }
-        .unit-card.infantry { border-left: 4px solid #28a745; }
-        .unit-card.vehicle { border-left: 4px solid #ffc107; }
-        .unit-card.hero { border-left: 4px solid #dc3545; }
-        .unit-card.support { border-left: 4px solid #17a2b8; }
-        .battlemap-builder { background: #000; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
-        .map-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; justify-content: center; }
-        .map-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
-        .map-btn:hover { background: #0056b3; transform: translateY(-2px); }
-        .map-btn.terrain { background: #28a745; }
-        .map-btn.cover { background: #ffc107; color: #000; }
-        .map-btn.objective { background: #dc3545; }
-        .initiative-tracker { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .combat-simulator { background: #2c3e50; color: #ecf0f1; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .simulator-screen { min-height: 300px; border: 1px solid #3498db; padding: 15px; margin: 10px 0; overflow-y: auto; }
-        .action-economy { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
-        .environmental-hazards { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
-        .exercise-barracks { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .cover-system { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .cover-type { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
-        .narrative-integration { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .vehicle-showcase { background: radial-gradient(circle, #ff7b7b, #ff6b6b); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .hero-moments { background: linear-gradient(to right, #ffd89b, #19547b); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .deployment-zones { position: relative; width: 100%; height: 300px; background: #8b7355; border-radius: 10px; margin: 20px 0; overflow: hidden; }
-        .zone { position: absolute; border: 2px solid; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
-        .zone.friendly { background: rgba(40, 167, 69, 0.7); border-color: #28a745; }
-        .zone.enemy { background: rgba(220, 53, 69, 0.7); border-color: #dc3545; }
-        .zone.neutral { background: rgba(255, 193, 7, 0.7); border-color: #ffc107; color: #000; }
-        .weapon-ranges { text-align: center; margin: 20px 0; }
-        .range-indicator { display: inline-block; width: 80px; height: 20px; margin: 5px; border-radius: 10px; position: relative; }
-        .range-short { background: linear-gradient(to right, #28a745, #20c997); }
-        .range-medium { background: linear-gradient(to right, #ffc107, #fd7e14); }
-        .range-long { background: linear-gradient(to right, #dc3545, #e83e8c); }
+        .battlefield {
+            border-left: 5px solid var(--gold) !important;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .battlefield::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 20px);
+        }
+        .battlefield * {
+            position: relative;
+            z-index: 2;
+        }
+        .combat-theater {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .theater-card {
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .theater-card.urban {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .theater-card.forest {
+            border-left: 5px solid var(--success) !important;
+        }
+        .theater-card.desert {
+            border-left: 5px solid var(--accent) !important;
+        }
+        .theater-card.industrial {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .tactical-overlay {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #007bff;
+        }
+        .unit-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .unit-card {
+            border-left: 5px solid var(--gold) !important;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .unit-card.infantry {
+            border-left: 4px solid #28a745;
+        }
+        .unit-card.vehicle {
+            border-left: 4px solid var(--border);
+        }
+        .unit-card.hero {
+            border-left: 4px solid #dc3545;
+        }
+        .unit-card.support {
+            border-left: 4px solid #17a2b8;
+        }
+        .battlemap-builder {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .map-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        .map-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .map-btn:hover {
+            background: #0056b3 !important;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+        .map-btn.terrain {
+            background: #1f8336 !important;
+            color: #fff;
+        }
+        .map-btn.cover {
+            color: var(--text);
+        }
+        .map-btn.objective {
+            background: #d53342 !important;
+            color: #fff;
+        }
+        .initiative-tracker {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .combat-simulator {
+            border-left: 5px solid var(--gold) !important;
+            font-family: monospace;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .simulator-screen {
+            min-height: 300px;
+            border: 1px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-y: auto;
+        }
+        .action-economy {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .environmental-hazards {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #dc3545;
+        }
+        .exercise-barracks {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .cover-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .cover-type {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #4a90e2;
+        }
+        .narrative-integration {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .vehicle-showcase {
+            border-left: 5px solid var(--danger) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .hero-moments {
+            border-left: 5px solid var(--accent) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .deployment-zones {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border-left: 5px solid var(--accent) !important;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .zone {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+        .zone.friendly {
+            border-left: 5px solid var(--success) !important;
+            border-color: #28a745;
+        }
+        .zone.enemy {
+            border-left: 5px solid var(--danger) !important;
+            border-color: #dc3545;
+        }
+        .zone.neutral {
+            border-color: var(--border);
+            color: var(--text);
+        }
+        .weapon-ranges {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .range-indicator {
+            display: inline-block;
+            width: 80px;
+            height: 20px;
+            margin: 5px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .range-short {
+            border-left: 5px solid var(--success) !important;
+        }
+        .range-medium {
+            
+        }
+        .range-long {
+            border-left: 5px solid var(--danger) !important;
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .tactical-overlay { background: #1e2b38; color: #e2e8f0; }
-        html:not(.light) .unit-card.vehicle { border-left: 4px solid #866f27; }
-        html:not(.light) .map-btn.cover { background: #433714; color: #e2e8f0; }
-        html:not(.light) .initiative-tracker { background: #1a3c1a; color: #e2e8f0; }
-        html:not(.light) .action-economy { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
-        html:not(.light) .environmental-hazards { background: #431418; color: #e2e8f0; }
-        html:not(.light) .exercise-barracks { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
-        html:not(.light) .cover-type { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .zone.neutral { border-color: #866f27; }
-        html:not(.light) .range-short { background: linear-gradient(to right, #28a745, #144335); color: #e2e8f0; }
-        html:not(.light) .range-medium { background: linear-gradient(to right, #433714, #fd7e14); color: #e2e8f0; }
+        html[data-theme="dark"] .tactical-overlay {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .unit-card.vehicle {
+            border-left: 4px solid #866f27;
+        }
+        html[data-theme="dark"] .map-btn.cover {
+            background: #433714 !important;
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .initiative-tracker {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .action-economy {
+            border: 2px solid #866f27;
+        }
+        html[data-theme="dark"] .environmental-hazards {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .exercise-barracks {
+            border: 2px solid #297885;
+        }
+        html[data-theme="dark"] .cover-type {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .zone.neutral {
+            border-color: #866f27;
+        }
+        html[data-theme="dark"] .range-short {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .range-medium {
+            border-left: 5px solid var(--accent) !important;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .battlefield :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .theater-card.urban { color: #e2e8f0; }
-        .theater-card.urban :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .unit-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .battlemap-builder { color: #e2e8f0; }
-        .battlemap-builder :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .combat-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .narrative-integration :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .zone.enemy { color: #e2e8f0; }
-        .zone.enemy :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .range-long { color: #e2e8f0; }
-        .range-long :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .battlefield :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .theater-card.urban {
+            
+        }
+        .theater-card.urban :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .unit-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .battlemap-builder {
+            
+        }
+        .battlemap-builder :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .combat-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .narrative-integration :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .zone.enemy {
+            
+        }
+        .zone.enemy :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .range-long {
+            
+        }
+        .range-long :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .theater-card.forest { background: linear-gradient(135deg, #219552, #186b3b); }
-        .theater-card.desert { background: linear-gradient(135deg, #b47209, #935e0b); }
-        .theater-card.industrial { background: linear-gradient(135deg, #7f8d99, #515f6d); }
-        .map-btn { background: #0071eb; }
-        .map-btn.terrain { background: #208637; }
-        .vehicle-showcase { background: radial-gradient(circle, #f50000, #e50000); }
-        .hero-moments { background: linear-gradient(to right, #ffc05e, #0f3148); }
-        .zone.friendly { background: rgba(32, 134, 55, 0.7); }
+        .theater-card.forest {
+            background: linear-gradient(135deg, #1d8348, #186b3b) !important;
+            color: #fff;
+        }
+        .theater-card.desert {
+            border-left: 5px solid var(--accent) !important;
+        }
+        .theater-card.industrial {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .map-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .map-btn.terrain {
+            background: #208637 !important;
+            color: #fff;
+        }
+        .vehicle-showcase {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .hero-moments {
+            border-left: 5px solid var(--accent) !important;
+        }
+        .zone.friendly {
+            border-left: 5px solid var(--success) !important;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .tactical-overlay { color: #1f2937; }
-        .initiative-tracker { color: #1f2937; }
-        .action-economy { color: #1f2937; }
-        .environmental-hazards { color: #1f2937; }
-        .exercise-barracks { color: #1f2937; }
-        .cover-type { color: #1f2937; }
-        .range-short { color: #1f2937; }
-        .range-medium { color: #1f2937; }
+        .tactical-overlay {
+            
+        }
+        .initiative-tracker {
+            
+        }
+        .action-economy {
+            
+        }
+        .environmental-hazards {
+            
+        }
+        .exercise-barracks {
+            
+        }
+        .cover-type {
+            
+        }
+        .range-short {
+            
+        }
+        .range-medium {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .map-btn.terrain :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .map-btn.objective :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .theater-card.forest :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .map-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .map-btn.terrain :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
+        html[data-theme] .map-btn.cover { color: #fff !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Running Epic Ground Combat in Star Wars RPG</h1>
-        <p><em>"Rebellions are built on hope... and careful tactical planning." - Jyn Erso</em></p>
+        <h1>Running Ground Combat</h1>
+        <p>How to build and run firefights on foot, from terrain and cover to the shared initiative slots.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
             <div class="battlefield">
-                <h2>Welcome to the War College</h2>
-                <p>Ground combat in Star Wars isn't just about rolling dice and tracking hit points - it's about creating cinematic moments where heroes leap from cover as explosions bloom behind them, where desperate last stands turn the tide of battles, and where tactical decisions feel as important as they do dramatic.</p>
+                <h2>Why Ground Combat Is Different</h2>
+                <p>Ground combat in Star Wars isn't just about rolling dice and tracking wounds - it's about creating cinematic moments where heroes leap from cover as explosions bloom behind them, where desperate last stands turn the tide of battles, and where tactical decisions feel as important as they do dramatic.</p>
                 
                 <p>Think of ground combat as directing an action movie where every participant is the hero of their own story. Your job is to create situations where clever tactics, heroic sacrifices, and split-second decisions combine to create the kind of unforgettable moments that define the Star Wars experience.</p>
             </div>
@@ -253,19 +527,19 @@
             <div class="cover-system">
                 <div class="cover-type">
                     <h4>🛡️ Light Cover</h4>
-                    <p><strong>Protection:</strong> +2 Defense<br>
+                    <p><strong>Protection:</strong> Ranged defense 1: a Setback die on shots at you<br>
                     <strong>Examples:</strong> Sandbags, thin walls, sparse vegetation<br>
                     <strong>Vulnerability:</strong> Heavy weapons can destroy</p>
                 </div>
                 <div class="cover-type">
                     <h4>🏰 Heavy Cover</h4>
-                    <p><strong>Protection:</strong> +5 Defense<br>
+                    <p><strong>Protection:</strong> The GM may add a further Setback die or two<br>
                     <strong>Examples:</strong> Concrete barriers, thick trees, armored positions<br>
                     <strong>Vulnerability:</strong> Explosives, flanking maneuvers</p>
                 </div>
                 <div class="cover-type">
                     <h4>👤 Concealment</h4>
-                    <p><strong>Protection:</strong> Harder to target<br>
+                    <p><strong>Protection:</strong> Setback dice on checks to spot or hit you<br>
                     <strong>Examples:</strong> Smoke, darkness, camouflage<br>
                     <strong>Vulnerability:</strong> Area weapons, detection equipment</p>
                 </div>
@@ -279,16 +553,16 @@
 
             <div class="weapon-ranges">
                 <h3>🎯 Weapon Range Categories</h3>
-                <p>Understanding engagement ranges creates tactical depth and realistic combat flow.</p>
+                <p>This system uses five range bands instead of measured distances: Engaged, Short, Medium, Long and Extreme. The band sets the difficulty of a ranged attack.</p>
                 
                 <div class="range-indicator range-short"></div>
-                <span>Short Range (0-30m): Pistols, grenades, melee weapons</span><br>
+                <span>Engaged and Short: melee is Average; a ranged shot at Short is Easy (pistols, grenades)</span><br>
                 
                 <div class="range-indicator range-medium"></div>
-                <span>Medium Range (30-150m): Rifles, vehicle weapons, most combat</span><br>
+                <span>Medium: Average (blaster rifles, most firefights)</span><br>
                 
                 <div class="range-indicator range-long"></div>
-                <span>Long Range (150m+): Sniper rifles, artillery, vehicle main guns</span>
+                <span>Long and Extreme: Hard and Daunting (sniper rifles, heavy weapons, vehicle guns)</span>
             </div>
         </section>
 
@@ -327,29 +601,30 @@
 
                 <h3>Initiative and Activation Systems</h3>
                 <div class="mermaid">
-                    graph LR
-                        A[Initiative Roll] --> B[Action Declaration]
-                        B --> C[Resolution]
-                        C --> D[Next Character]
-                        D --> E[Round End Check]
-                        E --> F[Environmental Effects]
-                        F --> A
+                    graph TD
+                        A[Roll once: Cool or Vigilance] --> B[Rank into PC and NPC slots]
+                        B --> C[Next slot: side picks who acts]
+                        C --> D[Action + maneuver]
+                        D --> E{Slots left this round?}
+                        E -->|Yes| C
+                        E -->|No| F[New round, same slots]
+                        F --> C
                 </div>
 
-                <h4>Alternative Initiative Systems</h4>
+                <h4>How It Compares to Other Initiative Styles</h4>
                 <ul>
-                    <li><strong>Standard Initiative:</strong> Fixed order, predictable but can be slow</li>
-                    <li><strong>Popcorn Initiative:</strong> Active player chooses who goes next, creates tactical decisions</li>
-                    <li><strong>Side-Based Initiative:</strong> Entire team activates together, faster but less granular</li>
-                    <li><strong>Card-Based Initiative:</strong> Draw cards for activation order, adds uncertainty</li>
+                    <li><strong>This system (slots):</strong> Initiative is rolled once per encounter; slots belong to a side, and the players choose who fills each player slot</li>
+                    <li><strong>Fixed individual order (other games):</strong> Predictable but can be slow, and it is not how this system works</li>
+                    <li><strong>Popcorn initiative (house rule):</strong> Active player chooses who goes next</li>
+                    <li><strong>Card-based initiative (house rule):</strong> Draw cards for activation order, adds uncertainty</li>
                 </ul>
 
                 <h4>Action Types and Timing</h4>
                 <ul>
-                    <li><strong>Move Actions:</strong> Positioning, taking cover, climbing</li>
-                    <li><strong>Attack Actions:</strong> Shooting, melee, Force powers</li>
-                    <li><strong>Reaction Actions:</strong> Defensive measures, opportunity attacks</li>
-                    <li><strong>Free Actions:</strong> Communication, minor interactions, aiming</li>
+                    <li><strong>Maneuvers (1 per turn, a second for 2 strain or by giving up the action; never more than 2):</strong> Moving, taking cover, aiming, drawing a weapon, standing up</li>
+                    <li><strong>Action (1 per turn):</strong> Attacking, most skill checks, Force powers</li>
+                    <li><strong>Incidentals:</strong> Speaking, dropping an item, small shifts of position</li>
+                    <li><strong>Out-of-turn effects:</strong> There are no opportunity attacks; a few talents (such as Parry and Reflect) react to attacks, usually for strain</li>
                 </ul>
             </div>
         </section>
@@ -366,7 +641,7 @@
             <ul>
                 <li><strong>It makes the party tactical rather than sequential.</strong> "Who takes this one?" gets asked aloud every round, and quieter players are pulled into the conversation by the structure itself.</li>
                 <li><strong>It rewards planning across the round.</strong> The medic can be held back for the slot after the enemy acts, instead of being locked into going third forever.</li>
-                <li><strong>It makes ambushes bite properly.</strong> Being caught out shifts you to Vigilance and hands the enemy the early slots — and losing the first two slots of a firefight is far more frightening than losing a point of accuracy.</li>
+                <li><strong>It makes ambushes bite properly.</strong> Being caught out means rolling Vigilance, often a weaker skill than Cool, so the enemy tends to grab the early slots — and losing the first two slots of a firefight is far more frightening than losing a point of accuracy.</li>
             </ul>
 
             <h3>Running It Cleanly</h3>
@@ -496,8 +771,8 @@
                     <button class="map-btn" onclick="resetSimulator()">Reset Simulator</button>
                 </div>
                 <div class="simulator-screen" id="combatDisplay">
-                    > GROUND COMBAT SIMULATOR v4.2
-                    <br>> "Hope is not a strategy, but it's a start" - Poe Dameron
+                    > GROUND COMBAT PLANNER
+                    <br>> Four-phase outlines for common battle types
                     <br>> Select encounter type above to begin tactical analysis
                     <br>> _
                 </div>
@@ -506,7 +781,7 @@
 
         <section class="exercises">
             <div class="exercise-barracks">
-                <h3>Tactical Training Exercises</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: Environmental Integration</h4>
                 <p>Design a battlefield where the environment is crucial to victory:</p>
@@ -559,25 +834,21 @@
             <h2>Victory Conditions</h2>
             <p>Remember, the goal of ground combat isn't to perfectly simulate warfare - it's to create memorable moments where heroes rise to meet impossible challenges. The best battles are those where tactical decisions feel meaningful, where every character contributes to victory, and where the outcome advances both plot and character development.</p>
             
-            <p>When your players are telling stories about the time they held the bridge against impossible odds, or when they outwitted the enemy through clever use of terrain, or when they made the heroic sacrifice that saved the day - that's when you know you've mastered the art of epic ground combat.</p>
+            <p>When your players are telling stories about the time they held the bridge against impossible odds, or when they outwitted the enemy through clever use of terrain, or when they made the heroic sacrifice that saved the day - that's when you know your ground combat is working.</p>
         </section>
     
         <section class="further-exploration" data-generated="where-next">
             <h2>Where to Go Next</h2>
             <p>Ground combat touches almost everything else at the table:</p>
             <ul>
-                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The core resolution rules these tactical layers sit on top of.</li>
+                <li><strong><a href="/sw_combat.html">Combat &amp; Conflict</a>:</strong> The core resolution rules these tactical layers sit on top of.</li>
                 <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Terrain is the cheapest way to make two firefights feel different.</li>
-                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> Speeders and walkers turning an infantry fight into something else entirely.</li>
-                <li><strong><a href="/starwars_space_encounters.html">Space Encounters</a>:</strong> What is happening overhead while your players are pinned down.</li>
+                <li><strong><a href="/sw_vehicles.html">Starships &amp; Vehicles</a>:</strong> Speeders and walkers turning an infantry fight into something else entirely.</li>
+                <li><strong><a href="/starwars_space_encounters.html">Running Space Encounters</a>:</strong> What is happening overhead while your players are pinned down.</li>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> The person giving the orders on the other side.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"The Force will be with you... always." - Obi-Wan Kenobi (because sometimes the best tactics involve trusting in something greater than strategy)</em></p>
-    </footer>
 
     <script>
         // Battle map system
@@ -586,6 +857,7 @@
         let mapElements = [];
         let placementMode = null;
         let elementCounter = 0;
+        let mapStatus = 'Pick a button below, then click on the map to place it.';
 
         function initializeBattleMap() {
             mapCtx.fillStyle = '#654321'; // Battlefield brown
@@ -606,6 +878,14 @@
                 mapCtx.lineTo(mapCanvas.width, y);
                 mapCtx.stroke();
             }
+
+            // Status banner (replaces the old console-only messages)
+            mapCtx.fillStyle = 'rgba(0,0,0,0.6)';
+            mapCtx.fillRect(0, 0, mapCanvas.width, 32);
+            mapCtx.fillStyle = '#ffffff';
+            mapCtx.font = 'bold 15px Arial';
+            mapCtx.textAlign = 'left';
+            mapCtx.fillText(mapStatus, 12, 21);
         }
 
         function drawBattleMap() {
@@ -615,10 +895,15 @@
                 mapCtx.fillStyle = element.color;
                 mapCtx.fillRect(element.x - element.width/2, element.y - element.height/2, element.width, element.height);
                 
-                mapCtx.fillStyle = '#000';
-                mapCtx.font = '12px Arial';
+                mapCtx.strokeStyle = '#1a1a1a';
+                mapCtx.lineWidth = 1;
+                mapCtx.strokeRect(element.x - element.width/2, element.y - element.height/2, element.width, element.height);
+
+                // Label below the marker, white on the dark battlefield
+                mapCtx.fillStyle = '#ffffff';
+                mapCtx.font = 'bold 12px Arial';
                 mapCtx.textAlign = 'center';
-                mapCtx.fillText(element.type, element.x, element.y + 4);
+                mapCtx.fillText(element.type, element.x, element.y + element.height/2 + 14);
             });
         }
 
@@ -650,16 +935,17 @@
         }
 
         function updateMapStatus(message) {
-            // Visual feedback could be added here
-            console.log(message);
+            mapStatus = message;
+            drawBattleMap();
         }
 
         mapCanvas.addEventListener('click', (e) => {
             if (!placementMode) return;
             
             const rect = mapCanvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            // Scale for CSS resizing so clicks land where the pointer is
+            const x = (e.clientX - rect.left) * (mapCanvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (mapCanvas.height / rect.height);
             
             const elementTypes = {
                 terrain: { color: '#8B4513', width: 60, height: 40, type: 'Terrain' },
@@ -677,6 +963,7 @@
                     y: y,
                     ...elementData
                 });
+                mapStatus = `${elementData.type} placed. Pick another button to keep building.`;
                 drawBattleMap();
             }
             
@@ -753,7 +1040,7 @@
         }
 
         function resetSimulator() {
-            const output = `> GROUND COMBAT SIMULATOR v4.2\n> "Hope is not a strategy, but it's a start" - Poe Dameron\n> Select encounter type above to begin tactical analysis\n> _`;
+            const output = `> GROUND COMBAT PLANNER\n> Four-phase outlines for common battle types\n> Select encounter type above to begin tactical analysis\n> _`;
             document.getElementById('combatDisplay').innerHTML = output.replace(/\n/g, '<br>');
         }
 
@@ -761,5 +1048,14 @@
         initializeBattleMap();
         resetSimulator();
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_campaign_arcs.html">Campaign Arcs</a>
+    <a class="next" href="/starwars_space_encounters.html">Running Space Encounters</a>
+</div>
+        <p class="closing-quote">"The Force will be with you... always." - Obi-Wan Kenobi (because sometimes the best tactics involve trusting in something greater than strategy)</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

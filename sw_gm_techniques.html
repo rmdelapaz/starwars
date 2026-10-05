@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG - Game Master Techniques</title>
-    <meta name="description" content="Pacing, improvisation, managing player expectations and cinematic narration for Star Wars GMs.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG - Game Master Techniques">
-    <meta property="og:description" content="Pacing, improvisation, managing player expectations and cinematic narration for Star Wars GMs.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Game Master Techniques - The Star Wars RPG Guide</title>
+    <meta name="description" content="Game master techniques for the Star Wars RPG: running the narrative dice, NPCs, encounters, improvisation and using Obligation or Duty in play.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG: Game Master Techniques</h1>
-        <p class="subtitle">Directing the Galaxy's Greatest Stories - Mastering the Art of Star Wars Gamemastering</p>
+        <h1>Game Master Techniques</h1>
+        <p>Practical table craft for running Star Wars sessions: tone, dice interpretation, NPCs, encounters, pacing and prep.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h2>The GM as Galaxy Architect</h2>
             <p>Being a Star Wars Game Master isn't just about knowing rules or managing dice - you're the director, producer, supporting cast, and special effects department of your own Star Wars epic. You're not just running a game; you're collaborating with your players to create stories worthy of the saga that inspired millions. Think of yourself as George Lucas with a writers' room full of creative partners.</p>
@@ -80,7 +75,7 @@
             <p>Star Wars RPG prioritizes dramatic storytelling over realistic simulation. When faced with a choice between "what would realistically happen" and "what would be awesome and Star Wars-like," always choose awesome. The Force doesn't follow physics, heroes make impossible shots, and dramatic timing trumps probability.</p>
 
             <div class="gm-priorities">
-                <canvas id="gmPriorities" width="600" height="300"></canvas>
+                <canvas id="gmPriorities" width="600" height="345"></canvas>
             </div>
 
             <script>
@@ -109,20 +104,20 @@
                 priorityCtx.fillText('GM Priority Hierarchy', 300, 25);
                 
                 const barHeight = 25;
-                const barSpacing = 35;
-                let currentY = 50;
+                const barSpacing = 33;
+                let currentY = 45;
                 
                 priorities.forEach((priority, index) => {
-                    const barWidth = priority.importance * 40;
+                    const barWidth = priority.importance * 30;
                     
                     // Draw bar
                     priorityCtx.fillStyle = priority.color;
-                    priorityCtx.fillRect(100, currentY, barWidth, barHeight);
+                    priorityCtx.fillRect(205, currentY, barWidth, barHeight);
                     
                     // Draw border
                     priorityCtx.strokeStyle = '#333';
                     priorityCtx.lineWidth = 1;
-                    priorityCtx.strokeRect(100, currentY, barWidth, barHeight);
+                    priorityCtx.strokeRect(205, currentY, barWidth, barHeight);
                     
                     // Add label
                     priorityCtx.fillStyle = '#333';
@@ -133,7 +128,7 @@
                     // Add importance score
                     priorityCtx.font = '12px Arial';
                     priorityCtx.textAlign = 'center';
-                    priorityCtx.fillText(priority.importance.toString(), 100 + barWidth + 20, currentY + 17);
+                    priorityCtx.fillText(priority.importance.toString(), 205 + barWidth + 20, currentY + 17);
                     
                     currentY += barSpacing;
                 });
@@ -141,12 +136,12 @@
                 priorityCtx.fillStyle = '#666';
                 priorityCtx.font = '12px Arial';
                 priorityCtx.textAlign = 'center';
-                priorityCtx.fillText('Higher numbers = Higher priority when making GM decisions', 300, 280);
+                priorityCtx.fillText('Higher numbers = higher priority when making GM decisions', 300, 330);
             </script>
         </section>
 
         <section class="narrative-dice-gming">
-            <h2>Mastering Narrative Dice as a GM</h2>
+            <h2>Using the Narrative Dice as a GM</h2>
             
             <h3>Beyond Success and Failure</h3>
             <p>The narrative dice system is your secret weapon for dynamic storytelling. Every roll becomes an opportunity to advance the plot, develop characters, or introduce complications. Your job is to interpret these results in ways that feel natural and exciting.</p>
@@ -175,7 +170,7 @@
                     <ul>
                         <li><strong>Player Action:</strong> "I pilot the ship through the asteroid field"</li>
                         <li><strong>Basic Success:</strong> "You navigate safely through the asteroids"</li>
-                        <li><strong>With Threat:</strong> "You make it through, but the ship takes strain damage and you've attracted the attention of asteroid miners who think you're claim-jumping"</li>
+                        <li><strong>With Threat:</strong> "You make it through, but the ship suffers system strain and you've attracted the attention of asteroid miners who think you're claim-jumping"</li>
                         <li><strong>Story Impact:</strong> Goal achieved BUT new complications arise</li>
                     </ul>
                 </div>
@@ -312,7 +307,8 @@
                 layerCtx.lineWidth = 3;
                 layerCtx.strokeRect(50, 60, 500, 80);
                 
-                layerCtx.fillStyle = '#333';
+                layerCtx.fillStyle = '#111';
+                layerCtx.textAlign = 'center';
                 layerCtx.font = 'bold 16px Arial';
                 layerCtx.fillText('Layer 1: Story Advancement', 300, 85);
                 layerCtx.font = '14px Arial';
@@ -326,7 +322,8 @@
                 layerCtx.lineWidth = 3;
                 layerCtx.strokeRect(75, 140, 450, 80);
                 
-                layerCtx.fillStyle = '#333';
+                layerCtx.fillStyle = '#111';
+                layerCtx.textAlign = 'center';
                 layerCtx.font = 'bold 16px Arial';
                 layerCtx.fillText('Layer 2: Character Development', 300, 165);
                 layerCtx.font = '14px Arial';
@@ -340,7 +337,8 @@
                 layerCtx.lineWidth = 3;
                 layerCtx.strokeRect(100, 220, 400, 80);
                 
-                layerCtx.fillStyle = '#333';
+                layerCtx.fillStyle = '#111';
+                layerCtx.textAlign = 'center';
                 layerCtx.font = 'bold 16px Arial';
                 layerCtx.fillText('Layer 3: Tactical Challenge', 300, 245);
                 layerCtx.font = '14px Arial';
@@ -371,7 +369,7 @@
                     <h5>Outer Rim Cantina</h5>
                     <ul>
                         <li><strong>Visual:</strong> Dim lighting, smoke, diverse alien patrons</li>
-                        <li><strong>Audio:</strong> Jizz music, multiple languages, hushed conversations</li>
+                        <li><strong>Audio:</strong> Cantina band music, multiple languages, hushed conversations</li>
                         <li><strong>Details:</strong> Blaster burns on walls, memorial holo for "lost friends"</li>
                         <li><strong>Story:</strong> Frontier lawlessness and communities formed by outcasts</li>
                     </ul>
@@ -580,7 +578,7 @@
             <h3>The Things Actually Worth Writing Down</h3>
             <p>A session's worth of prep fits on one side of an index card. Prepare these:</p>
             <ul>
-                <li><strong>Three names.</strong> Not characters, just names, unused and ready. This solves the single most common improvisation failure — see <a href="/sw_names.html">Character Names</a> for generating them fast.</li>
+                <li><strong>Three names.</strong> Not characters, just names, unused and ready. This solves the single most common improvisation failure — see <a href="/sw_names.html">150 Character Names</a> for generating them fast.</li>
                 <li><strong>Two locations</strong> with one sensory detail each. "The hangar smells of scorched coolant." That detail does more work than a page of description.</li>
                 <li><strong>One thing that happens whatever the party does.</strong> A convoy departs, a deadline expires, someone is executed. This is your engine; it keeps the session moving when the party stalls.</li>
                 <li><strong>One complication in reserve</strong> for when momentum dies or a Threat spend needs somewhere to land.</li>
@@ -607,7 +605,7 @@
             <p>Structure your sessions like Star Wars films, with clear acts that build tension and deliver satisfying payoffs. This helps maintain pacing and ensures each session feels complete even as part of a larger story.</p>
 
             <div class="session-structure">
-                <canvas id="sessionStructure" width="600" height="300"></canvas>
+                <canvas id="sessionStructure" width="600" height="220"></canvas>
             </div>
 
             <script>
@@ -622,26 +620,28 @@
                 
                 // Act 1
                 structureCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
-                structureCtx.fillRect(50, 60, 150, 60);
+                structureCtx.fillRect(30, 60, 160, 60);
                 structureCtx.strokeStyle = '#4CAF50';
                 structureCtx.lineWidth = 2;
-                structureCtx.strokeRect(50, 60, 150, 60);
+                structureCtx.strokeRect(30, 60, 160, 60);
                 
-                structureCtx.fillStyle = '#333';
+                structureCtx.fillStyle = '#111';
+                structureCtx.textAlign = 'center';
                 structureCtx.font = 'bold 14px Arial';
-                structureCtx.fillText('Act 1: Setup', 125, 80);
+                structureCtx.fillText('Act 1: Setup', 110, 80);
                 structureCtx.font = '12px Arial';
-                structureCtx.fillText('Introduce situation', 125, 95);
-                structureCtx.fillText('Establish stakes', 125, 110);
+                structureCtx.fillText('Introduce situation', 110, 95);
+                structureCtx.fillText('Establish stakes', 110, 110);
                 
                 // Act 2
                 structureCtx.fillStyle = 'rgba(255, 152, 0, 0.8)';
-                structureCtx.fillRect(225, 40, 150, 100);
+                structureCtx.fillRect(210, 40, 180, 100);
                 structureCtx.strokeStyle = '#FF9800';
                 structureCtx.lineWidth = 2;
-                structureCtx.strokeRect(225, 40, 150, 100);
+                structureCtx.strokeRect(210, 40, 180, 100);
                 
-                structureCtx.fillStyle = '#333';
+                structureCtx.fillStyle = '#111';
+                structureCtx.textAlign = 'center';
                 structureCtx.font = 'bold 14px Arial';
                 structureCtx.fillText('Act 2: Confrontation', 300, 60);
                 structureCtx.font = '12px Arial';
@@ -652,38 +652,39 @@
                 
                 // Act 3
                 structureCtx.fillStyle = 'rgba(244, 67, 54, 0.8)';
-                structureCtx.fillRect(400, 60, 150, 60);
+                structureCtx.fillRect(410, 60, 160, 60);
                 structureCtx.strokeStyle = '#F44336';
                 structureCtx.lineWidth = 2;
-                structureCtx.strokeRect(400, 60, 150, 60);
+                structureCtx.strokeRect(410, 60, 160, 60);
                 
-                structureCtx.fillStyle = '#333';
+                structureCtx.fillStyle = '#111';
+                structureCtx.textAlign = 'center';
                 structureCtx.font = 'bold 14px Arial';
-                structureCtx.fillText('Act 3: Resolution', 475, 80);
+                structureCtx.fillText('Act 3: Resolution', 490, 80);
                 structureCtx.font = '12px Arial';
-                structureCtx.fillText('Climactic action', 475, 95);
-                structureCtx.fillText('Consequences', 475, 110);
+                structureCtx.fillText('Climactic action', 490, 95);
+                structureCtx.fillText('Consequences', 490, 110);
                 
                 // Add timing
                 structureCtx.fillStyle = '#666';
                 structureCtx.font = '12px Arial';
-                structureCtx.fillText('25%', 125, 140);
+                structureCtx.fillText('25%', 110, 140);
                 structureCtx.fillText('50%', 300, 160);
-                structureCtx.fillText('25%', 475, 140);
+                structureCtx.fillText('25%', 490, 140);
                 
                 // Add tension curve
                 structureCtx.strokeStyle = '#E91E63';
                 structureCtx.lineWidth = 3;
                 structureCtx.beginPath();
-                structureCtx.moveTo(50, 180);
+                structureCtx.moveTo(30, 180);
                 structureCtx.quadraticCurveTo(200, 160, 300, 180);
-                structureCtx.quadraticCurveTo(400, 200, 550, 160);
+                structureCtx.quadraticCurveTo(400, 200, 570, 160);
                 structureCtx.stroke();
                 
-                structureCtx.fillStyle = '#E91E63';
                 structureCtx.font = '12px Arial';
+                structureCtx.fillStyle = '#b0154a';
                 structureCtx.textAlign = 'left';
-                structureCtx.fillText('Dramatic Tension', 50, 200);
+                structureCtx.fillText('Dramatic Tension', 30, 200);
             </script>
 
             <h3>Cross-Cutting and Scene Transitions</h3>
@@ -694,7 +695,7 @@
         </section>
 
         <section class="practice-activities">
-            <h2>Practice Activities</h2>
+            <h2>Try It at the Table</h2>
             
             <h3>Activity One: NPC Speed Creation</h3>
             <p>Practice creating memorable NPCs quickly:</p>
@@ -770,19 +771,21 @@
             <p>Technique compounds. Where to take it:</p>
             <ul>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists worth all this craft.</li>
-                <li><strong><a href="/sw_adv_dice.html">Advanced Dice</a>:</strong> Reading dice results fast enough to keep narration flowing.</li>
+                <li><strong><a href="/sw_adv_dice.html">Reading the Narrative Dice</a>:</strong> Reading dice results fast enough to keep narration flowing.</li>
                 <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> The encounter type that most rewards a confident GM.</li>
                 <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Zooming out from the session to the campaign.</li>
-                <li><strong><a href="/starwars_capstone_mastery.html">Capstone: GM Mastery</a>:</strong> The capstone, which assumes everything on this page.</li>
+                <li><strong><a href="/starwars_putting_it_together.html">Putting It All Together</a>:</strong> How the GM pages connect, with a start-to-finish plan for a first campaign.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>Remember: The best GMs aren't perfect - they're adaptable, enthusiastic, and committed to everyone having fun. May the Force be with you as you guide your players through their own Star Wars saga.</p>
-    
+<div class="page-nav">
+    <a class="prev" href="/sw_campaign.html">Campaign Creation</a>
+    <a class="next" href="/starwars_rpg_foundations.html">Campaign Foundations</a>
+</div>
+        <p class="closing-quote">Remember: The best GMs aren't perfect - they're adaptable, enthusiastic, and committed to everyone having fun. May the Force be with you as you guide your players through their own Star Wars saga.</p>
     </footer>
-
-   
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

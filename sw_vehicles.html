@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG - Starships and Vehicle Rules</title>
-    <meta name="description" content="Piloting, starship combat, modifications and vehicle stat blocks for Star Wars RPG.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG - Starships and Vehicle Rules">
-    <meta property="og:description" content="Piloting, starship combat, modifications and vehicle stat blocks for Star Wars RPG.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Starships &amp; Vehicles - The Star Wars RPG Guide</title>
+    <meta name="description" content="Starships and vehicles in the Star Wars RPG: silhouette, speed and handling, pilot maneuvers, vehicle combat, hyperspace and modifications.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG: Starships and Vehicle Rules</h1>
-        <p class="subtitle">From Speeders to Star Destroyers - Mastering the Galaxy's Transportation</p>
+        <h1>Starships &amp; Vehicles</h1>
+        <p>How vehicles and starships work in the Star Wars Roleplaying Game, from speeder bikes to Star Destroyers.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h2>Vehicles as Characters</h2>
             <p>In Star Wars, vehicles aren't just transportation - they're characters with personalities, histories, and destinies. The Millennium Falcon isn't just Han's ship; it's his partner, his home, and sometimes his salvation. A Jedi's starfighter isn't just a weapon; it's an extension of their connection to the Force. Understanding this relationship transforms vehicle rules from dry mechanics into storytelling opportunities.</p>
@@ -50,64 +45,63 @@
             <p>Silhouette represents not just physical size, but operational scale. It's the difference between piloting a motorcycle and commanding a battleship. Each silhouette jump represents a fundamental change in how the vehicle operates and what role it plays in the story.</p>
 
             <div class="silhouette-scale">
-    <canvas id="silhouetteChart" width="700" height="400"></canvas>
+    <canvas id="silhouetteChart" width="700" height="490"></canvas>
 </div>
 
 <script>
     const silCanvas = document.getElementById('silhouetteChart');
     const silCtx = silCanvas.getContext('2d');
 
-    // Create silhouette visualization
+    // Silhouette bands with typical examples (bar sizes are schematic, not to scale)
     const silhouettes = [
-        {size: 0, name: 'Person/Droid', example: 'C-3PO', width: 20, height: 40, color: '#4CAF50'},
-        {size: 1, name: 'Speeder Bike', example: '74-Z Speeder', width: 40, height: 20, color: '#2196F3'},
-        {size: 2, name: 'Starfighter', example: 'X-wing', width: 60, height: 30, color: '#FF9800'},
-        {size: 3, name: 'Light Transport', example: 'Millennium Falcon', width: 80, height: 40, color: '#9C27B0'},
-        {size: 4, name: 'Heavy Transport', example: 'CR90 Corvette', width: 120, height: 25, color: '#F44336'},
-        {size: 5, name: 'Frigate', example: 'Nebulon-B', width: 160, height: 35, color: '#795548'},
-        {size: 6, name: 'Cruiser', example: 'Mon Cal Cruiser', width: 200, height: 50, color: '#607D8B'},
-        {size: 7, name: 'Battleship', example: 'Star Destroyer', width: 250, height: 60, color: '#424242'},
-        {size: 8, name: 'Dreadnought', example: 'Super Star Destroyer', width: 300, height: 80, color: '#212121'}
+        {size: '0', name: 'Smaller than a person', example: 'small droids and creatures', width: 12, height: 20, color: '#4CAF50'},
+        {size: '1', name: 'Person-sized', example: 'a trooper, C-3PO', width: 20, height: 30, color: '#8BC34A'},
+        {size: '2', name: 'Speeders and landspeeders', example: 'speeder bike', width: 40, height: 22, color: '#2196F3'},
+        {size: '3', name: 'Starfighters', example: 'X-wing, TIE fighter', width: 60, height: 28, color: '#FF9800'},
+        {size: '4', name: 'Light freighters', example: 'Millennium Falcon (YT-1300)', width: 85, height: 32, color: '#9C27B0'},
+        {size: '5', name: 'Corvettes', example: 'CR90 corvette', width: 115, height: 28, color: '#F44336'},
+        {size: '6\u20137', name: 'Frigates and cruisers', example: 'escort frigates, heavy cruisers', width: 150, height: 32, color: '#795548'},
+        {size: '8', name: 'Star Destroyers', example: 'Imperial-class Star Destroyer', width: 190, height: 34, color: '#607D8B'},
+        {size: '9\u201310', name: 'Super-capital ships and battle stations', example: 'Super Star Destroyers, battle stations', width: 240, height: 36, color: '#424242'}
     ];
 
     // Draw title
     silCtx.fillStyle = '#333';
     silCtx.font = 'bold 20px Arial';
     silCtx.textAlign = 'center';
-    silCtx.fillText('Silhouette Scale Comparison', silCanvas.width / 2, 25);
+    silCtx.fillText('Silhouette Scale Comparison', silCanvas.width / 2, 28);
 
     // Draw silhouettes
-    let currentY2 = 60;
+    let currentY2 = 50;
     silhouettes.forEach((sil) => {
-        const x = 50;
+        const x = 30;
+        const rowH = 44;
+        const barY = currentY2 + (rowH - sil.height) / 2;
 
-        // Draw vehicle representation
         silCtx.fillStyle = sil.color;
-        silCtx.fillRect(x, currentY2, sil.width, sil.height);
-
-        // Draw border
+        silCtx.fillRect(x, barY, sil.width, sil.height);
         silCtx.strokeStyle = '#333';
         silCtx.lineWidth = 2;
-        silCtx.strokeRect(x, currentY2, sil.width, sil.height);
+        silCtx.strokeRect(x, barY, sil.width, sil.height);
 
-        // Add labels
-        silCtx.fillStyle = '#333';
+        silCtx.fillStyle = '#222';
         silCtx.font = '14px Arial';
         silCtx.textAlign = 'left';
-        silCtx.fillText(`Silhouette ${sil.size}: ${sil.name}`, x + sil.width + 20, currentY2 + 15);
-        
-        silCtx.font = '12px Arial';
-        silCtx.fillStyle = '#666';
-        silCtx.fillText(`Example: ${sil.example}`, x + sil.width + 20, currentY2 + 32);
+        silCtx.fillText(`Silhouette ${sil.size}: ${sil.name}`, 290, currentY2 + 18);
 
-        currentY2 += Math.max(sil.height + 10, 45);
+        silCtx.fillStyle = '#555';
+        silCtx.font = '12px Arial';
+        silCtx.textAlign = 'left';
+        silCtx.fillText(`e.g. ${sil.example}`, 290, currentY2 + 35);
+
+        currentY2 += rowH;
     });
 
-    // Add scale note
-    silCtx.fillStyle = '#666';
+    // Scale note
+    silCtx.fillStyle = '#555';
     silCtx.font = '12px Arial';
     silCtx.textAlign = 'center';
-    silCtx.fillText('Each step up represents roughly 10x increase in mass and complexity', silCanvas.width / 2, silCanvas.height - 10);
+    silCtx.fillText('Bars are schematic, not to scale. A big silhouette gap makes the smaller ship harder to hit.', silCanvas.width / 2, silCanvas.height - 14);
 </script>
 
 
@@ -115,120 +109,114 @@
             <div class="vehicle-stats-breakdown">
                 <div class="stat-explanation">
                     <h4>Hull Trauma - Structural Integrity</h4>
-                    <p><strong>What it represents:</strong> Major structural damage that affects the vehicle's core systems</p>
-                    <p><strong>Real-world parallel:</strong> Like major injuries to a person - affects everything</p>
+                    <p><strong>What it represents:</strong> Structural damage. Every hit that gets past the ship's Armor adds hull trauma; the Hull Trauma Threshold is how much it can take</p>
+                    <p><strong>Real-world parallel:</strong> Like wounds on a character - past the threshold the ship is crippled or destroyed</p>
                     <p><strong>Example:</strong> Hull breach, engine damage, critical system failure</p>
                 </div>
                 
                 <div class="stat-explanation">
                     <h4>System Strain - Operational Stress</h4>
-                    <p><strong>What it represents:</strong> Minor malfunctions, overheating, temporary failures</p>
-                    <p><strong>Real-world parallel:</strong> Like fatigue or minor injuries - slows you down</p>
+                    <p><strong>What it represents:</strong> Minor malfunctions, overheating, temporary failures. Ion weapons and pushing the ship hard (such as an extra pilot maneuver) add system strain; the System Strain Threshold is the limit</p>
+                    <p><strong>Real-world parallel:</strong> Like strain on a character - past the threshold the ship's systems are overwhelmed, though the hull is intact</p>
                     <p><strong>Example:</strong> Overloaded circuits, jammed weapons, sluggish controls</p>
                 </div>
                 
                 <div class="stat-explanation">
                     <h4>Handling - Maneuverability</h4>
                     <p><strong>What it represents:</strong> How responsive and agile the vehicle is</p>
-                    <p><strong>Scale:</strong> -3 (sluggish barge) to +3 (nimble interceptor)</p>
-                    <p><strong>Story impact:</strong> Affects pilot's connection to their craft</p>
+                    <p><strong>Scale:</strong> Roughly -4 (lumbering capital ship) to +3 (nimble interceptor)</p>
+                    <p><strong>At the table:</strong> Positive Handling adds that many Boost dice to Piloting checks; negative Handling adds Setback dice</p>
                 </div>
                 
                 <div class="stat-explanation">
                     <h4>Speed - Maximum Velocity</h4>
                     <p><strong>What it represents:</strong> Top sustainable speed in ideal conditions</p>
-                    <p><strong>Range:</strong> 0 (immobile) to 6+ (impossibly fast)</p>
-                    <p><strong>Context matters:</strong> Speed 3 atmospheric vs Speed 3 space are very different</p>
+                    <p><strong>Range:</strong> 0 (immobile) to about 5 or 6 for the fastest interceptors</p>
+                    <p><strong>At the table:</strong> Speed sets how far one maneuver moves you and which pilot-only maneuvers are open to you (see below)</p>
                 </div>
             </div>
+            <p>A full vehicle profile also lists <strong>Silhouette</strong>, <strong>Defense</strong> (rated separately for each zone, such as fore and aft; each point adds a Setback die to attacks against that zone) and <strong>Armor</strong> (the vehicle's soak). Vehicles move through their own range bands: Close, Short, Medium, Long and Extreme.</p>
 
             <div class="vehicle-comparison">
                 <h4>Example Vehicle Comparison</h4>
-                <canvas id="vehicleComparison" width="600" height="300"></canvas>
+                <canvas id="vehicleComparison" width="600" height="340"></canvas>
             </div>
 
             <script>
                 const compCanvas = document.getElementById('vehicleComparison');
                 const compCtx = compCanvas.getContext('2d');
-                
-                // Vehicle comparison data
-                const vehicles = [
-                    {name: 'Speeder Bike', hull: 3, strain: 3, handling: 2, speed: 4, color: '#4CAF50'},
-                    {name: 'X-wing Fighter', hull: 12, strain: 13, handling: 1, speed: 5, color: '#2196F3'},
-                    {name: 'Millennium Falcon', hull: 25, strain: 22, handling: -1, speed: 4, color: '#FF9800'},
-                    {name: 'Star Destroyer', hull: 100, strain: 75, handling: -3, speed: 2, color: '#F44336'}
-                ];
-                
-                // Create radar chart
+
+                // Illustrative starfighter profile (round numbers, not an official stat block)
+                const fighter = {speed: 5, handling: 1, armor: 3, hull: 10, strain: 10};
+
                 const centerX = 300;
-                const centerY = 150;
-                const radius = 100;
-                
-                // Draw grid
+                const centerY = 185;
+                const radius = 95;
+
+                // Grid rings
                 for (let i = 1; i <= 5; i++) {
                     compCtx.beginPath();
                     compCtx.arc(centerX, centerY, (radius / 5) * i, 0, 2 * Math.PI);
-                    compCtx.strokeStyle = '#e0e0e0';
+                    compCtx.strokeStyle = '#d0d0d0';
+                    compCtx.lineWidth = 1;
                     compCtx.stroke();
                 }
-                
-                // Draw axes
-                const stats = ['Hull/10', 'Strain/10', 'Handling+3', 'Speed'];
+
+                // Axes: each value is scaled to a 0-5 ring
+                const stats = [
+                    {label: 'Speed ' + fighter.speed, value: fighter.speed},
+                    {label: 'Handling +' + fighter.handling, value: fighter.handling + 3},
+                    {label: 'Armor ' + fighter.armor, value: fighter.armor},
+                    {label: 'Hull Trauma ' + fighter.hull, value: fighter.hull / 4},
+                    {label: 'System Strain ' + fighter.strain, value: fighter.strain / 4}
+                ];
                 const angleStep = (2 * Math.PI) / stats.length;
-                
+
                 stats.forEach((stat, index) => {
                     const angle = (index * angleStep) - (Math.PI / 2);
-                    const x = centerX + Math.cos(angle) * radius;
-                    const y = centerY + Math.sin(angle) * radius;
-                    
                     compCtx.beginPath();
                     compCtx.moveTo(centerX, centerY);
-                    compCtx.lineTo(x, y);
-                    compCtx.strokeStyle = '#ccc';
+                    compCtx.lineTo(centerX + Math.cos(angle) * radius, centerY + Math.sin(angle) * radius);
+                    compCtx.strokeStyle = '#bbb';
+                    compCtx.lineWidth = 1;
                     compCtx.stroke();
-                    
-                    // Add labels
-                    const labelX = centerX + Math.cos(angle) * (radius + 25);
-                    const labelY = centerY + Math.sin(angle) * (radius + 25);
-                    compCtx.fillStyle = '#333';
-                    compCtx.font = '12px Arial';
-                    compCtx.textAlign = 'center';
-                    compCtx.fillText(stat, labelX, labelY);
+
+                    const labelX = centerX + Math.cos(angle) * (radius + 18);
+                    const labelY = centerY + Math.sin(angle) * (radius + 18);
+                    compCtx.fillStyle = '#222';
+                    compCtx.font = '13px Arial';
+                    compCtx.textAlign = Math.cos(angle) > 0.2 ? 'left' : (Math.cos(angle) < -0.2 ? 'right' : 'center');
+                    compCtx.fillText(stat.label, labelX, labelY + (Math.sin(angle) > 0.5 ? 12 : (Math.sin(angle) < -0.5 ? -4 : 4)));
                 });
-                
-                // Draw vehicle data (just show X-wing as example)
-                const xwing = vehicles[1];
-                const xwingData = [xwing.hull/10, xwing.strain/10, xwing.handling+3, xwing.speed];
-                
+
                 compCtx.beginPath();
-                xwingData.forEach((value, index) => {
+                stats.forEach((stat, index) => {
                     const angle = (index * angleStep) - (Math.PI / 2);
-                    const distance = (Math.min(value, 5) / 5) * radius;
+                    const distance = (Math.min(stat.value, 5) / 5) * radius;
                     const x = centerX + Math.cos(angle) * distance;
                     const y = centerY + Math.sin(angle) * distance;
-                    
                     if (index === 0) compCtx.moveTo(x, y);
                     else compCtx.lineTo(x, y);
                 });
                 compCtx.closePath();
                 compCtx.fillStyle = 'rgba(33, 150, 243, 0.3)';
                 compCtx.fill();
-                compCtx.strokeStyle = '#2196F3';
+                compCtx.strokeStyle = '#1976D2';
                 compCtx.lineWidth = 2;
                 compCtx.stroke();
-                
-                // Add title and legend
-                compCtx.fillStyle = '#333';
+
+                // Title and legend
+                compCtx.fillStyle = '#222';
                 compCtx.font = 'bold 16px Arial';
                 compCtx.textAlign = 'center';
-                compCtx.fillText('X-wing Fighter Profile', centerX, 30);
-                
+                compCtx.fillText('A Typical Starfighter Profile', centerX, 26);
+
                 compCtx.fillStyle = '#2196F3';
-                compCtx.fillRect(50, 270, 15, 15);
-                compCtx.fillStyle = '#333';
+                compCtx.fillRect(30, 310, 15, 15);
+                compCtx.fillStyle = '#222';
                 compCtx.font = '12px Arial';
                 compCtx.textAlign = 'left';
-                compCtx.fillText('X-wing: Balanced fighter profile', 75, 282);
+                compCtx.fillText('Illustrative round numbers - check your rulebook for real stat lines', 52, 322);
             </script>
         </section>
 
@@ -240,27 +228,22 @@
 
             <div class="piloting-skills">
                 <div class="mermaid">
-                    graph TD
-                        A[Piloting Skills] --> B[Piloting - Planetary]
-                        A --> C[Piloting - Space]
-                        A --> D[Gunnery]
+                    graph LR
+                        A[Vehicle Skills] --> B[Piloting - Planetary&lt;br/&gt;Agility]
+                        A --> C[Piloting - Space&lt;br/&gt;Agility]
+                        A --> D[Gunnery&lt;br/&gt;Agility]
+                        A --> E[Astrogation&lt;br/&gt;Intellect]
                         
-                        B --> B1[Atmospheric Flight]
-                        B --> B2[Ground Vehicles]
-                        B --> B3[Repulsorlift Craft]
-                        
-                        C --> C1[Hyperspace Navigation]
-                        C --> C2[Zero-G Maneuvering]
-                        C --> C3[Formation Flying]
-                        
-                        D --> D1[Vehicle Weapons]
-                        D --> D2[Turret Operations]
-                        D --> D3[Missile Systems]
+                        B --> B1[Speeders, airspeeders,&lt;br/&gt;walkers, flight in atmosphere]
+                        C --> C1[Starfighters and starships&lt;br/&gt;in space]
+                        D --> D1[Ship and vehicle weapons,&lt;br/&gt;turrets, missiles]
+                        E --> E1[Plotting hyperspace jumps,&lt;br/&gt;reading star charts]
                         
                         style A fill:#2196f3,color:#1f2937
                         style B fill:#4caf50,color:#1f2937
                         style C fill:#ff9800,color:#1f2937
                         style D fill:#f65e53,color:#1f2937
+                        style E fill:#b39ddb,color:#1f2937
                 </div>
             </div>
 
@@ -274,7 +257,7 @@
                     <h5>Atmospheric Flight</h5>
                     <ul>
                         <li><strong>Takeoff/Landing (Easy):</strong> Basic operations in good conditions</li>
-                        <li><strong>Evasive Maneuvers (Average):</strong> Dodging obstacles or enemy fire</li>
+                        <li><strong>Weaving Through Obstacles (Average):</strong> Canyons, city towers, forest canopy</li>
                         <li><strong>Atmospheric Combat (Hard):</strong> Dogfighting while managing air resistance</li>
                         <li><strong>Storm Flying (Daunting):</strong> Navigating severe weather</li>
                     </ul>
@@ -284,15 +267,18 @@
                         <li><strong>Routine Travel (Simple):</strong> Point A to point B in clear space</li>
                         <li><strong>Docking Procedures (Easy):</strong> Connecting to stations or larger ships</li>
                         <li><strong>Asteroid Field (Hard):</strong> Navigating dense debris</li>
-                        <li><strong>Hyperspace Jump (Average to Formidable):</strong> Depends on route complexity</li>
+                        <li><strong>Plotting a Hyperspace Jump (Astrogation, Average or harder):</strong> Depends on route, rushing and damaged equipment</li>
                     </ul>
                     
                     <h5>Combat Maneuvers</h5>
+                    <p>The game's special pilot-only options are not difficulty checks you look up on a table; they are gated by the ship's Speed:</p>
                     <ul>
-                        <li><strong>Gain the Advantage (Average):</strong> Position for optimal attack</li>
-                        <li><strong>Stay on Target (Hard):</strong> Maintain firing solution under pressure</li>
-                        <li><strong>Ace Pilot Stunts (Daunting+):</strong> Impossible maneuvers that become legend</li>
+                        <li><strong>Evasive Maneuvers (Speed 3+):</strong> A pilot-only maneuver, no roll. Attacks against your ship get harder - and so do your own shots</li>
+                        <li><strong>Stay on Target (Speed 3+):</strong> A pilot-only maneuver, no roll. You hold a steady line so your ship's shots improve - the opposite trade to evasion</li>
+                        <li><strong>Gain the Advantage (Speed 4+):</strong> A Piloting check whose difficulty depends on the two ships' relative speed. Success lets you ignore the target's evasive penalties until the end of the next round, and the enemy's attempts to win the position back get +1 Difficulty</li>
+                        <li><strong>Ace Pilot Stunts (Hard to Daunting):</strong> Narrative feats the GM sets a difficulty for - threading a trench, flying through a closing hangar door</li>
                     </ul>
+                    <p><strong>Silhouette limits:</strong> a ship of silhouette 1-4 can take a second pilot-only maneuver in a turn by suffering system strain. A silhouette 5+ ship gets only one pilot-only maneuver per round and cannot Punch It (jumping straight to top speed in a single maneuver).</p>
                 </div>
             </div>
 
@@ -301,7 +287,7 @@
 
             <div class="chase-system">
                 <div class="mermaid">
-                    flowchart LR
+                    flowchart TD
                         A[Chase Begins] --> B[Determine Relative Position]
                         B --> C[Pilot Actions]
                         C --> D{Catch Up/Escape?}
@@ -368,7 +354,7 @@
                     scaleCtx.textAlign = 'left';
                     scaleCtx.fillText(scale.name, 50 + width + 20, scale.y - 5);
                     scaleCtx.font = '12px Arial';
-                    scaleCtx.fillStyle = '#666';
+                    scaleCtx.fillStyle = '#555';
                     scaleCtx.fillText(scale.participants, 50 + width + 20, scale.y + 10);
                     scaleCtx.fillText(`Example: ${scale.example}`, 50 + width + 20, scale.y + 25);
                 });
@@ -392,10 +378,10 @@
                     scaleCtx.stroke();
                 }
                 
-                scaleCtx.fillStyle = '#666';
+                scaleCtx.fillStyle = '#555';
                 scaleCtx.font = '12px Arial';
-                scaleCtx.textAlign = 'center';
-                scaleCtx.fillText('Increasing\nComplexity', 30, 320);
+                scaleCtx.textAlign = 'left';
+                scaleCtx.fillText('Moving down: more ships, more complexity. Participant counts are rough guides.', 20, 320);
             </script>
 
             <h3>Attack Resolution in Vehicle Combat</h3>
@@ -406,12 +392,12 @@
                     <h4>Vehicle Attack Step-by-Step</h4>
                     <ol>
                         <li><strong>Declare Target:</strong> Choose what you're shooting at</li>
-                        <li><strong>Determine Range:</strong> Close/Short/Medium/Long/Extreme in 3D space</li>
-                        <li><strong>Check Line of Sight:</strong> Can you actually see/target the enemy?</li>
-                        <li><strong>Calculate Difficulty:</strong> Base difficulty + range + modifiers</li>
-                        <li><strong>Add Modifiers:</strong> Speed, cover, evasive maneuvers, etc.</li>
-                        <li><strong>Roll Attack:</strong> Gunnery + Agility + weapon dice</li>
-                        <li><strong>Apply Results:</strong> Damage to Hull Trauma or System Strain</li>
+                        <li><strong>Determine Range:</strong> Close, Short, Medium, Long or Extreme - the weapon must be able to reach</li>
+                        <li><strong>Check Firing Arc:</strong> Is the target in the arc that weapon covers?</li>
+                        <li><strong>Set the Difficulty:</strong> Use the vehicle-combat rules - the size gap between the two ships matters more than raw distance</li>
+                        <li><strong>Add Modifiers:</strong> The target's Defense in the zone you are hitting adds Setback dice; Evasive Maneuvers upgrades the difficulty</li>
+                        <li><strong>Roll Attack:</strong> A Gunnery (Agility) check - pool built the usual way from characteristic and skill</li>
+                        <li><strong>Apply Results:</strong> Weapon damage + net Successes - the target's Armor = hull trauma (ion weapons hit system strain instead). Advantage equal to the weapon's Crit rating, or a Triumph, scores a Critical Hit</li>
                         <li><strong>Describe Outcome:</strong> Make it cinematic!</li>
                     </ol>
                 </div>
@@ -482,7 +468,7 @@
                 <li><strong>Split the scene.</strong> Cut between the pilots outside and the rest of the party doing something urgent inside. Keep the cuts short and the two halves on the same clock so tension carries across.</li>
                 <li><strong>Scale up the ship.</strong> Sometimes the honest fix is to give the party a freighter instead. A ship with five seats is worth more to a campaign than a faster one with two.</li>
             </ul>
-            <p><a href="/sw_groups.html">Group Dynamics</a> covers picking seats that match the party you actually have, and <a href="/starwars_space_encounters.html">Space Encounters</a> has encounter designs built around objectives rather than pure dogfights.</p>
+            <p><a href="/sw_groups.html">Crews &amp; Group Dynamics</a> covers picking seats that match the party you actually have, and <a href="/starwars_space_encounters.html">Running Space Encounters</a> has encounter designs built around objectives rather than pure dogfights.</p>
         </section>
 
         <section class="hyperspace-travel">
@@ -518,71 +504,73 @@
             </div>
 
             <h3>Hyperdrive Classes and Travel Times</h3>
-            <p>Hyperdrive class represents more than just speed - it's about reliability, range, and the quality of your journey through the cosmic unknown. A Class 1 hyperdrive doesn't just get you there faster; it gets you there safely and exactly where you intended to go.</p>
+            <p>Hyperdrive class is a speed rating, and lower is faster: a Class 1 drive makes a trip in about half the time a Class 2 drive needs. Most ships also carry a slow backup drive for emergencies. Reliability is a story question rather than a number - a battered drive of any class can fail at the worst possible moment.</p>
 
             <div class="hyperdrive-comparison">
-                <canvas id="hyperdriveChart" width="600" height="300"></canvas>
+                <canvas id="hyperdriveChart" width="600" height="320"></canvas>
             </div>
 
             <script>
                 const hyperCanvas = document.getElementById('hyperdriveChart');
                 const hyperCtx = hyperCanvas.getContext('2d');
-                
-                // Hyperdrive class data
+
+                // Travel time scales with class number (lower class = faster)
                 const hyperdrives = [
-                    {class: 0.5, name: 'Military Grade', speed: 10, reliability: 95, color: '#4CAF50'},
-                    {class: 1, name: 'High Quality', speed: 8, reliability: 90, color: '#2196F3'},
-                    {class: 2, name: 'Standard', speed: 6, reliability: 80, color: '#FF9800'},
-                    {class: 3, name: 'Budget', speed: 4, reliability: 70, color: '#FF5722'},
-                    {class: 4, name: 'Slow Freight', speed: 2, reliability: 60, color: '#795548'},
-                    {class: 5, name: 'Emergency Backup', speed: 1, reliability: 40, color: '#F44336'}
+                    {class: '0.5', mult: 0.5, name: 'Exceptional', note: 'Millennium Falcon', color: '#4CAF50'},
+                    {class: '1', mult: 1, name: 'Fast', note: 'military ships', color: '#2196F3'},
+                    {class: '2', mult: 2, name: 'Common', note: 'many freighters', color: '#FF9800'},
+                    {class: '3', mult: 3, name: 'Slow', note: 'older ships', color: '#FF5722'},
+                    {class: '4', mult: 4, name: 'Very slow', note: 'bulk haulers', color: '#795548'},
+                    {class: '10+', mult: 10, name: 'Backup', note: 'emergency drive', color: '#9E9E9E'}
                 ];
-                
-                // Draw chart
-                hyperCtx.fillStyle = '#333';
+
+                hyperCtx.fillStyle = '#222';
                 hyperCtx.font = 'bold 16px Arial';
                 hyperCtx.textAlign = 'center';
-                hyperCtx.fillText('Hyperdrive Performance Comparison', 300, 25);
-                
-                // Draw speed bars
-                const barWidth = 40;
-                const barSpacing2 = 90;
-                const startX = 50;
-                
+                hyperCtx.fillText('Hyperdrive Class and Relative Travel Time', 300, 25);
+                hyperCtx.font = '12px Arial';
+                hyperCtx.fillStyle = '#555';
+                hyperCtx.fillText('Taller bar = longer trip (Class 1 = 1x)', 300, 44);
+
+                const barWidth = 50;
+                const barSpacing2 = 95;
+                const startX = 35;
+                const baseY = 235;
+                const unit = 17;
+
                 hyperdrives.forEach((drive, index) => {
                     const x = startX + (index * barSpacing2);
-                    
-                    // Speed bar
-                    const speedHeight = drive.speed * 15;
+                    const h = drive.mult * unit;
                     hyperCtx.fillStyle = drive.color;
-                    hyperCtx.fillRect(x, 200 - speedHeight, barWidth, speedHeight);
-                    
-                    // Reliability indicator
-                    const reliabilityHeight = drive.reliability * 0.5;
-                    hyperCtx.fillStyle = `rgba(76, 175, 80, ${drive.reliability / 100})`;
-                    hyperCtx.fillRect(x, 220, barWidth, reliabilityHeight);
-                    
-                    // Labels
-                    hyperCtx.fillStyle = '#333';
+                    hyperCtx.fillRect(x, baseY - h, barWidth, h);
+                    hyperCtx.strokeStyle = '#333';
+                    hyperCtx.lineWidth = 1;
+                    hyperCtx.strokeRect(x, baseY - h, barWidth, h);
+
+                    hyperCtx.fillStyle = '#222';
                     hyperCtx.font = '12px Arial';
                     hyperCtx.textAlign = 'center';
-                    hyperCtx.fillText(`Class ${drive.class}`, x + barWidth/2, 285);
-                    hyperCtx.font = '10px Arial';
-                    hyperCtx.fillText(drive.name, x + barWidth/2, 295);
+                    hyperCtx.fillText(`${drive.mult}x`, x + barWidth / 2, baseY - h - 6);
+                    hyperCtx.font = 'bold 13px Arial';
+                    hyperCtx.fillText(`Class ${drive.class}`, x + barWidth / 2, baseY + 20);
+                    hyperCtx.font = '12px Arial';
+                    hyperCtx.fillText(drive.name, x + barWidth / 2, baseY + 37);
+                    hyperCtx.fillStyle = '#555';
+                    hyperCtx.font = '11px Arial';
+                    hyperCtx.fillText(drive.note, x + barWidth / 2, baseY + 53);
                 });
-                
-                // Add legends
-                hyperCtx.fillStyle = '#333';
-                hyperCtx.font = '14px Arial';
-                hyperCtx.textAlign = 'left';
-                hyperCtx.fillText('Speed (Relative)', 50, 50);
-                hyperCtx.fillText('Reliability', 350, 50);
-                
-                // Draw legend boxes
-                hyperCtx.fillStyle = '#2196F3';
-                hyperCtx.fillRect(150, 40, 20, 15);
-                hyperCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
-                hyperCtx.fillRect(450, 40, 20, 15);
+
+                hyperCtx.strokeStyle = '#333';
+                hyperCtx.lineWidth = 1;
+                hyperCtx.beginPath();
+                hyperCtx.moveTo(20, baseY);
+                hyperCtx.lineTo(580, baseY);
+                hyperCtx.stroke();
+
+                hyperCtx.fillStyle = '#555';
+                hyperCtx.font = '11px Arial';
+                hyperCtx.textAlign = 'center';
+                hyperCtx.fillText('Typical examples only; the GM sets actual travel times.', 300, 310);
             </script>
 
             <h3>Hyperspace Hazards and Navigation</h3>
@@ -663,100 +651,100 @@
                     <h4>Case Study: Upgrading the Millennium Falcon</h4>
                     
                     <h5>Stock YT-1300 vs Modified Falcon</h5>
-                    <pre><code>&lt;!-- Original YT-1300 Specifications --&gt;
-&lt;strong&gt;Stock Configuration:&lt;/strong&gt;
-├── Hyperdrive: Class 2 (standard freight hauler)
-├── Weapons: 2 Light Laser Cannons (defensive only)
-├── Shields: Basic deflector screens
-├── Cargo: 100 metric tons capacity
-└── Crew: 2 (pilot, co-pilot)
+                    <pre><code>Stock YT-1300 light freighter:
+├── Hyperdrive: an ordinary civilian drive
+├── Weapons: light defensive armament
+├── Shields: basic deflector screens
+├── Cargo: a roomy hold - why freighter crews love it
+└── Crew: pilot and co-pilot
 
-&lt;strong&gt;Han Solo's Modifications:&lt;/strong&gt;
-├── Hyperdrive: Class 0.5 (military grade, heavily modified)
-├── Weapons: 2 Quad Laser Cannons (top/bottom turrets)
-├── Shields: Military-grade deflector shields
-├── Hidden Compartments: Smuggling storage
-├── Sensor Jammers: Avoid Imperial detection
-├── Backup Hyperdrive: Class 10 emergency system
-└── Enhanced Maneuverability: Modified control systems
+Han and Chewbacca's Falcon:
+├── Hyperdrive: Class 0.5, heavily modified, plus a slow backup drive
+├── Weapons: quad laser turrets, top and bottom
+├── Shields: upgraded deflectors
+├── Hidden compartments for smuggled cargo (and passengers)
+├── Sensor tricks to slip past Imperial scans
+└── Patched-together controls only its owners fully understand
 
-&lt;strong&gt;Story Impact:&lt;/strong&gt;
-├── Speed: "She's fast enough for you, old man"
-├── Firepower: Can engage Imperial fighters effectively
-├── Stealth: Evade customs and Imperial searches
-├── Reliability: Breaks down at dramatic moments
-└── Character: Reflects Han's roguish personality</code></pre>
+Story impact:
+├── Speed: famously one of the fastest ships around
+├── Firepower: can hold off Imperial fighters
+├── Stealth: evades customs and Imperial searches
+├── Reliability: breaks down at dramatic moments
+└── Character: reflects Han's roguish personality</code></pre>
                 </div>
             </div>
 
             <h3>Hard Points and Modification Limits</h3>
-            <p>Every vehicle has limits to how much it can be modified, represented by Hard Points. Think of these like the structural capacity of the vehicle - you can only bolt so many extra systems onto a speeder bike before it becomes unrecognizable or simply falls apart.</p>
+            <p>Every vehicle has limits to how much it can be modified, represented by Hard Points: each attachment you bolt on uses up one or more of them, and each vehicle's profile lists how many it has. Think of these like the structural capacity of the vehicle - you can only bolt so many extra systems onto a speeder bike before it becomes unrecognizable or simply falls apart.</p>
 
             <div class="hardpoint-system">
-                <canvas id="hardpointChart" width="600" height="250"></canvas>
+                <canvas id="hardpointChart" width="600" height="290"></canvas>
             </div>
 
             <script>
                 const hardCanvas = document.getElementById('hardpointChart');
                 const hardCtx = hardCanvas.getContext('2d');
-                
-                // Hard point visualization
+
+                // Illustrative hard point budgets (real numbers vary ship by ship)
                 const vehicleTypes = [
-                    {name: 'Speeder Bike', hardpoints: 2, used: 1, example: 'Basic sensors'},
-                    {name: 'Starfighter', hardpoints: 6, used: 4, example: 'Weapons, shields'},
-                    {name: 'Light Freighter', hardpoints: 8, used: 6, example: 'Mixed modifications'},
-                    {name: 'Heavy Transport', hardpoints: 12, used: 8, example: 'Cargo & defense'},
-                    {name: 'Capital Ship', hardpoints: 20, used: 15, example: 'Full military refit'}
+                    {name: 'Speeder Bike', hardpoints: 2, used: 1, example: 'better sensors'},
+                    {name: 'Starfighter', hardpoints: 4, used: 2, example: 'weapons, shields'},
+                    {name: 'Light Freighter', hardpoints: 6, used: 4, example: 'mixed modifications'},
+                    {name: 'Heavy Transport', hardpoints: 7, used: 4, example: 'cargo and defense'},
+                    {name: 'Capital Ship', hardpoints: 10, used: 7, example: 'military refit'}
                 ];
-                
-                hardCtx.fillStyle = '#333';
+
+                hardCtx.fillStyle = '#222';
                 hardCtx.font = 'bold 16px Arial';
                 hardCtx.textAlign = 'center';
-                hardCtx.fillText('Hard Point Usage by Vehicle Type', 300, 25);
-                
-                const barHeight = 30;
+                hardCtx.fillText('Hard Point Usage by Vehicle Type (illustrative)', 300, 25);
+
+                const barHeight = 28;
                 const barSpacing = 40;
-                let currentY23 = 60;
-                
+                const barX = 140;
+                const unitW = 24;
+                let currentY23 = 50;
+
                 vehicleTypes.forEach(vehicle => {
-                    // Draw total capacity bar
                     hardCtx.fillStyle = '#E0E0E0';
-                    hardCtx.fillRect(100, currentY23, vehicle.hardpoints * 20, barHeight);
-                    
-                    // Draw used capacity
+                    hardCtx.fillRect(barX, currentY23, vehicle.hardpoints * unitW, barHeight);
                     hardCtx.fillStyle = '#2196F3';
-                    hardCtx.fillRect(100, currentY23, vehicle.used * 20, barHeight);
-                    
-                    // Draw border
+                    hardCtx.fillRect(barX, currentY23, vehicle.used * unitW, barHeight);
                     hardCtx.strokeStyle = '#333';
                     hardCtx.lineWidth = 2;
-                    hardCtx.strokeRect(100, currentY23, vehicle.hardpoints * 20, barHeight);
-                    
-                    // Add labels
-                    hardCtx.fillStyle = '#333';
+                    hardCtx.strokeRect(barX, currentY23, vehicle.hardpoints * unitW, barHeight);
+
+                    hardCtx.fillStyle = '#222';
                     hardCtx.font = '14px Arial';
-                    hardCtx.textAlign = 'left';
-                    hardCtx.fillText(vehicle.name, 20, currentY23 + 20);
-                    
+                    hardCtx.textAlign = 'right';
+                    hardCtx.fillText(vehicle.name, barX - 10, currentY23 + 19);
+
                     hardCtx.font = '12px Arial';
-                    hardCtx.fillText(`${vehicle.used}/${vehicle.hardpoints} HP`, 100 + vehicle.hardpoints * 20 + 10, currentY2 + 15);
-                    hardCtx.fillText(vehicle.example, 100 + vehicle.hardpoints * 20 + 10, currentY23 + 30);
-                    
+                    hardCtx.textAlign = 'left';
+                    hardCtx.fillStyle = '#222';
+                    hardCtx.fillText(`${vehicle.used} of ${vehicle.hardpoints} used`, barX + vehicle.hardpoints * unitW + 10, currentY23 + 12);
+                    hardCtx.fillStyle = '#555';
+                    hardCtx.fillText(vehicle.example, barX + vehicle.hardpoints * unitW + 10, currentY23 + 26);
+
                     currentY23 += barSpacing;
                 });
-                
-                // Add legend
+
+                // Legend
                 hardCtx.fillStyle = '#2196F3';
-                hardCtx.fillRect(100, 220, 20, 15);
-                hardCtx.fillStyle = '#333';
+                hardCtx.fillRect(140, 258, 20, 15);
+                hardCtx.fillStyle = '#222';
                 hardCtx.font = '12px Arial';
                 hardCtx.textAlign = 'left';
-                hardCtx.fillText('Used Hard Points', 130, 232);
-                
+                hardCtx.fillText('Used Hard Points', 168, 270);
+
                 hardCtx.fillStyle = '#E0E0E0';
-                hardCtx.fillRect(250, 220, 20, 15);
-                hardCtx.fillStyle = '#333';
-                hardCtx.fillText('Available Hard Points', 280, 232);
+                hardCtx.fillRect(300, 258, 20, 15);
+                hardCtx.strokeStyle = '#333';
+                hardCtx.lineWidth = 1;
+                hardCtx.strokeRect(300, 258, 20, 15);
+                hardCtx.fillStyle = '#222';
+                hardCtx.fillText('Available Hard Points', 328, 270);
             </script>
         </section>
 
@@ -768,7 +756,7 @@
 
             <div class="vehicle-profiles">
                 <div class="vehicle-card">
-                    <h4>Millennium Falcon - "She's Got It Where It Counts"</h4>
+                    <h4>Millennium Falcon - The Lovable Wreck</h4>
                     <p><strong>Personality:</strong> Temperamental but reliable when it matters most</p>
                     <p><strong>Quirks:</strong> Hyperdrive fails at dramatic moments, surprising bursts of speed</p>
                     <p><strong>Story Role:</strong> Home, refuge, and symbol of freedom</p>
@@ -777,7 +765,7 @@
                 </div>
                 
                 <div class="vehicle-card">
-                    <h4>Luke's X-wing - "Use the Force, Luke"</h4>
+                    <h4>Luke's X-wing - The Farm Boy's Fighter</h4>
                     <p><strong>Personality:</strong> Responsive, almost Force-sensitive itself</p>
                     <p><strong>Quirks:</strong> Performs impossible maneuvers when Luke trusts the Force</p>
                     <p><strong>Story Role:</strong> Extension of Luke's Jedi abilities</p>
@@ -786,7 +774,7 @@
                 </div>
                 
                 <div class="vehicle-card">
-                    <h4>Darth Vader's TIE Advanced - "The Force Is Strong With This One"</h4>
+                    <h4>Darth Vader's TIE Advanced - The Hunter</h4>
                     <p><strong>Personality:</strong> Predatory, menacing, unnaturally precise</p>
                     <p><strong>Quirks:</strong> Seems to anticipate enemy moves</p>
                     <p><strong>Story Role:</strong> Extension of Vader's dark side power</p>
@@ -795,7 +783,7 @@
                 </div>
                 
                 <div class="vehicle-card">
-                    <h4>Slave I - "He's No Good to Me Dead"</h4>
+                    <h4>Slave I - The Bounty Hunter's Workhorse</h4>
                     <p><strong>Personality:</strong> Professional, efficient, intimidating</p>
                     <p><strong>Quirks:</strong> Unusual vertical landing orientation</p>
                     <p><strong>Story Role:</strong> Mobile base for bounty hunting operations</p>
@@ -817,7 +805,7 @@
                     <h5>Phase 1: Entering the Field</h5>
                     <ul>
                         <li><strong>Pilot Decision:</strong> Take the risky route through dense asteroids or safer outer edge</li>
-                        <li><strong>Navigation Check:</strong> Plot course through the field (Astrogation + Intellect)</li>
+                        <li><strong>Navigation Check:</strong> Read the field and pick a line through it (Piloting (Space), or Astrogation to plot the route)</li>
                         <li><strong>Advantage Spending:</strong> Find optimal route, spot hiding places</li>
                         <li><strong>Threat Results:</strong> Larger asteroids than expected, unstable field</li>
                     </ul>
@@ -843,7 +831,7 @@
             <h3>Scenario: Hyperspace Mishap</h3>
             <div class="scenario-example">
                 <div class="example-box">
-                    <h4>The Problem: "That's Not a Moon"</h4>
+                    <h4>The Problem: Lost in an Unknown System</h4>
                     <p><strong>Situation:</strong> A hyperspace calculation error drops your ship in an unknown system. The hyperdrive is damaged, and you're not alone in this strange place.</p>
                     
                     <h5>Initial Assessment:</h5>
@@ -874,7 +862,7 @@
         </section>
 
         <section class="practice-activities">
-            <h2>Practice Activities</h2>
+            <h2>Try It at the Table</h2>
             
             <h3>Activity One: Vehicle Design Challenge</h3>
             <p>Create a custom vehicle for your character:</p>
@@ -949,20 +937,22 @@
             <h2>Where to Go Next</h2>
             <p>A ship needs somewhere to go and something to fight:</p>
             <ul>
-                <li><strong><a href="/starwars_space_encounters.html">Space Encounters</a>:</strong> Encounter designs to fly these ships into — dogfights, blockades, capital engagements.</li>
-                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The personal-scale rules these vehicle rules mirror.</li>
-                <li><strong><a href="/starwars_ground_combat.html">Ground Combat</a>:</strong> Vehicles used in ground battles, where scale differences get interesting.</li>
-                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> The crew. A ship with defined roles gives quiet players a job.</li>
+                <li><strong><a href="/starwars_space_encounters.html">Running Space Encounters</a>:</strong> Encounter designs to fly these ships into — dogfights, blockades, capital engagements.</li>
+                <li><strong><a href="/sw_combat.html">Combat &amp; Conflict</a>:</strong> The personal-scale rules these vehicle rules mirror.</li>
+                <li><strong><a href="/starwars_ground_combat.html">Running Ground Combat</a>:</strong> Vehicles used in ground battles, where scale differences get interesting.</li>
+                <li><strong><a href="/sw_groups.html">Crews &amp; Group Dynamics</a>:</strong> The crew. A ship with defined roles gives quiet players a job.</li>
                 <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Somewhere worth landing once the flying is done.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>Remember: A ship is only as good as its pilot, but a great pilot can make any ship legendary. The galaxy's full of vehicles waiting for the right person to unlock their potential.</p>
-   
+<div class="page-nav">
+    <a class="prev" href="/sw_force_and_lightsaber.html">The Force &amp; Lightsabers</a>
+    <a class="next" href="/sw_campaign.html">Campaign Creation</a>
+</div>
+        <p class="closing-quote">Remember: A ship is only as good as its pilot, but a great pilot can make any ship legendary. The galaxy's full of vehicles waiting for the right person to unlock their potential.</p>
     </footer>
-
-   
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

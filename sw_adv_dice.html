@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG - Advanced Dice Mechanics</title>
-    <meta name="description" content="Triumph, Despair, opposed checks, and how to spend Advantage and Threat like a pro.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG - Advanced Dice Mechanics">
-    <meta property="og:description" content="Triumph, Despair, opposed checks, and how to spend Advantage and Threat like a pro.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Reading the Narrative Dice - The Star Wars RPG Guide</title>
+    <meta name="description" content="Reading the Star Wars RPG narrative dice: spending Advantage and Threat, Triumph and Despair, upgrades, and exact odds for each die.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG: Advanced Dice Mechanics</h1>
-        <p class="subtitle">Mastering the Narrative Dice System - Beyond Basic Success and Failure</p>
+        <h1>Reading the Narrative Dice</h1>
+        <p>How to turn Success, Advantage, Triumph and their opposites into story, with the odds behind each die.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h2>Beyond Rolling Dice - The Art of Narrative Interpretation</h2>
             <p>The Star Wars RPG narrative dice system is more than a random number generator - it's a collaborative storytelling engine that transforms every roll into a dramatic moment. Understanding advanced dice mechanics means learning to read the story the dice are telling and weaving that story seamlessly into your game's narrative flow.</p>
@@ -47,7 +42,7 @@
             <h2>Dice Anatomy - Understanding Each Symbol's Story</h2>
             
             <h3>Success and Failure - The Foundation</h3>
-            <p>Success and Failure represent competence and capability, but they're not binary states. They exist on a spectrum, and the magnitude of success or failure should influence your interpretation. A single success feels different from four successes, even if both achieve the goal.</p>
+            <p>Success and Failure represent competence and capability, but they're not binary states. They exist on a spectrum, and the magnitude of success or failure should influence your interpretation. A single success feels different from four successes, even if both achieve the goal. One rule to keep straight: Failures cancel Successes one for one, and you need <strong>at least one net Success</strong> to succeed. A tie is a failure.</p>
 
             <div class="success-spectrum">
                 <canvas id="successSpectrum" width="600" height="300"></canvas>
@@ -68,7 +63,7 @@
                 gradient.addColorStop(0, '#D32F2F');    // Deep failure
                 gradient.addColorStop(0.2, '#F44336');  // Failure
                 gradient.addColorStop(0.4, '#FF9800');  // Marginal failure
-                gradient.addColorStop(0.5, '#FFC107');  // Neutral
+                gradient.addColorStop(0.5, '#FFA000');  // A tie still fails
                 gradient.addColorStop(0.6, '#8BC34A');  // Marginal success
                 gradient.addColorStop(0.8, '#4CAF50');  // Success
                 gradient.addColorStop(1, '#2E7D32');    // Overwhelming success
@@ -76,48 +71,47 @@
                 spectrumCtx.fillStyle = gradient;
                 spectrumCtx.fillRect(50, 80, 500, 40);
                 
-                // Add markers
+                // Add markers (a tie is a failure: you need at least 1 net Success)
                 const markers = [
-                    {pos: 50, label: 'Critical Failure', example: 'Catastrophic mistake'},
-                    {pos: 150, label: 'Clear Failure', example: 'Obviously unsuccessful'},
-                    {pos: 250, label: 'Marginal Failure', example: 'Close, but not quite'},
-                    {pos: 300, label: 'Neutral', example: 'No clear outcome'},
-                    {pos: 350, label: 'Marginal Success', example: 'Barely made it'},
-                    {pos: 450, label: 'Clear Success', example: 'Obviously successful'},
-                    {pos: 550, label: 'Overwhelming Success', example: 'Beyond expectations'}
+                    {pos: 70, label: 'Big failure', example: '3+ net Failures', align: 'center'},
+                    {pos: 185, label: 'Narrow failure', example: '1–2 net Failures', align: 'center'},
+                    {pos: 300, label: 'Tie = failure', example: '0 net: still fails', align: 'center'},
+                    {pos: 415, label: 'Narrow success', example: '1–2 net Successes', align: 'center'},
+                    {pos: 530, label: 'Big success', example: '3+ net Successes', align: 'center'}
                 ];
-                
+
                 markers.forEach(marker => {
-                    // Draw marker line
                     spectrumCtx.strokeStyle = '#333';
                     spectrumCtx.lineWidth = 2;
                     spectrumCtx.beginPath();
                     spectrumCtx.moveTo(marker.pos, 75);
                     spectrumCtx.lineTo(marker.pos, 125);
                     spectrumCtx.stroke();
-                    
-                    // Add labels
+
                     spectrumCtx.fillStyle = '#333';
-                    spectrumCtx.font = '10px Arial';
-                    spectrumCtx.textAlign = 'center';
+                    spectrumCtx.font = 'bold 12px Arial';
+                    spectrumCtx.textAlign = marker.align;
                     spectrumCtx.fillText(marker.label, marker.pos, 145);
-                    spectrumCtx.font = '8px Arial';
-                    spectrumCtx.fillStyle = '#666';
-                    spectrumCtx.fillText(marker.example, marker.pos, 160);
+                    spectrumCtx.font = '11px Arial';
+                    spectrumCtx.fillStyle = '#555';
+                    spectrumCtx.textAlign = marker.align;
+                    spectrumCtx.fillText(marker.example, marker.pos, 161);
                 });
-                
+
                 // Add example interpretations
                 spectrumCtx.fillStyle = '#333';
-                spectrumCtx.font = '12px Arial';
+                spectrumCtx.font = 'bold 12px Arial';
                 spectrumCtx.textAlign = 'left';
-                spectrumCtx.fillText('Example: Piloting through asteroid field', 50, 200);
-                
-                spectrumCtx.font = '10px Arial';
-                spectrumCtx.fillText('• 0 Success, 3 Failure: Ship crashes into asteroid, major hull damage', 60, 220);
-                spectrumCtx.fillText('• 0 Success, 1 Failure: Navigation error, forced to backtrack', 60, 235);
-                spectrumCtx.fillText('• 1 Success: Navigate through safely but slowly', 60, 250);
-                spectrumCtx.fillText('• 3 Success: Navigate with style, find optimal route', 60, 265);
-                spectrumCtx.fillText('• 5+ Success: Impossible maneuver that becomes legendary', 60, 280);
+                spectrumCtx.fillText('Example: Piloting through an asteroid field', 50, 198);
+
+                spectrumCtx.font = '11px Arial';
+                spectrumCtx.fillStyle = '#333';
+                spectrumCtx.textAlign = 'left';
+                spectrumCtx.fillText('• 3 net Failures: you clip an asteroid and the ship takes damage', 60, 218);
+                spectrumCtx.fillText('• 1 net Failure: navigation error, forced to backtrack', 60, 234);
+                spectrumCtx.fillText('• 0 net (Successes and Failures cancel out): you do not get through', 60, 250);
+                spectrumCtx.fillText('• 1 net Success: through safely, but slowly', 60, 266);
+                spectrumCtx.fillText('• 3 net Successes: through in style, on the best route', 60, 282);
             </script>
 
             <h3>Advantage and Threat - The Story Modifiers</h3>
@@ -156,7 +150,7 @@
             </div>
 
             <h3>Triumph and Despair - The Game Changers</h3>
-            <p>Triumph and Despair represent pivotal moments that significantly alter the story's trajectory. They're not just "really good advantage" or "really bad threat" - they're opportunities for major plot developments, character revelations, and dramatic shifts.</p>
+            <p>Triumph and Despair represent pivotal moments that significantly alter the story's trajectory. They're not just "really good advantage" or "really bad threat" - they're opportunities for major plot developments, character revelations, and dramatic shifts. Mechanically, a Triumph also counts as one Success and a Despair as one Failure; those halves cancel like any other, but the Triumph or Despair itself is never cancelled, so a roll can show both.</p>
 
             <div class="triumph-despair-examples">
                 <div class="example-box">
@@ -202,8 +196,8 @@
                 layersCtx.fillText('Layered Dice Interpretation', 300, 25);
                 
                 // Draw concentric circles representing layers
-                const centerX = 300;
-                const centerY = 175;
+                const centerX = 440;
+                const centerY = 185;
                 const layers = [
                     {radius: 120, color: '#2196F3', label: 'Mechanical Effect', desc: 'What happens mechanically?'},
                     {radius: 90, color: '#4CAF50', label: 'Narrative Description', desc: 'How does it look/feel?'},
@@ -226,11 +220,12 @@
                     layersCtx.fillStyle = '#333';
                     layersCtx.font = '12px Arial';
                     layersCtx.textAlign = 'left';
-                    const labelY = 50 + (index * 30);
-                    layersCtx.fillText(`${index + 1}. ${layer.label}`, 50, labelY);
+                    const labelY = 70 + (index * 40);
+                    layersCtx.fillText(`${index + 1}. ${layer.label}`, 30, labelY);
                     layersCtx.font = '10px Arial';
-                    layersCtx.fillStyle = '#666';
-                    layersCtx.fillText(layer.desc, 70, labelY + 15);
+                    layersCtx.fillStyle = '#555';
+                    layersCtx.textAlign = 'left';
+                    layersCtx.fillText(layer.desc, 48, labelY + 15);
                 });
                 
                 // Example in center
@@ -263,8 +258,8 @@
                         </div>
                         
                         <div class="context-scenario">
-                            <h6>Context: Force Power Use</h6>
-                            <p><strong>Interpretation:</strong> "You successfully lift the fallen beam with the Force, clearing the path for your allies. However, the effort leaves you visibly drained, and nearby Imperial troops notice your unusual abilities."</p>
+                            <h6>Context: Athletics Under Fire</h6>
+                            <p><strong>Interpretation:</strong> "You heave the fallen beam aside, clearing the path for your allies. However, the effort leaves you visibly drained, and the noise brings nearby Imperial troops your way."</p>
                         </div>
                         
                         <div class="context-scenario">
@@ -280,7 +275,7 @@
         </section>
 
         <section class="advantage-threat-mastery">
-            <h2>Advantage and Threat Mastery</h2>
+            <h2>Advantage and Threat in Depth</h2>
             
             <h3>The Advantage Economy</h3>
             <p>Think of Advantage as a currency you can spend to purchase narrative benefits. Different situations offer different "exchange rates" - one Advantage might buy a lot in a casual conversation but very little in a desperate lightsaber duel.</p>
@@ -300,49 +295,54 @@
                 costsCtx.fillText('Advantage Spending Guide', 300, 25);
                 
                 const advantageOptions = [
-                    {cost: 1, option: 'Gain Boost die for ally', context: 'Any situation'},
-                    {cost: 1, option: 'Notice important detail', context: 'Investigation/Perception'},
-                    {cost: 1, option: 'Gain extra maneuver', context: 'Combat'},
-                    {cost: 2, option: 'Recover 1 Strain', context: 'Any situation'},
-                    {cost: 2, option: 'Create minor environmental effect', context: 'Contextual'},
-                    {cost: 2, option: 'Improve social standing', context: 'Social encounters'},
-                    {cost: 3, option: 'Create substantial advantage', context: 'Major situations'},
-                    {cost: 3, option: 'Inflict system strain on vehicle', context: 'Vehicle combat'},
-                    {cost: 4, option: 'Create lasting environmental change', context: 'Dramatic moments'}
+                    {cost: 1, option: 'Recover 1 strain', context: 'Any check'},
+                    {cost: 1, option: "Boost die to the next ally's check", context: 'Combat'},
+                    {cost: 1, option: 'Notice a single important detail', context: 'Any check'},
+                    {cost: 2, option: 'Free maneuver (still max 2 per turn)', context: 'Combat'},
+                    {cost: 2, option: "Setback die to the target's next check", context: 'Combat'},
+                    {cost: 2, option: 'Activate most weapon qualities', context: 'Combat'},
+                    {cost: 3, option: 'Target drops weapon, or is disabled not wounded', context: 'Combat'},
+                    {cost: 3, option: "Negate the target's defensive bonuses this round", context: 'Combat'},
+                    {cost: 0, option: 'Critical Injury: Advantage equal to the Crit rating', context: 'A hit that dealt at least 1 wound'}
                 ];
-                
+
                 let currentY2 = 60;
-                advantageOptions.forEach((option, index) => {
-                    // Draw cost indicator
+                advantageOptions.forEach((option) => {
+                    if (option.cost === 0) {
+                        costsCtx.fillStyle = '#2E7D32';
+                        costsCtx.fillRect(50, currentY2 - 10, 72, 20);
+                        costsCtx.fillStyle = '#ffffff';
+                        costsCtx.font = 'bold 12px Arial';
+                        costsCtx.textAlign = 'center';
+                        costsCtx.fillText('Crit rating', 86, currentY2 + 4);
+                    }
                     for (let i = 0; i < option.cost; i++) {
                         costsCtx.fillStyle = '#4CAF50';
                         costsCtx.beginPath();
                         costsCtx.arc(60 + (i * 25), currentY2, 8, 0, 2 * Math.PI);
                         costsCtx.fill();
-                        
                         costsCtx.strokeStyle = '#2E7D32';
                         costsCtx.lineWidth = 2;
                         costsCtx.stroke();
                     }
-                    
-                    // Add option text
+
                     costsCtx.fillStyle = '#333';
                     costsCtx.font = '14px Arial';
                     costsCtx.textAlign = 'left';
                     costsCtx.fillText(option.option, 160, currentY2 + 5);
-                    
+
                     costsCtx.font = '12px Arial';
-                    costsCtx.fillStyle = '#666';
+                    costsCtx.fillStyle = '#555';
+                    costsCtx.textAlign = 'left';
                     costsCtx.fillText(`(${option.context})`, 160, currentY2 + 20);
-                    
+
                     currentY2 += 35;
                 });
-                
-                // Add note
-                costsCtx.fillStyle = '#666';
+
+                costsCtx.fillStyle = '#555';
                 costsCtx.font = '12px Arial';
                 costsCtx.textAlign = 'center';
-                costsCtx.fillText('Costs may vary based on situation and GM interpretation', 300, 380);
+                costsCtx.fillText('Core combat options. Outside combat, the GM sets the price.', 300, 385);
             </script>
 
             <h3>Threat as Story Catalyst</h3>
@@ -391,21 +391,21 @@
                 <thead><tr><th>Cost</th><th>Common options</th></tr></thead>
                 <tbody>
                     <tr><td><strong>1 Advantage</strong></td><td>Recover 1 strain. Add a Boost die to the next allied check. Notice a useful detail — an exit, a tell, a loose panel.</td></tr>
-                    <tr><td><strong>2 Advantage</strong></td><td>Perform a free manoeuvre (aim, reposition, draw). Add a Setback die to an opponent's next check. Inflict 1 strain on a foe by rattling them.</td></tr>
-                    <tr><td><strong>3 Advantage</strong></td><td>Activate a weapon's special quality. Ignore a piece of difficult terrain or environmental penalty for the rest of the encounter. Grant an ally a free manoeuvre.</td></tr>
-                    <tr><td><strong>Triumph</strong></td><td>Inflict a Critical Injury outright. Upgrade an ally's next check. Change something about the <em>scene</em> rather than the roll — the alarm was never wired, the contact owes you a favour after all.</td></tr>
+                    <tr><td><strong>2 Advantage</strong></td><td>Perform a free maneuver (aim, reposition, draw), still no more than two in a turn. Add a Setback die to the target's next check. Add a Boost die to any ally's next check, your own included. Activate most weapon qualities.</td></tr>
+                    <tr><td><strong>3 Advantage</strong></td><td>Negate the target's defensive bonuses (cover, defense) until the end of the round. Ignore environmental penalties until the end of your next turn. Make the target drop their weapon, or disable them instead of wounding them.</td></tr>
+                    <tr><td><strong>Triumph</strong></td><td>Trigger a Critical Injury on a hit that deals at least one wound (so can Advantage equal to the weapon's Crit rating). Upgrade an ally's next check, or the difficulty of the target's next check. Change something about the <em>scene</em> rather than the roll — the alarm was never wired, the contact owes you a favour after all.</td></tr>
                 </tbody>
             </table>
 
             <h3>Spending Threat</h3>
-            <p>Threat is the GM's half of the same menu, and it should be spent with the same energy. A GM who only ever converts Threat into "you lose a strain" is wasting the most useful narrative tool in the system.</p>
+            <p>Threat is the GM's half of the same menu, and it should be spent with the same energy. A GM who only ever converts Threat into "you suffer a strain" is wasting the most useful narrative tool in the system. The rulebooks give exact prices; the rough sizes below are enough at the table.</p>
             <table>
-                <thead><tr><th>Cost</th><th>Common options</th></tr></thead>
+                <thead><tr><th>Size</th><th>Common options</th></tr></thead>
                 <tbody>
-                    <tr><td><strong>1 Threat</strong></td><td>Lose 1 strain. A small tell gives you away. Something minor is dropped, snagged or misplaced.</td></tr>
-                    <tr><td><strong>2 Threat</strong></td><td>An opponent gets a free manoeuvre or a Boost die. You lose the advantage of cover. Reinforcements are now aware of the noise.</td></tr>
-                    <tr><td><strong>3 Threat</strong></td><td>The weapon jams or runs dry — a manoeuvre to clear. A piece of gear is damaged. The environment turns against you.</td></tr>
-                    <tr><td><strong>Despair</strong></td><td>Something breaks permanently, an ally is exposed, or the situation itself changes for the worse. Despair should alter what the scene <em>is</em>, not merely subtract from it.</td></tr>
+                    <tr><td><strong>A little Threat</strong></td><td>Suffer 1 strain. Lose the benefit of your last maneuver. A small tell gives you away.</td></tr>
+                    <tr><td><strong>More Threat</strong></td><td>An opponent gets a free maneuver or a Boost die. A Setback die on your or an ally's next check. Reinforcements are now aware of the noise.</td></tr>
+                    <tr><td><strong>A lot of Threat</strong></td><td>You fall prone. You slip to the last initiative slot. The environment turns against you.</td></tr>
+                    <tr><td><strong>Despair</strong></td><td>The weapon runs out of ammo or a piece of gear is damaged. Something breaks permanently, an ally is exposed, or the situation itself changes for the worse. Despair should alter what the scene <em>is</em>, not merely subtract from it.</td></tr>
                 </tbody>
             </table>
 
@@ -415,7 +415,7 @@
                 <li><strong>Let the player spend their own Advantage.</strong> It is their reward and their idea. The GM's job is to say yes, or to offer two options when they are stuck. Spending it for them turns a creative moment into an announcement.</li>
                 <li><strong>Threat is a complication, not a punishment.</strong> The test: does your Threat spend make the next thirty seconds <em>more interesting</em>? "You take one strain" almost never does. "The blast door grinds shut behind you — you're in, but you're committed" always does.</li>
             </ol>
-            <p>The rulebooks carry longer tables broken out by situation — combat, social, vehicle — and they are worth reading once. But in practice most GMs converge on a dozen favourites, and the list above is roughly that dozen. Practise them on the <a href="/sw_dice_roller.html">Dice Roller</a> by rolling pools and narrating every result aloud until reaching for a spend stops feeling like a pause.</p>
+            <p>The rulebooks carry longer tables broken out by situation — combat, social, vehicle — and they are worth reading once. But in practice most GMs converge on a dozen favourites, and the list above is roughly that dozen. Practise them on the <a href="/sw_dice_roller.html">Narrative Dice Roller</a> by rolling pools and narrating every result aloud until reaching for a spend stops feeling like a pause.</p>
         </section>
 
         <section class="dice-pool-optimization">
@@ -427,26 +427,17 @@
             <div class="dice-interaction">
                 <div class="mermaid">
                     graph TD
-                        A[Base Pool] --> B[Characteristic + Skill]
-                        B --> C[Add Positive Dice]
-                        C --> D[Add Negative Dice]
-                        D --> E[Final Pool]
-                        
-                        F[Boost Dice] --> C
-                        G[Force Dice] --> C
-                        H[Upgrade to Proficiency] --> C
-                        
-                        I[Setback Dice] --> D
-                        J[Difficulty Dice] --> D
-                        K[Challenge Dice] --> D
-                        
-                        L[Favorable Conditions] --> F
-                        M[Equipment Bonuses] --> F
-                        N[Ally Assistance] --> F
-                        
-                        O[Environmental Hazards] --> I
-                        P[Time Pressure] --> I
-                        Q[Opposition Quality] --> K
+                        A[Characteristic and skill] --> B[Higher value = Ability dice]
+                        B --> H[Upgrade by the lower value]
+                        H --> C[Add Boost dice]
+                        C --> D[Difficulty dice from the task]
+                        D --> K[Upgrades to Challenge]
+                        K --> I[Add Setback dice]
+                        I --> E[Final Pool]
+
+                        L[Aim, aid, good position] --> C
+                        O[Cover, darkness, hazards] --> I
+                        Q[Opposed skill or Destiny Point] --> K
                         
                         style A fill:#4caf50,color:#1f2937
                         style E fill:#f65e53,color:#1f2937
@@ -459,7 +450,7 @@
             <p>While narrative dice aren't about mathematical optimization, understanding their statistical tendencies helps you make informed decisions about when to attempt actions and how to modify your pools.</p>
 
             <div class="dice-statistics">
-                <canvas id="diceStats" width="600" height="350"></canvas>
+                <canvas id="diceStats" width="600" height="360"></canvas>
             </div>
 
             <script>
@@ -472,68 +463,55 @@
                 statsCtx.textAlign = 'center';
                 statsCtx.fillText('Dice Probability Profiles', 300, 25);
                 
-                // Define dice types and their general tendencies
+                // Exact per-die chances, counted from the faces of each die
                 const diceTypes = [
-                    {name: 'Ability (Green)', success: 0.5, advantage: 0.33, color: '#4CAF50'},
-                    {name: 'Proficiency (Yellow)', success: 0.75, advantage: 0.42, triumph: 0.08, color: '#FFC107'},
-                    {name: 'Difficulty (Purple)', failure: 0.5, threat: 0.33, color: '#9C27B0'},
-                    {name: 'Challenge (Red)', failure: 0.75, threat: 0.42, despair: 0.08, color: '#F44336'},
-                    {name: 'Boost (Blue)', success: 0.33, advantage: 0.5, color: '#2196F3'},
-                    {name: 'Setback (Black)', failure: 0.33, threat: 0.5, color: '#424242'}
+                    {name: 'Ability (Green d8)', color: '#4CAF50', cols: [['Success', 50.0, '#2e7d32'], ['Advantage', 50.0, '#1565c0'], null]},
+                    {name: 'Proficiency (Yellow d12)', color: '#FFC107', cols: [['Success*', 66.7, '#2e7d32'], ['Advantage', 50.0, '#1565c0'], ['Triumph', 8.3, '#8d6e00']]},
+                    {name: 'Difficulty (Purple d8)', color: '#9C27B0', cols: [['Failure', 37.5, '#c62828'], ['Threat', 62.5, '#b45309'], null]},
+                    {name: 'Challenge (Red d12)', color: '#F44336', cols: [['Failure*', 58.3, '#c62828'], ['Threat', 50.0, '#b45309'], ['Despair', 8.3, '#6a1b9a']]},
+                    {name: 'Boost (Blue d6)', color: '#2196F3', cols: [['Success', 33.3, '#2e7d32'], ['Advantage', 50.0, '#1565c0'], null]},
+                    {name: 'Setback (Black d6)', color: '#424242', cols: [['Failure', 33.3, '#c62828'], ['Threat', 33.3, '#b45309'], null]}
                 ];
-                
-                let currentY = 60;
+                const colX = [226, 344, 480];
+
+                statsCtx.fillStyle = '#333';
+                statsCtx.font = 'bold 12px Arial';
+                statsCtx.textAlign = 'left';
+                ['Success/Failure', 'Advantage/Threat', 'Triumph/Despair'].forEach((h, i) => statsCtx.fillText(h, colX[i], 52));
+
+                let currentY = 66;
                 diceTypes.forEach(die => {
-                    // Draw die representation
                     statsCtx.fillStyle = die.color;
-                    statsCtx.fillRect(50, currentY, 30, 30);
+                    statsCtx.fillRect(30, currentY, 28, 28);
                     statsCtx.strokeStyle = '#333';
                     statsCtx.lineWidth = 2;
-                    statsCtx.strokeRect(50, currentY, 30, 30);
-                    
-                    // Add die name
+                    statsCtx.strokeRect(30, currentY, 28, 28);
+
                     statsCtx.fillStyle = '#333';
-                    statsCtx.font = '14px Arial';
+                    statsCtx.font = '12px Arial';
                     statsCtx.textAlign = 'left';
-                    statsCtx.fillText(die.name, 90, currentY + 20);
-                    
-                    // Add probability bars
-                    let barX = 250;
-                    if (die.success) {
-                        statsCtx.fillStyle = '#4CAF50';
-                        statsCtx.fillRect(barX, currentY + 5, die.success * 100, 10);
+                    statsCtx.fillText(die.name, 66, currentY + 19);
+
+                    die.cols.forEach((c, i) => {
+                        if (!c) return;
                         statsCtx.fillStyle = '#333';
-                        statsCtx.font = '10px Arial';
-                        statsCtx.fillText(`Success: ${Math.round(die.success * 100)}%`, barX, currentY);
-                        barX += 120;
-                    }
-                    if (die.failure) {
-                        statsCtx.fillStyle = '#F44336';
-                        statsCtx.fillRect(barX, currentY + 5, die.failure * 100, 10);
-                        statsCtx.fillStyle = '#333';
-                        statsCtx.fillText(`Failure: ${Math.round(die.failure * 100)}%`, barX, currentY);
-                        barX += 120;
-                    }
-                    if (die.advantage) {
-                        statsCtx.fillStyle = '#2196F3';
-                        statsCtx.fillRect(barX, currentY + 20, die.advantage * 80, 8);
-                        statsCtx.fillStyle = '#333';
-                        statsCtx.fillText(`Adv: ${Math.round(die.advantage * 100)}%`, barX, currentY + 35);
-                    }
-                    if (die.threat) {
-                        statsCtx.fillStyle = '#FF9800';
-                        statsCtx.fillRect(barX, currentY + 20, die.threat * 80, 8);
-                        statsCtx.fillStyle = '#333';
-                        statsCtx.fillText(`Threat: ${Math.round(die.threat * 100)}%`, barX, currentY + 35);
-                    }
-                    
-                    currentY += 45;
+                        statsCtx.font = '12px Arial';
+                        statsCtx.textAlign = 'left';
+                        statsCtx.fillText(`${c[0]} ${c[1].toFixed(1)}%`, colX[i], currentY + 11);
+                        statsCtx.fillStyle = '#e5e7eb';
+                        statsCtx.fillRect(colX[i], currentY + 17, 100, 8);
+                        statsCtx.fillStyle = c[2];
+                        statsCtx.fillRect(colX[i], currentY + 17, c[1], 8);
+                    });
+
+                    currentY += 42;
                 });
-                
-                statsCtx.fillStyle = '#666';
+
+                statsCtx.fillStyle = '#555';
                 statsCtx.font = '12px Arial';
                 statsCtx.textAlign = 'center';
-                statsCtx.fillText('Approximate probabilities - actual results depend on specific die faces', 300, 320);
+                statsCtx.fillText('Chance that one die shows at least one symbol of that kind (exact, from the faces).', 300, 330);
+                statsCtx.fillText('* Triumph also counts as a Success; Despair also counts as a Failure.', 300, 346);
             </script>
 
             <h3>Pool Modification Strategies</h3>
@@ -547,15 +525,15 @@
                     <ul>
                         <li><strong>Upgrade Ability to Proficiency:</strong> Best when you need reliable success</li>
                         <li><strong>Add Boost dice:</strong> Cheaper way to increase success chance</li>
-                        <li><strong>Remove Setback dice:</strong> Often more valuable than adding positive dice</li>
-                        <li><strong>Aim for target numbers:</strong> Sometimes "good enough" is better than "optimal"</li>
+                        <li><strong>Remove Setback dice:</strong> Often worth more than adding a positive die. Rolling 2 Ability + 1 Proficiency against Average (2 Difficulty) succeeds 65.1% of the time; one Setback die drops that to 56.7%, while one extra Boost die only lifts it to 71.6%</li>
+                        <li><strong>Know when it is enough:</strong> A check needs only one net Success; extra Successes add damage in combat but are not required to succeed</li>
                     </ul>
                     
                     <h5>Generating Advantage</h5>
                     <ul>
                         <li><strong>Boost dice are excellent:</strong> High Advantage generation for low cost</li>
                         <li><strong>Proficiency dice:</strong> Generate both Success and Advantage reliably</li>
-                        <li><strong>Force dice:</strong> Can provide both Advantage and narrative flexibility</li>
+                        <li><strong>Talents and gear:</strong> Many add Boost dice or let you upgrade a die, which raises both Success and Advantage</li>
                         <li><strong>Consider the trade-off:</strong> Sometimes accept higher difficulty for more Advantage potential</li>
                     </ul>
                     
@@ -563,7 +541,7 @@
                     <ul>
                         <li><strong>Assess Threat potential:</strong> How bad would Threat complications be?</li>
                         <li><strong>Challenge dice are dangerous:</strong> High Threat and Despair potential</li>
-                        <li><strong>Setback accumulation:</strong> Multiple Setback dice can be worse than one Challenge</li>
+                        <li><strong>Setback accumulation:</strong> Multiple Setback dice can be worse than one Challenge die. For the same pool against Average, two Setback dice cut success to 48.6%; upgrading one Difficulty die to Challenge cuts it only to 58.5%, but adds an 8.3% chance of Despair</li>
                         <li><strong>Story vs mechanics:</strong> Sometimes narrative benefits outweigh mechanical risks</li>
                     </ul>
                 </div>
@@ -571,7 +549,7 @@
         </section>
 
         <section class="situational-mastery">
-            <h2>Situational Dice Mastery</h2>
+            <h2>Dice by Situation</h2>
             
             <h3>Combat Dice Interpretation</h3>
             <p>Combat dice results should enhance the cinematic nature of Star Wars action sequences. Every roll is an opportunity to describe amazing maneuvers, environmental interactions, and tactical developments.</p>
@@ -582,32 +560,32 @@
                     
                     <h5>Advantage in Combat</h5>
                     <ul>
-                        <li><strong>1 Advantage:</strong> Gain boost die for next action, recover 1 strain, or add Boost to ally</li>
-                        <li><strong>2 Advantage:</strong> Perform additional maneuver, notice tactical opportunity, or cause minor environmental effect</li>
-                        <li><strong>3 Advantage:</strong> Upgrade difficulty of enemy's next check, disarm opponent, or create significant cover</li>
-                        <li><strong>4+ Advantage:</strong> Major tactical advantage, environmental change, or narrative benefit</li>
+                        <li><strong>1 Advantage:</strong> Recover 1 strain, add a Boost die to the next allied character's check, or notice a tactical detail</li>
+                        <li><strong>2 Advantage:</strong> Take a free maneuver, add a Setback die to the target's next check, or add a Boost die to any ally's next check</li>
+                        <li><strong>3 Advantage:</strong> Negate the target's defensive bonuses, disarm the target, or disable them instead of wounding them</li>
+                        <li><strong>4+ Advantage:</strong> Combine options, or spend it on something bigger in the scene</li>
                     </ul>
                     
                     <h5>Threat in Combat</h5>
                     <ul>
-                        <li><strong>1 Threat:</strong> Opponent gains Boost die, you lose free maneuver, or strain to weapons</li>
-                        <li><strong>2 Threat:</strong> You fall prone, drop weapon, or opponents gain tactical position</li>
-                        <li><strong>3 Threat:</strong> Upgrade difficulty of your next check, environmental hazard, or you grant enemy advantage</li>
-                        <li><strong>4+ Threat:</strong> Major complication, reinforcements arrive, or significant disadvantage</li>
+                        <li><strong>A little Threat:</strong> You suffer strain, or lose the benefit of your last maneuver</li>
+                        <li><strong>More Threat:</strong> An opponent gets a free maneuver or a Boost die, or you take a Setback die</li>
+                        <li><strong>A lot of Threat:</strong> You fall prone or slip to the last initiative slot</li>
+                        <li><strong>Even more:</strong> Major complication, reinforcements arrive, or the scene turns against you</li>
                     </ul>
                     
                     <h5>Triumph in Combat</h5>
                     <ul>
-                        <li>Critical hit with narrative flair</li>
+                        <li>Critical Injury (on a hit that deals a wound), described with flair</li>
                         <li>Discover major tactical weakness</li>
                         <li>Inspire allies with heroic action</li>
                         <li>Create lasting environmental advantage</li>
-                        <li>Force enemy morale check or retreat</li>
+                        <li>Break the enemy's nerve: minions scatter or surrender</li>
                     </ul>
                     
                     <h5>Despair in Combat</h5>
                     <ul>
-                        <li>Weapon critical malfunction</li>
+                        <li>Out of ammo, or the weapon is damaged</li>
                         <li>Accidental harm to allies</li>
                         <li>Enemy reinforcements arrive</li>
                         <li>Environmental disaster triggered</li>
@@ -728,7 +706,7 @@
         </section>
 
         <section class="force-dice-mastery">
-            <h2>Force Dice Advanced Techniques</h2>
+            <h2>Reading the Force Die</h2>
             
             <h3>Beyond Light and Dark</h3>
             <p>Force dice represent more than just power generation - they're a window into the character's relationship with the Force and the moral choices that define them. Every Force roll is an opportunity for character development.</p>
@@ -746,7 +724,7 @@
                     
                     <h5>Dark Side Pips - Temptation and Power</h5>
                     <ul>
-                        <li><strong>Using Dark Pips:</strong> Quick power at the cost of inner conflict and corruption</li>
+                        <li><strong>Using Dark Pips:</strong> A light-side user who wants them must flip a light-side Destiny Point to dark and suffer 1 strain per dark pip used; in Force and Destiny they also gain 1 Conflict per pip</li>
                         <li><strong>Abundant Dark Pips:</strong> The dark side offers easy solutions to complex problems</li>
                         <li><strong>Mixed Results:</strong> The Force reflects your internal struggle between light and dark</li>
                     </ul>
@@ -762,17 +740,17 @@
             </div>
 
             <h3>Force Dice in Non-Force Checks</h3>
-            <p>Force-sensitive characters can add Force dice to many skill checks, creating opportunities to show how the Force guides their actions even in mundane activities. This reinforces the mystical nature of Force sensitivity.</p>
+            <p>Force dice are not added to ordinary skill checks. They are rolled for Force powers, and the number rolled equals the character's Force rating. Some powers and talents do let a Force user roll a power alongside a skill check and spend pips on that check (an Athletics leap boosted by the Force, for example), which is a fine moment to show how the Force guides even mundane actions.</p>
 
             <h3>Destiny and Force Dice</h3>
-            <p>The interplay between Destiny points and Force dice creates rich storytelling opportunities. Players must choose between immediate power and long-term narrative control, reflecting the Jedi philosophy of patience and wisdom.</p>
+            <p>The interplay between Destiny Points and Force dice creates rich storytelling opportunities. The Destiny pool itself comes from Force dice rolled at the start of the session, and a light-side character who reaches for dark pips must flip a light-side Destiny Point to dark, handing the GM one more point to use against the party. Immediate power has a visible price, which suits the Jedi philosophy of patience.</p>
         </section>
 
         <section class="practice-activities">
-            <h2>Practice Activities</h2>
+            <h2>Try It at the Table</h2>
             
             <h3>Activity One: Interpretation Exercises</h3>
-            <p>Practice interpreting complex dice results:</p>
+            <p>Interpret some complex dice results:</p>
             <ol>
                 <li>Create 10 different scenarios (combat, social, technical, etc.)</li>
                 <li>For each scenario, interpret these results differently:
@@ -816,7 +794,7 @@
         </section>
 
         <section class="common-pitfalls">
-            <h2>Common Advanced Dice Pitfalls</h2>
+            <h2>Common Dice-Reading Pitfalls</h2>
             
             <h3>Over-Interpretation</h3>
             <div class="pitfall-solution">
@@ -850,8 +828,8 @@
                 <li><strong>Group Dice Interpretation:</strong> Managing complex multi-character scenes</li>
                 <li><strong>Digital Dice Tools:</strong> Apps and online tools for managing narrative dice</li>
                 <li><strong>House Rules for Dice:</strong> Common modifications and their impacts</li>
-                <li><strong>Teaching Dice Interpretation:</strong> Helping new players understand the system</li>
-                <li><strong>Cross-System Applications:</strong> Using narrative dice concepts in other games</li>
+                <li><strong>Explaining the Dice:</strong> Helping new players understand the system</li>
+                <li><strong>Cross-System Applications:</strong> Genesys, the generic version of the same narrative dice system</li>
             </ul>
         </section>
     
@@ -859,20 +837,22 @@
             <h2>Where to Go Next</h2>
             <p>Interpretation is a skill you build. Take it into these:</p>
             <ul>
-                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> The highest-pressure place to spend Advantage well.</li>
+                <li><strong><a href="/sw_combat.html">Combat &amp; Conflict</a>:</strong> The highest-pressure place to spend Advantage well.</li>
                 <li><strong><a href="/starwars_social_encounters.html">Social Encounters</a>:</strong> Advantage in conversation is subtler and often more valuable than in a firefight.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Reading the dice from behind the screen, where you owe the table a consequence every roll.</li>
-                <li><strong><a href="/sw_dice_roller.html">Dice Roller</a>:</strong> Roll the pools from this page and practise calling results aloud.</li>
-                <li><strong><a href="/sw_intro.html">Introduction</a>:</strong> The basics again, if any of the symbol interactions here felt like a leap.</li>
+                <li><strong><a href="/sw_dice_roller.html">Narrative Dice Roller</a>:</strong> Roll the pools from this page and practise calling results aloud.</li>
+                <li><strong><a href="/sw_intro.html">Welcome to the Star Wars RPG</a>:</strong> The basics again, if any of the symbol interactions here felt like a leap.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>Master the dice, and you master the art of collaborative storytelling. Every roll is an opportunity to create something amazing together - never let a good dice result go to waste!</p>
-     
+<div class="page-nav">
+    <a class="prev" href="/sw_combat.html">Combat &amp; Conflict</a>
+    <a class="next" href="/sw_force_and_lightsaber.html">The Force &amp; Lightsabers</a>
+</div>
+        <p class="closing-quote">Learn to read the dice, and you learn the art of collaborative storytelling. Every roll is an opportunity to create something amazing together - never let a good dice result go to waste!</p>
     </footer>
-
-   
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

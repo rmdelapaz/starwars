@@ -3,113 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating Epic Campaign Arcs and Story Structure in Star Wars RPG</title>
-    <meta name="description" content="Multi-session story structures, cliffhangers and escalating stakes for Star Wars campaigns.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Creating Epic Campaign Arcs and Story Structure in Star Wars RPG">
-    <meta property="og:description" content="Multi-session story structures, cliffhangers and escalating stakes for Star Wars campaigns.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Campaign Arcs - The Star Wars RPG Guide</title>
+    <meta name="description" content="Campaign arcs for the Star Wars RPG: three-act structure, session shape, character arcs woven through Obligation, Duty and Morality, climaxes and endings.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .saga-theater { background: linear-gradient(135deg, #000428, #004e92, #009ffd); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
-        .saga-theater::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="0.5" fill="white"/><circle cx="80" cy="15" r="0.3" fill="white"/><circle cx="25" cy="70" r="0.4" fill="white"/><circle cx="90" cy="80" r="0.2" fill="white"/><circle cx="60" cy="40" r="0.3" fill="white"/></svg>') repeat; opacity: 0.6; animation: starField 60s linear infinite; }
+        .saga-theater {
+            border-left: 5px solid var(--gold) !important;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .saga-theater::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.6;
+            animation: starField 60s linear infinite;
+        }
         @keyframes starField { 0% { transform: translateY(0); } 100% { transform: translateY(-100px); } }
-        .saga-theater * { position: relative; z-index: 2; }
-        .arc-structure { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .arc-card { background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #007bff; position: relative; }
-        .arc-card.act1 { border-left-color: #28a745; }
-        .arc-card.act2 { border-left-color: #ffc107; }
-        .arc-card.act3 { border-left-color: #dc3545; }
-        .timeline-builder { background: linear-gradient(to right, #e8f5e8, #fff3cd, #f8d7da); padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .session-tracker { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin: 20px 0; }
-        .session-card { background: #343a40; color: white; padding: 15px; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.3s; }
-        .session-card:hover { background: #495057; transform: translateY(-2px); }
-        .session-card.completed { background: #28a745; }
-        .session-card.current { background: #ffc107; color: #000; }
-        .story-weaver { background: #e6f3ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a90e2; }
-        .tension-graph { text-align: center; margin: 20px 0; }
-        .pacing-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .pacing-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .pacing-btn:hover { background: #0056b3; }
-        .pacing-btn.active { background: #28a745; }
-        .climax-builder { background: radial-gradient(circle, #4a0080, #000080); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .resolution-zone { background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .exercise-workshop { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .mystery-box { background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .character-journey { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
-        .journey-stage { background: #f0f8ff; padding: 15px; border-radius: 8px; border: 2px solid #4a90e2; }
-        .story-generator { background: #000; color: #00ff00; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .generator-output { min-height: 150px; border: 1px solid #00ff00; padding: 15px; margin: 10px 0; overflow-y: auto; }
-        .threaded-narrative { position: relative; padding: 20px; margin: 20px 0; }
-        .narrative-thread { position: absolute; width: 4px; background: linear-gradient(to bottom, #007bff, #28a745, #ffc107, #dc3545); height: 100%; left: 20px; }
-        .thread-point { background: white; border: 3px solid #007bff; border-radius: 50%; width: 20px; height: 20px; position: relative; margin: 20px 0 20px 40px; }
-        .thread-content { margin-left: 80px; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        .saga-theater * {
+            position: relative;
+            z-index: 2;
+        }
+        .arc-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .arc-card {
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+            position: relative;
+        }
+        .arc-card.act1 {
+            border-left-color: #28a745;
+        }
+        .arc-card.act2 {
+            border-left-color: var(--border);
+        }
+        .arc-card.act3 {
+            border-left-color: #dc3545;
+        }
+        .timeline-builder {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .session-tracker {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(120px, 100%), 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .session-card {
+            border-left: 5px solid var(--gold) !important;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .session-card:hover {
+            border-left: 5px solid var(--gold) !important;
+            transform: translateY(-2px);
+        }
+        .session-card.completed {
+            border-left: 5px solid var(--success) !important;
+        }
+        .session-card.current {
+            color: var(--text);
+        }
+        .story-weaver {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #4a90e2;
+        }
+        .tension-graph {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pacing-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .pacing-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pacing-btn:hover {
+            background: #0056b3 !important;
+            color: #fff;
+        }
+        .pacing-btn.active {
+            background: #1f8336 !important;
+            color: #fff;
+        }
+        .climax-builder {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .resolution-zone {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .exercise-workshop {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .mystery-box {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .character-journey {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .journey-stage {
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #4a90e2;
+        }
+        .story-generator {
+            border-left: 5px solid var(--gold) !important;
+            font-family: monospace;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .generator-output {
+            min-height: 150px;
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin: 10px 0;
+            overflow-y: auto;
+        }
+        .threaded-narrative {
+            position: relative;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .narrative-thread {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #006fe8, #1f8336, #8c6a03, #d53342) !important;
+            height: 100%;
+            left: 20px;
+            color: #fff;
+        }
+        .thread-point {
+            border: 3px solid #007bff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            position: relative;
+            margin: 20px 0 20px 40px;
+        }
+        .thread-content {
+            margin-left: 80px;
+            padding: 15px;
+            border-radius: 8px;
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .saga-theater::before { background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="0.5" fill="#222c35"/><circle cx="80" cy="15" r="0.3" fill="#192027"/><circle cx="25" cy="70" r="0.4" fill="#28333e"/><circle cx="90" cy="80" r="0.2" fill="#222c35"/><circle cx="60" cy="40" r="0.3" fill="#192027"/></svg>') repeat; color: #e2e8f0; }
-        html:not(.light) .arc-card { background: #1e2b38; color: #e2e8f0; }
-        html:not(.light) .arc-card.act2 { border-left-color: #866f27; }
-        html:not(.light) .timeline-builder { background: linear-gradient(to right, #1a3c1a, #31290e, #4f171c); color: #e2e8f0; }
-        html:not(.light) .session-card.current { background: #433714; color: #e2e8f0; }
-        html:not(.light) .story-weaver { background: #142c43; color: #e2e8f0; }
-        html:not(.light) .resolution-zone { background: linear-gradient(135deg, #431415, #310e26); color: #e2e8f0; }
-        html:not(.light) .exercise-workshop { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
-        html:not(.light) .journey-stage { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .narrative-thread { background: linear-gradient(to bottom, #007bff, #28a745, #433714, #dc3545); color: #e2e8f0; }
-        html:not(.light) .thread-point { background: #222c35; color: #e2e8f0; }
-        html:not(.light) .thread-content { background: #1e2b38; color: #e2e8f0; }
+        html[data-theme="dark"] .saga-theater::before {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .arc-card {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .arc-card.act2 {
+            border-left-color: #866f27;
+        }
+        html[data-theme="dark"] .timeline-builder {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .session-card.current {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .story-weaver {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .resolution-zone {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .exercise-workshop {
+            border: 2px solid #297885;
+        }
+        html[data-theme="dark"] .journey-stage {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .narrative-thread {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .thread-point {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .thread-content {
+            border-left: 5px solid var(--gold) !important;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .saga-theater :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .session-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .climax-builder :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .mystery-box :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .story-generator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .saga-theater :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .session-card :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .climax-builder :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .mystery-box :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .story-generator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .session-card.completed { background: #208637; }
-        .pacing-btn { background: #0071eb; }
-        .pacing-btn.active { background: #208637; }
+        .session-card.completed {
+            background: #208637 !important;
+            color: #fff;
+        }
+        .pacing-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .pacing-btn.active {
+            background: #208637 !important;
+            color: #fff;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .saga-theater::before { color: #1f2937; }
-        .arc-card { color: #1f2937; }
-        .timeline-builder { color: #1f2937; }
-        .story-weaver { color: #1f2937; }
-        .resolution-zone { color: #1f2937; }
-        .exercise-workshop { color: #1f2937; }
-        .journey-stage { color: #1f2937; }
-        .narrative-thread { color: #1f2937; }
-        .thread-point { color: #1f2937; }
-        .thread-content { color: #1f2937; }
+        .saga-theater::before {
+            
+        }
+        .arc-card {
+            
+        }
+        .timeline-builder {
+            
+        }
+        .story-weaver {
+            
+        }
+        .resolution-zone {
+            
+        }
+        .exercise-workshop {
+            
+        }
+        .journey-stage {
+            
+        }
+        .narrative-thread {
+            
+        }
+        .thread-point {
+            
+        }
+        .thread-content {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .pacing-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .narrative-thread :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .session-card.completed :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .pacing-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .pacing-btn.active :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Creating Epic Campaign Arcs and Story Structure</h1>
-        <p><em>"A long time ago, in a galaxy far, far away..." - The opening that started it all</em></p>
+        <h1>Campaign Arcs</h1>
+        <p>How to shape a Star Wars campaign into acts, arcs and sessions that build to a satisfying ending.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
             <div class="saga-theater">
-                <h2>Welcome to the Saga Academy</h2>
+                <h2>Thinking in Trilogies</h2>
                 <p>Creating a Star Wars campaign is like directing your own trilogy - you need to balance epic galactic conflicts with intimate character moments, weave multiple storylines together, and build toward climaxes that feel both inevitable and surprising. The best campaigns feel like living sagas where every session matters and every choice echoes across the galaxy.</p>
                 
                 <p>Think of your campaign as a symphony in three movements, where themes introduced in the opening sessions develop and transform throughout the story, reaching their crescendo in moments of triumph, tragedy, and transformation. Just as the Force binds the galaxy together, your story structure binds your campaign into something greater than the sum of its parts.</p>
@@ -120,7 +331,7 @@
             <h2>The Architecture of Epic Storytelling</h2>
             
             <div class="mermaid">
-                graph TD
+                graph LR
                     A[Epic Campaign] --> B[Overarching Theme]
                     A --> C[Character Arcs]
                     A --> D[Plot Threads]
@@ -151,7 +362,7 @@
                 </div>
                 <div class="arc-card">
                     <h4>🌟 Character Evolution</h4>
-                    <p>Characters should grow and change throughout the campaign. Track their personal journeys alongside the main plot, ensuring each hero faces their own trials and transformations.</p>
+                    <p>Characters should grow and change throughout the campaign. Track their personal journeys alongside the main plot, ensuring each hero faces their own trials and transformations. The rules already put this on the character sheet: Obligation in <em>Edge of the Empire</em>, Duty in <em>Age of Rebellion</em> and Morality in <em>Force and Destiny</em> each give you a personal thread to pull.</p>
                 </div>
                 <div class="arc-card">
                     <h4>🕸️ Interconnected Plots</h4>
@@ -186,7 +397,7 @@
                         <strong>Key Elements:</strong> Character introductions, world-building, first villain encounter</p>
                     </div>
                     
-                    <div class="thread-point" style="border-color: #ffc107;"></div>
+                    <div class="thread-point" style="border-color: var(--border);"></div>
                     <div class="thread-content">
                         <h4>Act II: The Struggle (Sessions 9-20)</h4>
                         <p><strong>Purpose:</strong> Develop conflicts, test characters, raise stakes<br>
@@ -206,7 +417,7 @@
 
             <div class="tension-graph">
                 <canvas id="tensionGraph" width="800" height="300"></canvas>
-                <p><em>Interactive Tension Graph - Track your campaign's emotional peaks and valleys!</em></p>
+                <p><em>A tension graph: add points to sketch your campaign's peaks and valleys.</em></p>
                 <div class="pacing-controls">
                     <button class="pacing-btn" onclick="addTensionPoint('low')">Add Low Point</button>
                     <button class="pacing-btn" onclick="addTensionPoint('medium')">Add Medium</button>
@@ -225,16 +436,11 @@
                 <h3>The Session Structure Template</h3>
                 
                 <div class="mermaid">
-                    graph LR
-                        A[Hook] --> B[Development]
-                        B --> C[Climax]
-                        C --> D[Resolution]
-                        D --> E[Setup]
-                        
-                        A1[Grab attention<br/>Immediate problem] --> B1[Investigation<br/>Character moments<br/>Complications]
-                        B1 --> C1[Major choice<br/>Confrontation<br/>Revelation]
-                        C1 --> D1[Consequences<br/>Character growth<br/>Rewards]
-                        D1 --> E1[Hints about future<br/>New mysteries<br/>Relationship changes]
+                    graph TD
+                        A["Hook&lt;br/&gt;Grab attention, immediate problem"] --> B["Development&lt;br/&gt;Investigation, character moments, complications"]
+                        B --> C["Climax&lt;br/&gt;Major choice, confrontation, revelation"]
+                        C --> D["Resolution&lt;br/&gt;Consequences, growth, rewards"]
+                        D --> E["Setup&lt;br/&gt;Hints, new mysteries, changed relationships"]
                 </div>
 
                 <h4>Session Types and Their Functions</h4>
@@ -302,7 +508,7 @@
                     <p><strong>Sessions 23-27:</strong> Character overcomes their limitation through growth, not just power. Demonstrates their new understanding.</p>
                 </div>
                 <div class="journey-stage">
-                    <h4>🌟 The Master</h4>
+                    <h4>🌟 The Mentor</h4>
                     <p><strong>Sessions 28-30:</strong> Character helps others overcome similar challenges. Their growth enables the final victory.</p>
                 </div>
             </div>
@@ -322,7 +528,7 @@
         </section>
 
         <section class="plot-threading">
-            <h2>Masterful Plot Threading</h2>
+            <h2>Plot Threading</h2>
             <p>Great campaigns feel organic because multiple storylines intersect and influence each other. Like a musical fugue, themes introduced early return in new variations throughout the story.</p>
 
             <div class="mystery-box">
@@ -362,7 +568,7 @@
 
                 <h3>Elements of a Star Wars Climax</h3>
                 <div class="mermaid">
-                    graph TD
+                    graph LR
                         A[Epic Climax] --> B[Multiple Fronts]
                         A --> C[Character Moments]
                         A --> D[Impossible Odds]
@@ -483,7 +689,7 @@
 
         <section class="exercises">
             <div class="exercise-workshop">
-                <h3>Campaign Planning Exercises</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: Theme Exploration</h4>
                 <p>Choose a universal theme (redemption, sacrifice, growing up, etc.) and design:</p>
@@ -497,8 +703,8 @@
                 <h4>Exercise 2: The 30-Session Outline</h4>
                 <p>Create a high-level outline for a 30-session campaign:</p>
                 <ul>
-                    <li>Sessions 1-10: Act I with major plot points</li>
-                    <li>Sessions 11-20: Act II with character arcs</li>
+                    <li>Sessions 1-8: Act I with major plot points</li>
+                    <li>Sessions 9-20: Act II with character arcs</li>
                     <li>Sessions 21-30: Act III with resolution</li>
                     <li>Identify your midpoint reversal and climax</li>
                 </ul>
@@ -566,14 +772,10 @@
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Recurring antagonists — the cheapest way to make an arc feel connected.</li>
                 <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Faction conflict as a source of arcs that write themselves.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Keeping an arc on the rails week to week without railroading.</li>
-                <li><strong><a href="/starwars_capstone_mastery.html">Capstone: GM Mastery</a>:</strong> Tying multiple arcs into one campaign that lands.</li>
+                <li><strong><a href="/starwars_putting_it_together.html">Putting It All Together</a>:</strong> Tying multiple arcs into one campaign that lands.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"Your father's lightsaber. This is the weapon of a Jedi Knight. Not as clumsy or random as a blaster; an elegant weapon for a more civilized age." - Obi-Wan Kenobi (showing how even exposition can be dramatic when woven into character moments)</em></p>
-    </footer>
 
     <script>
         // Tension Graph System
@@ -589,6 +791,12 @@
             {session: 30, tension: 0.5, label: "Resolution"}
         ];
 
+        const tensionCaption = tensionCanvas.closest('.tension-graph').querySelector('p em');
+        const PAD_L = 80, PAD_R = 40, PAD_T = 30, PAD_B = 40;
+
+        function tx(session) { return (session / 30) * (tensionCanvas.width - PAD_L - PAD_R) + PAD_L; }
+        function ty(tension) { return (1 - tension) * (tensionCanvas.height - PAD_T - PAD_B) + PAD_T; }
+
         function drawTensionGraph() {
             tensionCtx.clearRect(0, 0, tensionCanvas.width, tensionCanvas.height);
             
@@ -602,70 +810,62 @@
             
             // Vertical lines (sessions)
             for (let i = 0; i <= 30; i += 5) {
-                const x = (i / 30) * (tensionCanvas.width - 100) + 50;
+                const x = tx(i);
                 tensionCtx.beginPath();
-                tensionCtx.moveTo(x, 20);
-                tensionCtx.lineTo(x, tensionCanvas.height - 40);
+                tensionCtx.moveTo(x, PAD_T);
+                tensionCtx.lineTo(x, tensionCanvas.height - PAD_B);
                 tensionCtx.stroke();
                 
-                tensionCtx.fillStyle = '#6c757d';
+                tensionCtx.fillStyle = '#495057';
                 tensionCtx.font = '12px Arial';
                 tensionCtx.textAlign = 'center';
                 tensionCtx.fillText(`S${i}`, x, tensionCanvas.height - 20);
             }
             
             // Horizontal lines (tension levels)
+            const levelLabels = ['High', 'Med-High', 'Medium', 'Med-Low', 'Low'];
             for (let i = 0; i <= 4; i++) {
-                const y = (i / 4) * (tensionCanvas.height - 60) + 20;
+                const y = ty(1 - i / 4);
                 tensionCtx.beginPath();
-                tensionCtx.moveTo(50, y);
-                tensionCtx.lineTo(tensionCanvas.width - 50, y);
+                tensionCtx.moveTo(PAD_L, y);
+                tensionCtx.lineTo(tensionCanvas.width - PAD_R, y);
                 tensionCtx.stroke();
                 
-                const labels = ['High', 'Med-High', 'Medium', 'Med-Low', 'Low'];
-                tensionCtx.fillStyle = '#6c757d';
+                tensionCtx.fillStyle = '#495057';
                 tensionCtx.font = '12px Arial';
                 tensionCtx.textAlign = 'right';
-                tensionCtx.fillText(labels[i], 45, y + 4);
+                tensionCtx.fillText(levelLabels[i], PAD_L - 8, y + 4);
             }
             
             // Draw tension curve
             if (tensionPoints.length > 1) {
-                tensionCtx.strokeStyle = '#007bff';
+                tensionCtx.strokeStyle = '#0060c7';
                 tensionCtx.lineWidth = 3;
                 tensionCtx.beginPath();
-                
-                for (let i = 0; i < tensionPoints.length; i++) {
-                    const point = tensionPoints[i];
-                    const x = (point.session / 30) * (tensionCanvas.width - 100) + 50;
-                    const y = (1 - point.tension) * (tensionCanvas.height - 60) + 20;
-                    
-                    if (i === 0) {
-                        tensionCtx.moveTo(x, y);
-                    } else {
-                        tensionCtx.lineTo(x, y);
-                    }
-                }
-                tensionCtx.stroke();
-                
-                // Draw points and labels
-                tensionPoints.forEach(point => {
-                    const x = (point.session / 30) * (tensionCanvas.width - 100) + 50;
-                    const y = (1 - point.tension) * (tensionCanvas.height - 60) + 20;
-                    
-                    // Point
-                    tensionCtx.fillStyle = '#007bff';
-                    tensionCtx.beginPath();
-                    tensionCtx.arc(x, y, 6, 0, Math.PI * 2);
-                    tensionCtx.fill();
-                    
-                    // Label
-                    tensionCtx.fillStyle = '#495057';
-                    tensionCtx.font = '11px Arial';
-                    tensionCtx.textAlign = 'center';
-                    tensionCtx.fillText(point.label, x, y - 12);
+                tensionPoints.forEach((point, i) => {
+                    if (i === 0) tensionCtx.moveTo(tx(point.session), ty(point.tension));
+                    else tensionCtx.lineTo(tx(point.session), ty(point.tension));
                 });
+                tensionCtx.stroke();
             }
+            
+            // Draw points and labels (below valleys, above everything else)
+            tensionPoints.forEach((point, i) => {
+                const x = tx(point.session);
+                const y = ty(point.tension);
+                
+                tensionCtx.fillStyle = '#0060c7';
+                tensionCtx.beginPath();
+                tensionCtx.arc(x, y, 6, 0, Math.PI * 2);
+                tensionCtx.fill();
+                
+                const prev = tensionPoints[i - 1], next = tensionPoints[i + 1];
+                const valley = (!prev || prev.tension > point.tension) && (!next || next.tension > point.tension) && (prev || next);
+                tensionCtx.fillStyle = '#212529';
+                tensionCtx.font = '12px Arial';
+                tensionCtx.textAlign = x > tensionCanvas.width - PAD_R - 30 ? 'right' : 'center';
+                tensionCtx.fillText(point.label, x, valley ? y + 22 : y - 12);
+            });
         }
 
         function addTensionPoint(level) {
@@ -676,16 +876,34 @@
                 'climax': 0.95
             };
             
-            const lastSession = tensionPoints.length > 0 ? Math.max(...tensionPoints.map(p => p.session)) : 0;
-            const newSession = Math.min(lastSession + Math.floor(Math.random() * 3) + 2, 30);
+            // Append after the last point, or fill the widest remaining gap once session 30 is used
+            const sessions = tensionPoints.map(p => p.session);
+            const lastSession = sessions.length ? Math.max(...sessions) : 0;
+            let newSession;
+            if (lastSession < 30) {
+                newSession = Math.min(lastSession + Math.floor(Math.random() * 3) + 2, 30);
+            } else {
+                let best = 0, at = null;
+                for (let i = 1; i < tensionPoints.length; i++) {
+                    const gap = tensionPoints[i].session - tensionPoints[i - 1].session;
+                    if (gap > best) { best = gap; at = tensionPoints[i - 1].session + Math.floor(gap / 2); }
+                }
+                if (best < 2) {
+                    if (tensionCaption) tensionCaption.textContent = 'The graph is full. Reset it to start a new outline.';
+                    return;
+                }
+                newSession = at;
+            }
             
+            const t = tensionValues[level] + (Math.random() - 0.5) * 0.1;
             tensionPoints.push({
                 session: newSession,
-                tension: tensionValues[level] + (Math.random() - 0.5) * 0.2,
+                tension: Math.max(0.02, Math.min(1, t)),
                 label: level.charAt(0).toUpperCase() + level.slice(1)
             });
             
             tensionPoints.sort((a, b) => a.session - b.session);
+            if (tensionCaption) tensionCaption.textContent = `Added a ${level} point at session ${newSession}.`;
             drawTensionGraph();
         }
 
@@ -694,6 +912,7 @@
                 {session: 1, tension: 0.3, label: "Start"},
                 {session: 30, tension: 0.5, label: "End"}
             ];
+            if (tensionCaption) tensionCaption.textContent = 'Graph reset. Add points to sketch your campaign\'s peaks and valleys.';
             drawTensionGraph();
         }
 
@@ -750,8 +969,9 @@
         }
 
         function updatePlotOutput(content, type) {
-            const output = `> ${type} GENERATED\n> ${content}\n> \n> Use this as inspiration for your campaign!\n> _`;
-            document.getElementById('plotOutput').innerHTML = output.replace(/\n/g, '<br>');
+            const output = `> ${type}\n> ${content}\n> \n> Use this as inspiration for your campaign.\n> _`;
+            const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            document.getElementById('plotOutput').innerHTML = esc(output).replace(/\n/g, '<br>');
         }
 
         // Session Details
@@ -765,12 +985,27 @@
                 6: "Session 6: Escalation - Stakes raised, new threats emerge"
             };
             
-            alert(sessionData[sessionNum] || `Session ${sessionNum}: Plan your adventure here!`);
+            // Show the detail on the card itself instead of a popup
+            const card = document.querySelectorAll('.session-tracker .session-card')[sessionNum - 1];
+            const text = card && card.querySelector('p');
+            if (!text) return;
+            const detail = (sessionData[sessionNum] || `Session ${sessionNum}: Plan your adventure here`).replace(/^Session \d+: /, '');
+            if (!text.dataset.short) text.dataset.short = text.textContent;
+            text.textContent = text.textContent === detail ? text.dataset.short : detail;
         }
 
         // Initialize
         drawTensionGraph();
-        updatePlotOutput("Ready to generate plot threads...", "PLOT GENERATOR");
+        updatePlotOutput("Ready to generate plot threads. Pick a thread type above.", "PLOT GENERATOR");
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_rpg_foundations.html">Campaign Foundations</a>
+    <a class="next" href="/starwars_ground_combat.html">Running Ground Combat</a>
+</div>
+        <p class="closing-quote">"Your father's lightsaber. This is the weapon of a Jedi Knight. Not as clumsy or random as a blaster; an elegant weapon for a more civilized age." - Obi-Wan Kenobi (showing how even exposition can be dramatic when woven into character moments)</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

@@ -3,139 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating Memorable Droids and Technology in Star Wars RPG</title>
-    <meta name="description" content="Droid personalities, slicing, gadgets and the technology that runs the Star Wars galaxy.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Creating Memorable Droids and Technology in Star Wars RPG">
-    <meta property="og:description" content="Droid personalities, slicing, gadgets and the technology that runs the Star Wars galaxy.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Droids &amp; Technology - The Star Wars RPG Guide</title>
+    <meta name="description" content="Droids and technology in the Star Wars RPG: droid types and personalities, playing a droid character, and gadgets and tech as story tools.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .tech-lab { background: linear-gradient(135deg, #0f3460, #16537e, #1e90ff); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
-        .tech-lab::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 40px); animation: data-stream 3s linear infinite; }
+        .tech-lab {
+            border-left: 5px solid var(--gold) !important;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .tech-lab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 40px);
+            animation: data-stream 3s linear infinite;
+        }
         @keyframes data-stream { 0% { transform: translateX(-40px); } 100% { transform: translateX(0px); } }
-        .tech-lab * { position: relative; z-index: 2; }
-        .droid-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .droid-card { padding: 20px; border-radius: 15px; color: white; position: relative; overflow: hidden; transition: transform 0.3s; }
-        .droid-card:hover { transform: translateY(-5px) scale(1.02); }
-        .droid-card.protocol { background: linear-gradient(135deg, #ffd700, #daa520); color: #000; }
-        .droid-card.astromech { background: linear-gradient(135deg, #4169e1, #0000cd); }
-        .droid-card.utility { background: linear-gradient(135deg, #32cd32, #228b22); }
-        .droid-card.medical { background: linear-gradient(135deg, #ff6347, #cd5c5c); }
-        .droid-card.battle { background: linear-gradient(135deg, #8b0000, #dc143c); }
-        .droid-card.probe { background: linear-gradient(135deg, #4b0082, #8a2be2); }
-        .tech-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
-        .tech-card { background: #f8f9fa; padding: 15px; border-radius: 10px; border-left: 4px solid #007bff; }
-        .tech-card.weapons { border-left-color: #dc3545; }
-        .tech-card.transport { border-left-color: #28a745; }
-        .tech-card.communication { border-left-color: #ffc107; }
-        .tech-card.medical { border-left-color: #17a2b8; }
-        .droid-factory { background: #2c3e50; color: #ecf0f1; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .factory-display { min-height: 300px; border: 1px solid #3498db; padding: 15px; margin: 10px 0; overflow-y: auto; }
-        .control-matrix { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .tech-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
-        .tech-btn:hover { background: #0056b3; transform: translateY(-2px); }
-        .tech-btn.protocol { background: #ffc107; color: #000; }
-        .tech-btn.astromech { background: #4169e1; }
-        .tech-btn.utility { background: #28a745; }
-        .tech-btn.medical { background: #dc3545; }
-        .personality-matrix { background: #fff3cd; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ffc107; }
-        .tech-tree { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .malfunction-system { background: #f8d7da; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #dc3545; }
-        .exercise-workshop { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .tech-evolution { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .ai-consciousness { background: radial-gradient(circle, #ff9a9e, #fecfef); padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .hologram-display { text-align: center; margin: 20px 0; background: #000; padding: 20px; border-radius: 10px; position: relative; }
-        .hologram-figure { width: 200px; height: 200px; margin: 0 auto; background: radial-gradient(circle, rgba(0,191,255,0.8), rgba(0,191,255,0.2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #00bfff; font-size: 18px; animation: hologram-flicker 2s ease-in-out infinite; }
-        @keyframes hologram-flicker { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
-        .tech-comparison { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .comparison-item { background: #f0f8ff; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #4a90e2; }
-        .droid-builder { text-align: center; margin: 20px 0; }
-        .builder-canvas { border: 2px solid #007bff; border-radius: 10px; }
-        .customization-panel { background: #343a40; color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .slider-container { margin: 15px 0; }
-        .slider-label { display: block; margin-bottom: 5px; }
-        .tech-slider { width: 100%; height: 10px; border-radius: 5px; background: #6c757d; outline: none; }
-        .force-tech { background: linear-gradient(135deg, #4a0080, #000080); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .memory-banks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 20px 0; }
-        .memory-chip { background: #17a2b8; color: white; padding: 10px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; }
-        .memory-chip:hover { background: #138496; transform: scale(1.05); }
-        .restraining-bolt { width: 20px; height: 20px; background: #dc3545; border-radius: 50%; display: inline-block; margin: 0 5px; cursor: pointer; animation: bolt-pulse 2s ease-in-out infinite; }
-        @keyframes bolt-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); } }
+        .tech-lab * {
+            position: relative;
+            z-index: 2;
+        }
+        .droid-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .droid-card {
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .droid-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        .droid-card.protocol {
+            color: var(--text);
+        }
+        .droid-card.astromech {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .droid-card.utility {
+            border-left: 5px solid var(--success) !important;
+        }
+        .droid-card.medical {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .droid-card.battle {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .droid-card.probe {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .tech-card {
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .tech-card.weapons {
+            border-left-color: #dc3545;
+        }
+        .tech-card.transport {
+            border-left-color: #28a745;
+        }
+        .tech-card.communication {
+            border-left-color: var(--border);
+        }
+        .tech-card.medical {
+            border-left-color: #17a2b8;
+        }
+        .droid-factory {
+            border-left: 5px solid var(--gold) !important;
+            font-family: monospace;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .factory-display {
+            min-height: 300px;
+            border: 1px solid #3498db;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-y: auto;
+        }
+        .control-matrix {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .tech-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tech-btn:hover {
+            background: #0056b3 !important;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+        .tech-btn.protocol {
+            color: var(--text);
+        }
+        .tech-btn.astromech {
+            background: #4169e1 !important;
+            color: #fff;
+        }
+        .tech-btn.utility {
+            background: #1f8336 !important;
+            color: #fff;
+        }
+        .tech-btn.medical {
+            background: #d53342 !important;
+            color: #fff;
+        }
+        .personality-matrix {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .tech-tree {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .malfunction-system {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #dc3545;
+        }
+        .exercise-workshop {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .tech-evolution {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .ai-consciousness {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .hologram-display {
+            text-align: center;
+            margin: 20px 0;
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .hologram-figure {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-left: 5px solid var(--gold) !important;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            animation: hologram-flicker 2s ease-in-out infinite;
+            flex-wrap: wrap;
+        }
+        @keyframes hologram-flicker { 0%, 100% {
+            opacity: 0.8;
+        } 50% { opacity: 1; } }
+        .tech-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .comparison-item {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #4a90e2;
+        }
+        .droid-builder {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .builder-canvas {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+        }
+        .customization-panel {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .slider-container {
+            margin: 15px 0;
+        }
+        .slider-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .tech-slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #6c757d !important;
+            outline: none;
+            color: #fff;
+        }
+        .force-tech {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .memory-banks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .memory-chip {
+            background: #127f91 !important;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .memory-chip:hover {
+            background: #128091 !important;
+            transform: scale(1.05);
+            color: #fff;
+        }
+        .restraining-bolt {
+            width: 20px;
+            height: 20px;
+            background: #d53342 !important;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+            animation: bolt-pulse 2s ease-in-out infinite;
+            color: #fff;
+        }
+        @keyframes bolt-pulse { 0%, 100% {
+            box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+        } 50% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); } }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .droid-card.protocol { background: linear-gradient(135deg, #433c14, #31270e); color: #e2e8f0; }
-        html:not(.light) .tech-card { background: #1e2b38; color: #e2e8f0; }
-        html:not(.light) .tech-card.communication { border-left-color: #866f27; }
-        html:not(.light) .tech-btn.protocol { background: #433714; color: #e2e8f0; }
-        html:not(.light) .personality-matrix { background: #433814; border: 2px solid #866f27; color: #e2e8f0; }
-        html:not(.light) .tech-tree { background: #1a3c1a; color: #e2e8f0; }
-        html:not(.light) .malfunction-system { background: #431418; color: #e2e8f0; }
-        html:not(.light) .exercise-workshop { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
-        html:not(.light) .ai-consciousness { background: radial-gradient(circle, #431415, #310e26); color: #e2e8f0; }
-        html:not(.light) .comparison-item { background: #142d43; color: #e2e8f0; }
+        html[data-theme="dark"] .droid-card.protocol {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .tech-card {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .tech-card.communication {
+            border-left-color: #866f27;
+        }
+        html[data-theme="dark"] .tech-btn.protocol {
+            background: #433714 !important;
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .personality-matrix {
+            border: 2px solid #866f27;
+        }
+        html[data-theme="dark"] .tech-tree {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .malfunction-system {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .exercise-workshop {
+            border: 2px solid #297885;
+        }
+        html[data-theme="dark"] .ai-consciousness {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .comparison-item {
+            border-left: 5px solid var(--gold) !important;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .tech-lab :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .droid-card.astromech { color: #e2e8f0; }
-        .droid-card.astromech :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .droid-card.battle { color: #e2e8f0; }
-        .droid-card.battle :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .droid-card.probe { color: #e2e8f0; }
-        .droid-card.probe :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .droid-factory :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .tech-evolution :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .hologram-display { color: #e2e8f0; }
-        .hologram-display :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .customization-panel :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .force-tech :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .restraining-bolt { color: #e2e8f0; }
-        .restraining-bolt :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .tech-lab :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .droid-card.astromech {
+            
+        }
+        .droid-card.astromech :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .droid-card.battle {
+            
+        }
+        .droid-card.battle :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .droid-card.probe {
+            
+        }
+        .droid-card.probe :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .droid-factory :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .tech-evolution :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .hologram-display {
+            
+        }
+        .hologram-display :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .customization-panel :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .force-tech :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .restraining-bolt {
+            
+        }
+        .restraining-bolt :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .droid-card.utility { background: linear-gradient(135deg, #28a428, #186218); }
-        .droid-card.medical { background: linear-gradient(135deg, #ff300a, #b53838); }
-        .tech-btn { background: #0071eb; }
-        .tech-btn.utility { background: #208637; }
-        .hologram-figure { background: radial-gradient(circle, rgba(0, 69, 92, 0.8), rgba(0,191,255,0.2)); }
-        .memory-chip { background: #128294; }
+        .droid-card.utility {
+            background: linear-gradient(135deg, #208620, #186218) !important;
+            color: #fff;
+        }
+        .droid-card.medical {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .tech-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .tech-btn.utility {
+            background: #208637 !important;
+            color: #fff;
+        }
+        .hologram-figure {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .memory-chip {
+            background: #117e8f !important;
+            color: #fff;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .tech-card { color: #1f2937; }
-        .personality-matrix { color: #1f2937; }
-        .tech-tree { color: #1f2937; }
-        .malfunction-system { color: #1f2937; }
-        .exercise-workshop { color: #1f2937; }
-        .ai-consciousness { color: #1f2937; }
-        .comparison-item { color: #1f2937; }
+        .tech-card {
+            
+        }
+        .personality-matrix {
+            
+        }
+        .tech-tree {
+            
+        }
+        .malfunction-system {
+            
+        }
+        .exercise-workshop {
+            
+        }
+        .ai-consciousness {
+            
+        }
+        .comparison-item {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .tech-btn.astromech :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .tech-btn.utility :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .tech-btn.medical :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .tech-slider :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .restraining-bolt :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .droid-card.utility :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .tech-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .tech-btn.utility :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .memory-chip :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
+        html[data-theme] .tech-btn.protocol { color: #fff !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Creating Memorable Droids and Technology in Star Wars RPG</h1>
-        <p><em>"The chances of successfully navigating an asteroid field are approximately 3,720 to 1!" - C-3PO</em></p>
+        <h1>Droids &amp; Technology</h1>
+        <p>How to create memorable droids, gadgets and technology for your Star Wars games, and what to know before playing a droid.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
             <div class="tech-lab">
-                <h2>Welcome to the Galactic Technology Institute</h2>
+                <h2>Why Droids and Gadgets Matter</h2>
                 <p>Droids and technology in Star Wars aren't just tools - they're characters, plot devices, and windows into the soul of galactic civilization. From the loyal companionship of R2-D2 to the menacing efficiency of probe droids, technology in Star Wars has personality, purpose, and the power to change destinies.</p>
                 
                 <p>Creating memorable droids and technology means understanding that in the Star Wars universe, machines can have hearts, artificial intelligence can develop wisdom, and the line between organic and synthetic life is beautifully blurred. Your droids should feel like beloved companions, mysterious oracles, or formidable adversaries - never just stat blocks with metal shells.</p>
@@ -146,7 +451,7 @@
             <h2>The Philosophy of Droid Design</h2>
             
             <div class="mermaid">
-                graph TD
+                graph LR
                     A[Memorable Droid] --> B[Primary Function]
                     A --> C[Personality Quirks]
                     A --> D[Relationship Dynamics]
@@ -184,7 +489,7 @@
 
         <section class="droid-types">
             <h2>Droid Classifications and Archetypes</h2>
-            <p>Understanding the basic droid categories helps you create characters that feel authentic to the Star Wars universe while serving your story's needs.</p>
+            <p>Understanding the basic droid categories helps you create characters that feel authentic to the Star Wars universe while serving your story's needs. The class numbers are setting flavour (Class 1 science and medicine, Class 2 engineering, Class 3 social, Class 4 security and combat, Class 5 labor); they carry no rules weight in the game.</p>
 
             <div class="droid-showcase">
                 <div class="droid-card protocol">
@@ -202,7 +507,7 @@
                     <strong>Examples:</strong> R2-D2, R4-P17, BB-8</p>
                 </div>
                 <div class="droid-card utility">
-                    <h4>🛠️ Utility Droids (Class 2)</h4>
+                    <h4>🛠️ Labor and Utility Droids (Class 5)</h4>
                     <p><strong>Primary Function:</strong> Specialized labor, maintenance, construction<br>
                     <strong>Personality Traits:</strong> Single-minded, efficient, task-oriented<br>
                     <strong>Story Role:</strong> Environmental interaction, technical challenges<br>
@@ -223,11 +528,11 @@
                     <strong>Examples:</strong> B1 battle droids, destroyer droids, commando droids</p>
                 </div>
                 <div class="droid-card probe">
-                    <h4>👁️ Probe Droids (Class 2)</h4>
+                    <h4>👁️ Probe Droids</h4>
                     <p><strong>Primary Function:</strong> Reconnaissance, surveillance, data gathering<br>
                     <strong>Personality Traits:</strong> Curious, persistent, often emotionless<br>
                     <strong>Story Role:</strong> Information gathering, foreshadowing, hunter antagonist<br>
-                    <strong>Examples:</strong> Viper probe droids, Imperial probe droids, DRK-1</p>
+                    <strong>Examples:</strong> Imperial Viper probe droids, DRK-1 Sith probe droids</p>
                 </div>
             </div>
         </section>
@@ -248,7 +553,7 @@
                 </div>
                 
                 <div id="memoryDisplay">
-                    <p>Click memory banks above to explore droid consciousness development...</p>
+                    <p>Click a memory bank above to explore how a droid's personality develops.</p>
                 </div>
 
                 <h4>Personality Development Factors</h4>
@@ -297,7 +602,7 @@
                 <div class="hologram-figure" onclick="cycleHologram()">
                     <span id="hologramText">Holographic Interface Active</span>
                 </div>
-                <p style="color: #00bfff; margin-top: 15px;">Interactive Hologram - Click to cycle through functions</p>
+                <p style="margin-top: 15px;">Interactive Hologram - Click to cycle through functions</p>
             </div>
         </section>
 
@@ -336,9 +641,9 @@
             <h3>What You Give Up</h3>
             <ul>
                 <li><strong>The Force.</strong> Droids are not Force-sensitive, and this is not negotiable. If the campaign is Force-centred, understand that you are opting out of an entire subsystem.</li>
-                <li><strong>Healing.</strong> Medicine does nothing for you. Repairs come from <strong>Mechanics</strong> instead — which means a party with a droid PC and no mechanic has a member nobody can fix. Check this against <a href="/sw_groups.html">Group Dynamics</a> before committing.</li>
+                <li><strong>Healing.</strong> Medicine does nothing for you. Repairs come from <strong>Mechanics</strong> instead — which means a party with a droid PC and no mechanic has a member nobody can fix. Check this against <a href="/sw_groups.html">Crews &amp; Group Dynamics</a> before committing.</li>
                 <li><strong>Some social ground.</strong> Many worlds restrict, tax or simply switch off droids. Expect to be left outside.</li>
-                <li><strong>Starting resources.</strong> The flexibility above is paid for somewhere, usually in what you begin play with.</li>
+                <li><strong>Starting characteristics.</strong> The flexibility above is paid for: a droid begins with low characteristics across the board and has to spend its starting XP raising them.</li>
             </ul>
 
             <h3>Playing One Well</h3>
@@ -398,7 +703,7 @@
 
                 <h3>Force-Interactive Technologies</h3>
                 <h4>🔮 Holocrons</h4>
-                <p>Force-activated data storage devices that contain the knowledge and personality imprints of Jedi or Sith Masters. They can teach, guide, and even judge potential students.</p>
+                <p>Force-activated data storage devices that contain the knowledge and personality imprints of Jedi or Sith Masters. They can teach, guide, and even judge would-be apprentices.</p>
 
                 <h4>⚔️ Lightsaber Technology</h4>
                 <p>Requires Force sensitivity to construct properly. The kyber crystal forms a bond with its user, and the weapon becomes an extension of the wielder's connection to the Force.</p>
@@ -489,7 +794,7 @@
 
         <section class="exercises">
             <div class="exercise-workshop">
-                <h3>Technology Design Workshops</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: Companion Droid Design</h4>
                 <p>Create a droid companion for a player character:</p>
@@ -555,17 +860,13 @@
             <p>Technology is a story lever. Pull it here:</p>
             <ul>
                 <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Playing a droid character, and what that changes about a party.</li>
-                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> The larger machines — same design philosophy, bigger scale.</li>
+                <li><strong><a href="/sw_vehicles.html">Starships &amp; Vehicles</a>:</strong> The larger machines — same design philosophy, bigger scale.</li>
                 <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> Slicing a datapad is usually the fastest route into a conspiracy plot.</li>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Droid antagonists and the people who build them.</li>
-                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> Where gadgets and droids actually get used under pressure.</li>
+                <li><strong><a href="/sw_combat.html">Combat &amp; Conflict</a>:</strong> Where gadgets and droids actually get used under pressure.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"R2-D2, you know better than to trust a strange computer!" - C-3PO (proving that even droids understand the importance of digital security)</em></p>
-    </footer>
 
     <script>
         // Droid generation data
@@ -583,7 +884,7 @@
                 quirks: ['Beeps sarcastically', 'Hoards useful junk', 'Jealous of other droids', 'Plays pranks on organics', 'Refuses memory wipes']
             },
             utility: {
-                designations: ['GNK', 'MSE', 'PIT', 'WED', 'DUM', '2-1B'],
+                designations: ['GNK', 'MSE', 'PIT', 'WED', 'DUM', 'EG'],
                 personalities: ['Single-minded worker', 'Efficient taskmaster', 'Cheerful helper', 'Grumpy perfectionist', 'Zen-like calm'],
                 specialties: ['Heavy lifting', 'Precise assembly', 'System maintenance', 'Cargo handling', 'Environmental control'],
                 quirks: ['Hums while working', 'Organizes everything', 'Afraid of heights', 'Collects spare parts', 'Narrates own actions']
@@ -719,27 +1020,31 @@
             const social = document.getElementById('socialSlider').value;
 
             // Background
-            droidCtx.fillStyle = '#2c3e50';
+            droidCtx.fillStyle = '#fbf8f2';
             droidCtx.fillRect(0, 0, droidCanvas.width, droidCanvas.height);
 
             // Droid body (main chassis)
             droidCtx.fillStyle = '#ecf0f1';
             droidCtx.fillRect(100, 150, 100, 120);
+            droidCtx.strokeStyle = '#7f8c8d';
+            droidCtx.lineWidth = 2;
+            droidCtx.strokeRect(100, 150, 100, 120);
             
             // Head
             const headSize = 50 + (personality * 0.3);
+            const headY = 150 - headSize;
             droidCtx.fillStyle = personality > 50 ? '#3498db' : '#95a5a6';
-            droidCtx.fillRect(125 - headSize/4, 100, headSize, headSize);
+            droidCtx.fillRect(150 - headSize/2, headY, headSize, headSize);
             
             // Eyes (based on social skills)
             droidCtx.fillStyle = social > 60 ? '#e74c3c' : '#f39c12';
-            droidCtx.fillRect(135, 120, 8, 8);
-            droidCtx.fillRect(157, 120, 8, 8);
+            droidCtx.fillRect(135, headY + headSize/2 - 6, 8, 8);
+            droidCtx.fillRect(157, headY + headSize/2 - 6, 8, 8);
             
             // Arms (based on utility)
             const armLength = 40 + (utility * 0.4);
             droidCtx.fillStyle = '#bdc3c7';
-            droidCtx.fillRect(70, 170, armLength, 15);
+            droidCtx.fillRect(100 - armLength, 170, armLength, 15);
             droidCtx.fillRect(200, 170, armLength, 15);
             
             // Legs (based on combat capability)
@@ -782,5 +1087,14 @@
         drawDroid();
         resetFactory();
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>
+    <a class="next" href="/starwars_planets_locations.html">Planets &amp; Locations</a>
+</div>
+        <p class="closing-quote">"R2-D2, you know better than to trust a strange computer!" - C-3PO (proving that even droids understand the importance of digital security)</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

@@ -3,61 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundations of Star Wars RPG Campaign Building</title>
-    <meta name="description" content="Core concepts, session structure, and the pillars of collaborative storytelling in a Star Wars campaign.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Foundations of Star Wars RPG Campaign Building">
-    <meta property="og:description" content="Core concepts, session structure, and the pillars of collaborative storytelling in a Star Wars campaign.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Campaign Foundations - The Star Wars RPG Guide</title>
+    <meta name="description" content="The first decisions for a Star Wars RPG campaign: tone, era, which core book, the crew, motivations and the central conflict.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .force-diagram { background: linear-gradient(135deg, #000428, #004e92); padding: 20px; border-radius: 10px; color: white; margin: 20px 0; }
-        .jedi-council { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0; }
-        .council-member { background: #f0f8ff; padding: 15px; margin: 10px; border-radius: 8px; text-align: center; min-width: 200px; }
-        .timeline { position: relative; padding: 20px 0; }
-        .timeline-item { margin: 20px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #ffd700; }
-        .exercise-box { background: #e6f3ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #4a90e2; }
-        .canvas-container { text-align: center; margin: 20px 0; }
+        .force-diagram {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .jedi-council {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .council-member {
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 200px;
+        }
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-item {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid var(--border);
+        }
+        .exercise-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #4a90e2;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .council-member { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .timeline-item { background: #222c35; border-left: 4px solid #867727; color: #e2e8f0; }
-        html:not(.light) .exercise-box { background: #142c43; color: #e2e8f0; }
+        html[data-theme="dark"] .council-member {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .timeline-item {
+            border-left: 4px solid #867727;
+        }
+        html[data-theme="dark"] .exercise-box {
+            border-left: 5px solid var(--gold) !important;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .force-diagram :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .force-diagram :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .council-member { color: #1f2937; }
-        .timeline-item { color: #1f2937; }
-        .exercise-box { color: #1f2937; }
+        .council-member {
+            
+        }
+        .timeline-item {
+            
+        }
+        .exercise-box {
+            
+        }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Foundations of Star Wars RPG Campaign Building</h1>
-        <p><em>"Your focus determines your reality." - Qui-Gon Jinn</em></p>
+        <h1>Campaign Foundations</h1>
+        <p>The core ideas, table agreements and structure that a Star Wars campaign is built on.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
-            <h2>Welcome, Padawan Game Master</h2>
+            <h2>Where a Campaign Starts</h2>
             <p>Building a Star Wars RPG campaign is like constructing a lightsaber - it requires patience, understanding of the Force (your story), and the right crystals (elements) to make it shine. Just as a Jedi must understand both the light and dark sides of the Force, a Game Master must balance hope and conflict, heroism and moral complexity.</p>
             
             <div class="force-diagram">
@@ -92,7 +132,7 @@
                 </div>
                 <div class="council-member">
                     <h4>🤝 Connection & Legacy</h4>
-                    <p>Star Wars is about relationships - mentors and students, friends and rivals. Build connections between characters and show how their actions ripple through the galaxy.</p>
+                    <p>Star Wars is about relationships - mentors and apprentices, friends and rivals. Build connections between characters and show how their actions ripple through the galaxy.</p>
                 </div>
             </div>
         </section>
@@ -149,14 +189,14 @@
 
             <div class="canvas-container">
                 <canvas id="characterWheel" width="400" height="400"></canvas>
-                <p><em>The Character Motivation Wheel - Click to spin and discover character aspects!</em></p>
+                <p><em>A motivation wheel: click it to spin for a character's driving goal.</em></p>
             </div>
 
             <h3>The Hero's Journey in Character Development</h3>
             <p>Every great Star Wars character follows a transformation arc. Luke starts as a whiny farm boy and becomes a confident Jedi. Anakin begins as a hopeful child and becomes Darth Vader. Your players' characters should have similar potential for growth and change.</p>
 
             <div class="mermaid">
-                graph LR
+                graph TD
                     A[Ordinary World] --> B[Call to Adventure]
                     B --> C[Refusal of Call]
                     C --> D[Meeting Mentor]
@@ -174,9 +214,9 @@
             <h3>The Conflict Pyramid</h3>
             <div class="mermaid">
                 graph TD
-                    A[Galactic Conflict<br/>Empire vs Rebellion] --> B[Sector Conflict<br/>Local Warlord vs Civilians]
-                    B --> C[Personal Conflict<br/>Character vs Past Mistakes]
-                    C --> D[Internal Conflict<br/>Light Side vs Dark Side Temptation]
+                    A[Galactic Conflict&lt;br/&gt;Empire vs Rebellion] --> B[Sector Conflict&lt;br/&gt;Local Warlord vs Civilians]
+                    B --> C[Personal Conflict&lt;br/&gt;Character vs Past Mistakes]
+                    C --> D[Internal Conflict&lt;br/&gt;Light vs Dark Temptation]
             </div>
 
             <h4>Real-World Parallels</h4>
@@ -187,12 +227,12 @@
             <h2>Practical Applications</h2>
             
             <h3>Session Zero: Your Campaign's Foundation</h3>
-            <p>Before you even roll dice, hold a "Session Zero" - think of it as the Jedi Council meeting where you establish the rules and expectations for your campaign.</p>
+            <p>Before you even roll dice, hold a "Session Zero" - think of it as the Jedi Council meeting where you agree the rules and expectations for your campaign.</p>
 
             <h4>Essential Questions to Discuss:</h4>
             <ul>
                 <li><strong>What era interests everyone?</strong> (This determines the galaxy's political state)</li>
-                <li><strong>What type of heroes do you want to be?</strong> (Jedi, smugglers, rebels, etc.)</li>
+                <li><strong>What type of heroes do you want to be?</strong> (Smugglers and bounty hunters suit <em>Edge of the Empire</em>, Rebel operatives <em>Age of Rebellion</em>, Force users <em>Force and Destiny</em>; the three core books share one dice system and mix freely)</li>
                 <li><strong>How serious vs. lighthearted?</strong> (Rogue One vs. A New Hope tone)</li>
                 <li><strong>What themes matter to your group?</strong> (Redemption, friendship, justice, etc.)</li>
             </ul>
@@ -231,7 +271,7 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <h4>Act I: The Spark</h4>
-                    <p>Characters meet, discover the threat, and commit to action. Like Luke finding the Death Star plans and joining the Rebellion.</p>
+                    <p>Characters meet, discover the threat, and commit to action. Like Luke finding Leia's message and joining the Rebellion.</p>
                 </div>
                 <div class="timeline-item">
                     <h4>Act II: The Struggle</h4>
@@ -246,7 +286,7 @@
 
         <section class="exercises">
             <div class="exercise-box">
-                <h3>Practice Exercises</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: Galaxy Mapping</h4>
                 <p>Create a simple star map with 5-7 systems. For each system, write one sentence describing:</p>
@@ -302,7 +342,7 @@
             <h2>Where to Go Next</h2>
             <p>You have the foundations. These build directly on them:</p>
             <ul>
-                <li><strong><a href="/sw_intro.html">Introduction</a>:</strong> The dice engine everything here runs on. Read it if the Success/Advantage split is still fuzzy.</li>
+                <li><strong><a href="/sw_intro.html">Welcome to the Star Wars RPG</a>:</strong> The dice engine everything here runs on. Read it if the Success/Advantage split is still fuzzy.</li>
                 <li><strong><a href="/sw_campaign.html">Campaign Creation</a>:</strong> Turns these principles into an actual campaign with an era, a premise and a first session.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> The table-craft half: pacing, improvisation, and handling players who go sideways.</li>
                 <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> Where world-building starts — give your galaxy places worth landing on.</li>
@@ -310,10 +350,6 @@
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"Remember, a Jedi's strength flows from the Force. But beware. Anger, fear, aggression. The dark side are they. Once you start down the dark path, forever will it dominate your destiny." - Yoda</em></p>
-    </footer>
 
     <script>
         // Interactive Character Wheel
@@ -331,7 +367,9 @@
             'Escaping Past'
         ];
         
-        const colors = ['#ff4444', '#44ff44', '#4444ff', '#ffff44', '#ff44ff', '#44ffff', '#ff8844', '#88ff44'];
+        // Light fills so the dark labels keep at least 4.5:1 contrast
+        const colors = ['#ffb3b3', '#b8f0b8', '#b3c7ff', '#fff2a8', '#f0b8f0', '#b3f0f0', '#ffd1a8', '#d9f0a8'];
+        const caption = canvas.closest('.canvas-container').querySelector('p em');
         
         let rotation = 0;
         let spinning = false;
@@ -354,27 +392,39 @@
                 ctx.closePath();
                 ctx.fillStyle = colors[i];
                 ctx.fill();
+                ctx.strokeStyle = '#333';
                 ctx.stroke();
                 
-                // Add text
+                // Label, kept inside its segment and flipped upright on the left half
+                const mid = startAngle + anglePerSegment / 2;
+                const leftHalf = Math.cos(mid) < 0;
                 ctx.save();
                 ctx.translate(centerX, centerY);
-                ctx.rotate(startAngle + anglePerSegment / 2);
+                ctx.rotate(leftHalf ? mid + Math.PI : mid);
                 ctx.textAlign = 'center';
-                ctx.fillStyle = '#000';
-                ctx.font = '14px Arial';
-                ctx.fillText(motivations[i], radius * 0.7, 5);
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#111';
+                ctx.font = '13px Arial';
+                ctx.fillText(motivations[i], (leftHalf ? -1 : 1) * radius * 0.6, 0);
                 ctx.restore();
             }
             
             // Draw pointer
             ctx.beginPath();
-            ctx.moveTo(centerX, centerY - radius - 20);
-            ctx.lineTo(centerX - 10, centerY - radius - 5);
-            ctx.lineTo(centerX + 10, centerY - radius - 5);
+            ctx.moveTo(centerX, centerY - radius + 2);
+            ctx.lineTo(centerX - 10, centerY - radius - 14);
+            ctx.lineTo(centerX + 10, centerY - radius - 14);
             ctx.closePath();
             ctx.fillStyle = '#000';
             ctx.fill();
+        }
+        
+        function pointedSegment() {
+            // The pointer sits at the top (angle -PI/2)
+            const per = (2 * Math.PI) / motivations.length;
+            let a = (-Math.PI / 2 - rotation) % (2 * Math.PI);
+            if (a < 0) a += 2 * Math.PI;
+            return motivations[Math.floor(a / per) % motivations.length];
         }
         
         function spin() {
@@ -400,6 +450,7 @@
                     requestAnimationFrame(animate);
                 } else {
                     spinning = false;
+                    if (caption) caption.textContent = 'Motivation: ' + pointedSegment() + '. Click the wheel to spin again.';
                 }
             }
             
@@ -409,5 +460,13 @@
         canvas.addEventListener('click', spin);
         drawWheel();
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/sw_gm_techniques.html">Game Master Techniques</a>
+    <a class="next" href="/starwars_campaign_arcs.html">Campaign Arcs</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

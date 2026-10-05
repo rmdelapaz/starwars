@@ -3,139 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Managing Force Powers and Jedi Training in Star Wars RPG</title>
-    <meta name="description" content="Force power trees, Force dice, dark side temptation and running Jedi training arcs.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Managing Force Powers and Jedi Training in Star Wars RPG">
-    <meta property="og:description" content="Force power trees, Force dice, dark side temptation and running Jedi training arcs.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Running Force Users - The Star Wars RPG Guide</title>
+    <meta name="description" content="Running Force users in the Star Wars RPG: Force rating and powers, dark-side pips, Conflict and Morality, Jedi training arcs and lightsaber construction.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
     <style>
-        .force-temple { background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2); padding: 30px; border-radius: 15px; color: white; margin: 20px 0; position: relative; overflow: hidden; }
-        .force-temple::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%); animation: force-pulse 4s ease-in-out infinite; }
-        @keyframes force-pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.1); opacity: 0.1; } }
-        .force-temple * { position: relative; z-index: 2; }
-        .power-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .power-card { padding: 20px; border-radius: 15px; position: relative; overflow: hidden; color: white; }
-        .power-card.light { background: linear-gradient(135deg, #00c851, #007e33); }
-        .power-card.neutral { background: linear-gradient(135deg, #ffbb33, #ff8800); }
-        .power-card.dark { background: linear-gradient(135deg, #cc0000, #8b0000); }
-        .power-card.universal { background: linear-gradient(135deg, #6f42c1, #4c2c92); }
-        .training-stages { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #007bff; }
-        .meditation-chamber { background: radial-gradient(circle, #2c3e50, #34495e); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; }
-        .force-tracker { background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .lightsaber-forge { background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4); padding: 20px; border-radius: 10px; margin: 20px 0; color: white; }
-        .dark-side-temptations { background: radial-gradient(circle, #8b0000, #000000); color: #ff6666; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .jedi-trials { background: linear-gradient(to right, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .force-simulator { background: #000; color: #00ff00; font-family: monospace; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .simulator-display { min-height: 250px; border: 1px solid #00ff00; padding: 15px; margin: 10px 0; overflow-y: auto; }
-        .control-interface { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .force-btn { padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
-        .force-btn:hover { background: #0056b3; transform: translateY(-2px); }
-        .force-btn.light { background: #28a745; }
-        .force-btn.dark { background: #dc3545; }
-        .force-btn.neutral { background: #ffc107; color: #000; }
-        .exercise-dojo { background: #d1ecf1; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #bee5eb; }
-        .training-progression { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
-        .progression-stage { background: #f0f8ff; padding: 15px; border-radius: 8px; border: 2px solid #4a90e2; text-align: center; }
-        .force-philosophy { background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .crystal-meditation { text-align: center; margin: 20px 0; }
-        .kyber-crystal { width: 60px; height: 60px; margin: 10px; border-radius: 50%; display: inline-block; cursor: pointer; transition: all 0.3s; animation: crystal-glow 3s ease-in-out infinite; }
-        .kyber-crystal:hover { transform: scale(1.2); }
-        @keyframes crystal-glow { 0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.5); } 50% { box-shadow: 0 0 20px rgba(255,255,255,0.8); } }
-        .crystal-blue { background: radial-gradient(circle, #4169e1, #0000cd); }
-        .crystal-green { background: radial-gradient(circle, #32cd32, #228b22); }
-        .crystal-red { background: radial-gradient(circle, #ff0000, #8b0000); }
-        .crystal-purple { background: radial-gradient(circle, #9370db, #4b0082); }
-        .crystal-yellow { background: radial-gradient(circle, #ffd700, #daa520); }
-        .wisdom-scroll { background: #f5f5dc; border: 2px solid #8b4513; padding: 20px; margin: 20px 0; border-radius: 10px; font-family: serif; }
-        .moral-compass { position: relative; width: 200px; height: 200px; margin: 20px auto; background: radial-gradient(circle, #f8f9fa, #dee2e6); border-radius: 50%; border: 3px solid #6c757d; }
-        .compass-needle { position: absolute; top: 50%; left: 50%; width: 4px; height: 80px; background: linear-gradient(to bottom, #007bff, #dc3545); transform-origin: bottom center; transform: translate(-50%, -100%) rotate(0deg); transition: transform 0.5s; }
-        .balance-meter { width: 100%; height: 30px; background: linear-gradient(to right, #007bff, #28a745, #ffc107, #fd7e14, #dc3545); border-radius: 15px; margin: 15px 0; position: relative; }
-        .balance-indicator { position: absolute; top: -5px; width: 40px; height: 40px; background: white; border: 3px solid #000; border-radius: 50%; transition: left 0.5s; }
+        .force-temple {
+            border-left: 5px solid var(--gold) !important;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .force-temple::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: force-pulse 4s ease-in-out infinite;
+        }
+        @keyframes force-pulse { 0%, 100% {
+            transform: scale(1);
+            opacity: 0.3;
+        } 50% { transform: scale(1.1); opacity: 0.1; } }
+        .force-temple * {
+            position: relative;
+            z-index: 2;
+        }
+        .power-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .power-card {
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .power-card.light {
+            border-left: 5px solid var(--success) !important;
+        }
+        .power-card.neutral {
+            
+        }
+        .power-card.dark {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .power-card.universal {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .training-stages {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #007bff;
+        }
+        .meditation-chamber {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .force-tracker {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .lightsaber-forge {
+            border-left: 5px solid var(--danger) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .dark-side-temptations {
+            border-left: 5px solid var(--danger) !important;
+            color: var(--danger);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .jedi-trials {
+            border-left: 5px solid var(--gold) !important;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .force-simulator {
+            border-left: 5px solid var(--gold) !important;
+            font-family: monospace;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .simulator-display {
+            min-height: 250px;
+            border: 1px solid var(--border);
+            padding: 15px;
+            margin: 10px 0;
+            overflow-y: auto;
+        }
+        .control-interface {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .force-btn {
+            padding: 8px 16px;
+            background: #006fe8 !important;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .force-btn:hover {
+            background: #0056b3 !important;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+        .force-btn.light {
+            background: #1f8336 !important;
+            color: #fff;
+        }
+        .force-btn.dark {
+            background: #d53342 !important;
+            color: #fff;
+        }
+        .force-btn.neutral {
+            color: var(--text);
+        }
+        .exercise-dojo {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+        .training-progression {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .progression-stage {
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #4a90e2;
+            text-align: center;
+        }
+        .force-philosophy {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .crystal-meditation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .kyber-crystal {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: crystal-glow 3s ease-in-out infinite;
+        }
+        .kyber-crystal:hover {
+            transform: scale(1.2);
+        }
+        @keyframes crystal-glow { 0%, 100% {
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        } 50% { box-shadow: 0 0 20px rgba(255,255,255,0.8); } }
+        .crystal-blue {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .crystal-green {
+            border-left: 5px solid var(--success) !important;
+        }
+        .crystal-red {
+            border-left: 5px solid var(--danger) !important;
+        }
+        .crystal-purple {
+            border-left: 5px solid var(--gold) !important;
+        }
+        .crystal-yellow {
+            
+        }
+        .wisdom-scroll {
+            border: 2px solid #8b4513;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-family: serif;
+        }
+        .moral-compass {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            border: 3px solid #6c757d;
+        }
+        .compass-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to bottom, #006fe8, #d53342) !important;
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%) rotate(0deg);
+            transition: transform 0.5s;
+            color: #fff;
+        }
+        .balance-meter {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #006fe8, #1f8336, #8c6a03, #b1580d, #d53342) !important;
+            border-radius: 15px;
+            margin: 15px 0;
+            position: relative;
+            color: #fff;
+        }
+        .balance-indicator {
+            position: absolute;
+            top: -5px;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #000;
+            border-radius: 50%;
+            transition: left 0.5s;
+        }
 
 
         /* --- dark-theme panel overrides (generated) --- */
-        html:not(.light) .power-card.neutral { background: linear-gradient(135deg, #433314, #ff8800); color: #e2e8f0; }
-        html:not(.light) .training-stages { background: #1e2b38; color: #e2e8f0; }
-        html:not(.light) .force-tracker { background: #1a3c1a; color: #e2e8f0; }
-        html:not(.light) .lightsaber-forge { background: linear-gradient(45deg, #ff6b6b, #144340, #0e2b31, #204634); }
-        html:not(.light) .force-btn.neutral { background: #433714; color: #e2e8f0; }
-        html:not(.light) .exercise-dojo { background: #143b42; border: 2px solid #297885; color: #e2e8f0; }
-        html:not(.light) .progression-stage { background: #142d43; color: #e2e8f0; }
-        html:not(.light) .force-philosophy { background: linear-gradient(135deg, #431415, #310e26); color: #e2e8f0; }
-        html:not(.light) .crystal-green { background: radial-gradient(circle, #144314, #228b22); color: #e2e8f0; }
-        html:not(.light) .crystal-yellow { background: radial-gradient(circle, #433c14, #31270e); color: #e2e8f0; }
-        html:not(.light) .wisdom-scroll { background: #434314; color: #e2e8f0; }
-        html:not(.light) .moral-compass { background: radial-gradient(circle, #1e2b38, #162029); color: #e2e8f0; }
-        html:not(.light) .balance-meter { background: linear-gradient(to right, #007bff, #28a745, #433714, #fd7e14, #dc3545); color: #e2e8f0; }
-        html:not(.light) .balance-indicator { background: #222c35; color: #e2e8f0; }
+        html[data-theme="dark"] .power-card.neutral {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .training-stages {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .force-tracker {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .lightsaber-forge {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .force-btn.neutral {
+            background: #433714 !important;
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .exercise-dojo {
+            border: 2px solid #297885;
+        }
+        html[data-theme="dark"] .progression-stage {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .force-philosophy {
+            border-left: 5px solid var(--danger) !important;
+        }
+        html[data-theme="dark"] .crystal-green {
+            border-left: 5px solid var(--success) !important;
+        }
+        html[data-theme="dark"] .crystal-yellow {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .wisdom-scroll {
+            border-left: 5px solid var(--accent) !important;
+        }
+        html[data-theme="dark"] .moral-compass {
+            border-left: 5px solid var(--gold) !important;
+        }
+        html[data-theme="dark"] .balance-meter {
+            background: linear-gradient(to right, #006fe8, #1f8336, #433714, #b1580d, #d53342) !important;
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .balance-indicator {
+            border-left: 5px solid var(--gold) !important;
+        }
 
         /* --- always-dark panels: keep their text legible in light mode too --- */
-        .force-temple :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .power-card.dark { color: #e2e8f0; }
-        .power-card.dark :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .power-card.universal { color: #e2e8f0; }
-        .power-card.universal :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .meditation-chamber :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .dark-side-temptations :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .jedi-trials :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .force-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .crystal-blue { color: #e2e8f0; }
-        .crystal-blue :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .crystal-red { color: #e2e8f0; }
-        .crystal-red :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .crystal-purple { color: #e2e8f0; }
-        .crystal-purple :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
-        .compass-needle { color: #e2e8f0; }
-        .compass-needle :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) { color: inherit; }
+        .force-temple :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .power-card.dark {
+            
+        }
+        .power-card.dark :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .power-card.universal {
+            
+        }
+        .power-card.universal :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .meditation-chamber :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .dark-side-temptations :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .jedi-trials :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .force-simulator :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .crystal-blue {
+            
+        }
+        .crystal-blue :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .crystal-red {
+            
+        }
+        .crystal-red :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .crystal-purple {
+            
+        }
+        .crystal-purple :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
+        .compass-needle {
+            
+        }
+        .compass-needle :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,strong,em,td,th,blockquote) {
+            color: inherit;
+        }
 
         /* --- button labels nudged to WCAG AA contrast --- */
-        .power-card.light { background: linear-gradient(135deg, #00a944, #005f26); }
-        .force-btn { background: #0071eb; }
-        .force-btn.light { background: #208637; }
+        .power-card.light {
+            background: linear-gradient(135deg, #008535, #005f26) !important;
+            color: #fff;
+        }
+        .force-btn {
+            background: #0071eb !important;
+            color: #fff;
+        }
+        .force-btn.light {
+            background: #208637 !important;
+            color: #fff;
+        }
 
         /* --- light panels: pin dark text so nesting inside a dark panel cannot bleed white in --- */
-        .power-card.neutral { color: #1f2937; }
-        .training-stages { color: #1f2937; }
-        .force-tracker { color: #1f2937; }
-        .exercise-dojo { color: #1f2937; }
-        .progression-stage { color: #1f2937; }
-        .force-philosophy { color: #1f2937; }
-        .crystal-green { color: #1f2937; }
-        .crystal-yellow { color: #1f2937; }
-        .wisdom-scroll { color: #1f2937; }
-        .moral-compass { color: #1f2937; }
-        .balance-meter { color: #1f2937; }
-        .balance-indicator { color: #1f2937; }
+        .power-card.neutral {
+            
+        }
+        .training-stages {
+            
+        }
+        .force-tracker {
+            
+        }
+        .exercise-dojo {
+            
+        }
+        .progression-stage {
+            
+        }
+        .force-philosophy {
+            
+        }
+        .crystal-green {
+            
+        }
+        .crystal-yellow {
+            
+        }
+        .wisdom-scroll {
+            
+        }
+        .moral-compass {
+            
+        }
+        .balance-meter {
+            
+        }
+        .balance-indicator {
+            
+        }
+    
+        /* white text on saturated panels: headings/strong follow the panel, not the theme */
+        .force-btn.light :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .force-btn.dark :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .compass-needle :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .balance-meter :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .power-card.light :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .force-btn :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])),
+        .force-btn.light :is(h1,h2,h3,h4,h5,h6,strong,b,em,a,small,span:not([class])) { color: inherit !important; }
+        html[data-theme] .force-btn.neutral { color: #fff !important; }
     </style>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Managing Force Powers and Jedi Training</h1>
-        <p><em>"For my ally is the Force, and a powerful ally it is. Life creates it, makes it grow. Its energy surrounds us and binds us." - Yoda</em></p>
+        <h1>Running Force Users</h1>
+        <p>How to run Force powers, Conflict, Morality and Force training arcs as a GM.</p>
     </header>
 
     <main id="main">
+
         <section class="intro">
             <div class="force-temple">
-                <h2>Welcome to the Force Academy</h2>
-                <p>The Force is the heart of Star Wars - not just a collection of supernatural powers, but a philosophy, a way of life, and the source of the saga's most profound moments. Managing Force powers in your RPG requires balancing mechanical effects with spiritual growth, ensuring that wielding the Force feels both powerful and meaningful.</p>
+                <h2>Why the Force Needs Care at the Table</h2>
+                <p>The Force is the heart of Star Wars - not just a collection of supernatural powers, but a philosophy, a way of life, and the source of the saga's most profound moments. Managing Force powers in your RPG requires balancing mechanical effects with spiritual growth, ensuring that wielding the Force feels both powerful and meaningful. Force and Destiny is set by default in the Dark Times after the fall of the Jedi, so most player characters are self-taught or secretly trained, which gives you, the GM, a lot of say in how their training unfolds.</p>
                 
                 <p>Think of the Force not as magic, but as a relationship. Like any relationship, it requires understanding, respect, and constant growth. The most compelling Force users aren't those with the most powers, but those who best understand what the Force means and how it connects all living things.</p>
             </div>
@@ -145,7 +440,7 @@
             <h2>Understanding the Force: Philosophy Before Power</h2>
             
             <div class="mermaid">
-                graph TD
+                graph LR
                     A[The Force] --> B[Living Force]
                     A --> C[Cosmic Force]
                     A --> D[Unifying Force]
@@ -172,43 +467,43 @@
                 <h4>🌌 The Cosmic Force</h4>
                 <p>Time-focused, dealing with destiny and the larger patterns of existence. This aspect governs precognition, postcognition, Force visions, and understanding of fate. Characters strong in the Cosmic Force see the bigger picture but may struggle with present concerns.</p>
 
-                <h4>⚖️ The Unifying Force</h4>
+                <h4>⚖️ The Unifying Force (from the Legends novels)</h4>
                 <p>Balance-focused, dealing with the connection between all things. This aspect governs telepathy, empathy, Force bonds, and the ability to influence others. Characters strong in the Unifying Force understand relationships and connections but may lose individual identity.</p>
             </div>
         </section>
 
         <section class="power-system">
-            <h2>Categorizing Force Powers by Nature and Intent</h2>
-            <p>Force powers aren't just tools - they reflect the user's understanding and relationship with the Force. The same basic ability can manifest differently based on the wielder's philosophy and emotional state.</p>
+            <h2>Categorizing Force Use by Nature and Intent</h2>
+            <p>Force powers aren't just tools - they reflect the user's understanding and relationship with the Force. In this game no power is light or dark by itself: the same basic ability becomes light or dark depending on which pips fuel it and what it is used for.</p>
 
             <div class="power-categories">
                 <div class="power-card light">
-                    <h4>✨ Light Side Powers</h4>
+                    <h4>✨ Light-Side Use</h4>
                     <p><strong>Philosophy:</strong> Service, protection, healing<br>
-                    <strong>Examples:</strong> Force Healing, Animal Friendship, Protect, Absorb Energy<br>
-                    <strong>Cost:</strong> Physical exhaustion, emotional drain from caring deeply<br>
-                    <strong>Mastery:</strong> Selfless sacrifice and complete trust in the Force</p>
+                    <strong>In play:</strong> A light-side user spends light pips as Force points at no extra cost<br>
+                    <strong>Typical powers:</strong> Heal, Protect, Battle Meditation, Foresee<br>
+                    <strong>Ideal:</strong> Selfless sacrifice and complete trust in the Force</p>
                 </div>
                 <div class="power-card dark">
-                    <h4>⚡ Dark Side Powers</h4>
+                    <h4>⚡ Dark-Side Use</h4>
                     <p><strong>Philosophy:</strong> Domination, destruction, personal power<br>
-                    <strong>Examples:</strong> Force Lightning, Drain Life, Dominate Mind, Rage<br>
-                    <strong>Cost:</strong> Corruption, addiction, loss of empathy and connections<br>
-                    <strong>Mastery:</strong> Embracing hatred and fear as sources of strength</p>
+                    <strong>In play:</strong> Each use of dark pips means flipping a light-side Destiny Point to dark, then 1 strain and 1 Conflict per dark pip; cruel acts earn more Conflict<br>
+                    <strong>Typical powers:</strong> Harm, Unleash (Force lightning), Influence used to terrify or dominate<br>
+                    <strong>Ideal:</strong> Embracing hatred and fear as sources of strength</p>
                 </div>
                 <div class="power-card neutral">
-                    <h4>⚖️ Neutral Powers</h4>
+                    <h4>⚖️ Either Way</h4>
                     <p><strong>Philosophy:</strong> Understanding, balance, pragmatism<br>
-                    <strong>Examples:</strong> Force Sight, Telepathy, Precognition, Force Jump<br>
-                    <strong>Cost:</strong> Mental fatigue, sensory overload from expanded awareness<br>
-                    <strong>Mastery:</strong> Perfect balance between passion and peace</p>
+                    <strong>In play:</strong> Light or dark depending on the pips spent and the purpose<br>
+                    <strong>Typical powers:</strong> Move, Sense, Seek, Enhance, Misdirect<br>
+                    <strong>Ideal:</strong> Perfect balance between passion and peace</p>
                 </div>
                 <div class="power-card universal">
-                    <h4>🔮 Universal Powers</h4>
-                    <p><strong>Philosophy:</strong> Core connection to the Force itself<br>
-                    <strong>Examples:</strong> Telekinesis, Enhanced Reflexes, Sense, Mind Trick<br>
-                    <strong>Cost:</strong> Varies based on intent and emotional state during use<br>
-                    <strong>Mastery:</strong> Using any power with pure intent and clear purpose</p>
+                    <h4>🔮 Rules Every Force User Shares</h4>
+                    <p><strong>Force rating:</strong> The number of Force dice rolled for a power; Force and Destiny careers start at 1<br>
+                    <strong>Committing:</strong> Dice committed to sustain an effect reduce your Force rating while they stay committed<br>
+                    <strong>Growth:</strong> Each power is a basic power plus an upgrade tree, bought with XP<br>
+                    <strong>The die:</strong> 5 of the 12 faces show light pips, 7 show dark</p>
                 </div>
             </div>
         </section>
@@ -248,15 +543,11 @@
                 <h3>⚔️ The Traditional Jedi Trials</h3>
                 
                 <div class="mermaid">
-                    graph LR
-                        A[Trial of Skill] --> B[Trial of Courage]
-                        B --> C[Trial of Flesh]
-                        C --> D[Trial of Spirit]
+                    graph TD
+                        A[Trial of Skill&lt;br/&gt;combat, forms, technique] --> B[Trial of Courage&lt;br/&gt;facing fear, protecting others]
+                        B --> C[Trial of Flesh&lt;br/&gt;pain, sacrifice, loss]
+                        C --> D[Trial of Spirit&lt;br/&gt;confronting your own darkness]
                         D --> E[Knighthood]
-                        
-                        A1[Combat Mastery<br/>Lightsaber Forms<br/>Force Techniques] --> B1[Facing Fear<br/>Protecting Others<br/>Moral Courage]
-                        B1 --> C1[Physical Sacrifice<br/>Enduring Pain<br/>Accepting Loss]
-                        C1 --> D1[Confronting Darkness<br/>Resisting Temptation<br/>Self-Knowledge]
                 </div>
 
                 <h4>Designing Trials for Your Campaign</h4>
@@ -312,19 +603,19 @@
             <h3>Conflict — Earned Within the Session</h3>
             <p>Conflict is a running tally accumulated during play. A character earns it two ways:</p>
             <ul>
-                <li><strong>By choosing dark side results.</strong> When you power an ability using dark side pips from the Force die, you take Conflict for it. This is the crucial design move — the dark side is not forbidden, it is <em>available and effective</em>, and it invoices you afterwards.</li>
+                <li><strong>By choosing dark side results.</strong> When a light-side character powers an ability with dark pips from the Force dice, they flip a light-side Destiny Point to dark, suffer 1 strain per dark pip and gain 1 Conflict per dark pip. This is the crucial design move — the dark side is not forbidden, it is <em>available and effective</em>, and it invoices you afterwards.</li>
                 <li><strong>By acting badly.</strong> Cruelty, betrayal, killing where you did not need to. The GM assigns this, and the amount should scale with how deliberate the act was rather than how bloody it looked.</li>
             </ul>
-            <p>Note what this means at the table: a Force user under pressure, short on light side pips, can always reach for the dark and succeed. That temptation is real, immediate and mechanical, which is exactly why it works dramatically.</p>
+            <p>Note what this means at the table: a Force user under pressure, short on light side pips, can reach for the dark and succeed whenever there is a light-side Destiny Point to flip. And they will be short often. Only 5 of the Force die's 12 faces show light pips, so a Force rating 1 character sees at least one light pip on just 5 rolls in 12 (41.7%); at Force rating 2 it is 95 in 144 (66.0%), at rating 3 about 80.2%. That temptation is real, immediate and mechanical, which is exactly why it works dramatically.</p>
 
             <h3>Morality — Settled Between Sessions</h3>
-            <p>Morality is a long-run score, starting in the middle of the range for a newly created character. At the end of each session it moves, and the movement is a genuine gamble rather than a simple subtraction: roll a die and compare it against the Conflict you accrued that session. Come in under your Conflict and your Morality falls; stay above it and your Morality rises.</p>
+            <p>Morality is a long-run score from 0 to 100, and every new character starts at 50. At the end of each session it moves, and the movement is a genuine gamble rather than a simple subtraction: roll 1d10, subtract the Conflict accrued that session, and add the result to Morality. A positive result raises it, a negative one lowers it, and Conflict then resets for the next session.</p>
             <p>Two things follow that are easy to miss:</p>
             <ul>
-                <li><strong>A small amount of Conflict is usually survivable</strong> — you will often still drift upward. This is the system quietly telling you that the occasional dark choice is part of the story, not a death sentence.</li>
+                <li><strong>A small amount of Conflict is usually survivable</strong> — you will often still drift upward. With 3 Conflict, the d10 beats it 7 times in 10. This is the system quietly telling you that the occasional dark choice is part of the story, not a death sentence.</li>
                 <li><strong>Sustained Conflict compounds.</strong> It is not one dramatic fall that darkens a character, it is six sessions of small compromises. Players almost never see it coming, which is the point.</li>
             </ul>
-            <p>Drift far enough toward either extreme and the character changes state — a light-side paragon gains benefits reflecting their conviction, while a character who falls far enough passes to the dark side and begins drawing strength from it instead. Both ends of the scale are playable; the middle is where most characters actually live.</p>
+            <p>Drift far enough toward either extreme and the character changes state — above 70 they become a light-side paragon and gain benefits reflecting their conviction, while below 30 they pass to the dark side and begin drawing strength from it instead. Both ends of the scale are playable; the middle is where most characters actually live.</p>
 
             <h3>How to Actually Run This</h3>
             <ol>
@@ -333,7 +624,7 @@
                 <li><strong>Tie the emotional weakness in.</strong> Every Force-sensitive has a paired strength and weakness. Aim your temptations at the weakness specifically, and the mechanic stops being generic — it becomes about <em>that</em> character.</li>
                 <li><strong>Do not protect them.</strong> A GM who never offers a genuinely attractive dark option has removed the subsystem. The temptation must be worth taking, sometimes.</li>
             </ol>
-            <p>Exact values, the Conflict tables and the paragon thresholds live in Force and Destiny; <a href="/sw_char.html">Character Creation</a> covers how Morality compares with Obligation and Duty, and why a mixed party rolls all three separately.</p>
+            <p>The suggested Conflict amounts for specific acts and the exact benefits at either end of the scale are in the Force and Destiny core rulebook; <a href="/sw_char.html">Character Creation</a> covers how Morality compares with Obligation and Duty, and why a mixed party rolls all three separately.</p>
         </section>
 
         <section class="meditation-training">
@@ -379,15 +670,10 @@
                 <h3>The Sacred Process</h3>
                 <div class="mermaid">
                     graph TD
-                        A[Crystal Calling] --> B[Gathering Components]
-                        B --> C[Meditation and Assembly]
-                        C --> D[Force Attunement]
-                        D --> E[Testing and Bonding]
-                        
-                        A1[Force guides to crystal<br/>Crystal chooses Jedi<br/>Vision quest] --> B1[Rare metals<br/>Power cells<br/>Focusing elements]
-                        B1 --> C1[30-day meditation<br/>Force-guided assembly<br/>Spiritual preparation]
-                        C1 --> D1[Crystal bonding<br/>Energy alignment<br/>Personal connection]
-                        D1 --> E1[First ignition<br/>Combat testing<br/>Lifetime bond]
+                        A[Crystal Calling&lt;br/&gt;the crystal chooses the Jedi] --> B[Gathering Components&lt;br/&gt;hilt, power cell, emitter]
+                        B --> C[Meditation and Assembly&lt;br/&gt;Force-guided building]
+                        C --> D[Attunement&lt;br/&gt;bonding with the crystal]
+                        D --> E[First Ignition&lt;br/&gt;a lifelong bond]
                 </div>
 
                 <h4>Lightsaber Personalization</h4>
@@ -402,7 +688,8 @@
         </section>
 
         <section class="force-simulator">
-            <h2>🖥️ Interactive Force Training Simulator</h2>
+            <h2>🖥️ Force Training Simulator</h2>
+            <p>Each exercise narrates a training scene and then rolls two real Force dice (Force rating 2), so you can see how often the light pips fall short and what reaching for the dark would cost.</p>
             <div class="force-simulator">
                 <div class="control-interface">
                     <button class="force-btn light" onclick="simulateForce('heal')">Practice Healing</button>
@@ -413,8 +700,8 @@
                     <button class="force-btn" onclick="resetSimulator()">Reset Training</button>
                 </div>
                 <div class="simulator-display" id="forceDisplay">
-                    > FORCE TRAINING SIMULATOR v3.7
-                    <br>> "Remember, a Jedi's strength flows from the Force"
+                    > FORCE TRAINING SIMULATOR
+                    <br>> Force rating 2: two Force dice per exercise
                     <br>> Select training exercise above
                     <br>> May the Force be with you...
                     <br>> _
@@ -437,25 +724,19 @@
 
                 <h4>Force Power Progression Framework</h4>
                 <div class="mermaid">
-                    graph LR
-                        A[Untrained] --> B[Novice]
-                        B --> C[Apprentice]
-                        C --> D[Adept]
-                        D --> E[Expert]
-                        E --> F[Master]
-                        
-                        A1[Instinctive use<br/>Unreliable results<br/>No control] --> B1[Basic training<br/>Simple effects<br/>Guided practice]
-                        B1 --> C1[Consistent results<br/>Multiple techniques<br/>Some independence]
-                        C1 --> D1[Advanced applications<br/>Creative variations<br/>Teaching others]
-                        D1 --> E1[Mastery of principle<br/>Effortless use<br/>Innovation]
-                        E1 --> F1[Transcendent understanding<br/>One with the Force<br/>Beyond technique]
+                    graph TD
+                        A[Untrained&lt;br/&gt;instinct, unreliable] --> B[Novice&lt;br/&gt;a basic power or two]
+                        B --> C[Apprentice&lt;br/&gt;first upgrades bought]
+                        C --> D[Adept&lt;br/&gt;deep trees, creative uses]
+                        D --> E[Expert&lt;br/&gt;higher Force rating]
+                        E --> F[Master&lt;br/&gt;teaching others]
                 </div>
             </div>
 
             <div class="wisdom-scroll">
                 <h3>📜 Ancient Jedi Wisdom</h3>
                 <blockquote>
-                    <p><em>"A Jedi uses the Force for knowledge and defense, never for attack. But beware of the dark side. Anger, fear, aggression; the dark side of the Force are they. Easily they flow, quick to join you in a fight."</em> - Master Yoda</p>
+                    <p><em>"Anger, fear, aggression; the dark side of the Force are they. Easily they flow, quick to join you in a fight."</em> - Yoda, The Empire Strikes Back</p>
                 </blockquote>
 
                 <h4>Core Principles for Force Use</h4>
@@ -489,7 +770,7 @@
                 <div class="power-card universal">
                     <h4>⚖️ Je'daii Order</h4>
                     <p><strong>Philosophy:</strong> Perfect balance between light and dark<br>
-                    <strong>Powers:</strong> Both light and dark abilities without corruption<br>
+                    <strong>Powers:</strong> Both light and dark abilities without corruption (in the lore; at the table, dark pips still earn Conflict)<br>
                     <strong>Cost:</strong> Constant vigilance to maintain perfect balance</p>
                 </div>
                 <div class="power-card dark">
@@ -503,7 +784,7 @@
 
         <section class="exercises">
             <div class="exercise-dojo">
-                <h3>Force Training Exercises</h3>
+                <h3>Try It at the Table</h3>
                 
                 <h4>Exercise 1: Philosophy in Action</h4>
                 <p>Design a scenario where characters must use Force powers, but show how different philosophical approaches lead to different outcomes:</p>
@@ -553,7 +834,7 @@
         </section>
 
         <section class="conclusion">
-            <h2>The Eternal Journey</h2>
+            <h2>The Long Road</h2>
             <p>Remember, mastering the Force is not about accumulating powers - it's about growing in wisdom, compassion, and understanding. The most powerful Force user is not necessarily the strongest, but the one who best understands their connection to all life and uses that understanding in service of others.</p>
             
             <p>In your campaigns, let Force powers be expressions of character growth, not just mechanical abilities. When players reach for the Force, they should be reaching for something deeper than magic - they should be touching the very essence of what makes Star Wars meaningful.</p>
@@ -563,18 +844,14 @@
             <h2>Where to Go Next</h2>
             <p>Powers are only half of it. The other half:</p>
             <ul>
-                <li><strong><a href="/sw_force_and_lightsaber.html">Force &amp; Lightsabers</a>:</strong> Lightsaber combat and the Conflict system that governs how you use these powers.</li>
+                <li><strong><a href="/sw_force_and_lightsaber.html">The Force &amp; Lightsabers</a>:</strong> Lightsaber combat and the Conflict system that governs how you use these powers.</li>
                 <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Fitting a Force user into a party without overshadowing everyone.</li>
                 <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Training arcs — spreading a character's development across a whole campaign.</li>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Antagonists who use these same powers, and how to make that frightening.</li>
-                <li><strong><a href="/starwars_time_travel.html">Time Travel</a>:</strong> Force visions and prophecy taken to their logical extreme.</li>
+                <li><strong><a href="/starwars_time_travel.html">Visions, Time &amp; the World Between Worlds</a>:</strong> An optional page on Force visions and the stranger edges of time.</li>
             </ul>
         </section>
     </main>
-
-    <footer>
-        <p><em>"Luminous beings are we, not this crude matter. You must feel the Force around you; here, between you, me, the tree, the rock, everywhere!" - Yoda</em></p>
-    </footer>
 
     <script>
         // Force simulation data
@@ -587,7 +864,7 @@
                     "Feel the flow of life energy around you", 
                     "Direct healing energy toward the wound",
                     "The tissue begins to knit together slowly",
-                    "Training complete. Exhaustion but no corruption."
+                    "Heal needs Force points: spend light pips to restore wounds."
                 ]
             },
             telekinesis: {
@@ -598,7 +875,7 @@
                     "Visualize the object as an extension of yourself",
                     "Feel the Force flowing through and around it",
                     "Gently lift with your mind, not your emotions",
-                    "Success! Object moves smoothly to your will."
+                    "Move needs 1 Force point to lift a Silhouette 0 object."
                 ]
             },
             precognition: {
@@ -620,7 +897,7 @@
                     "Channel fury into electrical energy",
                     "Lightning crackles between your fingers",
                     "Power surges through you - intoxicating!",
-                    "DANGER: Corruption detected. End session."
+                    "Lightning (Unleash) is an attack: tempting, and easy to make cruel."
                 ]
             },
             meditation: {
@@ -647,23 +924,51 @@
 
         let currentBalance = 50; // 0 = pure light, 100 = pure dark
 
+        // Force die: 6 single dark, 1 double dark, 2 single light, 3 double light
+        const FORCE_DIE = [
+            [0,1],[0,1],[0,1],[0,1],[0,1],[0,1],
+            [0,2],
+            [1,0],[1,0],
+            [2,0],[2,0],[2,0]
+        ];
+        const FORCE_RATING = 2;
+
+        function rollForceDice(n) {
+            let light = 0, dark = 0;
+            for (let i = 0; i < n; i++) {
+                const face = FORCE_DIE[Math.floor(Math.random() * FORCE_DIE.length)];
+                light += face[0];
+                dark += face[1];
+            }
+            return { light, dark };
+        }
+
         function simulateForce(type) {
             const exercise = forceExercises[type];
             if (!exercise) return;
 
             let output = `> ${exercise.title}\n> ${exercise.description}\n>\n`;
-            
+
             exercise.steps.forEach((step, index) => {
                 output += `> ${index + 1}. ${step}\n`;
             });
-            
-            output += `>\n> Training session complete.\n> _`;
-            
+
+            const r = rollForceDice(FORCE_RATING);
+            output += `>\n> FORCE ROLL (rating ${FORCE_RATING}): ${r.light} light pip${r.light === 1 ? '' : 's'}, ${r.dark} dark pip${r.dark === 1 ? '' : 's'}\n`;
+            output += `> Light-side user: ${r.light} Force point${r.light === 1 ? '' : 's'} available at no cost.\n`;
+            if (r.dark > 0) {
+                output += `> Using the dark pips too: flip 1 light Destiny Point to dark,\n> suffer ${r.dark} strain and gain ${r.dark} Conflict.\n`;
+            }
+            if (r.light === 0) {
+                output += `> No light pips: the power fails unless you reach for the dark.\n`;
+            }
+            output += `> _`;
+
             document.getElementById('forceDisplay').innerHTML = output.replace(/\n/g, '<br>');
         }
 
         function resetSimulator() {
-            const output = `> FORCE TRAINING SIMULATOR v3.7\n> "Remember, a Jedi's strength flows from the Force"\n> Select training exercise above\n> May the Force be with you...\n> _`;
+            const output = `> FORCE TRAINING SIMULATOR\n> Force rating ${FORCE_RATING}: two Force dice per exercise\n> Select training exercise above\n> May the Force be with you...\n> _`;
             document.getElementById('forceDisplay').innerHTML = output.replace(/\n/g, '<br>');
         }
 
@@ -675,7 +980,7 @@
         function adjustBalance(change) {
             currentBalance = Math.max(0, Math.min(100, currentBalance + change));
             const indicator = document.getElementById('moralIndicator');
-            indicator.style.left = currentBalance + '%';
+            indicator.style.left = `calc(${currentBalance}% - 20px)`;
             
             // Visual feedback
             if (currentBalance < 30) {
@@ -689,6 +994,16 @@
 
         // Initialize
         resetSimulator();
+        adjustBalance(0);
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/starwars_space_encounters.html">Running Space Encounters</a>
+    <a class="next" href="/starwars_social_encounters.html">Social Encounters</a>
+</div>
+        <p class="closing-quote">Make the dark side tempting, make its price visible, and let the players choose.</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

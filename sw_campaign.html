@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG - Campaign Creation and Themes</title>
-    <meta name="description" content="Themes, era selection, session zero and long-term story planning for a Star Wars campaign.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG - Campaign Creation and Themes">
-    <meta property="og:description" content="Themes, era selection, session zero and long-term story planning for a Star Wars campaign.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Campaign Creation - The Star Wars RPG Guide</title>
+    <meta name="description" content="Creating a Star Wars RPG campaign: campaign types, eras, factions, pacing, character growth with XP and running Session Zero.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG: Campaign Creation and Themes</h1>
-        <p class="subtitle">Building Epic Sagas - From Concept to Galactic Legend</p>
+        <h1>Campaign Creation</h1>
+        <p>How to choose an era, themes and scope, structure a long campaign and run session zero.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h2>Campaigns as Epic Sagas</h2>
             <p>A Star Wars campaign isn't just a series of connected adventures - it's an epic saga that spans months or years of real time, chronicling the rise of heroes and the fate of the galaxy. Like the films themselves, your campaign should have overarching themes, character growth arcs, and a sense of building toward something greater than the sum of its parts.</p>
@@ -57,7 +52,7 @@
                 const timelineCanvas = document.getElementById('eraTimeline');
                 const timelineCtx = timelineCanvas.getContext('2d');
                 
-                // Canvases render on their own light surface (see site.css), so
+                // Canvases render on their own light surface (see main.css), so
                 // dark ink stays correct in both themes.
                 const tlInk = '#333333';
 
@@ -93,8 +88,8 @@
                     timelineCtx.stroke();
                     
                     // Era info box
-                    const boxX = index % 2 === 0 ? 80 : 350;
-                    const boxWidth = 280;
+                    const boxX = index % 2 === 0 ? 80 : 410;
+                    const boxWidth = 270;
                     const boxHeight = 50;
                     
                     timelineCtx.fillStyle = 'rgba(255, 255, 255, 0.9)';
@@ -137,12 +132,13 @@
 
             <div class="theme-matrix">
                 <div class="mermaid">
+                    %%{init: {"quadrantChart": {"chartWidth": 560, "chartHeight": 460, "pointLabelFontSize": 16, "quadrantLabelFontSize": 18, "xAxisLabelFontSize": 17, "yAxisLabelFontSize": 17, "titleFontSize": 20}}}%%
                     quadrantChart
                         title Campaign Theme Matrix
                         x-axis Low Conflict --> High Conflict
                         y-axis Personal Stakes --> Galactic Stakes
-                        quadrant-1 Political Intrigue
-                        quadrant-2 Epic War
+                        quadrant-1 Epic War
+                        quadrant-2 Political Intrigue
                         quadrant-3 Personal Journey
                         quadrant-4 Heroic Adventure
                         
@@ -153,7 +149,7 @@
                         Smuggler Crew: [0.4, 0.3]
                         Jedi Training: [0.3, 0.4]
                         Imperial Campaign: [0.7, 0.8]
-                        Outer Rim Survival: [0.5, 0.2]
+                        Outer Rim Survival: [0.68, 0.25]
                 </div>
             </div>
 
@@ -209,15 +205,17 @@
                 
                 // Act 1 - Establishment
                 campaignCtx.fillStyle = 'rgba(76, 175, 80, 0.8)';
-                campaignCtx.fillRect(50, 60, 150, 200);
+                campaignCtx.fillRect(25, 60, 170, 200);
                 campaignCtx.strokeStyle = '#4CAF50';
                 campaignCtx.lineWidth = 3;
-                campaignCtx.strokeRect(50, 60, 150, 200);
+                campaignCtx.strokeRect(25, 60, 170, 200);
                 
-                campaignCtx.fillStyle = '#333';
-                campaignCtx.font = 'bold 14px Arial';
-                campaignCtx.fillText('Act 1: Establishment', 125, 80);
+                campaignCtx.fillStyle = '#111';
+                campaignCtx.font = 'bold 13px Arial';
+                campaignCtx.textAlign = 'center';
+                campaignCtx.fillText('Act 1: Establishment', 110, 80);
                 campaignCtx.font = '12px Arial';
+                campaignCtx.fillStyle = '#111';
                 campaignCtx.textAlign = 'left';
                 const act1Items = [
                     'Introduce characters',
@@ -229,26 +227,27 @@
                     'First victories'
                 ];
                 act1Items.forEach((item, index) => {
-                    campaignCtx.fillText('• ' + item, 60, 100 + (index * 20));
+                    campaignCtx.fillText('• ' + item, 35, 100 + (index * 20));
                 });
                 
                 campaignCtx.font = '11px Arial';
                 campaignCtx.fillStyle = '#666';
                 campaignCtx.textAlign = 'center';
-                campaignCtx.fillText('Sessions 1-8', 125, 280);
+                campaignCtx.fillText('Sessions 1-8', 110, 280);
                 
                 // Act 2 - Confrontation
                 campaignCtx.fillStyle = 'rgba(255, 152, 0, 0.8)';
-                campaignCtx.fillRect(225, 40, 150, 240);
+                campaignCtx.fillRect(215, 40, 170, 240);
                 campaignCtx.strokeStyle = '#FF9800';
                 campaignCtx.lineWidth = 3;
-                campaignCtx.strokeRect(225, 40, 150, 240);
+                campaignCtx.strokeRect(215, 40, 170, 240);
                 
-                campaignCtx.fillStyle = '#333';
-                campaignCtx.font = 'bold 14px Arial';
+                campaignCtx.fillStyle = '#111';
+                campaignCtx.font = 'bold 13px Arial';
                 campaignCtx.textAlign = 'center';
                 campaignCtx.fillText('Act 2: Confrontation', 300, 60);
                 campaignCtx.font = '12px Arial';
+                campaignCtx.fillStyle = '#111';
                 campaignCtx.textAlign = 'left';
                 const act2Items = [
                     'Rising opposition',
@@ -262,7 +261,7 @@
                     'Preparation for finale'
                 ];
                 act2Items.forEach((item, index) => {
-                    campaignCtx.fillText('• ' + item, 235, 80 + (index * 20));
+                    campaignCtx.fillText('• ' + item, 225, 80 + (index * 20));
                 });
                 
                 campaignCtx.font = '11px Arial';
@@ -272,16 +271,17 @@
                 
                 // Act 3 - Resolution
                 campaignCtx.fillStyle = 'rgba(244, 67, 54, 0.8)';
-                campaignCtx.fillRect(400, 60, 150, 200);
+                campaignCtx.fillRect(405, 60, 170, 200);
                 campaignCtx.strokeStyle = '#F44336';
                 campaignCtx.lineWidth = 3;
-                campaignCtx.strokeRect(400, 60, 150, 200);
+                campaignCtx.strokeRect(405, 60, 170, 200);
                 
-                campaignCtx.fillStyle = '#333';
-                campaignCtx.font = 'bold 14px Arial';
+                campaignCtx.fillStyle = '#111';
+                campaignCtx.font = 'bold 13px Arial';
                 campaignCtx.textAlign = 'center';
-                campaignCtx.fillText('Act 3: Resolution', 475, 80);
+                campaignCtx.fillText('Act 3: Resolution', 490, 80);
                 campaignCtx.font = '12px Arial';
+                campaignCtx.fillStyle = '#111';
                 campaignCtx.textAlign = 'left';
                 const act3Items = [
                     'Final preparations',
@@ -293,27 +293,27 @@
                     'New status quo'
                 ];
                 act3Items.forEach((item, index) => {
-                    campaignCtx.fillText('• ' + item, 410, 100 + (index * 20));
+                    campaignCtx.fillText('• ' + item, 415, 100 + (index * 20));
                 });
                 
                 campaignCtx.font = '11px Arial';
                 campaignCtx.fillStyle = '#666';
                 campaignCtx.textAlign = 'center';
-                campaignCtx.fillText('Sessions 21-25', 475, 280);
+                campaignCtx.fillText('Sessions 21-25', 490, 280);
                 
                 // Add dramatic arc
                 campaignCtx.strokeStyle = '#E91E63';
                 campaignCtx.lineWidth = 4;
                 campaignCtx.beginPath();
-                campaignCtx.moveTo(50, 320);
+                campaignCtx.moveTo(25, 320);
                 campaignCtx.quadraticCurveTo(200, 300, 300, 320);
-                campaignCtx.quadraticCurveTo(400, 340, 550, 300);
+                campaignCtx.quadraticCurveTo(400, 340, 575, 300);
                 campaignCtx.stroke();
                 
-                campaignCtx.fillStyle = '#E91E63';
                 campaignCtx.font = '12px Arial';
+                campaignCtx.fillStyle = '#b0154a';
                 campaignCtx.textAlign = 'left';
-                campaignCtx.fillText('Dramatic Intensity', 50, 340);
+                campaignCtx.fillText('Dramatic Intensity', 25, 340);
             </script>
 
             <h3>Story Arcs and Subplots</h3>
@@ -321,8 +321,9 @@
 
             <div class="arc-management">
                 <div class="mermaid">
+                    %%{init: {"gantt": {"fontSize": 15, "sectionFontSize": 15, "barHeight": 26, "barGap": 6}, "themeCSS": ".tick text { font-size: 14px; }"}}%%
                     gantt
-                        title Campaign Story Arc Timeline
+                        title Campaign Story Arc Timeline (sessions)
                         dateFormat  X
                         axisFormat %s
                         
@@ -361,7 +362,7 @@
             <p>Most tables settle somewhere around fifteen to twenty XP per session, with extra for finishing a major arc. What matters is less the exact figure than what it <em>buys</em>, so hold the costs alongside it:</p>
             <ul>
                 <li><strong>A skill rank</strong> costs five times the new rank — cheap early, steep later. Going from rank 1 to 2 is trivial; pushing to rank 4 or 5 is a genuine investment.</li>
-                <li><strong>A characteristic</strong> costs ten times the new value and can only be raised with dedicated advances after creation. This is why the advice in <a href="/sw_char.html">Character Creation</a> is to buy your defining characteristic <em>at</em> creation.</li>
+                <li><strong>A characteristic</strong> can only be bought with XP at character creation, at ten times the new value; after that, the only way to raise one is a rare talent deep in a talent tree. This is why the advice in <a href="/sw_char.html">Character Creation</a> is to buy your defining characteristic <em>at</em> creation.</li>
                 <li><strong>A new specialization</strong> is a substantial lump sum, and it opens a whole new talent tree.</li>
             </ul>
             <p>At roughly twenty XP a session, that means a noticeable improvement every session or two, a new specialization every several sessions, and a genuinely transformed character around the twenty-session mark. Plan your campaign's escalation against that curve.</p>
@@ -481,7 +482,7 @@
                 const sectorCtx = sectorCanvas.getContext('2d');
                 
                 // Draw example sector map
-                sectorCtx.fillStyle = '#000';
+                sectorCtx.fillStyle = '#fbf8f2';
                 sectorCtx.fillRect(0, 0, 600, 400);
                 
                 // Stars background
@@ -489,7 +490,7 @@
                     const x = Math.random() * 600;
                     const y = Math.random() * 400;
                     const size = Math.random() * 2;
-                    sectorCtx.fillStyle = '#FFF';
+                    sectorCtx.fillStyle = '#ded7cb';
                     sectorCtx.beginPath();
                     sectorCtx.arc(x, y, size, 0, 2 * Math.PI);
                     sectorCtx.fill();
@@ -534,24 +535,28 @@
                     sectorCtx.arc(system.x, system.y, 8, 0, 2 * Math.PI);
                     sectorCtx.fill();
                     
-                    sectorCtx.strokeStyle = '#FFF';
+                    sectorCtx.strokeStyle = '#1f1d1a';
                     sectorCtx.lineWidth = 2;
                     sectorCtx.stroke();
                     
                     // System name
-                    sectorCtx.fillStyle = '#FFF';
-                    sectorCtx.font = '12px Arial';
+                    sectorCtx.fillStyle = '#1f1d1a';
+                    sectorCtx.font = 'bold 12px Arial';
                     sectorCtx.textAlign = 'center';
+                    sectorCtx.strokeStyle = '#fbf8f2';
+                    sectorCtx.lineWidth = 4;
+                    sectorCtx.strokeText(system.name, system.x, system.y - 15);
                     sectorCtx.fillText(system.name, system.x, system.y - 15);
                     
                     // System type
                     sectorCtx.font = '10px Arial';
-                    sectorCtx.fillStyle = '#CCC';
+                    sectorCtx.fillStyle = '#1f1d1a';
+                    sectorCtx.strokeText(system.desc, system.x, system.y + 25);
                     sectorCtx.fillText(system.desc, system.x, system.y + 25);
                 });
                 
                 // Add title and legend
-                sectorCtx.fillStyle = '#FFF';
+                sectorCtx.fillStyle = '#1f1d1a';
                 sectorCtx.font = 'bold 16px Arial';
                 sectorCtx.textAlign = 'center';
                 sectorCtx.fillText('Example Sector: Outer Reach', 300, 25);
@@ -884,18 +889,18 @@
                 let currentY = 60;
                 storylines.forEach(story => {
                     // Draw progress bar
-                    const maxWidth = 400;
+                    const maxWidth = 225;
                     const progressWidth = (story.sessions / 10) * maxWidth;
                     
                     storyCtx.fillStyle = '#E0E0E0';
-                    storyCtx.fillRect(150, currentY, maxWidth, 25);
+                    storyCtx.fillRect(215, currentY, maxWidth, 25);
                     
                     storyCtx.fillStyle = story.color;
-                    storyCtx.fillRect(150, currentY, progressWidth, 25);
+                    storyCtx.fillRect(215, currentY, progressWidth, 25);
                     
                     storyCtx.strokeStyle = '#333';
                     storyCtx.lineWidth = 2;
-                    storyCtx.strokeRect(150, currentY, maxWidth, 25);
+                    storyCtx.strokeRect(215, currentY, maxWidth, 25);
                     
                     // Add labels
                     storyCtx.fillStyle = '#333';
@@ -903,11 +908,11 @@
                     storyCtx.textAlign = 'left';
                     storyCtx.fillText(story.name, 20, currentY + 17);
                     
-                    storyCtx.textAlign = 'center';
-                    storyCtx.fillText(`${story.sessions}/10`, 350, currentY + 17);
+                    storyCtx.textAlign = 'left';
+                    storyCtx.fillText(`${story.sessions}/10`, 448, currentY + 17);
                     
                     storyCtx.textAlign = 'right';
-                    storyCtx.fillText(story.status, 580, currentY + 17);
+                    storyCtx.fillText(story.status, 590, currentY + 17);
                     
                     currentY += 35;
                 });
@@ -918,14 +923,14 @@
                 storyCtx.textAlign = 'left';
                 storyCtx.fillText('Storyline', 20, 50);
                 storyCtx.textAlign = 'center';
-                storyCtx.fillText('Progress', 350, 50);
+                storyCtx.fillText('Progress', 328, 50);
                 storyCtx.textAlign = 'right';
-                storyCtx.fillText('Status', 580, 50);
+                storyCtx.fillText('Status', 590, 50);
                 
-                storyCtx.fillStyle = '#999';
+                storyCtx.fillStyle = '#1f1d1a';
                 storyCtx.font = '10px Arial';
                 storyCtx.textAlign = 'center';
-                storyCtx.fillText('Sessions involved in storyline', 300, 280);
+                storyCtx.fillText('Bars show sessions spent on each storyline so far (out of 10)', 300, 250);
             </script>
 
             <h3>Player Engagement Between Sessions</h3>
@@ -972,7 +977,7 @@
         </section>
 
         <section class="practice-activities">
-            <h2>Practice Activities</h2>
+            <h2>Try It at the Table</h2>
             
             <h3>Activity One: Campaign Concept Development</h3>
             <p>Create three different campaign concepts:</p>
@@ -1039,19 +1044,21 @@
             <ul>
                 <li><strong><a href="/starwars_campaign_arcs.html">Campaign Arcs</a>:</strong> Multi-session arc structure, cliffhangers and escalation.</li>
                 <li><strong><a href="/sw_gm_techniques.html">Game Master Techniques</a>:</strong> Running it week to week once the planning is done.</li>
-                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> Session zero and getting the party pointed the same direction.</li>
+                <li><strong><a href="/sw_groups.html">Crews &amp; Group Dynamics</a>:</strong> Session zero and getting the party pointed the same direction.</li>
                 <li><strong><a href="/starwars_galactic_politics.html">Galactic Politics</a>:</strong> The factions your campaign premise will inevitably collide with.</li>
                 <li><strong><a href="/starwars_planets_locations.html">Planets &amp; Locations</a>:</strong> The worlds your players will spend the campaign moving between.</li>
-                <li><strong><a href="/starwars_capstone_mastery.html">Capstone: GM Mastery</a>:</strong> The synthesis lesson, once you have run a few sessions and want to tighten everything.</li>
+                <li><strong><a href="/starwars_putting_it_together.html">Putting It All Together</a>:</strong> How the GM pages connect, plus a start-to-finish plan for a first campaign.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>Your campaign will become legend not through perfect planning, but through the collaborative stories you create with your players. Every choice they make, every victory and setback, adds another chapter to your unique corner of the Star Wars galaxy.</p>
-      
+<div class="page-nav">
+    <a class="prev" href="/sw_vehicles.html">Starships &amp; Vehicles</a>
+    <a class="next" href="/sw_gm_techniques.html">Game Master Techniques</a>
+</div>
+        <p class="closing-quote">Your campaign will become legend not through perfect planning, but through the collaborative stories you create with your players. Every choice they make, every victory and setback, adds another chapter to your unique corner of the Star Wars galaxy.</p>
     </footer>
-
-   
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

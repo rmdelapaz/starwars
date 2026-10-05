@@ -3,96 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG - Force Powers and Lightsaber Combat</title>
-    <meta name="description" content="Force-sensitive characters, lightsaber forms and Conflict mechanics in Star Wars RPG.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG - Force Powers and Lightsaber Combat">
-    <meta property="og:description" content="Force-sensitive characters, lightsaber forms and Conflict mechanics in Star Wars RPG.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>The Force &amp; Lightsabers - The Star Wars RPG Guide</title>
+    <meta name="description" content="The Force and lightsabers in the Star Wars RPG: Force rating and dice, powers and upgrades, dark-side pips, Conflict and Morality, and lightsaber forms.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>Star Wars RPG: Force Powers and Lightsaber Combat</h1>
-        <p class="subtitle">An Elegant Weapon for a More Civilized Age - Mastering the Force and the Lightsaber</p>
+        <h1>The Force &amp; Lightsabers</h1>
+        <p>How Force rating, Force dice, Conflict and Morality work, and what lightsaber forms do to your dice.</p>
     </header>
 
     <main id="main">
+
         <section class="introduction">
             <h2>The Force - An Energy Field Created by All Living Things</h2>
-            <p>The Force isn't magic - it's the fundamental energy that binds the galaxy together. In Star Wars RPG, using the Force is like learning to conduct a symphony orchestra where every instrument is a living being, every note is an emotion, and every measure is a moment of connection with something greater than yourself. It's not about memorizing spells; it's about understanding your relationship with the universe itself.</p>
+            <p>The Force isn't magic - it's the fundamental energy that binds the galaxy together. In the Star Wars Roleplaying Game, using the Force is like learning to conduct a symphony orchestra where every instrument is a living being, every note is an emotion, and every measure is a moment of connection with something greater than yourself. It's not about memorizing spells; it's about understanding your relationship with the universe itself.</p>
             
             <div class="analogy-box">
                 <h3>The River Analogy</h3>
-                <p>Think of the Force like a vast, flowing river. A Force-sensitive person can sense the river's presence, but using Force powers is like learning to navigate its currents. You can fight against the current (dark side - quick but exhausting), flow with it (light side - sustainable and harmonious), or try to dam it up (suppressing your abilities - ultimately futile and dangerous). Your Force Rating determines how much of the river's power you can safely channel at once.</p>
+                <p>Think of the Force like a vast, flowing river. A Force-sensitive person can sense the river's presence, but using Force powers is like learning to navigate its currents. You can fight against the current (dark side - quick but exhausting), flow with it (light side - sustainable and harmonious), or try to dam it up (suppressing your abilities - ultimately futile and dangerous). Your Force rating determines how much of the river's power you can channel at once.</p>
             </div>
         </section>
 
         <section class="force-fundamentals">
-            <h2>Force Rating - Your Connection to the Infinite</h2>
+            <h2>Force Rating - Your Connection to the Force</h2>
             
             <h3>Understanding Force Dice</h3>
             <p>Force dice are unlike any other dice in the game. They don't represent skill or training - they represent your moment-to-moment connection to the living Force. Sometimes the Force flows through you like a raging torrent, sometimes it's a gentle stream, and sometimes it feels absent entirely. This variability is intentional and reflects the mystical, unpredictable nature of the Force itself.</p>
+            <p>The rules are short. Your <strong>Force rating</strong> is the number of Force dice (white d12s) you roll when you activate a power; Force and Destiny careers start at Force rating 1, and Force Rating talents raise it. Some effects let you <strong>commit</strong> Force dice to keep them running; while dice are committed, your Force rating is reduced by that many. Each Force die shows light or dark pips, never a blank: 6 faces have a single dark pip, 1 face has two dark pips, 2 faces have a single light pip and 3 faces have two light pips. A light-side character spends light pips as Force points to fuel the power. To use dark pips instead, they must flip one of the group's light-side Destiny Points to dark and suffer 1 strain per dark pip, and in Force and Destiny they also gain 1 Conflict per dark pip. One Force die shows light pips on only 5 faces in 12 (41.7%), which is exactly why the dark side is tempting.</p>
 
             <div class="force-dice-visualization">
                 <svg width="600" height="350" viewBox="0 0 600 350">
                     <!-- Force Die Faces -->
                     <g id="forceDie">
-                        <!-- Light Side Pips -->
-                        <circle cx="100" cy="100" r="40" fill="#ffffff" stroke="#cccccc" stroke-width="3"/>
-                        <circle cx="85" cy="85" r="6" fill="#4CAF50"/>
-                        <circle cx="115" cy="115" r="6" fill="#4CAF50"/>
-                        <text x="100" y="140" text-anchor="middle" font-size="12">Light Side (2)</text>
-                        
-                        <!-- Dark Side Pips -->
-                        <circle cx="250" cy="100" r="40" fill="#ffffff" stroke="#cccccc" stroke-width="3"/>
-                        <circle cx="235" cy="85" r="6" fill="#F44336"/>
-                        <circle cx="265" cy="85" r="6" fill="#F44336"/>
-                        <circle cx="250" cy="115" r="6" fill="#F44336"/>
-                        <text x="250" y="140" text-anchor="middle" font-size="12">Dark Side (3)</text>
-                        
-                        <!-- Blank Face -->
-                        <circle cx="400" cy="100" r="40" fill="#ffffff" stroke="#cccccc" stroke-width="3"/>
-                        <text x="400" y="140" text-anchor="middle" font-size="12">Blank</text>
+                        <text x="300" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2937">The Force Die (d12): no blank faces</text>
+                        <!-- Single dark -->
+                        <circle cx="90" cy="90" r="38" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+                        <circle cx="90" cy="90" r="8" fill="#111111"/>
+                        <text x="90" y="148" text-anchor="middle" font-size="13" fill="#1f2937">1 dark pip</text>
+                        <text x="90" y="166" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2937">6 faces</text>
+                        <!-- Double dark -->
+                        <circle cx="230" cy="90" r="38" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+                        <circle cx="216" cy="90" r="8" fill="#111111"/>
+                        <circle cx="244" cy="90" r="8" fill="#111111"/>
+                        <text x="230" y="148" text-anchor="middle" font-size="13" fill="#1f2937">2 dark pips</text>
+                        <text x="230" y="166" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2937">1 face</text>
+                        <!-- Single light -->
+                        <circle cx="370" cy="90" r="38" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+                        <circle cx="370" cy="90" r="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                        <text x="370" y="148" text-anchor="middle" font-size="13" fill="#1f2937">1 light pip</text>
+                        <text x="370" y="166" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2937">2 faces</text>
+                        <!-- Double light -->
+                        <circle cx="510" cy="90" r="38" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+                        <circle cx="496" cy="90" r="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                        <circle cx="524" cy="90" r="8" fill="#ffffff" stroke="#111111" stroke-width="2"/>
+                        <text x="510" y="148" text-anchor="middle" font-size="13" fill="#1f2937">2 light pips</text>
+                        <text x="510" y="166" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2937">3 faces</text>
                     </g>
                     
                     <!-- Force Rating Progression -->
-                    <text x="300" y="200" text-anchor="middle" font-size="18" font-weight="bold">Force Rating Progression</text>
+                    <text x="300" y="205" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f2937">Force Rating = Force Dice Rolled</text>
                     
                     <!-- Rating 1 -->
                     <circle cx="100" cy="250" r="25" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
-                    <text x="100" y="255" text-anchor="middle" font-weight="bold">1</text>
-                    <text x="100" y="285" text-anchor="middle" font-size="12">Apprentice</text>
+                    <text x="100" y="255" text-anchor="middle" font-weight="bold" fill="#1f2937">1</text>
+                    <text x="100" y="285" text-anchor="middle" font-size="12" fill="#1f2937">1 die (F&amp;D start)</text>
                     
                     <!-- Rating 2 -->
                     <circle cx="200" cy="250" r="25" fill="#E8F5E8" stroke="#4CAF50" stroke-width="2"/>
-                    <text x="200" y="255" text-anchor="middle" font-weight="bold">2</text>
-                    <text x="200" y="285" text-anchor="middle" font-size="12">Knight</text>
+                    <text x="200" y="255" text-anchor="middle" font-weight="bold" fill="#1f2937">2</text>
+                    <text x="200" y="285" text-anchor="middle" font-size="12" fill="#1f2937">2 dice</text>
                     
                     <!-- Rating 3 -->
                     <circle cx="300" cy="250" r="25" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
-                    <text x="300" y="255" text-anchor="middle" font-weight="bold">3</text>
-                    <text x="300" y="285" text-anchor="middle" font-size="12">Master</text>
+                    <text x="300" y="255" text-anchor="middle" font-weight="bold" fill="#1f2937">3</text>
+                    <text x="300" y="285" text-anchor="middle" font-size="12" fill="#1f2937">3 dice</text>
                     
                     <!-- Rating 4+ -->
                     <circle cx="400" cy="250" r="25" fill="#F3E5F5" stroke="#9C27B0" stroke-width="2"/>
-                    <text x="400" y="255" text-anchor="middle" font-weight="bold">4+</text>
-                    <text x="400" y="285" text-anchor="middle" font-size="12">Legendary</text>
+                    <text x="400" y="255" text-anchor="middle" font-weight="bold" fill="#1f2937">4+</text>
+                    <text x="400" y="285" text-anchor="middle" font-size="12" fill="#1f2937">4+ dice</text>
                     
                     <!-- Arrows -->
                     <defs>
@@ -105,7 +108,7 @@
                     <line x1="225" y1="250" x2="275" y2="250" stroke="#666" stroke-width="2" marker-end="url(#progressArrow)"/>
                     <line x1="325" y1="250" x2="375" y2="250" stroke="#666" stroke-width="2" marker-end="url(#progressArrow)"/>
                     
-                    <text x="300" y="320" text-anchor="middle" font-size="14">More dice = More power, but also more temptation</text>
+                    <text x="300" y="320" text-anchor="middle" font-size="14" fill="#1f2937">More dice = more light pips, but more dark pips to tempt you too</text>
                 </svg>
             </div>
 
@@ -119,17 +122,16 @@
                         B -->|Light Side| C[Use Light Pips]
                         B -->|Dark Side| D[Use Dark Pips]
                         C --> E[Power Activates Normally]
-                        D --> F[Gain Conflict Points]
+                        D --> F[Flip a light Destiny Point&lt;br/&gt;1 strain + 1 Conflict per dark pip]
                         E --> G[Continue Story]
-                        F --> H[Check Morality Later]
-                        H --> I{Roll Higher than Conflict?}
-                        I -->|Yes| J[Morality Increases]
-                        I -->|No| K[Morality Decreases]
-                        J --> L[Move Toward Light]
-                        K --> M[Move Toward Dark]
+                        F --> H[End of session:&lt;br/&gt;roll 1d10 minus Conflict]
+                        H --> I{Result above 0?}
+                        I -->|Yes| J[Morality rises]
+                        I -->|No| K[Morality falls or holds]
+                        J --> L[Above 70: paragon]
+                        K --> M[Below 30: dark side]
                         L --> G
-                        M --> N[Gain Dark Side Tendencies]
-                        N --> G
+                        M --> G
                         
                         style B fill:#ff9800,color:#1f2937
                         style D fill:#f65e53,color:#1f2937
@@ -177,37 +179,49 @@
                     moralityCtx.fillText((i * 10).toString(), x, 140);
                 }
                 
-                // Add labels
-                moralityCtx.fillStyle = '#333';
-                moralityCtx.font = '16px Arial';
+                // Threshold lines at 30 and 70
+                moralityCtx.strokeStyle = '#111';
+                moralityCtx.lineWidth = 4;
+                [200, 400].forEach(x => {
+                    moralityCtx.beginPath();
+                    moralityCtx.moveTo(x, 70);
+                    moralityCtx.lineTo(x, 130);
+                    moralityCtx.stroke();
+                });
+
+                // Title and end labels
+                moralityCtx.fillStyle = '#1f2937';
+                moralityCtx.font = 'bold 16px Arial';
                 moralityCtx.textAlign = 'center';
-                moralityCtx.fillText('Morality Scale', 300, 30);
-                
-                moralityCtx.font = '14px Arial';
+                moralityCtx.fillText('Morality (Force and Destiny)', 300, 26);
+
+                moralityCtx.font = '13px Arial';
                 moralityCtx.textAlign = 'left';
-                moralityCtx.fillText('Dark Side Paragon', 60, 60);
+                moralityCtx.fillText('Darker', 50, 60);
                 moralityCtx.textAlign = 'right';
-                moralityCtx.fillText('Light Side Paragon', 540, 60);
-                
-                // Add example character marker
-                moralityCtx.fillStyle = '#FFD700';
+                moralityCtx.fillText('Lighter', 550, 60);
+
+                // Starting marker at 50
+                moralityCtx.fillStyle = '#b8860b';
                 moralityCtx.beginPath();
-                moralityCtx.moveTo(350, 70);
-                moralityCtx.lineTo(360, 50);
-                moralityCtx.lineTo(340, 50);
+                moralityCtx.moveTo(300, 76);
+                moralityCtx.lineTo(310, 56);
+                moralityCtx.lineTo(290, 56);
                 moralityCtx.closePath();
                 moralityCtx.fill();
-                
-                moralityCtx.fillStyle = '#333';
-                moralityCtx.font = '12px Arial';
+
+                // Zone labels under the scale
+                moralityCtx.font = '13px Arial';
                 moralityCtx.textAlign = 'center';
-                moralityCtx.fillText('Starting Jedi (70)', 350, 170);
-                
-                // Add thresholds
-                moralityCtx.fillStyle = '#F44336';
-                moralityCtx.fillText('Dark Side User (<30)', 150, 170);
-                moralityCtx.fillStyle = '#4CAF50';
-                moralityCtx.fillText('Light Side Paragon (>80)', 450, 170);
+                moralityCtx.fillStyle = '#b02a20';
+                moralityCtx.fillText('Below 30: dark side', 125, 170);
+                moralityCtx.fillStyle = '#1f2937';
+                moralityCtx.fillText('Every PC starts at 50', 300, 170);
+                moralityCtx.fillStyle = '#2e6b31';
+                moralityCtx.fillText('Above 70: paragon', 475, 170);
+                moralityCtx.fillStyle = '#1f2937';
+                moralityCtx.font = '12px Arial';
+                moralityCtx.fillText('End of session: roll 1d10, subtract Conflict, add the result to Morality', 300, 192);
             </script>
         </section>
 
@@ -220,28 +234,27 @@
             <div class="power-structure-example">
                 <h4>Anatomy of a Force Power: Move</h4>
                 <div class="example-box">
-                    <pre><code>&lt;!-- Move Force Power Breakdown --&gt;
-&lt;strong&gt;Basic Power:&lt;/strong&gt; Move small objects within short range
-├── Force Dice Used: Equal to Force Rating
-├── Difficulty: None (always succeeds with any Force points)
-└── Basic Effect: Move 1 object of Silhouette 0
+                    <pre><code>Basic Power: move one small object at short range
+├── Roll Force dice equal to your Force rating
+├── Spend 1 Force point (a light pip, for a light-side user)
+└── Effect: move 1 object of Silhouette 0
 
-&lt;strong&gt;Strength Upgrades:&lt;/strong&gt; Increase what you can move
-├── Upgrade 1: Silhouette 1 objects (person-sized)
-├── Upgrade 2: Silhouette 2 objects (speeder bike)
-├── Upgrade 3: Silhouette 3 objects (starfighter)
-└── Each upgrade costs additional Force points
+Strength upgrades: bigger objects
+├── Each one lets you spend an extra Force point
+├── ...to raise the largest Silhouette you can move by 1
+└── Silhouette 1 is person-sized; 2 a speeder; 3 a starfighter
 
-&lt;strong&gt;Range Upgrades:&lt;/strong&gt; Affect targets farther away  
-├── Short → Medium → Long → Extreme
-└── Each upgrade costs additional Force points
+Range upgrades: farther away
+└── Spend Force points to push the range out band by band
 
-&lt;strong&gt;Magnitude Upgrades:&lt;/strong&gt; Affect multiple targets
-├── Affect 2 additional targets per upgrade
-└── Must spend Force points for each target
+Magnitude upgrades: more objects at once
+└── Spend Force points to affect additional objects
 
-&lt;strong&gt;Mastery Upgrade:&lt;/strong&gt; Use as maneuver instead of action
-└── Ultimate expression of power mastery</code></pre>
+Control upgrades: new uses
+└── e.g. hurling objects as an attack, or fine manipulation
+
+Each upgrade is bought with XP on the power's tree;
+the tree itself lists the costs and limits.</code></pre>
                 </div>
             </div>
 
@@ -251,7 +264,7 @@
                 <div class="power-card">
                     <h4>Influence - The Jedi Mind Trick</h4>
                     <p><strong>Theme:</strong> Affecting thoughts and emotions</p>
-                    <p><strong>Basic Use:</strong> Inflict strain or stress on targets</p>
+                    <p><strong>Basic Use:</strong> Stress an engaged target's mind, inflicting strain</p>
                     <p><strong>Advanced Applications:</strong></p>
                     <ul>
                         <li>Plant suggestions in minds</li>
@@ -293,7 +306,7 @@
                 <div class="power-card">
                     <h4>Enhance - Surpassing Mortal Limits</h4>
                     <p><strong>Theme:</strong> Augmenting physical capabilities</p>
-                    <p><strong>Basic Use:</strong> Add Force dice to skill checks</p>
+                    <p><strong>Basic Use:</strong> Roll Force dice with Athletics checks; spend Force points for extra Success or Advantage</p>
                     <p><strong>Advanced Applications:</strong></p>
                     <ul>
                         <li>Superhuman leaps</li>
@@ -311,28 +324,26 @@
                 <div class="mermaid">
                     mindmap
                         root((Force Powers))
-                            Universal
+                            Body and objects
                                 Move
-                                Influence  
-                                Sense
                                 Enhance
-                            Light Side
-                                Heal/Harm
+                            Perception
+                                Sense
+                                Seek
+                                Foresee
+                            Minds
+                                Influence
+                                Misdirect
+                            Battle
+                                Bind
                                 Protect/Unleash
                                 Battle Meditation
-                                Foresee
-                            Dark Side
-                                Bind
-                                Suppress
-                                Mastery
-                                Harm Focus
-                            Specialized
-                                Beast Control
-                                Misdirect
-                                Seek
-                                Imbue
+                            Life
+                                Heal/Harm
                 </div>
             </div>
+
+            <p>No power on that map is "light" or "dark" in itself. What darkens a Force user is spending dark pips and doing cruel things with the powers (Harm and Unleash simply make that easier to do). The career sourcebooks add further powers on top of these.</p>
 
             <div class="power-examples">
                 <h4>Power Combinations and Creative Applications</h4>
@@ -347,7 +358,7 @@
                         <li><strong>Sense:</strong> Read Ponda Baba's emotional state and intentions</li>
                         <li><strong>Influence:</strong> Project calm, reduce aggression</li>
                         <li><strong>Move:</strong> Subtly shift objects to create distractions</li>
-                        <li><strong>Enhance:</strong> Boost own Charm or Negotiation if talking fails</li>
+                        <li><strong>Charm or Negotiation:</strong> Plain talking, no Force needed, often works best</li>
                     </ul>
                     
                     <p><strong>If Combat Becomes Necessary:</strong></p>
@@ -414,63 +425,51 @@
                     saberCtx.fillText(comp.effect, comp.x, comp.y + 45);
                 });
                 
-                // Draw assembled lightsaber
-                saberCtx.fillStyle = '#333';
+                // Draw assembled lightsaber (horizontal, below its label)
+                saberCtx.fillStyle = '#1f2937';
                 saberCtx.font = '16px Arial';
-                saberCtx.fillText('Assembled Lightsaber', 300, 280);
-                
+                saberCtx.textAlign = 'center';
+                saberCtx.fillText('Assembled Lightsaber', 300, 268);
+
+                // Blade with glow
+                saberCtx.fillStyle = 'rgba(0, 200, 230, 0.9)';
+                saberCtx.shadowColor = '#00FFFF';
+                saberCtx.shadowBlur = 16;
+                saberCtx.fillRect(250, 296, 220, 14);
+                saberCtx.shadowBlur = 0;
+
                 // Hilt
                 saberCtx.fillStyle = '#C0C0C0';
-                saberCtx.fillRect(250, 300, 100, 20);
+                saberCtx.fillRect(150, 293, 100, 20);
                 saberCtx.strokeStyle = '#333';
-                saberCtx.strokeRect(250, 300, 100, 20);
-                
-                // Blade
-                saberCtx.fillStyle = 'rgba(0, 255, 255, 0.8)';
-                saberCtx.fillRect(290, 250, 20, 50);
-                
-                // Blade glow effect
-                saberCtx.shadowColor = '#00FFFF';
-                saberCtx.shadowBlur = 20;
-                saberCtx.fillRect(290, 250, 20, 50);
-                saberCtx.shadowBlur = 0;
-                
-                // Add crystal color note
-                saberCtx.fillStyle = '#333';
-                saberCtx.font = '12px Arial';
-                saberCtx.fillText('Crystal determines blade color and properties', 300, 350);
+                saberCtx.lineWidth = 2;
+                saberCtx.strokeRect(150, 293, 100, 20);
+
+                // Crystal note
+                saberCtx.fillStyle = '#1f2937';
+                saberCtx.font = '13px Arial';
+                saberCtx.textAlign = 'center';
+                saberCtx.fillText('In the fiction the crystal sets the blade colour;', 300, 350);
+                saberCtx.fillText('in the rules it sets the weapon profile', 300, 370);
             </script>
 
             <h3>Crystal Properties and Blade Colors</h3>
             <div class="crystal-properties">
                 <div class="example-box">
-                    <h4>Kyber Crystal Types and Their Meanings</h4>
+                    <h4>Blade Colours in the Lore</h4>
+                    <p>These associations come from the films, the animated series and older Legends stories. Nothing in the rules ties a colour to a career or a side; pick what fits your character.</p>
                     <ul>
                         <li><strong>Blue Crystals:</strong> Associated with Jedi Guardians, combat focus</li>
                         <li><strong>Green Crystals:</strong> Favored by Jedi Consulars, wisdom and peace</li>
                         <li><strong>Yellow Crystals:</strong> Temple Guards and Jedi Sentinels</li>
                         <li><strong>Purple Crystals:</strong> Rare, balanced between light and dark</li>
                         <li><strong>White Crystals:</strong> Purified from dark side corruption</li>
-                        <li><strong>Red Crystals:</strong> Synthetic Sith crystals, "bled" with dark side energy</li>
-                        <li><strong>Black Crystals:</strong> Extremely rare, unique properties</li>
+                        <li><strong>Red Crystals:</strong> Kyber "bled" by a dark side user (older Legends stories used synthetic crystals instead)</li>
+                        <li><strong>Black Blades:</strong> Extremely rare; the Darksaber is the famous example</li>
                     </ul>
                     
                     <h4>Crystal Mechanical Effects</h4>
-                    <pre><code>&lt;!-- Example Crystal Properties --&gt;
-&lt;strong&gt;Ilum Crystal (Blue):&lt;/strong&gt;
-├── Damage: +1
-├── Critical: 2
-├── Special: Decrease difficulty of Lightsaber checks by 1
-
-&lt;strong&gt;Krayt Dragon Pearl (Variable Color):&lt;/strong&gt;
-├── Damage: +3  
-├── Critical: 1
-├── Special: Pierce 3, Breach 1
-
-&lt;strong&gt;Synthetic Crystal (Red):&lt;/strong&gt;
-├── Damage: +1
-├── Critical: 2  
-├── Special: Dangerous 2 (can harm untrained users)</code></pre>
+                    <p>In the rules, a lightsaber is a hilt plus a crystal, and the crystal supplies most of the blade's profile: its base damage, its Critical rating and qualities such as Breach and Sunder. Different crystals (and later modifications) change those numbers. Take the exact values from the Force and Destiny core rulebook or the sourcebook that lists the crystal rather than from memory; every crystal has its own entry.</p>
                 </div>
             </div>
 
@@ -515,7 +514,7 @@
                     <p><strong>Strengths:</strong> Unparalleled defense against blasters and lightsabers</p>
                     <p><strong>Weaknesses:</strong> Can be passive, struggles against multiple opponents</p>
                     <p><strong>Famous Practitioners:</strong> Obi-Wan Kenobi, Luminara Unduli</p>
-                    <p><strong>Mechanical Benefits:</strong> Extra defense, improved deflection, enhanced strain threshold</p>
+                    <p><strong>Mechanical Benefits:</strong> Lightsaber checks with Intellect, plus defensive talents such as Parry and Reflect (suffer strain to reduce incoming damage)</p>
                 </div>
                 
                 <div class="form-card">
@@ -524,7 +523,7 @@
                     <p><strong>Strengths:</strong> Powerful attacks, turn defense into counter-attacks</p>
                     <p><strong>Weaknesses:</strong> Aggressive nature can lead to dark side temptation</p>
                     <p><strong>Famous Practitioners:</strong> Anakin Skywalker, Luke Skywalker</p>
-                    <p><strong>Mechanical Benefits:</strong> Reflect damage back to attackers, bonus damage</p>
+                    <p><strong>Mechanical Benefits:</strong> Counter-attacking talents that turn a parried or reflected attack back on the attacker</p>
                 </div>
                 
                 <div class="form-card">
@@ -532,8 +531,8 @@
                     <p><strong>Philosophy:</strong> "Channel darkness without being consumed by it"</p>
                     <p><strong>Strengths:</strong> Incredible power, feeds on opponent's aggression</p>
                     <p><strong>Weaknesses:</strong> Extremely dangerous, requires perfect emotional control</p>
-                    <p><strong>Famous Practitioners:</strong> Mace Windu (only known master)</p>
-                    <p><strong>Mechanical Benefits:</strong> Use dark side points without conflict, but with risks</p>
+                    <p><strong>Famous Practitioners:</strong> Mace Windu (its best-known master)</p>
+                    <p><strong>Mechanical Benefits:</strong> No form lets you use dark pips for free; a Vaapad-style fighter still flips a Destiny Point, suffers strain and gains Conflict for every dark pip. Play it as a constant temptation.</p>
                 </div>
             </div>
         </section>
@@ -552,7 +551,7 @@
                     <tr><td><strong>IV — Ataru</strong></td><td>Agility</td><td>The acrobat. Fast, mobile, and fragile if the fight runs long.</td></tr>
                     <tr><td><strong>V — Shien / Djem So</strong></td><td>Cunning / Brawn</td><td>The counter-attacker, turning incoming fire back on its source.</td></tr>
                     <tr><td><strong>VI — Niman</strong></td><td>Willpower</td><td>The balanced practitioner splitting attention between blade and Force powers.</td></tr>
-                    <tr><td><strong>VII — Juyo</strong></td><td>Brawn, at a price</td><td>The ferocious form — powerful, and entangled with Conflict by design.</td></tr>
+                    <tr><td><strong>VII — Juyo</strong></td><td>See its specialization</td><td>The ferocious form — powerful, and entangled with Conflict by design.</td></tr>
                 </tbody>
             </table>
 
@@ -566,7 +565,7 @@
             <p>That is the design payoff: choosing a form is not really a combat decision, it is a decision about who your character is <em>outside</em> of fights. Pick the form whose characteristic you wanted anyway, and the concept assembles itself.</p>
 
             <h3>A Practical Warning</h3>
-            <p>The swap comes from a talent bought inside a specialization, so it is neither free nor immediate — a starting character may spend a while swinging on plain Brawn before their chosen form comes online. Plan the route rather than assuming the label grants the ability. <a href="/sw_char.html">Character Creation</a> covers how specializations and talents are purchased, and <a href="/starwars_force_powers.html">Force Powers</a> covers the Conflict that Form VII invites.</p>
+            <p>The swap comes from a talent bought inside a specialization, so it is neither free nor immediate — a starting character may spend a while swinging on plain Brawn before their chosen form comes online. Plan the route rather than assuming the label grants the ability. <a href="/sw_char.html">Character Creation</a> covers how specializations and talents are purchased, and <a href="/starwars_force_powers.html">Running Force Users</a> covers the Conflict that Form VII invites.</p>
         </section>
 
         <section class="force-traditions">
@@ -656,6 +655,8 @@
                         <li><strong>Domination:</strong> Override another's will completely</li>
                     </ul>
                     
+                    <p>In the rules most of these are dark uses or upgrades of the standard powers (Unleash for lightning, Harm for draining life, Influence for terror and domination). The power itself does not darken a character; the dark pips and the cruelty earn the Conflict.</p>
+
                     <h4>The Price of Dark Power</h4>
                     <ul>
                         <li><strong>Physical Corruption:</strong> Pale skin, yellow eyes, premature aging</li>
@@ -680,15 +681,15 @@
                     <h5>Phase 1: Approach and Entry</h5>
                     <ul>
                         <li><strong>Sense:</strong> Detect guard positions and patrol patterns</li>
-                        <li><strong>Influence:</strong> "You don't need to see my identification"</li>
+                        <li><strong>Influence:</strong> Talk your way past the checkpoint guard</li>
                         <li><strong>Move:</strong> Subtly trigger distractions (dropping objects, opening doors)</li>
                         <li><strong>Misdirect:</strong> Create illusions to hide your true appearance</li>
                     </ul>
                     
                     <h5>Phase 2: Finding the Prisoner</h5>
                     <ul>
-                        <li><strong>Sense:</strong> Feel for Mon Mothma's Force presence</li>
-                        <li><strong>Enhance:</strong> Boost Athletics for silent movement</li>
+                        <li><strong>Sense:</strong> Feel for living minds in the cell block to find hers</li>
+                        <li><strong>Enhance:</strong> Roll Force dice with Athletics to climb and leap past patrols</li>
                         <li><strong>Move:</strong> Open locks without keys or noise</li>
                         <li><strong>Influence:</strong> Calm or confuse security droids</li>
                     </ul>
@@ -696,7 +697,7 @@
                     <h5>Phase 3: Extraction</h5>
                     <ul>
                         <li><strong>Heal:</strong> Treat any injuries Mon Mothma has sustained</li>
-                        <li><strong>Enhance:</strong> Give her superhuman endurance for the escape</li>
+                        <li><strong>Protect:</strong> Shield her from incoming fire on the way out</li>
                         <li><strong>Foresee:</strong> Predict guard movements to avoid detection</li>
                         <li><strong>Move:</strong> Create barriers or clear escape routes</li>
                     </ul>
@@ -747,7 +748,7 @@
             <h2>Force-Sensitive Career Paths</h2>
             
             <h3>Beyond the Traditional Jedi</h3>
-            <p>Not every Force-sensitive becomes a robed monk with a lightsaber. The Force manifests differently in different people, and the galaxy offers many paths for those who hear its call.</p>
+            <p>Not every Force-sensitive becomes a robed monk with a lightsaber. The Force manifests differently in different people, and the galaxy offers many paths for those who hear its call. In Force and Destiny that variety is built into the six careers, each with its own specializations; Jedi Knight, Sith Lord or Gray Jedi are things your character becomes in the story, not careers on the sheet.</p>
 
             <div class="career-paths">
                 <canvas id="forceCareerPaths" width="600" height="350"></canvas>
@@ -757,53 +758,17 @@
                 const careerCanvas = document.getElementById('forceCareerPaths');
                 const careerCtx = careerCanvas.getContext('2d');
                 
-                // Create career path visualization
+                // The six Force and Destiny careers
                 const careers = [
-                    {name: 'Jedi Knight', x: 100, y: 100, color: '#4CAF50', description: 'Traditional guardians'},
-                    {name: 'Sith Lord', x: 500, y: 100, color: '#F44336', description: 'Dark side masters'},
-                    {name: 'Gray Jedi', x: 300, y: 80, color: '#9E9E9E', description: 'Balanced approach'},
-                    {name: 'Mystic', x: 150, y: 200, color: '#9C27B0', description: 'Seeker of wisdom'},
-                    {name: 'Guardian', x: 250, y: 200, color: '#FF9800', description: 'Protector warrior'},
-                    {name: 'Consular', x: 350, y: 200, color: '#2196F3', description: 'Diplomat sage'},
-                    {name: 'Sentinel', x: 450, y: 200, color: '#FFEB3B', description: 'Balanced investigator'},
-                    {name: 'Warrior', x: 200, y: 300, color: '#795548', description: 'Combat specialist'},
-                    {name: 'Sage', x: 400, y: 300, color: '#607D8B', description: 'Knowledge keeper'}
+                    {name: 'Consular', x: 100, y: 110, color: '#2196F3', description: 'Diplomats, healers, scholars'},
+                    {name: 'Guardian', x: 300, y: 110, color: '#FF9800', description: 'Protectors and peacekeepers'},
+                    {name: 'Mystic', x: 500, y: 110, color: '#9C27B0', description: 'Seers of the Force\'s mysteries'},
+                    {name: 'Seeker', x: 100, y: 240, color: '#4CAF50', description: 'Hunters, pilots, explorers'},
+                    {name: 'Sentinel', x: 300, y: 240, color: '#FFEB3B', description: 'Investigators and infiltrators'},
+                    {name: 'Warrior', x: 500, y: 240, color: '#795548', description: 'Front-line fighters'}
                 ];
-                
-                // Draw connections
-                careerCtx.strokeStyle = '#ccc';
-                careerCtx.lineWidth = 2;
-                
-                // Traditional paths
-                careerCtx.beginPath();
-                careerCtx.moveTo(100, 100); // Jedi
-                careerCtx.lineTo(150, 200); // Mystic
-                careerCtx.lineTo(200, 300); // Warrior
-                careerCtx.stroke();
-                
-                careerCtx.beginPath();
-                careerCtx.moveTo(100, 100); // Jedi
-                careerCtx.lineTo(250, 200); // Guardian
-                careerCtx.stroke();
-                
-                careerCtx.beginPath();
-                careerCtx.moveTo(100, 100); // Jedi
-                careerCtx.lineTo(350, 200); // Consular
-                careerCtx.lineTo(400, 300); // Sage
-                careerCtx.stroke();
-                
-                // Alternative paths
-                careerCtx.strokeStyle = '#FF9800';
-                careerCtx.setLineDash([5, 5]);
-                careerCtx.beginPath();
-                careerCtx.moveTo(300, 80); // Gray Jedi
-                careerCtx.lineTo(450, 200); // Sentinel
-                careerCtx.stroke();
-                careerCtx.setLineDash([]);
-                
-                // Draw career nodes
+
                 careers.forEach(career => {
-                    // Draw circle
                     careerCtx.beginPath();
                     careerCtx.arc(career.x, career.y, 25, 0, 2 * Math.PI);
                     careerCtx.fillStyle = career.color;
@@ -811,26 +776,29 @@
                     careerCtx.strokeStyle = '#333';
                     careerCtx.lineWidth = 2;
                     careerCtx.stroke();
-                    
-                    // Add label
-                    careerCtx.fillStyle = '#333';
-                    careerCtx.font = '12px Arial';
+
+                    careerCtx.fillStyle = '#1f2937';
                     careerCtx.textAlign = 'center';
-                    careerCtx.fillText(career.name, career.x, career.y - 35);
-                    careerCtx.font = '10px Arial';
-                    careerCtx.fillText(career.description, career.x, career.y + 45);
+                    careerCtx.font = 'bold 14px Arial';
+                    careerCtx.fillText(career.name, career.x, career.y - 34);
+                    careerCtx.font = '12px Arial';
+                    careerCtx.fillText(career.description, career.x, career.y + 44);
                 });
-                
-                // Add title
-                careerCtx.fillStyle = '#333';
+
+                careerCtx.fillStyle = '#1f2937';
                 careerCtx.font = 'bold 18px Arial';
                 careerCtx.textAlign = 'center';
-                careerCtx.fillText('Force-Sensitive Career Paths', 300, 30);
+                careerCtx.fillText('Force and Destiny Careers', 300, 30);
+
+                careerCtx.font = '13px Arial';
+                careerCtx.textAlign = 'center';
+                careerCtx.fillText('Each starts at Force rating 1. Edge of the Empire and Age of Rebellion', 300, 318);
+                careerCtx.fillText('characters can take a Force-sensitive specialization instead.', 300, 336);
             </script>
         </section>
 
         <section class="practice-activities">
-            <h2>Practice Activities</h2>
+            <h2>Try It at the Table</h2>
             
             <h3>Activity One: Force Power Application</h3>
             <p>Design creative solutions using basic Force powers:</p>
@@ -888,19 +856,22 @@
             <h2>Where to Go Next</h2>
             <p>The Force is a long road. Further along it:</p>
             <ul>
-                <li><strong><a href="/starwars_force_powers.html">Force Powers</a>:</strong> Power trees, upgrades and how a Force user actually develops over a campaign.</li>
+                <li><strong><a href="/starwars_force_powers.html">Running Force Users</a>:</strong> Power trees, upgrades and how a Force user actually develops over a campaign.</li>
                 <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Building a Force-sensitive from scratch, including the costs of doing so.</li>
-                <li><strong><a href="/sw_combat.html">Combat Mechanics</a>:</strong> How duels sit inside the ordinary combat rules.</li>
+                <li><strong><a href="/sw_combat.html">Combat &amp; Conflict</a>:</strong> How duels sit inside the ordinary combat rules.</li>
                 <li><strong><a href="/starwars_npcs_villains.html">NPCs &amp; Villains</a>:</strong> Dark side antagonists, and why the good ones are tempting rather than merely evil.</li>
-                <li><strong><a href="/starwars_time_travel.html">Time Travel</a>:</strong> The World Between Worlds, if your campaign goes somewhere stranger.</li>
+                <li><strong><a href="/starwars_time_travel.html">Visions, Time &amp; the World Between Worlds</a>:</strong> Force visions and the World Between Worlds, if your campaign goes somewhere stranger.</li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <p>The Force will be with you, always. Remember that true mastery comes not from power over others, but from understanding yourself and your place in the living galaxy.</p>
-      
+<div class="page-nav">
+    <a class="prev" href="/sw_adv_dice.html">Reading the Narrative Dice</a>
+    <a class="next" href="/sw_vehicles.html">Starships &amp; Vehicles</a>
+</div>
+        <p class="closing-quote">Every dark pip is a choice. Make your players say it out loud.</p>
     </footer>
-
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>

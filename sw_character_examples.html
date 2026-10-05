@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars RPG Character Examples and Crew Groups</title>
-    <meta name="description" content="Ready-made Star Wars RPG characters to study or drop straight into your first session.">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Star Wars RPG Character Examples and Crew Groups">
-    <meta property="og:description" content="Ready-made Star Wars RPG characters to study or drop straight into your first session.">
-    <meta property="og:image" content="/favicon.png">
-    <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/styles/nav.css">
-    <link rel="stylesheet" href="/styles/site.css">
+    <title>Character Examples &amp; Crews - The Star Wars RPG Guide</title>
+    <meta name="description" content="Worked Star Wars RPG characters from concept to sheet, and crews built so every player has a job.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      window.mermaid = mermaid;
-      // Diagrams render on their own light surface (see site.css), so the
-      // light theme is correct in both page themes.
-      mermaid.initialize({ startOnLoad: true, theme: 'default' });
-    </script>
-    <script src="/styles/nav.js" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="container">
-        <header>
-            <h1>Star Wars RPG Character Examples and Crew Groups</h1>
-            <p>A comprehensive guide to creating heroic characters and balanced crews for adventures in a galaxy far, far away</p>
-        </header>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Character Examples &amp; Crews</h1>
+        <p>Seven sample characters, one fully worked build, and five ready-made crews to play as written or adapt.</p>
+    </header>
 
-        <main id="main">
+    <main id="main">
+
             <section class="character-creation-basics">
                 <h2>Understanding Star Wars RPG Character Creation</h2>
                 <p>Creating a Star Wars character is like forging a lightsaber—each component must resonate with the Force and your personal vision. Whether you follow the path of the Jedi, embrace the shadows of the underworld, or chart a course through the stars, your character becomes part of an epic saga where destiny and choice dance together like binary suns.</p>
@@ -42,13 +36,13 @@
                     graph TD
                         A[Character Concept] --> B[Species Selection]
                         A --> C[Career Path]
-                        A --> D[Background & Motivation]
-                        B --> E[Attributes & Skills]
+                        A --> D[Obligation, Duty or Morality]
+                        B --> E[Spend XP: Characteristics & Skills]
                         C --> E
                         D --> E
                         E --> F[Talents & Force Powers]
-                        F --> G[Equipment & Ship]
-                        G --> H[Obligations & Duty]
+                        F --> G[Motivation]
+                        G --> H[Gear & Ship]
                         H --> I[Complete Hero]
                         
                         style A fill:#ffe81f,color:#1f2937
@@ -65,9 +59,9 @@
                     <h3>Kira Voss - Human Ace Pilot</h3>
                     <div class="character-stats">
                         <p><strong>Career:</strong> Ace (Pilot specialization)</p>
-                        <p><strong>Background:</strong> Former Imperial Navy defector</p>
+                        <p><strong>Background:</strong> Former Imperial Navy pilot who defected, with an Imperial bounty on her head</p>
                         <p><strong>Motivation:</strong> Freedom - Liberate oppressed worlds</p>
-                        <p><strong>Obligation:</strong> Betrayal (Imperial bounty on her head)</p>
+                        <p><strong>Duty:</strong> Space Superiority (Age of Rebellion characters track Duty rather than Obligation)</p>
                         <p><strong>Key Skills:</strong> Piloting (Space), Gunnery, Astrogation</p>
                         <p><strong>Personality:</strong> Fearless risk-taker with a heart of gold hidden behind swagger</p>
                     </div>
@@ -82,10 +76,10 @@
                         <rect x="75" y="50" width="15" height="6" fill="#FF4500"/>
                         <path d="M 40 60 L 60 50 L 60 70 Z" fill="#C0C0C0"/>
                         <text x="160" y="65" font-family="Arial" font-size="16" fill="#191970">Kira Voss</text>
-                        <text x="160" y="85" font-family="Arial" font-size="14" fill="#4169E1">Human Ace Pilot</text>
-                        <text x="160" y="105" font-family="Arial" font-size="14" fill="#4169E1">Starfighter Specialist</text>
-                        <text x="160" y="125" font-family="Arial" font-size="12" fill="#4169E1">Former Imperial Navy</text>
-                        <text x="160" y="145" font-family="Arial" font-size="12" fill="#4169E1">Motivation: Freedom</text>
+                        <text x="160" y="85" font-family="Arial" font-size="14" fill="#3c62d1">Human Ace Pilot</text>
+                        <text x="160" y="105" font-family="Arial" font-size="14" fill="#3c62d1">Starfighter Specialist</text>
+                        <text x="160" y="125" font-family="Arial" font-size="12" fill="#3c62d1">Former Imperial Navy</text>
+                        <text x="160" y="145" font-family="Arial" font-size="12" fill="#3c62d1">Motivation: Freedom</text>
                     </svg>
                 </div>
 
@@ -142,9 +136,9 @@
                 </div>
 
                 <div class="character-example">
-                    <h3>Kael Vorthan - Human Force Sensitive Emergent</h3>
+                    <h3>Kael Vorthan - Human Force-Sensitive Exile</h3>
                     <div class="character-stats">
-                        <p><strong>Career:</strong> Force Sensitive Emergent (Exile specialization)</p>
+                        <p><strong>Career:</strong> Any Edge of the Empire career, plus the Force Sensitive Exile specialization (a universal specialization any career can buy)</p>
                         <p><strong>Background:</strong> Failed Padawan who survived Order 66</p>
                         <p><strong>Motivation:</strong> Justice - Protect innocents from Imperial oppression</p>
                         <p><strong>Obligation:</strong> Bounty from Imperial Inquisitors seeking Force users</p>
@@ -190,9 +184,9 @@
                 <ul>
                     <li><strong>Agility 2 → 3:</strong> 30 XP. <strong>3 → 4:</strong> 40 XP. Total <strong>70 XP</strong>, leaving 40.</li>
                     <li><strong>Remaining 40 XP</strong> spent lifting four career skills from their free rank 1 up to rank 2, at 5 × new rank each: Piloting (Space), Gunnery, Astrogation and Cool, 10 XP apiece.</li>
-                    <li><strong>Perception and Streetwise</strong> cost nothing — they are the two free non-career ranks humans receive.</li>
+                    <li><strong>Perception and Streetwise</strong> cost nothing — they come from her free starting ranks, including the extra skill ranks every human receives.</li>
                 </ul>
-                <p>Notice that a single characteristic consumed nearly two-thirds of her budget. That is deliberate: characteristics are brutally expensive at creation and get worse afterwards, whereas skills stay affordable for the life of the campaign. If a concept leans on one characteristic, buy it now. You will regret it later otherwise.</p>
+                <p>Notice that a single characteristic consumed nearly two-thirds of her budget. That is deliberate: characteristics are brutally expensive at creation and afterwards can only be raised through the Dedication talent, whereas skills stay affordable for the life of the campaign. If a concept leans on one characteristic, buy it now. You will regret it later otherwise.</p>
 
                 <h4>What she actually rolls</h4>
                 <p>Applying the pool rule — larger value sets the number of dice, smaller value upgrades that many to Proficiency:</p>
@@ -202,14 +196,14 @@
                     <li><strong>Holding her nerve:</strong> Presence 2, Cool 2 → two dice, both upgraded → <strong>2 Proficiency</strong></li>
                     <li><strong>Plotting a jump:</strong> Intellect 2, Astrogation 2 → <strong>2 Proficiency</strong></li>
                 </ul>
-                <p>Those last two are worth studying. Two Proficiency dice is a <em>small but excellent</em> pool — fewer dice than her flying, yet every one of them can roll Triumph. Wide-and-shallow versus narrow-and-sharp is a real strategic choice, not a rounding artefact. Roll both shapes on the <a href="/sw_dice_roller.html">Dice Roller</a> and the difference becomes obvious quickly.</p>
+                <p>Those last two are worth studying. Two Proficiency dice is a <em>small but excellent</em> pool — fewer dice than her flying, yet every one of them can roll Triumph. Wide-and-shallow versus narrow-and-sharp is a real strategic choice, not a rounding artefact. Roll both shapes on the <a href="/sw_dice_roller.html">Narrative Dice Roller</a> and the difference becomes obvious quickly.</p>
 
                 <h4>Repeating this for the others</h4>
                 <ol>
                     <li><strong>Find the concept's one defining characteristic</strong> and take it to 4. Ranks of 5 are almost never worth it at creation.</li>
                     <li><strong>Spend what remains on three or four skills</strong> that the concept obviously implies. Resist spreading thin; a rank-1 skill you never roll is wasted XP.</li>
                     <li><strong>Derive the thresholds</strong> from species base plus Brawn and Willpower, then add Soak from armour.</li>
-                    <li><strong>Sanity-check against the party.</strong> Two characters with the same defining characteristic will compete for the same spotlight all campaign — see <a href="/sw_groups.html">Group Dynamics</a>.</li>
+                    <li><strong>Sanity-check against the party.</strong> Two characters with the same defining characteristic will compete for the same spotlight all campaign — see <a href="/sw_groups.html">Crews &amp; Group Dynamics</a>.</li>
                 </ol>
                 <p>Species other than human shift the starting numbers — different characteristic spreads, different XP totals, different thresholds — so check the entry in <a href="/sw_char.html">Character Creation</a> before building a non-human version of any concept here.</p>
             </section>
@@ -299,15 +293,15 @@
                         A --> C[Dark Side]
                         A --> D[Balance]
                         
-                        B --> E[Jedi Powers]
+                        B --> E[Light pips power abilities]
                         B --> F[Healing & Protection]
                         B --> G[Wisdom & Insight]
                         
-                        C --> H[Sith Powers]
-                        C --> I[Aggression & Domination]
+                        C --> H[Dark pips: strain and a&lt;br/&gt;flipped Destiny Point]
+                        C --> I[Conflict lowers Morality]
                         C --> J[Fear & Anger]
                         
-                        D --> K[Gray Force Use]
+                        D --> K[Same powers, either side]
                         D --> L[Practical Application]
                         D --> M[Emotional Control]
                         
@@ -320,9 +314,9 @@
                 <div class="force-examples">
                     <div class="force-path">
                         <h4>The Healer's Path (Light Side)</h4>
-                        <p><strong>Beginning:</strong> Heal/Harm (light side only), Sense basic emotions</p>
-                        <p><strong>Development:</strong> Enhance healing abilities, Force empathy, protective barriers</p>
-                        <p><strong>Mastery:</strong> Group healing, Force resurrection, battle meditation</p>
+                        <p><strong>Beginning:</strong> Heal/Harm (healing with light pips), Sense for emotions</p>
+                        <p><strong>Development:</strong> Heal upgrades bought with XP, deeper empathy through Sense, Protect against incoming harm</p>
+                        <p><strong>Advanced:</strong> Healing several allies at once, Battle Meditation</p>
                         <p><strong>Philosophy:</strong> Life is sacred, power serves others, sacrifice for the greater good</p>
                     </div>
                     
@@ -330,7 +324,7 @@
                         <h4>The Guardian's Path (Balanced)</h4>
                         <p><strong>Beginning:</strong> Move objects, enhance physical abilities, basic precognition</p>
                         <p><strong>Development:</strong> Combat reflexes, protective instincts, tactical awareness</p>
-                        <p><strong>Mastery:</strong> Perfect defense, Force valor, inspiring presence</p>
+                        <p><strong>Advanced:</strong> Deep Protect and Enhance upgrades, inspiring presence</p>
                         <p><strong>Philosophy:</strong> Strength protects the weak, power requires responsibility</p>
                     </div>
                 </div>
@@ -438,18 +432,18 @@
                     
                     <div class="motivation-type">
                         <h4>Duty - Service to the Greater Good</h4>
-                        <p><strong>Military:</strong> Rank and responsibility in Rebel Alliance</p>
-                        <p><strong>Political:</strong> Supporting democracy and freedom</p>
+                        <p><strong>Combat Victory:</strong> Winning battles against the Empire</p>
+                        <p><strong>Political Support:</strong> Winning worlds and leaders over to the Alliance</p>
                         <p><strong>Intelligence:</strong> Gathering crucial information</p>
-                        <p><strong>Personnel:</strong> Training and inspiring others</p>
+                        <p><strong>Personnel:</strong> Looking after the Alliance's people</p>
                     </div>
                     
                     <div class="motivation-type">
                         <h4>Morality - The Force's Balance</h4>
-                        <p><strong>Light Side:</strong> Compassion, sacrifice, wisdom</p>
-                        <p><strong>Dark Side:</strong> Anger, fear, aggression</p>
-                        <p><strong>Strength:</strong> Courage, bravery, determination</p>
-                        <p><strong>Weakness:</strong> Fear, anger, hatred</p>
+                        <p><strong>Starting Point:</strong> Morality 50</p>
+                        <p><strong>Conflict:</strong> Earned by using dark pips and by cruel or selfish acts; at session end roll 1d10, subtract Conflict, and add the result to Morality</p>
+                        <p><strong>Strength &amp; Weakness:</strong> An emotional pair, such as Compassion and Recklessness</p>
+                        <p><strong>Thresholds:</strong> Below 30 is the dark side; above 70 is a paragon of the light</p>
                     </div>
                 </div>
             </section>
@@ -497,13 +491,14 @@
             <p>Take one of these and run with it, or build outward from them:</p>
             <ul>
                 <li><strong><a href="/sw_char.html">Character Creation</a>:</strong> Build your own from scratch using the same steps these were made with.</li>
-                <li><strong><a href="/sw_100.html">100 Characters</a>:</strong> A far larger roster if none of these quite fit.</li>
-                <li><strong><a href="/sw_groups.html">Group Dynamics</a>:</strong> How to combine several of these into a crew that covers each other's gaps.</li>
-                <li><strong><a href="/sw_names.html">Character Names</a>:</strong> Rename any of them to make them yours.</li>
-                <li><strong><a href="/sw_vehicles.html">Vehicles &amp; Starships</a>:</strong> Most crews need a ship. It is effectively another party member.</li>
+                <li><strong><a href="/sw_100.html">75 Sample Characters</a>:</strong> A far larger roster if none of these quite fit.</li>
+                <li><strong><a href="/sw_groups.html">Crews &amp; Group Dynamics</a>:</strong> How to combine several of these into a crew that covers each other's gaps.</li>
+                <li><strong><a href="/sw_names.html">150 Character Names</a>:</strong> Rename any of them to make them yours.</li>
+                <li><strong><a href="/sw_vehicles.html">Starships &amp; Vehicles</a>:</strong> Most crews need a ship. It is effectively another party member.</li>
             </ul>
         </section>
     </main>
+
     </div>
 
     <script>
@@ -522,7 +517,11 @@
         
         let startAngle = 0;
         const centerX = crewCanvas.width / 2;
-        const centerY = crewCanvas.height / 2;
+        const centerY = crewCanvas.height / 2 + 12;
+        crewCtx.fillStyle = '#191970';
+        crewCtx.font = 'bold 14px Arial';
+        crewCtx.textAlign = 'center';
+        crewCtx.fillText('A rough spotlight mix for a crew (a suggestion)', centerX, 18);
         const radius = 100;
         
         roles.forEach(role => {
@@ -543,83 +542,82 @@
             crewCtx.fillStyle = '#191970';
             crewCtx.font = '14px Arial';
             crewCtx.textAlign = 'center';
-            crewCtx.fillText(role.name, labelX, labelY);
-            crewCtx.fillText(role.value + '%', labelX, labelY + 15);
+            crewCtx.fillText(role.name, labelX, labelY + 5);
             
             startAngle += sliceAngle;
         });
         
-        // Ship Roles Effectiveness Chart
+        // Ship Size Chart: silhouette of some well-known ships
         const shipCanvas = document.getElementById('shipRolesChart');
         const shipCtx = shipCanvas.getContext('2d');
         
-        // Ship role effectiveness data
         const shipRoles = [
-            { name: 'YT-1300 Freighter', pilot: 80, gunner: 60, engineer: 90, navigator: 70 },
-            { name: 'X-Wing Fighter', pilot: 95, gunner: 85, engineer: 40, navigator: 60 },
-            { name: 'Imperial Shuttle', pilot: 60, gunner: 30, engineer: 70, navigator: 85 },
-            { name: 'Corellian Corvette', pilot: 70, gunner: 90, engineer: 80, navigator: 75 }
+            { name: 'X-wing', silhouette: 3, color: '#0066CC' },
+            { name: 'YT-1300', silhouette: 4, color: '#2E7D32' },
+            { name: 'Lambda shuttle', silhouette: 4, color: '#B8860B' },
+            { name: 'CR90 corvette', silhouette: 5, color: '#C62828' }
         ];
         
-        // Draw axes
+        // Title
+        shipCtx.fillStyle = '#191970';
+        shipCtx.font = 'bold 14px Arial';
+        shipCtx.textAlign = 'center';
+        shipCtx.fillText('Ship size (Silhouette) of some familiar ships', 250, 22);
+        
+        // Axes
         shipCtx.strokeStyle = '#191970';
         shipCtx.lineWidth = 2;
         shipCtx.beginPath();
-        shipCtx.moveTo(50, 250);
-        shipCtx.lineTo(450, 250);
-        shipCtx.moveTo(50, 50);
-        shipCtx.lineTo(50, 250);
+        shipCtx.moveTo(60, 230);
+        shipCtx.lineTo(470, 230);
+        shipCtx.moveTo(60, 50);
+        shipCtx.lineTo(60, 230);
         shipCtx.stroke();
         
-        // Add axis labels
-        shipCtx.fillStyle = '#191970';
-        shipCtx.font = '14px Arial';
-        shipCtx.textAlign = 'center';
-        shipCtx.fillText('Ship Types', 250, 280);
+        // Y ticks (silhouette 0-6)
+        shipCtx.font = '12px Arial';
+        for (let v = 0; v <= 6; v++) {
+            const y = 230 - v * 28;
+            shipCtx.fillStyle = '#191970';
+            shipCtx.textAlign = 'right';
+            shipCtx.fillText(String(v), 52, y + 4);
+        }
         shipCtx.save();
-        shipCtx.translate(20, 150);
+        shipCtx.translate(20, 140);
         shipCtx.rotate(-Math.PI/2);
-        shipCtx.fillText('Role Effectiveness', 0, 0);
+        shipCtx.fillStyle = '#191970';
+        shipCtx.textAlign = 'center';
+        shipCtx.font = '13px Arial';
+        shipCtx.fillText('Silhouette', 0, 0);
         shipCtx.restore();
         
-        // Draw ship role bars
-        const roleColors = { pilot: '#0066CC', gunner: '#FF0000', engineer: '#FFD700', navigator: '#00FF00' };
-        const roleNames = Object.keys(roleColors);
+        // Silhouette 5+ marker line
+        shipCtx.strokeStyle = '#C62828';
+        shipCtx.lineWidth = 1;
+        shipCtx.setLineDash([5, 4]);
+        shipCtx.beginPath();
+        shipCtx.moveTo(60, 230 - 5 * 28);
+        shipCtx.lineTo(470, 230 - 5 * 28);
+        shipCtx.stroke();
+        shipCtx.setLineDash([]);
         
-        shipRoles.forEach((ship, shipIndex) => {
-            const barWidth = 15;
-            const spacing = 80;
-            const baseX = 70 + (shipIndex * spacing);
-            
-            roleNames.forEach((role, roleIndex) => {
-                const x = baseX + (roleIndex * barWidth);
-                const height = (ship[role] / 100) * 180;
-                const y = 250 - height;
-                
-                shipCtx.fillStyle = roleColors[role];
-                shipCtx.fillRect(x, y, barWidth - 2, height);
-            });
-            
-            // Ship name label
+        shipRoles.forEach((ship, i) => {
+            const x = 85 + i * 100;
+            const h = ship.silhouette * 28;
+            shipCtx.fillStyle = ship.color;
+            shipCtx.fillRect(x, 230 - h, 60, h);
             shipCtx.fillStyle = '#191970';
-            shipCtx.font = '10px Arial';
+            shipCtx.font = 'bold 13px Arial';
             shipCtx.textAlign = 'center';
-            shipCtx.save();
-            shipCtx.translate(baseX + 30, 270);
-            shipCtx.rotate(-Math.PI/4);
-            shipCtx.fillText(ship.name, 0, 0);
-            shipCtx.restore();
+            shipCtx.fillText(String(ship.silhouette), x + 30, 230 - h - 6);
+            shipCtx.font = '12px Arial';
+            shipCtx.fillText(ship.name, x + 30, 248);
         });
         
-        // Add legend
-        roleNames.forEach((role, index) => {
-            const y = 70 + (index * 20);
-            shipCtx.fillStyle = roleColors[role];
-            shipCtx.fillRect(350, y, 15, 10);
-            shipCtx.fillStyle = '#191970';
-            shipCtx.textAlign = 'left';
-            shipCtx.fillText(role.charAt(0).toUpperCase() + role.slice(1), 370, y + 8);
-        });
+        shipCtx.fillStyle = '#8E1B1B';
+        shipCtx.font = '12px Arial';
+        shipCtx.textAlign = 'left';
+        shipCtx.fillText('Silhouette 5+: one pilot-only maneuver per round, no Punch It', 70, 280);
         
         // Character Growth Chart
         const growthCanvas = document.getElementById('characterGrowthChart');
@@ -646,7 +644,7 @@
         const progressionData = [
             { name: 'Skills & Abilities', data: skills, color: '#FFD700' },
             { name: 'Galactic Reputation', data: reputation, color: '#00FF00' },
-            { name: 'Force Connection', data: forcepower, color: '#9966CC' },
+            { name: 'Force (if Force-sensitive)', data: forcepower, color: '#9966CC' },
             { name: 'Relationships', data: relationships, color: '#FF69B4' }
         ];
         
@@ -657,7 +655,7 @@
             
             progression.data.forEach((value, index) => {
                 const x = 50 + (index * 100);
-                const y = 250 - (value * 2);
+                const y = 250 - (value * 1.9);
                 
                 if (index === 0) {
                     growthCtx.moveTo(x, y);
@@ -679,13 +677,23 @@
         
         // Add legend
         progressionData.forEach((progression, index) => {
-            const y = 70 + (index * 20);
+            const x = index % 2 === 0 ? 60 : 300;
+            const y = index < 2 ? 8 : 26;
             growthCtx.fillStyle = progression.color;
-            growthCtx.fillRect(350, y, 15, 10);
+            growthCtx.fillRect(x, y, 15, 10);
             growthCtx.fillStyle = '#191970';
+            growthCtx.font = '12px Arial';
             growthCtx.textAlign = 'left';
-            growthCtx.fillText(progression.name, 370, y + 8);
+            growthCtx.fillText(progression.name, x + 20, y + 9);
         });
     </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/sw_char.html">Character Creation</a>
+    <a class="next" href="/sw_100.html">75 Sample Characters</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
 </body>
 </html>
