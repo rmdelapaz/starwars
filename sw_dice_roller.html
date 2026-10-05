@@ -56,7 +56,25 @@
         .tokens { display: flex; flex-wrap: wrap; gap: 6px; min-height: 34px; }
         .destiny-count { font-weight: 700; color: var(--heading); }
         main .destiny-actions button { width: auto; }
-        .legend-table td:first-child { white-space: nowrap; }
+        /* Narrative dice symbols (drawn for this guide; they use the text colour) */
+        .sym { width: 1.25em; height: 1.25em; vertical-align: -0.25em; fill: currentColor; stroke: currentColor; flex: none; }
+        /* icons are not figures: undo main.css's figure panel for inline SVGs */
+        main svg.sym { display: inline-block !important; background: none !important; border: 0 !important; padding: 0 !important; margin: 0 !important; border-radius: 0 !important; max-width: none !important; color: inherit !important; }
+        .faces li .sym { width: 20px; height: 20px; }
+        .faces li { gap: 2px; }
+        .faces li .blanktxt { font-size: 0.8rem; font-weight: 600; }
+        .net .sym { width: 1.1em; height: 1.1em; }
+        .sym-row { display: inline-flex; gap: 1px; align-items: center; }
+        .key-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr)); gap: 8px; margin: 0 0 1rem; }
+        .key-grid div { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); }
+        .key-grid .sym { width: 28px; height: 28px; margin-top: 2px; color: var(--heading); }
+        .key-grid p { margin: 0; font-size: 0.93rem; line-height: 1.4; }
+        .face-chart { border-collapse: separate; border-spacing: 0; min-width: 760px; }
+        .face-chart th, .face-chart td { text-align: center; padding: 6px 4px; }
+        .face-chart th:first-child, .face-chart td:first-child { text-align: left; white-space: nowrap; padding-left: 10px; }
+        .face-chart td.blankface { color: var(--muted); font-size: 0.85rem; }
+        .face-chart td.none { background: var(--surface-2); }
+        .face-chart td .sym { width: 20px; height: 20px; }
         @media (max-width: 600px) {
             main .roll-actions button, main .quick-row button, main .destiny-actions button { width: auto; }
             .faces li { min-width: 40px; height: 40px; }
@@ -65,6 +83,18 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="sym-success" viewBox="0 0 24 24"><polygon stroke="none" points="12.00,1.00 13.76,7.75 19.78,4.22 16.25,10.24 23.00,12.00 16.25,13.76 19.78,19.78 13.76,16.25 12.00,23.00 10.24,16.25 4.22,19.78 7.75,13.76 1.00,12.00 7.75,10.24 4.22,4.22 10.24,7.75"/></symbol>
+        <symbol id="sym-advantage" viewBox="0 0 24 24"><path fill="none" stroke-width="2.6" stroke-linecap="round" d="M5 4c-2.6 3.4-2.4 8.4 1 11.2M19 4c2.6 3.4 2.4 8.4-1 11.2"/><path stroke="none" d="M12 21l-4.6-7.8h9.2z"/><path fill="none" stroke-width="2.6" stroke-linecap="round" d="M12 13V4"/></symbol>
+        <symbol id="sym-triumph" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><polygon stroke="none" points="12.00,4.80 13.15,9.23 17.09,6.91 14.77,10.85 19.20,12.00 14.77,13.15 17.09,17.09 13.15,14.77 12.00,19.20 10.85,14.77 6.91,17.09 9.23,13.15 4.80,12.00 9.23,10.85 6.91,6.91 10.85,9.23"/></symbol>
+        <symbol id="sym-failure" viewBox="0 0 24 24"><path stroke="none" d="M2 5.5L12 9l10-3.5L12 21z"/></symbol>
+        <symbol id="sym-threat" viewBox="0 0 24 24"><path fill="none" stroke-width="2.4" stroke-linejoin="round" d="M12 2.5l8.2 4.75v9.5L12 21.5l-8.2-4.75v-9.5z"/><circle cx="12" cy="12" r="3.4" stroke="none"/></symbol>
+        <symbol id="sym-despair" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke-width="2"/><path stroke="none" d="M6 8.2l6 1.8 6-1.8-6 10.2z"/></symbol>
+        <symbol id="sym-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke-width="2.6"/></symbol>
+        <symbol id="sym-dark" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="none"/></symbol>
+    </defs>
+</svg>
 <nav class="site-nav">
     <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
     <a href="/index.html">Home</a>
@@ -141,11 +171,24 @@
 
         <section>
             <h2>The Seven Dice</h2>
-            <p>Every face of every die, so you can check the odds above by hand. S = Success, A = Advantage, F = Failure, T = Threat.</p>
-            <table class="legend-table">
-                <thead><tr><th>Die</th><th>Faces</th></tr></thead>
-                <tbody id="legendBody"></tbody>
-            </table>
+            <p>Six symbols, plus the Force die's pips. Positive dice show the first three; negative dice the next three.</p>
+            <div class="key-grid">
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-success"/></svg><p><strong>Success</strong><br>Cancels one Failure. At least one left over and the check succeeds.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-advantage"/></svg><p><strong>Advantage</strong><br>Cancels one Threat. Left over, it's a good side effect.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-triumph"/></svg><p><strong>Triumph</strong><br>Counts as a Success, plus a big benefit that can't be cancelled.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-failure"/></svg><p><strong>Failure</strong><br>Cancels one Success.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-threat"/></svg><p><strong>Threat</strong><br>Cancels one Advantage. Left over, it's a complication.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-despair"/></svg><p><strong>Despair</strong><br>Counts as a Failure, plus a big problem that can't be cancelled.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-light"/></svg><p><strong>Light-side pip</strong><br>Force die only: fuels powers, or a light-side Destiny Point.</p></div>
+                <div><svg class="sym" aria-hidden="true"><use href="#sym-dark"/></svg><p><strong>Dark-side pip</strong><br>Force die only: fuels dark-side power, or a dark-side Destiny Point.</p></div>
+            </div>
+            <p>Every face of every die, so you can check the odds above by hand. Scroll sideways on a small screen.</p>
+            <div class="table-container">
+                <table class="face-chart" aria-label="Faces of each die">
+                    <thead><tr><th>Die</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr></thead>
+                    <tbody id="legendBody"></tbody>
+                </table>
+            </div>
         </section>
 
         <section>
@@ -248,7 +291,7 @@
         ability:     { name: 'Ability', sides: 8, sign: '+', faces: [f(), f({s:1}), f({s:1}), f({s:2}), f({a:1}), f({a:1}), f({s:1,a:1}), f({a:2})] },
         proficiency: { name: 'Proficiency', sides: 12, sign: '+', faces: [f(), f({s:1}), f({s:1}), f({s:2}), f({s:2}), f({a:1}), f({s:1,a:1}), f({s:1,a:1}), f({s:1,a:1}), f({a:2}), f({a:2}), f({tr:1})] },
         boost:       { name: 'Boost', sides: 6, sign: '+', faces: [f(), f(), f({s:1}), f({s:1,a:1}), f({a:2}), f({a:1})] },
-        difficulty:  { name: 'Difficulty', sides: 8, sign: '-', faces: [f(), f({F:1}), f({F:2}), f({t:1}), f({t:1}), f({t:1}), f({F:1,t:1}), f({t:2})] },
+        difficulty:  { name: 'Difficulty', sides: 8, sign: '-', faces: [f(), f({F:1}), f({F:2}), f({t:1}), f({t:1}), f({t:1}), f({t:2}), f({F:1,t:1})] },
         challenge:   { name: 'Challenge', sides: 12, sign: '-', faces: [f(), f({F:1}), f({F:1}), f({F:2}), f({F:2}), f({t:1}), f({t:1}), f({F:1,t:1}), f({F:1,t:1}), f({t:2}), f({t:2}), f({de:1})] },
         setback:     { name: 'Setback', sides: 6, sign: '-', faces: [f(), f(), f({F:1}), f({F:1}), f({t:1}), f({t:1})] },
         force:       { name: 'Force', sides: 12, sign: '', faces: [f({d:1}), f({d:1}), f({d:1}), f({d:1}), f({d:1}), f({d:1}), f({d:2}), f({l:1}), f({l:1}), f({l:2}), f({l:2}), f({l:2})] }
@@ -257,6 +300,15 @@
     var COLOUR = { ability: 'green d8', proficiency: 'yellow d12', boost: 'blue d6', difficulty: 'purple d8', challenge: 'red d12', setback: 'black d6', force: 'white d12' };
     var MAX = 6;
 
+    var SYM = { s: 'success', F: 'failure', a: 'advantage', t: 'threat', tr: 'triumph', de: 'despair', l: 'light', d: 'dark' };
+    function icon(name) { return '<svg class="sym" aria-hidden="true"><use href="#sym-' + name + '"/></svg>'; }
+    function icons(name, n) { var h = ''; for (var i = 0; i < n; i++) h += icon(name); return h; }
+    // Symbols for one face, in the chart's order: Triumph/Despair, Success/Failure, Advantage/Threat, pips
+    function faceIcons(x) {
+        var h = icons('triumph', x[4]) + icons('despair', x[5]) + icons('success', x[0]) + icons('failure', x[1]) +
+            icons('advantage', x[2]) + icons('threat', x[3]) + icons('light', x[6]) + icons('dark', x[7]);
+        return h ? '<span class="sym-row">' + h + '</span>' : '';
+    }
     function faceLabel(x) {
         var p = [];
         if (x[4]) p.push('Triumph');
@@ -393,7 +445,7 @@
         var rolled = rollPool(pool), t = tally(rolled);
         var faces = document.getElementById('faces');
         faces.innerHTML = rolled.map(function (r) {
-            return '<li class="die-' + r.die + '" title="' + DIE[r.die].name + ': ' + faceWords(r.face) + '" aria-label="' + DIE[r.die].name + ': ' + faceWords(r.face) + '">' + faceLabel(r.face) + '</li>';
+            return '<li class="die-' + r.die + '" title="' + DIE[r.die].name + ': ' + faceWords(r.face) + '" aria-label="' + DIE[r.die].name + ': ' + faceWords(r.face) + '">' + (faceIcons(r.face) || '<span class="blanktxt">blank</span>') + '</li>';
         }).join('');
         var nonForce = rolled.some(function (r) { return r.die !== 'force'; });
         var main = '', bits = [];
@@ -404,7 +456,12 @@
             if (t.despair) bits.push(t.despair + ' Despair');
         }
         if (pool.force) bits.push(t.light + ' light-side and ' + t.dark + ' dark-side pips');
-        document.getElementById('net').innerHTML = main || (pool.force ? 'Force roll' : 'Add some dice first.');
+        var netIcons = '';
+        if (nonForce) {
+            netIcons = icons(t.netS >= 1 ? 'success' : 'failure', Math.min(6, Math.abs(t.netS))) + icons(t.netA > 0 ? 'advantage' : 'threat', Math.min(6, Math.abs(t.netA))) + icons('triumph', t.triumph) + icons('despair', t.despair);
+        }
+        if (pool.force) netIcons += icons('light', Math.min(8, t.light)) + icons('dark', Math.min(8, t.dark));
+        document.getElementById('net').innerHTML = (main || (pool.force ? 'Force roll' : 'Add some dice first.')) + (netIcons ? ' <span class="sym-row" aria-hidden="true">' + netIcons + '</span>' : '');
         document.getElementById('netDetail').textContent = bits.join(' · ');
     });
     document.getElementById('clearBtn').addEventListener('click', function () {
@@ -436,11 +493,16 @@
     });
 
     // Face legend generated from the same data the roller uses
-    document.getElementById('legendBody').innerHTML = ORDER.map(function (k) {
-        var counts = {};
-        DIE[k].faces.forEach(function (x) { var w = faceWords(x); counts[w] = (counts[w] || 0) + 1; });
-        return '<tr><td><span class="die-chip die-' + k + '" style="background:var(--die)"></span>' + DIE[k].name + ' (' + COLOUR[k] + ')</td><td>' +
-            Object.keys(counts).map(function (w) { return w + (counts[w] > 1 ? ' ×' + counts[w] : ''); }).join('; ') + '</td></tr>';
+    var CHART = ['boost', 'setback', 'ability', 'difficulty', 'proficiency', 'challenge', 'force'];
+    document.getElementById('legendBody').innerHTML = CHART.map(function (k) {
+        var cells = '';
+        for (var i = 0; i < 12; i++) {
+            var x = DIE[k].faces[i];
+            if (!x) { cells += '<td class="none"></td>'; continue; }
+            var ic = faceIcons(x);
+            cells += ic ? '<td aria-label="' + faceWords(x) + '">' + ic + '</td>' : '<td class="blankface">Blank</td>';
+        }
+        return '<tr><td><span class="die-chip die-' + k + '" style="background:var(--die)"></span>' + DIE[k].name + ' (d' + DIE[k].sides + ')</td>' + cells + '</tr>';
     }).join('');
 
     // ---------- Destiny Points ----------
