@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Sheets - The Star Wars RPG Guide</title>
+    <meta name="description" content="Fillable Star Wars RPG character sheets: characteristics, skills with live dice pools, thresholds, Obligation, Duty and Morality, weapons and talents. Save, print and export.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        /* ===== Controls (themed) ===== */
+        main .sheet-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin: 20px auto 6px; max-width: 860px; }
+        main .sheet-controls select {
+            min-height: 40px; padding: 6px 10px; border-radius: 8px; min-width: 200px; width: auto;
+            background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); font: inherit; font-size: 0.95rem;
+        }
+        main .sheet-controls button {
+            min-height: 40px; padding: 7px 14px; margin: 0; border-radius: 8px; font: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer;
+            background: var(--surface); color: var(--heading); border: 1px solid var(--border-strong); width: auto;
+        }
+        main .sheet-controls button:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+        main .sheet-controls button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+        main .sheet-controls button.primary:hover { color: var(--accent-ink); background: var(--accent); filter: brightness(1.08); }
+        main .sheet-controls button.armed { background: #a3161a; border-color: #a3161a; color: #fff; }
+        #importFile { display: none; }
+        .sheet-status { text-align: center; min-height: 1.6em; margin: 4px 0 0; color: var(--muted); font-weight: 600; }
+        .sheet-help { max-width: 860px; margin: 10px auto 0; color: var(--muted); font-size: 0.95rem; }
+
+        /* ===== The sheet: a light panel in both themes ===== */
+        .sw-sheet {
+            --ink: #172033; --soft: #4b5568; --line: #a7b1c2; --blue: #1d4f91; --paper: #fdfdfb;
+            width: min(8.5in, 100%); margin: 16px auto; padding: 14px 16px;
+            background: var(--paper); color: var(--ink); border: 2px solid #233149; border-radius: 6px;
+            font-family: "Source Sans 3", "Segoe UI", sans-serif; font-size: 14px; line-height: 1.3; box-shadow: var(--shadow);
+            color-scheme: light;
+        }
+        .sw-sheet .lbl { display: block; font: 700 10.5px/1.2 "Chakra Petch", "Segoe UI", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin: 0 0 2px; }
+        .sw-sheet .box { border: 1.5px solid var(--line); border-radius: 4px; padding: 6px 8px; }
+        .sw-sheet input[type="text"], .sw-sheet select, .sw-sheet textarea, .sw-sheet .val {
+            width: 100%; max-width: none; min-height: 0; margin: 0; background: transparent; color: var(--ink);
+            border: 0; border-bottom: 1px dotted var(--line); border-radius: 0; padding: 2px; font: inherit; box-shadow: none;
+        }
+        .sw-sheet textarea { border-bottom: 0; resize: vertical; min-height: 54px; line-height: 1.35; }
+        .sw-sheet .val { display: block; min-height: 1.35em; white-space: pre-wrap; }
+        .sw-sheet textarea + .val, .sw-sheet .tx.val { min-height: 3.6em; border-bottom: 0; }
+        .sw-sheet input::placeholder, .sw-sheet textarea::placeholder { color: #667085; opacity: 1; }
+        .sw-sheet input:focus, .sw-sheet select:focus, .sw-sheet textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; background: rgba(29, 79, 145, 0.06); }
+        .sw-sheet select option { background: #fdfdfb; color: #172033; }
+        .sw-sheet input[type="checkbox"] { width: 16px; height: 16px; margin: 0; accent-color: var(--blue); vertical-align: middle; }
+
+        .sw-sheet .head { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 6px 12px; border-bottom: 2px solid #233149; padding-bottom: 6px; }
+        .sw-sheet .head .name input, .sw-sheet .head .name .val { font: 700 1.3rem "Chakra Petch", "Segoe UI", sans-serif; }
+        .sw-sheet .chars { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 10px 0; }
+        .sw-sheet .char { text-align: center; border: 2px solid var(--ink); border-radius: 50% / 40%; padding: 6px 2px 4px; }
+        .sw-sheet .char input, .sw-sheet .char .val { text-align: center; font: 700 1.5rem "Chakra Petch", sans-serif; border-bottom: 0; }
+        .sw-sheet .char .lbl { color: var(--ink); font-size: 10px; margin: 0; }
+        .sw-sheet .vitals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+        .sw-sheet .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+        .sw-sheet .pair small { display: block; font-size: 10px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.04em; }
+        .sw-sheet .pair input, .sw-sheet .pair .val, .sw-sheet .single input, .sw-sheet .single .val { text-align: center; font-weight: 700; font-size: 1.05rem; }
+        .sw-sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+        .sw-sheet .stack > * + * { margin-top: 8px; }
+        .sw-sheet .full { grid-column: 1 / -1; }
+
+        .sw-sheet table.skills { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
+        .sw-sheet table.skills th, .sw-sheet table.skills td { border: 0; border-bottom: 1px solid #e1e5ec; padding: 1px 3px; background: none; color: var(--ink); vertical-align: middle; }
+        .sw-sheet table.skills th { font: 700 10px "Chakra Petch", sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--blue); text-align: left; }
+        .sw-sheet table.skills tr.group td { font: 700 10.5px "Chakra Petch", sans-serif; text-transform: uppercase; color: var(--blue); padding-top: 6px; border-bottom: 1.5px solid var(--line); }
+        .sw-sheet table.skills td.c { width: 30px; color: var(--soft); font-size: 11px; }
+        .sw-sheet table.skills td.k { width: 26px; text-align: center; }
+        .sw-sheet table.skills td.r { width: 34px; }
+        .sw-sheet table.skills td.r input, .sw-sheet table.skills td.r .val { text-align: center; padding: 0; font-weight: 700; }
+        .sw-sheet table.skills td.p { width: 86px; white-space: nowrap; }
+        .pip { display: inline-block; width: 13px; height: 13px; margin-right: 2px; vertical-align: -2px; }
+        .pip.prof { background: #f2c230; border: 1px solid #8a6a00; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+        .pip.abil { background: #2e7d32; border: 1px solid #1b4d1e; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+
+        .sw-sheet table.weapons { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
+        .sw-sheet table.weapons th { font: 700 9.5px "Chakra Petch", sans-serif; text-transform: uppercase; color: var(--blue); text-align: left; border: 0; background: none; padding: 1px 3px; }
+        .sw-sheet table.weapons td { border: 0; padding: 1px 3px; background: none; color: var(--ink); }
+        .sw-sheet .odm { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+        .sw-sheet .npc-fields, .sw-sheet.mode-npc .pc-fields { display: none; }
+        .sw-sheet.mode-npc .npc-fields, .sw-sheet .pc-fields { display: block; }
+        .sw-sheet.mode-npc .pc-only { display: none; }
+
+        @media (max-width: 700px) {
+            .sw-sheet { padding: 12px; }
+            .sw-sheet .head { grid-template-columns: 1fr 1fr; }
+            .sw-sheet .head .name { grid-column: 1 / -1; }
+            .sw-sheet .chars { grid-template-columns: repeat(3, 1fr); }
+            .sw-sheet .vitals { grid-template-columns: 1fr 1fr; }
+            .sw-sheet .cols, .sw-sheet .odm { grid-template-columns: 1fr; }
+            .sw-sheet table.weapons th:nth-child(5), .sw-sheet table.weapons td:nth-child(5) { display: none; }
+        }
+
+        /* ===== Print: one sheet per US Letter page ===== */
+        .print-container { display: none; }
+        @media print {
+            @page { size: letter portrait; margin: 0.35in; }
+            .site-nav, .skip-link, body > header, .sheet-controls, .sheet-status, .sheet-help, #sheet, footer, .site-footer { display: none !important; }
+            html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+            main { margin: 0 !important; padding: 0 !important; width: auto !important; max-width: none !important; }
+            .print-container { display: block !important; border: 0 !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; border-radius: 0 !important; }
+            .print-container .sw-sheet { width: 7.8in !important; margin: 0 auto !important; box-shadow: none !important; border-width: 1.5pt; font-size: 10.5px; padding: 0.12in 0.15in; page-break-after: always; }
+            .print-container .sw-sheet:last-child { page-break-after: auto; }
+            .print-container .sw-sheet table.skills { font-size: 10px; }
+            .print-container .sw-sheet .chars { margin: 6px 0; }
+            .print-container .sw-sheet .char .val { font-size: 1.25rem; }
+            .print-container .pip { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .print-container .sw-sheet { line-height: 1.15; }
+            .print-container .sw-sheet .val { min-height: 1.15em; padding: 0 2px; }
+            .print-container .sw-sheet .tx.val { min-height: 2.6em; }
+            .print-container .sw-sheet table.skills td { padding: 0 2px; line-height: 1.12; }
+            .print-container .sw-sheet table.skills td.r .val { min-height: 0; border-bottom: 0; }
+            .print-container .sw-sheet table.skills tr.group td { padding-top: 3px; }
+            .print-container .sw-sheet .box { padding: 3px 6px; }
+            .print-container .sw-sheet .stack > * + * { margin-top: 5px; }
+            .print-container .sw-sheet .vitals { margin-bottom: 6px; }
+            .print-container .sw-sheet .char { padding: 3px 2px 2px; }
+            .print-container .pip { width: 10px; height: 10px; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Character Sheets</h1>
+        <p>Fill in, save and print characters and adversaries for the Star Wars Roleplaying Game, with your dice pools worked out for you.</p>
+    </header>
+
+    <main id="main">
+        <div class="sheet-controls">
+            <select id="sheetSelect" aria-label="Saved sheets"><option value="">— Select Sheet —</option></select>
+            <button type="button" id="modeBtn">👾 Adversary Mode</button>
+            <button type="button" class="primary" id="newBtn">✨ New</button>
+            <button type="button" id="saveBtn">💾 Save</button>
+            <button type="button" id="copyBtn">📋 Copy</button>
+            <button type="button" id="deleteBtn">🗑️ Delete</button>
+            <button type="button" id="printBtn">🖨️ Print</button>
+            <button type="button" id="printAllBtn">🖨️ Print All</button>
+            <button type="button" id="blankBtn">📄 Print Blank</button>
+            <button type="button" id="exportBtn">📤 Export</button>
+            <button type="button" id="importBtn">📥 Import</button>
+            <input type="file" id="importFile" accept=".json,application/json">
+        </div>
+        <p class="sheet-status" id="status" role="status" aria-live="polite"></p>
+
+        <form class="sw-sheet" id="sheet" autocomplete="off" onsubmit="return false">
+            <div class="head">
+                <label class="name pc-fields"><span class="lbl">Character Name</span><input type="text" name="name" maxlength="80" placeholder="Kessa Vaal"></label>
+                <label class="name npc-fields"><span class="lbl">Adversary Name</span><input type="text" name="npcName" maxlength="80" placeholder="Stormtrooper Squad"></label>
+                <label class="pc-fields"><span class="lbl">Species</span><input type="text" name="species" placeholder="Human"></label>
+                <label class="npc-fields"><span class="lbl">Type</span>
+                    <select name="npcType"><option value="">Type</option><option value="Minion">Minion</option><option value="Rival">Rival</option><option value="Nemesis">Nemesis</option></select></label>
+                <label class="pc-fields"><span class="lbl">Career</span><input type="text" name="career" placeholder="Smuggler"></label>
+                <label class="npc-fields"><span class="lbl">Group Size</span><input type="text" name="npcGroup" placeholder="Minions only"></label>
+                <label class="pc-fields"><span class="lbl">Specializations</span><input type="text" name="specs" placeholder="Pilot, Scoundrel"></label>
+                <label class="npc-fields"><span class="lbl">Allegiance</span><input type="text" name="npcFaction" placeholder="Galactic Empire"></label>
+            </div>
+
+            <div class="chars">
+                <label class="char"><input type="text" name="brawn" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Brawn"><span class="lbl">Brawn</span></label>
+                <label class="char"><input type="text" name="agility" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Agility"><span class="lbl">Agility</span></label>
+                <label class="char"><input type="text" name="intellect" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Intellect"><span class="lbl">Intellect</span></label>
+                <label class="char"><input type="text" name="cunning" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Cunning"><span class="lbl">Cunning</span></label>
+                <label class="char"><input type="text" name="willpower" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Willpower"><span class="lbl">Willpower</span></label>
+                <label class="char"><input type="text" name="presence" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Presence"><span class="lbl">Presence</span></label>
+            </div>
+
+            <div class="vitals">
+                <div class="box"><span class="lbl">Soak</span><div class="single"><input type="text" name="soak" placeholder="2" aria-label="Soak"></div></div>
+                <div class="box"><span class="lbl">Wounds</span><div class="pair"><label><small>Threshold</small><input type="text" name="woundT" placeholder="12"></label><label><small>Current</small><input type="text" name="woundC" placeholder="0"></label></div></div>
+                <div class="box"><span class="lbl">Strain</span><div class="pair"><label><small>Threshold</small><input type="text" name="strainT" placeholder="12"></label><label><small>Current</small><input type="text" name="strainC" placeholder="0"></label></div></div>
+                <div class="box"><span class="lbl">Defense</span><div class="pair"><label><small>Ranged</small><input type="text" name="defR" placeholder="0"></label><label><small>Melee</small><input type="text" name="defM" placeholder="0"></label></div></div>
+            </div>
+
+            <div class="cols">
+                <div class="stack">
+                    <div class="box pc-only">
+                        <div class="pair" style="grid-template-columns: repeat(4, 1fr)">
+                            <label><small>Total XP</small><input type="text" name="xpTotal" placeholder="0"></label>
+                            <label><small>Available XP</small><input type="text" name="xpAvail" placeholder="0"></label>
+                            <label><small>Credits</small><input type="text" name="credits" placeholder="500"></label>
+                            <label><small>Force Rating</small><input type="text" name="forceRating" placeholder="0"></label>
+                        </div>
+                    </div>
+                    <div class="odm pc-only">
+                        <div class="box"><span class="lbl">Obligation</span><input type="text" name="oblType" placeholder="Type"><input type="text" name="oblVal" placeholder="Magnitude"></div>
+                        <div class="box"><span class="lbl">Duty</span><input type="text" name="dutyType" placeholder="Type"><input type="text" name="dutyVal" placeholder="Value"></div>
+                        <div class="box"><span class="lbl">Morality</span><input type="text" name="morVal" placeholder="Morality (50)"><input type="text" name="conflict" placeholder="Conflict"></div>
+                    </div>
+                    <div class="box pc-only"><span class="lbl">Motivation</span><input type="text" name="motivation" placeholder="Strength / weakness, or a motivation"></div>
+                    <div class="box">
+                        <span class="lbl">Weapons</span>
+                        <table class="weapons">
+                            <thead><tr><th>Weapon</th><th>Skill</th><th>Dmg</th><th>Crit</th><th>Range</th><th>Special</th></tr></thead>
+                            <tbody>
+                                <tr><td><input type="text" name="w1n" placeholder="Heavy blaster pistol" aria-label="Weapon 1 name"></td><td><input type="text" name="w1s" placeholder="Ranged (Light)" aria-label="Weapon 1 skill"></td><td><input type="text" name="w1d" placeholder="7" aria-label="Weapon 1 damage"></td><td><input type="text" name="w1c" placeholder="3" aria-label="Weapon 1 crit"></td><td><input type="text" name="w1r" placeholder="Medium" aria-label="Weapon 1 range"></td><td><input type="text" name="w1x" placeholder="Stun setting" aria-label="Weapon 1 special"></td></tr>
+                                <tr><td><input type="text" name="w2n" aria-label="Weapon 2 name"></td><td><input type="text" name="w2s" aria-label="Weapon 2 skill"></td><td><input type="text" name="w2d" aria-label="Weapon 2 damage"></td><td><input type="text" name="w2c" aria-label="Weapon 2 crit"></td><td><input type="text" name="w2r" aria-label="Weapon 2 range"></td><td><input type="text" name="w2x" aria-label="Weapon 2 special"></td></tr>
+                                <tr><td><input type="text" name="w3n" aria-label="Weapon 3 name"></td><td><input type="text" name="w3s" aria-label="Weapon 3 skill"></td><td><input type="text" name="w3d" aria-label="Weapon 3 damage"></td><td><input type="text" name="w3c" aria-label="Weapon 3 crit"></td><td><input type="text" name="w3r" aria-label="Weapon 3 range"></td><td><input type="text" name="w3x" aria-label="Weapon 3 special"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box"><span class="lbl">Talents &amp; Special Abilities</span><textarea name="talents" rows="5" placeholder="Talent name (rank): what it does"></textarea></div>
+                    <div class="box pc-only"><span class="lbl">Force Powers</span><textarea name="force" rows="3" placeholder="Basic power and purchased upgrades"></textarea></div>
+                    <div class="box"><span class="lbl">Gear &amp; Equipment</span><textarea name="gear" rows="3" placeholder="Armor, comlink, medpacs, credits owed…"></textarea></div>
+                    <div class="box"><span class="lbl">Critical Injuries</span><textarea name="crits" rows="2" placeholder="Result and severity"></textarea></div>
+                </div>
+                <div>
+                    <div class="box">
+                        <span class="lbl">Skills</span>
+                        <table class="skills" id="skillTable">
+                            <thead><tr><th>Skill</th><th>Char</th><th title="Career skill">Car.</th><th>Rank</th><th>Dice Pool</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box full"><span class="lbl">Notes</span><textarea name="notes" rows="2" placeholder="Background, contacts, ship, goals…"></textarea></div>
+            </div>
+        </form>
+
+        <div class="sheet-help">
+            <p><strong>How it works.</strong> A sheet auto-saves in this browser once it has a name. Renaming a sheet renames its save. <strong>Adversary Mode</strong> switches to a sheet for minions, rivals and nemeses. <strong>Print</strong> fits one sheet on a US Letter page; <strong>Print Blank</strong> prints an empty character sheet. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges them back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
+            <p><strong>Dice pools.</strong> For each skill, the sheet compares its characteristic with your ranks. The higher number is how many dice you roll, and the lower number of them are upgraded to yellow Proficiency dice (<span class="pip prof" aria-hidden="true"></span>); the rest are green Ability dice (<span class="pip abil" aria-hidden="true"></span>). Brawn 3 with 1 rank of Athletics rolls one Proficiency and two Ability dice. Take the pool to the <a href="/sw_dice_roller.html">Narrative Dice Roller</a> to see your odds, and see <a href="/sw_char.html">Character Creation</a> for building the character.</p>
+        </div>
+
+        <div class="print-container" id="printContainer"></div>
+    </main>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/sw_dice_roller.html">Narrative Dice Roller</a>
+    <a class="next" href="/index.html">Guide Home</a>
+</div>
+    </footer>
+
+    <script>
+    (function () {
+        'use strict';
+        var KEY = 'sw-character-sheets';
+        var sheet = document.getElementById('sheet');
+        var select = document.getElementById('sheetSelect');
+        var $ = function (id) { return document.getElementById(id); };
+        var CH = { Br: 'brawn', Ag: 'agility', Int: 'intellect', Cun: 'cunning', Will: 'willpower', Pr: 'presence' };
+
+        // Edge of the Empire / Age of Rebellion / Force and Destiny skills and their default characteristics
+        var SKILLS = [
+            ['General Skills', [['Astrogation', 'Int'], ['Athletics', 'Br'], ['Charm', 'Pr'], ['Coercion', 'Will'], ['Computers', 'Int'], ['Cool', 'Pr'],
+                ['Coordination', 'Ag'], ['Deception', 'Cun'], ['Discipline', 'Will'], ['Leadership', 'Pr'], ['Mechanics', 'Int'], ['Medicine', 'Int'],
+                ['Negotiation', 'Pr'], ['Perception', 'Cun'], ['Piloting (Planetary)', 'Ag'], ['Piloting (Space)', 'Ag'], ['Resilience', 'Br'],
+                ['Skulduggery', 'Cun'], ['Stealth', 'Ag'], ['Streetwise', 'Cun'], ['Survival', 'Cun'], ['Vigilance', 'Will']]],
+            ['Combat Skills', [['Brawl', 'Br'], ['Gunnery', 'Ag'], ['Lightsaber', 'Br'], ['Melee', 'Br'], ['Ranged (Light)', 'Ag'], ['Ranged (Heavy)', 'Ag']]],
+            ['Knowledge Skills', [['Core Worlds', 'Int'], ['Education', 'Int'], ['Lore', 'Int'], ['Outer Rim', 'Int'], ['Underworld', 'Int'], ['Warfare', 'Int'], ['Xenology', 'Int']]]
+        ];
+        var slug = function (s) { return 'sk_' + s.toLowerCase().replace(/[^a-z]+/g, ''); };
+        var SKILL_LIST = [];
+        (function buildSkills() {
+            var tb = $('skillTable').tBodies[0];
+            SKILLS.forEach(function (g) {
+                var tr = document.createElement('tr'); tr.className = 'group';
+                tr.innerHTML = '<td colspan="5">' + g[0] + '</td>'; tb.appendChild(tr);
+                g[1].forEach(function (sk) {
+                    var id = slug(sk[0]); SKILL_LIST.push([sk[0], sk[1], id]);
+                    var r = document.createElement('tr');
+                    r.innerHTML = '<td>' + sk[0] + '</td><td class="c">' + sk[1] + '</td>' +
+                        '<td class="k"><input type="checkbox" name="' + id + '_c" aria-label="' + sk[0] + ' is a career skill"></td>' +
+                        '<td class="r"><input type="text" name="' + id + '_r" maxlength="1" inputmode="numeric" placeholder="0" aria-label="' + sk[0] + ' rank"></td>' +
+                        '<td class="p" data-pool="' + id + '"></td>';
+                    tb.appendChild(r);
+                });
+            });
+        })();
+
+        var COMMON = ['brawn', 'agility', 'intellect', 'cunning', 'willpower', 'presence', 'soak', 'woundT', 'woundC', 'strainT', 'strainC', 'defR', 'defM',
+            'w1n', 'w1s', 'w1d', 'w1c', 'w1r', 'w1x', 'w2n', 'w2s', 'w2d', 'w2c', 'w2r', 'w2x', 'w3n', 'w3s', 'w3d', 'w3c', 'w3r', 'w3x',
+            'talents', 'gear', 'crits', 'notes'];
+        SKILL_LIST.forEach(function (s) { COMMON.push(s[2] + '_c', s[2] + '_r'); });
+        var PC_FIELDS = ['name', 'species', 'career', 'specs', 'xpTotal', 'xpAvail', 'credits', 'forceRating', 'oblType', 'oblVal', 'dutyType', 'dutyVal', 'morVal', 'conflict', 'motivation', 'force'].concat(COMMON);
+        var NPC_FIELDS = ['npcName', 'npcType', 'npcGroup', 'npcFaction'].concat(COMMON);
+        var isBool = function (f) { return /_c$/.test(f); };
+
+        var mode = 'pc', currentKey = null, timer = null, armed = false;
+        function field(n, root) { return (root || sheet).querySelector('[name="' + n + '"]'); }
+        function getVal(n) { var el = field(n); return !el ? '' : el.type === 'checkbox' ? el.checked : el.value; }
+        function setVal(n, v, root) {
+            var el = field(n, root); if (!el) return;
+            if (el.type === 'checkbox') el.checked = v === true || v === 'true'; else el.value = v == null ? '' : String(v);
+        }
+        function fields() { return mode === 'npc' ? NPC_FIELDS : PC_FIELDS; }
+        function currentName() { return String(getVal(mode === 'npc' ? 'npcName' : 'name')).trim(); }
+        function nameOf(d) { return String((d.mode === 'npc' ? d.npcName : d.name) || '').trim(); }
+        function say(m) { $('status').textContent = m; }
+
+        // Dice pool: roll the higher of characteristic and rank; upgrade the lower number into Proficiency.
+        function pool(ch, rank) {
+            ch = Math.max(0, Math.min(9, parseInt(ch, 10) || 0)); rank = Math.max(0, Math.min(9, parseInt(rank, 10) || 0));
+            var hi = Math.max(ch, rank), lo = Math.min(ch, rank);
+            return { proficiency: lo, ability: hi - lo };
+        }
+        function poolHtml(p) {
+            if (!p.proficiency && !p.ability) return '';
+            var h = '';
+            for (var i = 0; i < p.proficiency; i++) h += '<span class="pip prof"></span>';
+            for (var j = 0; j < p.ability; j++) h += '<span class="pip abil"></span>';
+            return '<span role="img" aria-label="' + p.proficiency + ' Proficiency, ' + p.ability + ' Ability">' + h + '</span>';
+        }
+        function drawPools(root, data) {
+            SKILL_LIST.forEach(function (s) {
+                var get = function (n) { return data ? data[n] : getVal(n); };
+                root.querySelector('[data-pool="' + s[2] + '"]').innerHTML = poolHtml(pool(get(CH[s[1]]), get(s[2] + '_r')));
+            });
+        }
+
+        function sanitize(raw) {
+            if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+            var m = raw.mode === 'npc' ? 'npc' : 'pc', out = { mode: m };
+            (m === 'npc' ? NPC_FIELDS : PC_FIELDS).forEach(function (f) {
+                var v = raw[f];
+                out[f] = isBool(f) ? (v === true || v === 'true') : ((typeof v === 'string' || typeof v === 'number') ? String(v).slice(0, 4000) : '');
+            });
+            return out;
+        }
+        function safeName(n) { return typeof n === 'string' && n.trim() !== '' && ['__proto__', 'constructor', 'prototype'].indexOf(n) < 0; }
+        function load() {
+            var out = {};
+            try {
+                var p = JSON.parse(localStorage.getItem(KEY));
+                if (p && typeof p === 'object' && !Array.isArray(p)) Object.keys(p).forEach(function (n) { var c = sanitize(p[n]); if (safeName(n) && c) out[n] = c; });
+            } catch (e) { /* storage blocked or corrupt */ }
+            return out;
+        }
+        function store(all) { try { localStorage.setItem(KEY, JSON.stringify(all)); return true; } catch (e) { say('Could not save: browser storage is unavailable or full.'); return false; } }
+        function read() { var d = { mode: mode }; fields().forEach(function (f) { d[f] = getVal(f); }); return d; }
+        function clearAll() { PC_FIELDS.concat(NPC_FIELDS).forEach(function (f) { setVal(f, isBool(f) ? false : ''); }); drawPools(sheet); }
+        function applyMode() {
+            sheet.classList.toggle('mode-npc', mode === 'npc');
+            $('modeBtn').textContent = mode === 'npc' ? '🧑‍🚀 Character Mode' : '👾 Adversary Mode';
+        }
+        function fill(d) { mode = d.mode === 'npc' ? 'npc' : 'pc'; applyMode(); clearAll(); fields().forEach(function (f) { setVal(f, d[f]); }); drawPools(sheet); }
+        function refreshSelect(sel) {
+            var all = load();
+            select.innerHTML = '<option value="">— Select Sheet —</option>';
+            Object.keys(all).sort().forEach(function (n) {
+                var o = document.createElement('option'); o.value = n; o.textContent = (all[n].mode === 'npc' ? '👾 ' : '🧑‍🚀 ') + n;
+                if (n === sel) o.selected = true; select.appendChild(o);
+            });
+        }
+        function disarm() { armed = false; $('deleteBtn').classList.remove('armed'); $('deleteBtn').textContent = '🗑️ Delete'; }
+        function storeCurrent(name) {
+            var all = load();
+            if (currentKey && currentKey !== name) delete all[currentKey];
+            all[name] = read();
+            if (!store(all)) return false;
+            currentKey = name; refreshSelect(name); return true;
+        }
+        function autoSave() {
+            timer = null;
+            var name = currentName();
+            if (!safeName(name)) return;
+            var all = load();
+            if (all[name] && name !== currentKey) { say('A sheet named “' + name + '” already exists. Rename this one, or press Save to replace it.'); return; }
+            if (storeCurrent(name)) say('Saved “' + name + '”.');
+        }
+        function flush() { if (timer) { clearTimeout(timer); autoSave(); } }
+        function onEdit() { disarm(); drawPools(sheet); clearTimeout(timer); timer = setTimeout(autoSave, 800); }
+        sheet.addEventListener('input', onEdit);
+        sheet.addEventListener('change', onEdit);
+
+        $('modeBtn').addEventListener('click', function () {
+            flush(); mode = mode === 'npc' ? 'pc' : 'npc'; applyMode(); clearAll(); currentKey = null; select.value = '';
+            say(mode === 'npc' ? 'Adversary mode: a blank minion, rival or nemesis.' : 'Character mode: a blank character sheet.');
+        });
+        $('newBtn').addEventListener('click', function () { flush(); clearAll(); currentKey = null; select.value = ''; disarm(); field(mode === 'npc' ? 'npcName' : 'name').focus(); say('New blank sheet.'); });
+        $('saveBtn').addEventListener('click', function () {
+            clearTimeout(timer); timer = null;
+            var name = currentName();
+            if (!safeName(name)) { say('Give the sheet a name first.'); field(mode === 'npc' ? 'npcName' : 'name').focus(); return; }
+            if (storeCurrent(name)) say('Saved “' + name + '”.');
+        });
+        $('copyBtn').addEventListener('click', function () {
+            flush();
+            var base = currentName();
+            if (!base) { say('Give the sheet a name first.'); return; }
+            var all = load(), name = base + ' (copy)', i = 2;
+            while (all[name]) name = base + ' (copy ' + (i++) + ')';
+            var d = read(); d[mode === 'npc' ? 'npcName' : 'name'] = name; all[name] = d;
+            if (!store(all)) return;
+            fill(d); currentKey = name; refreshSelect(name); say('Copied as “' + name + '”.');
+        });
+        $('deleteBtn').addEventListener('click', function () {
+            var name = select.value;
+            if (!name) { say('Choose a saved sheet to delete.'); return; }
+            if (!armed) { armed = true; this.classList.add('armed'); this.textContent = '🗑️ Click again to delete'; say('Click Delete again to remove “' + name + '”.'); return; }
+            clearTimeout(timer); timer = null;
+            var all = load(); delete all[name];
+            if (!store(all)) return;
+            clearAll(); currentKey = null; refreshSelect(''); disarm(); say('Deleted “' + name + '”.');
+        });
+        select.addEventListener('change', function () {
+            flush(); disarm();
+            var name = select.value, all = load();
+            if (!name || !all[name]) { clearAll(); currentKey = null; return; }
+            fill(all[name]); currentKey = name; refreshSelect(name); say('Loaded “' + name + '”.');
+        });
+
+        // ===== Print: clone the sheet and turn every field into plain text =====
+        function staticSheet(d) {
+            var c = sheet.cloneNode(true);
+            c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(function (e) { e.removeAttribute('id'); }); c.classList.toggle('mode-npc', d.mode === 'npc');
+            c.querySelectorAll('input, select, textarea').forEach(function (el) {
+                var n = el.getAttribute('name'), v = d[n];
+                if (el.type === 'checkbox') { var s = document.createElement('span'); s.textContent = v === true ? '☑' : '☐'; s.style.fontSize = '13px'; el.replaceWith(s); return; }
+                var span = document.createElement('span');
+                span.className = 'val' + (el.tagName === 'TEXTAREA' ? ' tx' : '');
+                span.textContent = v == null ? '' : String(v);
+                el.replaceWith(span);
+            });
+            drawPools(c, d);
+            return c;
+        }
+        function doPrint(list) {
+            var box = $('printContainer'); box.innerHTML = '';
+            list.forEach(function (d) { box.appendChild(staticSheet(d)); });
+            window.print();
+        }
+        window.addEventListener('afterprint', function () { $('printContainer').innerHTML = ''; });
+        $('printBtn').addEventListener('click', function () { if (!currentName()) { say('Give the sheet a name first.'); return; } doPrint([read()]); });
+        $('printAllBtn').addEventListener('click', function () {
+            var all = load(), names = Object.keys(all).sort();
+            if (!names.length) { say('No saved sheets to print yet.'); return; }
+            doPrint(names.map(function (n) { return all[n]; }));
+        });
+        $('blankBtn').addEventListener('click', function () { doPrint([{ mode: 'pc' }]); });
+
+        // ===== Export / import =====
+        $('exportBtn').addEventListener('click', function () {
+            flush();
+            var all = load(), n = Object.keys(all).length;
+            if (!n) { say('No sheets to export yet.'); return; }
+            var url = URL.createObjectURL(new Blob([JSON.stringify(all, null, 2)], { type: 'application/json' }));
+            var a = document.createElement('a'); a.href = url; a.download = 'sw-character-sheets.json';
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+            say('Exported ' + n + (n === 1 ? ' sheet.' : ' sheets.'));
+        });
+        $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+        $('importFile').addEventListener('change', function (ev) {
+            var file = ev.target.files && ev.target.files[0];
+            ev.target.value = '';
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) { say('That file is too large to be a sheet file.'); return; }
+            flush();
+            var r = new FileReader();
+            r.onload = function () {
+                try {
+                    var data = JSON.parse(r.result);
+                    if (!data || typeof data !== 'object' || Array.isArray(data)) { say('That is not a sheet file.'); return; }
+                    var all = load(), count = 0;
+                    Object.keys(data).forEach(function (k) {
+                        var d = sanitize(data[k]); if (!d) return;
+                        var name = nameOf(d).slice(0, 200);
+                        if (!safeName(name)) return;
+                        all[name] = d; count++;
+                    });
+                    if (!count) { say('No valid sheets found in that file.'); return; }
+                    if (!store(all)) return;
+                    refreshSelect(currentKey || ''); say('Imported ' + count + (count === 1 ? ' sheet.' : ' sheets.'));
+                } catch (e) { say('Could not read that file.'); }
+            };
+            r.onerror = function () { say('Could not read that file.'); };
+            r.readAsText(file);
+        });
+
+        window.swSheet = { pool: pool, skills: SKILL_LIST };
+        applyMode(); clearAll(); refreshSelect('');
+    })();
+    </script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
+</body>
+</html>
