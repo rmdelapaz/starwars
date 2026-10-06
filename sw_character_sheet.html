@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Sheets - The Star Wars RPG Guide</title>
-    <meta name="description" content="Fillable Star Wars RPG character sheets: characteristics, skills with live dice pools, thresholds, Obligation, Duty and Morality, weapons and talents. Save, print and export.">
+    <meta name="description" content="Fillable Star Wars RPG sheets: two-page character sheets with live dice pools, talents, Obligation, Duty and Morality and encumbrance, plus adversary, vehicle and starship, and group sheets with pooled Obligation and Duty ranges. Save, print and export.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -18,14 +18,20 @@
             min-height: 40px; padding: 6px 10px; border-radius: 8px; min-width: 200px; width: auto;
             background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); font: inherit; font-size: 0.95rem;
         }
-        main .sheet-controls button {
+        main .sheet-controls button, main .tabs button {
             min-height: 40px; padding: 7px 14px; margin: 0; border-radius: 8px; font: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer;
             background: var(--surface); color: var(--heading); border: 1px solid var(--border-strong); width: auto;
         }
-        main .sheet-controls button:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+        main .sheet-controls button:hover, main .tabs button:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
         main .sheet-controls button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
         main .sheet-controls button.primary:hover { color: var(--accent-ink); background: var(--accent); filter: brightness(1.08); }
         main .sheet-controls button.armed { background: #a3161a; border-color: #a3161a; color: #fff; }
+        main .sheet-controls .kinds { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; width: 100%; margin: 0 0 4px; padding: 0; background: none; border: 0; box-shadow: none; }
+        main .sheet-controls .kinds button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+        main .tabs { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: 12px auto 0; background: none; border: 0; box-shadow: none; padding: 0; }
+        html body > main > div.tabs[role="tablist"][aria-label] { background: none; border: 0; box-shadow: none; padding: 0; border-radius: 0; margin: 12px auto 0; }
+        html body > main > div.tabs[hidden] { display: none; }
+        main .tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
         #importFile { display: none; }
         .sheet-status { text-align: center; min-height: 1.6em; margin: 4px 0 0; color: var(--muted); font-weight: 600; }
         .sheet-help { max-width: 860px; margin: 10px auto 0; color: var(--muted); font-size: 0.95rem; }
@@ -38,6 +44,11 @@
             font-family: "Source Sans 3", "Segoe UI", sans-serif; font-size: 14px; line-height: 1.3; box-shadow: var(--shadow);
             color-scheme: light;
         }
+        .sw-sheet b, .sw-sheet strong { color: var(--ink); }
+        .sw-sheet .page { display: none; }
+        .sw-sheet[data-kind="char"][data-page="p1"] .p-main, .sw-sheet[data-kind="npc"] .p-main, .sw-sheet[data-kind="char"][data-page="p2"] .p-story,
+        .sw-sheet[data-kind="veh"] .p-veh, .sw-sheet[data-kind="grp"] .p-grp { display: block; }
+        .sw-sheet:not([data-kind="npc"]) [data-k="npc"], .sw-sheet:not([data-kind="char"]) [data-k="char"] { display: none !important; }
         .sw-sheet .lbl { display: block; font: 700 10.5px/1.2 "Chakra Petch", "Segoe UI", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin: 0 0 2px; }
         .sw-sheet .box { border: 1.5px solid var(--line); border-radius: 4px; padding: 6px 8px; }
         .sw-sheet input[type="text"], .sw-sheet select, .sw-sheet textarea, .sw-sheet .val {
@@ -51,9 +62,14 @@
         .sw-sheet input:focus, .sw-sheet select:focus, .sw-sheet textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; background: rgba(29, 79, 145, 0.06); }
         .sw-sheet select option { background: #fdfdfb; color: #172033; }
         .sw-sheet input[type="checkbox"] { width: 16px; height: 16px; margin: 0; accent-color: var(--blue); vertical-align: middle; }
+        .sw-sheet .out { font-weight: 700; color: var(--ink); }
+        .sw-sheet .note { font-size: 11.5px; color: var(--soft); margin: 3px 0 0; }
+        .sw-sheet .warn { color: #8f1414; font-weight: 700; }
+        .sw-sheet .tw { overflow-x: auto; }
 
         .sw-sheet .head { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 6px 12px; border-bottom: 2px solid #233149; padding-bottom: 6px; }
         .sw-sheet .head .name input, .sw-sheet .head .name .val { font: 700 1.3rem "Chakra Petch", "Segoe UI", sans-serif; }
+        .sw-sheet .head small { display: block; font-size: 10px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.04em; }
         .sw-sheet .chars { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 10px 0; }
         .sw-sheet .char { text-align: center; border: 2px solid var(--ink); border-radius: 50% / 40%; padding: 6px 2px 4px; }
         .sw-sheet .char input, .sw-sheet .char .val { text-align: center; font: 700 1.5rem "Chakra Petch", sans-serif; border-bottom: 0; }
@@ -62,9 +78,12 @@
         .sw-sheet .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
         .sw-sheet .pair small { display: block; font-size: 10px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.04em; }
         .sw-sheet .pair input, .sw-sheet .pair .val, .sw-sheet .single input, .sw-sheet .single .val { text-align: center; font-weight: 700; font-size: 1.05rem; }
+        .sw-sheet .pair .calc { display: block; text-align: center; font-weight: 700; font-size: 1.05rem; padding: 2px; border-bottom: 1px solid var(--line); min-height: 1.35em; }
+        .sw-sheet .pair.plain input, .sw-sheet .pair.plain .val { text-align: left; font-weight: 400; font-size: inherit; }
         .sw-sheet .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
         .sw-sheet .stack > * + * { margin-top: 8px; }
         .sw-sheet .full { grid-column: 1 / -1; }
+        .sw-sheet .mt { margin-top: 8px; }
 
         .sw-sheet table.skills { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
         .sw-sheet table.skills th, .sw-sheet table.skills td { border: 0; border-bottom: 1px solid #e1e5ec; padding: 1px 3px; background: none; color: var(--ink); vertical-align: middle; }
@@ -79,49 +98,80 @@
         .pip.prof { background: #f2c230; border: 1px solid #8a6a00; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
         .pip.abil { background: #2e7d32; border: 1px solid #1b4d1e; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 
-        .sw-sheet table.weapons { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
-        .sw-sheet table.weapons th { font: 700 9.5px "Chakra Petch", sans-serif; text-transform: uppercase; color: var(--blue); text-align: left; border: 0; background: none; padding: 1px 3px; }
-        .sw-sheet table.weapons td { border: 0; padding: 1px 3px; background: none; color: var(--ink); }
+        .sw-sheet table.weapons, .sw-sheet table.t { width: 100%; border-collapse: collapse; font-size: 12.5px; display: table; margin: 0; }
+        .sw-sheet table.weapons th, .sw-sheet table.t th { font: 700 9.5px "Chakra Petch", sans-serif; text-transform: uppercase; color: var(--blue); text-align: left; border: 0; background: none; padding: 1px 3px; white-space: nowrap; }
+        .sw-sheet table.weapons td, .sw-sheet table.t td { border: 0; padding: 1px 3px; background: none; color: var(--ink); vertical-align: middle; }
+        .sw-sheet table.t td.n, .sw-sheet table.t th.n { width: 3.6em; text-align: center; }
+        .sw-sheet table.t td.n input, .sw-sheet table.t td.n .val { text-align: center; }
+        .sw-sheet table.t td.rng { width: 5.4em; text-align: center; font-weight: 700; white-space: nowrap; }
+        .sw-sheet .vitals.gtot { grid-template-columns: 1fr 1.25fr 1fr; }
         .sw-sheet .odm { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
         .sw-sheet .npc-fields, .sw-sheet.mode-npc .pc-fields { display: none; }
         .sw-sheet.mode-npc .npc-fields, .sw-sheet .pc-fields { display: block; }
-        .sw-sheet.mode-npc .pc-only { display: none; }
+
+        /* vehicle */
+        .sw-sheet .vstats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 10px 0 8px; }
+        .sw-sheet .vstats .box { text-align: center; }
+        .sw-sheet .vstats input, .sw-sheet .vstats .val { text-align: center; font: 700 1.2rem "Chakra Petch", sans-serif; }
+        .sw-sheet .vdmg { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 8px; }
+        .sw-sheet .def4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+        .sw-sheet .def4 small { display: block; font-size: 10px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.04em; text-align: center; }
+        .sw-sheet .def4 input, .sw-sheet .def4 .val { text-align: center; font-weight: 700; font-size: 1.05rem; }
+        .sw-sheet.small-ship .ps { visibility: hidden; }
+        .sw-sheet .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; align-items: end; }
+        .sw-sheet .kv small { font-size: 10.5px; color: var(--soft); text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+        .sw-sheet .trk { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 5px; }
+        .sw-sheet .trk:empty { display: none; }
+        .sw-sheet .trk .tb { width: 12px; height: 12px; border: 1.5px solid var(--ink); border-radius: 2px; background: #fff; cursor: pointer; }
+        .sw-sheet .trk .tb.on { background: var(--blue); }
 
         @media (max-width: 700px) {
             .sw-sheet { padding: 12px; }
             .sw-sheet .head { grid-template-columns: 1fr 1fr; }
             .sw-sheet .head .name { grid-column: 1 / -1; }
-            .sw-sheet .chars { grid-template-columns: repeat(3, 1fr); }
+            .sw-sheet .chars, .sw-sheet .vstats { grid-template-columns: repeat(3, 1fr); }
             .sw-sheet .vitals { grid-template-columns: 1fr 1fr; }
-            .sw-sheet .cols, .sw-sheet .odm { grid-template-columns: 1fr; }
+            .sw-sheet .cols, .sw-sheet .odm, .sw-sheet .vdmg, .sw-sheet .vitals.gtot { grid-template-columns: 1fr; }
             .sw-sheet table.weapons th:nth-child(5), .sw-sheet table.weapons td:nth-child(5) { display: none; }
+            .sw-sheet .tw table.t { min-width: 560px; }
         }
 
-        /* ===== Print: one sheet per US Letter page ===== */
+        /* ===== Print: each page of a sheet on its own US Letter page ===== */
         .print-container { display: none; }
         @media print {
             @page { size: letter portrait; margin: 0.35in; }
-            .site-nav, .skip-link, body > header, .sheet-controls, .sheet-status, .sheet-help, #sheet, footer, .site-footer { display: none !important; }
+            .site-nav, .skip-link, body > header, .sheet-controls, .tabs, .sheet-status, .sheet-help, #sheet, footer, .site-footer { display: none !important; }
             html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
             main { margin: 0 !important; padding: 0 !important; width: auto !important; max-width: none !important; }
             .print-container { display: block !important; border: 0 !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; background: none !important; border-radius: 0 !important; }
-            .print-container .sw-sheet { width: 7.8in !important; margin: 0 auto !important; box-shadow: none !important; border-width: 1.5pt; font-size: 10.5px; padding: 0.12in 0.15in; page-break-after: always; }
-            .print-container .sw-sheet:last-child { page-break-after: auto; }
+            .print-container .sw-sheet { width: 7.8in !important; margin: 0 auto !important; padding: 0 !important; border: 0 !important; box-shadow: none !important; font-size: 10.5px; line-height: 1.15; }
+            .print-container .sw-sheet .page { display: flex !important; flex-direction: column; height: 10.25in; box-sizing: border-box; overflow: hidden;
+                border: 1.5pt solid #233149; border-radius: 4px; padding: 0.12in 0.15in; page-break-after: always; break-after: page; }
+            .print-container .sw-sheet:last-child .page:last-child { page-break-after: auto; break-after: auto; }
             .print-container .sw-sheet table.skills { font-size: 10px; }
             .print-container .sw-sheet .chars { margin: 6px 0; }
             .print-container .sw-sheet .char .val { font-size: 1.25rem; }
-            .print-container .pip { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-            .print-container .sw-sheet { line-height: 1.15; }
+            .print-container .pip, .print-container .trk .tb { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
             .print-container .sw-sheet .val { min-height: 1.15em; padding: 0 2px; }
             .print-container .sw-sheet .tx.val { min-height: 2.6em; }
             .print-container .sw-sheet table.skills td { padding: 0 2px; line-height: 1.12; }
             .print-container .sw-sheet table.skills td.r .val { min-height: 0; border-bottom: 0; }
             .print-container .sw-sheet table.skills tr.group td { padding-top: 3px; }
+            .print-container .sw-sheet table.t, .print-container .sw-sheet table.weapons { font-size: 10.5px; }
+            .print-container .sw-sheet table.t td .val, .print-container .sw-sheet table.weapons td .val { min-height: 1.45em; }
             .print-container .sw-sheet .box { padding: 3px 6px; }
             .print-container .sw-sheet .stack > * + * { margin-top: 5px; }
             .print-container .sw-sheet .vitals { margin-bottom: 6px; }
             .print-container .sw-sheet .char { padding: 3px 2px 2px; }
             .print-container .pip { width: 10px; height: 10px; }
+            .print-container .sw-sheet .mt { margin-top: 6px; }
+            .print-container .sw-sheet .grow { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+            .print-container .sw-sheet .grow .tx.val { flex: 1; }
+            .print-container .sw-sheet .cols.grow { display: grid; grid-template-rows: 1fr auto; }
+            .print-container .sw-sheet .cols.grow.one { grid-template-rows: 1fr; }
+            .print-container .sw-sheet .cols.grow > .stack { display: flex; flex-direction: column; }
+            .print-container .sw-sheet .vstats { margin: 6px 0; }
+            .print-container .sw-sheet .grow > table.skills { flex: 1; }
         }
     </style>
 </head>
@@ -135,13 +185,18 @@
 </nav>
     <header>
         <h1>Character Sheets</h1>
-        <p>Fill in, save and print characters and adversaries for the Star Wars Roleplaying Game, with your dice pools worked out for you.</p>
+        <p>Fill in, save and print characters, adversaries, vehicles and your group for the Star Wars Roleplaying Game, with dice pools and party tracks worked out for you.</p>
     </header>
 
     <main id="main">
         <div class="sheet-controls">
+            <div class="kinds" role="group" aria-label="Sheet kind">
+                <button type="button" data-kind="char" aria-pressed="true">🧑‍🚀 Character</button>
+                <button type="button" data-kind="npc" aria-pressed="false">👾 Adversary</button>
+                <button type="button" data-kind="veh" aria-pressed="false">🚀 Vehicle</button>
+                <button type="button" data-kind="grp" aria-pressed="false">👥 Group</button>
+            </div>
             <select id="sheetSelect" aria-label="Saved sheets"><option value="">— Select Sheet —</option></select>
-            <button type="button" id="modeBtn">👾 Adversary Mode</button>
             <button type="button" class="primary" id="newBtn">✨ New</button>
             <button type="button" id="saveBtn">💾 Save</button>
             <button type="button" id="copyBtn">📋 Copy</button>
@@ -154,84 +209,212 @@
             <input type="file" id="importFile" accept=".json,application/json">
         </div>
         <p class="sheet-status" id="status" role="status" aria-live="polite"></p>
+        <div class="tabs" role="tablist" aria-label="Character sheet pages">
+            <button type="button" role="tab" id="tab-p1" aria-controls="sheet" aria-selected="true" data-page="p1">🎯 Characteristics &amp; Skills</button>
+            <button type="button" role="tab" id="tab-p2" aria-controls="sheet" aria-selected="false" data-page="p2">📜 Talents &amp; Story</button>
+        </div>
 
-        <form class="sw-sheet" id="sheet" autocomplete="off" onsubmit="return false">
-            <div class="head">
-                <label class="name pc-fields"><span class="lbl">Character Name</span><input type="text" name="name" maxlength="80" placeholder="Kessa Vaal"></label>
-                <label class="name npc-fields"><span class="lbl">Adversary Name</span><input type="text" name="npcName" maxlength="80" placeholder="Stormtrooper Squad"></label>
-                <label class="pc-fields"><span class="lbl">Species</span><input type="text" name="species" placeholder="Human"></label>
-                <label class="npc-fields"><span class="lbl">Type</span>
-                    <select name="npcType"><option value="">Type</option><option value="Minion">Minion</option><option value="Rival">Rival</option><option value="Nemesis">Nemesis</option></select></label>
-                <label class="pc-fields"><span class="lbl">Career</span><input type="text" name="career" placeholder="Smuggler"></label>
-                <label class="npc-fields"><span class="lbl">Group Size</span><input type="text" name="npcGroup" placeholder="Minions only"></label>
-                <label class="pc-fields"><span class="lbl">Specializations</span><input type="text" name="specs" placeholder="Pilot, Scoundrel"></label>
-                <label class="npc-fields"><span class="lbl">Allegiance</span><input type="text" name="npcFaction" placeholder="Galactic Empire"></label>
-            </div>
+        <form class="sw-sheet" id="sheet" data-kind="char" data-page="p1" autocomplete="off" onsubmit="return false">
+            <!-- ===================== CHARACTER / ADVERSARY: PAGE 1 ===================== -->
+            <div class="page p-main" data-pg="p1">
+                <div class="head">
+                    <label class="name pc-fields"><span class="lbl">Character Name</span><input type="text" name="name" maxlength="80" placeholder="Kessa Vaal"></label>
+                    <label class="name npc-fields"><span class="lbl">Adversary Name</span><input type="text" name="npcName" maxlength="80" placeholder="Stormtrooper Squad"></label>
+                    <label class="pc-fields"><span class="lbl">Species</span><input type="text" name="species" placeholder="Human"></label>
+                    <label class="npc-fields"><span class="lbl">Type</span>
+                        <select name="npcType"><option value="">Type</option><option value="Minion">Minion</option><option value="Rival">Rival</option><option value="Nemesis">Nemesis</option></select></label>
+                    <label class="pc-fields"><span class="lbl">Career</span><input type="text" name="career" placeholder="Smuggler"></label>
+                    <label class="npc-fields"><span class="lbl">Group Size</span><input type="text" name="npcGroup" placeholder="Minions only"></label>
+                    <label class="pc-fields"><span class="lbl">Specializations</span><input type="text" name="specs" placeholder="Pilot, Scoundrel"></label>
+                    <label class="npc-fields"><span class="lbl">Allegiance</span><input type="text" name="npcFaction" placeholder="Galactic Empire"></label>
+                </div>
 
-            <div class="chars">
-                <label class="char"><input type="text" name="brawn" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Brawn"><span class="lbl">Brawn</span></label>
-                <label class="char"><input type="text" name="agility" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Agility"><span class="lbl">Agility</span></label>
-                <label class="char"><input type="text" name="intellect" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Intellect"><span class="lbl">Intellect</span></label>
-                <label class="char"><input type="text" name="cunning" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Cunning"><span class="lbl">Cunning</span></label>
-                <label class="char"><input type="text" name="willpower" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Willpower"><span class="lbl">Willpower</span></label>
-                <label class="char"><input type="text" name="presence" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Presence"><span class="lbl">Presence</span></label>
-            </div>
+                <div class="chars">
+                    <label class="char"><input type="text" name="brawn" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Brawn"><span class="lbl">Brawn</span></label>
+                    <label class="char"><input type="text" name="agility" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Agility"><span class="lbl">Agility</span></label>
+                    <label class="char"><input type="text" name="intellect" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Intellect"><span class="lbl">Intellect</span></label>
+                    <label class="char"><input type="text" name="cunning" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Cunning"><span class="lbl">Cunning</span></label>
+                    <label class="char"><input type="text" name="willpower" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Willpower"><span class="lbl">Willpower</span></label>
+                    <label class="char"><input type="text" name="presence" maxlength="1" inputmode="numeric" placeholder="2" aria-label="Presence"><span class="lbl">Presence</span></label>
+                </div>
 
-            <div class="vitals">
-                <div class="box"><span class="lbl">Soak</span><div class="single"><input type="text" name="soak" placeholder="2" aria-label="Soak"></div></div>
-                <div class="box"><span class="lbl">Wounds</span><div class="pair"><label><small>Threshold</small><input type="text" name="woundT" placeholder="12"></label><label><small>Current</small><input type="text" name="woundC" placeholder="0"></label></div></div>
-                <div class="box"><span class="lbl">Strain</span><div class="pair"><label><small>Threshold</small><input type="text" name="strainT" placeholder="12"></label><label><small>Current</small><input type="text" name="strainC" placeholder="0"></label></div></div>
-                <div class="box"><span class="lbl">Defense</span><div class="pair"><label><small>Ranged</small><input type="text" name="defR" placeholder="0"></label><label><small>Melee</small><input type="text" name="defM" placeholder="0"></label></div></div>
-            </div>
+                <div class="vitals">
+                    <div class="box"><span class="lbl">Soak</span><div class="single"><input type="text" name="soak" placeholder="2" aria-label="Soak"></div></div>
+                    <div class="box"><span class="lbl">Wounds</span><div class="pair"><label><small>Threshold</small><input type="text" name="woundT" placeholder="12"></label><label><small>Current</small><input type="text" name="woundC" placeholder="0"></label></div></div>
+                    <div class="box"><span class="lbl">Strain</span><div class="pair"><label><small>Threshold</small><input type="text" name="strainT" placeholder="12"></label><label><small>Current</small><input type="text" name="strainC" placeholder="0"></label></div></div>
+                    <div class="box"><span class="lbl">Defense</span><div class="pair"><label><small>Ranged</small><input type="text" name="defR" placeholder="0"></label><label><small>Melee</small><input type="text" name="defM" placeholder="0"></label></div></div>
+                </div>
 
-            <div class="cols">
-                <div class="stack">
-                    <div class="box pc-only">
-                        <div class="pair" style="grid-template-columns: repeat(4, 1fr)">
-                            <label><small>Total XP</small><input type="text" name="xpTotal" placeholder="0"></label>
-                            <label><small>Available XP</small><input type="text" name="xpAvail" placeholder="0"></label>
-                            <label><small>Credits</small><input type="text" name="credits" placeholder="500"></label>
-                            <label><small>Force Rating</small><input type="text" name="forceRating" placeholder="0"></label>
+                <div class="cols grow">
+                    <div class="stack">
+                        <div class="box">
+                            <span class="lbl">Weapons</span>
+                            <div class="tw"><table class="weapons">
+                                <thead><tr><th>Weapon</th><th>Skill</th><th>Dmg</th><th>Crit</th><th>Range</th><th>Special</th></tr></thead>
+                                <tbody id="weaponRows"></tbody>
+                            </table></div>
+                        </div>
+                        <div class="box" data-k="npc"><span class="lbl">Talents &amp; Special Abilities</span><textarea name="talents" rows="5" placeholder="Talent name (rank): what it does"></textarea></div>
+                        <div class="box" data-k="char">
+                            <span class="lbl">Critical Injuries</span>
+                            <table class="t"><thead><tr><th style="width:28%">Severity</th><th>Result</th></tr></thead><tbody id="critRows"></tbody></table>
+                            <textarea name="crits" rows="1" style="min-height:30px" placeholder="Healing and other injury notes" aria-label="Critical Injury notes"></textarea>
+                        </div>
+                        <div class="box grow"><span class="lbl">Gear &amp; Equipment</span><textarea name="gear" rows="3" placeholder="Armor, comlink, medpacs, credits owed…"></textarea></div>
+                        <div class="box" data-k="npc"><span class="lbl">Critical Injuries</span><textarea name="crits" rows="2" placeholder="Result and severity"></textarea></div>
+                    </div>
+                    <div class="stack">
+                        <div class="box grow">
+                            <span class="lbl">Skills</span>
+                            <table class="skills" id="skillTable">
+                                <thead><tr><th>Skill</th><th>Char</th><th title="Career skill">Car.</th><th>Rank</th><th>Dice Pool</th></tr></thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="odm pc-only">
-                        <div class="box"><span class="lbl">Obligation</span><input type="text" name="oblType" placeholder="Type"><input type="text" name="oblVal" placeholder="Magnitude"></div>
-                        <div class="box"><span class="lbl">Duty</span><input type="text" name="dutyType" placeholder="Type"><input type="text" name="dutyVal" placeholder="Value"></div>
-                        <div class="box"><span class="lbl">Morality</span><input type="text" name="morVal" placeholder="Morality (50)"><input type="text" name="conflict" placeholder="Conflict"></div>
-                    </div>
-                    <div class="box pc-only"><span class="lbl">Motivation</span><input type="text" name="motivation" placeholder="Strength / weakness, or a motivation"></div>
-                    <div class="box">
-                        <span class="lbl">Weapons</span>
-                        <table class="weapons">
-                            <thead><tr><th>Weapon</th><th>Skill</th><th>Dmg</th><th>Crit</th><th>Range</th><th>Special</th></tr></thead>
-                            <tbody>
-                                <tr><td><input type="text" name="w1n" placeholder="Heavy blaster pistol" aria-label="Weapon 1 name"></td><td><input type="text" name="w1s" placeholder="Ranged (Light)" aria-label="Weapon 1 skill"></td><td><input type="text" name="w1d" placeholder="7" aria-label="Weapon 1 damage"></td><td><input type="text" name="w1c" placeholder="3" aria-label="Weapon 1 crit"></td><td><input type="text" name="w1r" placeholder="Medium" aria-label="Weapon 1 range"></td><td><input type="text" name="w1x" placeholder="Stun setting" aria-label="Weapon 1 special"></td></tr>
-                                <tr><td><input type="text" name="w2n" aria-label="Weapon 2 name"></td><td><input type="text" name="w2s" aria-label="Weapon 2 skill"></td><td><input type="text" name="w2d" aria-label="Weapon 2 damage"></td><td><input type="text" name="w2c" aria-label="Weapon 2 crit"></td><td><input type="text" name="w2r" aria-label="Weapon 2 range"></td><td><input type="text" name="w2x" aria-label="Weapon 2 special"></td></tr>
-                                <tr><td><input type="text" name="w3n" aria-label="Weapon 3 name"></td><td><input type="text" name="w3s" aria-label="Weapon 3 skill"></td><td><input type="text" name="w3d" aria-label="Weapon 3 damage"></td><td><input type="text" name="w3c" aria-label="Weapon 3 crit"></td><td><input type="text" name="w3r" aria-label="Weapon 3 range"></td><td><input type="text" name="w3x" aria-label="Weapon 3 special"></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="box"><span class="lbl">Talents &amp; Special Abilities</span><textarea name="talents" rows="5" placeholder="Talent name (rank): what it does"></textarea></div>
-                    <div class="box pc-only"><span class="lbl">Force Powers</span><textarea name="force" rows="3" placeholder="Basic power and purchased upgrades"></textarea></div>
-                    <div class="box"><span class="lbl">Gear &amp; Equipment</span><textarea name="gear" rows="3" placeholder="Armor, comlink, medpacs, credits owed…"></textarea></div>
-                    <div class="box"><span class="lbl">Critical Injuries</span><textarea name="crits" rows="2" placeholder="Result and severity"></textarea></div>
+                    <div class="box full"><span class="lbl">Notes</span><textarea name="notes" rows="2" placeholder="Contacts, ship, goals…"></textarea></div>
                 </div>
-                <div>
-                    <div class="box">
-                        <span class="lbl">Skills</span>
-                        <table class="skills" id="skillTable">
-                            <thead><tr><th>Skill</th><th>Char</th><th title="Career skill">Car.</th><th>Rank</th><th>Dice Pool</th></tr></thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
+            </div>
+
+            <!-- ===================== CHARACTER: PAGE 2 ===================== -->
+            <div class="page p-story" data-pg="p2">
+                <div class="head" style="grid-template-columns: 2fr 1fr 1fr 1fr">
+                    <div class="name"><span class="lbl">Character Name</span><span class="val" data-mirror="name"></span></div>
+                    <div><small>Species</small><span class="val" data-mirror="species"></span></div>
+                    <div><small>Career</small><span class="val" data-mirror="career"></span></div>
+                    <label><small>Player</small><input type="text" name="player"></label>
                 </div>
-                <div class="box full"><span class="lbl">Notes</span><textarea name="notes" rows="2" placeholder="Background, contacts, ship, goals…"></textarea></div>
+
+                <div class="vitals" style="margin-top:10px">
+                    <div class="box"><span class="lbl">Experience</span><div class="pair"><label><small>Total XP</small><input type="text" name="xpTotal" placeholder="0"></label><label><small>Available</small><input type="text" name="xpAvail" placeholder="0"></label></div></div>
+                    <div class="box"><span class="lbl">Credits</span><div class="single"><input type="text" name="credits" placeholder="500" aria-label="Credits"></div></div>
+                    <div class="box"><span class="lbl">Encumbrance</span><div class="pair"><div><small>Threshold</small><span class="calc" data-out="encT" title="5 + Brawn"></span></div><label><small>Carried</small><input type="text" name="encCur" placeholder="0"></label></div>
+                        <p class="note"><span class="warn" data-out="encState"></span><span data-out="encNote">Threshold = 5 + Brawn</span></p></div>
+                    <div class="box"><span class="lbl">Force Rating</span><div class="pair"><label><small>Rating</small><input type="text" name="forceRating" placeholder="0"></label><label><small>Committed</small><input type="text" name="forceCommit" placeholder="0"></label></div>
+                        <p class="note">Dice to roll: <b data-out="forceAvail">—</b></p></div>
+                </div>
+
+                <div class="box">
+                    <span class="lbl">Talents</span>
+                    <div class="tw"><table class="t"><thead><tr><th style="width:27%">Talent</th><th class="n">Rank</th><th style="width:19%">Activation</th><th>Effect</th></tr></thead><tbody id="talentRows"></tbody></table></div>
+                    <label><small class="note">More talents &amp; special abilities</small><textarea name="talents" rows="2" style="min-height:34px"></textarea></label>
+                </div>
+
+                <div class="odm mt">
+                    <div class="box"><span class="lbl">Obligation</span><small class="note">Edge of the Empire</small>
+                        <div class="pair plain"><label><small>Type</small><input type="text" name="oblType" placeholder="Debt"></label><label><small>Magnitude</small><input type="text" name="oblVal" placeholder="10"></label></div></div>
+                    <div class="box"><span class="lbl">Duty</span><small class="note">Age of Rebellion</small>
+                        <div class="pair plain"><label><small>Type</small><input type="text" name="dutyType" placeholder="Space Superiority"></label><label><small>Value</small><input type="text" name="dutyVal"></label></div></div>
+                    <div class="box"><span class="lbl">Morality</span><small class="note">Force and Destiny</small>
+                        <div class="pair plain"><label><small>Morality</small><input type="text" name="morVal" placeholder="50"></label><label><small>Conflict</small><input type="text" name="conflict"></label></div>
+                        <div class="pair plain"><label><small>Strength</small><input type="text" name="morStr" placeholder="Compassion"></label><label><small>Weakness</small><input type="text" name="morWeak" placeholder="Recklessness"></label></div></div>
+                </div>
+                <div class="box mt"><span class="lbl">Motivation</span><input type="text" name="motivation" placeholder="Freedom, or a strength and weakness" aria-label="Motivation"></div>
+
+                <div class="cols grow one mt">
+                    <div class="box grow"><span class="lbl">Force Powers &amp; Upgrades</span><textarea name="force" rows="4" placeholder="Basic power and purchased upgrades"></textarea></div>
+                    <div class="box grow"><span class="lbl">Species Abilities</span><textarea name="speciesAb" rows="4"></textarea></div>
+                </div>
+                <div class="cols grow one mt">
+                    <div class="box grow"><span class="lbl">Description</span><textarea name="descr" rows="4" placeholder="Age, height, build, looks, manner"></textarea></div>
+                    <div class="box grow"><span class="lbl">Background</span><textarea name="background" rows="4"></textarea></div>
+                </div>
+            </div>
+
+            <!-- ===================== VEHICLE ===================== -->
+            <div class="page p-veh" data-pg="veh">
+                <div class="head">
+                    <label class="name"><span class="lbl">Vehicle Name</span><input type="text" name="vName" maxlength="80" placeholder="Millennium Falcon"></label>
+                    <label><span class="lbl">Model / Hull Type</span><input type="text" name="vModel" placeholder="YT-1300 light freighter"></label>
+                    <label><span class="lbl">Manufacturer</span><input type="text" name="vMaker"></label>
+                    <label><span class="lbl">Owner</span><input type="text" name="vOwner" placeholder="Kessa Vaal"></label>
+                </div>
+
+                <div class="vstats">
+                    <label class="box"><span class="lbl">Silhouette</span><input type="text" name="vSil" maxlength="2" inputmode="numeric" placeholder="4"></label>
+                    <label class="box"><span class="lbl">Speed</span><input type="text" name="vSpeed" maxlength="2" inputmode="numeric"></label>
+                    <label class="box"><span class="lbl">Handling</span><input type="text" name="vHand" maxlength="3"></label>
+                    <label class="box"><span class="lbl">Armor</span><input type="text" name="vArmor" maxlength="3"></label>
+                    <label class="box"><span class="lbl">Sensor Range</span><input type="text" name="vSensor" style="font-size:1rem"></label>
+                    <label class="box"><span class="lbl">Hard Points</span><input type="text" name="vHP" maxlength="3" inputmode="numeric"></label>
+                </div>
+
+                <div class="vdmg">
+                    <div class="box"><span class="lbl">Defense</span>
+                        <div class="def4"><label><small>Fore</small><input type="text" name="vDefF" maxlength="2"></label><label><small>Aft</small><input type="text" name="vDefA" maxlength="2"></label>
+                            <label class="ps"><small>Port</small><input type="text" name="vDefP" maxlength="2"></label><label class="ps"><small>Starboard</small><input type="text" name="vDefS" maxlength="2"></label></div>
+                        <p class="note">Each point adds a Setback die to attacks against that zone. Port and starboard: Silhouette 5+.</p></div>
+                    <div class="box"><span class="lbl">Hull Trauma</span><div class="pair"><label><small>Threshold</small><input type="text" name="vHullT" maxlength="3" inputmode="numeric"></label><label><small>Current</small><input type="text" name="vHullC" maxlength="3" inputmode="numeric"></label></div>
+                        <div class="trk" data-trk="vHull"></div><p class="note warn" data-out="hullState"></p></div>
+                    <div class="box"><span class="lbl">System Strain</span><div class="pair"><label><small>Threshold</small><input type="text" name="vSysT" maxlength="3" inputmode="numeric"></label><label><small>Current</small><input type="text" name="vSysC" maxlength="3" inputmode="numeric"></label></div>
+                        <div class="trk" data-trk="vSys"></div><p class="note warn" data-out="sysState"></p></div>
+                </div>
+
+                <div class="cols mt">
+                    <div class="box"><span class="lbl">Crew &amp; Capacity</span>
+                        <div class="kv"><small>Crew</small><input type="text" name="vCrew" placeholder="Pilot, co-pilot"><small>Passengers</small><input type="text" name="vPass"><small>Encumbrance capacity</small><input type="text" name="vEnc"><small>Consumables</small><input type="text" name="vCons"></div></div>
+                    <div class="box"><span class="lbl">Hyperdrive &amp; Cost</span>
+                        <div class="kv"><small>Hyperdrive</small><input type="text" name="vHyp1" placeholder="Class 0.5"><small>Backup</small><input type="text" name="vHyp2"><small>Navicomputer</small><input type="text" name="vNav" placeholder="Yes / astromech"><small>Cost / Rarity</small>
+                            <div class="pair plain"><input type="text" name="vCost" aria-label="Cost"><input type="text" name="vRarity" aria-label="Rarity"></div></div></div>
+                </div>
+
+                <div class="box mt">
+                    <span class="lbl">Weapons</span>
+                    <div class="tw"><table class="t"><thead><tr><th style="width:24%">Weapon</th><th style="width:13%">Fire Arc</th><th class="n">Dmg</th><th class="n">Crit</th><th style="width:11%">Range</th><th>Qualities</th></tr></thead><tbody id="vWeaponRows"></tbody></table></div>
+                </div>
+
+                <div class="cols mt">
+                    <div class="box"><span class="lbl">Attachments &amp; Modifications</span>
+                        <table class="t"><thead><tr><th>Attachment</th><th class="n">HP</th></tr></thead><tbody id="vAttRows"></tbody></table>
+                        <p class="note">Hard points used: <b data-out="hpUsed">0</b> of <b data-out="hpTotal">—</b> <span class="warn" data-out="hpWarn"></span></p></div>
+                    <div class="box"><span class="lbl">Critical Hits</span>
+                        <table class="t"><thead><tr><th style="width:30%">Severity</th><th>Result</th></tr></thead><tbody id="vCritRows"></tbody></table></div>
+                </div>
+                <div class="cols grow one mt">
+                    <div class="box grow"><span class="lbl">Crew Stations</span>
+                        <table class="t"><thead><tr><th style="width:40%">Station</th><th>Crew Member</th></tr></thead><tbody id="vRoleRows"></tbody></table></div>
+                    <div class="box grow"><span class="lbl">Notes</span><textarea name="vNotes" rows="4" placeholder="Quirks, hidden compartments, history"></textarea></div>
+                </div>
+            </div>
+
+            <!-- ===================== GROUP ===================== -->
+            <div class="page p-grp" data-pg="grp">
+                <div class="head">
+                    <label class="name"><span class="lbl">Group Name</span><input type="text" name="gName" maxlength="80" placeholder="Kessa's crew"></label>
+                    <label><span class="lbl">Game Line</span><select name="gLine"><option value="">Choose</option><option value="eote">Edge of the Empire</option><option value="aor">Age of Rebellion</option><option value="fad">Force and Destiny</option><option value="mixed">Mixed party</option></select></label>
+                    <label><span class="lbl">Ship</span><input type="text" name="gShip" placeholder="Light freighter"></label>
+                    <label><span class="lbl">Base</span><input type="text" name="gBase"></label>
+                </div>
+
+                <div class="box mt">
+                    <span class="lbl">Members</span>
+                    <div class="tw"><table class="t"><thead><tr><th style="width:17%">Character</th><th style="width:12%">Player</th><th style="width:11%">Species</th><th style="width:18%">Career / Specialization</th><th style="width:11%">Track</th><th>Type</th><th class="n">Value</th><th class="n" style="width:5.4em">d100</th></tr></thead><tbody id="memberRows"></tbody></table></div>
+                    <p class="note">Each Obligation or Duty takes a consecutive slice of the d100 roll, in member order. Track left blank follows the game line. Morality is personal and is not pooled.</p>
+                </div>
+
+                <div class="vitals gtot mt">
+                    <div class="box"><span class="lbl">Party Obligation</span><div class="single"><span class="calc" data-out="oblTotal" style="display:block;text-align:center;font-weight:700;font-size:1.3rem">0</span></div>
+                        <p class="note">At the start of a session the GM rolls d100. At or under the total, it triggers: strain threshold −1 for everyone, −2 for the owner; doubles double it.</p></div>
+                    <div class="box"><span class="lbl">Party Duty</span><div class="pair"><div><small>Total</small><span class="calc" data-out="dutyTotal">0</span></div><label><small>Contribution Rank</small><input type="text" name="gContrib" maxlength="3" inputmode="numeric" placeholder="0"></label></div>
+                        <p class="note"><span class="warn" data-out="dutyState"></span> <span data-out="dutyNote">At 100 the Contribution Rank rises by 1 and Duty resets to 0.</span> A trigger gives wound threshold +1 for everyone, +2 for the owner.</p></div>
+                    <div class="box"><span class="lbl">Shared Credits</span><div class="single"><input type="text" name="gCredits" placeholder="0" aria-label="Shared credits"></div>
+                        <textarea name="gLoot" rows="2" style="min-height:34px" placeholder="Shared loot and cargo" aria-label="Shared loot and cargo"></textarea></div>
+                </div>
+
+                <div class="cols grow one">
+                    <div class="stack">
+                        <div class="box grow"><span class="lbl">Contacts, Patrons &amp; Rivals</span><textarea name="gContacts" rows="4"></textarea></div>
+                        <div class="box grow"><span class="lbl">Ongoing Objectives</span><textarea name="gObj" rows="4"></textarea></div>
+                    </div>
+                    <div class="box grow"><span class="lbl">Session Log</span><textarea name="gLog" rows="9" placeholder="Session, date, what happened, XP awarded"></textarea></div>
+                </div>
             </div>
         </form>
 
         <div class="sheet-help">
-            <p><strong>How it works.</strong> A sheet auto-saves in this browser once it has a name. Renaming a sheet renames its save. <strong>Adversary Mode</strong> switches to a sheet for minions, rivals and nemeses. <strong>Print</strong> fits one sheet on a US Letter page; <strong>Print Blank</strong> prints an empty character sheet. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges them back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
+            <p><strong>How it works.</strong> Pick a kind of sheet: <strong>Character</strong> (two pages: characteristics and skills, then talents and story), <strong>Adversary</strong> (minions, rivals and nemeses), <strong>Vehicle</strong> (speeders, starfighters and starships) or <strong>Group</strong> (your party, its pooled Obligation or Duty, and a session log). A sheet auto-saves in this browser once it has a name, and renaming it renames its save. <strong>Print</strong> prints every page of the current sheet, one per US Letter sheet; <strong>Print All</strong> prints every saved sheet; <strong>Print Blank</strong> prints an empty sheet of the current kind. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges them back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
             <p><strong>Dice pools.</strong> For each skill, the sheet compares its characteristic with your ranks. The higher number is how many dice you roll, and the lower number of them are upgraded to yellow Proficiency dice (<span class="pip prof" aria-hidden="true"></span>); the rest are green Ability dice (<span class="pip abil" aria-hidden="true"></span>). Brawn 3 with 1 rank of Athletics rolls one Proficiency and two Ability dice. Take the pool to the <a href="/sw_dice_roller.html">Narrative Dice Roller</a> to see your odds, and see <a href="/sw_char.html">Character Creation</a> for building the character.</p>
+            <p><strong>Worked out for you.</strong> Encumbrance threshold is 5 + Brawn. Force dice to roll are your Force rating minus any dice you have committed. On a vehicle, the hull trauma and system strain boxes follow the thresholds (click a box to mark damage), port and starboard Defense appear for Silhouette 5 and up, and hard points used are added up from your attachments. On the group sheet, each member's Obligation or Duty gets its slice of the d100 roll, and the party totals show when Duty reaches 100. See <a href="/sw_vehicles.html">Starships &amp; Vehicles</a> and <a href="/sw_groups.html">Crews &amp; Group Dynamics</a>.</p>
         </div>
 
         <div class="print-container" id="printContainer"></div>
@@ -252,6 +435,12 @@
         var select = document.getElementById('sheetSelect');
         var $ = function (id) { return document.getElementById(id); };
         var CH = { Br: 'brawn', Ag: 'agility', Int: 'intellect', Cun: 'cunning', Will: 'willpower', Pr: 'presence' };
+        var KINDS = {
+            char: { icon: '🧑‍🚀', label: 'Character', nameF: 'name', pages: ['p1', 'p2'] },
+            npc: { icon: '👾', label: 'Adversary', nameF: 'npcName', pages: ['p1'] },
+            veh: { icon: '🚀', label: 'Vehicle', nameF: 'vName', pages: ['veh'] },
+            grp: { icon: '👥', label: 'Group', nameF: 'gName', pages: ['grp'] }
+        };
 
         // Edge of the Empire / Age of Rebellion / Force and Destiny skills and their default characteristics
         var SKILLS = [
@@ -281,25 +470,69 @@
             });
         })();
 
-        var COMMON = ['brawn', 'agility', 'intellect', 'cunning', 'willpower', 'presence', 'soak', 'woundT', 'woundC', 'strainT', 'strainC', 'defR', 'defM',
-            'w1n', 'w1s', 'w1d', 'w1c', 'w1r', 'w1x', 'w2n', 'w2s', 'w2d', 'w2c', 'w2r', 'w2x', 'w3n', 'w3s', 'w3d', 'w3c', 'w3r', 'w3x',
-            'talents', 'gear', 'crits', 'notes'];
-        SKILL_LIST.forEach(function (s) { COMMON.push(s[2] + '_c', s[2] + '_r'); });
-        var PC_FIELDS = ['name', 'species', 'career', 'specs', 'xpTotal', 'xpAvail', 'credits', 'forceRating', 'oblType', 'oblVal', 'dutyType', 'dutyVal', 'morVal', 'conflict', 'motivation', 'force'].concat(COMMON);
-        var NPC_FIELDS = ['npcName', 'npcType', 'npcGroup', 'npcFaction'].concat(COMMON);
-        var isBool = function (f) { return /_c$/.test(f); };
+        // ----- repeated rows: [prefix, count, columns [suffix, aria label, placeholder for row 1, td class]] -----
+        function rows(host, prefix, count, label, cols) {
+            var h = '', names = [];
+            for (var i = 1; i <= count; i++) {
+                h += '<tr>';
+                cols.forEach(function (c) {
+                    var nm = prefix + i + c[0]; names.push(nm);
+                    var ph = i === 1 && c[2] ? ' placeholder="' + c[2] + '"' : '';
+                    var ctl = c[3] === 'sel' ? '<select name="' + nm + '" aria-label="' + label + ' ' + i + ' ' + c[1] + '">' + c[4] + '</select>'
+                        : '<input type="text" name="' + nm + '" aria-label="' + label + ' ' + i + ' ' + c[1] + '"' + ph + '>';
+                    h += '<td' + (c[3] && c[3] !== 'sel' ? ' class="' + c[3] + '"' : '') + '>' + ctl + '</td>';
+                });
+                if (prefix === 'm') h += '<td class="rng" data-out="m' + i + 'rng"></td>';
+                h += '</tr>';
+            }
+            $(host).innerHTML = h;
+            return names;
+        }
+        var opts = function (list) { return list.map(function (o) { return '<option value="' + o + '">' + (o || '—') + '</option>'; }).join(''); };
+        // Weapons rows keep the old field names (w1n … w3x) and add rows 4 and 5.
+        var WEAPON_F = rows('weaponRows', 'w', 5, 'Weapon', [['n', 'name', 'Heavy blaster pistol'], ['s', 'skill', 'Ranged (Light)'], ['d', 'damage', '7'], ['c', 'crit', '3'], ['r', 'range', 'Medium'], ['x', 'special', 'Stun setting']]);
+        var CRIT_F = rows('critRows', 'cr', 4, 'Critical Injury', [['s', 'severity', 'Average'], ['r', 'result', '']]);
+        var TALENT_F = rows('talentRows', 't', 10, 'Talent', [['n', 'name', 'Grit'], ['r', 'rank', '1', 'n'], ['a', 'activation', '', 'sel', opts(['', 'Passive', 'Active (Action)', 'Active (Maneuver)', 'Active (Incidental)', 'Active (Out of Turn)'])], ['e', 'effect', '+1 strain threshold per rank']]);
+        var VW_F = rows('vWeaponRows', 'vw', 6, 'Vehicle weapon', [['n', 'name', 'Medium laser cannon'], ['a', 'fire arc', 'Turret'], ['d', 'damage', '', 'n'], ['c', 'crit', '', 'n'], ['r', 'range', 'Close'], ['q', 'qualities', '']]);
+        var VA_F = rows('vAttRows', 'va', 5, 'Attachment', [['n', 'name', 'Smuggling compartments'], ['h', 'hard points', '', 'n']]);
+        var VC_F = rows('vCritRows', 'vc', 4, 'Critical Hit', [['s', 'severity', ''], ['r', 'result', '']]);
+        var VR_F = rows('vRoleRows', 'vr', 6, 'Station', [['r', 'station', 'Pilot'], ['w', 'crew member', 'Kessa Vaal']]);
+        var MEMBER_F = rows('memberRows', 'm', 6, 'Member', [['c', 'character', 'Kessa Vaal'], ['p', 'player', ''], ['s', 'species', 'Human'], ['k', 'career', 'Smuggler (Pilot)'],
+            ['t', 'track', '', 'sel', opts(['', 'Obligation', 'Duty', 'Morality'])], ['y', 'type', 'Debt'], ['v', 'value', '10', 'n']]);
 
-        var mode = 'pc', currentKey = null, timer = null, armed = false;
-        function field(n, root) { return (root || sheet).querySelector('[name="' + n + '"]'); }
+        var COMMON = ['brawn', 'agility', 'intellect', 'cunning', 'willpower', 'presence', 'soak', 'woundT', 'woundC', 'strainT', 'strainC', 'defR', 'defM',
+            'talents', 'gear', 'crits', 'notes'].concat(WEAPON_F);
+        SKILL_LIST.forEach(function (s) { COMMON.push(s[2] + '_c', s[2] + '_r'); });
+        var FIELDS = {
+            char: ['name', 'species', 'career', 'specs', 'xpTotal', 'xpAvail', 'credits', 'forceRating', 'oblType', 'oblVal', 'dutyType', 'dutyVal', 'morVal', 'conflict', 'motivation', 'force',
+                'player', 'encCur', 'forceCommit', 'morStr', 'morWeak', 'speciesAb', 'descr', 'background'].concat(COMMON, CRIT_F, TALENT_F),
+            npc: ['npcName', 'npcType', 'npcGroup', 'npcFaction'].concat(COMMON),
+            veh: ['vName', 'vModel', 'vMaker', 'vOwner', 'vSil', 'vSpeed', 'vHand', 'vArmor', 'vSensor', 'vHP', 'vDefF', 'vDefA', 'vDefP', 'vDefS', 'vHullT', 'vHullC', 'vSysT', 'vSysC',
+                'vCrew', 'vPass', 'vEnc', 'vCons', 'vHyp1', 'vHyp2', 'vNav', 'vCost', 'vRarity', 'vNotes'].concat(VW_F, VA_F, VC_F, VR_F),
+            grp: ['gName', 'gLine', 'gShip', 'gBase', 'gContrib', 'gCredits', 'gLoot', 'gContacts', 'gObj', 'gLog'].concat(MEMBER_F)
+        };
+        var isBool = function (f) { return /^sk_.*_c$/.test(f); };
+
+        var kind = 'char', page = 'p1', currentKey = null, timer = null, armed = false;
+        // A few fields appear in two places (the adversary and character layouts); pick the one that belongs to the kind.
+        function field(n, root, k) {
+            k = k || kind;
+            var els = (root || sheet).querySelectorAll('[name="' + n + '"]');
+            for (var i = 0; i < els.length; i++) { var c = els[i].closest('[data-k]'); if (!c || c.getAttribute('data-k') === k) return els[i]; }
+            return null;
+        }
         function getVal(n) { var el = field(n); return !el ? '' : el.type === 'checkbox' ? el.checked : el.value; }
-        function setVal(n, v, root) {
-            var el = field(n, root); if (!el) return;
+        function setVal(n, v) {
+            var el = field(n); if (!el) return;
             if (el.type === 'checkbox') el.checked = v === true || v === 'true'; else el.value = v == null ? '' : String(v);
         }
-        function fields() { return mode === 'npc' ? NPC_FIELDS : PC_FIELDS; }
-        function currentName() { return String(getVal(mode === 'npc' ? 'npcName' : 'name')).trim(); }
-        function nameOf(d) { return String((d.mode === 'npc' ? d.npcName : d.name) || '').trim(); }
+        // Old saves have no kind: they used mode 'pc' / 'npc'.
+        function kindOf(d) { return d && KINDS.hasOwnProperty(d.kind) ? d.kind : (d && d.mode === 'npc' ? 'npc' : 'char'); }
+        function currentName() { return String(getVal(KINDS[kind].nameF)).trim(); }
+        function nameOf(d) { return String(d[KINDS[kindOf(d)].nameF] || '').trim(); }
         function say(m) { $('status').textContent = m; }
+        var num = function (v) { var x = parseInt(String(v == null ? '' : v).replace('−', '-'), 10); return isNaN(x) ? 0 : x; };
+        var has = function (v) { return String(v == null ? '' : v).trim() !== ''; };
 
         // Dice pool: roll the higher of characteristic and rank; upgrade the lower number into Proficiency.
         function pool(ch, rank) {
@@ -314,17 +547,72 @@
             for (var j = 0; j < p.ability; j++) h += '<span class="pip abil"></span>';
             return '<span role="img" aria-label="' + p.proficiency + ' Proficiency, ' + p.ability + ' Ability">' + h + '</span>';
         }
-        function drawPools(root, data) {
+        function drawPools(root, get) {
             SKILL_LIST.forEach(function (s) {
-                var get = function (n) { return data ? data[n] : getVal(n); };
-                root.querySelector('[data-pool="' + s[2] + '"]').innerHTML = poolHtml(pool(get(CH[s[1]]), get(s[2] + '_r')));
+                var cell = root.querySelector('[data-pool="' + s[2] + '"]');
+                if (cell) cell.innerHTML = poolHtml(pool(get(CH[s[1]]), get(s[2] + '_r')));
             });
         }
 
+        // ----- derived values for every kind -----
+        function derive(get, k) {
+            var o = {};
+            if (k === 'char') {
+                var br = get('brawn');
+                o.encT = has(br) ? String(5 + num(br)) : '';
+                o.encState = ''; o.encNote = 'Threshold = 5 + Brawn';
+                if (has(br) && has(get('encCur'))) {
+                    var over = num(get('encCur')) - (5 + num(br));
+                    if (over > 0) { o.encState = 'Encumbered by ' + over + ': +' + over + ' Setback on Brawn and Agility checks.'; o.encNote = ''; }
+                }
+                o.forceAvail = has(get('forceRating')) ? String(Math.max(0, num(get('forceRating')) - num(get('forceCommit')))) : '—';
+            } else if (k === 'veh') {
+                var used = 0;
+                for (var a = 1; a <= 5; a++) used += num(get('va' + a + 'h'));
+                o.hpUsed = String(used); o.hpTotal = has(get('vHP')) ? String(num(get('vHP'))) : '—';
+                o.hpWarn = has(get('vHP')) && used > num(get('vHP')) ? 'Over the limit.' : '';
+                o.hullState = has(get('vHullT')) && has(get('vHullC')) && num(get('vHullC')) > num(get('vHullT')) ? 'Hull trauma exceeds the threshold: the vehicle is destroyed or crippled.' : '';
+                o.sysState = has(get('vSysT')) && has(get('vSysC')) && num(get('vSysC')) > num(get('vSysT')) ? 'System strain exceeds the threshold: systems shut down.' : '';
+                o.small = has(get('vSil')) && num(get('vSil')) < 5;
+            } else if (k === 'grp') {
+                var line = get('gLine'), run = { Obligation: 0, Duty: 0 };
+                var dflt = line === 'eote' ? 'Obligation' : line === 'aor' ? 'Duty' : line === 'fad' ? 'Morality' : '';
+                for (var i = 1; i <= 6; i++) {
+                    var t = get('m' + i + 't') || dflt, v = get('m' + i + 'v');
+                    o['m' + i + 'rng'] = '';
+                    if (!has(v)) continue;
+                    if (t === 'Morality') { o['m' + i + 'rng'] = 'personal'; continue; }
+                    if (!run.hasOwnProperty(t)) continue;
+                    var n = Math.max(0, num(v)); if (!n) continue;
+                    o['m' + i + 'rng'] = (run[t] + 1) + '–' + (run[t] + n);
+                    run[t] += n;
+                }
+                o.oblTotal = String(run.Obligation); o.dutyTotal = String(run.Duty);
+                o.dutyState = run.Duty >= 100 ? 'Duty has reached 100: raise the Contribution Rank by 1 and reset Duty to 0.' : '';
+                o.dutyNote = run.Duty >= 100 ? '' : run.Duty > 0 ? (100 - run.Duty) + ' more Duty to the next Contribution Rank.' : 'At 100 the Contribution Rank rises by 1 and Duty resets to 0.';
+            }
+            return o;
+        }
+        function track(el, get) {
+            var base = el.getAttribute('data-trk'), t = num(get(base + 'T')), c = num(get(base + 'C')), h = '';
+            if (t >= 1 && t <= 60) for (var i = 1; i <= t; i++) h += '<span class="tb' + (i <= c ? ' on' : '') + '" data-i="' + i + '" aria-hidden="true"></span>';
+            if (el.innerHTML !== h) el.innerHTML = h;   // keep the boxes in place so a click is not lost mid-repaint
+        }
+        function paint(root, get, k) {
+            var o = derive(get, k);
+            root.querySelectorAll('[data-out]').forEach(function (el) { var key = el.getAttribute('data-out'); if (o[key] != null) el.textContent = o[key]; });
+            root.querySelectorAll('[data-mirror]').forEach(function (el) { el.textContent = get(el.getAttribute('data-mirror')) || ''; });
+            root.classList.toggle('small-ship', !!o.small);
+            if (k === 'veh') root.querySelectorAll('[data-trk]').forEach(function (el) { track(el, get); });
+            if (k === 'char' || k === 'npc') drawPools(root, get);
+        }
+
+        // ----- storage -----
         function sanitize(raw) {
             if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
-            var m = raw.mode === 'npc' ? 'npc' : 'pc', out = { mode: m };
-            (m === 'npc' ? NPC_FIELDS : PC_FIELDS).forEach(function (f) {
+            var k = kindOf(raw), out = { kind: k };
+            if (k === 'char' || k === 'npc') out.mode = k === 'npc' ? 'npc' : 'pc';   // older copies of this page read "mode"
+            FIELDS[k].forEach(function (f) {
                 var v = raw[f];
                 out[f] = isBool(f) ? (v === true || v === 'true') : ((typeof v === 'string' || typeof v === 'number') ? String(v).slice(0, 4000) : '');
             });
@@ -340,18 +628,36 @@
             return out;
         }
         function store(all) { try { localStorage.setItem(KEY, JSON.stringify(all)); return true; } catch (e) { say('Could not save: browser storage is unavailable or full.'); return false; } }
-        function read() { var d = { mode: mode }; fields().forEach(function (f) { d[f] = getVal(f); }); return d; }
-        function clearAll() { PC_FIELDS.concat(NPC_FIELDS).forEach(function (f) { setVal(f, isBool(f) ? false : ''); }); drawPools(sheet); }
-        function applyMode() {
-            sheet.classList.toggle('mode-npc', mode === 'npc');
-            $('modeBtn').textContent = mode === 'npc' ? '🧑‍🚀 Character Mode' : '👾 Adversary Mode';
+        function read() { var d = { kind: kind }; if (kind === 'char' || kind === 'npc') d.mode = kind === 'npc' ? 'npc' : 'pc'; FIELDS[kind].forEach(function (f) { d[f] = getVal(f); }); return d; }
+        function repaint() { paint(sheet, getVal, kind); }
+        function clearAll() { sheet.querySelectorAll('input, select, textarea').forEach(function (el) { if (el.type === 'checkbox') el.checked = false; else el.value = ''; }); repaint(); }
+
+        // ----- kinds and pages -----
+        var tabs = document.querySelectorAll('.tabs [role="tab"]');
+        function show(p) {
+            page = p; sheet.setAttribute('data-page', p);
+            tabs.forEach(function (t) { var on = t.getAttribute('data-page') === p; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
         }
-        function fill(d) { mode = d.mode === 'npc' ? 'npc' : 'pc'; applyMode(); clearAll(); fields().forEach(function (f) { setVal(f, d[f]); }); drawPools(sheet); }
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { show(t.getAttribute('data-page')); });
+            t.addEventListener('keydown', function (ev) {
+                if (ev.key !== 'ArrowRight' && ev.key !== 'ArrowLeft') return;
+                var nx = tabs[(i + (ev.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; nx.focus(); show(nx.getAttribute('data-page'));
+            });
+        });
+        function applyKind() {
+            sheet.setAttribute('data-kind', kind);
+            sheet.classList.toggle('mode-npc', kind === 'npc');
+            document.querySelectorAll('.kinds button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-kind') === kind)); });
+            document.querySelector('.tabs').hidden = kind !== 'char';
+            show('p1');
+        }
+        function fill(d) { kind = kindOf(d); applyKind(); clearAll(); FIELDS[kind].forEach(function (f) { setVal(f, d[f]); }); repaint(); }
         function refreshSelect(sel) {
             var all = load();
             select.innerHTML = '<option value="">— Select Sheet —</option>';
             Object.keys(all).sort().forEach(function (n) {
-                var o = document.createElement('option'); o.value = n; o.textContent = (all[n].mode === 'npc' ? '👾 ' : '🧑‍🚀 ') + n;
+                var o = document.createElement('option'); o.value = n; o.textContent = KINDS[all[n].kind].icon + ' ' + n;
                 if (n === sel) o.selected = true; select.appendChild(o);
             });
         }
@@ -372,19 +678,28 @@
             if (storeCurrent(name)) say('Saved “' + name + '”.');
         }
         function flush() { if (timer) { clearTimeout(timer); autoSave(); } }
-        function onEdit() { disarm(); drawPools(sheet); clearTimeout(timer); timer = setTimeout(autoSave, 800); }
+        function onEdit() { disarm(); repaint(); clearTimeout(timer); timer = setTimeout(autoSave, 800); }
         sheet.addEventListener('input', onEdit);
         sheet.addEventListener('change', onEdit);
-
-        $('modeBtn').addEventListener('click', function () {
-            flush(); mode = mode === 'npc' ? 'pc' : 'npc'; applyMode(); clearAll(); currentKey = null; select.value = '';
-            say(mode === 'npc' ? 'Adversary mode: a blank minion, rival or nemesis.' : 'Character mode: a blank character sheet.');
+        // Click a hull trauma or system strain box to set the current value (click the last marked box to clear it).
+        sheet.addEventListener('click', function (ev) {
+            var b = ev.target.closest('.tb'); if (!b) return;
+            var base = b.parentNode.getAttribute('data-trk'), i = num(b.getAttribute('data-i'));
+            setVal(base + 'C', num(getVal(base + 'C')) === i ? i - 1 : i); onEdit();
         });
-        $('newBtn').addEventListener('click', function () { flush(); clearAll(); currentKey = null; select.value = ''; disarm(); field(mode === 'npc' ? 'npcName' : 'name').focus(); say('New blank sheet.'); });
+
+        document.querySelectorAll('.kinds button').forEach(function (b) {
+            b.addEventListener('click', function () {
+                var k = b.getAttribute('data-kind'); if (k === kind) return;
+                flush(); disarm(); kind = k; applyKind(); clearAll(); currentKey = null; select.value = '';
+                say(KINDS[k].label + ': a blank sheet.');
+            });
+        });
+        $('newBtn').addEventListener('click', function () { flush(); clearAll(); currentKey = null; select.value = ''; disarm(); show('p1'); field(KINDS[kind].nameF).focus(); say('New blank ' + KINDS[kind].label.toLowerCase() + ' sheet.'); });
         $('saveBtn').addEventListener('click', function () {
             clearTimeout(timer); timer = null;
             var name = currentName();
-            if (!safeName(name)) { say('Give the sheet a name first.'); field(mode === 'npc' ? 'npcName' : 'name').focus(); return; }
+            if (!safeName(name)) { say('Give the sheet a name first.'); show('p1'); field(KINDS[kind].nameF).focus(); return; }
             if (storeCurrent(name)) say('Saved “' + name + '”.');
         });
         $('copyBtn').addEventListener('click', function () {
@@ -393,7 +708,7 @@
             if (!base) { say('Give the sheet a name first.'); return; }
             var all = load(), name = base + ' (copy)', i = 2;
             while (all[name]) name = base + ' (copy ' + (i++) + ')';
-            var d = read(); d[mode === 'npc' ? 'npcName' : 'name'] = name; all[name] = d;
+            var d = read(); d[KINDS[kind].nameF] = name; all[name] = d;
             if (!store(all)) return;
             fill(d); currentKey = name; refreshSelect(name); say('Copied as “' + name + '”.');
         });
@@ -413,19 +728,23 @@
             fill(all[name]); currentKey = name; refreshSelect(name); say('Loaded “' + name + '”.');
         });
 
-        // ===== Print: clone the sheet and turn every field into plain text =====
+        // ===== Print: clone the sheet, keep the pages for its kind, and turn every field into plain text =====
         function staticSheet(d) {
-            var c = sheet.cloneNode(true);
-            c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(function (e) { e.removeAttribute('id'); }); c.classList.toggle('mode-npc', d.mode === 'npc');
+            var k = kindOf(d), c = sheet.cloneNode(true), get = function (n) { return d[n] == null ? '' : d[n]; };
+            c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(function (e) { e.removeAttribute('id'); });
+            c.setAttribute('data-kind', k); c.classList.toggle('mode-npc', k === 'npc');
+            c.querySelectorAll('.page').forEach(function (p) { if (KINDS[k].pages.indexOf(p.getAttribute('data-pg')) < 0) p.remove(); });
+            c.querySelectorAll('[data-k]').forEach(function (e) { if (e.getAttribute('data-k') !== k) e.remove(); });
             c.querySelectorAll('input, select, textarea').forEach(function (el) {
                 var n = el.getAttribute('name'), v = d[n];
                 if (el.type === 'checkbox') { var s = document.createElement('span'); s.textContent = v === true ? '☑' : '☐'; s.style.fontSize = '13px'; el.replaceWith(s); return; }
+                if (el.tagName === 'SELECT' && has(v)) { var op = Array.prototype.filter.call(el.options, function (o) { return o.value === String(v); })[0]; v = op ? op.textContent : ''; }
                 var span = document.createElement('span');
                 span.className = 'val' + (el.tagName === 'TEXTAREA' ? ' tx' : '');
                 span.textContent = v == null ? '' : String(v);
                 el.replaceWith(span);
             });
-            drawPools(c, d);
+            paint(c, get, k);
             return c;
         }
         function doPrint(list) {
@@ -436,11 +755,12 @@
         window.addEventListener('afterprint', function () { $('printContainer').innerHTML = ''; });
         $('printBtn').addEventListener('click', function () { if (!currentName()) { say('Give the sheet a name first.'); return; } doPrint([read()]); });
         $('printAllBtn').addEventListener('click', function () {
+            flush();
             var all = load(), names = Object.keys(all).sort();
             if (!names.length) { say('No saved sheets to print yet.'); return; }
             doPrint(names.map(function (n) { return all[n]; }));
         });
-        $('blankBtn').addEventListener('click', function () { doPrint([{ mode: 'pc' }]); });
+        $('blankBtn').addEventListener('click', function () { doPrint([{ kind: kind }]); });
 
         // ===== Export / import =====
         $('exportBtn').addEventListener('click', function () {
@@ -481,8 +801,8 @@
             r.readAsText(file);
         });
 
-        window.swSheet = { pool: pool, skills: SKILL_LIST };
-        applyMode(); clearAll(); refreshSelect('');
+        window.swSheet = { pool: pool, skills: SKILL_LIST, derive: derive, kindOf: kindOf };
+        applyKind(); clearAll(); refreshSelect('');
     })();
     </script>
 <div class="site-footer">&copy; 2026 Ray de la Paz. The Star Wars RPG Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>Star Wars is a trademark of Lucasfilm Ltd. The Star Wars Roleplaying Game is published by Fantasy Flight Games / Edge Studio under licence. This guide is an unofficial fan resource.</div>
