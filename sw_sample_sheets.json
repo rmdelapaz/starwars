@@ -108,10 +108,10 @@
   "background": "A smooth-talking con artist who talks his way out of trouble almost as often as he talks his way into it. His debts keep growing, but so does his reputation.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide). Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "R4-X7 \"Rax\" with Jaina Kryze": {
+ "R4-X7 \"Rax\" with Mirra Tavrek": {
   "kind": "char",
   "mode": "pc",
-  "name": "R4-X7 \"Rax\" with Jaina Kryze",
+  "name": "R4-X7 \"Rax\" with Mirra Tavrek",
   "species": "Droid & Mandalorian",
   "career": "Technician",
   "specs": "Mechanic",
@@ -143,10 +143,10 @@
   "background": "A young Mandalorian engineer who partners with her inherited astromech droid. Together they can fix, slice, or modify almost anything mechanical.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide). Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Ambassador Lyra Syndulla": {
+ "Ambassador Lyra Okanni": {
   "kind": "char",
   "mode": "pc",
-  "name": "Ambassador Lyra Syndulla",
+  "name": "Ambassador Lyra Okanni",
   "species": "Twi'lek",
   "career": "Diplomat",
   "specs": "Ambassador",
@@ -515,10 +515,10 @@
   "background": "A master of infiltration who can become anyone, anywhere. Her ability to disappear into crowds and assume false identities is legendary.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Spy Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Tech Specialist Quin-Lan": {
+ "Tech Specialist Sel-Varin": {
   "kind": "char",
   "mode": "pc",
-  "name": "Tech Specialist Quin-Lan",
+  "name": "Tech Specialist Sel-Varin",
   "species": "Cerean",
   "career": "Technician",
   "specs": "Slicer",
@@ -548,10 +548,10 @@
   "background": "A brilliant slicer whose binary brain can crack any code or slice any system. He provides remote support for Agent Starsend's missions.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Spy Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Senator Amara Kryze": {
+ "Senator Amara Tal'vek": {
   "kind": "char",
   "mode": "pc",
-  "name": "Senator Amara Kryze",
+  "name": "Senator Amara Tal'vek",
   "species": "Mandalorian Human",
   "career": "Diplomat",
   "specs": "Ambassador",
@@ -581,10 +581,10 @@
   "background": "A charismatic Mandalorian senator working to bring her warrior culture into the galactic political mainstream through peaceful means.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Diplomatic Mission. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Bodyguard Tor Vizsla": {
+ "Bodyguard Tor Davrek": {
   "kind": "char",
   "mode": "pc",
-  "name": "Bodyguard Tor Vizsla",
+  "name": "Bodyguard Tor Davrek",
   "species": "Mandalorian Human",
   "career": "Hired Gun",
   "specs": "Bodyguard",
@@ -611,7 +611,7 @@
   "t3n": "True Aim",
   "dutyType": "Personnel",
   "dutyVal": "20",
-  "background": "A traditional Mandalorian warrior who serves as both protector and cultural advisor to Senator Kryze, representing the old ways while she forges new paths.",
+  "background": "A traditional Mandalorian warrior who serves as both protector and cultural advisor to Senator Tal'vek, representing the old ways while she forges new paths.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Diplomatic Mission. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
  "Dr. Lysa Raan": {
@@ -647,10 +647,10 @@
   "background": "A brilliant trauma surgeon who runs mobile medical units in war zones, treating anyone who needs help regardless of their allegiances.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Medical Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Medic Rex CT-7567": {
+ "Medic \"Patch\" CT-4823": {
   "kind": "char",
   "mode": "pc",
-  "name": "Medic Rex CT-7567",
+  "name": "Medic \"Patch\" CT-4823",
   "species": "Clone Human",
   "career": "Soldier",
   "specs": "Medic",
@@ -1044,10 +1044,10 @@
   "background": "A former Imperial Intelligence agent whose conscience finally overcame his training. He provides insider knowledge of Imperial operations and security.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Imperial Defectors. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Stormtrooper FN-1337 \"Finn\"": {
+ "Stormtrooper TK-1337 \"Brick\"": {
   "kind": "char",
   "mode": "pc",
-  "name": "Stormtrooper FN-1337 \"Finn\"",
+  "name": "Stormtrooper TK-1337 \"Brick\"",
   "species": "Human",
   "career": "Soldier",
   "specs": "Commando",
@@ -1173,10 +1173,10 @@
   "background": "A compassionate healer whose Force abilities focus on preserving and restoring life, serving as the team's medic and emotional anchor.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Strike Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Padawan Zara Tano": {
+ "Padawan Zara Tevin": {
   "kind": "char",
   "mode": "pc",
-  "name": "Padawan Zara Tano",
+  "name": "Padawan Zara Tevin",
   "species": "Togruta",
   "career": "Seeker",
   "specs": "Pathfinder",
@@ -1305,10 +1305,10 @@
   "background": "A fierce Trandoshan warrior who handles captures that require brute force and intimidation, collecting Jagannath points through successful hunts.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Bounty Hunter Syndicate. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Slicer Qira Vex": {
+ "Slicer Ysra Kell": {
   "kind": "char",
   "mode": "pc",
-  "name": "Slicer Qira Vex",
+  "name": "Slicer Ysra Kell",
   "species": "Twi'lek",
   "career": "Technician",
   "specs": "Slicer",
@@ -1338,10 +1338,10 @@
   "background": "A brilliant slicer who provides electronic surveillance, data theft, and security bypassing for the hunting team's more sophisticated quarries.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Bounty Hunter Syndicate. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Ambassador Leia Antilles": {
+ "Ambassador Lenna Aravos": {
   "kind": "char",
   "mode": "pc",
-  "name": "Ambassador Leia Antilles",
+  "name": "Ambassador Lenna Aravos",
   "species": "Human",
   "career": "Diplomat",
   "specs": "Ambassador",
@@ -1371,14 +1371,14 @@
   "background": "A charismatic diplomat working to build alliances against authoritarian regimes, using her political skills to unite disparate factions.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Diplomatic Mission. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Security Chief Han Corren": {
+ "Security Chief Harl Corren": {
   "kind": "char",
   "mode": "pc",
-  "name": "Security Chief Han Corren",
+  "name": "Security Chief Harl Corren",
   "species": "Human",
   "career": "Hired Gun",
   "specs": "Bodyguard",
-  "motivation": "Relationship - \"Protect Ambassador Antilles\"",
+  "motivation": "Relationship - \"Protect Ambassador Aravos\"",
   "brawn": "3",
   "agility": "4",
   "intellect": "2",
@@ -1404,10 +1404,10 @@
   "background": "A former smuggler turned security chief whose quick reflexes and street smarts keep the diplomatic team safe in dangerous situations.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Diplomatic Mission. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Protocol Expert C-3PO Prime": {
+ "Protocol Expert PX-9 \"Lumen\"": {
   "kind": "char",
   "mode": "pc",
-  "name": "Protocol Expert C-3PO Prime",
+  "name": "Protocol Expert PX-9 \"Lumen\"",
   "species": "Protocol Droid",
   "career": "Diplomat",
   "specs": "Analyst",
@@ -1434,13 +1434,13 @@
   "t3n": "Knowledge Specialization",
   "dutyType": "Intelligence",
   "dutyVal": "15",
-  "background": "An advanced protocol droid programmed with the customs and languages of over six million forms of communication, essential for complex negotiations.",
+  "background": "An advanced protocol droid programmed with the customs and languages of thousands of languages and forms of etiquette, essential for complex negotiations.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Diplomatic Mission. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Pilot Commander Wedge Darklighter": {
+ "Pilot Commander Dace Merrow": {
   "kind": "char",
   "mode": "pc",
-  "name": "Pilot Commander Wedge Darklighter",
+  "name": "Pilot Commander Dace Merrow",
   "species": "Human",
   "career": "Ace",
   "specs": "Pilot",
@@ -1470,10 +1470,10 @@
   "background": "An elite starfighter pilot who provides transportation and escort duties for diplomatic missions, ensuring safe passage through hostile space.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Diplomatic Mission. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Executive Director Kira Syndulla": {
+ "Executive Director Mirela Vashai": {
   "kind": "char",
   "mode": "pc",
-  "name": "Executive Director Kira Syndulla",
+  "name": "Executive Director Mirela Vashai",
   "species": "Twi'lek",
   "career": "Colonist",
   "specs": "Entrepreneur",
@@ -1503,10 +1503,10 @@
   "background": "A brilliant corporate executive who uses legitimate business as cover for intelligence gathering and political maneuvering across the galaxy.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Corporate Espionage Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Industrial Saboteur Jyn Kestis": {
+ "Industrial Saboteur Rynn Calder": {
   "kind": "char",
   "mode": "pc",
-  "name": "Industrial Saboteur Jyn Kestis",
+  "name": "Industrial Saboteur Rynn Calder",
   "species": "Human",
   "career": "Engineer",
   "specs": "Saboteur",
@@ -1536,10 +1536,10 @@
   "background": "A skilled infiltrator who specializes in penetrating corporate facilities and gathering evidence of illegal activities and corruption.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Corporate Espionage Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Data Analyst Quinn Vos": {
+ "Data Analyst Quinn Dovar": {
   "kind": "char",
   "mode": "pc",
-  "name": "Data Analyst Quinn Vos",
+  "name": "Data Analyst Quinn Dovar",
   "species": "Human",
   "career": "Technician",
   "specs": "Slicer",
@@ -1569,10 +1569,10 @@
   "background": "A brilliant data analyst who can slice through corporate security systems and decrypt sensitive information with surgical precision.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Corporate Espionage Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Security Consultant Axe Woves": {
+ "Security Consultant Arran Tesk": {
   "kind": "char",
   "mode": "pc",
-  "name": "Security Consultant Axe Woves",
+  "name": "Security Consultant Arran Tesk",
   "species": "Mandalorian Human",
   "career": "Hired Gun",
   "specs": "Heavy",
@@ -1602,10 +1602,10 @@
   "background": "A former corporate security chief turned freelance enforcer who provides heavy firepower and tactical expertise for high-stakes operations.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Corporate Espionage Team. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Squadron Leader Luke Skystrider": {
+ "Squadron Leader Coran Vey": {
   "kind": "char",
   "mode": "pc",
-  "name": "Squadron Leader Luke Skystrider",
+  "name": "Squadron Leader Coran Vey",
   "species": "Human",
   "career": "Ace",
   "specs": "Pilot, Force Sensitive Emergent",
@@ -1634,17 +1634,17 @@
   "t3n": "Natural Pilot",
   "dutyType": "Combat Victory",
   "dutyVal": "25",
-  "background": "A gifted pilot with emerging Force abilities who leads Red Squadron through impossible missions against overwhelming Imperial forces.",
+  "background": "A gifted pilot with emerging Force abilities who leads Ember Squadron through impossible missions against overwhelming Imperial forces.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Rebel Starfighter Squadron. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Red Two - Biggs Darkstrider": {
+ "Ember Two - Jory Varrin": {
   "kind": "char",
   "mode": "pc",
-  "name": "Red Two - Biggs Darkstrider",
+  "name": "Ember Two - Jory Varrin",
   "species": "Human",
   "career": "Ace",
   "specs": "Gunner",
-  "motivation": "Friendship - \"Watch Luke's back in combat\"",
+  "motivation": "Friendship - \"Watch Coran's back in combat\"",
   "brawn": "3",
   "agility": "3",
   "intellect": "3",
@@ -1667,13 +1667,13 @@
   "t3n": "Spitfire",
   "dutyType": "Combat Victory",
   "dutyVal": "20",
-  "background": "Luke's childhood friend and wingman, an expert marksman who specializes in precision strikes against critical Imperial targets.",
+  "background": "Coran's childhood friend and wingman, an expert marksman who specializes in precision strikes against critical Imperial targets.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Rebel Starfighter Squadron. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Red Three - Wedge Antillian": {
+ "Ember Three - Dara Quell": {
   "kind": "char",
   "mode": "pc",
-  "name": "Red Three - Wedge Antillian",
+  "name": "Ember Three - Dara Quell",
   "species": "Human",
   "career": "Ace",
   "specs": "Pilot",
@@ -1703,10 +1703,10 @@
   "background": "A veteran pilot known for his exceptional flying skills and ability to survive missions that claim other pilots' lives.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Rebel Starfighter Squadron. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Red Four - Jek Porkins": {
+ "Ember Four - Benn Tarkle": {
   "kind": "char",
   "mode": "pc",
-  "name": "Red Four - Jek Porkins",
+  "name": "Ember Four - Benn Tarkle",
   "species": "Human",
   "career": "Technician",
   "specs": "Mechanic",
@@ -1736,10 +1736,10 @@
   "background": "The squadron's technical expert who can repair battle damage mid-flight and modify fighters for specific mission requirements.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Rebel Starfighter Squadron. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Red Five - Garven Dreis": {
+ "Ember Five - Garris Malk": {
   "kind": "char",
   "mode": "pc",
-  "name": "Red Five - Garven Dreis",
+  "name": "Ember Five - Garris Malk",
   "species": "Human",
   "career": "Commander",
   "specs": "Squadron Leader",
@@ -1769,10 +1769,10 @@
   "background": "An experienced commander who provides tactical coordination and ensures squadron cohesion during complex multi-fighter operations.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Rebel Starfighter Squadron. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Kingpin Lando Calrissian": {
+ "Kingpin Lorrun Castavel": {
   "kind": "char",
   "mode": "pc",
-  "name": "Kingpin Lando Calrissian",
+  "name": "Kingpin Lorrun Castavel",
   "species": "Human",
   "career": "Smuggler",
   "specs": "Gambler",
@@ -1802,10 +1802,10 @@
   "background": "A charismatic gambler and businessman who coordinates a network of smugglers across the galaxy, always looking for the next big score.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Smuggling Ring. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Pilot Han Solo": {
+ "Pilot Rhen Talvo": {
   "kind": "char",
   "mode": "pc",
-  "name": "Pilot Han Solo",
+  "name": "Pilot Rhen Talvo",
   "species": "Human",
   "career": "Smuggler",
   "specs": "Pilot",
@@ -1830,19 +1830,19 @@
   "t1n": "Skilled Jockey",
   "t2n": "Quick Draw",
   "t3n": "Galaxy Mapper",
-  "oblType": "Bounty (Jabba the Hutt)",
+  "oblType": "Bounty (A Hutt crime lord he shorted on a cargo run)",
   "oblVal": "20",
   "background": "A hotshot pilot with the fastest ship in the galaxy, known for making impossible runs and talking his way out of trouble.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Smuggling Ring. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Co-Pilot Chewbacca": {
+ "Co-Pilot Rorrwaak": {
   "kind": "char",
   "mode": "pc",
-  "name": "Co-Pilot Chewbacca",
+  "name": "Co-Pilot Rorrwaak",
   "species": "Wookiee",
   "career": "Hired Gun",
   "specs": "Marauder",
-  "motivation": "Relationship - \"Life debt to Han Solo\"",
+  "motivation": "Relationship - \"Life debt to Rhen Talvo\"",
   "brawn": "5",
   "agility": "3",
   "intellect": "2",
@@ -1865,13 +1865,13 @@
   "t3n": "Gearhead",
   "oblType": "Life Debt",
   "oblVal": "15",
-  "background": "A loyal Wookiee warrior and skilled mechanic who serves as Han's co-pilot, engineer, and muscle when negotiations go bad.",
+  "background": "A loyal Wookiee warrior and skilled mechanic who serves as Rhen's co-pilot, engineer, and muscle when negotiations go bad.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Smuggling Ring. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Slicer Mara Jade": {
+ "Slicer Sella Voren": {
   "kind": "char",
   "mode": "pc",
-  "name": "Slicer Mara Jade",
+  "name": "Slicer Sella Voren",
   "species": "Human",
   "career": "Spy",
   "specs": "Slicer, Force Sensitive Emergent",
@@ -1936,10 +1936,10 @@
   "background": "A well-connected fence who can find buyers for stolen goods and sellers for hard-to-acquire items across the galaxy's criminal underworld.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Smuggling Ring. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Professor Indiana Antilles": {
+ "Professor Ilsa Marrowind": {
   "kind": "char",
   "mode": "pc",
-  "name": "Professor Indiana Antilles",
+  "name": "Professor Ilsa Marrowind",
   "species": "Human",
   "career": "Colonist",
   "specs": "Scholar",
@@ -1969,10 +1969,10 @@
   "background": "A renowned archaeologist specializing in ancient civilizations and Force-related artifacts, leading expeditions to dangerous archaeological sites.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Archaeological Expedition. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Security Chief Cara Dune": {
+ "Security Chief Brenna Holt": {
   "kind": "char",
   "mode": "pc",
-  "name": "Security Chief Cara Dune",
+  "name": "Security Chief Brenna Holt",
   "species": "Human",
   "career": "Soldier",
   "specs": "Commando",
@@ -2002,10 +2002,10 @@
   "background": "A former Rebel shock trooper who provides security for archaeological expeditions into dangerous territories and hostile environments.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Archaeological Expedition. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Pilot Hera Syndulla": {
+ "Pilot Hesha Ral'tir": {
   "kind": "char",
   "mode": "pc",
-  "name": "Pilot Hera Syndulla",
+  "name": "Pilot Hesha Ral'tir",
   "species": "Twi'lek",
   "career": "Ace",
   "specs": "Pilot",
@@ -2035,10 +2035,10 @@
   "background": "An expert pilot who navigates the expedition to remote archaeological sites, often in uncharted or dangerous regions of space.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Archaeological Expedition. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Tech Specialist Sabine Wren": {
+ "Tech Specialist Saska Varn": {
   "kind": "char",
   "mode": "pc",
-  "name": "Tech Specialist Sabine Wren",
+  "name": "Tech Specialist Saska Varn",
   "species": "Mandalorian Human",
   "career": "Engineer",
   "specs": "Saboteur",
@@ -2068,10 +2068,10 @@
   "background": "A young Mandalorian engineer and explosives expert who specializes in bypassing ancient security systems and safely excavating dangerous artifacts.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Archaeological Expedition. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Medic Kanan Jarrus": {
+ "Medic Teren Vass": {
   "kind": "char",
   "mode": "pc",
-  "name": "Medic Kanan Jarrus",
+  "name": "Medic Teren Vass",
   "species": "Human",
   "career": "Colonist",
   "specs": "Doctor, Force Sensitive Exile",
@@ -2103,10 +2103,10 @@
   "background": "A Force-sensitive medic who hides his abilities while providing medical support for the expedition, secretly using the Force to enhance his healing.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Archaeological Expedition. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Master Yoda": {
+ "Master Oolo Vhen": {
   "kind": "char",
   "mode": "pc",
-  "name": "Master Yoda",
+  "name": "Master Oolo Vhen",
   "species": "Unknown Species",
   "career": "Mystic",
   "specs": "Advisor",
@@ -2132,10 +2132,10 @@
   "background": "The ancient Jedi Master who leads the surviving Council members in rebuilding the Jedi Order and training a new generation of Force users.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Council Survivors. Species unknown: set wound and strain thresholds with your GM. Soak is Brawn before armor."
  },
- "Master Mace Windu": {
+ "Master Davan Thule": {
   "kind": "char",
   "mode": "pc",
-  "name": "Master Mace Windu",
+  "name": "Master Davan Thule",
   "species": "Human",
   "career": "Warrior",
   "specs": "Juyo Berserker",
@@ -2166,10 +2166,10 @@
   "background": "A master of combat who survived Order 66 and now serves as the Council's military strategist and combat instructor.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Council Survivors. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Master Ki-Adi-Mundi": {
+ "Master Ti-Varo-Kesh": {
   "kind": "char",
   "mode": "pc",
-  "name": "Master Ki-Adi-Mundi",
+  "name": "Master Ti-Varo-Kesh",
   "species": "Cerean",
   "career": "Consular",
   "specs": "Sage",
@@ -2200,10 +2200,10 @@
   "background": "The Council's keeper of knowledge who maintains the Jedi archives and trains new Padawans in the ways of the Force.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Council Survivors. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Master Shaak Ti": {
+ "Master Rhyss Ta": {
   "kind": "char",
   "mode": "pc",
-  "name": "Master Shaak Ti",
+  "name": "Master Rhyss Ta",
   "species": "Togruta",
   "career": "Guardian",
   "specs": "Protector",
@@ -2234,10 +2234,10 @@
   "background": "A guardian master who specializes in protecting civilians and training Jedi in defensive combat techniques.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Council Survivors. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Master Plo Koon": {
+ "Master Tal Doroon": {
   "kind": "char",
   "mode": "pc",
-  "name": "Master Plo Koon",
+  "name": "Master Tal Doroon",
   "species": "Kel Dor",
   "career": "Warrior",
   "specs": "Starfighter Ace",
@@ -2268,10 +2268,10 @@
   "background": "A master pilot who leads the Council's starfighter operations and trains Force-sensitive pilots in aerial combat.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Council Survivors. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Master Kit Fisto": {
+ "Master Nuro Kesst": {
   "kind": "char",
   "mode": "pc",
-  "name": "Master Kit Fisto",
+  "name": "Master Nuro Kesst",
   "species": "Nautolan",
   "career": "Seeker",
   "specs": "Pathfinder",
@@ -2302,10 +2302,10 @@
   "background": "A master scout who leads missions into dangerous environments and teaches Jedi to connect with the Living Force in all its forms.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Jedi Council Survivors. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Director Orson Krennic": {
+ "Director Ulric Haddon": {
   "kind": "char",
   "mode": "pc",
-  "name": "Director Orson Krennic",
+  "name": "Director Ulric Haddon",
   "species": "Human",
   "career": "Commander",
   "specs": "Commodore",
@@ -2335,10 +2335,10 @@
   "background": "A brilliant but ruthless Imperial Director who coordinates intelligence operations across multiple sectors to maintain Imperial control.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Imperial Intelligence Cell. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Agent Kallus": {
+ "Agent Teodric Morvane": {
   "kind": "char",
   "mode": "pc",
-  "name": "Agent Kallus",
+  "name": "Agent Teodric Morvane",
   "species": "Human",
   "career": "Spy",
   "specs": "Infiltrator",
@@ -2368,14 +2368,14 @@
   "background": "A skilled ISB agent specializing in infiltrating Rebel cells and gathering intelligence on anti-Imperial activities.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Imperial Intelligence Cell. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Captain Thrawn": {
+ "Captain Vel'sarro": {
   "kind": "char",
   "mode": "pc",
-  "name": "Captain Thrawn",
+  "name": "Captain Vel'sarro",
   "species": "Chiss",
   "career": "Commander",
   "specs": "Tactician",
-  "motivation": "Knowledge - \"Understand enemies through their art and culture\"",
+  "motivation": "Knowledge - \"Know the enemy better than they know themselves\"",
   "brawn": "2",
   "agility": "2",
   "intellect": "5",
@@ -2398,13 +2398,13 @@
   "t3n": "Natural Leader",
   "dutyType": "Combat Victory",
   "dutyVal": "25",
-  "background": "A brilliant Chiss strategist who serves as the cell's tactical analyst, using cultural knowledge to predict enemy behavior.",
+  "background": "A brilliant Chiss strategist who serves as the cell's tactical analyst, studying an opponent's history and habits until their next move is obvious.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Imperial Intelligence Cell. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "Slicer Specialist LT-319": {
+ "Slicer Specialist KR-412": {
   "kind": "char",
   "mode": "pc",
-  "name": "Slicer Specialist LT-319",
+  "name": "Slicer Specialist KR-412",
   "species": "Human",
   "career": "Technician",
   "specs": "Slicer",
@@ -2467,10 +2467,10 @@
   "background": "An elite Death Trooper who serves as the cell's heavy weapons specialist and close protection for high-value Imperial assets.",
   "notes": "From 100 Sample Characters & Vehicles (The Star Wars RPG Guide), team: The Imperial Intelligence Cell. Wound and strain thresholds are species base + Brawn / Willpower. Soak is Brawn before armor."
  },
- "TIE Pilot Baron Valen Rudor": {
+ "TIE Pilot Baron Corvin Ashlar": {
   "kind": "char",
   "mode": "pc",
-  "name": "TIE Pilot Baron Valen Rudor",
+  "name": "TIE Pilot Baron Corvin Ashlar",
   "species": "Human",
   "career": "Ace",
   "specs": "Pilot",
@@ -3505,7 +3505,7 @@
   "m1t": "Duty",
   "m1y": "Intelligence",
   "m1v": "20",
-  "m2c": "Tech Specialist Quin-Lan",
+  "m2c": "Tech Specialist Sel-Varin",
   "m2s": "Cerean",
   "m2k": "Technician / Slicer",
   "m2t": "Duty",
@@ -3517,13 +3517,13 @@
   "kind": "grp",
   "gName": "The Diplomatic Mission (Team of 2)",
   "gObj": "Team of 2 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Senator Amara Kryze",
+  "m1c": "Senator Amara Tal'vek",
   "m1s": "Mandalorian Human",
   "m1k": "Diplomat / Ambassador",
   "m1t": "Duty",
   "m1y": "Political Support",
   "m1v": "25",
-  "m2c": "Bodyguard Tor Vizsla",
+  "m2c": "Bodyguard Tor Davrek",
   "m2s": "Mandalorian Human",
   "m2k": "Hired Gun / Bodyguard",
   "m2t": "Duty",
@@ -3541,7 +3541,7 @@
   "m1t": "Obligation",
   "m1y": "Favor (Owes medical supplies to underground clinic)",
   "m1v": "15",
-  "m2c": "Medic Rex CT-7567",
+  "m2c": "Medic \"Patch\" CT-4823",
   "m2s": "Clone Human",
   "m2k": "Soldier / Medic",
   "m2t": "Obligation",
@@ -3637,7 +3637,7 @@
   "m2t": "Obligation",
   "m2y": "Betrayal (Former ISB colleagues hunt him)",
   "m2v": "20",
-  "m3c": "Stormtrooper FN-1337 \"Finn\"",
+  "m3c": "Stormtrooper TK-1337 \"Brick\"",
   "m3s": "Human",
   "m3k": "Soldier / Commando",
   "m3t": "Obligation",
@@ -3658,7 +3658,7 @@
   "m3c": "Knight Sera Koth",
   "m3s": "Kel Dor",
   "m3k": "Consular / Healer",
-  "m4c": "Padawan Zara Tano",
+  "m4c": "Padawan Zara Tevin",
   "m4s": "Togruta",
   "m4k": "Seeker / Pathfinder",
   "gLine": ""
@@ -3685,7 +3685,7 @@
   "m3t": "Obligation",
   "m3y": "Bounty (Blood feud with rival clan)",
   "m3v": "15",
-  "m4c": "Slicer Qira Vex",
+  "m4c": "Slicer Ysra Kell",
   "m4s": "Twi'lek",
   "m4k": "Technician / Slicer",
   "m4t": "Obligation",
@@ -3697,25 +3697,25 @@
   "kind": "grp",
   "gName": "The Diplomatic Mission (Team of 4)",
   "gObj": "Team of 4 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Ambassador Leia Antilles",
+  "m1c": "Ambassador Lenna Aravos",
   "m1s": "Human",
   "m1k": "Diplomat / Ambassador",
   "m1t": "Duty",
   "m1y": "Political Support",
   "m1v": "25",
-  "m2c": "Security Chief Han Corren",
+  "m2c": "Security Chief Harl Corren",
   "m2s": "Human",
   "m2k": "Hired Gun / Bodyguard",
   "m2t": "Duty",
   "m2y": "Personnel",
   "m2v": "20",
-  "m3c": "Protocol Expert C-3PO Prime",
+  "m3c": "Protocol Expert PX-9 \"Lumen\"",
   "m3s": "Protocol Droid",
   "m3k": "Diplomat / Analyst",
   "m3t": "Duty",
   "m3y": "Intelligence",
   "m3v": "15",
-  "m4c": "Pilot Commander Wedge Darklighter",
+  "m4c": "Pilot Commander Dace Merrow",
   "m4s": "Human",
   "m4k": "Ace / Pilot",
   "m4t": "Duty",
@@ -3727,25 +3727,25 @@
   "kind": "grp",
   "gName": "The Corporate Espionage Team",
   "gObj": "Team of 4 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Executive Director Kira Syndulla",
+  "m1c": "Executive Director Mirela Vashai",
   "m1s": "Twi'lek",
   "m1k": "Colonist / Entrepreneur",
   "m1t": "Obligation",
   "m1y": "Rivalry (Competing corporations)",
   "m1v": "20",
-  "m2c": "Industrial Saboteur Jyn Kestis",
+  "m2c": "Industrial Saboteur Rynn Calder",
   "m2s": "Human",
   "m2k": "Engineer / Saboteur",
   "m2t": "Obligation",
   "m2y": "Criminal record (Corporate espionage charges)",
   "m2v": "15",
-  "m3c": "Data Analyst Quinn Vos",
+  "m3c": "Data Analyst Quinn Dovar",
   "m3s": "Human",
   "m3k": "Technician / Slicer",
   "m3t": "Obligation",
   "m3y": "Favor (Owes data to information broker)",
   "m3v": "10",
-  "m4c": "Security Consultant Axe Woves",
+  "m4c": "Security Consultant Arran Tesk",
   "m4s": "Mandalorian Human",
   "m4k": "Hired Gun / Heavy",
   "m4t": "Obligation",
@@ -3757,31 +3757,31 @@
   "kind": "grp",
   "gName": "The Rebel Starfighter Squadron",
   "gObj": "Team of 5 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Squadron Leader Luke Skystrider",
+  "m1c": "Squadron Leader Coran Vey",
   "m1s": "Human",
   "m1k": "Ace / Pilot + Force Sensitive Emergent",
   "m1t": "Duty",
   "m1y": "Combat Victory",
   "m1v": "25",
-  "m2c": "Red Two - Biggs Darkstrider",
+  "m2c": "Ember Two - Jory Varrin",
   "m2s": "Human",
   "m2k": "Ace / Gunner",
   "m2t": "Duty",
   "m2y": "Combat Victory",
   "m2v": "20",
-  "m3c": "Red Three - Wedge Antillian",
+  "m3c": "Ember Three - Dara Quell",
   "m3s": "Human",
   "m3k": "Ace / Pilot",
   "m3t": "Duty",
   "m3y": "Space Superiority",
   "m3v": "20",
-  "m4c": "Red Four - Jek Porkins",
+  "m4c": "Ember Four - Benn Tarkle",
   "m4s": "Human",
   "m4k": "Technician / Mechanic",
   "m4t": "Duty",
   "m4y": "Resource Acquisition",
   "m4v": "15",
-  "m5c": "Red Five - Garven Dreis",
+  "m5c": "Ember Five - Garris Malk",
   "m5s": "Human",
   "m5k": "Commander / Squadron Leader",
   "m5t": "Duty",
@@ -3793,25 +3793,25 @@
   "kind": "grp",
   "gName": "The Smuggling Ring",
   "gObj": "Team of 5 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Kingpin Lando Calrissian",
+  "m1c": "Kingpin Lorrun Castavel",
   "m1s": "Human",
   "m1k": "Smuggler / Gambler",
   "m1t": "Obligation",
   "m1y": "Debt (Multiple gambling debts)",
   "m1v": "25",
-  "m2c": "Pilot Han Solo",
+  "m2c": "Pilot Rhen Talvo",
   "m2s": "Human",
   "m2k": "Smuggler / Pilot",
   "m2t": "Obligation",
-  "m2y": "Bounty (Jabba the Hutt)",
+  "m2y": "Bounty (A Hutt crime lord he shorted on a cargo run)",
   "m2v": "20",
-  "m3c": "Co-Pilot Chewbacca",
+  "m3c": "Co-Pilot Rorrwaak",
   "m3s": "Wookiee",
   "m3k": "Hired Gun / Marauder",
   "m3t": "Obligation",
   "m3y": "Life Debt",
   "m3v": "15",
-  "m4c": "Slicer Mara Jade",
+  "m4c": "Slicer Sella Voren",
   "m4s": "Human",
   "m4k": "Spy / Slicer + Force Sensitive Emergent",
   "m4t": "Obligation",
@@ -3829,31 +3829,31 @@
   "kind": "grp",
   "gName": "The Archaeological Expedition",
   "gObj": "Team of 5 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Professor Indiana Antilles",
+  "m1c": "Professor Ilsa Marrowind",
   "m1s": "Human",
   "m1k": "Colonist / Scholar",
   "m1t": "Obligation",
   "m1y": "Academic Rivalry (Competing for discoveries)",
   "m1v": "15",
-  "m2c": "Security Chief Cara Dune",
+  "m2c": "Security Chief Brenna Holt",
   "m2s": "Human",
   "m2k": "Soldier / Commando",
   "m2t": "Obligation",
   "m2y": "Oath (Sworn to protect civilians)",
   "m2v": "10",
-  "m3c": "Pilot Hera Syndulla",
+  "m3c": "Pilot Hesha Ral'tir",
   "m3s": "Twi'lek",
   "m3k": "Ace / Pilot",
   "m3t": "Obligation",
   "m3y": "Responsibility (Transport team safely)",
   "m3v": "15",
-  "m4c": "Tech Specialist Sabine Wren",
+  "m4c": "Tech Specialist Saska Varn",
   "m4s": "Mandalorian Human",
   "m4k": "Engineer / Saboteur",
   "m4t": "Obligation",
   "m4y": "Family Honor (Prove worth to Mandalorian clan)",
   "m4v": "10",
-  "m5c": "Medic Kanan Jarrus",
+  "m5c": "Medic Teren Vass",
   "m5s": "Human",
   "m5k": "Colonist / Doctor + Force Sensitive Exile",
   "m5t": "Obligation",
@@ -3865,22 +3865,22 @@
   "kind": "grp",
   "gName": "The Jedi Council Survivors",
   "gObj": "Team of 6 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Master Yoda",
+  "m1c": "Master Oolo Vhen",
   "m1s": "Unknown Species",
   "m1k": "Mystic / Advisor",
-  "m2c": "Master Mace Windu",
+  "m2c": "Master Davan Thule",
   "m2s": "Human",
   "m2k": "Warrior / Juyo Berserker",
-  "m3c": "Master Ki-Adi-Mundi",
+  "m3c": "Master Ti-Varo-Kesh",
   "m3s": "Cerean",
   "m3k": "Consular / Sage",
-  "m4c": "Master Shaak Ti",
+  "m4c": "Master Rhyss Ta",
   "m4s": "Togruta",
   "m4k": "Guardian / Protector",
-  "m5c": "Master Plo Koon",
+  "m5c": "Master Tal Doroon",
   "m5s": "Kel Dor",
   "m5k": "Warrior / Starfighter Ace",
-  "m6c": "Master Kit Fisto",
+  "m6c": "Master Nuro Kesst",
   "m6s": "Nautolan",
   "m6k": "Seeker / Pathfinder",
   "gLine": ""
@@ -3889,25 +3889,25 @@
   "kind": "grp",
   "gName": "The Imperial Intelligence Cell",
   "gObj": "Team of 6 from 100 Sample Characters & Vehicles (The Star Wars RPG Guide).",
-  "m1c": "Director Orson Krennic",
+  "m1c": "Director Ulric Haddon",
   "m1s": "Human",
   "m1k": "Commander / Commodore",
   "m1t": "Duty",
   "m1y": "Intelligence (Imperial)",
   "m1v": "30",
-  "m2c": "Agent Kallus",
+  "m2c": "Agent Teodric Morvane",
   "m2s": "Human",
   "m2k": "Spy / Infiltrator",
   "m2t": "Duty",
   "m2y": "Intelligence",
   "m2v": "25",
-  "m3c": "Captain Thrawn",
+  "m3c": "Captain Vel'sarro",
   "m3s": "Chiss",
   "m3k": "Commander / Tactician",
   "m3t": "Duty",
   "m3y": "Combat Victory",
   "m3v": "25",
-  "m4c": "Slicer Specialist LT-319",
+  "m4c": "Slicer Specialist KR-412",
   "m4s": "Human",
   "m4k": "Technician / Slicer",
   "m4t": "Duty",
@@ -3919,7 +3919,7 @@
   "m5t": "Duty",
   "m5y": "Combat Victory",
   "m5v": "25",
-  "m6c": "TIE Pilot Baron Valen Rudor",
+  "m6c": "TIE Pilot Baron Corvin Ashlar",
   "m6s": "Human",
   "m6k": "Ace / Pilot",
   "m6t": "Duty",
