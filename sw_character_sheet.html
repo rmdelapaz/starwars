@@ -206,6 +206,7 @@
             <button type="button" id="blankBtn">📄 Print Blank</button>
             <button type="button" id="exportBtn">📤 Export</button>
             <button type="button" id="importBtn">📥 Import</button>
+            <button type="button" id="sampleBtn">🗂️ Load sample characters</button>
             <input type="file" id="importFile" accept=".json,application/json">
         </div>
         <p class="sheet-status" id="status" role="status" aria-live="polite"></p>
@@ -413,6 +414,7 @@
 
         <div class="sheet-help">
             <p><strong>How it works.</strong> Pick a kind of sheet: <strong>Character</strong> (two pages: characteristics and skills, then talents and story), <strong>Adversary</strong> (minions, rivals and nemeses), <strong>Vehicle</strong> (speeders, starfighters and starships) or <strong>Group</strong> (your party, its pooled Obligation or Duty, and a session log). A sheet auto-saves in this browser once it has a name, and renaming it renames its save. <strong>Print</strong> prints every page of the current sheet, one per US Letter sheet; <strong>Print All</strong> prints every saved sheet; <strong>Print Blank</strong> prints an empty sheet of the current kind. <strong>Export</strong> downloads every sheet as a JSON file and <strong>Import</strong> merges them back in (a sheet with the same name is replaced). Nothing leaves your browser.</p>
+            <p><strong>Sample sheets.</strong> <strong>Load sample characters</strong> adds every entry from <a href="/sw_100.html">100 Sample Characters &amp; Vehicles</a> (characters, adversaries and vehicles) plus each of its teams as a group sheet, replacing any saved sheet with the same name just as Import does; you can also <a href="/sw_sample_sheets.json" download>download the sample sheet file</a> and import it yourself.</p>
             <p><strong>Dice pools.</strong> For each skill, the sheet compares its characteristic with your ranks. The higher number is how many dice you roll, and the lower number of them are upgraded to yellow Proficiency dice (<span class="pip prof" aria-hidden="true"></span>); the rest are green Ability dice (<span class="pip abil" aria-hidden="true"></span>). Brawn 3 with 1 rank of Athletics rolls one Proficiency and two Ability dice. Take the pool to the <a href="/sw_dice_roller.html">Narrative Dice Roller</a> to see your odds, and see <a href="/sw_char.html">Character Creation</a> for building the character.</p>
             <p><strong>Worked out for you.</strong> Encumbrance threshold is 5 + Brawn. Force dice to roll are your Force rating minus any dice you have committed. On a vehicle, the hull trauma and system strain boxes follow the thresholds (click a box to mark damage), port and starboard Defense appear for Silhouette 5 and up, and hard points used are added up from your attachments. On the group sheet, each member's Obligation or Duty gets its slice of the d100 roll, and the party totals show when Duty reaches 100. See <a href="/sw_vehicles.html">Starships &amp; Vehicles</a> and <a href="/sw_groups.html">Crews &amp; Group Dynamics</a>.</p>
         </div>
@@ -773,7 +775,40 @@
             setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
             say('Exported ' + n + (n === 1 ? ' sheet.' : ' sheets.'));
         });
+        // Merge a {name: sheet} object into saved sheets; a sheet with the same name is replaced.
+        // Returns { count, added, replaced } (replaced = names already saved before the merge), or null if storage failed.
+        function mergeSheets(data) {
+            var all = load(), before = {}, seen = {}, count = 0, replaced = 0;
+            Object.keys(all).forEach(function (n) { before[n] = true; });
+            Object.keys(data).forEach(function (k) {
+                var d = sanitize(data[k]); if (!d) return;
+                var name = nameOf(d).slice(0, 200);
+                if (!safeName(name)) return;
+                if (!seen[name]) { seen[name] = true; count++; if (before[name]) replaced++; }
+                all[name] = d;
+            });
+            if (!count) return { count: 0, added: 0, replaced: 0 };
+            if (!store(all)) return null;
+            if (currentKey && seen[currentKey] && all[currentKey]) fill(all[currentKey]);   // the open sheet was replaced: show the new copy
+            refreshSelect(currentKey || '');
+            return { count: count, added: count - replaced, replaced: replaced };
+        }
         $('importBtn').addEventListener('click', function () { $('importFile').click(); });
+        $('sampleBtn').addEventListener('click', function () {
+            var btn = this;
+            flush(); btn.disabled = true; say('Loading the sample sheets…');
+            fetch('/sw_sample_sheets.json', { cache: 'no-cache' })
+                .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(function (data) {
+                    if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('bad file');
+                    var res = mergeSheets(data);
+                    if (!res) return;
+                    if (!res.count) { say('No valid sheets found in the sample file.'); return; }
+                    say('Loaded ' + res.count + ' sample sheets: ' + res.added + ' added, ' + res.replaced + ' replaced.');
+                })
+                .catch(function () { say('Could not load the sample sheets. Check your connection, or download the file and use Import.'); })
+                .then(function () { btn.disabled = false; });
+        });
         $('importFile').addEventListener('change', function (ev) {
             var file = ev.target.files && ev.target.files[0];
             ev.target.value = '';
@@ -785,23 +820,17 @@
                 try {
                     var data = JSON.parse(r.result);
                     if (!data || typeof data !== 'object' || Array.isArray(data)) { say('That is not a sheet file.'); return; }
-                    var all = load(), count = 0;
-                    Object.keys(data).forEach(function (k) {
-                        var d = sanitize(data[k]); if (!d) return;
-                        var name = nameOf(d).slice(0, 200);
-                        if (!safeName(name)) return;
-                        all[name] = d; count++;
-                    });
-                    if (!count) { say('No valid sheets found in that file.'); return; }
-                    if (!store(all)) return;
-                    refreshSelect(currentKey || ''); say('Imported ' + count + (count === 1 ? ' sheet.' : ' sheets.'));
+                    var res = mergeSheets(data);
+                    if (!res) return;
+                    if (!res.count) { say('No valid sheets found in that file.'); return; }
+                    say('Imported ' + res.count + (res.count === 1 ? ' sheet.' : ' sheets.'));
                 } catch (e) { say('Could not read that file.'); }
             };
             r.onerror = function () { say('Could not read that file.'); };
             r.readAsText(file);
         });
 
-        window.swSheet = { pool: pool, skills: SKILL_LIST, derive: derive, kindOf: kindOf };
+        window.swSheet = { pool: pool, skills: SKILL_LIST, derive: derive, kindOf: kindOf, sanitize: sanitize, fields: FIELDS };
         applyKind(); clearAll(); refreshSelect('');
     })();
     </script>
