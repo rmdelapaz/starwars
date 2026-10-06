@@ -455,6 +455,12 @@ main [data-figure-scroll] > canvas { margin: 0; }
 /* Subtitles inside the title band keep the band's white text */
 body > header :is(strong, em, b) { color: inherit; }
 
+/* An inner "-grid" wrapper of cards inside a card grid spans the whole row and lays its own cards out
+   side by side (zero specificity, so a page's own grid rules still win) */
+main div:is([class$="-examples"], [class$="-types"], [class$="-categories"]) > div[class$="-grid"] { grid-column: 1 / -1; }
+:where(main div:is([class$="-examples"], [class$="-types"], [class$="-categories"]) > div[class$="-grid"]:has(> div)) { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 12px; }
+main div:is([class$="-examples"], [class$="-types"], [class$="-categories"]) > div[class$="-grid"] > div { margin: 0 !important; min-width: 0; }
+
 /* A grid cell that holds a canvas figure spans the whole row */
 main div:is([class$="-examples"], [class$="-types"], [class$="-categories"]) > div:has(canvas) { grid-column: 1 / -1; }
 
